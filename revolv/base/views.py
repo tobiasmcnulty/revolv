@@ -20,8 +20,9 @@ from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.payments.models import Payment
 from revolv.project.models import Category, Project
+
+from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
-from revolv.base.models import RevolvUserProfile
 from revolv.base.models import RevolvUserProfile
 from revolv.tasks.sfdc import send_signup_info
 
