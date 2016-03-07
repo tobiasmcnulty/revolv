@@ -20,6 +20,7 @@ from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.payments.models import Payment
 from revolv.project.models import Category, Project
+
 from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.base.models import RevolvUserProfile
@@ -46,10 +47,13 @@ class HomePageView(UserDataMixin, TemplateView):
         # Assume 20 year lifetime.
         # We use str() to avoid django adding commas to integer in the template.
         carbon_saved = str(int(carbon_saved_by_month * 12 * 20))
+        people_donated_sys_count = RevolvUserProfile.objects.exclude(project=None).count()
+        people_donated_stat_count = str(int(people_donated_sys_count + 615)) 
         global_impacts = {
             # Users who have backed at least one project:
-            'num_people_donated': RevolvUserProfile.objects.exclude(project=None).count(),
-            'num_projects': Project.objects.all().count(),
+            #'num_people_donated': RevolvUserProfile.objects.exclude(project=None).count(),
+            'num_people_donated': people_donated_stat_count, 
+            'num_projects': Project.objects.get_completed().count(),
             'num_people_affected': Project.objects.aggregate(n=Sum('people_affected'))['n'],
             'co2_avoided': carbon_saved,
         }
