@@ -20,7 +20,6 @@ from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.payments.models import Payment
 from revolv.project.models import Category, Project
-
 from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.base.models import RevolvUserProfile
@@ -48,14 +47,13 @@ class HomePageView(UserDataMixin, TemplateView):
         # We use str() to avoid django adding commas to integer in the template.
         carbon_saved = str(int(carbon_saved_by_month * 12 * 20))
         people_donated_sys_count = RevolvUserProfile.objects.exclude(project=None).count()
-        people_donated_stat_count = str(int(people_donated_sys_count + 615)) 
+        people_donated_stat_Count = str(int(people_donated_sys_count + 615))
         global_impacts = {
             # Users who have backed at least one project:
-            #'num_people_donated': RevolvUserProfile.objects.exclude(project=None).count(),
-            'num_people_donated': people_donated_stat_count, 
+            'num_people_donated': people_donated_stat_Count,
             'num_projects': Project.objects.get_completed().count(),
-            'num_people_affected': Project.objects.aggregate(n=Sum('people_affected'))['n'],
-            'co2_avoided': carbon_saved,
+            'num_people_affected': Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
+            'co2_avoided': total_carbon_value,
         }
         return global_impacts
 
@@ -99,7 +97,7 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
 
         context['donated_projects'] = Project.objects.donated_projects(self.user_profile)
         statistics_dictionary = aggregate_stats(self.user_profile)
-        statistics_dictionary['total_donated'] = total_donations(self.user_profile)
+        statistics_dictionary['total_donated'] = total_donations()
         statistics_dictionary['people_served'] = Project.objects.aggregate(n=Sum('people_affected'))['n']
         humanize_integers(statistics_dictionary)
         context['statistics'] = statistics_dictionary
