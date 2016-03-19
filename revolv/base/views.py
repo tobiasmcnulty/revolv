@@ -48,11 +48,11 @@ class HomePageView(UserDataMixin, TemplateView):
         #carbon_saved = str(int(carbon_saved_by_month * 12 * 20))
         people_donated_sys_count = RevolvUserProfile.objects.exclude(project=None).count()
         people_donated_stat_Count = str(int(people_donated_sys_count + 615))
-        total_kwh = float(Project.objects.aggregate(n=Sum('total_kwh_value'))['n'])
-        carbon_value_calc = total_kwh * 1.5
-        funding_goal_value = float(Project.objects.aggregate(n=Sum('funding_goal'))['n'])
-	amount_invested_value = Payment.objects.aggregate(n=Sum('amount'))['n']
-        final_carbon_avoided = str(int(carbon_value_calc / funding_goal_value * amount_invested_value + 3057319))
+        #total_kwh = float(Project.objects.aggregate(n=Sum('total_kwh_value'))['n'])
+        #carbon_value_calc = total_kwh * 1.5
+        #funding_goal_value = float(Project.objects.aggregate(n=Sum('funding_goal'))['n'])
+	#amount_invested_value = Payment.objects.aggregate(n=Sum('amount'))['n']
+        #final_carbon_avoided = str(int(carbon_value_calc / funding_goal_value * amount_invested_value + 3057319))
         global_impacts = {
             # Users who have backed at least one project:
             'num_people_donated': people_donated_stat_Count,
