@@ -203,18 +203,12 @@ class Project(models.Model):
         decimal_places=2,
         help_text='How much do you aim to raise for this project?'
     )
-    """
-    Code added by Sangeeth -- to include carbon_value --start
-    """
     total_kwh_value = models.DecimalField(
         max_digits=15,
         decimal_places=2,
         default=0,
         help_text='How much is the total kWH value for 25 years to this project?'
     )
-    """
-    Code added by Sangeeth -- to include carbon_value --end
-    """
     title = models.CharField(
         max_length=255,
         help_text='How would you like to title this project?'
