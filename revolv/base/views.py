@@ -52,13 +52,14 @@ class HomePageView(UserDataMixin, TemplateView):
         carbon_value_calc = total_kwh * 1.5
         funding_goal_value = float(Project.objects.aggregate(n=Sum('funding_goal'))['n'])
 	amount_invested_value = Payment.objects.aggregate(n=Sum('amount'))['n']
-        final_carbon_avoided = str(int(carbon_value_calc / funding_goal_value * amount_invested_value))
+        final_carbon_avoided = str(int(carbon_value_calc / funding_goal_value * amount_invested_value + 3057319))
         global_impacts = {
             # Users who have backed at least one project:
             'num_people_donated': people_donated_stat_Count,
             'num_projects': Project.objects.get_completed().count(),
             'num_people_affected': Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
-            'co2_avoided': final_carbon_avoided,
+            #'co2_avoided': final_carbon_avoided,
+	   'co2_avoided': 3057319, 
         }
         return global_impacts
 
