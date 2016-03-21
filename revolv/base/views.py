@@ -59,7 +59,7 @@ class HomePageView(UserDataMixin, TemplateView):
             'num_projects': Project.objects.get_completed().count(),
             'num_people_affected': Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
             #'co2_avoided': final_carbon_avoided,
-	   'co2_avoided': 3057319, 
+	   'co2_avoided': 7276422, 
         }
         return global_impacts
 
