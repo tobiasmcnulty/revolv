@@ -10962,6 +10962,11 @@ label.checkmark.animate:after {
   margin-bottom: 3em;
 }
 
+.dashboard .btn-reinvest{
+  letter-spacing: 2px;
+  padding-left: 10px;
+}
+
 /* Project draft mode */
 
 .draft-mode-div {
