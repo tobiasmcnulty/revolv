@@ -662,7 +662,7 @@ a:hover {
 }
 .active-projects-module .info-main .actual-energy,
 .details-active-project-module .info-main .actual-energy {
-  max-width: 40%;
+  max-width: 55%;
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
