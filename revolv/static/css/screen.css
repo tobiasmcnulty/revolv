@@ -3501,6 +3501,20 @@ header.edit-project-header > .container > h1 {
   padding: 5px 0 0 0;
 }
 
+/* .footer .attribution */
+
+.footer .attribution {
+  color: #8a8a8a;
+  font-size: 14px;
+  text-align: left;
+  line-height: 24px;
+  padding-bottom: 5px;
+}
+
+.footer .attribution a {
+  color: #14b1e7;
+}
+
 /* .footer .bottoms */
 
 .footer .bottoms {
@@ -5647,6 +5661,7 @@ header.edit-project-header > .container > h1 {
     line-height: 20px;
     padding: 5px 0 0 0;
   }
+
   /* .footer .bottoms */
   .footer .bottoms {
     margin: 0 86px 0 99px;
