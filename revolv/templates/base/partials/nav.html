@@ -21,8 +21,8 @@
             <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate">SIGN OUT</a>
           </li>
           {% else %}
+           <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
           <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate" data-component="signup">SIGN UP</a>
-          <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
         {% endif %}
 
       </div>

@@ -100,8 +100,8 @@ a:hover {
   display: inline-block;
 }
 .title-white-border {
-  color: #fff;
   border: 2px solid #fff;
+  color: #fff;
 }
 .title-blue-border {
   color: #14b1e7;
@@ -231,7 +231,6 @@ a:hover {
 
 .header.after-scroll-header {
   background: #fff;
-  border-bottom: 1px solid #32221e;
   margin: 0;
 }
 .header.after-scroll-header .logo {
@@ -1322,11 +1321,13 @@ header.edit-project-header > .container > h1 {
   padding-left: 20px;
 }
 .title-h1 {
-  font-family: 'Source Sans Pro';
-  font-weight: 900;
+  color: #14b1e7;
+  font-family: "Source Sans Pro";
   font-size: 48px;
-  color: #2c3691;
+  font-weight: 900;
   line-height: 56px;
+  margin-top: -12px;
+  width: 70%;
 }
 
 /* sign in page */
@@ -2108,8 +2109,8 @@ header.edit-project-header > .container > h1 {
 /* project details page */
 
 .details-active-project-module {
-  background: #ededed;
   position: relative;
+  padding-top: 45px;
 }
 .details-active-project-module .banners.min-height455 {
   background: #292929;
@@ -2131,14 +2132,13 @@ header.edit-project-header > .container > h1 {
 
 .details-active-project-module .banner-section {
   width: 100%;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 999;
 }
 .details-active-project-module .banner-section .container {
-  padding: 43px 0 0 0;
-  min-height: 455px;
+  padding: 30px 0 0;
   position: relative;
 }
 .details-active-project-module .banner-section .title-active-project {
@@ -2162,7 +2162,7 @@ header.edit-project-header > .container > h1 {
   padding: 12px;
   margin: 0 0 0 -118px;
   position: absolute;
-  bottom: -201px;
+  bottom: -841px;
   left: 50%;
   z-index: 299;
 }
@@ -2196,17 +2196,19 @@ header.edit-project-header > .container > h1 {
 /* .details-active-project-module .info-section */
 
 .details-active-project-module .info-section {
+  display: block;
   position: relative;
+  width: 100%;
 }
 .details-active-project-module .info-section .container {
-  padding: 4px 116px 0 112px;
+  padding: 10px 82px 0 112px;
   position: relative;
 }
 
 /* .details-active-project-module .info-main */
 
 .details-active-project-module .info-main {
-  padding-bottom: 62px;
+  padding-bottom: 90px;
 }
 .details-active-project-module .info-main .blue-bar, .details-active-project-module .info-main .dark-blue-bar {
   font-size: 27.19px;
@@ -2216,6 +2218,7 @@ header.edit-project-header > .container > h1 {
   padding: 0 25px;
   overflow: hidden;
   margin-top: 15px;
+  width: 100%;
 }
 .details-active-project-module .info-main .blue-bar {
   background: #14b1e7;
@@ -2239,14 +2242,14 @@ header.edit-project-header > .container > h1 {
 }
 .details-active-project-module .video-area .video {
   background: #000;
-  width: 470px;
+  width: 100%;
   height: 326px;
   position: relative;
 }
 .details-active-project-module .video-area .video iframe {
-  width: 470px;
-  height: 326px;
-  border: none;
+  border: medium none;
+  height: 468px;
+  width: 100%;
 }
 .details-active-project-module .video-area .video img {
   width: 100%;
@@ -2316,16 +2319,18 @@ header.edit-project-header > .container > h1 {
 
 .project-updates-module {
   position: relative;
+  width: 100%;
 }
 .project-updates-module .container {
-  padding: 46px 47px 20px 115px;
+  padding: 46px 65px 20px 99px;
 }
-
 /* .project-updates-module .main-area */
 
 .project-updates-module .main-area {
   float: left;
-  width: 671px;
+  margin-top: 59px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .project-updates-module .main-area .title-project-updates {
   width: 331px;
@@ -2397,16 +2402,15 @@ header.edit-project-header > .container > h1 {
 /* .project-updates-module .right-aside */
 
 .project-updates-module .right-aside {
-  width: 305px;
+  width: 100%;
   float: right;
   position: relative;
 }
 .project-updates-module .right-aside .module-box {
+  background: #ededed none repeat scroll 0 0;
+  margin: 0;
+  min-height: auto;
   text-align: center;
-  background: #ededed;
-  min-height: 200px;
-  padding: 24px;
-  margin: 0 0 32px 0;
 }
 .project-updates-module .right-aside .module-box p {
   padding: 0.5rem 0;
@@ -2518,17 +2522,13 @@ header.edit-project-header > .container > h1 {
 }
 
 /* .project-updates-module .venue-area */
-
-.project-updates-module .venue-area {
-  padding: 41px 0 0 0;
-}
 .project-updates-module .main-area .title-venue {
+  margin-bottom: 30px;
   width: 172px;
-  margin-bottom: 17px;
 }
 .project-updates-module .main-area .venue-map, .project-updates-module .main-area .venue-map img {
-  width: 670px;
   height: 380px;
+  width: 650px;
 }
 .project-updates-module .main-area .venue-bottom {
   padding: 22px 0 0 0;
@@ -2554,7 +2554,9 @@ header.edit-project-header > .container > h1 {
 /* .donors-module */
 
 .donors-module {
+  display: none;
   position: relative;
+  width: 100%;
 }
 .donors-module .titles.container {
   padding: 19px 0 0 0;
@@ -3699,6 +3701,181 @@ header.edit-project-header > .container > h1 {
   color: #8a8a8a;
   line-height: 24px;
 }
+
+/*mystyle start 29-june here*/
+.details-active-project-module .txt-area1 {
+  float: right;
+  margin-bottom: 45px;
+  margin-left: 0 !important;
+}
+.txt-area1 .module-box {
+  background: #ededed none repeat scroll 0 0;
+  margin: 0 0 32px;
+  min-height: 200px;
+  padding: 24px;
+  text-align: center;
+}
+.txt-area1 .module-box.payment-module h5.title-h5 {
+  border-bottom: 1px solid #c3c3c3;
+  border-top: 1px solid #c3c3c3;
+  color: #4b4b4b;
+  font-family: "Source Sans Pro";
+  font-size: 16px;
+  font-weight: 700;
+  height: 33px;
+  line-height: 33px;
+  margin: 10px 0;
+}
+.txt-area1 .module-box .back-the-project {
+  color: #7d7d7d;
+  font-size: 14px;
+  line-height: 25px;
+  margin: 15px 0;
+}
+.txt-area1 .module-box .inputs label {
+  color: #4c4c4c;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 5px 10px;
+}
+.txt-area1 .module-box .inputs {
+  text-align: left;
+}
+.txt-area1 .btn-i-want-to-donate {
+  background-color: #00a1d9;
+  font-size: 14px !important;
+  height: 45px;
+  letter-spacing: 4px;
+  line-height: 45px;
+  margin-top: 2.5rem;
+  padding-left: 20px;
+  padding-top: 0;
+  width: 100%;
+}
+.details-active-project-module .container {
+  padding: 4px 54px 0 78px;
+}
+/*$ 20 CSS START HERE*/
+.right_asides {
+  background: #ededed none repeat scroll 0 0;
+  float: right;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  min-height: auto;
+  padding: 30px 0;
+  text-align: center;
+  width: 100%;
+}
+.outer_basic_silver_gold .container {
+  padding: 4px 55px 0 99px;
+}
+.outer_basic_silver_gold .content_gold_silver {
+  font-size: 24.19px;
+  line-height: 44px;
+}
+.right_asides aside.right-aside h1.basic {
+  color: rgb(181, 181, 181);
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+.right_asides aside.right-aside strong {
+  color: rgb(40, 40, 40);
+  display: block;
+  font-size: 55px;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+.right_asides aside.right-aside span.our_apps {
+  border-bottom: 1px solid #c3c3c3;
+  border-top: 1px solid #c3c3c3;
+  color: #4b4b4b;
+  display: block;
+  font-family: "Source Sans Pro";
+  font-size: 16px;
+  font-weight: 600;
+  height: 33px;
+  line-height: 33px;
+  margin: 0 18px 0 16px;
+  text-transform: uppercase;
+}
+.right_asides aside.right-aside p.dummy {
+  color: #808080;
+  font-weight: bold;
+  line-height: 35px;
+  margin: 15px auto;
+  text-align: center;
+  width: 146px;
+}
+.right_asides aside.right-aside .btn-i-want-to-donate {
+  background-color: #00a1d9;
+  font-size: 14px !important;
+  height: 45px;
+  letter-spacing: 4px;
+  line-height: 45px;
+  margin-top: 2.5rem;
+  padding-left: 20px;
+  padding-top: 0;
+  width: 75%;
+}
+.txt-area1 .module-box .input-group-addon {
+	border-radius: 0px !important;
+	padding: 6px 15px !important;
+}
+.module-box .input-group .form-control {
+  border-radius: 0 !important;
+  float: left;
+  height: 40px !important;
+  margin-bottom: 0;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+p.content_sec {
+  font-size: 16px !important;
+  line-height: 37px !important;
+  margin-top: 40px;
+}
+/*$ 20 CLOSE HERE*/
+
+/*close here*/
+/*30th of june css begin here*/
+
+.outer_sil_gold {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.main-area1 .container,
+.outer_tab .container,
+.bg_inner {
+  padding: 4px 65px 0 99px;
+}
+.bg_inner {
+  padding: 0px 65px 0 99px;
+}
+.main-area1 .venue-area h2 {
+  margin-top: 40px;
+  padding: 0 28px;
+}
+.donors-module .mains-tabs {
+  margin-top: 40px;
+}
+li:before.active > *::before {
+  background: rgb(0,161,216);
+  content: "";
+  display: block;
+  height: 4px;
+  top: 23px;
+  width: 100%;
+}
+.donors-module .row .col-md-6 {
+  padding: 46px 0 0;
+}
+.donors-module .info-box {
+  margin-left: 128px;
+}
+/*closed here 30th june css*/
 
 /*fix layout issue when smaller than 1221px width*/
 
@@ -4892,7 +5069,7 @@ header.edit-project-header > .container > h1 {
     padding-bottom: 45px;
   }
   .details-active-project-module .video-area .video, .details-active-project-module .video-area .video img, .details-active-project-module .video-area .video iframe {
-    width: 388px;
+    width: 100%;
     height: 269px;
   }
   .details-active-project-module .video-area .btn-play {
@@ -4909,10 +5086,6 @@ header.edit-project-header > .container > h1 {
   .details-active-project-module .video-area .btn-play:hover .icons, .details-active-project-module .video-area .btn-play:focus .icons {
     background-position: -78px -71px;
   }
-  .details-active-project-module .txt-area {
-    margin: 0 0 0 408px;
-    min-height: 269px;
-  }
   .details-active-project-module .txt-area .txt-td .font20 {
     font-size: 16.53px;
     line-height: 30px;
@@ -4927,11 +5100,12 @@ header.edit-project-header > .container > h1 {
   .project-updates-module .container {
     padding: 38px 39px 20px 92px;
     position: relative;
+    width: 100%;
   }
   /* .project-updates-module .main-area */
-  .project-updates-module .main-area {
+ /* .project-updates-module .main-area {
     width: 580px;
-  }
+  }*/
   .project-updates-module .main-area .title-project-updates {
     width: 274px;
     letter-spacing: 7px;
@@ -5783,8 +5957,74 @@ header.edit-project-header > .container > h1 {
     font-size: 11.57px;
     line-height: 21px;
   }
+
+/* 30-Jun */
+
+.contents .details-active-project-module .banner-section .funded-round {
+  bottom: -767px;
+}
+.contents .details-active-project-module .banner-section .container {
+  min-height: auto;
+}
+.details-active-project-module .video-main {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 45px;
+  width: auto;
+}
+.details-active-project-module .info-section .container {
+  padding: 4px 83px 0 92px;
+}
+.details-active-project-module .container {
+  padding: 4px 37px 0 59px;
+}
+.project-updates-module .container {
+  padding: 38px 39px 20px 62px;
+  position: relative;
+  width: 100%;
+}
+.details-active-project-module.title-white-border {
+  margin-right: 15px;
+}
+.venue-area {
+  text-align: center;
+  width: 100%;
+}
+.main-area1 .venue-area h2 {
+  display: inline-block;
+  float: none !important;
+  font-size: 19px;
+  height: auto;
+  margin-top: 40px;
+  padding: 7px 45px 6px;
+  line-height: normal;
+}
+.project-updates-module .right-aside {
+  width: 100%;
+}
+.footer .bottoms ul.social-ul li .icon-g-plus.icons {
+  background-position: -80px -12px;
+}
+.footer .bottoms ul.social-ul li:hover .icon-g-plus.icons {
+  background-position: -100px -12px;
 }
 
+
+
+
+
+}
+
+
+@media screen and (max-width: 1024px) {
+
+/*.footer .col-info dt a {
+  color: #337ab7 !important;
+}*/
+
+
+
+}
 /*fix layout issue when smaller than 992px width*/
 
 @media (max-width: 991px) {
@@ -7473,7 +7713,7 @@ header.edit-project-header > .container > h1 {
     margin-top: -2px;
   }
   .donors-module .mains-tabs .tab-content {
-    min-height: 708px;
+    min-height: auto;
   }
   .donors-module .tab-content .row {
     margin: 4px 19px 40px 19px;
@@ -8380,6 +8620,145 @@ header.edit-project-header > .container > h1 {
   #modal-how-it-works .info-row .step-area {
     display: none;
   }
+
+
+/* 30-Jun */
+
+.details-active-project-module .banner-section {
+  display: none;
+}
+.details-active-project-module .info-main {
+  display: none;
+}
+.details-active-project-module .txt-area1 {
+  margin-bottom: 0;
+}
+.details-active-project-module .video-main {
+  padding: 0 20px;
+}
+.project-updates-module .container {
+  padding: 20px 31px;
+}
+.outer_basic_silver_gold .content_gold_silver {
+  font-size: 18px;
+  line-height: 36px;
+}
+.details-active-project-module .title-white-border {
+  font-size: 18px;
+  line-height: 42px;
+  padding: 0 45px;
+}
+.details-active-project-module .title-h1 {
+  display: block;
+  font-size: 27px;
+  line-height: normal;
+  margin: 45px 0 10px -27px;
+  width: 100%;
+}
+.details-active-project-module .txt-area1 {
+  float: left;
+  margin-bottom: 0;
+  margin-top: 30px;
+  width: 100%;
+}
+.txt-area1 .module-box.payment-module h5.title-h5 {
+  display: inline-block;
+}
+
+.txt-area1 .module-box.payment-module .inputs .input-group {
+  float: left;
+  vertical-align: top;
+  width: 33.333%;
+}
+.module-box.payment-module .inputs .input-group > label {
+  font-size: 13px;
+  margin-left: 0;
+  width: 100%;
+}
+.module-box.payment-module .inputs .input-group .input-group {
+  width: 150px;
+}
+.module-box.payment-module .inputs .input-group:last-child > label {
+  float: right;
+  margin-right: 0;
+  text-align: center;
+  width: 78%;
+}
+.module-box.payment-module .inputs .input-group:last-child .input-group {
+  float: right;
+}
+.price-tables {
+  margin: 0 -15px;
+  width: auto;
+}
+.price-tables .project-updates-module .right-aside .module-box {
+  margin: 0;
+  min-height: auto;
+  padding: 0 25px 25px;
+  position: relative;
+}
+.price-tables .right_asides {
+  background: #ededed none repeat scroll 0 0;
+  float: right;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  min-height: auto;
+  padding: 0;
+}
+.price-tables .project-updates-module .right-aside {
+  float: none;
+  margin-top: 0;
+}
+.price-tables .right-aside .payment-module .our_apps {
+  margin-left: 0;
+  margin-right: 0;
+}
+.price-tables .right_asides aside.right-aside p.dummy {
+  color: #808080;
+  font-weight: bold;
+  line-height: 35px;
+  margin: 15px auto;
+  min-height: 225px;
+  text-align: center;
+  width: 100%;
+}
+div.txt-area1 .btn-i-want-to-donate {
+  display: inline-block;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: auto;
+}
+.project-updates-module .price-tables .right-aside .module-box {
+  margin: 0;
+  min-height: 226px;
+  padding: 0 24px 24px;
+}
+.donors-module {
+  padding: 0 64px;
+  position: relative;
+  width: 100%;
+}
+header.header {
+  height: 155px;
+  margin-top: 10px;
+}
+header.header.after-scroll-header .logo {
+  margin: 25px 0 0 32px;
+}
+
+header.header.after-scroll-header .rights {
+  padding: 49px 24px 0 0;
+}
+
+.footer .bottoms ul.social-ul li .icon-g-plus.icons {
+  background-position: -98px -16px;
+}
+.footer .bottoms ul.social-ul li:hover .icon-g-plus.icons {
+  background-position: -122px -16px;
+}
+
+
+
 }
 
 /*fix layout issue when smaller than 768px width*/
@@ -10677,7 +11056,122 @@ header.edit-project-header > .container > h1 {
   #modal-how-it-works .info-row .video-area .btn-play:hover .icons, #modal-how-it-works .info-row .video-area .btn-play:focus .icons {
     background-position: -48px -44px;
   }
+
+
+/* 30-Jun */
+
+.price-tables .right-aside .payment-module .our_apps {
+  font-size: 13px;
+  margin-left: 0;
+  margin-right: 0;
 }
+.price-tables .right_asides aside.right-aside p.dummy {
+  color: #808080;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 27px;
+  margin: 15px auto;
+  min-height: 197px;
+  text-align: center;
+  width: 100%;
+}
+.right_asides aside.right-aside .btn-i-want-to-donate {
+  width: 100%;
+}
+.details-active-project-module .title-white-border {
+  border: 2px solid #14b1e7;
+  font-size: 18px;
+  height: auto;
+  line-height: 42px;
+  padding: 0 45px;
+}
+header.header.after-scroll-header .rights {
+  padding: 38px 24px 0 0;
+}
+header.header {
+  height: 95px;
+  margin-top: 10px;
+}
+
+.footer .bottoms ul.social-ul li .icon-g-plus.icons {
+  background-position: -49px -8px;
+}
+.footer .bottoms ul.social-ul li:hover .icon-g-plus.icons {
+  background-position: -61px -8px;
+}
+
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 639px) {
+
+
+.active-pr-button {
+  float: right;
+  text-align: center;
+}
+.details-active-project-module .title-white-border {
+  border: 2px solid #14b1e7;
+  float: none !important;
+  height: auto;
+  padding: 0 45px;
+}
+.details-active-project-module .title-h1 {
+  display: block;
+  font-size: 27px;
+  line-height: normal;
+  margin: 45px 0 10px;
+  text-align: center;
+  width: 100%;
+}
+div.details-active-project-module .container {
+  padding: 4px 30px 0 31px;
+}
+.txt-area1 .module-box.payment-module .inputs .input-group {
+  float: left;
+  vertical-align: top;
+  width: 100%;
+}
+.module-box.payment-module .inputs .input-group .input-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+.module-box.payment-module .inputs .input-group:last-child > label {
+  float: right;
+  margin-right: 0;
+  text-align: left;
+  width: 100%;
+}
+div.txt-area1 .btn-i-want-to-donate {
+  display: inline-block;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+.price-tables .col-xs-4 {
+  width: 100%;
+}
+.price-tables .right_asides aside.right-aside p.dummy {
+  min-height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+}
+
 
 /* iPads (min-width : 992px) and (max-width : 1024px) */
 
@@ -10750,6 +11244,86 @@ header.edit-project-header > .container > h1 {
   .header.after-scroll-header .rights {
     padding: 33px 8px 0 0;
   }
+
+/* 30-Jun */
+
+div.details-active-project-module .container {
+  padding: 0 15px;
+}
+div.details-active-project-module .video-main {
+  padding: 0 0 27px;
+}
+div.project-updates-module {
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+div.price-tables {
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+body {
+  max-width: 100%;
+  min-width: auto;
+}
+.details-active-project-module .title-white-border {
+  padding: 0 15px;
+}
+.main-area1.col-sm-12 .container {
+  padding: 0;
+  text-align: center;
+}
+.header.after-scroll-header .rights {
+  font-size: 12px;
+  padding: 26px 8px 0 0;
+}
+.header.after-scroll-header .logo {
+  background-size: cover;
+  height: 38px;
+  width: 95px;
+}
+.header .btn-donate {
+  font-size: 9px;
+  min-width: 51px;
+}
+header.header {
+  height: 75px;
+  margin-top: 5px;
+}
+.donors-module .mains-tabs .tab-content {
+  min-height: auto;
+}
+header.header.after-scroll-header .rights {
+  padding: 27px 24px 0 0;
+}
+c vx*
+h*`
+3.eader.header.after-scroll-header .logo {
+  margin: 20px 0 0 32px;
+}
+header.header.after-scroll-header .logo {
+  margin: 20px 0 0 19px;
+}
+header.header.after-scroll-header .rights {
+  padding: 27px 10px 0 0;
+}
+.header .btn-donate {
+  font-size: 8px;
+  min-width: 49px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 @media (max-width: 550px) {
@@ -11005,3 +11579,25 @@ label.checkmark.animate:after {
     width: 100%;
   }
 }
+
+
+/* 30-Jun */
+
+.active-pr-button {
+  float: right;
+}
+.module-box.payment-module .inputs .input-group {
+  width: 100%;
+}
+.footer .bottoms .social-ul li .icon-g-plus.icons {
+  background-position: -96px -16px;
+}
+.footer .bottoms .social-ul li:hover .icon-g-plus.icons {
+  background-position: -120px -16px;
+}
+.main-area1 .venue-area {
+  display: inline-block;
+  margin-bottom: 35px;
+  width: 100%;
+}
+
