@@ -3,22 +3,15 @@
 {% load humanize %}
 {% block head %}
 <script type="text/javascript">
-  window.PARTIAL_COMPLETENESS = {
-  {
-    project.partial_completeness_as_js }
-  };
+  window.PARTIAL_COMPLETENESS = {{ project.partial_completeness_as_js }};
 </script>
 {% endblock %}
 {% block title %}Project | {% endblock %}
 {% block body %}
 {%  if is_draft_mode == True %}
 <div class="draft-mode-div">
-  <span class="draft-mode-title">
-    Pending
-  </span>
-  <span class="draft-mode-detail-text">
-    This project is currently pending approval. For assistance, please email sarah at re-volv.org
-  </span>
+  <span class="draft-mode-title">Pending</span>
+  <span class="draft-mode-detail-text">This project is currently pending approval. For assistance, please email sarah at re-volv.org</span>
 </div>
 {% endif %}
 <div class="contents project-details-contents after-header">
@@ -30,9 +23,7 @@
           </div>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-          <h1 class="title-h1">
-            {{ project.title }}
-          </h1>
+          <h1 class="title-h1">{{ project.title }}</h1>
         </div>
       </div>
     </div>
@@ -41,8 +32,8 @@
         <div class="funded-round">
           <span class="status-text">
             <span class="round-depict">
-              <span>OF
-              </span> ${{ project.funding_goal|floatformat:0|intcomma }}
+              <span>OF</span> 
+              ${{ project.funding_goal|floatformat:0|intcomma }}
             </span>
           </span>
           <!-- end .status-text -->
@@ -68,49 +59,40 @@
             <div class="video-area col-lg-8 col-md-7">
               <div class="video">
                 {% if project.video_url %}
-                    <iframe class="project_video youtube-player" allowfullscreen>
-                    </iframe>
+                  <iframe class="project_video youtube-player" allowfullscreen></iframe>
                 {% endif %}
               </div>
             </div>
             <div class="txt-area1 col-lg-4 col-md-5">
               <div class="module-box payment-module">
-                <h5 class="title-h5">BACK THIS PROJECT
-                </h5>
-                <div class="back-the-project">Donate now to help Power Community Dance Studio go solar and grow the Solar Seed Fund
+                <h5 class="title-h5">BACK THIS PROJECT</h5>
+                <div class="back-the-project">Donate now to help {{ project.title }} go solar and grow the Solar Seed Fund
                 </div>
                 <div class="inputs">
                   <div class="input-group">
-                    <label for="value">Donation to the project
-                    </label>
+                    <label for="value">Donation to the project</label>
                     <div class="input-group">
                       <input type="number" class="form-control" step="1" value="50" min="0" name="value">
-                      <span class="input-group-addon">$
-                      </span>
+                      <span class="input-group-addon">$</span>
                     </div>
                   </div>
                   <div class="input-group">
-                    <label for="tip_edit">Optional support for RE-volv
-                    </label>
+                    <label for="tip_edit">Optional support for RE-volv</label>
                     <div class="input-group">
                       <input type="number" class="form-control" value="15" step="1" max="100" min="0" name="tip_edit">
-                      <span class="input-group-addon">%
-                      </span>
+                      <span class="input-group-addon">%</span>
                     </div>
                   </div>
                   <div class="input-group">
-                    <label for="total">Total
-                    </label>
+                    <label for="total">Total</label>
                     <div class="input-group">
                       <input type="number" disabled="" class="form-control" step="1" value="10" name="total">
-                      <span class="input-group-addon">$
-                      </span>
+                      <span class="input-group-addon">$</span>
                     </div>
                   </div>
                 </div>
                 <a href="/signin/?next=/project/1/&amp;reason=donate#login" id="donate-button" class="btn-blue btn-i-want-to-donate">
-                  <p>DONATE
-                  </p>
+                  <p>DONATE</p>
                 </a>
               </div>
             </div>
@@ -153,113 +135,118 @@
     <div class="container">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 outer-sil-gold">
         <div class="col-sm-12">
-          <p class="content-gold-silver">{{ project.tagline }} 
-          </p>
+          <p class="content-gold-silver">{{ project.tagline }}</p>
         </div>
         <div class="col-sm-12">
-          <p class="content-gold-silver content_sec">{{ project.description|safe }}
-          </p>
+          <p class="content-gold-silver content_sec">{{ project.description|safe }}</p>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right price-tables">
         <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4">
           <div class="right-asides">
             <aside class="right-aside">
+              {% if project_donation_levels %}
+                {% for donation_level in project_donation_levels %}
+                <div class="module-box payment-module">
+                  <div class="value-txt" data-value="{{ donation_level.amount }}">$ {{ donation_level.amount|floatformat:"0"|intcomma }}</div>
+                  <h5 class="title-h5">OUR APPRECIATION</h5>
+                  <p>{{ donation_level.description }}</p>
+                  <div class="inputs">
+                    <label for="tip_edit">Optional support for RE-volv</label>
+                    <div class="input-group">
+                      <input type="number" name="tip_edit" min="0" max="100" step="1" value="15" class="form-control">
+                      <span class="input-group-addon">%</span>
+                    </div>
+                    <label for="total">Total</label>
+                    <div class="input-group">
+                      <input type="number" name="total" value="10" step="1" class="form-control" disabled>
+                        <span class="input-group-addon">$</span>
+                    </div>
+                  </div>
+                  <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="amount_cents" value="{{ donation_level.amount }}">
+                    <input name="metadata" value="1.00" type="hidden">
+                    <button type="submit" class="stripe-button-el" style="visibility: visible;">
+                      <span style="display: block; min-height: 30px;">Pay with Card</span>
+                    </button>
+                  </form>
+                </div>
+                {% endfor %}
+                <!-- end .module-box -->
+              {% endif %}
               <div class="module-box payment-module">
-                <h1 class="basic">Basic
-                </h1>
-                <strong class="dollar">$ 20
-                </strong>
-                <span class="our-apps">Our Appritiation
-                </span>
-                <p class="dummy">Lorem ipsum Proim gravida nibh vel  nibh vel velit.
-                </p>
-                <a class="btn-blue btn-i-want-to-donate" id="donate-button" href="/signin/?next=/project/1/&amp;reason=donate#login">
-                  <p>DONATE
-                  </p>
-                </a>
+                <h5 class="title-h5">BACK THIS PROJECT</h5>
+                <div class="back-the-project">Donate now to help {{ project.title }} go solar and grow the Solar Seed Fund</div>
+                <div class="inputs">
+                  <label for="value">Donation to the project</label>
+                  <div class="input-group">
+                    <input type="number" name="value" min="0" value="50" step="1" class="form-control">
+                    <span class="input-group-addon">$</span>
+                  </div>
+                  <label for="tip_edit">Optional support for RE-volv</label>
+                  <div class="input-group">
+                    <input type="number" name="tip_edit" min="0" max="100" step="1" value="15" class="form-control">
+                    <span class="input-group-addon">%</span>
+                  </div>
+                  <label for="total">Total</label>
+                  <div class="input-group">
+                    <input type="number" name="total" value="10" step="1" class="form-control" disabled>
+                    <span class="input-group-addon">$</span>
+                  </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                  {% for level in project_donation_levels %}
+                  {% endfor %}
+                  <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="amount_cents" value="1000">
+                    <input name="metadata" value="1.00" type="hidden">
+                    <button type="submit" class="stripe-button-el" style="visibility: visible;">
+                      <span style="display: block; min-height: 30px;">Pay with Card</span>
+                    </button>
+                  </form>
+                {% else %}
+                  <a class="btn-blue btn-i-want-to-donate" id="donate-button" href="/signin/?next=/project/{{project.pk}}/&reason=donate#login"><p>DONATE</p></a>
+                {% endif %}
               </div>
               <!-- end .module-box -->
             </aside>
-          </div>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4">
-          <div class="right-asides">
-            <aside class="right-aside">
-              <div class="module-box payment-module">
-                <h1 class="basic">Silver
-                </h1>
-                <strong class="dollar">$ 40
-                </strong>
-                <span class="our-apps">Our Appritiation
-                </span>
-                <p class="dummy">Lorem ipsum Proim gravida nibh vel velit auctor aliquet vel velit auctor aliquet
-                </p>
-                <a class="btn-blue btn-i-want-to-donate" id="donate-button" href="/signin/?next=/project/1/&amp;reason=donate#login">
-                  <p>DONATE
-                  </p>
-                </a>
-              </div>
-              <!-- end .module-box -->
-            </aside>
-          </div>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4 pull-right">
-          <div class="right-asides">
-            <aside class="right-aside">
-              <div class="module-box payment-module">
-                <h1 class="basic">Gold
-                </h1>
-                <strong class="dollar">$ 80
-                </strong>
-                <span class="our-apps">Our Appritiation
-                </span>
-                <p class="dummy">Lorem ipsum Proim gravida module-box payment-module module-box payment-module module-box payment-module
-                </p>
-                <a href="/signin/?next=/project/1/&amp;reason=donate#login" id="donate-button" class="btn-blue btn-i-want-to-donate">
-                  <p>DONATE
-                  </p>
-                </a>
-              </div>
-              <!-- end .module-box -->
-            </aside>
+            <!-- end .list-area -->
           </div>
         </div>
       </div>
+  
       <div class="main-area col-lg-8 col-md-8 col-sm-12 col-xs-12">
         {% if updates|length > 0 %}
-          <h2 class="title-blue-border title-project-updates pull-right">PROJECT UPDATES
-          </h2>
+          <h2 class="title-blue-border title-project-updates pull-right">PROJECT UPDATES</h2>
           <div class="clearfix">
           </div>
           <div class="list-area">
             {% for update in updates %}
               <div class="row">
                 <div class="left-date">
-                  <span class="date-txt">{{ update.date|date:"o" }}
-                  </span>
-                  <span class="month-txt">{{ update.date|date:"M"|upper }}
-                  </span>
+                  <span class="date-txt">{{ update.date|date:"o" }}</span>
+                  <span class="month-txt">{{ update.date|date:"M"|upper }}</span>
                 </div>
                 <div class="main-info">
                   {{ update.update_text|safe }}
                   <ul class="social-ul">
                     <li>
                       <a href="#" class="btn-icon-gray">
-                        <i class="icon-fb icons">
-                        </i>
+                        <i class="icon-fb icons"></i>
                       </a>
                     </li>
                     <li>
                       <a href="#" class="btn-icon-gray">
-                        <i class="icon-tw icons">
-                        </i>
+                        <i class="icon-tw icons"></i>
                       </a>
                     </li>
                     <li>
                       <a href="#" class="btn-icon-gray">
-                        <i class="icon-gg icons">
-                        </i>
+                        <i class="icon-gg icons"></i>
                       </a>
                     </li>
                   </ul>
@@ -271,20 +258,15 @@
         {% endif %}
         <!-- end .list-area -->
         <div class="venue-area">
-          <h2 class="title-blue-border title-venue pull-left">VENUE
-          </h2>
+          <h2 class="title-blue-border title-venue pull-left">VENUE</h2>
           <div class="clearfix">
           </div>
-          <div class="venue-map" id="map-canvas">
-          </div>
+          <div class="venue-map" id="map-canvas"></div>
           <div class="venue-bottom">
-            <h4 class="title-h4">{{ project.title }}
-            </h4>
+            <h4 class="title-h4">{{ project.title }}</h4>
             <p>
-              <span>{{ project.location_street }}
-              </span>
-              <span>{{ project.location_city_state_zip }}
-              </span>
+              <span>{{ project.location_street }}</span>
+              <span>{{ project.location_city_state_zip }}</span>
             </p>
           </div>
         </div>
@@ -297,13 +279,11 @@
   <div class="main-area1 col-sm-12">
     <div class="container">
       <div class="venue-area">
-        <h2 class="title-blue-border title-venue pull-left">DONORS
-        </h2>
+        <h2 class="title-blue-border title-venue pull-left">DONORS</h2>
       </div>
     </div>
   </div>
-  <div class="clearfix">
-  </div>
+  <div class="clearfix"></div>
   <!-- tabs start here -->
   <div class="donors-module">
     <div class="mains-tabs">
@@ -311,8 +291,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6">
-              <a href="javascript:;" class="active">DONORS
-              </a>
+              <a href="javascript:;" class="active">DONORS</a>
             </div>
           </div>
         </div>
@@ -326,8 +305,7 @@
               {% for donor in project.donors.all %}
                 <div class="col-md-6">
                   <div class="info-box">
-                    <h4 class="title-h4">{{ donor.get_full_name }}
-                    </h4>
+                    <h4 class="title-h4">{{ donor.get_full_name }}</h4>
                   </div>
                 </div>
               {% endfor %}
@@ -353,48 +331,55 @@
 </script>
 <script>
   $(function ($) {
-    var handler = StripeCheckout.configure({
-      key: '{{ stripe_publishable_key }}'
-      , image: '{% static "images/revolv-logo.png" %}'
-      , locale: 'auto'
-      , name: 'RE-volv'
-    });
-    $(window).on('popstate', function () {
-      handler.close();
-    });
-    $('.stripe-button-el').on('click', function (e) {
-      e.preventDefault();
-      var $form = $(this).closest('form');
-      var serialized = $form.serializeArray();
-      var endpoint = $form.attr('action');
-      var amount, metadata;
-      $.each(serialized, function () {
-        if (this.name === 'amount_cents') {
-          amount = this.value;
-        }
-        if (this.name === 'metadata') {
-          metadata = this.value;
-        }
-      });
-      if (typeof amount !== 'undefined') {
-        handler.open({
-          description: 'Donate $' + parseFloat((amount / 100).toFixed(2)).toLocaleString(),
-          amount: amount,
-          metadata: metadata,
-          token: function (token) {
-            var id = token.id;
-            var email = token.email;
-            var $id = $('<input>').attr('type', 'hidden').attr('name', 'stripeToken').val(id);
-            var $email = $('<input>').attr('type', 'hidden').attr('name', 'stripeEmail').val(email);
-            $id.appendTo($form);
-            $email.appendTo($form);
-            $form.trigger('submit');
-          }
-        });
+  var handler = StripeCheckout.configure({
+    key: '{{ stripe_publishable_key }}'
+    , image: '{% static "images/revolv-logo.png" %}'
+    , locale: 'auto'
+    , name: 'RE-volv'
+  });
+  $(window).on('popstate', function () {
+    handler.close();
+  });
+  $('.stripe-button-el').on('click', function (e) {
+    e.preventDefault();
+    var $form = $(this).closest('form');
+    var serialized = $form.serializeArray();
+    var endpoint = $form.attr('action');
+    var amount, metadata;
+    $.each(serialized, function () {
+      if (this.name === 'amount_cents') {
+        amount = this.value;
+      }
+      if (this.name === 'metadata') {
+        metadata = this.value;
       }
     });
+    if (typeof amount !== 'undefined') {
+      handler.open({
+        description: 'Donate $' + parseFloat((amount / 100).toFixed(2)).toLocaleString()
+        , amount: amount
+        , metadata: metadata
+        , token: function (token) {
+          var id = token.id;
+          var email = token.email;
+          var $id = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeToken')
+            .val(id);
+          var $email = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeEmail')
+            .val(email);
+          $id.appendTo($form);
+          $email.appendTo($form);
+          $form.trigger('submit');
+        }
+      });
+    }
   });
+});
 </script>
+
 {% if project.video_url %}
 <script type="text/javascript">
   // function to extract the associated iframe embed url from the video url
@@ -498,6 +483,7 @@
       $tip.on('change keyup', update);
       update();
     });
-  });
+  }
+   );
 </script>
 {% endblock %}
