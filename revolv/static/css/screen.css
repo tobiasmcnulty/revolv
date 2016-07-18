@@ -493,6 +493,7 @@ a:hover {
     background-position: -385px -16px;
 }
 /* home page */
+/* .active-projects-module */
 
 .active-projects-module {
     text-align: center;
@@ -2397,10 +2398,11 @@ header.edit-project-header > .container > h1 {
     position: relative;
 }
 .project-updates-module .right-aside .module-box {
-    background: #ededed none repeat scroll 0 0;
-    margin: 0;
-    min-height: auto;
-    text-align: center;
+  background: #ededed none repeat scroll 0 0;
+  margin: 0;
+  min-height: auto;
+  padding: 30px 20px 0;
+  text-align: center;
 }
 .project-updates-module .right-aside .module-box p {
     padding: 0.5rem 0;
@@ -3738,14 +3740,14 @@ header.edit-project-header > .container > h1 {
 }
 
 .right-asides {
-    background: #ededed none repeat scroll 0 0;
-    float: right;
-    margin-bottom: 30px;
-    margin-top: 10px;
-    min-height: auto;
-    padding: 30px 0;
-    text-align: center;
-    width: 100%;
+  background: #ededed none repeat scroll 0 0;
+  float: right;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  min-height: auto;
+  padding: 0 0 30px;
+  text-align: center;
+  width: 100%;
 }
 .outer-basic-silver-gold .container {
     padding: 4px 55px 0 99px;
@@ -11937,4 +11939,23 @@ label.checkmark.animate:after {
     display: inline-block;
     margin-bottom: 35px;
     width: 100%;
+}
+
+.module-box.payment-module form button.stripe-button-el {
+  background: #14b1e7 none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 0;
+  color: white;
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 20px;
+}
+.module-box.payment-module form button.stripe-button-el  > span {
+  background: transparent none repeat scroll 0 0;
+  box-shadow: none;
+  font-family: "Source Sans Pro";
+  font-size: 16px;
+  font-weight: 900;
+  height: auto;
+  line-height: 43px;
 }
