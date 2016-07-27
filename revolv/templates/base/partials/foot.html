@@ -1,5 +1,16 @@
 {% load staticfiles revolv_cms_tags %}
-
+<script>
+function myfunction(){
+var x = window.pageYOffset;
+var y = document.getElementById("demo");
+var z = y.offsetTop;
+if(x > z){
+y.classList.add("after-scroll-header-fixed");
+} else{
+y.classList.remove("after-scroll-header-fixed");
+}
+}
+</script>
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -7,11 +18,11 @@
                 <dl>
                     <dt><a href="/">Home</a></dt>
                     <dt><a href="/about-us/">About us</a></dt>
-                    <dd><a href="/about-us/our-team/">Team</a></dd>
-                    <dd><a href="/about-us/partners/">Partners</a></dd>
-                    <dd><a href="/about-us/jobs/">Jobs</a></dd>
-                    <dd><a href="/about-us/contact/">Contact us</a></dd>
-                    <dd><a href="/about-us/blog/">Blog</a></dd>
+                    <dt><a href="/about-us/our-team/">Team</a></dt>
+                    <dt><a href="/about-us/partners/">Partners</a></dt>
+                    <dt><a href="/about-us/jobs/">Jobs</a></dt>
+                    <dt><a href="/about-us/contact/">Contact us</a></dt>
+                    <dt><a href="/about-us/blog/">Blog</a></dt>
                     <dd class="hide"></dd>
                 </dl>
             </nav>
@@ -126,4 +137,6 @@
         </div>
     </div>
 </div>
+
+
 {% endcomment %}
