@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-          <h1 class="title-h1 title-right-new">{{ project.title }}</h1>
+          <h1 class="title-h1">{{ project.title }}</h1>
         </div>
       </div>
     </div>
@@ -79,14 +79,6 @@
                       <input type="number" class="form-control" value="15" step="1" max="100" min="0" name="tip_edit">
                       <span class="input-group-addon">%</span>
                     </div>
-                    <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST" id="ipad">
-                      {% csrf_token %}
-                      <input type="hidden" name="amount_cents" value="{{ donation_level.amount }}">
-                      <input name="metadata" value="1.00" type="hidden">
-                      <button type="submit" class="stripe-button-el" style="visibility: visible;">
-                        <span style="display: block; min-height: 30px;" >DONATE</span>
-                      </button>
-                    </form>
                   </div>
                   <div class="input-group">
                     <label for="total">Total</label>
@@ -96,7 +88,7 @@
                     </div>
                   </div>
                 </div>
-                <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST" id="phone">
+                <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
                   {% csrf_token %}
                   <input type="hidden" name="amount_cents" value="{{ donation_level.amount }}">
                   <input name="metadata" value="1.00" type="hidden">
@@ -128,9 +120,9 @@
     <!-- end .info-section -->
   </div>
   <!-- end .details-active-project-module -->
-  <div class="container">
-    <div class="col-sm-12 outer-basic-silver-gold project-updates-module">
-      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+  <div class="col-sm-12 outer-basic-silver-gold project-updates-module">
+    <div class="container">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 outer-sil-gold">
         <div class="col-sm-12">
           <p class="content-gold-silver">{{ project.tagline }}</p>
         </div>
@@ -140,8 +132,8 @@
       </div>
 
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right price-tables">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="right-aside-new">
+        <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4">
+          <div class="right-asides">
             <aside class="right-aside">
               {% if project_donation_levels %}
                 {% for donation_level in project_donation_levels %}
@@ -261,7 +253,7 @@
           </div>
         {% endif %}
         <!-- end .list-area -->
-        <div class="venue-area venue-area-left pull-left">
+        <div class="venue-area">
           <h2 class="title-blue-border title-venue pull-left">VENUE</h2>
           <div class="clearfix">
           </div>
