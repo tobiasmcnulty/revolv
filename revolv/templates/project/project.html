@@ -27,28 +27,6 @@
         </div>
       </div>
     </div>
-    <div class="banner-section">
-      <div class="container">
-        <div class="funded-round">
-          <span class="status-text">
-            <span class="round-depict"><span>OF</span> ${{ project.funding_goal|floatformat:0|intcomma }}</span>
-          </span>
-          <!-- end .status-text -->
-          <div class="status-indicator desktop-circle">
-            <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="210" data-height="210" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
-          </div>
-          <div class="status-indicator small-circle">
-            <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="175" data-height="175" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".13">
-          </div>
-          <div class="status-indicator tablet-circle">
-            <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="152" data-height="152" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".16">
-          </div>
-          <div class="status-indicator mobile-circle">
-            <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="75" data-height="75" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="info-section">
       <div class="container">
         <div class="video-main">
@@ -119,7 +97,29 @@
               <span class="bold">{{ project.actual_energy }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
               <span class="bold">{{ donor_count }}</span> {{ settings.revolv_cms.ProjectPageSettings.donors_wording }}</span>
           </div>
-          <!-- end .blue-bar -->
+          <div class="banner-section">
+            <div class="container">
+              <div class="funded-round">
+                <span class="status-text">
+                  <span class="round-depict"><span>OF</span> ${{ project.funding_goal|floatformat:0|intcomma }}</span>
+                </span>
+                <!-- end .status-text -->
+                <div class="status-indicator desktop-circle">
+                  <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="210" data-height="210" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
+                </div>
+                <div class="status-indicator small-circle">
+                  <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="175" data-height="175" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".13">
+                </div>
+                <div class="status-indicator tablet-circle">
+                  <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="152" data-height="152" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".16">
+                </div>
+                <div class="status-indicator mobile-circle">
+                  <input type="text" value="{{ project.percent_complete }}" data-min="0" data-width="75" data-height="75" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
+                </div>
+              </div>
+            </div>
+          </div> 
+         <!-- end .blue-bar -->
         </div>
         <!-- end .info-main -->
         <!-- end .video-main -->

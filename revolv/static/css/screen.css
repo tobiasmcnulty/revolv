@@ -2141,6 +2141,11 @@ header.edit-project-header > .container > h1 {
     left: 0;
     z-index: 999;
 }
+#project .details-active-project-module .banner-section {
+    position: absolute;
+    height: 236px;
+    top:-49px;
+}
 .details-active-project-module .banner-section .container {
     padding: 30px 0 0;
     position: relative;
@@ -2164,10 +2169,8 @@ header.edit-project-header > .container > h1 {
     width: 236px;
     height: 236px;
     padding: 12px;
-    margin: 0 0 0 -118px;
-    position: absolute;
-    bottom: -779px;
-    left: 50%;
+    margin: 0 auto;
+    position: relative;
     z-index: 299;
 }
 .details-active-project-module .banner-section .funded-round .round-depict {
@@ -2210,6 +2213,11 @@ header.edit-project-header > .container > h1 {
 #project .details-active-project-module .info-section .container {
     padding: 10px 60px 0 58px;
 }
+#project .details-active-project-module .info-section .container .banner-section .container {
+  padding: 0px;
+  height: 100%;
+  width:100%;
+}
 #project .venue-area.venue-area-left {
   box-sizing: border-box;
   padding-left: 30px;
@@ -2220,6 +2228,7 @@ header.edit-project-header > .container > h1 {
 
 .details-active-project-module .info-main {
     padding-bottom: 90px;
+    position: relative;
 }
 .details-active-project-module .info-main .blue-bar,
 .details-active-project-module .info-main .dark-blue-bar {
@@ -3862,6 +3871,9 @@ p.content_sec {
 .bg_inner {
     padding: 4px 65px 0 99px;
 }
+#project .main-area1 .container{
+    padding: 4px 65px 0 60px;
+}
 .bg_inner {
     padding: 0px 65px 0 99px;
 }
@@ -3904,7 +3916,9 @@ display: none;
         background-size: 543px auto;
     }
     /* btn */
-    
+    .venue-area {
+      text-align: left;
+    }
     .btn-blue {
         font-size: 11.57px;
         height: 43px;
@@ -5124,8 +5138,12 @@ display: none;
         width: 196px;
         height: 196px;
         padding: 10px;
-        margin: 0 0 0 -98px;
-        bottom: -166px;
+        margin: 0 auto;
+        bottom: 0;
+    }
+    #project .details-active-project-module .banner-section {
+      top: -44px;
+      height: 196px;
     }
     .details-active-project-module .banner-section .funded-round .round-depict {
         font-size: 22.48px;
@@ -5150,6 +5168,7 @@ display: none;
     
     .details-active-project-module .info-main {
         padding-bottom: 51px;
+        position: relative;
     }
     .details-active-project-module .info-main .blue-bar,
     .details-active-project-module .info-main .dark-blue-bar {
@@ -6106,7 +6125,7 @@ width: 580px;
     }
     
     .contents .details-active-project-module .banner-section .funded-round {
-        bottom: -767px;
+        bottom: 0;
     }
     .contents .details-active-project-module .banner-section .container {
         min-height: auto;
@@ -6132,7 +6151,6 @@ width: 580px;
         margin-right: 15px;
     }
     .venue-area {
-        text-align: center;
         width: 100%;
     }
     .venue-area-left{
@@ -6162,6 +6180,9 @@ width: 580px;
 @media (max-width: 991px) {
     .right-aside-new{
       padding: 0 0 0px;
+    }
+    .venue-area{
+        text-align: center;
     }
     #project .venue-area-left{
         text-align: center;
@@ -7714,7 +7735,7 @@ width: 580px;
         height: 172px;
         padding: 8px;
         margin: 0 0 0 -86px;
-        bottom: -146px;
+        bottom: 0;
     }
     .details-active-project-module .banner-section .funded-round .round-depict {
         font-size: 19.79px;
@@ -10487,7 +10508,7 @@ width: 580px;
         height: 86px;
         padding: 4px;
         margin: 0 0 0 -43px;
-        bottom: -73px;
+        
     }
     .details-active-project-module .banner-section .funded-round .round-depict {
         font-size: 9.66px;
