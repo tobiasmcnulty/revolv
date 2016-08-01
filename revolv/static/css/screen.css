@@ -2579,7 +2579,7 @@ header.edit-project-header > .container > h1 {
 /* .donors-module */
 
 .donors-module {
-    display: none;
+    display: block;
     position: relative;
     width: 100%;
 }
