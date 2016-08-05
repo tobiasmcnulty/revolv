@@ -6,6 +6,7 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var livereload = require('gulp-livereload');
 var fileExists = require('file-exists');
+var isThere = require('is-there');
 
 var spawn = require('child_process').spawn;
 var argv = require('yargs')

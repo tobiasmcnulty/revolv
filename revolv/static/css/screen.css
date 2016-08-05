@@ -367,12 +367,24 @@ a:hover {
     color: white;
     text-align: center;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    max-width: 100%;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.top-section.nav-margins .section-video-overlay:before {
+    display: inline-block;
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+}
+.top-section.nav-margins .section-video-overlay .wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    padding: 0 20px;
 }
 .top-section.nav-margins .section-video-overlay .titles {
     font-family: 'Source Sans Pro';
@@ -6178,6 +6190,10 @@ width: 580px;
 /*fix layout issue when smaller than 992px width*/
 
 @media (max-width: 991px) {
+    /* terrible hack to add padding, depends highly on header text. please get rid of this if possible. */
+    .top-section.nav-margins .section-video-overlay {
+        padding-top: 25%;
+    }
     .right-aside-new{
       padding: 0 0 0px;
     }
@@ -6382,11 +6398,11 @@ width: 580px;
         height: 56vw!important;
         border: none;
     }
-    .top-section.nav-margins .section-video-overlay {
+/*    .top-section.nav-margins .section-video-overlay {
         top: 100%;
         -webkit-transform: translate(-50%, -115%);
         transform: translate(-50%, -115%);
-    }
+    }*/
     .top-section.min-height .container {
         top: 55px;
     }
@@ -11880,11 +11896,6 @@ width: 580px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
-    }
-    .top-section.nav-margins .section-video-overlay {
-        top: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
     }
 }
 /* iPhone (min-width : 375px) and (max-width : 767px) */

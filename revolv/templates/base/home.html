@@ -38,9 +38,8 @@
             <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate" data-component="signup">SIGN UP</a>
             <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
         {% endif %}
-
       </div>
-      <a href="{% url 'projects_list' %}" class="btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>
+      <a data-amounts='10,20,30,70,100,200,1000' data-type='recurring' data-custom class="commitchange-donate btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>
     </div>
   </div>
 </header>
@@ -60,13 +59,15 @@
   </div>
   <!-- end .section-video -->
   <div class="section-video-overlay">
-    <div class="titles">
-      {{ settings.revolv_cms.MainPageSettings.site_tagline|safe }}
+    <div class="wrapper">
+      <div class="titles">
+        {{ settings.revolv_cms.MainPageSettings.site_tagline|safe }}
+      </div>
+      <p>
+        {{ settings.revolv_cms.MainPageSettings.site_subheading|safe }}
+      </p>
+      <a data-amounts='10,20,30,70,100,200,1000' data-type='recurring' data-custom class="commitchange-donate btn-blue btn-donate-now">{{ settings.revolv_cms.MainPageSettings.learn_button_text }}</a>
     </div>
-    <p>
-      {{ settings.revolv_cms.MainPageSettings.site_subheading|safe }}
-    </p>
-    <a href="{% url 'projects_list' %}" class="btn-blue btn-donate-now">{{ settings.revolv_cms.MainPageSettings.learn_button_text }}</a>
   </div>
 </div>
 <!-- end .top-section -->
