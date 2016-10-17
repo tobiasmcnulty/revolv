@@ -106,8 +106,6 @@ class ProjectManager(models.Manager):
         ).order_by('updated_at')
         return staged_projects
 
- 
-    
     def statistics(self, queryset=None):
         """
         Return a revolv.project.stats.KilowattStatsAggregator to
@@ -157,8 +155,7 @@ class ProjectManager(models.Manager):
         """
         return self.get_completed(queryset).filter(is_paid_off=True)
 
-    
-    
+
 class Project(models.Model):
     """
     Project model. Stores basic metadata, information about the project,
@@ -690,7 +687,7 @@ class Project(models.Model):
         self.save()
 
     def __unicode__(self):
-        return self.title
+        return self.title + '-' + self.project_status
 
 
 class ProjectUpdate(models.Model):
