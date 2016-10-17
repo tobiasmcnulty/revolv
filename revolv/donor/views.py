@@ -73,4 +73,3 @@ class DonorDashboardView(UserDataMixin, TemplateView):
         context['preferred_categories'] = self.user_profile.preferred_categories.all()
 
         return context
-

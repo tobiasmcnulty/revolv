@@ -90,8 +90,6 @@ def stripe_payment(request, pk):
     context['user'] = request.user
     context['project'] = project
     context['amount'] = tip_cents/100.0
-
-
     # return redirect('project:view', pk=project.pk)
     return redirect('dashboard')
 
@@ -311,11 +309,6 @@ class ProjectReinvestView(UserDataMixin, DetailView):
             context["reinvestment_amount"] = self.user_profile.reinvest_pool
         return context
 
-
-
-
-
-
 class ProjectView(UserDataMixin, DetailView):
     """
     The project view. Displays project details and allows for editing.
@@ -425,7 +418,7 @@ def reinvest(request, pk):
     except (Project.DoesNotExist, Project.MultipleObjectsReturned):
         return HttpResponseBadRequest()
 
-    reinvestment = UserReinvestment.objects.create(user=request.user.revolvuserprofile,
+    UserReinvestment.objects.create(user=request.user.revolvuserprofile,
                                         amount=amount,
                                         project=project)
 

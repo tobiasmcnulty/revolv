@@ -58,4 +58,3 @@ def admin_email_csv_download(request):
     writer.writerows(newsletter_rows)
 
     return response
-

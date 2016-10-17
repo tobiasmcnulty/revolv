@@ -80,6 +80,7 @@ class HomePageView(UserDataMixin, TemplateView):
         context["global_impacts"] = self.get_global_impacts()
         return context
 
+
 class BaseStaffDashboardView(UserDataMixin, TemplateView):
     """
     Base view for the administrator and ambassador dashboard views. The
@@ -143,7 +144,6 @@ class ProjectListView(UserDataMixin, TemplateView):
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
         context["is_reinvestment"] = False
         return context
-
 
 
 class SignInView(TemplateView):
@@ -314,12 +314,7 @@ class ReinvestmentRedirect(UserDataMixin, TemplateView):
 
         return context
 
-    # def get(self, request, *args, **kwargs):
-    #     if self.is_administrator:
-    #         return render_to_response('base/partials/project.html',context_instance=RequestContext(request))
-
 class DashboardRedirect(UserDataMixin, View):
-
     """
     Redirects user to appropriate dashboard. (e.g. Administrators automagically
     go to the /my-portfolio/admin endpoint)
@@ -418,4 +413,3 @@ def social_exception(request):
     message = request.GET.get('message')
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, {'msg': message}))
-

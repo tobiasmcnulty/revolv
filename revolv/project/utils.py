@@ -2,7 +2,6 @@ from django.db.models import Sum
 from revolv.payments.models import Payment, UserReinvestment
 from revolv.project.models import Project
 
-
 def humanize_int(n):
     # NOTE: GPL licensed snipped c/o
     # https://github.com/localwiki/localwiki-backend-server/blob/master/localwiki/users/views.py#L47
@@ -40,4 +39,3 @@ def aggregate_stats(user_profile):
     stat_dict['kwh'] = user_profile.get_statistic_for_user("kilowatt_hours_per_month")
     stat_dict['carbon_dioxide'] = user_profile.get_statistic_for_user("pounds_carbon_saved_per_month")
     return stat_dict
-

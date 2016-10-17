@@ -32,7 +32,6 @@ a:hover {
     display: inline-block;
 }
 /* btn */
-
 .btn-reinvest {
     background: #14b1e7 none repeat scroll 0 0;
     border: medium none;
@@ -43,8 +42,6 @@ a:hover {
     height: 44px;
     margin-top: 20px;
 }
-
-
 .btn-blue {
     font-family: 'Source Sans Pro';
     font-weight: 900;
@@ -584,7 +581,6 @@ a:hover {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
 }
-
 .active-projects-module .img-main .img-link:hover img {
     opacity: 1;
 }
@@ -681,7 +677,6 @@ a:hover {
     padding: 41px 29px 34px 27px;
     position: relative;
     z-index: 199;
-
 }
 .active-projects-module .info-main .blue-bar,
 .active-projects-module .info-main .dark-blue-bar {
@@ -1128,7 +1123,6 @@ a:hover {
     height: 171px;
     display: table-cell;
 }
-
 .featured-on-module .logo {
     margin-right: auto;
     margin-left: auto;
@@ -3928,9 +3922,6 @@ li:before.active > *::before {
 .input-group > form#ipad {
 display: none;
 }
-
-
-
 /*fix layout issue when smaller than 1221px width*/
 
 @media (min-width: 1221px) {
@@ -3940,12 +3931,11 @@ display: none;
 }
 /*fix layout issue when smaller than 1200px width*/
 
- .completed_project {
+.completed_project {
         position: absolute;
         top: 16px;
         left: 0;
     }
-
 @media (max-width: 1199px) {
     .icons {
         background: url(../images/icon-sprites.png) no-repeat;
@@ -4186,7 +4176,6 @@ display: none;
     /* home page */
     /* .active-projects-module */
 
-
     .active-projects-module {
         padding-bottom: 65px;
     }
@@ -4266,8 +4255,6 @@ display: none;
         padding: 0 11px 0 19px;
         margin-top: 16px;
     }
-
-
     /* .our-impacts-module */
 
     .our-impacts-module .title-our-impacts {
@@ -6425,7 +6412,6 @@ width: 580px;
         height: 56vw!important;
         border: none;
     }
-
     .top-section.min-height .container {
         top: 55px;
     }
@@ -9181,6 +9167,7 @@ width: 580px;
         background: url(../images/mobile/mobile-icon-sprites.png) no-repeat;
         background-size: 336px auto;
     }
+    /* btn */
 
     .btn-icon-gray {
         border: 1px solid #fff;
@@ -9461,7 +9448,9 @@ width: 580px;
         line-height: 31px;
         padding: 0 65px 23px 65px;
     }
-
+    .active-projects-module .img-main .img-link img {
+        height: 312px;
+    }
     .active-projects-module .img-main .funded-round {
         width: 120px;
         height: 125px;
@@ -11996,8 +11985,7 @@ label.checkmark:after {
 label.checkmark.animate:after {
     display: block;
     -webkit-animation: check 0.8s;
-    -moz-animation: ch
-    eck 0.8s;
+    -moz-animation: check 0.8s;
     -o-animation: check 0.8s;
     animation: check 0.8s;
 }
