@@ -423,5 +423,5 @@ def reinvest(request, pk):
                                         project=project)
 
     messages.success(request, 'Reinvestment Successful')
-    return redirect("project:project_reinvest" ,pk=pk)
+    return redirect("project:view" ,pk=pk)
 
