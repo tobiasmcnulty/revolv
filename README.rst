@@ -112,8 +112,10 @@ Deploying to production
 
 To deploy to production, you'll need to be in the list of devs at conf/pillar/devs.sls. If you are, you can run
 
-```
-fab production deploy
-```
+    fab production deploy
 
-The script will take 3-4 minutes to run, please be patient. You should see green output - if you see errors related to `AttributeError: 'Requirement' object has no attribute 'project_name'`, check out [this issue](https://github.com/saltstack/salt/issues/33163). Usually, ssh'ing into the AWS machine and running `sudo pip install pip==8.1.1` will fix this issue.
+The script will take 3-4 minutes to run, please be patient. You should see green output - if you see errors with the following output:
+
+    AttributeError: 'Requirement' object has no attribute 'project_name'
+    
+Then check out [this issue](https://github.com/saltstack/salt/issues/33163). Usually, ssh'ing into the AWS machine and running `sudo pip install pip==8.1.1` will fix this issue.
