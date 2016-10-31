@@ -39,10 +39,4 @@ users:
  harshad:
         public_key:
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDS5F5XNkqRk7dZyccvJxnshL5Pa2YcMxS+OPNK4Da5YcLdCdXjFowod2ZLtSNbdWrDRUlPmCHNQRM3GCVINW4qHKDKSXbi41/211zsZYiXwdMazaTd6g0b2F+7Vd/zjOVhj98QFzmv4VEuhwOLF7K+h/c6YeunijelNV5V84xYEECJVT4mh3q+Z5hhI35cuUVjQURz8vPzrajFOARi1HcZCjxl2AU8ZW5RMzoz8/6wqQfR+ORdtr99GsU/jgkQbYJXVrtGLjT74EYZIZBg5H3vEIARO80FLwH/8WAzEmnOz3KGRYV3tckFZOAd0Z8TmL7G7z5Bz4zSlQgQK4+kJwZr harshad.devale@tudip.nl
-
-
-
-
-
-
-
+ 
