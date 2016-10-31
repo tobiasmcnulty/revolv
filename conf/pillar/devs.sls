@@ -35,3 +35,14 @@ users:
     noah:
         public_key:
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7fDsidQ0QhTTe8yYRqi4QSAWH9LMZJtJq+fG31HOvVCXLizO4rlymdURuvJfKGyj5z78oVY2JuI3RLdmHNoLEZ71zUiv9esBoZXFfgfAcXHJUDDN/xfxcn6JPWPDCqkWIcqhpIaqXM1ICEEvihLRowBs79sUau2HmdkqRoU2K+vnFuzVCqGzMR4l20VyEElyNbSRfahdU4Sz4Z3U/PhWMbV5r0Unvh9eNQowlVuWlKNU92IkPX+xEXFrt/37fvB8n0/Ies9Aq3no4xJVIwlr2Wyf9bl2V2GBof49Jjb7Ekzg7urdUZC54IoeoSIEMdWjdhdPJNDXcmnZBJUj/9tON noah.w.gilmore@gmail.com
+
+ harshad:
+        public_key:
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDS5F5XNkqRk7dZyccvJxnshL5Pa2YcMxS+OPNK4Da5YcLdCdXjFowod2ZLtSNbdWrDRUlPmCHNQRM3GCVINW4qHKDKSXbi41/211zsZYiXwdMazaTd6g0b2F+7Vd/zjOVhj98QFzmv4VEuhwOLF7K+h/c6YeunijelNV5V84xYEECJVT4mh3q+Z5hhI35cuUVjQURz8vPzrajFOARi1HcZCjxl2AU8ZW5RMzoz8/6wqQfR+ORdtr99GsU/jgkQbYJXVrtGLjT74EYZIZBg5H3vEIARO80FLwH/8WAzEmnOz3KGRYV3tckFZOAd0Z8TmL7G7z5Bz4zSlQgQK4+kJwZr harshad.devale@tudip.nl
+
+
+
+
+
+
+
