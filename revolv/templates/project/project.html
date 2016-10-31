@@ -584,15 +584,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;
   // initializes the map based on the projects latitude and longitude, and adds the marker
   function initialize() {
     var location = {
-      lat: {
-        {
-        project.location_latitude}
-    }
-    , lng: {
-      {
-        project.location_longitude}
-    }
-  }
+      lat: {{ project.location_latitude }}, lng: {{ project.location_longitude }}
+    };
   var mapOptions = {
     center: location,
     zoom: 18
