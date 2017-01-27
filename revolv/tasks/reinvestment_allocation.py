@@ -35,10 +35,11 @@ def calculate_montly_reinvesment_allocation():
 
     reinvest_balance = RevolvUserProfile.objects.all().aggregate(total=Sum('reinvest_pool'))['total']
     logger.info('Current reinvestment balance: %s' % reinvest_balance)
-    for project in Project.objects.get_completed_unpaid_off_projects():
+    competed_unpaid_off_project=filter(lambda p: p.amount_left <= 0.0, Project.objects.get_completed_unpaid_off_projects())
+    for project in competed_unpaid_off_project:
         try:
             repayment_config = project.projectmontlyrepaymentconfig_set\
-                .get(year=date.today().year, repayment_type=ProjectMontlyRepaymentConfig.SOLAR_SEED_FUND)
+                .get(repayment_type=ProjectMontlyRepaymentConfig.SOLAR_SEED_FUND)
         except ProjectMontlyRepaymentConfig.DoesNotExist:
             logger.error("Project %s - %s doesn't have repayment config!", project.id, project.title)
             continue
@@ -60,10 +61,8 @@ def calculate_montly_reinvesment_allocation():
 
     fund_per_recipient = reinvest_balance / len(recipient)
     logger.info('Fund allocated to each project: %s' % fund_per_recipient)
-    for project in recipient:
-        project.monthly_reinvestment_cap = fund_per_recipient
-        project.save()
-    #wait for 30s and the send mail
+
     time.sleep(30)
 
     user_reinvestment_reminder()
+
