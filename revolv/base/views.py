@@ -80,6 +80,18 @@ class HomePageView(UserDataMixin, TemplateView):
         context["global_impacts"] = self.get_global_impacts()
         return context
 
+class DonationReportView(UserDataMixin, TemplateView):
+    """
+    Display all financial transactions in donation report.
+    """
+    model = Payment
+    template_name = 'base/partials/donation_report.html'
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(DonationReportView, self).get_context_data(**kwargs)
+        context['payments'] = Payment.objects.all()
+        return context
 
 class BaseStaffDashboardView(UserDataMixin, TemplateView):
     """

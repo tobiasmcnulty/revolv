@@ -49,6 +49,9 @@
     <a href="{% url "project:new" %}" class="create-new-button" id="create_project">Create Project</a>
 </div>
 {% endif %}
+{% if user.revolvuserprofile.is_administrator %}
+    <a href="{% url "donationreport" %}" class="create-new-button" id="create_project">Financial Report</a>
+{% endif %}
 <div class="dashboard-section projects">
     {% if donor_has_no_donated_projects %}
         <div class="dashboard-header">No projects found.</div>

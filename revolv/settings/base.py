@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     'wagtail.wagtailsearch',
     'wagtail.wagtailredirects',
     'wagtailsettings',
-    'revolv.revolv_cms'
+    'revolv.revolv_cms',
+    'mathfilters'
 ]
 
 MIDDLEWARE_CLASSES = [
