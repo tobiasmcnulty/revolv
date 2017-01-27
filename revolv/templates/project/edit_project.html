@@ -45,6 +45,7 @@
                         {% for error in form.categories_select.errors %}
                             <small class="error">{{ error }}</small>
                         {% endfor %}
+                        {% include "base/partials/tooltip_formfield.html" with field=form.total_kwh_value %}
                     </div>
 
                     <div class="medium-6 small-12 columns">

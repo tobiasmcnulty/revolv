@@ -57,10 +57,11 @@ class HomePageView(UserDataMixin, TemplateView):
         global_impacts = {
             # Users who have backed at least one project:
             'num_people_donated': people_donated_stat_Count,
-            'num_projects': Project.objects.get_completed().count(),
-            'num_people_affected': Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
-            #'co2_avoided': final_carbon_avoided,
-	   	'co2_avoided': 7452670,
+            'num_projects': len(Project.objects.get_completed()),
+            'num_people_affected':
+                Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
+            'co2_avoided': str(int(Project.objects.get_total_avoided_co2())),
+            #	'co2_avoided': 7452670,
         }
         return global_impacts
 
@@ -121,7 +122,8 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         context['donated_projects'] = Project.objects.donated_projects(self.user_profile)
         statistics_dictionary = aggregate_stats(self.user_profile)
         statistics_dictionary['total_donated'] = total_donations(self.user_profile)
-        statistics_dictionary['people_served'] = Project.objects.aggregate(n=Sum('people_affected'))['n']
+        total_people_affected = Project.objects.donated_completed_projects(self.user_profile)
+        statistics_dictionary['people_served'] = total_people_affected
         humanize_integers(statistics_dictionary)
         context['statistics'] = statistics_dictionary
 

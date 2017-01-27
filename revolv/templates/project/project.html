@@ -74,7 +74,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
           <!-- end .blue-bar -->
           <div class="dark-blue-bar">
             <span class="pull-left actual-energy">
-              <span class="bold">{{ project.actual_energy }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
+              <span class="bold">{{ project.get_statistic_for_project |floatformat:2 }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
               <span class="bold">{{ donor_count }}</span> {{ settings.revolv_cms.ProjectPageSettings.donors_wording }}</span>
           </div>
           <div class="banner-section">
@@ -505,12 +505,13 @@ input:invalid {box-shadow: 0 0 5px 1px red;
 <script src="https://checkout.stripe.com/checkout.js">
 </script>
 <script>
-  $(function ($) {
+ $(function ($) {
   var handler = StripeCheckout.configure({
     key: '{{ stripe_publishable_key }}'
     , image: '{% static "images/revolv-logo.png" %}'
     , locale: 'auto'
     , name: 'RE-volv'
+    , email: '{{request.user.email}}'
   });
   $(window).on('popstate', function () {
     handler.close();
