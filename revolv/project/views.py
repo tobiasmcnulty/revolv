@@ -82,7 +82,6 @@ def stripe_payment(request, pk):
         entrant=request.user.revolvuserprofile,
         amount=donation_cents/100.0,
         project=project,
-        tip=tip,
         payment_type=PaymentType.objects.get_stripe(),
     )
 
