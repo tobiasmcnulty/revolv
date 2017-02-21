@@ -28,7 +28,6 @@ from itertools import chain
 
 from social.apps.django_app.default.models import UserSocialAuth
 
-
 class HomePageView(UserDataMixin, TemplateView):
     """
     Website home page.
@@ -233,11 +232,23 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
         self.next_url = request.POST.get("next", "home")
+        if request.POST.get('donation_amount'):
+            request.session['amount'] = request.POST.get('donation_amount')
+            request.session['tip'] = request.POST.get('donation_tip')
+            request.session['pk'] = request.POST.get('pk')
+
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         """Log the user in and redirect them to the supplied next page."""
         auth_login(self.request, form.get_user())
+        if self.request.session.get('amount'):
+            pk=self.request.session.get('pk')
+            amount= self.request.session['amount']
+            tip=self.request.session['tip']
+            del self.request.session['amount']
+            messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
+            return redirect(reverse('project:view', kwargs={'pk':pk})+'?amount='+amount+'&tip='+tip)
         messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
         return redirect(self.next_url)
 
@@ -272,6 +283,13 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         send_signup_info.delay(name, u.email, u.revolvuserprofile.address)
         # log in the newly created user model. if there is a problem, error
         auth_login(self.request, u)
+        if self.request.session.get('amount'):
+            pk = self.request.session.get('pk')
+            amount = self.request.session['amount']
+            tip = self.request.session['tip']
+            del self.request.session['amount']
+            messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
+            return redirect(reverse('project:view', kwargs={'pk': pk}) + '?amount=' + amount + '&tip=' + tip)
         messages.success(self.request, 'Signed up successfully!')
         return redirect("dashboard")
 
