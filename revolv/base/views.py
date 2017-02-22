@@ -58,8 +58,7 @@ class HomePageView(UserDataMixin, TemplateView):
             'num_people_donated': people_donated_stat_Count,
             'num_projects': Project.objects.get_completed().count(),
             'num_people_affected': Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
-            #'co2_avoided': final_carbon_avoided,
-	   	'co2_avoided': 7452670,
+            'co2_avoided': str(int(Project.objects.get_total_avoided_co2())),
         }
         return global_impacts
 
@@ -108,8 +107,9 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         context['donated_projects'] = Project.objects.donated_projects(self.user_profile)
         statistics_dictionary = aggregate_stats(self.user_profile)
         statistics_dictionary['total_donated'] = total_donations(self.user_profile)
-        statistics_dictionary['people_served'] = Project.objects.aggregate(n=Sum('people_affected'))['n']
-        humanize_integers(statistics_dictionary)
+        total_people_affected = Project.objects.donated_completed_projects(self.user_profile)
+        statistics_dictionary['people_served'] = total_people_affected
+        #humanize_integers(statistics_dictionary)
         context['statistics'] = statistics_dictionary
 
         return context
@@ -168,6 +168,12 @@ class SignInView(TemplateView):
     signup_form_class = SignupForm
 
     def dispatch(self, request, *args, **kwargs):
+        amount = request.GET.get('donation_amount')
+        tip = request.GET.get('donation_tip')
+        pk = request.GET.get('pk')
+        request.session['amount']= amount
+        request.session['tip']= tip
+        request.session['pk']= pk
         if request.user.is_authenticated():
             return redirect("home")
         return super(SignInView, self).dispatch(request, *args, **kwargs)
@@ -229,23 +235,22 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     url_append = "#login"
     redirect_view = "signin"
 
+
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
+        self.amount=request.session.get('amount')
+        self.tip=request.session.get('tip')
+        self.pk=request.session.get('pk')
         self.next_url = request.POST.get("next", "home")
-        if request.POST.get('donation_amount'):
-            request.session['amount'] = request.POST.get('donation_amount')
-            request.session['tip'] = request.POST.get('donation_tip')
-            request.session['pk'] = request.POST.get('pk')
-
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         """Log the user in and redirect them to the supplied next page."""
         auth_login(self.request, form.get_user())
         if self.request.session.get('amount'):
-            pk=self.request.session.get('pk')
-            amount= self.request.session['amount']
-            tip=self.request.session['tip']
+            pk=self.pk
+            amount= self.amount
+            tip=self.tip
             del self.request.session['amount']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
             return redirect(reverse('project:view', kwargs={'pk':pk})+'?amount='+amount+'&tip='+tip)

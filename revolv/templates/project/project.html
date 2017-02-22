@@ -68,13 +68,13 @@ input:invalid {box-shadow: 0 0 5px 1px red;
         </div>
         <div class="info-main">
           <div class="blue-bar">
-            <span class="pull-left"><span class="bold">${{ project.amount_donated|floatformat:"0"|intcomma }}</span> Donated</span>
+            <span class="pull-left"><span class="bold">${{ project.amount_donated|floatformat:"0"|intcomma }}{{ project.actual_energy }}</span> Donated</span>
             <span class="pull-right"><span class="bold">{{ project.days_left }}</span> Days Left</span>
           </div>
           <!-- end .blue-bar -->
           <div class="dark-blue-bar">
             <span class="pull-left actual-energy">
-              <span class="bold">{{ project.actual_energy }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
+              <span class="bold">{{ project.get_statistic_for_project|floatformat:"2" }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
               <span class="bold">{{ donor_count }}</span> {{ settings.revolv_cms.ProjectPageSettings.donors_wording }}</span>
           </div>
           <div class="banner-section">
@@ -246,11 +246,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                         </button>
                       </form>
                     {% else %}
-                       <form action="{% url 'login'  %}" method="POST" id="ipad1">
-                        {% csrf_token %}
+                       <form action="{% url 'signin'  %}" method="GET" id="ipad1">
                         <input type="hidden" name="donation_amount" value="50">
                         <input name="donation_tip" value="15" type="hidden">
-                        <input type="hidden" name="pk" value="{{ project.pk }}">
+                        <input type="hidden" name="pk" value="{{ project.pk |urlencode}}">
                         <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
                           <span style="display: block; min-height: 30px;" >DONATE</span>
                         </button>
@@ -276,11 +275,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                     </button>
                   </form>
                 {% else %}
-                  <form action="{% url 'login'  %}" method="POST" id="phone1">
-                    {% csrf_token %}
+                  <form action="{% url 'signin'  %}" method="GET" id="phone1">
                     <input type="hidden" name="donation_amount" value="50">
                     <input name="donation_tip" value="15" type="hidden">
-                    <input type="hidden" name="pk" value="{{ project.pk }}">
+                    <input type="hidden" name="pk" value="{{ project.pk|urlencode }}">
                     <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
                       <span style="display: block; min-height: 30px;" >DONATE</span>
                     </button>
@@ -298,7 +296,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
           <!-- end .blue-bar -->
           <div class="dark-blue-bar">
             <span class="pull-left actual-energy">
-              <span class="bold">{{ project.get_statistic_for_project|floatformat:2 }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
+              <span class="bold">{{ project.get_statistic_for_project|floatformat:"2" }}</span> lbs CO<sub>2</sub> Avoided</span><span class="pull-right">
               <span class="bold">{{ donor_count }}</span> {{ settings.revolv_cms.ProjectPageSettings.donors_wording }}</span>
           </div>
           <div class="banner-section">
@@ -410,16 +408,14 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                     </button>
                   </form>
                 {% else %}
-                  <form action="{% url 'login'  %}" method="POST" >
-                        {% csrf_token %}
-                        <input type="hidden" name="donation_amount" value="50">
-                        <input name="donation_tip" value="15" type="hidden">
-                        <input type="hidden" name="pk" value="{{ project.pk }}">
-                        <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
-                          <span style="display: block; min-height: 30px;" >DONATE</span>
-                      </button>
-                     </form>
-
+                  <form action="{% url 'signin'  %}" method="GET">
+                    <input type="hidden" name="donation_amount" value="50">
+                    <input name="donation_tip" value="15" type="hidden">
+                    <input type="hidden" name="pk" value="{{ project.pk }}">
+                    <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
+                      <span style="display: block; min-height: 30px;" >DONATE</span>
+                    </button>
+                   </form>
                 {% endif %}
               </div>
               <!-- end .module-box -->

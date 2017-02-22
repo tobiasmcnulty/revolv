@@ -29,10 +29,14 @@
     {% endif %}
     <div class="row">
     <div class="col-md-3 col-md-push-3 col-sm-3 col-sm-push-1">
-        {% if reason and reason == "donate" %}
-            <h1>{{ settings.revolv_cms.LoginPageSettings.heading_for_donation }}</h1>
-            {{ settings.revolv_cms.LoginPageSettings.login_paragraph_for_donation|safe }}
-        {% else %}
+        <!--{% if reason and reason == "donate" %}-->
+            <!--<h1>{{ settings.revolv_cms.LoginPageSettings.heading_for_donation }}</h1>-->
+            <!--{{ settings.revolv_cms.LoginPageSettings.login_paragraph_for_donation|safe }}-->
+        <!--{% else %}-->
+            <!--<h1>{{ settings.revolv_cms.LoginPageSettings.heading }}</h1>-->
+            <!--{{ settings.revolv_cms.LoginPageSettings.login_paragraph|safe }}-->
+        <!--{% endif %}-->
+        {% if not request.session.amount %}
             <h1>{{ settings.revolv_cms.LoginPageSettings.heading }}</h1>
             {{ settings.revolv_cms.LoginPageSettings.login_paragraph|safe }}
         {% endif %}
@@ -77,11 +81,16 @@
 </div>
 
 <div class='signup' {% if referring_endpoint == "login" or referring_endpoint == "" %}style="display: none"{% endif %}>
+    {% if request.session.amount %}
+      <h4 class="donation-welcome-msg">Thank you so much for supporting this project! The next step is to log in or create an account here.</h4>
+    {% endif %}
     <div class="row">
       <div class="col-md-3 col-md-push-3 col-sm-3 col-sm-push-1">
-        <h1>{{ settings.revolv_cms.SignupPageSettings.heading }}</h1>
-        {{ settings.revolv_cms.SignupPageSettings.signup_paragraph|safe }}
-        <br/>
+           {% if not request.session.amount %}
+            <h1>{{ settings.revolv_cms.SignupPageSettings.heading }}</h1>
+            {{ settings.revolv_cms.SignupPageSettings.signup_paragraph|safe }}
+            <br/>
+        {% endif %}
         <p>Already have an account? Log in <a class="component-link" data-component="login">here</a>.</p>
         <br/>
         <p>Or you can login with your Google account below:</p>
@@ -135,7 +144,6 @@
     </div>
 
 </div>
-
 </div>
 </div>
 {% endblock %}

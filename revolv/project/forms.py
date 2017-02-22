@@ -26,16 +26,20 @@ class ProjectForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'e.g. Other Avenues Food Cooperative'}),
             'tagline': forms.TextInput(attrs={'placeholder': 'e.g. Power the future!'}),
-            'funding_goal': forms.TextInput(attrs={'placeholder': 'e.g. $1000', 'min_value':0, 'decimal_places':2}),
+            'funding_goal': forms.TextInput(attrs={'placeholder': 'e.g. $1000', 'min_value': 0, 'decimal_places': 2}),
             'impact_power': forms.NumberInput(attrs={'placeholder': 'e.g. 12.0'}),
             'end_date': forms.DateInput(attrs={'placeholder': 'e.g. 10/25/2006', 'input_formats': '%m/%d/%Y'}),
             'video_url': forms.URLInput(attrs={'placeholder': 'e.g. youtube.com/url_to_video'}),
             'org_name': forms.TextInput(attrs={'placeholder': 'e.g. Other Avenues'}),
             'org_start_date': forms.DateInput(attrs={'placeholder': 'e.g. 10/25/2006', 'input_formats': '%m/%d/%Y'}),
-            'org_about': forms.Textarea(attrs={'placeholder': 'e.g. Other Avenues is a worker-owned cooperative that seeks to maintain a thriving business while providing food and supplies for sustainable living, supporting organic and local farms and to serve as a model of workplace democracy for the community.'}),
+            'org_about': forms.Textarea(attrs={
+                'placeholder': 'e.g. Other Avenues is a worker-owned cooperative that seeks to maintain a thriving business while providing food and supplies for sustainable living, supporting organic and local farms and to serve as a model of workplace democracy for the community.'}),
             'location': forms.TextInput(attrs={'placeholder': 'e.g. 3930 Judah Street San Francisco, CA 94122'}),
-            'description': forms.Textarea(attrs={'placeholder': "e.g. The solar energy system will be a 36kW project that provides 33% of Other Avenue's electricity needs."}),
+            'description': forms.Textarea(attrs={
+                'placeholder': "e.g. The solar energy system will be a 36kW project that provides 33% of Other Avenue's electricity needs."}),
             'people_affected': forms.NumberInput(attrs={'placeholder': 'e.g. 12'}),
+            # 'actual_energy': forms.TextInput(attrs={'placeholder': 'e.g. 10000', 'min_value': 0, 'decimal_places': 2}),
+            'total_kwh_value': forms.NumberInput(attrs={'placeholder': 'e.g. 50000'}),
         }
 
         fields = (
@@ -54,7 +58,9 @@ class ProjectForm(forms.ModelForm):
             'location_longitude',
             'categories_select',
             'description',
-            'people_affected'
+            'people_affected',
+            # 'actual_energy',
+            'total_kwh_value'
         )
 
     def clean_categories_select(self):
@@ -76,6 +82,7 @@ class ProjectStatusForm(forms.ModelForm):
     An empty form, used so that one can update the project status through
     the ReviewProjectView
     """
+
     class Meta:
         model = Project
         # fields that need to be filled out, empty on purpose
@@ -83,19 +90,22 @@ class ProjectStatusForm(forms.ModelForm):
 
 
 class EditProjectUpdateForm(forms.ModelForm):
-    """ 
+    """
     A form used to edit updates about a project
     """
+
     class Meta:
         model = ProjectUpdate
-        
+
         widgets = {
-            'update_text': forms.Textarea(attrs={'placeholder': 'e.g. Thank you for all the support! The project has been going extremely well. These are the milestones we have hit so far, and this is what we plan to do in the near future.'}),
+            'update_text': forms.Textarea(attrs={
+                'placeholder': 'e.g. Thank you for all the support! The project has been going extremely well. These are the milestones we have hit so far, and this is what we plan to do in the near future.'}),
         }
 
         fields = (
             'update_text',
         )
+
 
 def make_donation_level_formset(extra):
     ProjectDonationLevelFormSet = inlineformset_factory(Project, DonationLevel, extra=extra)

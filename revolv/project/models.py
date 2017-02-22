@@ -41,6 +41,25 @@ class ProjectManager(models.Manager):
         else:
             return featured_projects
 
+    def get_total_avoided_co2(self, queryset=None):
+        """ Gets all the projects that have been completed funding.
+
+        :queryset: The queryset in which to search for projects
+        :return: A list of completed project objects
+        """
+        user_impact = 0
+        POUNDS_CARBON_PER_KWH = 1.5
+        if queryset is None:
+            projects = super(ProjectManager, self).get_queryset()
+        for project in projects:
+            project_funding_total = (int)(project.funding_goal)
+            amount_donated = (int)(project.amount_donated)
+            project_total_kwh_value = project.total_kwh_value
+            per_project_avoided_co2 = float(project_total_kwh_value) * POUNDS_CARBON_PER_KWH
+            project_impact = float(per_project_avoided_co2 * amount_donated) / float(project_funding_total)
+            user_impact += project_impact
+        return user_impact
+
     def get_completed(self, queryset=None):
         """ Gets all the projects that have been completed funding.
 
@@ -131,6 +150,19 @@ class ProjectManager(models.Manager):
         """
         return user_profile.project_set.all()
 
+    def donated_completed_projects(self, user_profile):
+        """
+        :return: Completed projects to which this RevolvUserProfile has donated
+        """
+        all_payments = Payment.objects.filter(user=user_profile).distinct('project')
+        user_impact = 0
+        for payment in all_payments:
+            project = payment.project
+            if project:
+                if project.project_status == 'CO':
+                    user_impact = user_impact + project.people_affected
+        return user_impact
+
     def create_from_form(self, form, creator):
         """ Creates project from form and sets created_by_user to a RevolvUserProfile.
 
@@ -200,12 +232,12 @@ class Project(models.Model):
         decimal_places=2,
         help_text='How much do you aim to raise for this project?'
     )
-    """total_kwh_value = models.DecimalField(
+    total_kwh_value = models.DecimalField(
         max_digits=15,
         decimal_places=2,
         default=0,
         help_text='How much is the total kWH value for 25 years to this project?'
-    )"""
+    )
     title = models.CharField(
         max_length=255,
         help_text='How would you like to title this project?'
@@ -233,8 +265,8 @@ class Project(models.Model):
         max_length=255,
         blank=True,
         help_text='This can be found by going to http://home.solarlog-web.net/, going to the \
-        solar log profile for your site, and clicking on the Graphics sub-page. Copy and paste \
-        the URL in the address bar into here.'
+            solar log profile for your site, and clicking on the Graphics sub-page. Copy and paste \
+            the URL in the address bar into here.'
     )
     location = models.CharField(
         'Organization Address',
@@ -680,6 +712,16 @@ class Project(models.Model):
         """
         return min(self.amount_left, self.monthly_reinvestment_cap)
 
+    def get_statistic_for_project(self):
+        user_impact = 0
+        project_funding_total = (int)(self.funding_goal)
+        amount_donated = (int)(self.amount_donated)
+        project_total_kwh_value = self.total_kwh_value
+        per_doller_co2_avoided = project_total_kwh_value / project_funding_total
+        project_impact = per_doller_co2_avoided * amount_donated
+        user_impact += project_impact
+        return user_impact
+
     def paid_off(self):
         """Set the project PAID_OFF flag
         """
@@ -687,7 +729,7 @@ class Project(models.Model):
         self.save()
 
     def __unicode__(self):
-         return self.title + '-' + self.project_status
+        return self.title + '-' + self.project_status
 
 
 class ProjectUpdate(models.Model):
