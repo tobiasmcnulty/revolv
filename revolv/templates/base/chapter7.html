@@ -1,0 +1,225 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>RE-volv</title>
+
+    <style>
+
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="#" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+             <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        CHAPTER 7: <br> Launching the campaign
+                       </div>
+                      <div class="we_can_help_you">
+                         In the first few days of your campaign <br>it’s critical to build momentum.
+                      </div>
+
+                  </div>
+                  <div class="header-logo">
+                        <div class="logo-size" >
+                          	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+                 <div class="go-to-solar-link">
+                         <a href="{% url 'bring_solar_to_your_community' %}" class="back_button_link"><img class="back-button-arrow" src="/static/images/arrow-left.png"><span class="back-button-link">Go to Solar Champion Portal.</span></a>
+                      </div>
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="all-chapters-list hidden-sm hidden-md hidden-lg">
+    <div class="mobile-chapter-name-list">
+        <div class="chapter-list-size">
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					1. Why be a solar champion?
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					2. Your Mission, if you Choose to Accept
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					3. How to find a nonprofit to solarize
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					4. Collecting Information
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					5. Making a Deal
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					6. Planning a Crowdfunding Campaign
+				</span>
+                <span class="sm-chapter-name right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					7. Launching the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					8. Running the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					9. Installation
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					10. Celebration
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					11. Timeline
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					12. Resources
+				</span>
+			</div>
+        </div>
+</div>
+
+<div class="chapter-main-div">
+    <div class="col-sm-8 chapter-content">
+        <div class="chapter-content-header chapter-divide-line">
+           The first few days of your campaign are arguably the most important. It’s critical that you capture attention with the launch, translate that into donations, and hope to build enough momentum to carry you through the campaign. As mentioned earlier, if you can hit a third of your campaign goal in the first two weeks you’re likely to reach your goal. So the launch of the campaign is critical to make sure you hit that goal in the first two weeks.
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name"><b>1. Launch Event</b></div>
+            <div class="chapter-content-div">As discussed above, a well-organized launch event can help bring in a lot of donations right away and also get people talking. The more people talk to their friends about your campaign, the better!</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name"><b>2. Media blitz</b></div>
+            <div class="chapter-content-div">Launching your campaign is a great time to some media attention. Pitch the media on the exciting elements of your campaign and why it’s newsworthy. Another reason reporters might cover you is if you’ve raised a lot of money in the first few days. Another reason to get out there and raise donations early!</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name"><b>3. Social media</b></div>
+            <div class="chapter-content-div">Social media is going to become your best friend during the 6 weeks of the campaign! Starting with a strong push on all the social media channels is very helpful. One great strategy is to create a facebook page just for your campaign. Another strategy is to create a facebook event that you invite all your friends to so you can keep them updated on the campaign through daily updates. Paid promotions on facebook are also very useful to get your updates in front of lots of people. Also, when you like a post, comment on a post, or share a post, the Facebook algorithm will decide that it is popular content and will show it to more people. Therefore make sure you and your Solar Champion teammates and your friends and family are actively liking, commenting, and sharing your posts. And of course, always remember to put a link to the campaign page in your social media posts!</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name"><b>4. Email blast</b></div>
+            <div class="chapter-content-div">In our experience a short personalized email with a link to your campaign page is the best tool you have in your tool box. Think about it. If you saw a post on facebook from a friend you can ignore it. If you got a mass email you can ignore it. But if a friend of yours writes you a personalized email, you’re much more likely to take a look, right? Here’s an example email.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name"><b>Pro Tip:</b></div>
+            <div class="chapter-content-div"><b>Example Email:</b><br>
+                <b>Subject: solar crowdfunding campaign</b><br>
+
+                Hi [recipient],<br>
+
+                How are you? I hope all is well! I wanted to let you know about a really cool project I’m working on as a volunteer Solar Champion for RE-volv, a solar energy nonprofit. My team and I just launched a crowdfunding campaign to install a solar energy system on [name of nonprofit]. The solar project will save them 15% on their electric bills and through RE-volv’s pay-it-forward model, donors get repaid and are able to reinvest the money in other nonprofit solar projects! It’s a really cool model. I think you’ll really like it!<br><br>
+
+                You can check out the campaign here: [link]. I hope you’ll consider supporting us by making a donation! No amount is too small! If you have any questions, I’d be happy to talk to you more about it. I’d also appreciate it very much if you could help us spread the word about this campaign.<br>
+
+                All the best,<br>
+                [sender]<br><br></div>
+        </div>
+        <div class="chapter-content-text">
+
+            When you’re launching the campaign you’re going to want to send an email like this out to all of the people who you identified in your list of contacts who you think will support the campaign. Be sure to keep track of the people you send it to, and whether they respond or take action. If you haven’t heard back from them, you can follow up after a few days.
+
+        </div>
+
+    </div>
+    <div class="chapter-list col-sm-4 padding-zero hidden-xs">
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">1. Why be a solar champion?</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">2. Your Mission, if you Choose to Accept </div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">3. How to find a nonprofit to solarize</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">4. Collecting Information</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">5. Making a Deal</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">6. Planning a Crowdfunding Campaign</div>
+        <div class="right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/7/">7. Launching the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">8. Running the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">9. Installation</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">10. Celebration</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">11. Timeline</div>
+        <div class="right-list"data-chapter-url="/bring_solar_to_your_community/chapter/12/">12. Resources</div>
+    </div>
+</div>
+<div class="footer-next-button">
+    <div class="col-xs-12 col-sm-6 footer-content">
+        <div class="footer-heading">
+            8. Running the campaign
+        </div>
+        <div class="footer-content-text">
+            Here are a few of the key strategies to keep momentum up during the campaign.
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-6">
+        <a href="/bring_solar_to_your_community/chapter/8/" class="next-button">Next Chapter</a>
+    </div>
+</div>
+{%endblock%}
+

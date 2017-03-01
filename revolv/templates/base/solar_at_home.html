@@ -1,0 +1,397 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+
+    <style>
+    .dropdown-open {
+        display
+    }
+    .dropdown-triangle {
+        float: right;
+        padding-right: 2%;
+
+    }
+
+a.How_it_Works:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.header.top-section-header {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0);
+    margin-top: 0;
+    position: absolute;
+}
+
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+.burger-sub-menu {
+  display: block;
+}
+.header .solar_at_home_rights .btn-yellow {
+    <!--background-color: rgb(255, 204, 0);-->
+    <!--padding: 0px 84px 0 0;-->
+        border-radius: 6%;
+    background-color: rgb(255, 204, 0);
+    color: black;
+    /* width: 30%; */
+    height: auto;
+    line-height: normal;
+    padding: 2vmin 1%;
+}
+.header .solar_at_home_rights {
+     padding: 3vmin 4% 0 0;
+}
+<!--.header a.btn-yellow, .header.after-scroll-header a.btn-yellow {-->
+    <!--text-decoration: none;-->
+    <!--color: #333;-->
+    <!--}-->
+
+    .hamburger_color {
+        border-color: transparent;
+        color: white;
+    }
+    .background-collapse-color {
+            background-color: white;
+    }
+
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div style="height: 60vmin;
+    background-image: url(/static/images/Header_image.png);
+    background-size: 100vw 60vmin;
+    background-repeat: no-repeat;">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+             <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="{% url 'projects_list' %}" class="component-link btn-blue btn-donate btn-yellow" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+             <div style="width:100%;float:left;padding-top: 7vmin;">
+                <div style="width:100%;padding: 0 6%;float: left;">
+                  <div style="float: left;width: calc(100% - 36vmin);">
+                      <div class="go_solar_at_home">
+                        Want to go <br> solar at home?
+                       </div>
+                      <div class="we_can_help_you">
+                          You’ve come to the right place.
+                      </div>
+
+                  </div>
+                  <div style="float: left;width: 36vmin;">
+                        <div class="logo-size" >
+                         	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+
+            </div>
+           </div>
+        </header>
+
+</div>
+<!--onchange="changeFunc();"-->
+<div style="width:100%;">
+    <div>
+        <div class="tell_us_state_where_you_live"><span>Tell us the State you live in and we can help you find some vetted solar installers in your area.</span></div>
+        <div class="dropdown">
+            <div id="dropdown-select-text" class="dropdown-select-text">
+                <div id="dropdown-title" class="dropdown-title">
+                    <span>Select your State</span>
+                    <span class="dropdown-triangle">&#x25BE;</span>
+                </div>
+
+            </div>
+            <div class="dropdown-menu">
+                <div class="option" data-selected-state="AL">Alabama</div>
+                <div class="option" data-selected-state="AK">Alaska</div>
+                <div class="option" data-selected-state="AZ" >Arizona</div>
+                <div class="option" data-selected-state="AZ">Arkansas</div>
+                <div class="option" data-selected-state="CA">California</div>
+                <div class="option" data-selected-state="CO">Colorado</div>
+                <div class="option" data-selected-state="CT">Connecticut</div>
+                <div class="option" data-selected-state="DE">Delaware</div>
+                <div class="option" data-selected-state="DC">District Of Columbia</div>
+                <div class="option" data-selected-state="FA">Florida</div>
+                <div class="option" data-selected-state="GA">Georgia</div>
+                <div class="option" data-selected-state="HI">Hawaii</div>
+                <div class="option" data-selected-state="ID">Idaho</div>
+                <div class="option" data-selected-state="IL">Illinois</div>
+                <div class="option" data-selected-state="IN">Indiana</div>
+                <div class="option" data-selected-state="IA">Iowa</div>
+                <div class="option" data-selected-state="KS">Kansas</div>
+                <div class="option" data-selected-state="KY">Kentucky</div>
+                <div class="option" data-selected-state="LA">Louisiana</div>
+                <div class="option" data-selected-state="ME">Maine</div>
+                <div class="option" data-selected-state="MD">Maryland</div>
+                <div class="option" data-selected-state="MA">Massachusetts</div>
+                <div class="option" data-selected-state="MI">Michigan</div>
+                <div class="option" data-selected-state="MN">Minnesota</div>
+                <div class="option" data-selected-state="MS">Mississippi</div>
+                <div class="option" data-selected-state="MO">Missouri</div>
+                <div class="option" data-selected-state="MT">Montana</div>
+                <div class="option" data-selected-state="NE">Nebraska</div>
+                <div class="option" data-selected-state="NV">Nevada</div>
+                <div class="option" data-selected-state="NH">New Hampshire</div>
+                <div class="option" data-selected-state="NJ">New Jersey</div>
+                <div class="option" data-selected-state="NM">New Mexico</div>
+                <div class="option" data-selected-state="NY">New York</div>
+                <div class="option" data-selected-state="NC">North Carolina</div>
+                <div class="option" data-selected-state="ND">North Dakota</div>
+                <div class="option" data-selected-state="OH">Ohio</div>
+                <div class="option" data-selected-state="OK">Oklahoma</div>
+                <div class="option" data-selected-state="OR">Oregon</div>
+                <div class="option" data-selected-state="PA">Pennsylvania</div>
+                <div class="option" data-selected-state="RI">Rhode Island</div>
+                <div class="option" data-selected-state="SC">South Carolina</div>
+                <div class="option" data-selected-state="SD">South Dakota</div>
+                <div class="option" data-selected-state="TN">Tennessee</div>
+                <div class="option" data-selected-state="TX">Texas</div>
+                <div class="option" data-selected-state="UT">Utah</div>
+                <div class="option" data-selected-state="VT">Vermont</div>
+                <div class="option" data-selected-state="VA">Virginia</div>
+                <div class="option" data-selected-state="WA">Washington</div>
+                <div class="option" data-selected-state="WV">West Virginia</div>
+                <div class="option" data-selected-state="WI">Wisconsin</div>
+                <div class="option" data-selected-state="WY">Wyoming</div>
+            </div>
+
+            <input type="hidden" class="dropdown-select" />
+        </div>
+
+            <div style="float:left;width:100%;">
+                <div class="investors_logo">
+                    <!--<div class="invstr-logo-images col-xs-12 col-sm-4 investor-remaining-img">-->
+                        <!--<div class="logo-img-cntnr">-->
+                             <!--<img id="img1" class="investors_logo_img" src="/static/images/Pick_my_Solar.png">-->
+                        <!--</div>-->
+
+                        <!--<div class="investors_logo_text" >-->
+                            <!--Go solar hassle-free with Pick My Solar. Easily compare solar companies to get the best deal on your solar project. When solar companies compete, you win!-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="invstr-logo-images col-xs-12 col-sm-4">
+                        <div class="logo-img-cntnr">
+                             <a id="invstr-logo-link" href=""><img id="img"  src=""></a>
+                        </div>
+
+                        <div class="investors_logo_text" >
+                            <!--Get sloar panels for your home and generate your own solar power with Sungevity. See how residential panels can help with a free home solar quote.-->
+                        </div>
+                    </div>
+                    <!--<div class="invstr-logo-images col-xs-12 col-sm-4 investor-remaining-img">-->
+                        <!--<div class="logo-img-cntnr">-->
+                             <!--<img id="img2" class="investors_logo_img" src="/static/images/EnergySale.png">-->
+                        <!--</div>-->
+
+                        <!--<div class="investors_logo_text" >-->
+                            <!--The easiest way to go solar! Installers compete for your business to give you more options and the best deal. Free instant solar estimate.-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+            </div>
+    </div>
+
+</div>
+      <!-- Left and right controls -->
+<script>
+    $(document).ready(function() {
+        $('#dropdown-select-text').on('click', function() {
+    $('.dropdown-menu').toggle();
+    });
+    $('.option').on('click', function() {
+        $(this).closest('.dropdown-menu').hide();
+        $(this).parents('.dropdown').find('.dropdown-title span:first-child').text($(this).html());
+        $(this).parents('.dropdown').find('.dropdown-select').val($(this).html());
+        selectedValue=$(this).data("selected-state");
+        changeFunc(selectedValue);
+    });
+
+     function changeFunc(selectedValue) {
+       var states1 = ["AZ","FL", "GA","IL","IN","LA","ME", "MI","MN","MO","NH","NV","OH","PA","TX", "UT","VA","WI"];
+       var states2 = ["AK","AL", "AR", "HI","IA", "ID", "KS","KY", "MS", "MT","ND", "NE",
+                        "NV","OK", "OR", "SC","TN", "WA", "WV","WY"];
+       var states3 = ["CA","CO", "CT", "DC","DE", "MA", "MD","NC", "NJ", "NM","NY", "RI", "VT"];
+        for (i=0;i<50;i++)
+        {
+            if (selectedValue == states1[i])
+            {
+                $("#img").attr("src",'/static/images/EnergySage_updated.jpg');
+                $("#invstr-logo-link").attr("href",'http://www.energysage.com/p/re-volv/');
+                $(".investor-remaining-img").hide();
+                $(".selected-logo").css('border','0');
+                $("#img").closest(".invstr-logo-images").removeClass("col-sm-4");
+                $("#img").closest(".invstr-logo-images").addClass("col-sm-6");
+                $(".investors_logo_text").text("The easiest way to go solar! Installers compete for your business to give you more options and the best deal. Free instant solar estimate.");
+            }
+            else if (selectedValue == states2[i])
+            {
+                $("#img").attr("src","/static/images/PickMySolar_updated.png");
+                $("#invstr-logo-link").attr("href",'http://info.pickmysolar.com/re-volv-partner/');
+                $(".investor-remaining-img").hide();
+                $(".selected-logo").css('border','0');
+                $("#img").closest(".invstr-logo-images").removeClass("col-sm-4");
+                $("#img").closest(".invstr-logo-images").addClass("col-sm-6");
+                $(".investors_logo_text").text("Go solar hassle-free with Pick My Solar. Easily compare solar companies to get the best deal on your solar project. When solar companies compete, you win!");
+            }
+            else if(selectedValue == states3[i]) {
+                $("#img").attr("src",'/static/images/Sungevity.png');
+                 $("#invstr-logo-link").attr("href","http://us.sungevity.org/re-volv");
+                $(".investor-remaining-img").hide();
+                $(".selected-logo").css('border','0');
+                $("#img").closest(".invstr-logo-images").removeClass("col-sm-4");
+                $("#img").closest(".invstr-logo-images").addClass("col-sm-6");
+                $(".investors_logo_text").text("Get solar panels for your home and generate your own solar power with Sungevity. See how residential panels can help with a free home solar quote.");
+            }
+        }
+   }
+    $(document).click(function (event) {
+        var clickover = $(event.target);
+        var _opened = $(".navbar-collapse").hasClass("collapse in");
+        if (_opened === true ) {
+            $("button.navbar-toggle").click();
+        }
+    });
+    $(document).mouseup(function (e) {
+         var popup = $(".dropdown-menu");
+         if (!$('#dropdown-select-text').is(e.target) && !$('#dropdown-title').is(e.target) && !$('#dropdown-title span').is(e.target) &&
+             !popup.is(e.target) && popup.has(e.target).length == 0) {
+             popup.hide();
+             $('.dropdown-triangle').html('▾');
+         }
+     });
+    $('#dropdown-select-text, .option').on('click', function() {
+    if ($('.dropdown-triangle').html() == '▾') {
+        $('.dropdown-triangle').html('▴');
+    }
+    else if ($('.dropdown-triangle').html() == '▴'){
+        $('.dropdown-triangle').html('▾');
+    }
+    });
+
+    });
+
+
+  </script>
+
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{GOOGLEMAPS_API_KEY}}">
+</script>
+  <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js">-->
+<!--</script>-->
+      <!--<script src="http://malsup.github.com/jquery.form.js"></script>-->
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+  $(function ($) {
+  var handler = StripeCheckout.configure({
+    key: '{{ stripe_publishable_key }}'
+    , image: '{% static "images/revolv-logo.png" %}'
+    , locale: 'auto'
+    , name: 'RE-volv'
+    , email: '{{request.user.email}}'
+  });
+  $(window).on('popstate', function () {
+    handler.close();
+  });
+  $('.stripe-button-el').on('click', function (e) {
+    e.preventDefault();
+    var $form = $(this).closest('form');
+    var serialized = $form.serializeArray();
+    var endpoint = $form.attr('action');
+    var amount, metadata;
+    $.each(serialized, function () {
+      if (this.name === 'amount_cents') {
+        amount = this.value*100;
+      }
+      <!--if (this.name === 'metadata') {-->
+        <!--metadata = this.value;-->
+      <!--}-->
+    });
+    if (typeof amount !== 'undefined') {
+      handler.open({
+        description: 'Donate $' + parseFloat((amount / 100).toFixed(2)).toLocaleString()
+        , amount: amount
+        <!--, metadata: metadata-->
+        , token: function (token) {
+          var id = token.id;
+          var email = token.email;
+          var $id = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeToken')
+            .val(id);
+          var $email = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeEmail')
+            .val(email);
+          $id.appendTo($form);
+          $email.appendTo($form);
+          $form.trigger('submit');
+        }
+      });
+    }
+  });
+});
+</script>
+{%endblock%}

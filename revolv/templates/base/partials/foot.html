@@ -18,11 +18,11 @@ y.classList.remove("after-scroll-header-fixed");
                 <dl>
                     <dt><a href="/">Home</a></dt>
                     <dt><a href="/about-us/">About us</a></dt>
-                    <dt><a href="/about-us/our-team/">Team</a></dt>
-                    <dt><a href="/about-us/partners/">Partners</a></dt>
-                    <dt><a href="/about-us/jobs/">Jobs</a></dt>
-                    <dt><a href="/about-us/contact/">Contact us</a></dt>
-                    <dt><a href="/about-us/blog/">Blog</a></dt>
+                    <dt><a href="/about-us/our-team/" class="footer-colmn-links">Team</a></dt>
+                    <dt><a href="/about-us/partners/" class="footer-colmn-links">Partners</a></dt>
+                    <dt><a href="/about-us/jobs/" class="footer-colmn-links">Jobs</a></dt>
+                    <dt><a href="/about-us/contact/" class="footer-colmn-links">Contact us</a></dt>
+                    <dt><a href="/blog/" class="footer-colmn-links">Blog</a></dt>
                     <dd class="hide"></dd>
                 </dl>
             </nav>
@@ -52,6 +52,7 @@ y.classList.remove("after-scroll-header-fixed");
                     <dt><a href="/solar-education/">solar education</a></dt>
                     <dd><a href="/solar-education/">Educational Resources</a></dd>
                     <dd><a href="/solar-education/solar-education-week/">Solar Education Week</a></dd>
+                    <dd><a href="/solar-education/educational-resources/solar-myths-facts/">Solar Myths Facts</a></dd>
                 </dl>
             </nav>
             <!-- end .col-info -->
@@ -73,22 +74,38 @@ y.classList.remove("after-scroll-header-fixed");
         </div>
         <!-- end .row -->
         <div class="row">
-            <p class="attribution">This website was developed with the support of <a href="https://www.calblueprint.org/">Blueprint</a> and the <a href="http://energy.gov/eere/sunshot/about-sunshot-initiative">U.S. Department of Energy Sunshot Initiative</a>.
+            <p class="attribution footer-text">This website was developed with the support of <a href="https://www.calblueprint.org/"><b>Blueprint</b></a> and the <a href="http://energy.gov/eere/sunshot/about-sunshot-initiative"><b>U.S. Department of Energy Sunshot Initiative</b></a>.
             </p>
         </div>
-        <div class="bottoms">
-            <div class="lefts pull-left">
-                <a href="javascript:;" class="logo"></a>
+        <div class="row">
+            <div class="bottoms">
+                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt">
+                    <a href="javascript:;" class="logo">
+                        <img src="/static/images/logo-white.png" />
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt flex-jty-con-cnt copyright hidden-xs hidden-sm">
+                         2017 © RE-volv All rights reserved.
+                </div>
+                <!-- end .lefts -->
+                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt flex-jty-con-end social-icons-cntnr">
+                    <ul class="flex flex-jty-con-end">
+                        <li><a href="https://www.facebook.com/solarseedfund/" target="_blank">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a></li>
+                        <li><a href="https://twitter.com/RE_volv" target="_blank">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt flex-jty-con-cnt copyright hidden-md hidden-lg">
+                         2017 © RE-volv All rights reserved.
+                </div>
+                <!-- end .rights -->
             </div>
-            <!-- end .lefts -->
-            <div class="rights pull-right">
-                <ul class="social-ul">
-                    <li><a href="https://www.facebook.com/solarseedfund/" target="_blank" class="icon-fb icons"></a></li>
-                    <li><a href="https://twitter.com/RE_volv" target="_blank" class="icon-tw icons"></a></li>
-                </ul>
-            </div>
-            <!-- end .rights -->
         </div>
+
         <!-- end .bottoms -->
     </div>
 </footer>

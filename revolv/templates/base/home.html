@@ -1,9 +1,9 @@
 {% extends "base/base.html" %}
 {% load staticfiles %}
 {% load humanize %}
+{% load wagtailimages_tags %}
 
 {% block title %}Home | {% endblock %}
-
 {% block head %}
     <script type="text/javascript">
         window.PARTIAL_COMPLETENESS = {{ first_project.partial_completeness_as_js }};
@@ -11,20 +11,78 @@
             'newsletter-bg.jpg': '{% static "images/newsletter-bg.jpg" %}',
             'small-newsletter-bg.jpg': '{% static "images/small/small-newsletter-bg.jpg" %}'
         };
+
     </script>
     <script src="{% static 'js/mediaelement-and-player.min.js' %}"></script>
     <link href="{% static 'css/mediaelementplayer.min.css' %}" rel="stylesheet" />
     <link href="{% static 'dist/css/pages/home/index.css' %}" rel="stylesheet" />
-{% endblock %}
+    <style>
 
+.carousel-indicators li {
+  border: 0;
+  background-color: grey;
+}
+.carousel-indicators .active {
+    background-color: #fff;
+}
+
+.next-button {
+    margin-top: -10px !important;
+    font-size: 0.85em !important;
+}
+
+.menu-list {
+position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+</style>
+
+{% endblock %}
 {% block body_class %}class="home-page-content"{% endblock %}
 
 {% block nav %}
-<header class="header top-section-header">
+
+
+<header class="header top-section-header" id="home-page">
   <div class="container">
-    <div class="lefts pull-left">
-      <a href="/" class="logo"></a>
-    </div>
+   <div class="container">
+       <a class="navbar-brand logo-home" href="#"></a>
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button>
+
+            </div>
+             <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" class="dropdown">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
     <!-- end .logo -->
     <div class="rights pull-right">
       <div class="txt pull-left">
@@ -39,45 +97,141 @@
             <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
         {% endif %}
       </div>
-      <a href="{% url 'projects_list' %}" class="btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>
+
+      <a href="{% url 'projects_list' %}" class="component-link btn-blue btn-donate">DONATE</a>
+      <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
     </div>
   </div>
+    </div>
 </header>
 {% endblock %}
 
-{% block body %}
 
-<div class="top-section nav-margins">
-  <div class="section-video">
-    <div class="section-video-area">
-      <div class="video-opacity"></div>
-      <img src="{% static 'images/top-section-video.jpg' %}" class="hide" alt="Video">
-      <iframe width="100%"
-        src="https://www.youtube.com/embed/th_u9EdzCYw/embed/th_u9EdzCYw?autoplay=1&controls=0&loop=1&showinfo=0&playlist=th_u9EdzCYw" >
-       </iframe>
-    </div>
-  </div>
-     <div class="section-video-overlay">
-    <div class="wrapper">
-      <div class="titles">
-        {{ settings.revolv_cms.MainPageSettings.site_tagline|safe }}
+{% block body %}
+<!--<div class="menu">-->
+  <!--<ul>-->
+    <!--<a href="#"><li>LINK ONE</li></a>-->
+    <!--<a href="#"><li>LINK TWO</li></a>-->
+    <!--<a href="#"><li>LINK THREE</li></a>-->
+    <!--<a href="#"><li>LINK FOUR</li></a>-->
+    <!--<a href="#"><li>LINK FIVE</li></a>-->
+  <!--</ul>-->
+<!--</div>-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel"  data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item carousel-third-img active">
+      <div class="text_overlay">
+        <div class="text_content">
+          <div class="space_btn_element">
+            <span class="CREATE_CLEAN_ENERGY">BUILDING COMMUNITY<br>THROUGH SOLAR</span>
+          </div>
+          <div class="space_btn_element">
+            <span class="Bring_solar_energy__to_communities_around_the_c">Helping communities thrive.<br>One solar panel at a time.</span>
+          </div>
+        </div>
+        <div class="how-it-works-button">
+            <a href="#how_it_works" class="How_it_Works space_btn_element">How It Works</a>
+        </div>
       </div>
-      <p>
-        {{ settings.revolv_cms.MainPageSettings.site_subheading|safe }}
-      </p>
-      <a href="{% url 'projects_list' %}" class=" btn-blue btn-donate-now">DONATE NOW</a>
+      <img class="background-image-size_home" src="static/images/revolv_background3@1500*500.png" alt="Flower">
     </div>
+
+    <div class="item carousel-second-img">
+      <div class="text_overlay">
+        <div class="text_content">
+          <div class="space_btn_element">
+            <span class="CREATE_CLEAN_ENERGY">COMMUNITY-DRIVEN SOLUTIONS <br>TO CLIMATE CHANGE</span>
+          </div>
+          <div class="space_btn_element">
+            <span class="Bring_solar_energy__to_communities_around_the_c">We all can play a role in solving climate change.</span>
+          </div>
+        </div>
+        <div class="how-it-works-button">
+            <a href="/what-we-do/projects/" class="How_it_Works space_btn_element">Support solar energy</a>
+        </div>
+      </div>
+
+      <img class="background-image-size_home"  src="static/images/revolv_background2@1500*500.png" alt="Chania">
+    </div>
+
+    <div class="item carousel-first-img" >
+      <div class="text_overlay">
+        <div class="text_content">
+          <div class="space_btn_element">
+            <span class="CREATE_CLEAN_ENERGY">CREATE<br>CLEAN ENERGY</span>
+          </div>
+          <div class="space_btn_element">
+            <span class="Bring_solar_energy__to_communities_around_the_c">Bring solar energy to<br>your community.</span>
+          </div>
+        </div>
+        <div class="how-it-works-button">
+            <a href="/bring_solar_to_your_community/" class="How_it_Works space_btn_element">Start a project</a>
+        </div>
+      </div>
+
+      <img class="background-image-size_home" src="static/images/revolv_background1@1500*500.png" alt="Chania">
+    </div>
+
+  </div>
+
+  <!-- Left and right controls -->
+  <!--<div class="text_overlay">-->
+    <!--<div class="text_content">-->
+      <!--<div class="space_btn_element">-->
+        <!--<span class="CREATE_CLEAN_ENERGY">{{ settings.revolv_cms.MainPageSettings.site_tagline|safe }}</span>-->
+      <!--</div>-->
+      <!--<div class="space_btn_element">-->
+        <!--<span class="Bring_solar_energy__to_communities_around_the_c">{{ settings.revolv_cms.MainPageSettings.site_subheading|safe }}</span>-->
+      <!--</div>-->
+      <!--<div class="how-it-works-button">-->
+        <!--<a href="#how_it_works" class="How_it_Works space_btn_element">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <a class="Ellipse_543 left carousel-control arrow-left"  href="#myCarousel" role="button" data-slide="prev">
+      <div style="position:relative;">
+          <span class=" glyphicon glyphicon-chevron-left next-button carousel-prev-button" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </div>
+  </a>
+  <a class="Ellipse_543 right carousel-control arrow-right"  href="#myCarousel" role="button" data-slide="next">
+      <div style="position:relative;">
+          <span class=" glyphicon glyphicon-chevron-right next-button carousel-next-button" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </div>
+  </a>
+</div>
+<div class="modal-body imageContainer join-mov-btn-cntnr" style="background-image: url(static/images/revolv_blue_background.png);">
+  <div class="text_on_blue_image"><span>Want to see solar energy spread rapidly across the country?</span><span><b> Join The Movement.</b></span></div>
+  <div class="col-xs-12 join-mov-btns-cntnr">
+      <div class="col-xs-4 join-mov-btns">
+         <a class="Go_Solar_at_Home column-left"  href="#active-projects"><span class="yellow-buttons">Fund Solar Energy Projects</span></a>
+      </div>
+      <div class="col-xs-4 join-mov-btns">
+        <a class="Go_Solar_at_Home column-right"  href="{% url 'bring_solar_to_your_community' %}"><span class="yellow-buttons">Bring Solar to Your Community</span></a>
+      </div>
+      <div class="col-xs-4 join-mov-btns">
+        <a  class="Go_Solar_at_Home column-center" href="{% url 'solar_at_home' %}"><span class="yellow-buttons">Go Solar at Home</span></a>
+      </div>
   </div>
 </div>
-<!-- end .top-section -->
 
-<div class="active-projects-module animated">
+
+<div id="active-projects" class="active-projects-module animated">
   <div class="container">
     <div class="title-blue-border title-active-projects">ACTIVE PROJECTS</div>
     <div class="row">
 
       {% for active_project in active_projects %}
-      <div class="col-md-4">
+      <div class="col-md-4 join-mov-btns">
         <div class="module-box">
           <div class="img-main">
             <a href="{% url "project:view" pk=active_project.pk %}" class="img-link">
@@ -112,7 +266,7 @@
           <!-- end .img-main -->
           <div class="info-main">
             <div class="blue-bar">
-              <span class="pull-left">${{ active_project.amount_donated|floatformat:"0"|intcomma }}</span>
+              <span class="pull-left">${{ active_project.amount_donated|floatformat:"2"|intcomma }}</span>
               <span class="pull-right">{{ active_project.days_left }} Days Left</span>
             </div>
             <!-- end .blue-bar -->
@@ -138,7 +292,7 @@
     <div class="row">
 
       {% for completed_project in completed_featured_projects %}
-      <div class="col-md-4">
+      <div class="col-md-4 join-mov-btns">
         <div class="module-box">
           <div class="img-main">
             <a href="{% url "project:view" pk=completed_project.pk %}" class="img-link">
@@ -178,7 +332,7 @@
             </div>
             <!-- end .blue-bar -->
             <div class="dark-blue-bar">
-              <span class="pull-left actual-energy">{{ completed_project.get_statistic_for_project|floatformat:"0"|intcomma }} lbs CO<sub>2</sub></span>
+              <span class="pull-left actual-energy">{{ completed_project.get_statistic_for_project|floatformat:"0"|intcomma}} lbs CO<sub>2</sub></span>
               <span class="pull-right">{{ completed_project.donors.count }} Donors</span>
             </div>
             <!-- end .blue-bar -->
@@ -210,7 +364,7 @@
           <span class="icons icon-home-ok"></span>
           <span class="titles font72">{{ global_impacts.num_projects }}</span>
           <p class="txt">
-			solar projects 
+			solar projects
 			installed
 		  </p>
         </div>
@@ -219,7 +373,7 @@
       <div class="col-md-3">
         <div class="module-box">
           <span class="icons icon-tree"></span>
-          <span class="titles font48">{{ global_impacts.co2_avoided|floatformat:"0" }}<span class="font20">lbs</span></span>
+          <span class="titles font48">{{ global_impacts.co2_avoided  }}<span class="font20">lbs</span></span>
           <p class="txt">CO<span class="position"><span class="font10">2</span></span> AVOIDED</p>
         </div>
         <!-- end .module-box -->
@@ -242,7 +396,7 @@
 
 <div class="how-it-works-module animated">
   <div class="container">
-    <div class="title-blue-border title-how-it-works">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</div>
+    <div id="how_it_works" class="title-blue-border title-how-it-works">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</div>
     <div class="row info-row">
       <div class="video-area pull-right">
         <div class="video">
@@ -378,7 +532,7 @@
     {% with testimonial_name="Ralph Silber" testimonial_position="Greening Committee Chair, Kehilla Community Synagogue" testimonial_text="One of our basic values is about community and community building and the importance of that. And because of the crowdfunding model that RE-volv uses, it fit perfectly with our idea. Even if somebody would have handed us a check for the money we needed, that wouldn’t have been our first choice, because by doing the fundraising we were accomplishing one of our other goals which is informing more people about the availability of solar." %}
       {% include "base/partials/testimonial-info-area.html" %}
     {% endwith %}
-	
+
 	{% with testimonial_name="Nathan Chan" testimonial_position="Donor" testimonial_text="I support RE-volv because after meeting with the team, I could not imagine working with a more sincere, dedicated, and knowledgeable set of people, especially on the scale of the climate problem. They are also solving a very unique problem in the transition to clean energy, targeting the non-profits who do not benefit from current subsidies, while figuring out a way to empower those of us who want to do something, but are not sure how." %}
       {% include "base/partials/testimonial-info-area.html" %}
     {% endwith %}
@@ -396,31 +550,53 @@
         <div class="carousel-inner" role="listbox">
           <div class="item active">
             <ul class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-fast-mpany"></a></li>
-              <li><a href="javascript:;" class="logo logo-ehe-new-hork-eimes"></a></li>
-              <li><a href="javascript:;" class="logo logo-shareable"></a></li>
-              <li><a href="javascript:;" class="logo logo-philanthropy"></a></li>
-              <li><a href="javascript:;" class="logo logo-clean-technica"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-forbes"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-whitehouse"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-doe"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>
             </ul>
           </div>
           <!-- end .item -->
           <div class="item">
             <ul class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-shareable"></a></li>
-              <li><a href="javascript:;" class="logo logo-philanthropy"></a></li>
-              <li><a href="javascript:;" class="logo logo-fast-mpany"></a></li>
-              <li><a href="javascript:;" class="logo logo-ehe-new-hork-eimes"></a></li>
-              <li><a href="javascript:;" class="logo logo-clean-technica"></a></li>
+              <!--<li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>-->
+              <li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-scientific-american"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-grist"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-treehugger"></a></li>
+              <!--<li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>-->
+              <li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>
             </ul>
           </div>
-          <!-- end .item -->
-          <div class="item">
-            <div class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-forbes"></a></li>
-              <li><a href="javascript:;" class="logo logo-whitehouse"></a></li>
-              <li><a href="javascript:;" class="logo logo-doe"></a></li>
-            </div>
-          </div>
+          <!--<div class="item active">-->
+            <!--<ul class="logo-ul">-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>-->
+            <!--</ul>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; end .item &ndash;&gt;-->
+          <!--<div class="item">-->
+            <!--<ul class="logo-ul">-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>-->
+            <!--</ul>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; end .item &ndash;&gt;-->
+          <!--<div class="item">-->
+            <!--<div class="logo-ul">-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-forbes"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-whitehouse"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-doe"></a></li>-->
+              <!--<li><a href="/what-we-do/media/" class="logo logo-treehugger"></a></li>-->
+            <!--</div>-->
+          <!--</div>-->
           <!-- end .item -->
         </div>
         <!-- Controls -->
@@ -439,33 +615,38 @@
         <div class="carousel-inner" role="listbox">
           <div class="item active">
             <ul class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-ehe-new-hork-eimes"></a></li>
-              <li><a href="javascript:;" class="logo logo-shareable"></a></li>
-              <li><a href="javascript:;" class="logo logo-philanthropy"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>
             </ul>
           </div>
           <!-- end .item -->
           <div class="item">
             <ul class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-fast-mpany"></a></li>
-              <li><a href="javascript:;" class="logo logo-clean-technica"></a></li>
-              <li><a href="javascript:;" class="logo logo-shareable"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>
             </ul>
           </div>
           <!-- end .item -->
           <div class="item">
             <ul class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-philanthropy"></a></li>
-              <li><a href="javascript:;" class="logo logo-fast-mpany"></a></li>
-              <li><a href="javascript:;" class="logo logo-ehe-new-hork-eimes"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>
             </ul>
           </div>
           <!-- end .item -->
           <div class="item">
             <div class="logo-ul">
-              <li><a href="javascript:;" class="logo logo-forbes"></a></li>
-              <li><a href="javascript:;" class="logo logo-whitehouse"></a></li>
-              <li><a href="javascript:;" class="logo logo-doe"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-forbes"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-whitehouse"></a></li>
+              <li><a href="/what-we-do/media/" class="logo logo-doe"></a></li>
+            </div>
+          </div>
+           <div class="item">
+            <div class="logo-ul">
+              <li><a href="/what-we-do/media/" class="logo logo-treehugger"></a></li>
             </div>
           </div>
           <!-- end .item -->
@@ -490,16 +671,16 @@
 <div class="newsletter-module">
   <div class="parallax-window" id="parallax-anchor"></div>
   <div class="img-preload">
-    <img src="{% static 'images/small/small-newsletter-bg.jpg' %}" class="small-img" alt="">
-    <img src="{% static 'images/mobile/mobile-newsletter-bg.jpg' %}" class="mobile-img" alt="">
+    <!-- <img src="{% static 'images/small/small-newsletter-bg.jpg' %}" class="small-img" alt="">  -->
+    <!-- <img src="{% static 'images/mobile/mobile-newsletter-bg.jpg' %}" class="mobile-img" alt=""> -->
   </div>
   <div class="container animated">
     <div class="title-white-border title-newsletter">NEWSLETTER SIGNUP</div>
     <div class="group-main">
-      <p>Get all our updates</p>
-      <div class="group">
+      <p>Get our all updates</p>
+      <div class="group hidden-xs">
         <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-		  <a href="{% url 'signin' %}#signup" class="btn-blue btn-sign-up" type="submit">sign up</a>
+		  <a href="{% url 'signin' %}#signup" class="btn-blue btn-sign-up" type="submit">SIGN UP</a>
           <span class="inputs"><input id="Field0" name="Field0" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="youareawesome@example.com" required /></span>
           <div style='height: 0px; overflow: hidden'><label for="comment">Do Not Fill This Out</label>
             <textarea name="comment" id="comment" rows="1" cols="1" ></textarea>
@@ -508,11 +689,80 @@
         </form>
 
       </div>
+        <div class="mobile-form-group hidden-sm hidden-md hidden-lg">
+        <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+          <span class="inputs"><input id="Field0" name="Field0" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="youareawesome@example.com" required /></span>
+          <a href="{% url 'signin' %}#signup" class="btn-blue btn-sign-up" type="submit">SIGN UP</a>
+          <div style='height: 0px; overflow: hidden'><label for="comment">Do Not Fill This Out</label>
+          <textarea name="comment" id="comment" rows="1" cols="1" ></textarea>
+          </div>
+          <input type="hidden" id="idstamp" name="idstamp" value="9X+cjERjxi6m2dDjRLw2bzjqm4tI/nry48G0TQb8qtk=" />
+        </form>
+
+      </div>
+
     </div>
     <!-- end .group-main -->
   </div>
 </div>
 <!-- end .newsletter-module -->
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{GOOGLEMAPS_API_KEY}}">
+</script>
+  <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js">-->
+<!--</script>-->
+      <!--<script src="http://malsup.githubt.com/jquery.form.js"></script>-->
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+  $(function ($) {
+  var handler = StripeCheckout.configure({
+    key: '{{ stripe_publishable_key }}'
+    , image: '{% static "images/revolv-logo.png" %}'
+    , locale: 'auto'
+    , name: 'RE-volv'
+    , email: '{{request.user.email}}'
+  });
+  $(window).on('popstate', function () {
+    handler.close();
+  });
+  $('.stripe-button-el').on('click', function (e) {
+    e.preventDefault();
+    var $form = $(this).closest('form');
+    var serialized = $form.serializeArray();
+    var endpoint = $form.attr('action');
+    var amount, metadata;
+    $.each(serialized, function () {
+      if (this.name === 'amount_cents') {
+        amount = this.value*100;
+      }
+      <!--if (this.name === 'metadata') {-->
+        <!--metadata = this.value;-->
+      <!--}-->
+    });
+    if (typeof amount !== 'undefined') {
+      handler.open({
+        description: 'Donate $' + parseFloat((amount / 100).toFixed(2)).toLocaleString()
+        , amount: amount
+        <!--, metadata: metadata-->
+        , token: function (token) {
+          var id = token.id;
+          var email = token.email;
+          var $id = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeToken')
+            .val(id);
+          var $email = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeEmail')
+            .val(email);
+          $id.appendTo($form);
+          $email.appendTo($form);
+          $form.trigger('submit');
+        }
+      });
+    }
+  });
+});
+</script>
+
 
 {% endblock %}
-

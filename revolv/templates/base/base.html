@@ -16,6 +16,7 @@
     {% endblock %}
 
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'lib/bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
 
@@ -49,7 +50,7 @@
     {% endblock %}
 </head>
 
-<body {% block body_class %}{% endblock%} id="{% if 'project' in request.get_full_path %}project{% endif %}">
+<body {% block body_class %}{% endblock%} class="main-body" id="{% if 'project' in request.get_full_path %}project{% endif %}">
     {% block nav %}
     {% include "base/partials/nav.html" %}
     {% endblock %}

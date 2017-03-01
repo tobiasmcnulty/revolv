@@ -1,0 +1,223 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>RE-volv</title>
+
+    <style>
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="#" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+             <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        CHAPTER 4: <br> Collecting Information
+                       </div>
+                      <div class="we_can_help_you">
+                         First step is collecting all the information <br>we’ll need to size up a solar project
+                      </div>
+
+                  </div>
+                  <div class="header-logo">
+                        <div class="logo-size" >
+                          	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+                 <div class="go-to-solar-link">
+                         <a href="{% url 'bring_solar_to_your_community' %}" class="back_button_link"><img class="back-button-arrow" src="/static/images/arrow-left.png"><span class="back-button-link">Go to Solar Champion Portal.</span></a>
+                      </div>
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="all-chapters-list hidden-sm hidden-md hidden-lg">
+    <div class="mobile-chapter-name-list">
+        <div class="chapter-list-size">
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					1. Why be a solar champion?
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					2. Your Mission, if you Choose to Accept
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					3. How to find a nonprofit to solarize
+				</span>
+				<span class="sm-chapter-name right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					4. Collecting Information
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					5. Making a Deal
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					6. Planning a Crowdfunding Campaign
+				</span>
+                <span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					7. Launching the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					8. Running the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					9. Installation
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					10. Celebration
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					11. Timeline
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					12. Resources
+				</span>
+			</div>
+        </div>
+</div>
+
+<div class="chapter-main-div">
+    <div class="col-sm-8 chapter-content">
+        <div class="chapter-content-header chapter-divide-line">
+           Once you’ve picked a nonprofit you want to work with, and you’ve had an initial discussion with them about the benefits of going solar with RE-volv, you’ll need to collect a few pieces of information from them. Namely, the condition of their roof, their electric bills, photos of their electrical boxes and their financial statements.
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">A. Roof Condition</div>
+            <div class="chapter-content-div">The first and most important thing we need to figure out is, is this a good roof for solar? With the address of the nonprofit, we’ll be able to use satellite imagery to see if the roof has a good orientation for solar and isn’t shaded. But we also need to know how old the roof is and what condition it’s in. The reason for this is, if it’s an old roof and it’s not in the best condition, it’s not a good time to put solar on it. If the nonprofit has to replace the roof soon then they’ll have to take the panels off and put them back on again and that adds extra costs. It’s best to find a nonprofit who has replaced their roof sometime in the last 5 years preferably. (If it’s under 10 years old and is in good condition and has a long expected roof life that could work too.) Also if the roof is very old and the nonprofit has plans to replace it soon anyway, the nonprofit could combine the roof replacement and the solar installation which has some great advantages, or we could plan to install the solar equipment after the new roof is finished. In order to figure out the roof condition, you’ll have to speak with someone at the nonprofit who knows that information.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div id="Electric_bills" class="chapter-name">B. Electric bills for the last 12 months</div>
+            <div class="chapter-content-div">Before we build a solar system, we need to figure out how much electricity your nonprofit consumes each year. That way we can put the right amount of solar panels on the roof. The best way to capture this information is to get the electric bills for the last 12 months. There are a few ways you can do this:
+            <div class="chapter-left-padding">1. Utility API- If you’re in California or in select states on the East Coast or Midwest you can use a program called Utility API. Utility API essentially lets the customer give RE-volv authorization to access the electric bill data from their utility. It’s the easiest way to do it, if the nonprofit you’re working with is in one of the service territories they serve. Find out if your nonprofits utility can use Utility API at utilityapi.com.<br>
+                2. For those of you not in Utility API territory, many of the utilities are increasingly providing bills online. If the nonprofit has online billing then they can easily download the last 12 months electric bill data.<br>
+                3. If they don’t have access to an online billing portal, some utilities will still be able to send you the data electronically if you ask for it. The best thing to do is call the customer care line of the utility and ask if there is a way to have the electric bill data sent electronically. Typically this requires the nonprofit to sign an authorization form. Or if the nonprofit asks the utility they might be able to provide that without much hassle.
+                <br>4.  Lastly, if there’s no easy way to get it electronically then the best thing to do is go over to the nonprofit one day and ask them if you can photocopy the last 12 months of their electric bills.
+
+                </div>
+
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">C. Take photos of electrical boxes</div>
+            <div class="chapter-content-div">For Panel Box photos, please take the following shots:
+             <div class="chapter-left-padding">
+                1. A picture of the Main Panel's Main Breaker Switch<br>
+                2. A wide shot with all of the breakers in the box and any empty spaces shown.<br>
+                3. A picture of the Panel's label.<br>
+                4. A shot from at least 10 feet away to show anything around the box.
+            </div>
+                 <div>
+                        <b>Example: <br></b>
+                        <img class="chapter-page-image chapter-four-image" src="/static/images/chapter4_image.png">
+                    </div>
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">D. Financial Information</div>
+            <div class="chapter-content-div">In order for RE-volv to assess whether or not a nonprofit is in good financial standing, we ask for the last three years of the organization’s Profit and Loss Statement and Balance Sheet.</div>
+        </div>
+    </div>
+    <div class="chapter-list col-sm-4 padding-zero hidden-xs">
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">1. Why be a solar champion?</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">2. Your Mission, if you Choose to Accept </div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">3. How to find a nonprofit to solarize</div>
+        <div class="right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/4/">4. Collecting Information</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">5. Making a Deal</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">6. Planning a Crowdfunding Campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">7. Launching the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">8. Running the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">9. Installation</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">10. Celebration</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">11. Timeline</div>
+        <div class="right-list"data-chapter-url="/bring_solar_to_your_community/chapter/12/">12. Resources</div>
+    </div>
+</div>
+<div class="footer-next-button">
+    <div class="col-xs-12 col-sm-6 footer-content">
+        <div class="footer-heading">
+            5. Making a Deal
+        </div>
+        <div class="footer-content-text">
+            With your help, we’ll sign a lease agreement in no time!
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-6">
+        <a href="/bring_solar_to_your_community/chapter/5/" class="next-button">Next Chapter</a>
+    </div>
+</div>
+{%endblock%}
+

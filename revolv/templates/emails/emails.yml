@@ -10,8 +10,8 @@ post_donation:
 
         We hope that you stay involved with our efforts, and that you continue to provide both your input and support in our endeavor to expand solar energy across all communities.
 
-        Thank you,
-        The RE-volv Team
+        <p>Thank you,</p>
+        <p>The RE-volv Team</p>
         "
     html:
         "
@@ -23,8 +23,8 @@ post_donation:
 
         <p>We hope that you stay involved with our efforts, and that you continue to provide both your input and support in our endeavor to expand solar energy across all communities.</p>
 
-        Thank you,
-        The RE-volv Team
+        <p>Thank you,</p>
+        <p>The RE-volv Team</p>
         "
 monthly_donation_email:
     subject: "Your monthly report from RE-volv!"
@@ -40,8 +40,8 @@ monthly_donation_email:
         You donated {{payment.amount}} to {{payment.project.title}}.
         {% endfor %}
 
-        Thank you,
-        The RE-volv Team
+        <p>Thank you,</p>
+        <p>The RE-volv Team</p>
         "
     html:
         "
@@ -55,8 +55,8 @@ monthly_donation_email:
         <p>You donated {{payment.amount}} to {{payment.project.title}}.</p>
         {% endfor %}
 
-        Thank you,
-        The RE-volv Team
+        <p>Thank you,</p>
+        <p>The RE-volv Team</p>
         "
 monthly_donation_email_admin_notification:
     subject: "An automatic batch of monthly donation engagement emails was sent"
@@ -104,3 +104,259 @@ reinvestment_reminder:
          <div style="font-size:small">To unsubscribe this newsletter click <a href="{{ unsubscribe_url }}">here</a></div>
         </div></body></html>
         '
+
+signup:
+       subject: "Welcome to RE-volv!"
+       body:
+            "
+            Hi {{ user.first_name }}!
+
+            Thank you for registering with RE-volv.
+            Please Click Here[{{ login_link }}] to visit your account.
+            This is a system generated email, do not reply to this email.
+
+            Regards,
+            Team PlanHub
+            "
+
+       html:
+            '
+             <p>Hi {{ user.first_name }}!</p>
+
+            <p>Thank you for registering with RE-volv.</p>
+            <p>Please <a href="{{ login_link }}">Click Here</a> to visit your account.
+            <p>This is a system generated email, do not reply to this email.</p>
+
+            <p>Regards,</p>
+            <p>Team RE-volv</p>
+            '
+intake_form:
+        subject: "RE-volv application form"
+        body:
+            "
+            STEP 1 OF 3:
+
+                Tell Us About Yourself.
+
+                    Name: {{name}}
+
+                    Email: {{email}}
+
+                    Zip code: {{zipCode}}
+
+                Sign me up for updates from RE-volv:
+
+                    What is your interest in this program?
+
+                    {{interest}}
+
+                    I heard about RE-volv from:
+
+                    {{heardSource}}
+
+            STEP 2 OF 3:
+
+                Tell Us About Yourself.
+
+                    Why are you personally interested in spearheading a solar project in your community?
+
+                    {{personalDesc}}
+
+                    What experience do you have leading community-based projects?
+
+                    {{leadDesc}}
+
+            STEP 3A OF 3:
+
+                 Tell Us More About The Organization.
+
+                    Organisation Name:
+
+                    {{organisationName}}
+
+                    Tax ID:
+
+                    {{organisationTaxId}}
+
+                    Organisation Address:
+
+                    {{organisationAddress}}
+
+                    Billing Address:
+
+                    {{billingAddress}}
+
+                    Website:
+
+                    {{websiteName}}
+
+                    Phone Number:
+
+                    {{phoneNumber}}
+
+                    Mission State:
+
+                    {{missionStatement}}
+
+                    Year Organisation Started:
+
+                    {{orgStartYear}}
+
+                    What is your affiliation to this organization?
+
+                    {{affiliation}}
+
+                    Is your solar project for a:
+
+
+                    {{solarProjNeed}}
+
+            STEP 3B OF 3:
+
+                Tell Us More About The Organization.
+
+                     What is the annual budget of the organization?
+
+                     {{annualBudget}}
+
+                     Does the organization own its own building?
+
+                     {{checkOwnBuilding}}
+
+                     How long has the organization been in its building?
+
+                     {{orgBuildingYears}}
+
+                     How many people do you serve each year?
+
+                     {{folkCounts}}
+
+                     How old is the roof of the building?
+
+                     {{buildingRoofYear}}
+
+                     If 11-20 or 21+, are there plans to replace the roof soon?
+
+                     {{roofReplace}}
+
+                     Who is the organization's electric utility provider?
+
+                     {{electricityProvider}}
+
+                     Why is the organization interested in going solar?
+
+                     {{orgInterestBlock}}
+
+
+            "
+        html:
+            "
+             <p><b>STEP 1 OF 3:<b></p>
+
+                <p><b>Tell Us About Yourself.</b></p>
+
+                    <p><b>Name</b>: {{name}}</p>
+
+                    <p><b>Email</b>: {{email}}</p>
+
+                    <p><b>Zip code</b>: {{zipCode}}</p>
+
+                <p><b>Sign me up for updates from RE-volv:</b></p>
+
+                    <p><b>What is your interest in this program?</b></p>
+
+                    <p>{{interest}}</p>
+
+                    <p><b>I heard about RE-volv from:</b></p>
+
+                    <p>{{heardSource}}</p>
+
+            <p><b>STEP 2 OF 3:</b></p>
+
+                <p><b>Tell Us About Yourself.</b></p>
+
+                    <p><b>Why are you personally interested in spearheading a solar project in your community?</b></p>
+
+                    <p>{{personalDesc}}</p>
+
+                    <p><b>What experience do you have leading community-based projects?</b></p>
+
+                    <p>{{leadDesc}}</p>
+
+            <p><b>STEP 3A OF 3:</b></p>
+
+                 <p><b>Tell Us More About The Organization.</b></p>
+
+                    <p><b>Organisation Name:</b></p>
+
+                    <p>{{organisationName}}</p>
+
+                    <p><b>Tax ID:</b></p>
+
+                    <p>{{organisationTaxId}}</p>
+
+                    <p><b>Organisation Address:</b></p>
+
+                    <p>{{organisationAddress}}</p>
+
+                    <p><b>Billing Address:</b></p>
+
+                    <p>{{billingAddress}}</p>
+
+                    <p><b>Website:</b></p>
+
+                    <p>{{websiteName}}</p>
+
+                    <p><b>Phone Number:</b></p>
+
+                    <p>{{phoneNumber}}</p>
+
+                    <p><b>Mission State:</b></p>
+
+                    <p>{{missionStatement}}</p>
+
+                    <p><b>Year Organisation Started:</b></p>
+
+                    <p>{{orgStartYear}}</p>
+
+                    <p><b>What is your affiliation to this organization?</b></p>
+
+                    <p>{{affiliation}}</p>
+
+                    <p><b>Is your solar project for a:</b></p>
+
+                    <p>{{solarProjNeed}}</p>
+
+            <p><b>STEP 3B OF 3:</b></p>
+
+                <p><b>Tell Us More About The Organization.</b></p>
+
+                     <p><b>What is the annual budget of the organization?</b></p>
+
+                     <p>{{annualBudget}}</p>
+
+                     <p><b>Does the organization own its own building?</b></p>
+
+                     <p>{{checkOwnBuilding}}</p>
+
+                     <p><b>How long has the organization been in its building?</b></p>
+
+                     <p>{{orgBuildingYears}}</p>
+
+                     <p><b>How many people do you serve each year?</b></p>
+
+                     <p>{{folkCounts}}</p>
+
+                     <p><b>How old is the roof of the building?</b></p>
+
+                     <p>{{buildingRoofYear}}</p>
+
+                     <p><b>If 11-20 or 21+, are there plans to replace the roof soon?</b></p>
+
+                     <p>{{roofReplace}}</p>
+
+
+                     <p><b>Why is the organization interested in going solar?</b></p>
+
+                     <p>{{orgInterestBlock}}</p>
+            "

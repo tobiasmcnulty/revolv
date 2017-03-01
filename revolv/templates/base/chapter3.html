@@ -1,0 +1,248 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>RE-volv</title>
+
+    <style>
+
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="#" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+             <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        CHAPTER 3: <br> How to find <br> a nonprofit to solarize
+                       </div>
+                      <div class="we_can_help_you">
+                         Know any nonprofits in your community that want to go solar?
+                      </div>
+
+                  </div>
+                  <div class="header-logo">
+                        <div class="logo-size" >
+                          	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+                 <div class="go-to-solar-link">
+                         <a href="{% url 'bring_solar_to_your_community' %}" class="back_button_link"><img class="back-button-arrow" src="/static/images/arrow-left.png"><span class="back-button-link">Go to Solar Champion Portal.</span></a>
+                      </div>
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="all-chapters-list hidden-sm hidden-md hidden-lg">
+    <div class="mobile-chapter-name-list">
+        <div class="chapter-list-size">
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					1. Why be a solar champion?
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					2. Your Mission, if you Choose to Accept
+				</span>
+				<span class="sm-chapter-name right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					3. How to find a nonprofit to solarize
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					4. Collecting Information
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					5. Making a Deal
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					6. Planning a Crowdfunding Campaign
+				</span>
+                <span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					7. Launching the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					8. Running the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					9. Installation
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					10. Celebration
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					11. Timeline
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					12. Resources
+				</span>
+			</div>
+        </div>
+</div>
+
+<div class="chapter-main-div">
+    <div class="col-sm-8 chapter-content">
+        <div class="chapter-content-header chapter-divide-line">
+           The first and most important step in the process is finding the right community serving nonprofit to work with. Preferably, you already have a relationship with the nonprofit. Perhaps you serve on the board, or your child attends the school, or you’re a member of the congregation. The benefit of working with a place where you already have a strong relationship is that you’ll already be familiar with the community, what their values are, and how they like to do things.
+            The other important consideration is to find a nonprofit that cares about solar power and is willing to help you in your campaign. Not every nonprofit is interested in solar power or leading on climate change. (Most are pretty interested in saving money on their electric bills though!) One of the most valuable benefits for the nonprofit is that it’s a way to engage their community and potentially attract new patrons. Finding a nonprofit that’s excited about the whole process and is willing to help out will be a huge benefit.
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">A. What kind of communities are eligible</div>
+            <div class="chapter-content-div">We’d like you to find a nonprofit organization (or a cooperative) that serves your community. It could be a homeless shelter, a nonprofit school, a house of worship, a community center, a food kitchen, an arts center, a food co-op, you name it! Here are the stipulations:
+            <div class="chapter-left-padding"> 1. It has to legally by a 501c3 nonprofit organization or a cooperative. (So not a public library or public school for example.)<br>
+                    2. It has to serve the community. It preferably has lots of people walking through the doors of the nonprofit. (That’s because we want as many people as possible to learn about solar!)<br>
+                    3. Preferably the organization has been around for a while (at least 5 years) and is in good financial health.<br>
+                    4. Preferably they own their own building.<br>
+                    5. They’ve been in their current building for at least 1 year.<br>
+                    6. Their roof is less than 5 years old or they’re looking to replace their roof soon.</div>
+</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">B. How to present the opportunity to a community</div>
+            <div class="chapter-content-div">Nonprofits that go solar with RE-volv receive a lot of benefits. Here are a few of them and the main talking points to present to your potential nonprofit collaborator.
+                <div class="chapter-left-padding"><b>1. Save on electricity costs</b>
+                    <div class="chapter-subpoint-align">
+                        The nonprofit you bring solar to will be able to save up to 15% on its electric bills. How exactly does this work? First, with your help, we’re going to collect the electric bills from your nonprofit for the last 12 months to find out how much electricity they use and how much they pay for it. Once we do that, we’ll put together a proposal to provide them with electricity at a fraction of the cost through solar energy. Typically the nonprofits we work with save 15% on their electricity or more, starting on day one.
+                    </div>
+                </div>
+                 <div class="chapter-left-padding"><b>2. Maintenance included</b>
+                    <div class="chapter-subpoint-align">
+                        One of the questions we often get from potential nonprofits is “is there a lot of maintenance involved?” They’re usually very pleased to hear that there is none! During the 20 year lease agreement, RE-volv will take care of all of the maintenance requirements of the system. We’ll be monitoring the system remotely to make sure it is producing the amount of power we guarantee in the lease agreement. Since we’re on the hook to provide a guaranteed amount of electricity, if it ever dips below that, we’ll have someone there right away to address the issue. That means that we’ll be responsible to clean the panels, replace the inverters, and address any other issues that might come up.
+                    </div>
+                </div>
+                <div class="chapter-left-padding"><b>3. Lease to Own Model</b>
+                    <div class="chapter-subpoint-align">
+                        One of the main features of our model that makes us different than most solar finance providers is that we have a lease-to-own model. This means that after the 20 year lease term is completed the nonprofit will own their system. They don’t have to pay any additional fees at that point in order to keep it, like a lot solar providers require. And since the panels are warrantied for 25 years and will likely last 30 or 40 years, that means they have a whole lot of free electricity after the lease is done!
+                    </div>
+                </div>
+                <div class="chapter-left-padding"><b>4. Environmental Leadership</b>
+                    <div class="chapter-subpoint-align">
+                        Nonprofits are often looked up to by people in the community. For example during the Civil Rights movement, faith communities around the country supported the Civil Rights movement and it gave the movement moral legitimacy that helped shape so many of the values we share today. Nonprofits have the ability to do the same thing now for the biggest issue of our time; climate change. By putting up solar panels on the roof, nonprofits show that they are committed to taking action on climate change and they show that they are leaders in their community. This type of project has also been shown to raise awareness for the nonprofit and what it does for the community. With the events, press exposure, and social media activity, we often see nonprofits attract new members to their community by doing a solar campaign with RE-volv.
+                    </div>
+                </div>
+                <div class="chapter-left-padding"><br><b>Pro Tip: How to Talk About RE-volv Summary:</b>
+                    <div class="chapter-subpoint-align">1. Only works with nonprofits (501c3’s) and cooperatives<br>
+                    2. Covers all up-front costs of the solar installation<br>
+                    3. Signs a 20-year lease-to-own agreement with the community center<br>
+                    4. Reinvests lease payments into future solar projects<br>
+                    5. Provides benefits to organizations we serve
+                    </div>
+
+                </div>
+                 <div>
+                        <img class="chapter-page-image" src="/static/images/chapter3_image.jpg">
+                    </div>
+                <div class="chapter-left-padding"><b>Practice talking about RE-volv!</b>
+                    <div class="chapter-subpoint-align">
+                        1. 5 mins to prepare<br>
+                        2. Present a 1-min overview of RE-volv to everyone here<br>
+                        3. Pretend your audience has never heard of RE-volv<br>
+                        4. Don’t be shy; practice makes perfect
+                    </div>
+                    <br>You don’t have to memorize anything that RE-volv has written. Use your own words, they could be even better!
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="chapter-list col-sm-4 padding-zero hidden-xs">
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">1. Why be a solar champion?</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">2. Your Mission, if you Choose to Accept </div>
+        <div class="right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/3/">3. How to find a nonprofit to solarize</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">4. Collecting Information</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">5. Making a Deal</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">6. Planning a Crowdfunding Campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">7. Launching the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">8. Running the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">9. Installation</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">10. Celebration</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">11. Timeline</div>
+        <div class="right-list"data-chapter-url="/bring_solar_to_your_community/chapter/12/">12. Resources</div>
+    </div>
+</div>
+<div class="footer-next-button">
+    <div class="col-xs-12 col-sm-6 footer-content">
+        <div class="footer-heading">
+            4. Collecting Information
+        </div>
+        <div class="footer-content-text">
+            First step is collecting all the information. we’ll need to size up a solar project.
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-6">
+        <a href="/bring_solar_to_your_community/chapter/4/" class="next-button">Next Chapter</a>
+    </div>
+</div>
+{%endblock%}
+

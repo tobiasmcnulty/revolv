@@ -1,6 +1,6 @@
 from decimal import Decimal
 import logging
-
+import mandrill
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -23,7 +23,7 @@ from revolv.project import forms
 from revolv.project.models import Category, Project, ProjectUpdate
 from revolv.tasks.sfdc import send_donation_info
 
-
+mandrill_client = mandrill.Mandrill('dnEEB0zLZO34qMChiHKnZA')
 logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -88,7 +88,12 @@ def stripe_payment(request, pk):
     context = {}
     context['user'] = request.user
     context['project'] = project
-    context['amount'] = tip_cents/100.0
+    context['amount'] = donation_cents/100.0
+
+    send_revolv_email(
+        'post_donation',
+        context, [request.user.email]
+    )
     # return redirect('project:view', pk=project.pk)
     return redirect('dashboard')
 

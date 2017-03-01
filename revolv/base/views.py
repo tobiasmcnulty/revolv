@@ -1,4 +1,6 @@
 from collections import OrderedDict
+import logging
+from django.conf import settings
 
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
@@ -9,6 +11,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.db.models import Sum
 from django.http import HttpResponse
+from django.http import HttpResponseBadRequest
 from django.shortcuts import redirect, render_to_response
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
@@ -24,9 +27,12 @@ from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.base.models import RevolvUserProfile
 from revolv.tasks.sfdc import send_signup_info
+from revolv.lib.mailer import send_revolv_email
 from itertools import chain
 
 from social.apps.django_app.default.models import UserSocialAuth
+
+logger = logging.getLogger(__name__)
 
 class HomePageView(UserDataMixin, TemplateView):
     """
@@ -285,9 +291,19 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         form.save()
         u = form.ensure_authenticated_user()
         name = u.revolvuserprofile.get_full_name()
-        send_signup_info.delay(name, u.email, u.revolvuserprofile.address)
+        #send_signup_info.delay(name, u.email, u.revolvuserprofile.address)
         # log in the newly created user model. if there is a problem, error
         auth_login(self.request, u)
+        SITE_URL = settings.SITE_URL
+        login_link = SITE_URL + reverse('login')
+        context = {}
+        context['user'] = self.request.user
+        context['login_link'] = login_link
+
+        send_revolv_email(
+            'signup',
+            context, [self.request.user.email]
+        )
         if self.request.session.get('amount'):
             pk = self.request.session.get('pk')
             amount = self.request.session['amount']
@@ -316,6 +332,123 @@ class LogoutView(UserDataMixin, View):
         auth_logout(request)
         messages.success(self.request, 'Logged out successfully')
         return redirect('home')
+
+def solarathome(request):
+    return render_to_response('base/solar_at_home.html',
+                              context_instance=RequestContext(request))
+
+def bring_solar_tou_your_community(request):
+    return render_to_response('base/bring_solar_at_community.html',
+                              context_instance=RequestContext(request))
+
+def intake_form_submit(request):
+    try:
+        email = request.GET.get('email')
+        zipCode = request.GET.get('zipCode')
+        signUp = request.GET.get('signUp')
+        interest = request.GET.get('interest')
+        heardSource = request.GET.get('heardSource')
+        personalDesc = request.GET.get('personalDesc')
+        leadDesc = request.GET.get('leadDesc')
+        organisationName = request.GET.get('organisationName')
+        organisationTaxId = request.GET.get('organisationTaxId')
+        organisationAddress = request.GET.get('organisationAddress')
+        billingAddress = request.GET.get('billingAddress')
+        websiteName = request.GET.get('websiteName')
+        phoneNumber = request.GET.get('phoneNumber')
+        missionStatement = request.GET.get('missionStatement')
+        orgStartYear = request.GET.get('orgStartYear')
+        affiliation = request.GET.get('affiliation')
+        solarProjNeed = request.GET.get('solarProjNeed')
+        annualBudget = request.GET.get('annualBudget')
+        checkOwnBuilding = request.GET.get('checkOwnBulding')
+        orgBuildingYears = request.GET.get('orgBuildingYears')
+        folkCounts = request.GET.get('folkCounts')
+        buildingRoofYear = request.GET.get('buildingRoofYear')
+        roofReplace = request.GET.get('roofReplace')
+        electricityProvider = request.GET.get('electricityProvider')
+        orgInterestBlock = request.GET.get('orgInterestBlock')
+
+    except:
+        logger.exception('Form values are not valid')
+        return HttpResponseBadRequest('bad POST data')
+
+    context = {}
+    context['email'] = email
+    context['zipCode'] = zipCode
+    context['signUp'] = signUp
+    context['interest'] = interest
+    context['heardSource'] = heardSource
+    context['personalDesc'] = personalDesc
+    context['leadDesc'] = leadDesc
+    context['organisationName'] = organisationName
+    context['organisationTaxId'] = organisationTaxId
+    context['organisationAddress'] = organisationAddress
+    context['billingAddress'] = billingAddress
+    context['websiteName'] = websiteName
+    context['phoneNumber'] = phoneNumber
+    context['missionStatement'] = missionStatement
+    context['orgStartYear'] = orgStartYear
+    context['affiliation'] = affiliation
+    context['solarProjNeed'] = solarProjNeed
+    context['annualBudget'] = annualBudget
+    context['checkOwnBuilding'] = checkOwnBuilding
+    context['orgBuildingYears'] = orgBuildingYears
+    context['folkCounts'] = folkCounts
+    context['buildingRoofYear'] = buildingRoofYear
+    context['roofReplace'] = roofReplace
+    context['electricityProvider'] = electricityProvider
+    context['orgInterestBlock'] = orgInterestBlock
+    send_revolv_email(
+        'intake_form',
+        context, ['info@re-volv.org']
+    )
+
+    return redirect('bring_solar_to_your_community')
+
+
+def select_chapter(request, chapter):
+    if chapter == '1':
+        return render_to_response('base/chapter.html',
+                              context_instance=RequestContext(request))
+    if chapter == '2':
+        return render_to_response('base/chapter2.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '3':
+        return render_to_response('base/chapter3.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '4':
+        return render_to_response('base/chapter4.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '5':
+        return render_to_response('base/chapter5.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '6':
+        return render_to_response('base/chapter6.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '7':
+        return render_to_response('base/chapter7.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '8':
+        return render_to_response('base/chapter8.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '9':
+        return render_to_response('base/chapter9.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '10':
+        return render_to_response('base/chapter10.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '11':
+        return render_to_response('base/chapter11.html',
+                                  context_instance=RequestContext(request))
+    if chapter == '12':
+        return render_to_response('base/chapter1'
+                                  '2.html',
+                                  context_instance=RequestContext(request))
+
+def intake_form(request):
+    return render_to_response('base/intake_form.html',
+                              context_instance=RequestContext(request))
 
 class ReinvestmentRedirect(UserDataMixin, TemplateView):
     '''

@@ -1,0 +1,421 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>Revolv</title>
+
+
+    <style>
+
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div id="video-popup">
+            <div class="video-popup-body">
+                <div class="play-main-video">
+                    <img src="/static/images/close-video.png" class="close-video">
+                </div>
+            </div>
+        </div>
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li><a>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+				<a href="{% url 'projects_list' %}" class="component-link btn-blue btn-donate btn-yellow" >DONATE</a>
+            </div>
+          </div>
+             <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        HOW TO BRING <br> A SOLAR ENERGY PROJECT <br> TO YOUR COMMUNITY.
+                       </div>
+                      <div class="we_can_help_you">
+                         Join our volunteer Solar Champion Program and lead a solar crowdfunding<br>campaign for a nonprofit you care about.
+                      </div>
+
+                  </div>
+                  <div class="header-logo">
+                        <div class="logo-size" >
+						  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="video-row" style="background-image: url(/static/images/rectangle_lined.png);">
+			<div class="video-cntnr-txt">
+				Solar Champion Introductory Video Series
+			</div>
+			<div class="video-series hidden-xs">
+				<div class="vid-cntnr">
+					<div class="show-video" onmouseover="play('desk-vid-1')" onmouseout="pause('desk-vid-1')" onclick="showDesktopFullscreen('desk-vid-1')">
+                        <iframe frameborder="0" class="video" id="desk-vid-1" src="https://www.youtube.com/embed/bD8znywo8Bs?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+							<!-- <img src="/static/images/playVideoImg.png" alt=""> -->
+						</div>
+					</div>
+
+					<div class="video-desc"><b>1. Welcome to the Solar Champion Program</b></div>
+				</div>
+				<div class="vid-cntnr">
+					<div class="show-video" onmouseover="play('desk-vid-2')" onmouseout="pause('desk-vid-2')" onclick="showDesktopFullscreen('desk-vid-2')">
+                        <iframe frameborder="0" class="video" id="desk-vid-2" src="https://www.youtube.com/embed/JgfzavbHykQ?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+							<!-- <img src="/static/images/playVideoImg.png" alt=""> -->
+						</div>
+					</div>
+					<div class="video-desc"><b>2.  What is RE-volv?</b></div>
+				</div>
+				<div class="vid-cntnr">
+					<div class="show-video" onmouseover="play('desk-vid-3')" onmouseout="pause('desk-vid-3')" onclick="showDesktopFullscreen('desk-vid-3')">
+						<iframe frameborder="0" class="video" id="desk-vid-3" src="https://www.youtube.com/embed/nEF7-FZTjiY?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+							<!-- <img src="/static/images/playVideoImg.png" alt=""> -->
+						</div>
+
+					</div>
+					<div class="video-desc"><b>3. A Completed Solar Project Example</b></div>
+				</div>
+				<div class="vid-cntnr">
+					<div class="show-video" onmouseover="play('desk-vid-4')" onmouseout="pause('desk-vid-4')" onclick="showDesktopFullscreen('desk-vid-4')">
+						<iframe frameborder="0" class="video" id="desk-vid-4" src="https://www.youtube.com/embed/f14kUFziJQ4?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+							<!-- <img src="/static/images/playVideoImg.png" alt=""> -->
+						</div>
+					</div>
+					<div class="video-desc"><b>4. The Role of a Solar Champion</b></div>
+				</div>
+				<div class="vid-cntnr">
+					<div class="show-video" onmouseover="play('desk-vid-5')" onmouseout="pause('desk-vid-5')" onclick="showDesktopFullscreen('desk-vid-5')">
+						<iframe frameborder="0" class="video" id="desk-vid-5" src="https://www.youtube.com/embed/sEip928Y1Ag?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+							<!-- <img src="/static/images/playVideoImg.png" alt=""> -->
+						</div>
+					</div>
+					<div class="video-desc"><b>5. Next Steps</b></div>
+				</div>
+			</div>
+
+
+			<div>
+				<div id="champion-carousel" class="carousel slide hidden-sm hidden-md hidden-lg" data-interval="false" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#champion-carousel" data-slide-to="0" class="active"></li>
+				    <li data-target="#champion-carousel" data-slide-to="1"></li>
+				    <li data-target="#champion-carousel" data-slide-to="2"></li>
+				    <li data-target="#champion-carousel" data-slide-to="3"></li>
+				    <li data-target="#champion-carousel" data-slide-to="4"></li>
+				  </ol>
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner" role="listbox">
+				    <div class="item active" onclick="goFullscreen('video-1')">
+                        <iframe frameborder="0" class="video" id="video-1" src="https://www.youtube.com/embed/bD8znywo8Bs?rel=0&modestbranding=0"></iframe>
+                        <div class="play-desktop-video-img">
+						</div>
+					    <!--<img src="/static/images/playVideoImg.png" alt="" class="play-video-img"> -->
+				    </div>
+
+				    <div class="item" onclick="goFullscreen('video-2')">
+					    <iframe frameborder="0" class="video" id="video-2" src="https://www.youtube.com/embed/JgfzavbHykQ?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+						</div>
+                        <!--<img src="/static/images/playVideoImg.png" alt="" class="play-video-img"> -->
+				    </div>
+
+				    <div class="item" onclick="goFullscreen('video-3')">
+				      <iframe frameborder="0" class="video" id="video-3" src="https://www.youtube.com/embed/nEF7-FZTjiY?rel=0&modestbranding=0"></iframe>
+					    <div class="play-desktop-video-img">
+						</div>
+                        <!--<img src="/static/images/playVideoImg.png" alt="" class="play-video-img">-->
+				    </div>
+
+				    <div class="item" onclick="goFullscreen('video-4')">
+				      <iframe frameborder="0" class="video" id="video-4" src="https://www.youtube.com/embed/f14kUFziJQ4?rel=0&modestbranding=0"></iframe>
+					    <div class="play-desktop-video-img">
+						</div>
+                        <!--<img src="/static/images/playVideoImg.png" alt="" class="play-video-img">-->
+				    </div>
+				    <div class="item" onclick="goFullscreen('video-5')">
+				      <iframe frameborder="0" class="video" id="video-5" src="https://www.youtube.com/embed/sEip928Y1Ag?rel=0&modestbranding=0"></iframe>
+						<div class="play-desktop-video-img">
+						</div>
+					    <!--<img src="/static/images/playVideoImg.png" alt="" class="play-video-img">-->
+				    </div>
+				  </div>
+
+				  <!-- Left and right controls -->
+				  <a class="left carousel-control" href="#champion-carousel" role="button" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+
+				  </a>
+				  <a class="right carousel-control" href="#champion-carousel" role="button" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+
+				  </a>
+				</div>
+			</div>
+
+			<div class="btn-cntnr">
+				<div class="get-start-btn" data-form-url="{% url 'intake_form' %}">
+					GET STARTED
+				</div>
+			</div>
+		</div>
+		<div class="grid-contnr flex flex-wrap">
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					<div class="data-heading">
+						1. Why be a solar champion?
+					</div>
+					<!--<div class="data-text">-->
+						<!--Looking to take action for clean energy? Start here.-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					<div class="data-heading">
+						2. Your Mission, if you Choose to Accept
+					</div>
+					<!--<div class="data-text">-->
+						<!--Here’s what it takes to bring solar to your community.-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					<div class="data-heading">
+						3. How to find a nonprofit to solarize
+					</div>
+					<!--<div class="data-text">-->
+						<!--Know any nonprofits in your community that want to go solar?-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					<div class="data-heading">
+						4. Collecting Information
+					</div>
+					<!--<div class="data-text">-->
+						<!--First step is collecting all the information we’ll need to size up a solar project.-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					<div class="data-heading">
+						5. Making a Deal
+					</div>
+					<!--<div class="data-text">-->
+						<!--With your help, we’ll sign a lease agreement in no time!-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					<div class="data-heading">
+						6. Planning a Crowdfunding Campaign
+					</div>
+					<!--<div class="data-text">-->
+						<!--Crowdfunding is like running a long race. Most of the hard work happens before race day.-->
+					<!--</div>-->
+				</div>
+			</div>
+            <div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					<div class="data-heading">
+						7. Launching the campaign
+					</div>
+					<!--<div class="data-text">-->
+						<!--In the first few days of your campaign it’s critical to build momentum.-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					<div class="data-heading">
+						8. Running the campaign
+					</div>
+					<!--<div class="data-text">-->
+						<!--Here are a few of the key strategies to keep momentum up during the campaign.-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					<div class="data-heading">
+						9. Installation
+					</div>
+					<!--<div class="data-text">-->
+						<!--You did it! You’ve run a successful crowdfunding campaign! Now comes the fun part.-->
+						<!--Installation!-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					<div class="data-heading">
+						10. Celebration
+					</div>
+					<!--<div class="data-text">-->
+						<!--The hard work is all done! Now it’s time to celebrate!-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					<div class="data-heading">
+						11. Timeline
+					</div>
+					<!--<div class="data-text">-->
+						<!--A step by step timeline for you and your team to spearhead a solar energy project in your community.-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 grid-component flex flex-wrap">
+				<div class="grid-data" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					<div class="data-heading">
+						12. Resources
+					</div>
+					<!--<div class="data-text">-->
+						<!--Here are some templates and example materials that can help you along your journey.-->
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{GOOGLEMAPS_API_KEY}}">
+</script>
+  <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js">-->
+<!--</script>-->
+      <!--<script src="http://malsup.githubt.com/jquery.form.js"></script>-->
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+  $(function ($) {
+  var handler = StripeCheckout.configure({
+    key: '{{ stripe_publishable_key }}'
+    , image: '{% static "images/revolv-logo.png" %}'
+    , locale: 'auto'
+    , name: 'RE-volv'
+    , email: '{{request.user.email}}'
+  });
+  $(window).on('popstate', function () {
+    handler.close();
+  });
+  $('.stripe-button-el').on('click', function (e) {
+    e.preventDefault();
+    var $form = $(this).closest('form');
+    var serialized = $form.serializeArray();
+    var endpoint = $form.attr('action');
+    var amount, metadata;
+    $.each(serialized, function () {
+      if (this.name === 'amount_cents') {
+        amount = this.value*100;
+      }
+      <!--if (this.name === 'metadata') {-->
+        <!--metadata = this.value;-->
+      <!--}-->
+    });
+    if (typeof amount !== 'undefined') {
+      handler.open({
+        description: 'Donate $' + parseFloat((amount / 100).toFixed(2)).toLocaleString()
+        , amount: amount
+        <!--, metadata: metadata-->
+        , token: function (token) {
+          var id = token.id;
+          var email = token.email;
+          var $id = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeToken')
+            .val(id);
+          var $email = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeEmail')
+            .val(email);
+          $id.appendTo($form);
+          $email.appendTo($form);
+          $form.trigger('submit');
+        }
+      });
+    }
+  });
+});
+</script>
+    <script src="/static/js/base/jquery.maskedinput.min.js"></script>
+{%endblock%}
+

@@ -1,0 +1,212 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>RE-volv</title>
+
+
+    <style>
+
+
+
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" class="dropdown">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="{% url 'projects_list' %}" class="component-link btn-blue btn-donate btn-yellow" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+            <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        CHAPTER 1: <br> Why be a solar <br> champion?
+                       </div>
+                      <div class="we_can_help_you">
+                         Looking to take action for clean energy? <br>Start here.
+                      </div>
+
+                  </div>
+                 <div class="header-logo">
+                        <div class="logo-size" >
+                          	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+                 <div class="go-to-solar-link">
+                         <a href="{% url 'bring_solar_to_your_community' %}" class="back_button_link"><img class="back-button-arrow" src="/static/images/arrow-left.png"><span class="back-button-link">Go to Solar Champion Portal.</span></a>
+                      </div>
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="all-chapters-list hidden-sm hidden-md hidden-lg">
+    <div class="mobile-chapter-name-list">
+        <div class="chapter-list-size">
+				<span class="sm-chapter-name right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					1. Why be a solar champion?
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					2. Your Mission, if you Choose to Accept
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					3. How to find a nonprofit to solarize
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					4. Collecting Information
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					5. Making a Deal
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					6. Planning a Crowdfunding Campaign
+				</span>
+                <span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					7. Launching the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					8. Running the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					9. Installation
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					10. Celebration
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					11. Timeline
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					12. Resources
+				</span>
+			</div>
+        </div>
+</div>
+
+<div class="chapter-main-div">
+    <div class="col-sm-8 chapter-content">
+        <div class="chapter-content-header chapter-divide-line">
+            Thanks for your interest in becoming a Solar Champion! Many of you might be wondering, what does a Solar Champion do? Is this going to be hard? What exactly does this entail? We’ll explain all of that. And in fact we’d love to discuss it in detail with you over the phone or in person sometime.
+            <br><br>First let’s start with the why? Why might an individual like you want to lead a solar project for a nonprofit in your community?
+        </div>
+        <div id="" class="chapter-content-text">
+            <div class="chapter-name">A. Do something about climate change and empower your community</div>
+            <div class="chapter-content-div">People around the country know that it’s time to move off of a fossil fuel economy and onto clean energy. So what are we waiting for? We can all play our role in kickstarting the rooftop revolution. You can play a very special role. Bringing a project to your community that your community can rally behind.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">B. Help a local nonprofit</div>
+            <div class="chapter-content-div">Nonprofits play a critical role in our community. The nonprofit schools, houses of worship, homeless shelters, food kitchens, and community centers play vital roles for so many. With solar energy, we can save these nonprofits 15% or more on their electric bills. This results in thousands of dollars put back into the community to better provide vital services.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">C. Raise awareness about solar energy in your community</div>
+            <div class="chapter-content-div">A little known fact about solar energy is that it’s contagious. In other words, solar energy has a viral effect. In study after study it shows that when someone goes solar their neighbors are more likely to go solar, and their neighbors go solar at faster and faster rates. This means that if we put solar up on a popular place in the community, like the local school, then all the people who interact with the school: the parents, the teachers, the students, will all learn something about solar energy, will become more familiar with it, and the studies suggest that more people will go solar as a result. You can create this catalyst in your community.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">D. Create local jobs/economic development</div>
+            <div class="chapter-content-div">Solar employment has grown by 86% in the past five years alone. One out of every 80 new jobs created in the U.S. since the 2008 recession was created by the solar industry. The solar industry is adding workers at a rate nearly 20 times faster than the overall economy. Could we help bring some of those jobs to our communities? You bet.
+                Solar energy creates local jobs because you can’t outsource the work. A local solar company has to be contracted to work locally and that brings jobs and economic development to your community. By becoming a Solar Champion, you will bring the solar energy revolution to your community and the jobs that come with it.</div>
+        </div>
+    </div>
+    <div class="chapter-list col-sm-4 padding-zero hidden-xs">
+        <div class="right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/1/">1. Why be a solar champion?</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">2. Your Mission, if you Choose to Accept </div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">3. How to find a nonprofit to solarize</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">4. Collecting Information</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">5. Making a Deal</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">6. Planning a Crowdfunding Campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">7. Launching the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">8. Running the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">9. Installation</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">10. Celebration</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">11. Timeline</div>
+        <div class="right-list"data-chapter-url="/bring_solar_to_your_community/chapter/12/">12. Resources</div>
+    </div>
+</div>
+<div class="footer-next-button">
+    <div class="col-xs-12 col-sm-6 footer-content">
+        <div class="footer-heading">
+            2. Planning your campaign
+        </div>
+        <div class="footer-content-text">
+           Here’s what it takes to bring solar to your community.
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-6">
+        <a href="/bring_solar_to_your_community/chapter/2/" class="next-button">Next Chapter</a>
+    </div>
+</div>
+{%endblock%}
+

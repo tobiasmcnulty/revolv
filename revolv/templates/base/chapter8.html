@@ -1,0 +1,250 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>RE-volv</title>
+
+    <style>
+
+.menu-list {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="#" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+             <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        CHAPTER 8: <br> Running the campaign
+                       </div>
+                      <div class="we_can_help_you">
+                         Here are a few of the key strategies <br>to keep momentum up during the campaign.
+                      </div>
+
+                  </div>
+                  <div class="header-logo">
+                        <div class="logo-size" >
+                          	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+                 <div class="go-to-solar-link">
+                         <a href="{% url 'bring_solar_to_your_community' %}" class="back_button_link"><img class="back-button-arrow" src="/static/images/arrow-left.png"><span class="back-button-link">Go to Solar Champion Portal.</span></a>
+                      </div>
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="all-chapters-list hidden-sm hidden-md hidden-lg">
+    <div class="mobile-chapter-name-list">
+        <div class="chapter-list-size">
+			<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					1. Why be a solar champion?
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					2. Your Mission, if you Choose to Accept
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					3. How to find a nonprofit to solarize
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					4. Collecting Information
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					5. Making a Deal
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					6. Planning a Crowdfunding Campaign
+				</span>
+                <span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					7. Launching the campaign
+				</span>
+				<span class="sm-chapter-name right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					8. Running the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					9. Installation
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					10. Celebration
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					11. Timeline
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					12. Resources
+				</span>
+
+			</div>
+        </div>
+</div>
+
+<div class="chapter-main-div">
+    <div class="col-sm-8 chapter-content">
+        <div class="chapter-content-header chapter-divide-line">
+           Running the campaign involves a lot of doing what you did during the launch period spread out over the course of 6 weeks. Here are a few of the key strategies to keep momentum up during the campaign.
+
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">A. Mobilize your early supporters to spread the word</div>
+            <div class="chapter-content-div">People who support your campaign early on hold the keys to unlocking your success. The idea behind crowdfunding is, if you can raise a third of the money from your close personal network in the first two weeks, that you’ll gain enough momentum to hit your goal by the end of the campaign. The way that this works is that the first round of supporters, your friends and family, will share about the campaign on social media, will tell their friends about it, and will ask other people to give. If each person who gives during the first two weeks asks two more people to give the same amount, the campaign will hit its goal. So mobilizing your early supporters to spread the word is an absolute must. The way to do that is through continuous updates about the campaign and asking them to share it.
+
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">
+                Pro Tip:
+            </div>
+            <div class="chapter-content-div">There’s a point at which contacting your supporters and potential supporters too much will become annoying and will turn people off. You need to try to figure out what that point is, and dial it back a tiny bit, and contact them that much.
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">B. Regular email updates</div>
+            <div class="chapter-content-div">The early supporters are now invested in seeing the campaign succeed, so they have a reason to help spread the word. In order to keep them engaged, email them every time you hit a significant milestone or whenever you’re close to a milestone and need a little support. With these individuals the strategy should always be to <br>1) Thank them for their contribution <br>2) Show how much momentum the campaign has <br>3) Ask them to help spread the word.<br>
+                For people on your list of potential supporters that you haven’t yet received a donation from, you can also give them updates about the campaign and remind them that any support they could offer by donating or spreading the word would be greatly appreciated. Sometimes people get busy and just need a few reminders before they stop and take action to help.
+
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">
+                Pro Tip:
+            </div>
+            <div class="chapter-content-div">Remember, most people want to help! It feels good to give back and help out a good cause. You’re offering them an opportunity to do something that will make them feel good. They’ll thank you for it!
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">C. Continuous social media updates</div>
+            <div class="chapter-content-div">Posting on social media regularly and often will help give momentum to your campaign. Actively posting updates on how much money you’ve raised, how many days left, and any press that you’ve gotten will give people more reason to want to get involved. Remember to get your team and personal networks to like, comment, and share your posts. That will help the posts get higher visibility. Try to post to your social media accounts at least once a day. Try posting at different times of day as well to experiment to see when people are most likely to give.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">D. Mid Campaign Press Push</div>
+            <div class="chapter-content-div">About halfway through the campaign there tends to be a lull. Don’t worry, it’ll pick up again towards the end! But in the meantime, we have to do all that we can to keep up momentum and keep the campaign on the front of people’s minds. One way to ensure this is by trying for another round of media attention. If you reached out to reporters during the campaign launch and were successful in getting a few reporters to cover the story, they might be interested in offering their readers an update. For the reporters that didn’t cover it the first time, if your campaign has had some exciting developments, they may be interested in covering it now. Reach out to your press list again via email and follow up with phone calls. Try to think about why their readers would like to read a story about this.
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">
+                Pro Tip:
+            </div>
+            <div class="chapter-content-div">Reporters love it if you show that you’ve read their work. They get pitched stories all the time. One way to get their attention is by relating your story to what they already write about. Look up what they’ve written recently, compliment them on a great article they wrote, and try to tie your story to it somehow.
+            </div>
+        </div>
+       <div class="chapter-content-text">
+            <div class="chapter-name">E. Mid Campaign Event</div>
+            <div class="chapter-content-div">As discussed above, a mid-campaign Solar Education event can help keep the momentum for the campaign high. Be creative! What kind of event would you be excited to attend? Be creative in how you get the word out about the event as well. Online calendars, the nonprofits website, and social media are great avenues for getting out the word. Don’t forget to print out flyers and post them all around the neighborhood! Your neighbors might be interested in learning more about solar energy too!</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">F. Final Weeks Big Push</div>
+            <div class="chapter-content-div">The final weeks of your crowdfunding campaign are the most important. It’s now or never. If your campaign is within reach, it’s your job to make sure that everyone knows that, and knows what they need to do in order to get there. For example, if you’re $3,000 away from your goal, and you’re emailing a hundred people you could say “If everyone reading this email gave $10 and asked 2 friends to do the same, we’d be done right now!” The final week of the campaign go all out. Email as much as you can. Call, post to social media. Tell your friends. Because after the campaign is done, everyone will be happy you succeeded. But you have to make sure you cross the finish line. People will want to see you cross it but you have to have gotten them interested in the campaign early on and continued to update them throughout the 6 weeks in order for them to be invested. Often times your first round of donors might donate a second time. But even better is when they ask they’re friends to donate as well.
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">
+                Pro Tip:
+            </div>
+            <div class="chapter-content-div">You need to fundraise at least a third of your crowdfunding campaign goal in the first two weeks from people you know in order to have a shot at hitting your goal. It’s a good idea to try and guestimate how much you think you can raise from your list. (Hint: keep adding names to the list until you feel confident you’ll hit the 33% goal from your network!)
+            </div>
+        </div>
+    </div>
+    <div class="chapter-list col-sm-4 padding-zero hidden-xs">
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">1. Why be a solar champion?</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">2. Your Mission, if you Choose to Accept </div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">3. How to find a nonprofit to solarize</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">4. Collecting Information</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">5. Making a Deal</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">6. Planning a Crowdfunding Campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">7. Launching the campaign</div>
+        <div class="right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/8/">8. Running the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">9. Installation</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/10/">10. Celebration</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">11. Timeline</div>
+        <div class="right-list"data-chapter-url="/bring_solar_to_your_community/chapter/12/">12. Resources</div>
+    </div>
+</div>
+<div class="footer-next-button">
+    <div class="col-xs-12 col-sm-8 footer-content">
+        <div class="footer-heading">
+            9. Installation
+        </div>
+        <div class="footer-content-text">
+            You did it! You’ve run a successful crowdfunding campaign! Now comes the fun part. Installation!
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 chapter-nxt-btn-cntnr">
+        <a href="/bring_solar_to_your_community/chapter/9/" class="next-button">Next Chapter</a>
+    </div>
+</div>
+{%endblock%}
+

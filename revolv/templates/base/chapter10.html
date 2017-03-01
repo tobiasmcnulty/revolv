@@ -1,0 +1,224 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="/static/js/base/bring_solar_at_home.js"></script>
+		<title>RE-volv</title>
+
+    <style>
+    .menu-list {
+        position: absolute;
+        width: 100%;
+        background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+        background-color: transparent;
+        border: transparent;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    </style>
+
+{%endblock%}
+{% block nav %}
+
+{%endblock%}
+{% block body %}
+    <div class="champion-background-image">
+       <header class="header top-section-header">
+  <div class="container">
+        <div class="container">
+        <!-- Static navbar -->
+        <div class="navbar navbar-default menu-list">
+            <div class="navbar-header">
+                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
+
+            </div>
+            <div class="navbar-collapse collapse background-collapse-color">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
+                        </li>
+                    {% else %}
+                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
+                        </li>
+                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown this-doesnt"> <a href="#" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    <!-- end .logo -->
+            <div class="solar_at_home_rights pull-right">
+              <div class="txt pull-left">
+
+                {% if request.user.is_authenticated %}
+                  <li class="user-controls has-dropdown">
+                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
+                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
+                  </li>
+                  {% else %}
+                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
+                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
+                {% endif %}
+              </div>
+              <a href="#" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup" >DONATE</a>
+              <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
+            </div>
+          </div>
+             <div class="header-content">
+                <div class="header-content-div">
+                  <div class="header-tagline">
+                      <div class="go_solar_at_home">
+                        CHAPTER 10: <br> Celebration!
+                       </div>
+                      <div class="we_can_help_you">
+                         The hard work is all done! <br>Now it’s time to celebrate!
+                      </div>
+
+                  </div>
+                  <div class="header-logo">
+                        <div class="logo-size" >
+                          	  <a href="{% url 'home' %}">
+                          <img class="background-image-size" src="/static/images/Logo_Header.png"></a>
+                        </div>
+                  </div>
+                </div>
+                 <div class="go-to-solar-link">
+                         <a href="{% url 'bring_solar_to_your_community' %}" class="back_button_link"><img class="back-button-arrow" src="/static/images/arrow-left.png"><span class="back-button-link">Go to Solar Champion Portal.</span></a>
+                      </div>
+            </div>
+           </div>
+        </header>
+
+</div>
+<div class="all-chapters-list hidden-sm hidden-md hidden-lg">
+    <div class="mobile-chapter-name-list">
+        <div class="chapter-list-size">
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">
+					1. Why be a solar champion?
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">
+					2. Your Mission, if you Choose to Accept
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">
+					3. How to find a nonprofit to solarize
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">
+					4. Collecting Information
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">
+					5. Making a Deal
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">
+					6. Planning a Crowdfunding Campaign
+				</span>
+                <span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">
+					7. Launching the campaign
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">
+					8. Running the campaign
+				</span>
+				<span class="sm-chapter-name right-list " data-chapter-url="/bring_solar_to_your_community/chapter/9/">
+					9. Installation
+				</span>
+				<span class="sm-chapter-name right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/10/">
+					10. Celebration
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">
+					11. Timeline
+				</span>
+				<span class="sm-chapter-name right-list" data-chapter-url="/bring_solar_to_your_community/chapter/12/">
+					12. Resources
+				</span>
+			</div>
+        </div>
+</div>
+
+<div class="chapter-main-div">
+    <div class="col-sm-8 chapter-content">
+        <div class="chapter-content-header chapter-divide-line">
+           The hard work is all done! Now it’s time for the fun part! Time to celebrate!
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">A. Planning a Ribbon Cutting Event</div>
+            <div class="chapter-content-div">Hopefully you’ve already been planning this event, but now it’s time to formalize the details. Sit down with the nonprofit staff to find a good date and time to host the event. Figure out what food and drinks you’re going to get, who you’re going to invite to speak, and how you’re going to get the word out to the community.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">B. Inviting politicians</div>
+            <div class="chapter-content-div">Local elected officials love events like this. Whether it’s someone from the mayor’s office, your state legislature, or even your federal representatives, politicians love opportunities to get in front of their constituents and talk about things they care about. Hopefully you have some local officials that care about clean energy and the environment, or perhaps officials that champion the cause of your nonprofit. In any event, inviting the official to speak is fairly easy. Typically there is a link on the officials website specifically to invite them to events like this. Otherwise, just calling their staff and telling them the date and time of the event is often sufficient. They’ll let you know if they can make it. The good thing about getting some officials or well respected members of the community to speak at the event is that you can put that on the invitation and get more people to come to your event.
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">C. Inviting the press</div>
+            <div class="chapter-content-div">Once you have the date, time, and location confirmed, you can start reaching out to the press with a Media Advisory. This is a document that is similar to a Press Release but it is specifically geared towards events. You’ll want to make some phone calls as well in the days leading up to the event and even the day of to let the news organizations know. They might be looking for something to cover at that time. If you have lined up politicians to speak at the event, the press is much more likely to come and write a story about the project.</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">D. Inviting the community</div>
+            <div class="chapter-content-div">Similar to your previous events you’re going to want to publicize the event through email invitations, social media, flyers and posters, and word of mouth. Since celebrating the solar installation is a big milestone for the community, hopefully there will be lots of people excited to come and celebrate with you!</div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">E. Invite the Solar Installer</div>
+            <div class="chapter-content-div">At events like these you’re going to have people who are excited to learn more about solar energy. It’s a great opportunity to get more people to go solar at home! Invite the solar installer to join the event and have a table so that they can talk to attendees about their service and sign them up for free quotes.
+
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">
+                Pro Tip:
+            </div>
+            <div class="chapter-content-div">At the end of the day, this entire process is about getting people excited about solar energy and also to realize that solar is accessible, and is already benefiting the community. We don’t have to wait for clean energy to come to our community down the road. Clean energy is already happening! In our community!
+            </div>
+        </div>
+        <div class="chapter-content-text">
+            <div class="chapter-name">F. Keep us in the loop</div>
+            <div class="chapter-content-div">Lastly, remember that RE-volv staff and past Solar Champions are here to help. Many people have gone through this exact process before and we know exactly what you’re going through. If you come across a snag, let us know and we’ll see if we can offer any guidance. If you need a hand, we’re happy to help. A lot of the challenges you’ll be coming across often have easy solutions that we may have learned already, so please ask. We’re here to help you succeed. Best of luck!
+
+            </div>
+        </div>
+    </div>
+    <div class="chapter-list col-sm-4 padding-zero hidden-xs">
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/1/">1. Why be a solar champion?</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/2/">2. Your Mission, if you Choose to Accept </div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/3/">3. How to find a nonprofit to solarize</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/4/">4. Collecting Information</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/5/">5. Making a Deal</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/6/">6. Planning a Crowdfunding Campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/7/">7. Launching the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/8/">8. Running the campaign</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/9/">9. Installation</div>
+        <div class="right-list active-chapter-color" data-chapter-url="/bring_solar_to_your_community/chapter/10/">10. Celebration</div>
+        <div class="right-list" data-chapter-url="/bring_solar_to_your_community/chapter/11/">11. Timeline</div>
+        <div class="right-list"data-chapter-url="/bring_solar_to_your_community/chapter/12/">12. Resources</div>
+    </div>
+</div>
+<div class="footer-next-button">
+    <div class="col-xs-12 col-sm-8 footer-content">
+        <div class="footer-heading">
+            11. Timeline
+        </div>
+        <div class="footer-content-text">
+           A step by step timeline for you and your team to spearhead a solar energy project in your
+community.
+        </div>
+    </div>
+        <div class="col-xs-12 col-sm-4 chapter-nxt-btn-cntnr">
+        <a href="/bring_solar_to_your_community/chapter/11/" class="next-button">Next Chapter</a>
+    </div>
+</div>
+{%endblock%}
+
