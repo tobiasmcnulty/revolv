@@ -314,7 +314,7 @@ EMAIL_HOST_USER = 'info@re-volv.org'
 # TODO: FIX THIS
 # Hard-coded urls: kind of ugly but we need these for when we
 # want to send links in emails
-SITE_URL = os.environ.get('SITE_URL', 'http://revolv.local.com:8000')
+SITE_URL = os.environ.get('SITE_URL', 'https://re-volv.org')
 
 #username admin will assign when automatic reinvest task run
 ADMIN_PAYMENT_USERNAME = 'administrator'
