@@ -97,7 +97,6 @@ position: absolute;
             <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
         {% endif %}
       </div>
-
       <a href="{% url 'projects_list' %}" class="component-link btn-blue btn-donate">DONATE</a>
       <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
     </div>
@@ -108,15 +107,7 @@ position: absolute;
 
 
 {% block body %}
-<!--<div class="menu">-->
-  <!--<ul>-->
-    <!--<a href="#"><li>LINK ONE</li></a>-->
-    <!--<a href="#"><li>LINK TWO</li></a>-->
-    <!--<a href="#"><li>LINK THREE</li></a>-->
-    <!--<a href="#"><li>LINK FOUR</li></a>-->
-    <!--<a href="#"><li>LINK FIVE</li></a>-->
-  <!--</ul>-->
-<!--</div>-->
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -136,12 +127,12 @@ position: absolute;
           <div class="space_btn_element">
             <span class="Bring_solar_energy__to_communities_around_the_c">Helping communities thrive.<br>One solar panel at a time.</span>
           </div>
-        </div>
-        <div class="how-it-works-button">
+          <div class="how-it-works-button">
             <a href="#how_it_works" class="How_it_Works space_btn_element">How It Works</a>
+          </div>
         </div>
       </div>
-      <img class="background-image-size_home" src="static/images/revolv_background3@1500*500.png" alt="Flower">
+      <img class="background-image-size_home" src="static/images/revolv_background3@1500*500.jpg" alt="Flower">
     </div>
 
     <div class="item carousel-second-img">
@@ -153,13 +144,13 @@ position: absolute;
           <div class="space_btn_element">
             <span class="Bring_solar_energy__to_communities_around_the_c">We all can play a role in solving climate change.</span>
           </div>
-        </div>
-        <div class="how-it-works-button">
+          <div class="how-it-works-button">
             <a href="/what-we-do/projects/" class="How_it_Works space_btn_element">Support solar energy</a>
+          </div>
         </div>
       </div>
 
-      <img class="background-image-size_home"  src="static/images/revolv_background2@1500*500.png" alt="Chania">
+      <img class="background-image-size_home"  src="static/images/revolv_background2@1500*500.jpg" alt="Chania">
     </div>
 
     <div class="item carousel-first-img" >
@@ -171,31 +162,17 @@ position: absolute;
           <div class="space_btn_element">
             <span class="Bring_solar_energy__to_communities_around_the_c">Bring solar energy to<br>your community.</span>
           </div>
-        </div>
-        <div class="how-it-works-button">
+          <div class="how-it-works-button">
             <a href="/bring_solar_to_your_community/" class="How_it_Works space_btn_element">Start a project</a>
+          </div>
         </div>
       </div>
 
-      <img class="background-image-size_home" src="static/images/revolv_background1@1500*500.png" alt="Chania">
+      <img class="background-image-size_home" src="static/images/revolv_background1@1500*500.jpg" alt="Chania">
     </div>
 
   </div>
 
-  <!-- Left and right controls -->
-  <!--<div class="text_overlay">-->
-    <!--<div class="text_content">-->
-      <!--<div class="space_btn_element">-->
-        <!--<span class="CREATE_CLEAN_ENERGY">{{ settings.revolv_cms.MainPageSettings.site_tagline|safe }}</span>-->
-      <!--</div>-->
-      <!--<div class="space_btn_element">-->
-        <!--<span class="Bring_solar_energy__to_communities_around_the_c">{{ settings.revolv_cms.MainPageSettings.site_subheading|safe }}</span>-->
-      <!--</div>-->
-      <!--<div class="how-it-works-button">-->
-        <!--<a href="#how_it_works" class="How_it_Works space_btn_element">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</a>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
   <a class="Ellipse_543 left carousel-control arrow-left"  href="#myCarousel" role="button" data-slide="prev">
       <div style="position:relative;">
           <span class=" glyphicon glyphicon-chevron-left next-button carousel-prev-button" aria-hidden="true"></span>
@@ -569,35 +546,6 @@ position: absolute;
               <li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>
             </ul>
           </div>
-          <!--<div class="item active">-->
-            <!--<ul class="logo-ul">-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--&lt;!&ndash; end .item &ndash;&gt;-->
-          <!--<div class="item">-->
-            <!--<ul class="logo-ul">-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-shareable"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-philanthropy"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-fast-mpany"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-ehe-new-hork-eimes"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-clean-technica"></a></li>-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--&lt;!&ndash; end .item &ndash;&gt;-->
-          <!--<div class="item">-->
-            <!--<div class="logo-ul">-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-forbes"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-whitehouse"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-doe"></a></li>-->
-              <!--<li><a href="/what-we-do/media/" class="logo logo-treehugger"></a></li>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!-- end .item -->
         </div>
         <!-- Controls -->
         <a class="left carousel-control" href="#featured-on-example-generic" role="button" data-slide="prev">
