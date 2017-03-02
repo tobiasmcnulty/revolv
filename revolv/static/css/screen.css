@@ -14115,3 +14115,7 @@ body.main-body {
     background-color: #fff;
 }
 
+.dashboard > .container-fluid > .col-md-9 > .row, .container-fluid > .impact > .row {
+    margin: 0 auto;
+    max-width: 100%;
+}
