@@ -18,6 +18,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
 from django.views.generic import FormView, TemplateView, View
 from django.template.context import RequestContext
+from django.views.decorators.csrf import csrf_protect
 from revolv.base.forms import SignupForm
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
@@ -223,7 +224,6 @@ class RedirectToSigninOrHomeMixin(object):
             request, *args, **kwargs
         )
 
-
 class LoginView(RedirectToSigninOrHomeMixin, FormView):
     """
     Login endpoint: checks the data from the received request against
@@ -241,7 +241,7 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     url_append = "#login"
     redirect_view = "signin"
 
-
+    method_decorator(csrf_protect)
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
         self.amount=request.session.get('amount')
@@ -287,6 +287,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
     url_append = "#signup"
     redirect_view = "signin"
 
+    method_decorator(csrf_protect)
     def form_valid(self, form):
         form.save()
         u = form.ensure_authenticated_user()
