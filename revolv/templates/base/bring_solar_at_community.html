@@ -58,7 +58,7 @@
                 <ul class="nav navbar-nav">
                     {% if request.user.is_authenticated %}
                         <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
-                        </li><a>
+                        </li>
                         <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
                         </li>
                     {% else %}
