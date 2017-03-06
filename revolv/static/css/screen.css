@@ -532,6 +532,9 @@ z-index: 448;
 .btn-blue {
     background-color: #14b1e7;
 }
+.btn-purple {
+    background-color: #800080;
+}
 .btn-blue:hover,
 .btn-blue:focus {
     background-color: #2c3691;
