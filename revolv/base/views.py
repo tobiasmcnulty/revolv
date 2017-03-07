@@ -29,6 +29,7 @@ from revolv.donor.views import humanize_integers, total_donations
 from revolv.base.models import RevolvUserProfile
 from revolv.tasks.sfdc import send_signup_info
 from revolv.lib.mailer import send_revolv_email
+from django.views.decorators.csrf import csrf_exempt
 from itertools import chain
 
 from social.apps.django_app.default.models import UserSocialAuth
@@ -241,7 +242,7 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     url_append = "#login"
     redirect_view = "signin"
 
-    method_decorator(csrf_protect)
+    @csrf_exempt
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
         self.amount=request.session.get('amount')
@@ -287,7 +288,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
     url_append = "#signup"
     redirect_view = "signin"
 
-    method_decorator(csrf_protect)
+    @csrf_exempt
     def form_valid(self, form):
         form.save()
         u = form.ensure_authenticated_user()
