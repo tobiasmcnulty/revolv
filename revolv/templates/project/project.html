@@ -5,6 +5,7 @@
 <script type="text/javascript">
   window.PARTIAL_COMPLETENESS = {{ project.partial_completeness_as_js }};
 </script>
+<script src="{% static 'js/base/homeAnimations.js' %}"></script>
 <style>
 input:focus:invalid {box-shadow: 0 0 5px 1px red;}
 input:invalid {box-shadow: 0 0 5px 1px red;
@@ -628,7 +629,6 @@ input:invalid {box-shadow: 0 0 5px 1px red;
 $( document ).ready(function() {
        var checkForDonation = "";
         checkForDonation = {{ request.GET.amount }};
-        console.log(checkForDonation)
         if (checkForDonation != "")
           {
             $('.donation-field').val({{ request.GET.amount }});
