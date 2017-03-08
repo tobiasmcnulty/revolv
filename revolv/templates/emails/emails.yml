@@ -105,6 +105,17 @@ reinvestment_reminder:
         </div></body></html>
         '
 
+Test:
+       subject: "Test mail"
+       body:
+            "
+             This is Test mail
+            "
+       html:
+            '
+               This is Test mail
+            '
+
 signup:
        subject: "Welcome to RE-volv!"
        body:
