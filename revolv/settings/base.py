@@ -319,7 +319,7 @@ SITE_URL = os.environ.get('SITE_URL', 'https://re-volv.org')
 #username admin will assign when automatic reinvest task run
 ADMIN_PAYMENT_USERNAME = 'administrator'
 #date of the month when user can execute reinvest
-USER_REINVESTMENT_DATE = {'day': 1, 'hour': 00, 'minute': 00}
+USER_REINVESTMENT_DATE = {'day': 8, 'hour': 9, 'minute': 52}
 #date of the month when automatic reinvest execute
 ADMIN_REINVESTMENT_DATE = {'day': 15, 'hour': 00, 'minute': 00}
 
@@ -331,7 +331,7 @@ ADMIN_REINVESTMENT_DATE_DT = datetime(now.year, now.month, **ADMIN_REINVESTMENT_
 # using RabbitMQ as a broker, this sends results back as AMQP messages
 CELERY_RESULT_BACKEND = "amqp"
 
-CELERY_IMPORTS = ('revolv.tasks.reinvestment_allocation', 'revolv.tasks.reinvestment_rollover','revolv.tasks.test')
+CELERY_IMPORTS = ('revolv.tasks.reinvestment_allocation', 'revolv.tasks.reinvestment_rollover')
 # The default Django db scheduler
 CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 CELERYBEAT_SCHEDULE = {
@@ -351,11 +351,6 @@ CELERYBEAT_SCHEDULE = {
         "task": "revolv.tasks.reinvestment_rollover.distribute_reinvestment_fund",
         "schedule": crontab(hour=ADMIN_REINVESTMENT_DATE['hour'], minute=ADMIN_REINVESTMENT_DATE['minute'],
                             day_of_month=ADMIN_REINVESTMENT_DATE['day']),
-    },
-    "test": {
-        "task": "revolv.tasks.test.test_mail",
-        "schedule": crontab(hour=9, minute=46,
-                            day_of_month=8),
     }
 }
 
