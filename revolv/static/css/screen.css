@@ -524,6 +524,9 @@ z-index: 448;
     display: inline-block;
     border-radius: 0.5vmin;
 }
+.zinnia .btn-blue {
+    font-size: 0.8rem;
+}
 .btn-blue:hover,
 .btn-blue:focus {
     text-decoration: none;
@@ -531,9 +534,6 @@ z-index: 448;
 }
 .btn-blue {
     background-color: #14b1e7;
-}
-.btn-purple {
-    background-color: #800080;
 }
 .btn-blue:hover,
 .btn-blue:focus {
@@ -13893,8 +13893,17 @@ a.How_it_Works:hover {
 .password-reset .submit-button {
     margin-top: 2vmin;
 }
+.password-reset-done .component-container {
+    margin: 0 30%;
+}
+.password-reset-done .component-container > p {
+    text-align: center;
+}
 @media (max-width: 767px) {
     .component-row.password-reset > div {
+        margin: 0 13%;
+    }
+    .password-reset-done .component-container {
         margin: 0 13%;
     }
 }
@@ -14166,3 +14175,5 @@ signup > .row .social-login-buttons {
     background-color: #fff;
     color: #F46B7B;
 }
+
+
