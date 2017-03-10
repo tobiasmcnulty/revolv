@@ -21,6 +21,7 @@ from revolv.payments.services import PaymentService
 from revolv.project import forms
 from revolv.project.models import Category, Project, ProjectUpdate
 from revolv.tasks.sfdc import send_donation_info
+from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
@@ -317,9 +318,11 @@ class ProjectView(UserDataMixin, DetailView):
 
     Accessed through /project/{project_id}
     """
-    model = Project
+    # model = Project
     template_name = 'project/project.html'
-
+    def get_object(self):
+        object = get_object_or_404(Project, project_url=self.kwargs['title'])
+        return object
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):
         context = super(ProjectView, self).get_context_data(**kwargs)
@@ -425,5 +428,5 @@ def reinvest(request, pk):
                                         project=project)
 
     messages.success(request, 'Reinvestment Successful')
-    return redirect("project:view" ,pk=pk)
+    return redirect("view" ,title=project.project_url)
 

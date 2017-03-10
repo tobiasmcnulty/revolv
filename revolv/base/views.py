@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import redirect, render_to_response, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
@@ -30,9 +30,13 @@ from revolv.base.models import RevolvUserProfile
 from revolv.tasks.sfdc import send_signup_info
 from revolv.lib.mailer import send_revolv_email
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from itertools import chain
 
 from social.apps.django_app.default.models import UserSocialAuth
+from revolv.payments.models import PaymentType
+from decimal import Decimal
+
 
 logger = logging.getLogger(__name__)
 
@@ -178,10 +182,10 @@ class SignInView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         amount = request.GET.get('donation_amount')
         tip = request.GET.get('donation_tip')
-        pk = request.GET.get('pk')
+        title = request.GET.get('title')
         request.session['amount']= amount
         request.session['tip']= tip
-        request.session['pk']= pk
+        request.session['title']= title
         if request.user.is_authenticated():
             return redirect("home")
         return super(SignInView, self).dispatch(request, *args, **kwargs)
@@ -247,7 +251,7 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     def dispatch(self, request, *args, **kwargs):
         self.amount=request.session.get('amount')
         self.tip=request.session.get('tip')
-        self.pk=request.session.get('pk')
+        self.title=request.session.get('title')
         self.next_url = request.POST.get("next", "home")
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
@@ -255,12 +259,12 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
         """Log the user in and redirect them to the supplied next page."""
         auth_login(self.request, form.get_user())
         if self.request.session.get('amount'):
-            pk=self.pk
+            title=self.title
             amount= self.amount
             tip=self.tip
             del self.request.session['amount']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
-            return redirect(reverse('project:view', kwargs={'pk':pk})+'?amount='+amount+'&tip='+tip)
+            return redirect(reverse('view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
         messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
         return redirect(self.next_url)
 
@@ -307,12 +311,12 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
             context, [self.request.user.email]
         )
         if self.request.session.get('amount'):
-            pk = self.request.session.get('pk')
+            title = self.request.session.get('title')
             amount = self.request.session['amount']
             tip = self.request.session['tip']
             del self.request.session['amount']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
-            return redirect(reverse('project:view', kwargs={'pk': pk}) + '?amount=' + amount + '&tip=' + tip)
+            return redirect(reverse('view', kwargs={'title': title}) + '?amount=' + amount + '&tip=' + tip)
         messages.success(self.request, 'Signed up successfully!')
         return redirect("dashboard")
 
@@ -571,3 +575,4 @@ def social_exception(request):
     message = request.GET.get('message')
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, {'msg': message}))
+

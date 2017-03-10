@@ -33,7 +33,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
         </div>
       </div>
     </div>
-    {%  if is_reinvestment %}
+    {%  if request.GET.reinvestment %}
     <div class="info-section">
       <div class="container">
         <div class="video-main">
@@ -55,7 +55,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <div class="input-group">
                     <label for="value">Reinvestment In this Project</label>
                     <div class="input-group">
-                      <input type="number" class="form-control" id = "amt" step="0.01" value="{{reinvestment_amount|floatformat:2}}" min="0.01" max="{{reinvestment_amount|floatformat:2}}" name="value" >
+                      <input type="number" class="form-control" id = "amt" step="0.01" value="{{request.GET.reinvestment_amount|floatformat:2}}" min="0.01" max="{{request.GET.reinvestment_amount|floatformat:2}}" name="value" >
                       <span class="input-group-addon">$</span>
                     </div>
                   </div>
@@ -69,7 +69,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
         </div>
         <div class="info-main">
           <div class="blue-bar">
-            <span class="pull-left"><span class="bold">${{ project.amount_donated|floatformat:"0"|intcomma }}{{ project.actual_energy }}</span> Donated</span>
+            <span class="pull-left"><span class="bold">${{ project.amount_donated|floatformat:"0"|intcomma }}</span> Donated</span>
             <span class="pull-right"><span class="bold">{{ project.days_left }}</span> Days Left</span>
           </div>
           <!-- end .blue-bar -->
@@ -250,7 +250,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                        <form action="{% url 'signin'  %}" method="GET" id="ipad1">
                         <input type="hidden" name="donation_amount" value="50">
                         <input name="donation_tip" value="15" type="hidden">
-                        <input type="hidden" name="pk" value="{{ project.pk |urlencode}}">
+                        <input type="hidden" name="title" value="{{ project.project_url}}">
                         <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
                           <span style="display: block; min-height: 30px;" >DONATE</span>
                         </button>
@@ -279,7 +279,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <form action="{% url 'signin'  %}" method="GET" id="phone1">
                     <input type="hidden" name="donation_amount" value="50">
                     <input name="donation_tip" value="15" type="hidden">
-                    <input type="hidden" name="pk" value="{{ project.pk|urlencode }}">
+                    <input type="hidden" name="title" value="{{ project.project_url }}">
                     <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
                       <span style="display: block; min-height: 30px;" >DONATE</span>
                     </button>
