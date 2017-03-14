@@ -440,7 +440,7 @@ class Project(models.Model):
             self.category_set.add(category_object)
 
     def get_absolute_url(self):
-        return reverse("project:view", kwargs={"pk": str(self.pk)})
+        return reverse("view", kwargs={"title": str(self.project_url)})
 
     def get_organic_donations(self):
         return self.payment_set.exclude(user__isnull=True).filter(

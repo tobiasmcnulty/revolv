@@ -79,7 +79,7 @@ class HomePageView(UserDataMixin, TemplateView):
         featured_projects = Project.objects.get_featured(HomePageView.FEATURED_PROJECT_TO_SHOW)
         active_projects = Project.objects.get_active()
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active_projects)
-        completed_projects = Project.objects.get_completed()
+        completed_projects = Project.objects.get_completed().reverse()
         context["first_project"] = active_projects[0] if len(active_projects) > 0 else None
         # Get top 6 featured projects, Changed to active Projects in final fix
         context["featured_projects"] = active_projects[:6]

@@ -10,7 +10,7 @@
           <div class="img-main">
             <!--<a href="{% url "view" title=active_project.project_url %}" class="img-link">-->
             {% if is_reinvestment %}
-             <a href="{% url "view" title=active_project.project_url %}?reinvestment={{is_reinvestment}}&reinvestment_amount={{amount|floatformat:2}}" class="img-link">
+             <a href="{% url "view" title=active_project.project_url %}?reinvestment={{is_reinvestment}}" class="img-link">
             {% else %}
               <a href="{% url "view" title=active_project.project_url %}" class="img-link">
             <!--{% endif %}-->
