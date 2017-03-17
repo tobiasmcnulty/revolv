@@ -32,6 +32,9 @@ CACHES = {
     }
 }
 
+
+SYSLOG_PATH = "/var/log/revolv_error.log"
+
 EMAIL_SUBJECT_PREFIX = '[Revolv %s] ' % ENVIRONMENT.title()
 DEFAULT_FROM_EMAIL = 'info@re-volv.org'
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
