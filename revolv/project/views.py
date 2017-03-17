@@ -125,7 +125,7 @@ class CreateProjectView(DonationLevelFormSetMixin, CreateView):
     form_class = forms.ProjectForm
 
     def get_success_url(self):
-        return reverse('view', kwargs={'title': self.object.project_url})
+        return reverse('project:view', kwargs={'title': self.object.project_url})
 
     # validates project, formset of donation levels, and adds categories as well
     def form_valid(self, form):
@@ -171,7 +171,7 @@ class UpdateProjectView(DonationLevelFormSetMixin, UpdateView):
 
     def get_success_url(self):
         messages.success(self.request, 'Project details updated')
-        return reverse('view', kwargs={'title': self.get_object().project_url})
+        return reverse('project:view', kwargs={'title': self.get_object().project_url})
 
     def form_valid(self, form):
         """
@@ -212,7 +212,7 @@ class ReviewProjectView(UserDataMixin, UpdateView):
         if self.is_administrator:
             return "%s?active_project=%d" % (reverse('administrator:dashboard'), self.get_object().id)
         else:
-            return reverse('view', kwargs={'title': self.get_object().project_url})
+            return reverse('project:view', kwargs={'title': self.get_object().project_url})
 
     # Checks the post request and updates the project_status
     def form_valid(self, form):
@@ -266,7 +266,7 @@ class PostProjectUpdateView(TemplateProjectUpdateView):
     model = Project
 
     def get_success_url(self):
-        return reverse('view', kwargs={'title': self.get_object().project_url})
+        return reverse('project:view', kwargs={'title': self.get_object().project_url})
 
     def form_valid(self, form):
         text = form.cleaned_data['update_text']
@@ -279,7 +279,7 @@ class EditProjectUpdateView(TemplateProjectUpdateView):
     model = ProjectUpdate
 
     def get_success_url(self):
-        return reverse('view', kwargs={'title': self.get_object().project_url})
+        return reverse('project:view', kwargs={'title': self.get_object().project_url})
 
     def form_valid(self, form):
         text = form.cleaned_data['update_text']
@@ -431,5 +431,5 @@ def reinvest(request, pk):
                                         project=project)
 
     messages.success(request, 'Reinvestment Successful')
-    return redirect("view" ,title=project.project_url)
+    return redirect("project:view" ,title=project.project_url)
 

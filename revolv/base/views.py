@@ -264,7 +264,7 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
             tip=self.tip
             del self.request.session['amount']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
-            return redirect(reverse('view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
+            return redirect(reverse('project:view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
         messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
         return redirect(self.next_url)
 
@@ -316,7 +316,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
             tip = self.request.session['tip']
             del self.request.session['amount']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
-            return redirect(reverse('view', kwargs={'title': title}) + '?amount=' + amount + '&tip=' + tip)
+            return redirect(reverse('project:view', kwargs={'title': title}) + '?amount=' + amount + '&tip=' + tip)
         messages.success(self.request, 'Signed up successfully!')
         return redirect("dashboard")
 
@@ -564,6 +564,9 @@ def social_connection(request):
     return render_to_response('base/social_account.html',
                               context_instance=RequestContext(request, {'accounts': backend_map}))
 
+
+def harborhouse(request):
+    return redirect('/project/harborhouse/')
 
 def social_exception(request):
     has_social_exception = request.session.get('has_social_exception')

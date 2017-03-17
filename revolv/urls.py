@@ -8,6 +8,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from revolv.base import views as base_views
+from revolv.project import views as project_views
 from revolv.base.views import solarathome, bring_solar_tou_your_community, select_chapter, intake_form, intake_form_submit
 
 from revolv.project.views import ProjectView
@@ -55,7 +56,8 @@ urlpatterns = patterns(
     url(r'social/', include('social.apps.django_app.urls', namespace='social')),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
-    url(r'^(?P<title>[^/]+)/$', ProjectView.as_view(), name='view'),
-    url(r'', include(wagtail_urls))
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^harborhouse/$','revolv.base.views.harborhouse', name="harborhouse"),
+    url(r'', include(wagtail_urls)),
 
+
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
