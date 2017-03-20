@@ -2,6 +2,8 @@ from django.db.models import signals, Sum
 from django.dispatch import receiver
 
 from revolv.base.models import RevolvUserProfile
+from revolv.project.models import Project
+from django.contrib.auth.models import Group
 from revolv.base.utils import is_user_reinvestment_period
 from revolv.payments.models import (AdminReinvestment, AdminRepayment, Payment,
                                     PaymentType, RepaymentFragment, UserReinvestment)
@@ -46,7 +48,17 @@ def post_save_admin_repayment(**kwargs):
         # user's reinvest_pool will be incremented on save
         repayment.save()
 
+@receiver(signals.post_save, sender=Project)
+def post_save_user_groups(**kwargs):
+    """
+    When an project is saved, Check the project ambassador and add user to the
+    ambassador group.
+    """
 
+    instance = kwargs.get('instance')
+    g = Group.objects.get(name='ambassadors')
+    if instance.ambassador_id:
+        g.user_set.add(instance.ambassador_id)
 
 @receiver(signals.post_save, sender=AdminReinvestment)
 def post_save_admin_reinvestment(**kwargs):
