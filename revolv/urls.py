@@ -26,7 +26,8 @@ urlpatterns = patterns(
     url(r'^my-portfolio/admin/', include('revolv.administrator.urls', namespace='administrator')),
     url(r'^my-portfolio/ambassador/', include('revolv.ambassador.urls', namespace='ambassador')),
     url(r'^my-portfolio/donor/', include('revolv.donor.urls', namespace='donor')),
-    # url(r'^my-portfolio/donationreport/', base_views.DonationReportView.as_view(), name='donationreport'),
+    url(r'^my-portfolio/donationreport/', base_views.DonationReportView.as_view(), name='donationreport'),
+    url(r'^my-portfolio/financialreport/', base_views.DonationReportForProject.as_view(), name='financialreport'),
     url(r'^my-portfolio/reinvest_list/', base_views.ReinvestmentRedirect.as_view(), name='reinvest_list'),
 
     url(r'^what-we-do/projects/', base_views.ProjectListView.as_view(), name='projects_list'),

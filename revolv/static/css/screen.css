@@ -14373,7 +14373,7 @@ img.close-donate-popup {
     display: block;
 }
 /*CSS for 404.html page*/
-.page-not-found-msg {
+.row.container.page-not-found-msg {
     margin-top: 143px;
 }
 .container.page-not-found-msg .png-image {

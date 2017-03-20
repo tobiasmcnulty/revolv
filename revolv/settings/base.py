@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'wagtailsettings',
     'revolv.revolv_cms',
     'djrill',
+    'mathfilters',
 
 ]
 

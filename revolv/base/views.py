@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render_to_response, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
@@ -88,6 +89,46 @@ class HomePageView(UserDataMixin, TemplateView):
         context["completed_projects_count"] = Project.objects.get_completed().count()
         context["total_donors_count"] = Payment.objects.total_distinct_organic_donors()
         context["global_impacts"] = self.get_global_impacts()
+        return context
+
+class DonationReportView(UserDataMixin, TemplateView):
+    """
+    The project view. Displays project details and allows for editing.
+
+    Accessed through /project/{project_id}
+    """
+    model = Payment
+    template_name = 'base/partials/donation_report.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        return super(DonationReportView, self).dispatch(request, *args, **kwargs)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(DonationReportView, self).get_context_data(**kwargs)
+        context['payments'] = Payment.objects.all()
+        return context
+
+class DonationReportForProject(UserDataMixin, TemplateView):
+    """
+    The project view. Displays project details and allows for editing.
+
+    Accessed through /project/{project_id}
+    """
+    model = Payment
+    template_name = 'base/partials/donation_report.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.revolvuserprofile.is_ambassador():
+            return HttpResponseRedirect(reverse("dashboard"))
+        return super(DonationReportForProject, self).dispatch(request, *args, **kwargs)
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        project=Project.objects.filter(ambassador=self.user_profile.user_id)
+        context = super(DonationReportForProject, self).get_context_data(**kwargs)
+        context['payments'] = Payment.objects.all().filter(project=project)
         return context
 
 
