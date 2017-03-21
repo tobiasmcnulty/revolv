@@ -412,7 +412,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <form action="{% url 'signin'  %}" method="GET">
                     <input type="hidden" name="donation_amount" value="50">
                     <input name="donation_tip" value="15" type="hidden">
-                    <input type="hidden" name="pk" value="{{ project.pk }}">
+                    <input type="hidden" name="title" value="{{ project.project_url }}">
                     <button type="submit" class="donate-on-sign-up" style="visibility: visible;">
                       <span style="display: block; min-height: 30px;" >DONATE</span>
                     </button>

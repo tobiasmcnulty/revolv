@@ -299,11 +299,13 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     def form_valid(self, form):
         """Log the user in and redirect them to the supplied next page."""
         auth_login(self.request, form.get_user())
-        if self.request.session.get('amount'):
+        if self.request.session.get('amount') and self.request.session.get('title') and self.request.session.get('tip'):
             title=self.title
             amount= self.amount
             tip=self.tip
             del self.request.session['amount']
+            del self.request.session['title']
+            del self.request.session['tip']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
             return redirect(reverse('project:view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
         messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
@@ -351,11 +353,13 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
             'signup',
             context, [self.request.user.email]
         )
-        if self.request.session.get('amount'):
+        if self.request.session.get('amount') and self.request.session.get('title') and self.request.session.get('tip'):
             title = self.request.session.get('title')
             amount = self.request.session['amount']
             tip = self.request.session['tip']
             del self.request.session['amount']
+            del self.request.session['title']
+            del self.request.session['tip']
             messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
             return redirect(reverse('project:view', kwargs={'title': title}) + '?amount=' + amount + '&tip=' + tip)
         messages.success(self.request, 'Signed up successfully!')
