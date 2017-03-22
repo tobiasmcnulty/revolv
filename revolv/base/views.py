@@ -345,9 +345,11 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         auth_login(self.request, u)
         SITE_URL = settings.SITE_URL
         login_link = SITE_URL + reverse('login')
+        portfolio_link = SITE_URL + reverse('dashboard')
         context = {}
         context['user'] = self.request.user
         context['login_link'] = login_link
+        context['portfolio_link'] = portfolio_link
 
         send_revolv_email(
             'signup',

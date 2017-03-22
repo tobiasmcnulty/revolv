@@ -321,7 +321,7 @@ SITE_URL = os.environ.get('SITE_URL', 'https://re-volv.org')
 #username admin will assign when automatic reinvest task run
 ADMIN_PAYMENT_USERNAME = 'administrator'
 #date of the month when user can execute reinvest
-USER_REINVESTMENT_DATE = {'day': 8, 'hour': 9, 'minute': 52}
+USER_REINVESTMENT_DATE = {'day': 1, 'hour': 00, 'minute': 00}
 #date of the month when automatic reinvest execute
 ADMIN_REINVESTMENT_DATE = {'day': 15, 'hour': 00, 'minute': 00}
 
