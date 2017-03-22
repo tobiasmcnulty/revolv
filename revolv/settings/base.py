@@ -106,6 +106,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.tz',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+    'revolv.context_processors.global_settings',
 
     'django_facebook.context_processors.facebook',
     'social.apps.django_app.context_processors.backends',
@@ -430,5 +431,7 @@ SFDC_REVOLV_DONATION = 'donation'
 # Stripe
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
+
+VERSION_NUM = '12879845'
 
 
