@@ -126,7 +126,7 @@ class DonationReportForProject(UserDataMixin, TemplateView):
         return super(DonationReportForProject, self).dispatch(request, *args, **kwargs)
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):
-        project=Project.objects.filter(ambassador=self.user_profile.user_id)
+        project = Project.objects.filter(ambassador=self.user_profile.id)
         context = super(DonationReportForProject, self).get_context_data(**kwargs)
         context['payments'] = Payment.objects.all().filter(project=project)
         return context
@@ -345,9 +345,11 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         auth_login(self.request, u)
         SITE_URL = settings.SITE_URL
         login_link = SITE_URL + reverse('login')
+        portfolio_link = SITE_URL + reverse('dashboard')
         context = {}
         context['user'] = self.request.user
         context['login_link'] = login_link
+        context['portfolio_link'] = portfolio_link
 
         send_revolv_email(
             'signup',

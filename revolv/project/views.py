@@ -85,10 +85,13 @@ def stripe_payment(request, pk):
         payment_type=PaymentType.objects.get_stripe(),
     )
 
+    SITE_URL = settings.SITE_URL
+    portfolio_link = SITE_URL + reverse('dashboard')
     context = {}
     context['user'] = request.user
     context['project'] = project
     context['amount'] = donation_cents/100.0
+    context['portfolio_link'] = portfolio_link
 
     send_revolv_email(
         'post_donation',

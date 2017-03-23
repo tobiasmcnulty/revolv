@@ -1,31 +1,124 @@
 post_donation:
-    subject: "Thank you from RE-volv"
+    subject: "Thank you for donating to RE-volv!"
     body:
         "
-        Hi {{user.first_name}}!
+        Hi {{user.first_name}} {{user.last_name}}!
 
-        Thank you for your invaluable donation of ${{amount}} to {{project.title}}! Each contribution is a major step in bringing clean energy to everyone.
+        Thank you for your generous donation to RE-volv!
 
-        Donations like yours have powered our efforts to provide renewable energy to local communities. Without contributions like yours, we would not be able to support communities as they strive to be self-sufficient. In addition, your contribution will assist not just one community, but many more as your funding \"RE-volvs\" around.
 
-        We hope that you stay involved with our efforts, and that you continue to provide both your input and support in our endeavor to expand solar energy across all communities.
+        Your commitment to solar energy is appreciated by the communities we
 
-        <p>Thank you,</p>
-        <p>The RE-volv Team</p>
+        serve and the environment we work to protect. Your tax-deductible
+
+        donation of ${{amount}} will help {{project.title}} reach their goal of going solar.
+
+        Through your Portfolio page{link to their portfolio page} on re-volv.org, you can see the impact
+
+        your donation has created. And when this solar project is turned on, you’ll be able to vote on
+
+        how RE-volv reinvests the proceeds from this project to bring solar to other deserving
+
+        nonprofits.
+
+        We look forward to keeping in touch with you about the campaign, and we are deeply grateful
+
+        for your gift!
+
+        Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+
+        find out more ways to get involved.
+
+        Sincerely,
+        The RE-volv Team
+
+        This email serves as your donation receipt.
+        RE-volv, tax #: 45-1035583, is a 501(c)(3) not for profit organization, and has not provided any
+        goods or services, in whole or in part, to you in consideration for this voluntary cash
+        contribution. If you wish to claim the tax deductibility of this gift in the U.S., please retain this
+        acknowledgment letter for your files.
         "
     html:
         "
-        <p>Hi {{user.first_name}}!</p>
+        <p>Hi {{user.first_name}} {{user.last_name}}!</p>
 
-        <p>Thank you for your invaluable donation of ${{amount}} to {{project.title}}! Each contribution is a major step in bringing clean energy to everyone.</p>
+        <p>Thank you for your generous donation to RE-volv!</p>
 
-        <p>Donations like yours have powered our efforts to provide renewable energy to local communities. Without contributions like yours, we would not be able to support communities as they strive to be self-sufficient. In addition, your contribution will assist not just one community, but many more as your funding \"RE-volvs\" around.</p>
+        <p>Your commitment to solar energy is appreciated by the communities we
 
-        <p>We hope that you stay involved with our efforts, and that you continue to provide both your input and support in our endeavor to expand solar energy across all communities.</p>
+        serve and the environment we work to protect. Your tax-deductible
 
-        <p>Thank you,</p>
-        <p>The RE-volv Team</p>
+        donation of ${{amount}} will help {{project.title}} reach their goal of going solar.</p>
+
+        <p>Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
+
+        your donation has created. And when this solar project is turned on, you’ll be able to vote on
+
+        how RE-volv reinvests the proceeds from this project to bring solar to other deserving
+
+         nonprofits.</p>
+
+        <p>We look forward to keeping in touch with you about the campaign, and we are deeply grateful
+
+        for your gift!</p>
+
+        <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+        find out more ways to get involved.</p>
+
+        <p>Sincerely,<br>
+        The RE-volv Team</p>
+
+        <p>This email serves as your donation receipt.<br>
+        RE-volv, tax #: 45-1035583, is a 501(c)(3) not for profit organization, and has not provided any
+        goods or services, in whole or in part, to you in consideration for this voluntary cash
+        contribution. If you wish to claim the tax deductibility of this gift in the U.S., please retain this
+        acknowledgment letter for your files.</p>
         "
+
+Post_operations_donation:
+    subject: "Thank you for donating to RE-volv!"
+    body:
+        "
+        Dear {{user.first_name}} {{user.last_name}}!,
+        Thank you for your generous donation to RE-volv!
+
+        Your commitment to solar energy is appreciated by the communities we
+        serve and the environment we work to protect. Your tax-deductible
+        donation of ${{amount}} will help more communities reach their goal of going solar.
+
+        We look forward to keeping in touch with you, and we are deeply grateful for your gift!
+
+        Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+        find out more ways to get involved.
+
+        Sincerely,
+        The RE-volv Team
+        "
+    html:
+        "
+        <p>Dear {{user.first_name}} {{user.last_name}}!,</p>
+        <p>Thank you for your generous donation to RE-volv!</p>
+
+        <p>Your commitment to solar energy is appreciated by the communities we
+        serve and the environment we work to protect. Your tax-deductible
+        donation of ${{amount}} will help more communities reach their goal of going solar.</p>
+
+        <p>We look forward to keeping in touch with you, and we are deeply grateful for your gift!</p>
+
+        <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+        find out more ways to get involved.</p>
+
+        <p>Sincerely,<br>
+        The RE-volv Team</p>
+
+        <p>This email serves as your donation receipt.<br>
+        RE-volv, tax #: 45-1035583, is a 501(c)(3) not for profit organization, and has not provided any
+        goods or services, in whole or in part, to you in consideration for this voluntary cash
+        contribution. If you wish to claim the tax deductibility of this gift in the U.S., please retain this
+        acknowledgment letter for your files.</p>
+
+        "
+
 monthly_donation_email:
     subject: "Your monthly report from RE-volv!"
     body:
@@ -73,74 +166,110 @@ monthly_donation_email_admin_notification:
         <p>This is an autogenerated notification that a batch of {{ emails_sent }} monthly donation engagement emails was just sent out!</p>
 
         "
+
 reinvestment_reminder:
-    subject: "You have ${{ amount }} in RE-volv funds! Pick a project to support solar energy in a new community!"
+    subject: "You have new funds in your RE-volv Portfolio!"
     body:
         "
-        Hi {{ first_name }}!
+        Dear {{ first_name }},
+        The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.
 
-        You have ${{ amount }} in RE-volv funds! Pick a project to support solar energy in a new community!
-        Back the project with your ${{ amount }} [{{ projects_url }}]
+        You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
+        you can reinvest in other solar projects! You can take a look at the projects we have available
+        here. {link to project page}
 
-        To unsubscribe to this newsletter click here[{{ unsubscribe_url }}]
+        Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+        find out more ways to get involved.
+
+        Thank you,
+        The RE-volv Team
+
         "
     html:
-        '
-        <html><body style="font-family: arial,sans-serif;background-color:#ebece7;">
-        <div style="width:80%;border-radius: 5px; border: 1px #007295 solid; margin:5%; padding: 1em;background-color:white;">
-        <p>Hi {{ first_name}}</p>
+        "
+        <p>Dear {{ first_name }},</p>
+        <p>The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.</p>
 
-        <p>You have ${{ amount }} in RE-volv funds! Pick a project to support solar energy in a new community!</p>
-        <div style="width:100%">
-        <a href="{{ projects_url }}" style="text-decoration: none;"><div style="padding-top: 1.125rem;
-        padding-right: 2.25rem;padding-bottom: 1.1875rem;padding-left: 2.25rem;font-size: 1.25rem;border-style: solid;
-        border-width: 0px;cursor: pointer;font-family: sans-serif;font-weight: normal;line-height: normal;
-        position: relative;margin-left:auto;margin-right:auto;width: 50%;text-decoration: none;text-align: center;
-        background-color: #008cba;border-color: #007295;color: white;">Back the project with your ${{ amount }}</div></a>
-        </div>
+        <p>You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
+        you can reinvest in other solar projects! You can take a look at the projects we have available
+        here. {link to project page}</p>
 
-        <br />
-        <br />
-         <div style="font-size:small">To unsubscribe this newsletter click <a href="{{ unsubscribe_url }}">here</a></div>
-        </div></body></html>
-        '
+        <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+        find out more ways to get involved.</p>
 
-Test:
-       subject: "Test mail"
+        <p>Thank you,<br>
+        The RE-volv Team</p>
+
+        "
+
+signup_newsletter:
+       subject: "Thank you for signing up for the RE-volv Newsletter"
        body:
             "
-             This is Test mail
+            Thank you for signing up for our Newsletter!
+
+            We’re thrilled that you’re interested in hearing more about our efforts to bring solar energy to
+            communities around the country and we look forward to keeping in touch with you!
+
+            Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+            find out more ways to get involved.
+
+            Sincerely,
+            The RE-volv Team
             "
        html:
-            '
-               This is Test mail
-            '
+            "
+            <p>Thank you for signing up for our Newsletter!</p>
+
+            <p>We’re thrilled that you’re interested in hearing more about our efforts to bring solar energy to
+            communities around the country and we look forward to keeping in touch with you!</p>
+
+            <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+            find out more ways to get involved.</p>
+
+            <p>Sincerely,<br>
+            The RE-volv Team</p>
+            "
 
 signup:
-       subject: "Welcome to RE-volv!"
+       subject: "Thank you for creating a RE-volv account!"
        body:
             "
-            Hi {{ user.first_name }}!
+            Thank you, {{ user.first_name }}, for creating a RE-volv account!
 
-            Thank you for registering with RE-volv.
-            Please Click Here[{{ login_link }}] to visit your account.
-            This is a system generated email, do not reply to this email.
+            Your commitment to solar energy is appreciated by the communities we
+            serve and the environment we work to protect.
 
-            Regards,
-            Team PlanHub
+            Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
+            you’re having through the crowdfunding campaigns you choose to support. And when the solar
+            projects you support are turned on, you’ll be able to vote on how RE-volv reinvests the proceeds
+            from those projects to bring solar to other deserving nonprofits.
+
+            We welcome you to the RE-volv community and look forward to keeping in touch with you!
+
+            Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+            find out more ways to get involved.
+
+            Sincerely,
+            The RE-volv Team
             "
 
        html:
-            '
-             <p>Hi {{ user.first_name }}!</p>
+            "
+            <p>Thank you, {{ user.first_name | title }}, for creating a RE-volv account!</p>
 
-            <p>Thank you for registering with RE-volv.</p>
-            <p>Please <a href="{{ login_link }}">Click Here</a> to visit your account.
-            <p>This is a system generated email, do not reply to this email.</p>
-
-            <p>Regards,</p>
-            <p>Team RE-volv</p>
-            '
+            <p>Your commitment to solar energy is appreciated by the communities we
+            serve and the environment we work to protect.</p>
+            <p>Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
+            you’re having through the crowdfunding campaigns you choose to support. And when the solar
+            projects you support are turned on, you’ll be able to vote on how RE-volv reinvests the proceeds
+            from those projects to bring solar to other deserving nonprofits.</p>
+            <p>We welcome you to the RE-volv community and look forward to keeping in touch with you!</p>
+            <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
+            find out more ways to get involved.</p>
+            <p>Sincerely,<br>
+            The RE-volv Team</p>
+            "
 intake_form:
         subject: "RE-volv application form"
         body:
