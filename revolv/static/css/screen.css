@@ -1950,6 +1950,7 @@ padding: 0;
     padding-top: 0;
     font-size: 1.7rem;
     margin-top: 0;
+    cursor: pointer;
 }
 .newsletter-module .group-main .group .inputs {
     margin-right: 147px;
@@ -4186,9 +4187,6 @@ header.edit-project-header > .container > h1 {
 .footer .row .col-menu dt {
     padding-bottom: 0;
 }
-.footer .row .col-menu dt + dt {
-    padding-bottom: 4px;
-}
 /* .footer .col-info */
 
 .footer .row .col-info {
@@ -4204,10 +4202,9 @@ header.edit-project-header > .container > h1 {
 }
 .footer .row .col-info p {
     color: #8a8a8a;
-    font-size: 12px;
+    font-size: 14px;
     text-align: justify;
     line-height: 24px;
-    padding: 5px 0 0 0;
 }
 /* .footer .bottoms */
 
@@ -6665,25 +6662,17 @@ width: 580px;
     .footer .row .col-info dt {
         line-height: 20px;
     }
-    .footer .row .col-menu dt a,
-    .footer .row .col-info dt a {
-        font-size: 11.57px;
-    }
     .footer .row .col-menu dd,
     .footer .row .col-info dd {
-        line-height: 19px;
+        line-height: 29px;
     }
     .footer .row .col-info dt {
         padding-bottom: 4px;
     }
-    .footer .row .col-info a {
-        font-size: 9.92px;
-    }
     .footer .row .col-info p {
-        font-size: 9.92px;
+        font-size: 14px;
         text-align: justify;
-        line-height: 20px;
-        padding: 5px 0 0 0;
+        line-height: 29px;
     }
     /* .footer .bottoms */
     .footer .bottoms div {
@@ -6878,6 +6867,9 @@ width: 580px;
 /*fix layout issue when smaller than 992px width*/
 
 @media (max-width: 991px) {
+    .newsletter-msg-cntnr .newsletter-msg {
+        width: 70%;
+    }
     /* terrible hack to add padding, depends highly on header text. please get rid of this if possible. */
     .top-section.nav-margins .section-video-overlay {
         padding-top: 25%;
@@ -9516,15 +9508,7 @@ width: 580px;
     }
     .footer .row .col-menu dt,
     .footer .row .col-info dt {
-        line-height: 25px;
-        padding: 20px 0;
-    }
-    .footer .row .col-menu dt + dt {
-        padding: 7px 0;
-    }
-    .footer .row .col-menu dt a,
-    .footer .row .col-info dt a {
-        font-size: 21.5px;
+        line-height: 29px;
     }
     .footer .row .col-menu dd,
     .footer .row .col-info dd {
@@ -9564,15 +9548,6 @@ width: 580px;
     }
     .footer .row .col-info dt {
         padding-bottom: 7px;
-    }
-    .footer .row .col-menu a,
-    .footer .row .col-info a {
-        font-size: 16.38px;
-    }
-    .footer .row .col-info p {
-        font-size: 14.34px;
-        line-height: 24px;
-        padding: 0;
     }
     /* .footer .bottoms */
     .footer .bottoms .lefts,
@@ -10605,7 +10580,7 @@ width: 580px;
         border: 0;
         font-size: 3.4vmin;
     }
-    .newsletter-module .group-main .mobile-form-group #form1 {
+    .newsletter-module .group-main .mobile-form-group #form2 {
         padding: 0 7%;
     }
     .newsletter-module .group-main .group .inputs input {
@@ -12185,12 +12160,6 @@ width: 580px;
     .footer .row .col-info {
         padding: 17px 0 9px 0;
     }
-    .footer .row .col-menu dt,
-    .footer .row .col-info dt {
-        padding: 5px 0;
-    }
-    /* .footer .col-menu */
-
     .footer .row .col-menu {
         padding: 26px 0 11px 0;
     }
@@ -14220,7 +14189,7 @@ signup > .row .social-login-buttons {
 }
 #project_form input:not([type]), input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
     font-size: 1.375rem;
-   /* height: 3.0125rem;*/
+    /*height: 3.0125rem;*/
     margin: 0 0 1rem 0;
     padding: 0.8rem;
 }
@@ -14290,8 +14259,6 @@ CSS for financial report*/
 #example_wrapper .dt-buttons {
     padding-top: 2em;
 }
-
-/*CSS for donate pop-up*/
 .donate-msg-cntnr {
     position: fixed;
     width: 100%;
@@ -14380,3 +14347,64 @@ img.close-donate-popup {
     margin-top: 50px;
 }
 
+/*
+CSS for Newsletter pop-up*/
+.newsletter-msg-cntnr {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 2222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.newsletter-msg {
+    background-color: #fff;
+    padding: 3vmin 2vmin 4vmin;
+    width: 39%;
+    font-size: 2.7vmin;
+    color: #7E7E7E;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+}
+.close-newsletter-popup {
+    position: absolute;
+    right: 2%;
+    top: 1.5vmin;
+    border: 1px solid #ccc;
+    width: 2.4vmin;
+    cursor: pointer;
+}
+.newsletter-msg-btn-cntnr {
+    padding: 4vmin 44% 0;
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.newsletter-submit-msg-btn{
+    background-color: #14B1E7;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.8vmin 0;
+    font-size: 2.8vmin;
+    border-radius: 2%;
+    cursor: pointer;
+    width: 100%;
+}
+.newsletter-error-email-msg {
+    color: #ff0039;
+    float: left;
+    position: relative;
+    font-size: 2.3vmin;
+    /* padding: 1vmin 0 0; */
+}
+
+@media only screen and (device-width: 1024px) and (orientation:landscape) {
+    .footer .container .bottoms .social-icons-cntnr {
+        align-items: center;
+    }
+}
