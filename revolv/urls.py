@@ -58,6 +58,8 @@ urlpatterns = patterns(
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     url(r'^harborhouse/$','revolv.base.views.harborhouse', name="harborhouse"),
+    url(r'^riverrevitalizationfoundation/$','revolv.base.views.riverrevitalizationfoundation', name="riverrevitalizationfoundation"),
+    url(r'^campketcha/$','revolv.base.views.campketcha', name="campketcha"),
     url(r'', include(wagtail_urls)),
 
 

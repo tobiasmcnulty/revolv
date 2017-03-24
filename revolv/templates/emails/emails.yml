@@ -2,7 +2,7 @@ post_donation:
     subject: "Thank you for donating to RE-volv!"
     body:
         "
-        Hi {{user.first_name}} {{user.last_name}}!
+        Hi {{user.first_name | title}} {{user.last_name| title}}!
 
         Thank you for your generous donation to RE-volv!
 
@@ -40,7 +40,7 @@ post_donation:
         "
     html:
         "
-        <p>Hi {{user.first_name}} {{user.last_name}}!</p>
+        <p>Hi {{user.first_name| title}} {{user.last_name| title}}!</p>
 
         <p>Thank you for your generous donation to RE-volv!</p>
 
@@ -48,7 +48,9 @@ post_donation:
 
         serve and the environment we work to protect. Your tax-deductible
 
-        donation of ${{amount}} will help {{project.title}} reach their goal of going solar.</p>
+        donation of ${{amount|floatformat:'2'}} will help {{project.title}} reach their goal of going solar.
+
+        We also greatly appreciate your donation of ${{ tip_cents|floatformat:'2' }} to support RE-volv's operations. (Your total tax deductible donation amount is ${{amount_cents|floatformat:'2'}})</p>
 
         <p>Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
 
@@ -96,7 +98,7 @@ Post_operations_donation:
         "
     html:
         "
-        <p>Dear {{user.first_name}} {{user.last_name}}!,</p>
+        <p>Dear {{user.first_name | title}} {{user.last_name| title}}!,</p>
         <p>Thank you for your generous donation to RE-volv!</p>
 
         <p>Your commitment to solar energy is appreciated by the communities we
@@ -138,7 +140,7 @@ monthly_donation_email:
         "
     html:
         "
-        <p>Hi {{user.first_name}}!</p>
+        <p>Hi {{user.first_name | title}}!</p>
 
         <p>Thank you for your invaluable donations to RE-volv! Each contribution is a major step in bringing clean energy to everyone.</p>
 
@@ -187,7 +189,7 @@ reinvestment_reminder:
         "
     html:
         "
-        <p>Dear {{ first_name }},</p>
+        <p>Dear {{ first_name | title }},</p>
         <p>The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.</p>
 
         <p>You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that

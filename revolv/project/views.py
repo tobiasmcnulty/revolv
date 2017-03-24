@@ -91,6 +91,8 @@ def stripe_payment(request, pk):
     context['user'] = request.user
     context['project'] = project
     context['amount'] = donation_cents/100.0
+    context['tip_cents'] = tip_cents / 100.0
+    context['amount_cents'] = amount_cents/100.0
     context['portfolio_link'] = portfolio_link
 
     send_revolv_email(
@@ -325,7 +327,10 @@ class ProjectView(UserDataMixin, DetailView):
     # model = Project
     template_name = 'project/project.html'
     def get_object(self):
-        object = get_object_or_404(Project, project_url=self.kwargs['title'])
+        if self.kwargs['title'].isnumeric():
+            object = get_object_or_404(Project, id=self.kwargs['title'])
+        else:
+            object = get_object_or_404(Project, project_url=self.kwargs['title'])
         return object
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):

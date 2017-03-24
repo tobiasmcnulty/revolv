@@ -58,14 +58,9 @@ class HomePageView(UserDataMixin, TemplateView):
         #carbon_saved_by_month = Project.objects.statistics().pounds_carbon_saved_per_month
         # Assume 20 year lifetime.
         # We use str() to avoid django adding commas to integer in the template.
-        #carbon_saved = str(int(carbon_saved_by_month * 12 * 20))
         people_donated_sys_count = RevolvUserProfile.objects.exclude(project=None).count()
         people_donated_stat_Count = str(int(people_donated_sys_count + 615))
-        #total_kwh = float(Project.objects.aggregate(n=Sum('total_kwh_value'))['n'])
-        #carbon_value_calc = total_kwh * 1.5
-        #funding_goal_value = float(Project.objects.aggregate(n=Sum('funding_goal'))['n'])
-	#amount_invested_value = Payment.objects.aggregate(n=Sum('amount'))['n']
-        #final_carbon_avoided = str(int(carbon_value_calc / funding_goal_value * amount_invested_value + 3057319))
+
         global_impacts = {
             # Users who have backed at least one project:
             'num_people_donated': people_donated_stat_Count,
@@ -614,6 +609,12 @@ def social_connection(request):
 
 def harborhouse(request):
     return redirect('/project/harborhouse/')
+
+def riverrevitalizationfoundation(request):
+    return redirect('/project/riverrevitalizationfoundation/')
+
+def campketcha(request):
+    return redirect('/project/campketcha/')
 
 def social_exception(request):
     has_social_exception = request.session.get('has_social_exception')
