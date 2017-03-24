@@ -273,12 +273,12 @@ a:hover {
     padding: 0;
     float: left;
 }
-.carousel-inner {
+/*.carousel-inner {
     z-index: -10;
 }
 ol.carousel-indicators {
     z-index: -5;
-}
+}*/
 
 #myCarousel .carousel-prev-button {
     position: relative;
