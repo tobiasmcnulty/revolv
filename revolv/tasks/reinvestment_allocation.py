@@ -67,4 +67,4 @@ def calculate_montly_reinvesment_allocation():
     #wait for 30s and the send mail
     time.sleep(30)
 
-    # user_reinvestment_reminder()
+    user_reinvestment_reminder()

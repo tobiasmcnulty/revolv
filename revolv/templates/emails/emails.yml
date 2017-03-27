@@ -178,7 +178,7 @@ reinvestment_reminder:
 
         You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
-        here. {link to project page}
+        <a href='{{projects_url}}'>here</a>.
 
         Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
         find out more ways to get involved.
@@ -194,7 +194,7 @@ reinvestment_reminder:
 
         <p>You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
-        here. {link to project page}</p>
+        <a href='{{projects_url}}'>here</a>.</p>
 
         <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
         find out more ways to get involved.</p>
