@@ -2,9 +2,9 @@ from django.db.models import signals, Sum
 from django.dispatch import receiver
 
 from revolv.base.models import RevolvUserProfile
-from revolv.project.models import Project
-from django.contrib.auth.models import Group
 from revolv.base.utils import is_user_reinvestment_period
+from django.contrib.auth.models import Group
+from revolv.project.models import Project
 from revolv.payments.models import (AdminReinvestment, AdminRepayment, Payment,
                                     PaymentType, RepaymentFragment, UserReinvestment)
 from revolv.payments.utils import (NotEnoughFundingException, NotInUserReinvestmentPeriodException,
@@ -61,45 +61,6 @@ def post_save_user_groups(**kwargs):
         if instance.ambassador.user_id:
             g.user_set.add(instance.ambassador.user_id)
 
-@receiver(signals.post_save, sender=AdminReinvestment)
-def post_save_admin_reinvestment(**kwargs):
-    """
-    When an AdminReinvestment is saved, we pool as many donors as we need to
-    fund the reinvestment, prioritizing users that have a preference for the
-    Category of the project begin invested into and the by order them by thier
-    last name. We only consider users that have a non-zero pool of investable money.
-
-    """
-    if not kwargs.get('created'):
-        return
-    instance = kwargs.get('instance')
-    total_left = instance.amount
-    pending_reinvestors = []
-
-    project = instance.project
-    users = RevolvUserProfile.objects.filter(reinvest_pool__gt=0.0)
-        # .exclude(pk__in=users_with_preferences).order_by('user__last_name')
-    for user in users:
-        total_left -= user.reinvest_pool
-        reinvest_amount = user.reinvest_pool + min(0.0, total_left)
-        pending_reinvestors.append((user, reinvest_amount))
-        if total_left <= 0.0:
-            break
-    for (user, amount) in pending_reinvestors:
-        reinvestment = Payment(user=user,
-                               project=instance.project,
-                               entrant=instance.admin,
-                               payment_type=PaymentType.objects.get_reinvestment_fragment(),
-                               admin_reinvestment=instance,
-                               amount=amount
-                               )
-        if instance.project.amount_donated >= instance.project.funding_goal:
-            instance.project.project_status = instance.project.COMPLETED
-            instance.project.save()
-        # user's reinvest_pool will be decremented on this Payment's save
-        reinvestment.save()
-
-
 @receiver(signals.post_save, sender=RepaymentFragment)
 def post_save_repayment_fragment(**kwargs):
     """
@@ -139,7 +100,9 @@ def post_save_payment(**kwargs):
         instance.project.donors.add(instance.user)
     if instance.payment_type == PaymentType.objects.get_reinvestment_fragment():
         instance.user.reinvest_pool -= float(instance.amount)
-        instance.project.monthly_reinvestment_cap -= float(instance.amount)
+        instance.user.reinvest_pool=float(format(round(instance.user.reinvest_pool,2)))
+        if instance.user.reinvest_pool <= 0.01:
+            instance.user.reinvest_pool = 0
         instance.user.save()
 
 
@@ -175,21 +138,6 @@ def post_delete_payment(**kwargs):
         admin_reinvestment.amount -= float(instance.amount)
         if admin_reinvestment.payment_set.all().count() == 0:
             admin_reinvestment.delete()
-
-
-@receiver(signals.pre_init, sender=UserReinvestment)
-def pre_init_user_reinvestment(**kwargs):
-    """
-    Raises a NotEnoughFundingException before __init__ if there are not enough
-    funds for this UserReinvestment.
-    """
-    init_kwargs = kwargs.get('kwargs')
-    # can't initialize admin_repayment without required 'project' kwarg
-    if not init_kwargs or not init_kwargs.get('user'):
-        raise NotEnoughFundingException()
-    user = init_kwargs['user']
-    if user.reinvest_pool < 0.0:
-        raise NotEnoughFundingException()
 
 
 @receiver(signals.pre_save, sender=UserReinvestment)

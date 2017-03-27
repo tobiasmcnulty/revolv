@@ -70,6 +70,7 @@ def stripe_payment(request, pk):
             "msg": error_msg, "project": project
         })
 
+    tip = None
     if tip_cents > 0:
         tip=Tip.objects.create(
             amount=tip_cents / 100.0,
