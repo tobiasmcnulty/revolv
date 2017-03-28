@@ -21,6 +21,8 @@ body {
     background: #fff;
     float: left;
     width: 100%;
+    position: relative;
+    z-index: -10;
 }
 input,
 button {
@@ -273,12 +275,18 @@ a:hover {
     padding: 0;
     float: left;
 }
-/*.carousel-inner {
+.carousel-inner {
     z-index: -10;
+}
+#champion-carousel .carousel-inner {
+    z-index: 0;
 }
 ol.carousel-indicators {
     z-index: -5;
-}*/
+}
+div#myCarousel {
+    z-index: -20;
+}
 
 #myCarousel .carousel-prev-button {
     position: relative;
@@ -398,6 +406,12 @@ ol.carousel-indicators {
     height: 34vh;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    position: relative;
+    z-index: -1;
+ }
+ .imageContainer.join-mov-btn-cntnr {
+    position: relative;
+    z-index: -1;
  }
 
  .text_on_blue_image {
@@ -682,7 +696,7 @@ p.attribution.footer-text {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1019;
+    z-index: 0;
 }
 .after-header {
     margin-top: 102px;
@@ -1128,6 +1142,7 @@ padding: 0;
     float: left;
     position: relative;
     width: 100%;
+    z-index: -8;
 }
 .active-projects-module .container {
     padding: 0 15px;
@@ -1320,6 +1335,8 @@ padding: 0;
 
 .our-impacts-module {
     text-align: center;
+    position: relative;
+    z-index: -6;
 }
 .our-impacts-module .title-our-impacts {
     letter-spacing: 8px;
@@ -1421,6 +1438,8 @@ padding: 0;
 
 .how-it-works-module {
     text-align: center;
+    position: relative;
+    z-index: -5;
 }
 .how-it-works-module .title-how-it-works {
     letter-spacing: 8px;
@@ -1580,6 +1599,8 @@ padding: 0;
 .testimonial-module {
     text-align: center;
     padding-bottom: 65px;
+    position: relative;
+    z-index: -5;
 }
 .testimonial-module .title-testimonial {
     letter-spacing: 8px;
@@ -1703,6 +1724,7 @@ padding: 0;
     float: left;
     position: relative;
     width: 100%;
+    z-index: -5;
 }
 .featured-on-module .title-featured-on {
     letter-spacing: 8px;
@@ -1885,6 +1907,7 @@ padding: 0;
     position: relative;
     height: 448px;
     overflow: hidden;
+    z-index: -5;
 }
 .newsletter-module .img-preload {
     display: block;
@@ -4134,10 +4157,12 @@ header.edit-project-header > .container > h1 {
 /* .footer */
 
 .footer {
+    position: relative;
     background-color: #282828;
     min-height: 100px;
     float: left;
     width: 100%;
+    z-index: -5;
 }
 .footer .container {
     height: 100%;
@@ -9913,6 +9938,7 @@ width: 580px;
       line-height: 37.5px;
       padding: 0 22px;
       border-width:2px !important;
+      width: 60%;
     }
     .container {
         width: auto;
@@ -12568,9 +12594,10 @@ width: 580px;
       background-repeat: no-repeat !important;
     }
     #project .title-blue-border {
-  font-size: 13px;
-  padding: 0 5px 0 10px;
-}
+      font-size: 13px;
+      padding: 0 5px 0 10px;
+      width: 80%;
+    }
 }
 @media (max-width: 700px) {
     .top-section .section-video-area {
@@ -13640,6 +13667,7 @@ a.How_it_Works:hover {
     position: relative;
     width: 100%;
     padding: 18vmin calc(30px + 5.6%) 5vmin;
+    z-index: -2;
 }
 .curnt-projct-lst-head > .divider-title {
     font-size: 24px;
@@ -14237,7 +14265,7 @@ CSS for financial report*/
 }
 #example_wrapper table thead tr th, #example_wrapper table tr td {
     color: #222222;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 #example_wrapper button.dt-button, #example_wrapper div.dt-button, #example_wrapper a.dt-button {
     font-size: 1.4rem;
@@ -14360,7 +14388,7 @@ CSS for Newsletter pop-up*/
 }
 .newsletter-msg {
     background-color: #fff;
-    padding: 3vmin 2vmin 4vmin;
+    padding: 6vmin 2vmin 6vmin;
     width: 39%;
     font-size: 2.7vmin;
     color: #7E7E7E;
@@ -14372,9 +14400,9 @@ CSS for Newsletter pop-up*/
     position: absolute;
     right: 2%;
     top: 1.5vmin;
-    border: 1px solid #ccc;
     width: 2.4vmin;
     cursor: pointer;
+    filter: brightness(40%);
 }
 .newsletter-msg-btn-cntnr {
     padding: 4vmin 44% 0;
@@ -14404,5 +14432,27 @@ CSS for Newsletter pop-up*/
 @media only screen and (device-width: 1024px) and (orientation:landscape) {
     .footer .container .bottoms .social-icons-cntnr {
         align-items: center;
+    }
+}
+.password-change .component-container {
+    margin: 0 auto;
+    width: 29%;
+}
+form#change_password_form label {
+    width: 100%;
+}
+.password-change .component-container p {
+    margin-bottom: 15px;
+}
+@media only screen and (max-width: 767px) {
+    .password-change .component-container {
+        margin: 0 auto;
+        width: 90%;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .password-change .component-container {
+        margin: 0 auto;
+        width: 50%;
     }
 }
