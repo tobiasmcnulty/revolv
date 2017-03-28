@@ -20,10 +20,12 @@ def user_reinvestment_reminder():
     """
     SITE_URL = settings.SITE_URL
     project_reinvest_list_url = SITE_URL + reverse('reinvest_list')
+    project_portfolio_url = SITE_URL + reverse('dashboard')
     unsubscribe_update_url = SITE_URL + reverse('unsubscribe', kwargs={'action': 'updates'})
     for user in RevolvUserProfile.objects.filter(reinvest_pool__gt=0.0, subscribed_to_updates=True):
         data = dict()
         data['amount'] = user.reinvest_pool
+        data['portfolio_link'] = project_portfolio_url + utils.get_query_string(user.user)
         data['projects_url'] = project_reinvest_list_url + utils.get_query_string(user.user)
         data['unsubscribe_url'] = unsubscribe_update_url + utils.get_query_string(user.user)
         data['first_name'] = user.user.first_name

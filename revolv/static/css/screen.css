@@ -12731,6 +12731,7 @@ label.checkmark.animate:after {
 
 .dashboard .active-projects-module {
     background-color: #fff;
+    z-index: 0;
 }
 .dashboard .impact {
     text-align: center;
