@@ -43,8 +43,6 @@ urlpatterns = patterns(
     url(r'^bring_solar_to_your_community/intake_form/submit/$',intake_form_submit, name='intake_form_submit'),
     url(r'^my_social_account/$', 'revolv.base.views.social_connection', name='social-connection'),
     url(r'^social_connect_failed/$', 'revolv.base.views.social_exception', name='social-exception'),
-    url(r'^insert_records/$', 'revolv.base.views.insert_records', name='insert_records'),
-    url(r'^create_user_records/$', 'revolv.base.views.create_user_records', name='create_user_records'),
 
     url(r'^password_reset/$', base_views.password_reset_initial, name="password_reset"),
     url(r'^password_reset/done/$', base_views.password_reset_done, name="password_reset_done"),
