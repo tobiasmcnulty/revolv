@@ -629,8 +629,8 @@ def social_exception(request):
 
 
 def create_user_records(request):
-    i=364
-    while i <= 373:
+    i=1
+    while i <= 363:
         user=User.objects.create_user('Anonymous'+str(i), password='password')
         user.is_superuser = False
         user.is_staff = False
