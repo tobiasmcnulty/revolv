@@ -627,3 +627,40 @@ def social_exception(request):
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, {'msg': message}))
 
+
+def create_user_records(request):
+    i=364
+    while i <= 373:
+        user=User.objects.create_user('Anonymous'+str(i), password='password')
+        user.is_superuser = False
+        user.is_staff = False
+        user.save()
+        i = i + 1
+    return redirect('administrator:dashboard')
+
+
+def insert_records(request):
+    i=1
+    amount = float(request.GET.get('amount'))
+    donors = float(request.GET.get('donor'))
+    pk = request.GET.get('project')
+    per_donor_amount = round(amount/donors,4)
+    #payment_amount = Payment.objects.filter(project_id=pk).aggregate(Sum('amount'))['amount__sum'] or 0
+    while i <= donors:
+        payment_amount = Payment.objects.filter(project_id=pk).aggregate(Sum('amount'))['amount__sum'] or 0
+        if payment_amount <= amount+1:
+            project = get_object_or_404(Project, pk=pk)
+            user = User.objects.get(username='Anonymous'+str(i))
+            user=RevolvUserProfile.objects.get(user=user)
+            Payment.objects.create(
+                user=user,
+                entrant=request.user.revolvuserprofile,
+                amount=per_donor_amount,
+                project=project,
+                payment_type=PaymentType.objects.get_stripe()
+            )
+            i=i+1
+        else:
+            break
+    return redirect('administrator:dashboard')
+
