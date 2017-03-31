@@ -1,3 +1,4 @@
+import csv
 from collections import OrderedDict
 import logging
 from django.conf import settings
@@ -33,9 +34,11 @@ from revolv.lib.mailer import send_revolv_email
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from itertools import chain
+from django.db.models import Q
 
 from social.apps.django_app.default.models import UserSocialAuth
 from revolv.payments.models import PaymentType
+from random import randint
 from decimal import Decimal
 
 
@@ -627,3 +630,119 @@ def social_exception(request):
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, {'msg': message}))
 
+
+def create_user_records(request):
+    path = request.GET.get('path')
+    if path:
+        with open(path, "rb") as f:
+            reader = csv.reader(f)
+            fields=len(next(reader))
+            username_count = 0
+            pk = request.GET.get('project')
+            project = get_object_or_404(Project, pk=pk)
+            i=0
+            for col in reader:
+                email = col[1]
+                amount = col[2]
+                username = None
+                if fields == 5:
+                    username = col[4]
+                user_count = User.objects.filter(Q(email=email) | Q(username=username)).count()
+                print"users count: ",user_count
+                try:
+                    if user_count > 0:
+                        if user_count == 1:
+                            print "only one instance of user"
+                            user = User.objects.filter(Q(email=email) | Q(username=username))
+                            user_profile = RevolvUserProfile.objects.get(user=user)
+                            Payment.objects.create(
+                                user=user_profile,
+                                entrant=user_profile,
+                                amount=amount,
+                                project=project,
+                                payment_type=PaymentType.objects.get_stripe()
+                            )
+                        elif(email == "andreaskarelas@yahoo.com"):
+                            user = User.objects.filter(username="adk123")
+                            user_profile = RevolvUserProfile.objects.get(user=user)
+                            Payment.objects.create(
+                                    user=user_profile,
+                                    entrant=user_profile,
+                                    amount=amount,
+                                    project=project,
+                                    payment_type=PaymentType.objects.get_stripe()
+                            )
+                        elif(email == "info@re-volv.org"):
+                            user = User.objects.filter(username="11thHour")
+                            user_profile = RevolvUserProfile.objects.get(user=user)
+                            Payment.objects.create(
+                                user=user_profile,
+                                entrant=user_profile,
+                                amount=amount,
+                                project=project,
+                                payment_type=PaymentType.objects.get_stripe()
+                            )
+                        elif (email == "hmonioudis@gmail.com"):
+                            user = User.objects.filter(username="Hmonioudis")
+                            user_profile = RevolvUserProfile.objects.get(user=user)
+                            Payment.objects.create(
+                                user=user_profile,
+                                entrant=user_profile,
+                                amount=amount,
+                                project=project,
+                                payment_type=PaymentType.objects.get_stripe()
+                            )
+                        elif (email == "ssmiller03@gmail.com"):
+                            user = User.objects.filter(username="Soulrebel5446")
+                            user_profile = RevolvUserProfile.objects.get(user=user)
+                            Payment.objects.create(
+                                user=user_profile,
+                                entrant=user_profile,
+                                amount=amount,
+                                project=project,
+                                payment_type=PaymentType.objects.get_stripe()
+                            )
+                        elif (email == "cgkeyles213@gmail.com"):
+                            user = User.objects.filter(username="Cgkeyles")
+                            user_profile = RevolvUserProfile.objects.get(user=user)
+                            Payment.objects.create(
+                                user=user_profile,
+                                entrant=user_profile,
+                                amount=amount,
+                                project=project,
+                                payment_type=PaymentType.objects.get_stripe()
+                            )
+                    else:
+                        username = username if username else email.split('@')[0][:29]
+                        #user_name = username[0][:29]
+
+                        user_count = User.objects.filter(username=username).count()
+
+                        if user_count > 0:
+                            username = username + str(randint(0,9))
+
+                        print "New username: ", username
+                        new_user = User.objects.create_user(username=username, email=email, password='xCapxZe3L!Ns')
+                        context={}
+                        context['user']=new_user
+                        context['password']='xCapxZe3L!Ns'
+
+                        send_revolv_email(
+                            'create_new_user',
+                            context, [email]
+                        )
+                        print "created new user"
+                        new_user_profile = RevolvUserProfile.objects.get(user=new_user)
+
+                        Payment.objects.create(
+                            user=new_user_profile,
+                            entrant=new_user_profile,
+                            amount=amount,
+                            project=project,
+                            payment_type=PaymentType.objects.get_stripe()
+                        )
+                except Exception as e:
+                    print "~~~~~~~~~ exception ~~~~~~~~", e
+
+
+    return redirect('administrator:dashboard')
