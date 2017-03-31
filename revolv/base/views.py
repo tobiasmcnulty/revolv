@@ -630,17 +630,3 @@ def social_exception(request):
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, {'msg': message}))
 
-
-def create_user_records(request):
-    user= User.objects.get(username='bobmarsh1546')
-    new_user_profile = RevolvUserProfile.objects.get(user=user)
-    project = get_object_or_404(Project, pk=16)
-
-    Payment.objects.create(
-        user=new_user_profile,
-        entrant=new_user_profile,
-        amount=100,
-        project=project,
-        payment_type=PaymentType.objects.get_stripe()
-    )
-    return redirect('administrator:dashboard')
