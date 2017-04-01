@@ -140,24 +140,6 @@ def post_delete_payment(**kwargs):
             admin_reinvestment.delete()
 
 
-@receiver(signals.pre_save, sender=UserReinvestment)
-def pre_save_user_reinvestment(**kwargs):
-    """
-    We cap the amount here by monthly allocation and funding goal itself
-    We'll pick the minimum. Any balance we'll keep for the next cycle
-    """
-    instance = kwargs.get('instance')
-    project = instance.project
-
-    total_left = project.amount_left
-    if total_left <= 0.0:
-        raise ProjectNotEligibleException()
-    if total_left < float(instance.amount):
-        instance.amount = total_left
-    if instance.user.reinvest_pool < float(instance.amount):
-        raise NotEnoughFundingException()
-
-
 @receiver(signals.post_save, sender=UserReinvestment)
 def post_save_user_reinvestment(**kwargs):
     """
