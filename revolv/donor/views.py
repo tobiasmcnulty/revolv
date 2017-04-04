@@ -9,17 +9,19 @@ from revolv.payments.models import Payment
 from revolv.project.models import Project, Category
 from revolv.project.utils import aggregate_stats
 
+from revolv.payments.models import UserReinvestment
+
 
 def humanize_int(n):
     # NOTE: GPL licensed snipped c/o
     # https://github.com/localwiki/localwiki-backend-server/blob/master/localwiki/users/views.py#L47
     mag = 0
-    if n < 1000:
-        return str(n)
-    while n>= 1000:
+    if n < 10000:
+        return int(n)
+    while n>= 10000:
         mag += 1
         n /= 1000.0
-    return '%.2f%s' % (n, ['', 'k', 'M', 'B', 'T', 'P'][mag])
+    return '%.1f%s' % (n, ['', 'k', 'M', 'B', 'T', 'P'][mag])
 
 
 def humanize_integers(d):
@@ -62,7 +64,9 @@ class DonorDashboardView(UserDataMixin, TemplateView):
         statistics_dictionary['total_donated'] = total_donations(self.user_profile)
         total_people_affected = Project.objects.donated_completed_projects(self.user_profile)
         statistics_dictionary['people_served'] = total_people_affected
-        #humanize_integers(statistics_dictionary)
+        humanize_integers(statistics_dictionary)
+        statistics_dictionary['reinvestment'] = \
+        UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))['amount__sum'] or 0
         context['statistics'] = statistics_dictionary
         if self.user_profile and self.user_profile.reinvest_pool > 0.0:
             context["reinvestment_amount"] = self.user_profile.reinvest_pool

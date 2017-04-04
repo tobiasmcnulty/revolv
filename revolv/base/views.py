@@ -41,6 +41,7 @@ from revolv.payments.models import PaymentType
 from random import randint
 from decimal import Decimal
 
+from revolv.payments.models import UserReinvestment
 
 logger = logging.getLogger(__name__)
 
@@ -62,7 +63,7 @@ class HomePageView(UserDataMixin, TemplateView):
         # Assume 20 year lifetime.
         # We use str() to avoid django adding commas to integer in the template.
         people_donated_sys_count = RevolvUserProfile.objects.exclude(project=None).count()
-        people_donated_stat_Count = str(int(people_donated_sys_count + 615))
+        people_donated_stat_Count = str(int(people_donated_sys_count ))
 
         global_impacts = {
             # Users who have backed at least one project:
@@ -160,7 +161,10 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         statistics_dictionary['total_donated'] = total_donations(self.user_profile)
         total_people_affected = Project.objects.donated_completed_projects(self.user_profile)
         statistics_dictionary['people_served'] = total_people_affected
-        #humanize_integers(statistics_dictionary)
+        humanize_integers(statistics_dictionary)
+        statistics_dictionary['reinvestment'] = \
+            UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))[
+                 'amount__sum'] or 0
         context['statistics'] = statistics_dictionary
 
         return context
