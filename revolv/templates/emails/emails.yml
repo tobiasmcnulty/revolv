@@ -176,7 +176,7 @@ reinvestment_reminder:
         Dear {{ first_name }},
         The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.
 
-        You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
+        You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
         <a href='{{projects_url}}'>here</a>.
 
@@ -192,7 +192,7 @@ reinvestment_reminder:
         <p>Dear {{ first_name | title }},</p>
         <p>The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.</p>
 
-        <p>You now have ${{ amount }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
+        <p>You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
         <a href='{{projects_url}}'>here</a>.</p>
 

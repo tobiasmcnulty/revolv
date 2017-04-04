@@ -22,6 +22,7 @@ from revolv.project import forms
 from revolv.project.models import Category, Project, ProjectUpdate
 from revolv.tasks.sfdc import send_donation_info
 from django.contrib.auth.models import User
+from sesame import utils
 
 logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
@@ -94,13 +95,11 @@ def stripe_payment(request, pk):
     context['amount'] = donation_cents/100.0
     context['tip_cents'] = tip_cents / 100.0
     context['amount_cents'] = amount_cents/100.0
-    context['portfolio_link'] = portfolio_link
-
+    context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
     send_revolv_email(
         'post_donation',
         context, [request.user.email]
     )
-    # return redirect('project:view', pk=project.pk)
     return redirect('dashboard')
 
 
