@@ -13,7 +13,7 @@ post_donation:
 
         donation of ${{amount}} will help {{project.title}} reach their goal of going solar.
 
-        Through your Portfolio page{link to their portfolio page} on re-volv.org, you can see the impact
+        Through your  <a href='{{portfolio_link}}'>Portfolio</a> on re-volv.org, you can see the impact
 
         your donation has created. And when this solar project is turned on, you’ll be able to vote on
 
@@ -52,7 +52,7 @@ post_donation:
 
         We also greatly appreciate your donation of ${{ tip_cents|floatformat:'2' }} to support RE-volv's operations. (Your total tax deductible donation amount is ${{amount_cents|floatformat:'2'}})</p>
 
-        <p>Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
+        <p>Through your <a href='{{portfolio_link}}'>Portfolio</a> on re-volv.org, you can see the impact
 
         your donation has created. And when this solar project is turned on, you’ll be able to vote on
 
@@ -173,10 +173,10 @@ reinvestment_reminder:
     subject: "You have new funds in your RE-volv Portfolio!"
     body:
         "
-        Dear {{ first_name }},
+        Dear {{ first_name | title }},
         The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.
 
-        You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
+        You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
         <a href='{{projects_url}}'>here</a>.
 
@@ -189,10 +189,10 @@ reinvestment_reminder:
         "
     html:
         "
-        <p>Dear {{ first_name | title }},</p>
+        <p>Dear {{ first_name }},</p>
         <p>The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.</p>
 
-        <p>You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio page</a> that
+        <p>You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
         <a href='{{projects_url}}'>here</a>.</p>
 
@@ -242,7 +242,7 @@ signup:
             Your commitment to solar energy is appreciated by the communities we
             serve and the environment we work to protect.
 
-            Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
+            Through your <a href='{{portfolio_link}}'>Portfolio</a> on re-volv.org, you can see the impact
             you’re having through the crowdfunding campaigns you choose to support. And when the solar
             projects you support are turned on, you’ll be able to vote on how RE-volv reinvests the proceeds
             from those projects to bring solar to other deserving nonprofits.
@@ -262,7 +262,7 @@ signup:
 
             <p>Your commitment to solar energy is appreciated by the communities we
             serve and the environment we work to protect.</p>
-            <p>Through your <a href='{{portfolio_link}}'>Portfolio page</a> on re-volv.org, you can see the impact
+            <p>Through your <a href='{{portfolio_link}}'>Portfolio</a> on re-volv.org, you can see the impact
             you’re having through the crowdfunding campaigns you choose to support. And when the solar
             projects you support are turned on, you’ll be able to vote on how RE-volv reinvests the proceeds
             from those projects to bring solar to other deserving nonprofits.</p>

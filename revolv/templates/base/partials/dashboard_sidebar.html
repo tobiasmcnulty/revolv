@@ -50,10 +50,10 @@
 </div>
 {% endif %}
 {% if user.revolvuserprofile.is_administrator %}
-    <a href="{% url "donationreport" %}" class="create-new-button" id="create_project">Financial Report</a>
+    <a href="{% url "donationreport" %}" class="create-new-button" >Financial Report</a>
 {% endif %}
 {% if user.revolvuserprofile.is_ambassador and not user.revolvuserprofile.is_administrator %}
-    <a href="{% url "financialreport" %}" class="create-new-button" id="create_project">Financial Report</a>
+    <a href="{% url "financialreport" %}" class="create-new-button" >Financial Report</a>
 {% endif %}
 <div class="dashboard-section projects">
     {% if donor_has_no_donated_projects %}
