@@ -67,10 +67,12 @@ def distribute_reinvestment_fund():
                                    amount=format(round(amount,2))
                                    )
 
-
             if project.amount_donated >= project.funding_goal:
                 project.project_status = project.COMPLETED
                 project.save()
             reinvestment.save()
 
-
+    for user in users:
+        if user.reinvest_pool <= 0.01:
+            user.reinvest_pool = 0
+            user.save()
