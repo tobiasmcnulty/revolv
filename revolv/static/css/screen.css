@@ -14236,19 +14236,19 @@ signup > .row .social-login-buttons {
 }
 /*
 CSS for financial report*/
-#example_wrapper label {
+#donation_report_wrapper label {
     font-size: 1.4rem;
 }
-#example_wrapper select {
+#donation_report_wrapper select {
     font-size: 1.4rem;
     padding: 0.6rem;
     height: 3.2125rem;
 }
-#example_wrapper table thead tr th, #example_wrapper table tr td {
+#donation_report_wrapper table thead tr th, #donation_report_wrapper table tr td {
     color: #222222;
     font-size: 1.3rem;
 }
-#example_wrapper button.dt-button, #example_wrapper div.dt-button, #example_wrapper a.dt-button {
+#donation_report_wrapper button.dt-button, #donation_report_wrapper div.dt-button, #donation_report_wrapper a.dt-button {
     font-size: 1.4rem;
 }
 .dataTables_wrapper .dataTables_info {
@@ -14257,13 +14257,13 @@ CSS for financial report*/
 .dataTables_paginate .paginate_button {
     font-size: 1.6rem;
 }
-#example_filter input[type="search"] {
+#donation_report_filter input[type="search"] {
     font-size: 1.4rem;
 }
-#example_wrapper .dataTables_paginate {
+#donation_report_wrapper .dataTables_paginate {
     padding-bottom: 2em;
 }
-#example_wrapper .dt-buttons {
+#donation_report_wrapper .dt-buttons {
     padding-top: 2em;
 }
 .donate-msg-cntnr {
