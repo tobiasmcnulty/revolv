@@ -124,9 +124,9 @@ WSGI_APPLICATION = 'revolv.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'revolv',
-        'USER': 'revolv',
-        'PASSWORD': 'revolv',
+        'NAME': 'revolv-prod-new',
+        'USER': 'pranay',
+        'PASSWORD': 'tudip123',
         # you have have to change this to "localhost"
         'HOST': 'localhost',
         'PORT': '',
@@ -351,8 +351,7 @@ CELERYBEAT_SCHEDULE = {
     },
     "reinvestment_rollover": {
         "task": "revolv.tasks.reinvestment_rollover.distribute_reinvestment_fund",
-        "schedule": crontab(hour=ADMIN_REINVESTMENT_DATE['hour'], minute=ADMIN_REINVESTMENT_DATE['minute'],
-                            day_of_month=ADMIN_REINVESTMENT_DATE['day']),
+        "schedule": crontab(),
     }
 }
 
@@ -429,8 +428,11 @@ SFDC_REVOLV_SIGNUP = 'login'
 SFDC_REVOLV_DONATION = 'donation'
 
 # Stripe
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
+# STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+# STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
+
+STRIPE_SECRET_KEY = 'sk_test_vbQwIK5ECQMWvDtbteI6QWJa'
+STRIPE_PUBLISHABLE = 'pk_test_DQ2IZq0c2UbaDG75u4hWBEMC'
 
 VERSION_NUM = '442491822291'
 
