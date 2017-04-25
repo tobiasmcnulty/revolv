@@ -82,9 +82,9 @@ class HomePageView(UserDataMixin, TemplateView):
         completed_projects = Project.objects.get_completed().reverse()
         context["first_project"] = active_projects[0] if len(active_projects) > 0 else None
         # Get top 6 featured projects, Changed to active Projects in final fix
-        context["featured_projects"] = active_projects[:6]
+        context["featured_projects"] = active_projects
         #accept return value from project/model.py and display it on project/home.html file
-        context["completed_featured_projects"] = completed_projects[:6]
+        context["completed_featured_projects"] = completed_projects
         context["completed_projects_count"] = Project.objects.get_completed().count()
         context["total_donors_count"] = Payment.objects.total_distinct_organic_donors()
         context["global_impacts"] = self.get_global_impacts()
