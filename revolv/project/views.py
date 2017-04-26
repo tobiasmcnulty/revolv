@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse
-from django.http.response import HttpResponseBadRequest
+from django.http.response import HttpResponseBadRequest, HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import CreateView, DetailView, UpdateView, TemplateView
 from django.views.generic.edit import FormView
@@ -24,17 +24,20 @@ from revolv.tasks.sfdc import send_donation_info
 from django.contrib.auth.models import User
 from sesame import utils
 
+from revolv.base.models import RevolvUserProfile
+import json
+
 logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-@login_required
+#@login_required
 def stripe_payment(request, pk):
     try:
         token = request.POST['stripeToken']
         tip_cents = request.POST['metadata']
-        amount_cents = request.POST['amount_cents']
+        amount_cents = request.POST['donate_amount_cents']
     except KeyError:
         logger.exception('stripe_payment called without required POST data')
         return HttpResponseBadRequest('bad POST data')
@@ -70,38 +73,66 @@ def stripe_payment(request, pk):
         return render(request, "project/project_donate_error.html", {
             "msg": error_msg, "project": project
         })
+    if request.user.is_authenticated():
+        tip = None
+        if tip_cents > 0:
+            tip=Tip.objects.create(
+                amount=tip_cents / 100.0,
+                user=request.user.revolvuserprofile,
+            )
 
-    tip = None
-    if tip_cents > 0:
-        tip=Tip.objects.create(
-            amount=tip_cents / 100.0,
+        Payment.objects.create(
             user=request.user.revolvuserprofile,
+            entrant=request.user.revolvuserprofile,
+            amount=donation_cents/100.0,
+            project=project,
+            tip=tip,
+            payment_type=PaymentType.objects.get_stripe(),
         )
 
-    Payment.objects.create(
-        user=request.user.revolvuserprofile,
-        entrant=request.user.revolvuserprofile,
-        amount=donation_cents/100.0,
-        project=project,
-        tip=tip,
-        payment_type=PaymentType.objects.get_stripe(),
-    )
+        SITE_URL = settings.SITE_URL
+        portfolio_link = SITE_URL + reverse('dashboard')
+        context = {}
+        context['user'] = request.user
+        context['project'] = project
+        context['amount'] = donation_cents/100.0
+        context['tip_cents'] = tip_cents / 100.0
+        context['amount_cents'] = amount_cents/100.0
+        context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
+        send_revolv_email(
+            'post_donation',
+            context, [request.user.email]
+        )
+        return redirect('dashboard')
 
-    SITE_URL = settings.SITE_URL
-    portfolio_link = SITE_URL + reverse('dashboard')
-    context = {}
-    context['user'] = request.user
-    context['project'] = project
-    context['amount'] = donation_cents/100.0
-    context['tip_cents'] = tip_cents / 100.0
-    context['amount_cents'] = amount_cents/100.0
-    context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
-    send_revolv_email(
-        'post_donation',
-        context, [request.user.email]
-    )
-    return redirect('dashboard')
+    else:
+        user_id = User.objects.get(username='Guest').pk
+        user = RevolvUserProfile.objects.get(user_id=user_id)
+        tip = None
+        if tip_cents > 0:
+            tip = Tip.objects.create(
+                amount=tip_cents / 100.0,
+                user=user,
+            )
 
+        payment = Payment.objects.create(
+            user=user,
+            entrant=user,
+            amount=donation_cents / 100.0,
+            project=project,
+            tip=tip,
+            payment_type=PaymentType.objects.get_stripe(),
+        )
+
+        # send_signup_info.delay('Guest', email)
+        # send_donation_info.delay(email,'Guest', amount,
+        #                            project.title,'' )
+
+        if project.amount_donated >= project.funding_goal:
+            project.project_status = project.COMPLETED
+            project.save()
+
+        return HttpResponse(json.dumps({'payment': payment.id}), content_type="application/json")
 
 class DonationLevelFormSetMixin(object):
     """
