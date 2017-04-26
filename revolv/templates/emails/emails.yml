@@ -2,7 +2,7 @@ post_donation:
     subject: "Thank you for donating to RE-volv!"
     body:
         "
-        Hi {{user.first_name | title}} {{user.last_name| title}}!
+        Hi {{first_name }} {{last_name}}!
 
         Thank you for your generous donation to RE-volv!
 
