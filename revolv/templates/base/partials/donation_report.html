@@ -15,7 +15,10 @@
     #map-canvas img {max-width: none;}
 </style>
 
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="/static/js/jquery.dataTables.min.js"></script>
 <script src="/static/js/moment.min.js"></script>
 <script src="/static/js/datetime-moment.js"></script>
@@ -26,29 +29,25 @@
 <script src="/static/js/vfs_fonts.js"></script>
 <script src="/static/js/buttons.html5.min.js"></script>
 <script src="/static/js/buttons.print.min.js"></script>
-<script src="/static/js/sum.js"></script>
-
-<script>
-    $(document).ready(function () {
-    table=$('#donation_report').DataTable({
-       <!--"dom": "Bfrtip",-->
-       "dom": "lfrtBip",
-        buttons: [
-           'csv', 'excel', 'pdf', 'print'
-        ],
-         "order": [[ 3, "desc" ]]
-    })
-
-} );
+<script src="/static/js/donation_report.js"></script>
 
 
-</script>
 {% endblock %}
 
 {% block body %}
 
-<div class="container after-header">
+<div class="container after-header" >
   <table id="donation_report" class="display nowrap" cellspacing="0" width="100%">
+   <div id="date_range" class="form-group donation-report-padding">
+       <div>
+            <div class="range-label">From:</div>
+            <input type="text" class="range-date" id="datepicker-1"/>
+        </div>
+        <div>
+            <div class="range-label">To:</div>
+            <input type="text" class="range-date" id="datepicker-2"/>
+        </div>
+    </div>
   <thead >
       <tr>
         <th>Donors Name</th>
@@ -58,6 +57,7 @@
         <th>Name of Project</th>
         <th>Donation to Solar Seed Fund</th>
         <th>Reinvestment in Solar Seed Fund</th>
+          <th>Admin Reinvestment in Solar Seed Fund</th>
         <th>Donation to Operations</th>
         <th>Total Donations</th>
       </tr>
@@ -77,13 +77,19 @@
         {% endif %}
         {% if payment.user_reinvestment %}
           <td>$0.00</td>
-          <td>${{payment.user_reinvestment.amount}}</td>
+          <td>${{payment.user_reinvestment.amount|floatformat:2}}</td>
+          <td>$0.00</td>
+        {% elif payment.admin_reinvestment %}
+          <td>$0.00</td>
+          <td>$0.00</td>
+          <td>${{payment.amount|floatformat:2}}</td>
         {% else %}
             {% if payment.amount %}
              <td>${{ payment.amount|floatformat:2 }}</td>
-            {% else %}
+            {% else  %}
              <td>$0.00</td>
              {% endif %}
+            <td>$0.00</td>
             <td>$0.00</td>
          {% endif %}
         {% if payment.tip.amount %}
