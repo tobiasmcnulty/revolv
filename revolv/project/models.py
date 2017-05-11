@@ -760,6 +760,15 @@ class ProjectUpdate(models.Model):
         return '%s at %s: %s' % (self.project, self.date, self.update_text[:50])
 
 
+class ProjectMatchingDonors(models.Model):
+    """
+    Model to track matching donors and there amount.
+    """
+    project = models.ForeignKey(Project)
+    matching_donor = models.ForeignKey(RevolvUserProfile, related_name='matching_donor')
+    amount = models.IntegerField()
+
+
 class Category(models.Model):
     """
     Categories that a project is associated with. Categories are predefined,

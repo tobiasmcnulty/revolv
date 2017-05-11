@@ -14239,7 +14239,15 @@ CSS for financial report*/
 #donation_report_wrapper label {
     font-size: 1.4rem;
 }
+#matching_donor_wrapper label {
+    font-size: 1.4rem;
+}
 #donation_report_wrapper select {
+    font-size: 1.4rem;
+    padding: 0.6rem;
+    height: 3.2125rem;
+}
+#matching_donor_wrapper select {
     font-size: 1.4rem;
     padding: 0.6rem;
     height: 3.2125rem;
@@ -14248,7 +14256,14 @@ CSS for financial report*/
     color: #222222;
     font-size: 1.3rem;
 }
+#matching_donor_wrapper table thead tr th, #matching_donor_wrapper table tr td {
+    color: #222222;
+    font-size: 1.3rem;
+}
 #donation_report_wrapper button.dt-button, #donation_report_wrapper div.dt-button, #donation_report_wrapper a.dt-button {
+    font-size: 1.4rem;
+}
+#matching_donor_wrapper button.dt-button, #matching_donor_wrapper div.dt-button, #matching_donor_wrapper a.dt-button {
     font-size: 1.4rem;
 }
 .dataTables_wrapper .dataTables_info {
@@ -14263,7 +14278,13 @@ CSS for financial report*/
 #donation_report_wrapper .dataTables_paginate {
     padding-bottom: 2em;
 }
+#matching_donor_wrapper .dataTables_paginate {
+    padding-bottom: 2em;
+}
 #donation_report_wrapper .dt-buttons {
+    padding-top: 2em;
+}
+#matching_donor_wrapper .dt-buttons {
     padding-top: 2em;
 }
 .donate-msg-cntnr {
@@ -14470,3 +14491,42 @@ form#change_password_form label {
     padding-top:3vmin;
     padding-bottom:3vmin;
  }
+ #add_matching_donor .matching-donor-dropdown {
+    font-size: 1.9vmin;
+    height: 5vmin;
+}
+.matching-donor-save {
+    font-size: 2vmin;
+}
+.matching-donor-save-btn {
+    position: relative;
+    padding: 0 41% 0;
+    padding-top: 2vmin;
+}
+.matching-donor-label {
+    font-size: 1.9vmin;
+    font-weight: bold;
+}
+.matching-donor-section {
+    padding-top:4vmin;
+    font-size: 5vmin;
+    padding-bottom: 2vmin;
+}
+.matching-donor-add {
+    padding-top:2vmin;
+    font-size: 2vmin;
+}
+.edit {
+    font-size: 1.9vmin;
+    margin: 0;
+}
+.close-btn {
+    margin: 0;
+}
+#add_matching_donor .btn-modal {
+    font-size: 2vmin;
+}
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+    font-size: 2vmin;
+}

@@ -19,7 +19,7 @@ from revolv.payments.forms import CreditCardDonationForm
 from revolv.payments.models import UserReinvestment, Payment, PaymentType, Tip
 from revolv.payments.services import PaymentService
 from revolv.project import forms
-from revolv.project.models import Category, Project, ProjectUpdate
+from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors
 from revolv.tasks.sfdc import send_donation_info
 from django.contrib.auth.models import User
 from sesame import utils
@@ -52,11 +52,13 @@ def stripe_payment(request, pk):
 
     project = get_object_or_404(Project, pk=pk)
 
+    project_matching_donors = ProjectMatchingDonors.objects.filter(project=project, amount__gt=0)
+
     donation_cents = amount_cents - tip_cents
 
     error_msg = None
     try:
-        stripe.Charge.create(source=token, currency="usd", amount=amount_cents)
+        stripe.Charge.create(source=token, description="Donation for "+project.title, currency="usd", amount=amount_cents)
     except stripe.error.CardError as e:
         body = e.json_body
         error_msg = body['error']['message']
@@ -70,6 +72,28 @@ def stripe_payment(request, pk):
         return render(request, "project/project_donate_error.html", {
             "msg": error_msg, "project": project
         })
+
+    if project_matching_donors:
+        for donor in project_matching_donors:
+            if donor.amount > donation_cents / 100:
+                matching_donation = donation_cents / 100
+                donor.amount = donor.amount - donation_cents / 100
+                donor.save()
+            else:
+                matching_donation = donor.amount
+                donor.amount = 0
+                donor.save()
+
+            tip = None
+
+            Payment.objects.create(
+                user=donor.matching_donor,
+                entrant=donor.matching_donor,
+                amount=matching_donation,
+                project=project,
+                tip=tip,
+                payment_type=PaymentType.objects.get_stripe(),
+            )
 
     tip = None
     if tip_cents > 0:

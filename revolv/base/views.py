@@ -25,24 +25,17 @@ from revolv.base.forms import SignupForm
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.payments.models import Payment, Tip
-from revolv.project.models import Category, Project
+from revolv.project.models import Category, Project, ProjectMatchingDonors
 from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.base.models import RevolvUserProfile
 from revolv.tasks.sfdc import send_signup_info
 from revolv.lib.mailer import send_revolv_email
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from itertools import chain
-from django.db.models import Q
-
 from social.apps.django_app.default.models import UserSocialAuth
-from revolv.payments.models import PaymentType
-from random import randint
-from decimal import Decimal
-
 from revolv.payments.models import UserReinvestment
-
+from django.core import serializers
+import json
 logger = logging.getLogger(__name__)
 
 class HomePageView(UserDataMixin, TemplateView):
@@ -634,3 +627,73 @@ def social_exception(request):
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, {'msg': message}))
 
+
+class MatchingDonorsView(UserDataMixin, TemplateView):
+    """
+    The project view. Displays project details and allows for editing.
+
+    Accessed through /project/{project_id}
+    """
+    model = Payment
+    template_name = 'base/partials/matching_donors.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        return super(MatchingDonorsView, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        context = super(MatchingDonorsView, self).get_context_data(**kwargs)
+        context['donors'] = ProjectMatchingDonors.objects.all()
+        context['users'] = RevolvUserProfile.objects.all()
+        context['projects'] = Project.objects.all()
+        return self.render_to_response(context)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(MatchingDonorsView, self).get_context_data(**kwargs)
+        context['donors'] = ProjectMatchingDonors.objects.all()
+        context['users'] = RevolvUserProfile.objects.all()
+        context['projects'] = Project.objects.all()
+        return context
+
+@login_required
+def delete(request):
+    pk=request.REQUEST['id']
+    ProjectMatchingDonor = get_object_or_404(ProjectMatchingDonors, pk=pk)
+    ProjectMatchingDonor.delete()
+    return HttpResponse(json.dumps({'status': 'delete'}), content_type="application/json")
+
+@login_required
+def edit(request):
+    pk=request.REQUEST['id']
+    ProjectMatchingDonor = get_object_or_404(ProjectMatchingDonors, pk=pk)
+    serialized_obj = serializers.serialize('json', [ProjectMatchingDonor, ])
+    return HttpResponse(json.dumps({'ProjectMatchingDonor': serialized_obj}), content_type="application/json")
+
+@login_required
+@require_http_methods(['POST'])
+def add_maching_donors(request):
+    id=request.POST.get('id')
+    user=request.POST['user']
+    project=request.POST['project']
+    amount=request.POST['amount']
+    revolv_user=get_object_or_404(RevolvUserProfile, pk=user)
+
+    matching_project=get_object_or_404(Project, pk=project)
+
+    if not id:
+        ProjectMatchingDonors.objects.create(
+            matching_donor=revolv_user,
+            project=matching_project,
+            amount=amount
+        )
+    else:
+        projectMatchingDonor=ProjectMatchingDonors.objects.get(id=id)
+        projectMatchingDonor.matching_donor=revolv_user
+        projectMatchingDonor.project=matching_project
+        projectMatchingDonor.amount=amount
+        projectMatchingDonor.save()
+
+    return HttpResponse(json.dumps({'status': 'created'}), content_type="application/json")
