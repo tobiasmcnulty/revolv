@@ -46,7 +46,7 @@ $(".edit").click(function () {
         matchingDonor=JSON.parse(response.ProjectMatchingDonor);
          $('#id_User').val(matchingDonor[0].fields.matching_donor);
          $('#id_Project').val(matchingDonor[0].fields.project);
-         $('#amount').val(matchingDonor[0].fields.amount.toFixed(2));
+         $('#amount').val(matchingDonor[0].fields.amount);
          $('#matching_donor_id').val(matchingDonor[0].pk);
          $('#matching_donor_user').val(matchingDonor[0].fields.matching_donor);
          $('#matching_donor_modal').modal('toggle');
