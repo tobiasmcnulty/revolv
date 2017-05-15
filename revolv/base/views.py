@@ -93,6 +93,8 @@ class DonationReportView(UserDataMixin, TemplateView):
     template_name = 'base/partials/donation_report.html'
 
     def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
         if not request.user.revolvuserprofile.is_administrator():
             return HttpResponseRedirect(reverse("dashboard"))
         return super(DonationReportView, self).dispatch(request, *args, **kwargs)
@@ -638,6 +640,8 @@ class MatchingDonorsView(UserDataMixin, TemplateView):
     template_name = 'base/partials/matching_donors.html'
 
     def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
         if not request.user.revolvuserprofile.is_administrator():
             return HttpResponseRedirect(reverse("dashboard"))
         return super(MatchingDonorsView, self).dispatch(request, *args, **kwargs)
