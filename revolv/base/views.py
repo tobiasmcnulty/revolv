@@ -705,7 +705,7 @@ def add_maching_donors(request):
 
 def matching_donor_reinvestment(request):
     pk=request.GET.get('id')
-    with open('/home/ubuntu/Desktop/Admin_reinvestment_on_15th.csv') as f:
+    with open('/home/paresh/Admin_reinvestment_on_15th.csv') as f:
         reader = csv.reader(f, delimiter=',')
         for row in reader:
             amount=row[9]
