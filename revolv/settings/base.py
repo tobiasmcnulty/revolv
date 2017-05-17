@@ -307,12 +307,6 @@ EMAIL_TEMPLATES_PATH = os.path.join(
     'emails.yml'
 )
 
-MANDRILL_API_KEY = "dnEEB0zLZO34qMChiHKnZA"
-EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
-SERVER_EMAIL = 'info@re-volv.org'
-EMAIL_HOST_USER = 'info@re-volv.org'
-
-
 # TODO: FIX THIS
 # Hard-coded urls: kind of ugly but we need these for when we
 # want to send links in emails
