@@ -24,7 +24,7 @@ from django.views.decorators.csrf import csrf_protect
 from revolv.base.forms import SignupForm
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
-from revolv.payments.models import Payment, Tip
+from revolv.payments.models import Payment, Tip, PaymentType
 from revolv.project.models import Category, Project, ProjectMatchingDonors
 from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
@@ -35,6 +35,7 @@ from django.views.decorators.csrf import csrf_exempt
 from social.apps.django_app.default.models import UserSocialAuth
 from revolv.payments.models import UserReinvestment
 from django.core import serializers
+import re
 import json
 logger = logging.getLogger(__name__)
 
@@ -702,3 +703,49 @@ def add_maching_donors(request):
 
     return HttpResponse(json.dumps({'status': 'created'}), content_type="application/json")
 
+
+def matching_donor_reinvestment(request):
+    pk=request.GET.get('id')
+    with open('/home/tudip/Desktop/Admin_reinvestment_on_15th.csv') as f:
+        reader = csv.reader(f, delimiter=',')
+        i=1
+        for row in reader:
+            i=i+1
+            print "qqqqqqqq", i
+            amount=row[9]
+            project_name=re.sub('-AC$', '', row[4])
+            project = get_object_or_404(Project, pk=pk)
+            #project=Project.objects.get(pk=pk)
+            project_matching_donors = ProjectMatchingDonors.objects.filter(project=project, amount__gt=0)
+
+            if project.title == project_name:
+                if project_matching_donors:
+                    donor=ProjectMatchingDonors.objects.get(project=project, amount__gt=0)
+
+                    try:
+                        if donor.amount > float(amount):
+                            matching_donation = float(amount)
+                            donor.amount = donor.amount - float(amount)
+                            donor.save()
+                        else:
+                            matching_donation = donor.amount
+                            donor.amount = 0
+                            donor.save()
+
+                        tip = None
+
+                        project_assign = Project.objects.get(title=project_name)
+
+                        Payment.objects.create(
+                            user=donor.matching_donor,
+                            entrant=donor.matching_donor,
+                            amount=matching_donation,
+                            project=project_assign,
+                            tip=tip,
+                            payment_type=PaymentType.objects.get_stripe(),
+                        )
+
+                    except Exception as e:
+                        print "~~~~~~~~~ exception ~~~~~~~~", e
+
+    return HttpResponseRedirect(reverse("home"))

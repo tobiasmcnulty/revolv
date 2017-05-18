@@ -46,6 +46,7 @@ urlpatterns = patterns(
     url(r'^delete/$', 'revolv.base.views.delete', name='delete'),
     url(r'^edit/$', 'revolv.base.views.edit', name='edit'),
     url(r'^add_matching_donor/$', 'revolv.base.views.add_maching_donors', name='add_matching_donor'),
+    url(r'^matching_donor_reinvestment/$', 'revolv.base.views.matching_donor_reinvestment'),
     url(r'^social_connect_failed/$', 'revolv.base.views.social_exception', name='social-exception'),
 
     url(r'^password_reset/$', base_views.password_reset_initial, name="password_reset"),
