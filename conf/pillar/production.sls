@@ -50,6 +50,21 @@ secrets:
       =duZ5
       -----END PGP MESSAGE-----
 
+    "MAILCHIMP_API_KEY": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQgAnojpr0q+/OCSKoggut8KdjsQnquVN+NkEMvqxvbUQKx3
+      JNVG0vznitIUpFXFI5jARy7AAnWIWecc6nMMachSjxmPio5ziIu+HBifmxWldxAS
+      ZdS2DP4DTcCqKs4Q8GZmhN2ToRsrY/JImnD5WV88gYBCdTM4sR048RktQVxxjQIc
+      +gRiboarUU91Nrl1esRSfeBGbYqoQPraApJSq6SIY6/zNU8AihJdHEH5UPthbqrf
+      WJ5Vg4JyT+0BH1AMPAOhXB74A+ITnoDlaM1mcvO6NG3gOJETiKGtSd090B88/Aas
+      xPIn+It1GSWvSYGODfYurZSCIk3gmb4M3V7EVJjmRdJRAd3e2NtFJ+eFEd3uiSW7
+      fuvPbwsLlH42Dyipung8zVQphpoei/ESyHxJUlkyjomlghfiWhP5qgeOSBCKjasL
+      Upu+RxV1pHVBsDjbblnvwQzf
+      =g9gI
+      -----END PGP MESSAGE-----
+
     "SECRET_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1

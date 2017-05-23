@@ -201,6 +201,11 @@ LOGGING = {
     },
 }
 
+MANDRILL_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+#SERVER_EMAIL = 'info@re-volv.org'
+EMAIL_HOST_USER = 'info@re-volv.org'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
