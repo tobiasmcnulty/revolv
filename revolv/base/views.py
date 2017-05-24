@@ -333,6 +333,13 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
     redirect_view = "signin"
 
     @csrf_exempt
+    @method_decorator(sensitive_post_parameters('password'))
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return redirect("dashboard")
+        return super(LoginView, self).dispatch(request, *args, **kwargs)
+
+    @csrf_exempt
     def form_valid(self, form):
         form.save()
         u = form.ensure_authenticated_user()
@@ -701,5 +708,4 @@ def add_maching_donors(request):
         projectMatchingDonor.save()
 
     return HttpResponse(json.dumps({'status': 'created'}), content_type="application/json")
-
 
