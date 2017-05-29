@@ -14544,3 +14544,9 @@ form#change_password_form label {
     margin-left: 0.5em;
     font-size: 2vmin;
 }
+.no-active-projects {
+    padding:30vmin 5vmin;
+}
+.no-active-projects-span {
+    font-size: 5vmin;
+}

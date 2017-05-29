@@ -3,6 +3,7 @@
 <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
 <div class="active-projects-module animated embedded">
   <div class="container">
+    {% if active_projects %}
     <div class="row">
       {% for active_project in active_projects %}
       <div class="col-md-4">
@@ -59,6 +60,9 @@
         <!-- end .module-box -->
       </div>
       {% endfor %}
+       {% else %}
+       <div class="no-active-projects"><span class="no-active-projects-span">No active project found</span></div>
+      {% endif %}
     </div>
   </div>
  </div>
