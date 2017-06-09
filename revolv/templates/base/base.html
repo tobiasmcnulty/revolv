@@ -177,6 +177,7 @@
       handler.open({
         description: 'Donate $' + parseFloat((amount / 100).toFixed(2)).toLocaleString()
         , amount: amount
+        , closed : function(){$('#popup').modal('hide');}
         , token: function (token) {
           var id = token.id;
           var email = token.email;
