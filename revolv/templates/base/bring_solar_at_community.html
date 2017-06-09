@@ -65,7 +65,7 @@
                         <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
                         </li>
                     {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" class="dropdown">DONATE</a>
+                    <li class="dropdown this-doesnt"> <a href="#" onclick="return clearInput();" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
                     </li>
                 </ul>
             </div>
@@ -85,7 +85,7 @@
                     <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
                 {% endif %}
               </div>
-              <a href="{% url 'projects_list' %}" class="component-link btn-blue btn-donate btn-yellow">DONATE</a>
+              <a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup">DONATE</a>
 
             </div>
           </div>

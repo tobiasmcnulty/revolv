@@ -126,6 +126,80 @@ def stripe_payment(request, pk):
     )
     return redirect('dashboard')
 
+def stripe_operation_donation(request):
+    try:
+        token = request.POST['stripeToken']
+        amount_cents = request.POST['amount_cents']
+        email = request.POST['stripeEmail']
+        check = request.POST.get('check')
+    except KeyError:
+        logger.exception('stripe_payment called without required POST data')
+        return HttpResponseBadRequest('bad POST data')
+
+    if check==None:
+        try:
+            amount = float(amount_cents)*100
+            stripe.Charge.create(source=token, description="Donation for RE-volv operations donation", currency="usd", amount=int(amount))
+        except stripe.error.CardError as e:
+            body = e.json_body
+            # error_msg = body['error']['message']
+            messages.error(request, 'Payment fail')
+            return redirect('home')
+        except stripe.error.APIConnectionError as e:
+            body = e.json_body
+            # error_msg = body['error']['message']
+            messages.error(request, 'Internet connection error')
+            return redirect('home')
+        except Exception:
+            error_msg = "Payment error. Re-volv has been notified."
+            logger.exception(error_msg)
+
+            messages.error(request, 'Donation fail')
+            return redirect('home')
+
+
+        messages.success(request, 'Donation Successful')
+        return redirect('home')
+
+    else:
+        try:
+            amount = float(amount_cents) * 100
+            customer=stripe.Customer.create(
+                email=email,
+                description="Donation for RE-volv Operations",
+                source=token  # obtained with Stripe.js
+            )
+            plan = stripe.Plan.create(
+                    amount=int(amount),
+                    interval="month",
+                    name="Revolv Donation "+str(amount_cents),
+                    currency="usd",
+                    id="revolv_donation"+"_"+customer["id"]+"_"+str(amount_cents))
+
+            stripe.Subscription.create(
+                customer=customer,
+                plan=plan
+            )
+            messages.success(request, 'Donation Successful')
+            return redirect('home')
+
+        except stripe.error.CardError as e:
+            body = e.json_body
+            #error_msg = body['error']['message']
+            messages.error(request, 'Payment fail')
+            return redirect('home')
+        except stripe.error.APIConnectionError as e:
+            body = e.json_body
+            # error_msg = body['error']['message']
+            messages.error(request, 'Internet connection error')
+            return redirect('home')
+        except Exception:
+            error_msg = "Payment error. Re-volv has been notified."
+            logger.exception(error_msg)
+
+            messages.error(request, 'Donation fail')
+            return redirect('home')
+
 
 class DonationLevelFormSetMixin(object):
     """
