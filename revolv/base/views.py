@@ -752,6 +752,7 @@ def ambassador_data_table(request):
     payments=[]
 
     for payment in payment_list[int(start):][:int(length)]:
+
         payment_details={}
         payment_details['firstname']=payment.user.user.first_name
         payment_details['lastname']=payment.user.user.last_name
@@ -764,23 +765,23 @@ def ambassador_data_table(request):
         else:
             payment_details['amount']=payment.amount
         if payment.user_reinvestment:
-            payment_details['user_reinvestment'] = payment.user_reinvestment.amount
+            payment_details['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
         else:
             payment_details['user_reinvestment'] = 0
         if payment.admin_reinvestment:
-            payment_details['admin_reinvestment'] = payment.amount
+            payment_details['admin_reinvestment'] = round(payment.amount, 2)
         else:
             payment_details['admin_reinvestment']=0
         if payment.tip:
-            payment_details['tip'] = payment.tip.amount
+            payment_details['tip'] = round(payment.tip.amount, 2)
         else:
             payment_details['tip'] = 0
         if payment.tip and payment.amount:
-            payment_details['total']=payment.tip.amount+payment.amount
+            payment_details['total']=round(payment.tip.amount+payment.amount, 2)
         if payment.tip and not payment.amount:
-            payment_details['total']=payment.tip.amount
+            payment_details['total']=round(payment.tip.amount, 2)
         if payment.amount and not payment.tip:
-            payment_details['total']=payment.amount
+            payment_details['total']=round(payment.amount, 2)
         if not payment.amount and not payment.tip:
             payment_details['total'] = 0
         payments.append(payment_details)
@@ -842,23 +843,23 @@ def payment_data_table(request):
         else:
             payment_details['amount']=payment.amount
         if payment.user_reinvestment:
-            payment_details['user_reinvestment'] = payment.user_reinvestment.amount
+            payment_details['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
         else:
             payment_details['user_reinvestment'] = 0
         if payment.admin_reinvestment:
-            payment_details['admin_reinvestment'] = payment.amount
+            payment_details['admin_reinvestment'] = round(payment.amount, 2)
         else:
             payment_details['admin_reinvestment']=0
         if payment.tip:
-            payment_details['tip'] = payment.tip.amount
+            payment_details['tip'] = round(payment.tip.amount, 2)
         else:
             payment_details['tip'] = 0
         if payment.tip and payment.amount:
-            payment_details['total']=payment.tip.amount+payment.amount
+            payment_details['total']=round(payment.tip.amount+payment.amount, 2)
         if payment.tip and not payment.amount:
-            payment_details['total']=payment.tip.amount
+            payment_details['total']=round(payment.tip.amount, 2)
         if payment.amount and not payment.tip:
-            payment_details['total']=payment.amount
+            payment_details['total']=round(payment.amount, 2)
         if not payment.amount and not payment.tip:
             payment_details['total'] = 0
         payments.append(payment_details)
