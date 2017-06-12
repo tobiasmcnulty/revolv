@@ -23,7 +23,7 @@ $(document).ready(function() {
         ],
          "order": [[ 4, "desc" ]],
         "ajax": {
-         url: '/payment_ajax_url/',
+         url: '/ambassador_data_table/',
           "data": function ( d ) {
           date1=$('#datepicker-1').val();
           date2=$('#datepicker-2').val();

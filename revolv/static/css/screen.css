@@ -14550,3 +14550,20 @@ form#change_password_form label {
 .no-active-projects-span {
     font-size: 5vmin;
 }
+.btnSearch {
+    background-color: #008CBA;
+    border: none;
+    padding: 0.7vmin 2vmin;
+    margin-left: 1vmin;
+    color: white;
+    font-weight: bold;
+}
+.header {
+        z-index: 1;
+    }
+
+@media only screen and (max-width: 767px) {
+.dashboard .dashboard-sidebar {
+    margin-top: 4rem;
+}
+}
