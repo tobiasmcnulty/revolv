@@ -36,7 +36,6 @@ def distribute_reinvestment_fund():
         logger.error("Can't find admin user: {0}. System exiting!".format(ADMIN_PAYMENT_USERNAME))
         sys.exit()
 
-    reinvest_amount_left = RevolvUserProfile.objects.all().aggregate(total=Sum('reinvest_pool'))['total']
     total_funding_goal = Project.objects.get_active().aggregate(total=Sum('funding_goal'))['total']
     pending_reinvestors = []
 
@@ -46,19 +45,17 @@ def distribute_reinvestment_fund():
         pending_reinvestors.append((user, reinvest_pool))
     for project in Project.objects.get_active():
         reinvest_amount_praportion = float(project.funding_goal)/float(total_funding_goal)
-        reinvest_amount=float(reinvest_amount_praportion)*float(reinvest_amount_left)
-        reinvest_amount=float("{0:.2f}".format(reinvest_amount))
 
-        adminReinvestment=AdminReinvestment.objects.create(
-            amount=reinvest_amount,
-            admin=admin,
-            project=project
-        )
 
         for (user, reinvest_pool) in pending_reinvestors:
-            reinvest_amount_left=user.reinvest_pool
             amount = reinvest_pool * float("{0:.2f}".format(reinvest_amount_praportion))
             logger.info('Trying to reinvest %s in %s project!',format(round(amount,2)),project.title)
+
+            adminReinvestment = AdminReinvestment.objects.create(
+                amount=format(round(amount,2)),
+                admin=admin,
+                project=project
+            )
             reinvestment = Payment(user=user,
                                    project=project,
                                    entrant=admin,
