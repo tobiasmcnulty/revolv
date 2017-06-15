@@ -81,34 +81,48 @@ Post_operations_donation:
     subject: "Thank you for donating to RE-volv!"
     body:
         "
-        Dear {{user.first_name}} {{user.last_name}}!,
+        Hi {{user}},
+
         Thank you for your generous donation to RE-volv!
 
         Your commitment to solar energy is appreciated by the communities we
+
         serve and the environment we work to protect. Your tax-deductible
-        donation of ${{amount}} will help more communities reach their goal of going solar.
+
+        donation of ${{amount}} will help us deploy solar panels on more nonprofit rooftops,
+
+        saving them money on electric costs and reducing their carbon footprint.
+
+        RE-volv’s work to spread solar energy across America is more important now than ever,
+
+        and we’re thankful that you choose to support our vital mission. Together,
+
+        we’re empowering people through solar energy, strengthening communities, and fighting climate change.
 
         We look forward to keeping in touch with you, and we are deeply grateful for your gift!
 
-        Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
-        find out more ways to get involved.
+        Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to find out more ways to get involved.
 
         Sincerely,
         The RE-volv Team
         "
     html:
         "
-        <p>Dear {{user.first_name | title}} {{user.last_name| title}}!,</p>
+        <p>Hi {{user}}!,</p>
         <p>Thank you for your generous donation to RE-volv!</p>
 
-        <p>Your commitment to solar energy is appreciated by the communities we
-        serve and the environment we work to protect. Your tax-deductible
-        donation of ${{amount}} will help more communities reach their goal of going solar.</p>
+        <p>Your commitment to solar energy is appreciated by the communities we serve and the environment we work to protect.
+         Your tax-deductible donation of ${{amount}} will help us deploy solar panels on more nonprofit rooftops,
+         saving them money on electric costs and reducing their carbon footprint.</p>
+
+        <p>RE-volv’s work to spread solar energy across America is more important now than ever,
+            and we’re thankful that you choose to support our vital mission. Together,
+            we’re empowering people through solar energy, strengthening communities, and fighting climate change.</p>
 
         <p>We look forward to keeping in touch with you, and we are deeply grateful for your gift!</p>
 
-        <p>Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to
-        find out more ways to get involved.</p>
+        <p>Feel free to reach out to us at info@re-volv.org if you ever have
+        any questions or would like to find out more ways to get involved.</p>
 
         <p>Sincerely,<br>
         The RE-volv Team</p>
@@ -118,7 +132,6 @@ Post_operations_donation:
         goods or services, in whole or in part, to you in consideration for this voluntary cash
         contribution. If you wish to claim the tax deductibility of this gift in the U.S., please retain this
         acknowledgment letter for your files.</p>
-
         "
 
 monthly_donation_email:

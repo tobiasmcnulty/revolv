@@ -126,6 +126,7 @@ def stripe_payment(request, pk):
     )
     return redirect('dashboard')
 
+
 def stripe_operation_donation(request):
     try:
         token = request.POST['stripeToken']
@@ -137,8 +138,8 @@ def stripe_operation_donation(request):
         return HttpResponseBadRequest('bad POST data')
 
     if check==None:
+        amount = float(amount_cents) * 100
         try:
-            amount = float(amount_cents)*100
             stripe.Charge.create(source=token, description="Donation for RE-volv operations donation", currency="usd", amount=int(amount))
         except stripe.error.CardError as e:
             body = e.json_body
@@ -156,14 +157,9 @@ def stripe_operation_donation(request):
 
             messages.error(request, 'Donation fail')
             return redirect('home')
-
-
-        messages.success(request, 'Donation Successful')
-        return redirect('home')
-
     else:
+        amount = float(amount_cents) * 100
         try:
-            amount = float(amount_cents) * 100
             customer=stripe.Customer.create(
                 email=email,
                 description="Donation for RE-volv Operations",
@@ -180,8 +176,6 @@ def stripe_operation_donation(request):
                 customer=customer,
                 plan=plan
             )
-            messages.success(request, 'Donation Successful')
-            return redirect('home')
 
         except stripe.error.CardError as e:
             body = e.json_body
@@ -199,6 +193,24 @@ def stripe_operation_donation(request):
 
             messages.error(request, 'Donation fail')
             return redirect('home')
+
+    context = {}
+    if not request.user.is_authenticated():
+        context['user'] = 'RE-volv Supporter'
+    else:
+        if not (request.user.first_name and request.user.last_name):
+            context['user'] = 'RE-volv Supporter'
+        else:
+            context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
+
+    context['amount'] = amount / 100.0
+    send_revolv_email(
+        'Post_operations_donation',
+        context, [email]
+    )
+
+    messages.success(request, 'Donation Successful')
+    return redirect('home')
 
 
 class DonationLevelFormSetMixin(object):
