@@ -89,7 +89,7 @@ Post_operations_donation:
 
         serve and the environment we work to protect. Your tax-deductible
 
-        donation of ${{amount}} will help us deploy solar panels on more nonprofit rooftops,
+        donation of ${{amount|floatformat:'2'}} will help us deploy solar panels on more nonprofit rooftops,
 
         saving them money on electric costs and reducing their carbon footprint.
 
@@ -112,7 +112,7 @@ Post_operations_donation:
         <p>Thank you for your generous donation to RE-volv!</p>
 
         <p>Your commitment to solar energy is appreciated by the communities we serve and the environment we work to protect.
-         Your tax-deductible donation of ${{amount}} will help us deploy solar panels on more nonprofit rooftops,
+         Your tax-deductible donation of ${{amount|floatformat:'2'}} will help us deploy solar panels on more nonprofit rooftops,
          saving them money on electric costs and reducing their carbon footprint.</p>
 
         <p>RE-volv’s work to spread solar energy across America is more important now than ever,
