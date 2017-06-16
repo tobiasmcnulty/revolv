@@ -155,9 +155,12 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         total_people_affected = Project.objects.donated_completed_projects(self.user_profile)
         statistics_dictionary['people_served'] = total_people_affected
         humanize_integers(statistics_dictionary)
-        statistics_dictionary['reinvestment'] = \
-            UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))[
-                 'amount__sum'] or 0
+        admin_reinvestment = \
+        Payment.objects.filter(user=self.user_profile).filter(admin_reinvestment__isnull=False).aggregate(Sum('amount'))[
+            'amount__sum'] or 0
+        user_reinvestment = UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))[
+                                'amount__sum'] or 0
+        statistics_dictionary['reinvestment'] = admin_reinvestment + user_reinvestment
         context['statistics'] = statistics_dictionary
 
         return context
