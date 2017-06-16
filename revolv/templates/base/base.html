@@ -130,7 +130,7 @@
                         <span>$</span>
                         <span><b>100</b></span>
                     </div>
-                    <div class="col-xs-12 input-custom-amount"> <span>$</span><input type="number" step="0.01" min="1" placeholder="Custom" name="amount_cents"> </div>
+                    <div class="col-xs-12 input-custom-amount"> <span>$</span><input type="number" step="0.01" min="1" placeholder="Custom" name="donation_amount_cents"> </div>
                 </div>
                  <div class="col-xs-4">
                     <div class="col-xs-12 donation-value-suggestion stripe-button-el">
@@ -170,7 +170,7 @@
     var endpoint = $form.attr('action');
     var amount, metadata;
     $.each(serialized, function () {
-      if (this.name === 'amount_cents') {
+      if (this.name === 'donation_amount_cents') {
         amount = this.value*100;
       }
     });
