@@ -126,9 +126,9 @@ class RevolvUserProfile(FacebookModel):
             if project:
                 user_financial_contribution = payment.amount
                 project_funding_total = (int)(project.funding_goal)
-                total_kwh_value = project.total_kwh_value
-                per_dollor_generated_energy = total_kwh_value / project_funding_total
-                user_impact_for_watt = float(per_dollor_generated_energy) * float(user_financial_contribution)
+                expected_KW_Output = project.impact_power
+                per_dollor_generated_energy = (expected_KW_Output / project_funding_total)
+                user_impact_for_watt = float(per_dollor_generated_energy) * float(user_financial_contribution)*1000
                 user_impact += user_impact_for_watt
         return user_impact
 

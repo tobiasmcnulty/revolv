@@ -723,7 +723,8 @@ class Project(models.Model):
         project_funding_total = (int)(self.funding_goal)
         amount_donated = (int)(self.amount_donated)
         project_total_kwh_value = self.total_kwh_value
-        per_doller_co2_avoided = project_total_kwh_value / project_funding_total
+        total_carbon_avoided = float(project_total_kwh_value) * 1.5
+        per_doller_co2_avoided = total_carbon_avoided / project_funding_total
         project_impact = per_doller_co2_avoided * amount_donated
         user_impact += project_impact
         return user_impact
