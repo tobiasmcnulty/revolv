@@ -2,7 +2,7 @@ post_donation:
     subject: "Thank you for donating to RE-volv!"
     body:
         "
-        Hi {{user.first_name | title}} {{user.last_name| title}}!
+        Hi {{user.first_name | title}} {{user.last_name| title}},
 
         Thank you for your generous donation to RE-volv!
 
@@ -40,7 +40,7 @@ post_donation:
         "
     html:
         "
-        <p>Hi {{user.first_name| title}} {{user.last_name| title}}!</p>
+        <p>Hi {{user.first_name| title}} {{user.last_name| title}},</p>
 
         <p>Thank you for your generous donation to RE-volv!</p>
 
@@ -108,7 +108,7 @@ Post_operations_donation:
         "
     html:
         "
-        <p>Hi {{user}}!,</p>
+        <p>Hi {{user}},</p>
         <p>Thank you for your generous donation to RE-volv!</p>
 
         <p>Your commitment to solar energy is appreciated by the communities we serve and the environment we work to protect.
@@ -138,7 +138,7 @@ monthly_donation_email:
     subject: "Your monthly report from RE-volv!"
     body:
         "
-        Hi {{user.first_name}}!
+        Hi {{user.first_name}},
 
         Thank you for your invaluable donations to RE-volv! Each contribution is a major step in bringing clean energy to everyone.
 
@@ -153,7 +153,7 @@ monthly_donation_email:
         "
     html:
         "
-        <p>Hi {{user.first_name | title}}!</p>
+        <p>Hi {{user.first_name | title}},</p>
 
         <p>Thank you for your invaluable donations to RE-volv! Each contribution is a major step in bringing clean energy to everyone.</p>
 
