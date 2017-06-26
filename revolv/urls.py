@@ -32,8 +32,6 @@ urlpatterns = patterns(
     url(r'^my-portfolio/financialreport/', base_views.DonationReportForProject.as_view(), name='financialreport'),
     url(r'^my-portfolio/matchingdonors/', base_views.MatchingDonorsView.as_view(), name='matchingdonors'),
     url(r'^my-portfolio/reinvest_list/', base_views.ReinvestmentRedirect.as_view(), name='reinvest_list'),
-    url(r'^export_csv/$', 'revolv.base.views.export_csv', name='export_csv'),
-    url(r'^export_excel/$', 'revolv.base.views.export_xlsx', name='export_excel'),
 
     url(r'^what-we-do/projects/', base_views.ProjectListView.as_view(), name='projects_list'),
     url(r'^signin/$', base_views.SignInView.as_view(), name='signin'),
