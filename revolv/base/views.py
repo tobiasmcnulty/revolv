@@ -888,6 +888,7 @@ def export_csv(request):
     writer.writerow([
         smart_str(u"FIRST NAME"),
         smart_str(u"LAST NAME"),
+        smart_str(u"USERNAME"),
         smart_str(u"EMAIL"),
         smart_str(u"DATE"),
         smart_str(u"NAME OF PROJECT"),
@@ -932,6 +933,7 @@ def export_csv(request):
         writer.writerow([
             smart_str(payment.user.user.first_name),
             smart_str(payment.user.user.last_name),
+            smart_str(payment.user.user.username),
             smart_str(payment.user.user.email),
             smart_str(payment.created_at),
             smart_str(payment.project.title),
@@ -967,6 +969,7 @@ def export_xlsx(request):
     columns = [
         (u"FIRST NAME",30),
         (u"LAST NAME",30),
+        (u"USERNAME",30),
         (u"EMAIL",30),
         (u"DATE",30),
         (u"NAME OF PROJECT",30),
@@ -1016,6 +1019,7 @@ def export_xlsx(request):
         row = [
             payment.user.user.first_name,
             payment.user.user.last_name,
+            payment.user.user.username,
             payment.user.user.email,
             payment.created_at,
             payment.project.title,
