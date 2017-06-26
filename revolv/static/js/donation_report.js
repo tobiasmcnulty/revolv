@@ -2,7 +2,7 @@ $(document).ready(function() {
     table = $('#donation_report').DataTable( {
         "processing": true,
         "serverSide": true,
-         "dom": 'lfrtBip',
+         "dom": 'lfrtip',
         "scrollX": true,
         buttons: [
              'print',
@@ -50,17 +50,11 @@ $(document).ready(function() {
         "columnDefs": [
         {
             "targets": 8,
-            "orderable": false,
-            "className": "dt-center",
+            "orderable": false
         },
         {
             "targets":10,
-            "orderable": false,
-            "className": "dt-center",
-        },
-        {
-            "targets": [6,7,9],
-            "className": "dt-center",
+            "orderable": false
         },
         ]
 
@@ -68,13 +62,18 @@ $(document).ready(function() {
 
 
      $(function() {
-        $( "#datepicker-1" ).datepicker({
+            $( "#datepicker-1" ).datepicker({
             dateFormat: 'yy-mm-dd',
             onSelect: function(){}
             }).keyup(function(e) {
             if(e.keyCode == 8 || e.keyCode == 46) {
-                $("#datepicker-1").val('');
-                table.draw();
+
+                if (!$(this).value){
+                    $.datepicker._clearDate(this);
+                    table.draw();
+                }
+
+
             }
         });
         $( "#datepicker-2" ).datepicker({
@@ -82,11 +81,13 @@ $(document).ready(function() {
             onSelect: function(){}
             }).keyup(function(e) {
             if(e.keyCode == 8 || e.keyCode == 46) {
-                $("#datepicker-2").val('');
-                table.draw();
+
+                if (!$(this).value){
+                    $.datepicker._clearDate(this);
+                }
             }
         });
-     });
+         });
 
          $("#search_button").click(function() {
             fromDate=new Date($("#datepicker-1").val());
@@ -106,5 +107,11 @@ $(document).ready(function() {
                 alert('Invalid date');
             }
         });
+        $('#export-csv-btn').on('click',function(e){
+            location.replace('/export_csv');
+        })
+        $('#export-excel-btn').on('click',function(e){
+            location.replace('/export_excel');
+        })
 
 } );
