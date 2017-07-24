@@ -14567,3 +14567,7 @@ form#change_password_form label {
     margin-top: 4rem;
 }
 }
+
+.hide-test {
+   display: none;
+}

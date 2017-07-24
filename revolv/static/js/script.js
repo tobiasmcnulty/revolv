@@ -27,6 +27,7 @@ $(document).ready(function(){
                 $(".investor-remaining-img").hide();
                 $(".selected-logo").css('border','0');
                 $("#img").closest(".invstr-logo-images").removeClass("col-sm-4");
+                $("#invstr-logo-link").removeClass("hide-test");
                 $("#img").closest(".invstr-logo-images").addClass("col-sm-6");
                 $(".investors_logo_text").text("The easiest way to go solar! Installers compete for your business to give you more options and the best deal. Free instant solar estimate.");
             }
@@ -36,6 +37,7 @@ $(document).ready(function(){
                 $("#invstr-logo-link").attr("href",'http://info.pickmysolar.com/re-volv-partner/');
                 $("#invstr-logo-link").attr("target",'_blank');
                 $(".investor-remaining-img").hide();
+                $("#invstr-logo-link").removeClass("hide-test");
                 $(".selected-logo").css('border','0');
                 $("#img").closest(".invstr-logo-images").removeClass("col-sm-4");
                 $("#img").closest(".invstr-logo-images").addClass("col-sm-6");
