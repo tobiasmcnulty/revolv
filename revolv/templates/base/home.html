@@ -66,7 +66,6 @@
 
 {% block nav %}
 
-
 <header class="header top-section-header" id="home-page">
   <div class="container">
    <div class="container">
@@ -218,11 +217,10 @@
 </div>
 
 
+{% if active_projects %}
 <div id="active-projects" class="active-projects-module animated">
   <div class="container">
-    {% if active_projects %}
        <div class="title-blue-border title-active-projects">ACTIVE PROJECTS</div>
-    {% endif %}
     <div class="row">
             {% for active_project in active_projects %}
                   <div class="col-md-4 join-mov-btns">
@@ -278,6 +276,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 <!-- end .active-projects-module -->
 
 <div class="active-projects-module animated">
