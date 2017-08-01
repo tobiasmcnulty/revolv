@@ -23,7 +23,7 @@ $(document).ready(function() {
         ],
          "order": [[ 4, "desc" ]],
         "ajax": {
-         url: '/payment_ajax_url/',
+         url: '/repayment_table/',
           "data": function ( d ) {
           date1=$('#datepicker-1').val();
           date2=$('#datepicker-2').val();
@@ -41,22 +41,11 @@ $(document).ready(function() {
             { "data": "email"},
             { "data": "date"},
             { "data": "project"},
-            { "data": "amount"},
-            { "data": "user_reinvestment"},
-            { "data": "admin_reinvestment"},
-            { "data": "tip"},
-            { "data": "total"},
+            { "data": "donated_amount"},
+            { "data": "repayment_amount"},
+
         ],
-        "columnDefs": [
-        {
-            "targets": 8,
-            "orderable": false
-        },
-        {
-            "targets":10,
-            "orderable": false
-        },
-        ]
+
 
     } );
 
@@ -108,10 +97,10 @@ $(document).ready(function() {
             }
         });
         $('#export-csv-btn').on('click',function(e){
-            location.replace('/export_csv');
+            location.replace('/export_repayment_csv');
         })
         $('#export-excel-btn').on('click',function(e){
-            location.replace('/export_excel');
+            location.replace('/export_repayment_xlsx');
         })
 
 } );
