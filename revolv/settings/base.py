@@ -25,6 +25,7 @@ ADMINS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -66,7 +67,11 @@ INSTALLED_APPS = [
     'wagtail.wagtailredirects',
     'wagtailsettings',
     'revolv.revolv_cms',
+    'django_comments',
     'djrill',
+    'zinnia',
+    'mptt',
+    'tagging',
     'mathfilters',
 
 ]
@@ -97,7 +102,9 @@ AUTHENTICATION_BACKENDS = [
 ROOT_URLCONF = 'revolv.urls'
 
 TEMPLATE_DIRS = [
+
     os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'templates', 'zinnia'),
 ]
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.auth.context_processors.auth',
@@ -113,6 +120,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'social.apps.django_app.context_processors.login_redirect',
     'sekizai.context_processors.sekizai',
     'wagtailsettings.context_processors.settings',
+    'zinnia.context_processors.version',
 ]
 
 WSGI_APPLICATION = 'revolv.wsgi.application'
@@ -200,6 +208,9 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+SITE_ID = 1
+
 
 MANDRILL_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
@@ -432,6 +443,6 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 
-VERSION_NUM = '4424420223222'
+VERSION_NUM = '4424420229987'
 
 
