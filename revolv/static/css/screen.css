@@ -14607,3 +14607,8 @@ form#change_password_form label {
 .hide-test {
    display: none;
 }
+
+.blog-font {
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
