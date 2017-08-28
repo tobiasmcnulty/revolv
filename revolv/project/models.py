@@ -142,7 +142,7 @@ class ProjectManager(models.Manager):
         :return: A list of projects for which user's RevolvUserProfile
         is the ambassador or creator.
         """
-        return Project.objects.filter(Q(ambassador=user_profile) | Q(created_by_user=user_profile))
+        return Project.objects.filter(Q(ambassadors=user_profile) | Q(created_by_user=user_profile))
 
     def donated_projects(self, user_profile):
         """
@@ -359,7 +359,7 @@ class Project(models.Model):
 
     created_by_user = models.ForeignKey(RevolvUserProfile, related_name='created_by_user')
 
-    ambassador = models.ForeignKey(RevolvUserProfile, related_name='ambassador', null=True)
+    ambassadors = models.ManyToManyField(RevolvUserProfile, related_name='ambassadors', null=True)
 
     # energy produced in kilowatt hours
     actual_energy = models.FloatField(default=0.0)
