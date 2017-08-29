@@ -285,6 +285,14 @@ signup:
             <p>Sincerely,<br>
             The RE-volv Team</p>
             "
+
+donor_template:
+       subject: "{{email_subject}}"
+       body:
+            "
+            {{email_text}}
+            "
+
 intake_form:
         subject: "RE-volv application form"
         body:

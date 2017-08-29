@@ -14612,3 +14612,23 @@ form#change_password_form label {
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 1.2em;
 }
+.txtarea-height {
+    height: 20em !important;
+}
+.btn-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.email-form-div {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+.email-send-btn {
+    width: 5em;
+    border: 0;
+    height: 3em;
+    line-height: 43px;
+}

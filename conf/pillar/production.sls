@@ -50,7 +50,7 @@ secrets:
       =duZ5
       -----END PGP MESSAGE-----
 
-    "MAILCHIMP_API_KEY": |-
+    "MANDRILL_API_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
