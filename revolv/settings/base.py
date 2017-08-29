@@ -375,8 +375,8 @@ LANGUAGES = [
 # Facebook app keys
 # TODO: determine if these 2 are needed. They are not set in the
 # existing Heroku app environment, so I can't pull them to new box.
-FACEBOOK_APP_ID = os.environ.get("REVOLV_FACEBOOK_APP_ID")
-FACEBOOK_APP_SECRET = os.environ.get("REVOLV_FACEBOOK_APP_SECRET")
+# FACEBOOK_APP_ID = os.environ.get("REVOLV_FACEBOOK_APP_ID")
+# FACEBOOK_APP_SECRET = os.environ.get("REVOLV_FACEBOOK_APP_SECRET")
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
@@ -425,6 +425,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['profile', 'email']
 
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/social_connect_failed/'
 SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email', 'first_name', 'last_name']
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 # TODO: determine if this value is needed and if so what it should be
 # (This values does not exist in Heroku environment.)
