@@ -212,7 +212,7 @@ LOGGING = {
 SITE_ID = 1
 
 
-MANDRILL_API_KEY = os.environ.get('MANDRILL_API_KEY')
+MANDRILL_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 #SERVER_EMAIL = 'info@re-volv.org'
 EMAIL_HOST_USER = 'info@re-volv.org'

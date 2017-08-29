@@ -50,7 +50,7 @@ secrets:
       =duZ5
       -----END PGP MESSAGE-----
 
-    "MANDRILL_API_KEY": |-
+    "MAILCHIMP_API_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
@@ -131,30 +131,30 @@ secrets:
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQgAyxPm+UvTNAtzp7s4bLhijXMRzULgATrHYtnKILdJWJkm
-      vLXZzNUZrorDsvnnoV0YC+5Ynj8BqupzwFb/lwuNApseywmhYaJGZkQH+LoLfBge
-      ti/B6RGpDgnjeIQRwdv4KEP0Szay4Fz5m6DeqbumdGmQWtC+Cat/9tZoWdcJTve7
-      Z3u+rCInYXzoysz5XsVxk+vuoeg84536KgFYj0REUdLPJO8OQzseJ9enkRsGdjlm
-      ZTaM4q+0Ht+jEqCJjyp9vpLSu+sJ8aRW3sR3NHVVH5ZCYocmKQigKaTkj6fJOOJN
-      wHOjlEmoL4LtdwsG61vSi2zyULYk9NHDBn/NXG+LGdJLAejoHwHpTZjBe1nrnF1L
-      /h2XEB7Vl7f1DBsL6cuS7UZPFYE3oks/e32G4iAQniy85evAqFHbeoLyVTmG4HYB
-      nTHyFBJb7y2yZvDj
-      =2JuF
+      hQEMA9aTfmR7xthMAQgAw5lXAWXZAEe8OzQ6XOQC7P4x0hvtYRtLKfXMJSQlTXI2
+      H/+yMT+gXhEDoRW7c/oZ5MQh8kIbXZMh8YibX6Ycs4Vn/L3lrR0ocqA3jEmhN7AL
+      vj4Zj/zI+mxGL06gfylouhRtYOw9azu6uYhFpFD/KG5RiozUsl4/bPF/m19m4xnM
+      LzyQl/cFNaObiJcCiHp3H0NJXNMoRbzsgl0/hxNst5uc5UJMFyCQYSj9QoMSL6AF
+      jJPlDtYFV2KLbK/6OTTNX/nnha41f//GOKQMn7wVfvrGO2TsUYxzBUK2DEgxmbh3
+      m5nOk7hNWG47QeM72zR/E/4SDn8Je9bkOmesDIrq7dJLAZlz0QoeWXsdUdkDHALf
+      NIxEw6PsNF4uW+lJcvnfbhwyfwwxrSVLVxf36pTt7OnBezOUfjdLg1CdLG+1wM/R
+      TxrNItrITho2+4Z8
+      =I11m
       -----END PGP MESSAGE-----
 
     "SOCIAL_AUTH_FACEBOOK_SECRET": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQf8COMs+oRmM61Rf0kiC9+B/Afoao7icJu2B+582H+nJsTY
-      xMkIN7gWn20nnlZzQWIZLVGUc79Lu36Iko+1ks3Jjj5/JG31sWiG30aNcaRFW214
-      h0uldqDg+RGzqCpVpKHUl47q9TBs/Lzi9Swc/XczU68rZc0I9vQHWTc0Q94RkbTb
-      4M4+aVdACQjjgd5shyrdX7dpotqRhTrSFthwdBldFXT0mB8IyD91mpKL+cBChwvX
-      oi1VnahiRxW3FbE/J5GjA5kgnckF9rIYAE1O0KZWoiBKa43MVzYX+ToFjakowwRv
-      nm0WfRV0sw89uHsBjtEOKfK4vSkZY23voXNm22wDvtJbARaBIQjaDuBADHxJXvRv
-      nnqmLtgDgryWOu2goTAMwBDWsPCBzaGBzGEd/dPy1PGedbEUc4zjMzxZRbMgLL1v
-      sTrOVMTM5b225XaaaKG/80+l/JUXVMkwRfzx7g==
-      =hcbB
+      hQEMA9aTfmR7xthMAQf/WdYb3JBCqANqulB5CguResuJmeIkYr7zf9d5YY4o4bQF
+      973kUNut6hukEwHrcT94uWVtfBdfbz2T+nVz5XSlVlfGh/KG6Hth2lEwKJUub71v
+      WKYWXLpNtZgDHQpCnfqCenWyOQCIststgi6ag8MHjC5TeyiCcE19FNDzCbQ9fTG/
+      g9iiLs7f7t7J7PePjqtX6im4Pdaf5Jlqmiu7S0ePQ25FbSM4vY3KWqjFaGYuvC/U
+      buCykYlRL9vqe0jmif39Pi/KFOiXyshmijKEhJJPw+5QCAj6MrLeb17u/E5bC+No
+      F9CtELuGXhOb9Jud6OIPjrKCy/bg3SoNzNxz1MAxU9JaAfW5L7DVwCdh32WP8MJA
+      hL8PR2+sRbwzHZq4hpjOuSsTm11AZHz/ovQigWLdow2vzWEYlmNeRHwVknUJhjv9
+      iv7CsRHe/SLN1IJQe2kj3c7tO1evLGQkyEwO
+      =jbEH
       -----END PGP MESSAGE-----
 
     "SOCIAL_AUTH_GOOGLE_OAUTH2_KEY": |-
