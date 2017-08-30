@@ -95,7 +95,6 @@ MIDDLEWARE_CLASSES = [
 AUTHENTICATION_BACKENDS = [
     'social.backends.google.GoogleOAuth2',
     'social.backends.facebook.FacebookOAuth2',
-    'django_facebook.auth_backends.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
     'sesame.backends.ModelBackend',
 ]

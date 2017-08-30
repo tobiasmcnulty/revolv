@@ -131,30 +131,31 @@ secrets:
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQgAw5lXAWXZAEe8OzQ6XOQC7P4x0hvtYRtLKfXMJSQlTXI2
-      H/+yMT+gXhEDoRW7c/oZ5MQh8kIbXZMh8YibX6Ycs4Vn/L3lrR0ocqA3jEmhN7AL
-      vj4Zj/zI+mxGL06gfylouhRtYOw9azu6uYhFpFD/KG5RiozUsl4/bPF/m19m4xnM
-      LzyQl/cFNaObiJcCiHp3H0NJXNMoRbzsgl0/hxNst5uc5UJMFyCQYSj9QoMSL6AF
-      jJPlDtYFV2KLbK/6OTTNX/nnha41f//GOKQMn7wVfvrGO2TsUYxzBUK2DEgxmbh3
-      m5nOk7hNWG47QeM72zR/E/4SDn8Je9bkOmesDIrq7dJLAZlz0QoeWXsdUdkDHALf
-      NIxEw6PsNF4uW+lJcvnfbhwyfwwxrSVLVxf36pTt7OnBezOUfjdLg1CdLG+1wM/R
-      TxrNItrITho2+4Z8
-      =I11m
+      hQEMA9aTfmR7xthMAQgAq2X/0Helv4agV4fmJpdaH7ap8AnzLrw5lnLAmew9gtVq
+      mLOraVsIjE2XdGpGychDhSEU+FOl3DbtwvL06psQAhEmdPiBinSOvGjeBVKj8hXK
+      NbRUvQsOxj8onF8LigINyklZ6Ah2WudiGPXJ+6M14//qtdbyY0g8TkkXlxd5Siz1
+      2OO2VA94nKlqhYQ0fYpvEoZW3LTOhM1zLJNoMwiOfZvIcNbrvk7Bag7yUOnt9v6d
+      DtfBECN7GUz03gUYjhzr47Frot9JwUFzb+Vaxze1qgqtXHa3RCKG91ReqhXSWa6l
+      OANhVpUq9/jUawxzP1iOMn63YrG3Mw9z56BURFMSLNJKAT7HI3lqYriZmIq9CMRx
+      K8O3/LawgVfIcdWA+wJbuILGHEy/ak+RcQvCIaq2iwIue0HeCRBlm30a0FdGYTfO
+      xZAiNb5gXInRPpM=
+      =x1/u
       -----END PGP MESSAGE-----
+
 
     "SOCIAL_AUTH_FACEBOOK_SECRET": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQf/WdYb3JBCqANqulB5CguResuJmeIkYr7zf9d5YY4o4bQF
-      973kUNut6hukEwHrcT94uWVtfBdfbz2T+nVz5XSlVlfGh/KG6Hth2lEwKJUub71v
-      WKYWXLpNtZgDHQpCnfqCenWyOQCIststgi6ag8MHjC5TeyiCcE19FNDzCbQ9fTG/
-      g9iiLs7f7t7J7PePjqtX6im4Pdaf5Jlqmiu7S0ePQ25FbSM4vY3KWqjFaGYuvC/U
-      buCykYlRL9vqe0jmif39Pi/KFOiXyshmijKEhJJPw+5QCAj6MrLeb17u/E5bC+No
-      F9CtELuGXhOb9Jud6OIPjrKCy/bg3SoNzNxz1MAxU9JaAfW5L7DVwCdh32WP8MJA
-      hL8PR2+sRbwzHZq4hpjOuSsTm11AZHz/ovQigWLdow2vzWEYlmNeRHwVknUJhjv9
-      iv7CsRHe/SLN1IJQe2kj3c7tO1evLGQkyEwO
-      =jbEH
+      hQEMA9aTfmR7xthMAQf/aNLCdrKeGf0ZFSLcmypPgZdUtDSczXh6Cuuyzb785knh
+      Vx//Hk1zYr/N8b1Z8K205Tokceenay6Iveds4s6hy9oNJB0Va5TDyKVDiSZNSsZ4
+      vDfEWWoIIEzf7r2RJkAaEDshMVFEBm7BFcvrIzHpJIOaGA6rQ83UdUqIwIrN2XIV
+      MZdEc4qdVaFjh70JoEhfEYs6hSZeYWHm0hhc66ke4j5SYvi4/5iTOXYdLIhxfcci
+      G4e9eOu5Q6Bwf/PmdJl+XdrGHvFaB2Fs+1tg+ivRK1DbcrEaVrJ88AA2boez2inJ
+      2h0V2qjMYUYq4gHwdlZMsWG69ofT97YQ90XmcoX5AtJbAR88ZKXOerli+pLB6caB
+      YzQIUAe5sK8U5iyrRQnof1f+VclY0Rtnx0xZjEdMMkAS/K+KhZJYFqIfKLgCrmrY
+      5uKuBR4V5ZxtSWKI+ZEhQ8Y3W7ctW3s6JbJArw==
+      =MOEx
       -----END PGP MESSAGE-----
 
     "SOCIAL_AUTH_GOOGLE_OAUTH2_KEY": |-
