@@ -95,6 +95,7 @@ MIDDLEWARE_CLASSES = [
 AUTHENTICATION_BACKENDS = [
     'social.backends.google.GoogleOAuth2',
     'social.backends.facebook.FacebookOAuth2',
+    'django_facebook.auth_backends.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
     'sesame.backends.ModelBackend',
 ]
@@ -375,8 +376,8 @@ LANGUAGES = [
 # Facebook app keys
 # TODO: determine if these 2 are needed. They are not set in the
 # existing Heroku app environment, so I can't pull them to new box.
-# FACEBOOK_APP_ID = os.environ.get("REVOLV_FACEBOOK_APP_ID")
-# FACEBOOK_APP_SECRET = os.environ.get("REVOLV_FACEBOOK_APP_SECRET")
+FACEBOOK_APP_ID = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY')
+FACEBOOK_APP_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
