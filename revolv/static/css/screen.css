@@ -14632,3 +14632,6 @@ form#change_password_form label {
     height: 3em;
     line-height: 43px;
 }
+.newsletter-ok-btn {
+    padding: 6px 21px;
+}

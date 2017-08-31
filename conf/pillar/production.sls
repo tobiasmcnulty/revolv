@@ -50,20 +50,36 @@ secrets:
       =duZ5
       -----END PGP MESSAGE-----
 
+    "MANDRILL_API_KEY": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQgAqxPyFtQHrpzElc/d0ENkAAJGkXS0ZPIVL0raUhNi8I8p
+      y1Q+IMczlWqTfT1JocUhjdWZf5nA+ueu+pvnIkc6mIbdnNiYRMeKaP1B3hPkH7yI
+      /3l8b5i7qfTEy5BLOYnG2N4iZgm8hrXVzSpAJ/a1vdGLGNJDzGWczdvChGw5p270
+      uf0c4OxSDKqvzMci/WPrrkgjCOmUH65FGlpNvn8vZeamk+cDNF6xj8EJbQEUchwL
+      thhjcNJ+WYAseFezREjVdLk8tdw086WGgi39UzJmhVxMx/fJsCWzQ+E1YEq9yhRm
+      hyjaa6+uz6avzIxGLhY+MMzPjO0i+yYDZ9ghvOx8vdJRAQmJzsgEN9GGLK3mmy6+
+      xKF3l93jE8c97SOjHHI6pmFl7MI41su9NT7ZanpHKrhy/qzlvHwt2qeTcN3L3jXZ
+      gyLyrArbRpXWtMkbr4mQOjbE
+      =YK6m
+      -----END PGP MESSAGE-----
+
     "MAILCHIMP_API_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQgAnojpr0q+/OCSKoggut8KdjsQnquVN+NkEMvqxvbUQKx3
-      JNVG0vznitIUpFXFI5jARy7AAnWIWecc6nMMachSjxmPio5ziIu+HBifmxWldxAS
-      ZdS2DP4DTcCqKs4Q8GZmhN2ToRsrY/JImnD5WV88gYBCdTM4sR048RktQVxxjQIc
-      +gRiboarUU91Nrl1esRSfeBGbYqoQPraApJSq6SIY6/zNU8AihJdHEH5UPthbqrf
-      WJ5Vg4JyT+0BH1AMPAOhXB74A+ITnoDlaM1mcvO6NG3gOJETiKGtSd090B88/Aas
-      xPIn+It1GSWvSYGODfYurZSCIk3gmb4M3V7EVJjmRdJRAd3e2NtFJ+eFEd3uiSW7
-      fuvPbwsLlH42Dyipung8zVQphpoei/ESyHxJUlkyjomlghfiWhP5qgeOSBCKjasL
-      Upu+RxV1pHVBsDjbblnvwQzf
-      =g9gI
+      hQEMA9aTfmR7xthMAQf/Z7iQr+9tWgczNAGqzzhyZgBcWUZzu2VFg08WcWD5joaB
+      1pV6f+tltBOkqeXP9oKXUw6UlGXyzOplwGUx/P3fl1EGQGKGQwJ4+XsxLoBNx78h
+      Hqb/QOXe5n2s7eTO+cNEIiaISspM83DKUmQU478K8TMenUTq3DNBsGPVTUuWA9zk
+      Erwoba1OnI4dzwri021SHU1K5zCx6BECSa/aAUd168yOg/ehj4UtuGav2XNq2g1a
+      c7n5F0rS3EY2lbDnUFUZ7dMcahpUIQFn1bjmQZ4kTqf+gZRH24VSRlIPpqI5cUGm
+      wd/ayY1s1mFE+siWPPzvt7PNCeWE6prydJPzYyKWWtJfAdFsjfS9pxBU84qI390n
+      3cS9KaVEBQEQfMF1IDMzbbBQ8RbZK5cnh+zqDBHAI+haC3+nh7kVAa4UW3uaYc5r
+      qajpJTGkjpkrAo2y86OWRLIaaH2/9I48Fov2TPVJ01k=
+      =5M9f
       -----END PGP MESSAGE-----
+
 
     "SECRET_KEY": |-
       -----BEGIN PGP MESSAGE-----
@@ -217,6 +233,21 @@ secrets:
       Z77Pncgb0sE2rJxcAlvj+ScAKRbuCWzLMBz6IYFAZjBvhqZfCNHrD9fc4xEjccM9
       cb7Q6NPQr9D54AdWk9eusGsEMiFH/MqEOK6PGA==
       =jo6C
+      -----END PGP MESSAGE-----
+
+    "LIST_ID": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf/eQCuxOifn0CqRNWnUqPUQ/K9m/uh1ROW2C3fYBEnrp/E
+      k6O//wuvcmZn73RZtz5/lV8KDEKFBrS28iCgBCbMZ4yalchrEmHbWlgIwtjrbJNb
+      wwZ1hoMowND7A5S7oXPjMBvjKddTfiBg/2MFkfDHvp1bflyTmHvsscSWjjX4kcwY
+      IzHG+SxSX3caQSu73H681Hf6X7VoUZ04Oh/hrUbV923MkOTLuT6xeuljbs5stYjb
+      mI2o4Qyoa7iOulRpyGIAGglt5q9woK44/U72Jdhvyr9UbBh70qYL7T8b5mk/OYFY
+      uwpcCq9NZsW37q608OWDggwsQxmepmPjTJA2rspwIdJFAWIzTf5zQE4e2pwBv1PH
+      yorG00D0ZDhG+7TeQXY2PHE2C9KbDjScwuYp6palAb583iCunvi7xFij1/xCfBVf
+      9fKXfy9v
+      =3/R6
       -----END PGP MESSAGE-----
 
 # Private deploy key. Must be GPG encrypted.
