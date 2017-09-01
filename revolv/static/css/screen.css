@@ -707,7 +707,7 @@ padding: 0;
     width: 100%;
 }
 #home-page  > .container > .container {
-    padding: 0vmin 4% 0 0;
+    padding: 0vmin 12px 0 0;
     margin: 0;
 }
 #home-page  > .container > .container .menu-list {
@@ -758,7 +758,7 @@ padding: 0;
     min-width: 132px;
 }
 .header .rights {
-        padding: 3.3rem 5.2% 0 0;
+        padding: 3.3rem 9% 0 0;
 }
 .header .txt {
     font-size: 14px;
@@ -844,12 +844,7 @@ padding: 0;
 .header a.btn-blue:last-child, .header a.btn-blue:first-child {
   margin-right: 3rem;
 }
-.zinnia .header a.btn-blue:last-child {
-    margin-right: 0;
-}
-.zinnia .header a.btn-blue:nth-child(2), .header a.btn-blue:first-child {
-    margin-right: 3rem;
-}
+
 #home-page .rights > a.btn-blue:last-child {
   margin-right: 0;
 }
@@ -14634,4 +14629,10 @@ form#change_password_form label {
 }
 .newsletter-ok-btn {
     padding: 6px 21px;
+}
+.zinnia .header a.btn-blue:last-child {
+    margin-right: 0;
+}
+.zinnia .header a.btn-blue:nth-child(2), .header a.btn-blue:first-child {
+    margin-right: 3rem;
 }
