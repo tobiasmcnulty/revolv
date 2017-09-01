@@ -738,6 +738,18 @@ class Project(models.Model):
     def __unicode__(self):
         return self.title + '-' + self.project_status
 
+class AnonymousUserDetail(models.Model):
+    email = models.CharField(max_length=254, blank=True, null=True)
+    ip_address = models.IPAddressField(blank=True, null=True, default=None)
+    amount = models.FloatField(default=0)
+    city = models.CharField(max_length=254,blank=True, null=True)
+    region_code = models.CharField(max_length=10,blank=True, null=True)
+    region_name = models.CharField(max_length=254,blank=True, null=True)
+    time_zone = models.CharField(max_length=254,blank=True, null=True)
+    country_name = models.CharField(max_length=254,blank=True, null=True)
+    zip_code = models.CharField(max_length=30,blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
 class ProjectUpdate(models.Model):
     factories = ImportProxy("revolv.project.factories", "ProjectUpdateFactories")

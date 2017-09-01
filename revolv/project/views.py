@@ -20,10 +20,12 @@ from revolv.payments.forms import CreditCardDonationForm
 from revolv.payments.models import UserReinvestment, Payment, PaymentType, Tip
 from revolv.payments.services import PaymentService
 from revolv.project import forms
-from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors
+from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors, AnonymousUserDetail
 from revolv.tasks.sfdc import send_donation_info
 from django.contrib.auth.models import User
 from sesame import utils
+from json import load
+from urllib2 import urlopen
 
 logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
@@ -157,7 +159,27 @@ def stripe_operation_donation(request):
 
 
         context = {}
+
+
         if not request.user.is_authenticated():
+            my_ip = request.META.get('REMOTE_ADDR')
+
+            url = 'http://freegeoip.net/json/' + my_ip
+
+            response = load(urlopen(url))
+
+            AnonymousUserDetail.objects.create(
+                email=email,
+                ip_address=my_ip,
+                amount=amount / 100,
+                city=response['city'],
+                region_code=response['region_code'],
+                region_name=response['region_name'],
+                time_zone=response['time_zone'],
+                country_name=response['country_name'],
+                zip_code=response['zip_code']
+            )
+
             context['user'] = 'RE-volv Supporter'
         else:
             if not (request.user.first_name and request.user.last_name):
@@ -215,6 +237,24 @@ def stripe_operation_donation(request):
         if not request.user.is_authenticated():
             context['user'] = 'RE-volv Supporter'
         else:
+            my_ip = request.META.get('REMOTE_ADDR')
+
+            url = 'http://freegeoip.net/json/' + my_ip
+
+            response = load(urlopen(url))
+
+            AnonymousUserDetail.objects.create(
+                email=email,
+                ip_address=my_ip,
+                amount=amount / 100,
+                city=response['city'],
+                region_code=response['region_code'],
+                region_name=response['region_name'],
+                time_zone=response['time_zone'],
+                country_name=response['country_name'],
+                zip_code=response['zip_code']
+            )
+
             if not (request.user.first_name and request.user.last_name):
                 context['user'] = 'RE-volv Supporter'
             else:
