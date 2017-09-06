@@ -19,7 +19,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
-    ('RE-volv Team', 're-volv-team@caktusgroup.com'),
+    ('RE-volv Team', 're-volv@zibtek.com'),
 )
 
 # Application definition
