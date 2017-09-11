@@ -250,6 +250,52 @@ secrets:
       =3/R6
       -----END PGP MESSAGE-----
 
+    "SFDC_ACCOUNT": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf9FYuTi1fIaYVeeoPoS2ZyuxSd6K5I0IosU6SGk7t2xJPY
+      BsClJR7fbivkFDMuNllNAgy+Yf75T7hq66xpzkTkIkFCY0Yb6IM5A5cY0lihy7mJ
+      pnRgNwm0NbzwwJ/wY1bGlDk7aS6NGXk+kd5RxcRJgkvg8qAQoRYImUKJLvYVGGt5
+      XMzwvXGfU2vsx4b/jvEeDldfmfGXV2Lx7Hs4313kAK/yKN9mXwtZk4SVZqWZ9Tkc
+      szHBnMz/WQVcFOFxNvRzza6X0gQ6QywBScZMcR1aGM57xBR8cupiQdSpX9KJsrNJ
+      rRAT7yc4KOsr7mHTXm++w9Mt7EzuRk73U7q0ArFlRNJZAehGnXeYfsTavHgok607
+      CotJZezWpG4T27MdMWTmi00QHfuQ/1IfwuMs3reYjOYpN5WmNvaBeAbyaFDfoO4Z
+      z0Uz95FdoXYxQadEI4VvKbEcBVmRCs4kC/I=
+      =J/xS
+      -----END PGP MESSAGE-----
+
+    "SFDC_PASSWORD": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQgArjWKMm5Y4LDI8+t4ldVjzVrTEWEfrFWIWacqZMHBnx9R
+      d8hyYUgp6XbZXNczMKetcRGyvOnVuIKGN48PIOPStX6EhByQm4eyimO5IMe+v3TF
+      NHFiWSnNno+VPxWSDeZt2j7n8GBg/e8698k6hw3t7QSRnTTvgWMI+Ixc3Xm4/e0L
+      yQUqqmfD/fvqct5LhjeSmjgddV9d/8pnm8Ie/fsrKKvBs0nUeq9VpfcjuJ+Tzeqr
+      qqF4NAB9y80DQv8UBEXHMua6BLadz+uTo3o59Rx8WT2VU8udnV7KDmogrlbuymFA
+      +wjSAaUWnXOUHC3SlKEqQvfaK9eHcdWzD2gkbFmEK9JFAYr7JWbfweuGYN+5peLu
+      Wjg89w5IUwz6/Lpedi9Onjy94Xi57xT+WEhnXr+d4N7bddiNsbzUlLzWqKa2F3gN
+      De98cggn
+      =fKy5
+      -----END PGP MESSAGE-----
+
+    "SFDC_TOKEN": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf8CHJJ3d+scm32JlKXZQmlBpkemrFRqdiBQ/c5QTpao6Wy
+      8MeH6gSlgnavqAeaHoWbJISjgstXQUv7Ufd20Mu44OdLHdr42/klqYy1Ly3vSvkq
+      EnoxQxm5DCjr/vftMksYKZn+xv2Z9O3f3j8VIDgnIORBtBmUyj0FJL5m7/n4wWe4
+      PzSDjhAMSUm61dpKN1VAFM794QVB86aNKixewPa5+qr8wKAaLS1CR4Lgv93edIK/
+      wT2LAdQJ1yzWYgdWG9SeON7QLEmjqFDBpxmKywsla1QBUToVkl2zx2AePnIPAhkW
+      8/D3y+HaLlNHB+pJnUl0IcWdPYRL7EEx3++f4rIlgNJTAep5+Sizp4FFusRkB7Nj
+      +2qVOj1b1olPXdhUoj6qRCEdk7JTocGrR4vAnhhUQEyxIlY7cfaT19uR4u75BYQq
+      wbaN+qP2N0IjxHoXBwSjVnhmTLs=
+      =7Yms
+      -----END PGP MESSAGE-----
+
+
 # Private deploy key. Must be GPG encrypted.
 github_deploy_key: |-
     -----BEGIN PGP MESSAGE-----

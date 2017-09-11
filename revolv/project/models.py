@@ -738,6 +738,16 @@ class Project(models.Model):
     def __unicode__(self):
         return self.title + '-' + self.project_status
 
+class StripeDetails(models.Model):
+    stripe_customer_id = models.CharField(max_length=32, blank=True, null=True)
+    subscription_id = models.CharField(max_length=32, blank=True, null=True)
+    plan = models.CharField(max_length=64, blank=True, null=True)
+    stripe_email = models.EmailField(default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(RevolvUserProfile, related_name='stripe_donor')
+    amount = models.FloatField(default=0)
+
 class AnonymousUserDetail(models.Model):
     email = models.CharField(max_length=254, blank=True, null=True)
     ip_address = models.IPAddressField(blank=True, null=True, default=None)
