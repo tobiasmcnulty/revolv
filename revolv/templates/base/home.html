@@ -168,7 +168,7 @@
         <div class="how-it-works-button">
             <a href="#" class="How_it_Works space_btn_element" data-toggle="modal" data-target="#popup">Become a Monthly Donor</a>
         </div>
-        <div class="learn-more"><a href="/get-involved/leonardo-dicaprio-foundation-partners-re-volv/" ><span class="learn-more-text">Learn more</span></a></div>
+        <div class="learn-more"><a href="/get-involved/leonardo-dicaprio-foundation-partners-re-volv/" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
       </div>
       <img class="background-image-size_home" src="static/images/Leonardo_Dicaprio_3.jpg" alt="Leonardo Dicaprio">
     </div>
@@ -677,7 +677,7 @@
 </div>
 <!-- end .featured-on-module -->
 
-<div class="newsletter-module">
+<div id="newsletter" class="newsletter-module">
   <div class="parallax-window" id="parallax-anchor"></div>
   <div class="img-preload">
     <!-- <img src="{% static 'images/small/small-newsletter-bg.jpg' %}" class="small-img" alt="">  -->
@@ -722,6 +722,7 @@
 <script type="text/javascript">
 
   $(document).on('ready', function() {
+
       $(".regular").slick({
         arrows:true,
         infinite: true,

@@ -14693,3 +14693,25 @@ form#change_password_form label {
     font-family: italic;
     font-weight: 600;
 }
+.leo-content-center {
+    max-width: 43em;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 11em;
+}
+.leo-content-text {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #064f7e;
+}
+
+.leo-content-size {
+    font-size: 16px;
+    margin-top: 2em;
+}
+.leo-donate-btn {
+    text-align: center;
+    margin-top: 2em;
+}
+

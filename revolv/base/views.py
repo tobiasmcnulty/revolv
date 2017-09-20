@@ -659,6 +659,9 @@ def social_connection(request):
 def harborhouse(request):
     return redirect('/project/harborhouse/')
 
+def leo_page(request):
+    return render(request,'base/partials/leo_page.html')
+
 def riverrevitalizationfoundation(request):
     return redirect('/project/riverrevitalizationfoundation/')
 
