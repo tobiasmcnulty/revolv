@@ -166,6 +166,18 @@ a:hover {
         padding: 0.9em 0;
         text-align: center;
     }
+    .carousel-fourth-img .text_content {
+        float: left;
+        width: 65%;
+        text-align: left;
+        margin-right: 0;
+    }
+    .carousel-fourth-img .How_it_Works {
+        float: left;
+        font-size: 1.7rem;
+        padding: 0.9em 0;
+        text-align: center;
+    }
     .carousel-first-img .how-it-works-button {
         bottom: 0;
     }
@@ -13080,6 +13092,11 @@ and (orientation : landscape) {
     font-size: 2.5vmin;
     padding: 0.9em 10.5%;
 }
+.carousel-fourth-img .How_it_Works {
+    float: left;
+    font-size: 2.5vmin;
+    padding: 0.9em 10.5%;
+}
 .Bring_solar_energy__to_communities_around_the_c {
     font-size: 4.2vmin;
     line-height: 5.4vmin;
@@ -13100,12 +13117,20 @@ and (orientation : landscape) {
     float: none;
     margin: 0 auto;
     }
-.carousel-third-img .text_content {
+.carousel-fourth-img .text_content {
     width: 100%;
     padding-left: 0;
     text-align: center;
 }
-.carousel-third-img .text_overlay {
+.carousel-fourth-img .text_overlay {
+    padding: 4vmin calc(20.5% + 15px) 0 calc(20.5% + 15px);
+}
+.carousel-fourth-img .text_content {
+    width: 100%;
+    padding-left: 0;
+    text-align: center;
+}
+.carousel-fourth-img .text_overlay {
     padding: 4vmin calc(20.5% + 15px) 0 calc(20.5% + 15px);
 }
 .how_it_works_rectangle{
@@ -13918,6 +13943,14 @@ a.How_it_Works:hover {
         float: left;
         width: 100%;
     }
+    .carousel-fourth-img .text_overlay {
+        padding: 4vmin calc(8.5% + 15px) 0 calc(8.5% + 15px);
+    }
+    .carousel-fourth-img .how-it-works-button {
+        padding: 2vmin 19%;
+        float: left;
+        width: 100%;
+    }
     .carousel-second-img .text_overlay {
         padding: 4vmin calc(4.5% + 15px) 0 calc(4.5% + 15px);
     }
@@ -13960,6 +13993,9 @@ a.How_it_Works:hover {
     .carousel-third-img .text_content {
         width: 70em;
     }
+    .carousel-fourth-img .text_content {
+        width: 70em;
+    }
     .CREATE_CLEAN_ENERGY {
         font-size: 5.5rem;
     }
@@ -13968,6 +14004,10 @@ a.How_it_Works:hover {
     line-height: 1.45em;
     }
     .carousel-third-img .How_it_Works {
+        font-size: 1.7rem;
+        font-family: SourceSansProBold;
+    }
+    .carousel-fourth-img .How_it_Works {
         font-size: 1.7rem;
         font-family: SourceSansProBold;
     }
@@ -14004,6 +14044,9 @@ a.How_it_Works:hover {
     margin-left: 0;
 }
 @media (max-width: 500px) {
+    #myCarousel .carousel-fourth-img .background-image-size_home{
+        content:url(../images/mobile/Leonardo_Dicaprio_414*515.jpg);
+    }
     #myCarousel .carousel-third-img .background-image-size_home{
         content:url(../images/mobile/mobile_slide1.jpg);
     }
@@ -14636,4 +14679,17 @@ form#change_password_form label {
 }
 .zinnia .header a.btn-blue:nth-child(2), .header a.btn-blue:first-child {
     margin-right: 3rem;
+}
+.learn-more {
+    position: relative;
+    width: 100%;
+    float: left;
+    /* text-align: center; */
+    margin-left: 6em;
+    margin-top: 0.4em;
+}
+.learn-more-text {
+    color: #eee;
+    font-family: italic;
+    font-weight: 600;
 }
