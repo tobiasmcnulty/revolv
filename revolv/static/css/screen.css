@@ -14701,7 +14701,7 @@ form#change_password_form label {
 }
 .leo-content-text {
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 36px;
     color: #064f7e;
 }
@@ -14714,4 +14714,11 @@ form#change_password_form label {
     text-align: center;
     margin-top: 2em;
 }
-
+@media screen and (max-width: 668px) {
+    .leo-content-center {
+        max-width: 20em;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 11em;
+    }
+}
