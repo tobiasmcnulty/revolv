@@ -210,7 +210,7 @@ def stripe_operation_donation(request):
                     payment_type=PaymentType.objects.get_stripe(),
                 )
 
-            send_donation_info(user.get_full_name(), amount/100,user.user.email,project.title, address='')
+            #send_donation_info(user.get_full_name(), amount/100,user.user.email,project.title, address='')
 
         context = {}
         if not request.user.is_authenticated():
@@ -221,11 +221,11 @@ def stripe_operation_donation(request):
             else:
                 context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
 
-        # context['amount'] = amount / 100.0
-        # send_revolv_email(
-        #     'Post_operations_donation',
-        #     context, [email]
-        # )
+        context['amount'] = amount / 100.0
+        send_revolv_email(
+            'Post_operations_donation',
+            context, [email]
+        )
 
         return HttpResponse(json.dumps({'status': 'donation_success'}), content_type="application/json")
 
@@ -310,11 +310,11 @@ def stripe_operation_donation(request):
             else:
                 context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
 
-        # context['amount'] = amount / 100.0
-        # send_revolv_email(
-        #     'Post_operations_donation',
-        #     context, [email]
-        # )
+        context['amount'] = amount / 100.0
+        send_revolv_email(
+            'Post_operations_donation',
+            context, [email]
+        )
 
         return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
 

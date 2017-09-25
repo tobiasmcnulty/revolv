@@ -367,7 +367,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         form.save()
         u = form.ensure_authenticated_user()
         name = u.revolvuserprofile.get_full_name()
-        send_signup_info.delay(name, u.email, u.revolvuserprofile.address)
+        #send_signup_info.delay(name, u.email, u.revolvuserprofile.address)
         # log in the newly created user model. if there is a problem, error
         auth_login(self.request, u)
         SITE_URL = settings.SITE_URL
@@ -394,7 +394,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
                 if is_email_exist:
                     pass
                 else:
-                    list.subscribe(self.request.user.email, {'EMAIL': self.request.user.email})
+                    list.subscribe(self.request.user.email, {'EMAIL': self.request.user.email},double_optin=False)
 
             except Exception, e:
                 logger.exception(e)
@@ -1291,7 +1291,7 @@ def add_email_to_mailing_list(request):
             return HttpResponse(json.dumps({'status': 'already_exist'}), content_type="application/json")
         else:
             try:
-                list.subscribe(email_address, {'EMAIL': email_address})
+                list.subscribe(email_address, {'EMAIL': email_address},double_optin=False)
             except Exception:
                 return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
             return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
