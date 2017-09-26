@@ -14,7 +14,7 @@ class SFDCException(Exception):
     pass
 
 
-@task
+#@task
 def send_signup_info(name, email, address=''):
     if not settings.SFDC_ACCOUNT:
         return
@@ -36,7 +36,7 @@ def send_signup_info(name, email, address=''):
         #send_signup_info.retry(args=[name, email, address], countdown=INTERVAL, exc=e, max_retries=MAX_RETRIES)
 
 
-@task
+#@task
 def send_donation_info(name, amount,email, project, address=''):
     if not settings.SFDC_ACCOUNT:
         return
