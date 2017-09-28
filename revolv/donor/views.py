@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.db.models import Sum
 
+from django.shortcuts import get_object_or_404
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.payments.models import Payment
@@ -29,7 +30,8 @@ def humanize_integers(d):
         d[k] = humanize_int(int(d[k]))
 
 def total_donations(profile):
-    payments = Payment.objects.filter(entrant=profile, user=profile)
+    project = get_object_or_404(Project, title='Operations')
+    payments = Payment.objects.filter(entrant=profile, user=profile).exclude(project=project)
     if payments:
         return payments.aggregate(Sum('amount'))['amount__sum']
     else:
