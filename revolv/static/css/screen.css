@@ -14714,11 +14714,71 @@ form#change_password_form label {
     text-align: center;
     margin-top: 2em;
 }
+.leadership-circle-header {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #064f7e;
+}
+.leadership-circle-sub-header {
+    color: #11ADE5;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 28px;
+}
+.leadership-circle-sub-header {
+    color: #11ADE5;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 28px;
+    margin-bottom: 20px;
+    font-family: Lato,sans-serif;
+    font-style: normal;
+    line-height: 1.4;
+    text-rendering: optimizeLegibility;
+}
+.leadership-circle-sub-text {
+    font-size: 18px;
+    line-height: 20px;
+    color: #11ADE5;
+    font-weight: 600;
+    font-family: Lato,sans-serif;
+    font-style: normal;
+    line-height: 1.4;
+    text-rendering: optimizeLegibility;
+}
+.leadership-content {
+    font-size: 16px;
+    margin-top: 1.6em;
+    font-weight: 400;
+}
+.leadship-img {
+    text-align: center;
+    margin-top: 1.6em;
+    padding-bottom: 3em;
+    border-bottom: 1px solid #ccc;
+}
+.leadship-li {
+    list-style-type:disc!important;
+    margin-left:15px;
+}
+.leadship-ui {
+    list-style-type : none;
+    text-decoration: none;
+}
+.leadership-img-size {
+    width: 450px;
+    height: 450px;
+}
 @media screen and (max-width: 668px) {
     .leo-content-center {
         max-width: 20em;
         margin: 0 auto;
         position: relative;
         margin-top: 11em;
+    }
+    .leadership-img-size {
+        width: 100%;
+        height: 450px;
     }
 }

@@ -662,6 +662,9 @@ def harborhouse(request):
 def leo_page(request):
     return render(request,'base/partials/leo_page.html')
 
+def leadership_circle(request):
+    return render(request,'base/partials/leadership-circle.html')
+
 def riverrevitalizationfoundation(request):
     return redirect('/project/riverrevitalizationfoundation/')
 
