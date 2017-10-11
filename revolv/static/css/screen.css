@@ -315,7 +315,7 @@ div#myCarousel {
  .investors_logo {
     width: 100%;
     position: relative;
-    margin-top: 2%;
+    margin-top: 0%;
     margin-bottom: 2%;
     padding: 2vmin 5% 1vmin;
     float: left;
@@ -377,8 +377,8 @@ div#myCarousel {
     padding: 0vmin 0;
     font-size: 1.5em;
     text-align: center;
-    margin-bottom: 0%;
-    font-weight: 700;
+    margin-bottom: 4%;
+    font-weight: 600;
     }
 
 .dropdown_state {
@@ -1454,7 +1454,7 @@ padding: 0;
 .how-it-works-module .info-row {
     text-align: left;
     margin: 0;
-    padding: 57px 86px 0 113px;
+    padding: 57px 113px 0 113px;
 }
 .how-it-works-module .info-row .video-area .video {
     background: #000;
@@ -14769,6 +14769,12 @@ form#change_password_form label {
 .leadership-img-size {
     width: 450px;
     height: 450px;
+}
+.infographic {
+    text-align: center;
+    width: 57%;
+    margin: 0 auto;
+    margin-bottom: 4%;
 }
 @media screen and (max-width: 668px) {
     .leo-content-center {
