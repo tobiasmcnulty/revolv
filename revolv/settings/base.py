@@ -214,6 +214,7 @@ SITE_ID = 1
 
 MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 LIST_ID = os.environ.get('LIST_ID')
+ANNOUNCEMENT_ID = os.environ.get('ANNOUNCEMENT_ID')
 
 MANDRILL_API_KEY = os.environ.get('MANDRILL_API_KEY')
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
@@ -448,6 +449,6 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 
-VERSION_NUM = '4424420229583'
+VERSION_NUM = '4424420229321'
 
 

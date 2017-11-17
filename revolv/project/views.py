@@ -210,7 +210,7 @@ def stripe_operation_donation(request):
                     payment_type=PaymentType.objects.get_stripe(),
                 )
 
-            #send_donation_info(user.get_full_name(), amount/100,user.user.email,project.title, address='')
+            send_donation_info(user.get_full_name(), amount/100,user.user.email,project.title, address='')
 
         context = {}
         if not request.user.is_authenticated():
@@ -227,54 +227,99 @@ def stripe_operation_donation(request):
             context, [email]
         )
 
-        return HttpResponse(json.dumps({'status': 'donation_success'}), content_type="application/json")
+        return HttpResponse(json.dumps({'status': 'donation_success','amount':amount/float(100)}), content_type="application/json")
 
     else:
-        amount = round(float(amount_cents) * 100)
-        try:
-            customer=stripe.Customer.create(
-                email=email,
-                description="Donation for RE-volv Operations",
-                source=token  # obtained with Stripe.js
-            )
-            plan = stripe.Plan.create(
-                    amount=int(amount),
-                    interval="month",
-                    name="Revolv Donation "+str(amount_cents),
-                    currency="usd",
-                    id="revolv_donation"+"_"+customer["id"]+"_"+str(amount_cents))
-
-            subscription = stripe.Subscription.create(
-                customer=customer,
-                plan=plan,
-            )
-
-
-        except stripe.error.CardError as e:
-            body = e.json_body
-            #error_msg = body['error']['message']
-            messages.error(request, 'Payment error')
-            return redirect('home')
-        except stripe.error.APIConnectionError as e:
-            body = e.json_body
-            # error_msg = body['error']['message']
-            messages.error(request, 'Internet connection error. Please check your internet connection.')
-            return redirect('home')
-        except Exception:
-            error_msg = "Payment error. RE-volv has been notified."
-            logger.exception(error_msg)
-
-            messages.error(request, 'Payment error. RE-volv has been notified.')
-            return redirect('home')
-
         if amount_cents > 0:
             if request.user.is_authenticated():
                user = RevolvUserProfile.objects.get(user=request.user)
+               try:
+                    stripeDetail = StripeDetails.objects.get(user=user, amount__gt=0.0)
+               except StripeDetails.DoesNotExist:
+                   stripeDetail = None
+               if not stripeDetail:
+                   amount = round(float(amount_cents) * 100)
+                   try:
+                       customer = stripe.Customer.create(
+                           email=email,
+                           description="Donation for RE-volv Operations",
+                           source=token  # obtained with Stripe.js
+                       )
+                       plan = stripe.Plan.create(
+                           amount=int(amount),
+                           interval="month",
+                           name="Operation Donation " + str(amount_cents),
+                           currency="usd",
+                           id="operation_donation" + "_" + customer["id"] + "_" + str(amount_cents))
+
+                       subscription = stripe.Subscription.create(
+                           customer=customer,
+                           plan=plan,
+                       )
+
+
+                   except stripe.error.CardError as e:
+                       body = e.json_body
+                       # error_msg = body['error']['message']
+                       messages.error(request, 'Payment error')
+                       return redirect('home')
+                   except stripe.error.APIConnectionError as e:
+                       body = e.json_body
+                       # error_msg = body['error']['message']
+                       messages.error(request, 'Internet connection error. Please check your internet connection.')
+                       return redirect('home')
+                   except Exception:
+                       error_msg = "Payment error. RE-volv has been notified."
+                       logger.exception(error_msg)
+
+                       messages.error(request, 'Payment error. RE-volv has been notified.')
+                       return redirect('home')
+
+               else:
+                   return HttpResponse(json.dumps({'status': 'already_exist'}), content_type="application/json")
 
             else:
+
+                amount = round(float(amount_cents) * 100)
+                try:
+                    customer = stripe.Customer.create(
+                        email=email,
+                        description="Donation for RE-volv Operations",
+                        source=token  # obtained with Stripe.js
+                    )
+                    plan = stripe.Plan.create(
+                        amount=int(amount),
+                        interval="month",
+                        name="Operation Donation " + str(amount_cents),
+                        currency="usd",
+                        id="operation_donation" + "_" + customer["id"] + "_" + str(amount_cents))
+
+                    subscription = stripe.Subscription.create(
+                        customer=customer,
+                        plan=plan,
+                    )
+
+
+                except stripe.error.CardError as e:
+                    body = e.json_body
+                    # error_msg = body['error']['message']
+                    messages.error(request, 'Payment error')
+                    return redirect('home')
+                except stripe.error.APIConnectionError as e:
+                    body = e.json_body
+                    # error_msg = body['error']['message']
+                    messages.error(request, 'Internet connection error. Please check your internet connection.')
+                    return redirect('home')
+                except Exception:
+                    error_msg = "Payment error. RE-volv has been notified."
+                    logger.exception(error_msg)
+
+                    messages.error(request, 'Payment error. RE-volv has been notified.')
+                    return redirect('home')
+
                 my_ip = load(urlopen('http://jsonip.com'))['ip']
 
-                url = 'http://freegeoip.net/json/'+my_ip
+                url = 'http://freegeoip.net/json/' + my_ip
 
                 response = load(urlopen(url))
 
@@ -301,22 +346,21 @@ def stripe_operation_donation(request):
                     amount=amount/float(100)
             )
 
-        context = {}
-        if not request.user.is_authenticated():
-            context['user'] = 'RE-volv Supporter'
-        else:
-            if not (request.user.first_name and request.user.last_name):
+            context = {}
+            if not request.user.is_authenticated():
                 context['user'] = 'RE-volv Supporter'
             else:
-                context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
+                if not (request.user.first_name and request.user.last_name):
+                    context['user'] = 'RE-volv Supporter'
+                else:
+                    context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
 
-        context['amount'] = amount / 100.0
-        send_revolv_email(
-            'Post_operations_donation',
-            context, [email]
-        )
-
-        return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
+            context['amount'] = amount / 100.0
+            send_revolv_email(
+                'Post_operations_donation',
+                context, [email]
+            )
+            return HttpResponse(json.dumps({'status': 'subscription_success','amount':amount/float(100)}), content_type="application/json")
 
 @require_POST
 @csrf_exempt
@@ -328,32 +372,38 @@ def stripe_webhook(request):
     data = event_json["data"]
     object = data["object"]
     try:
-        print event_json
         if event_type == "invoice.payment_succeeded":
             customer_id = object["customer"]
             subscription_id = object["subscription"]
+            lines= object['lines']['data'][0]
+            plan_name = lines['plan']['name']
             amount = object['total']
-            project = get_object_or_404(Project, title='Operations')
             stripeDetails = StripeDetails.objects.get(stripe_customer_id=customer_id,subscription_id=subscription_id)
             tip = None
-            if stripeDetails:
-                user=stripeDetails.user
-                Payment.objects.create(
-                    user=user,
-                    entrant=user,
-                    amount=round(amount/float(100),2),
-                    project=project,
-                    tip=tip,
-                    payment_type=PaymentType.objects.get_stripe(),
-                )
+            if plan_name.find('Operation') == 0:
                 project = get_object_or_404(Project, title='Operations')
-                send_donation_info(user.get_full_name(), round(amount/float(100),2) , user.user.email, project.title, address='')
+                if stripeDetails:
+                    user=stripeDetails.user
+                    Payment.objects.create(
+                        user=user,
+                        entrant=user,
+                        amount=round(amount/float(100),2),
+                        project=project,
+                        tip=tip,
+                        payment_type=PaymentType.objects.get_stripe(),
+                    )
+                    project = get_object_or_404(Project, title='Operations')
+                    send_donation_info(user.get_full_name(), round(amount/float(100),2) , user.user.email, project.title, address='')
             else:
-                print "Stripe Details not matched",stripeDetails
+                user = stripeDetails.user
+                user.solar_seed_fund_pool = user.solar_seed_fund_pool + amount/100
+                user.solar_seed_fund_pool = user.solar_seed_fund_pool
+                user.save()
     except:
         pass
 
-    return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
+    return HttpResponse(json.dumps({'status': 'subscription_success','amount':amount/float(100)}), content_type="application/json")
+
 
 
 class DonationLevelFormSetMixin(object):
@@ -566,9 +616,12 @@ class ProjectReinvestView(UserDataMixin, DetailView):
         context['project_donation_levels'] = self.get_object().donation_levels.order_by('amount')
         context["is_draft_mode"] = self.get_object().project_status == self.get_object().DRAFTED
         context['payments'] = Payment.objects.all()
-        if self.user_profile and self.user_profile.reinvest_pool > 0.0:
+        if self.user_profile:
+            amount = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
+        if self.user_profile and amount > 0.0:
+            context["reinvestment_amount"] = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
             context["is_reinvestment"] = True
-            context["reinvestment_amount"] = self.user_profile.reinvest_pool
+            # context["reinvestment_amount"] = self.user_profile.reinvest_pool
         return context
 
 class ProjectView(UserDataMixin, DetailView):
@@ -597,8 +650,10 @@ class ProjectView(UserDataMixin, DetailView):
                                                                                  amount__gt=0)
         context["is_draft_mode"] = self.get_object().project_status == self.get_object().DRAFTED
         context["is_reinvestment"] = False
-        if self.user_profile and self.user_profile.reinvest_pool > 0.0:
-            context["reinvestment_amount"] = self.user_profile.reinvest_pool
+        if self.user_profile:
+            amount = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
+        if self.user_profile and amount > 0.0:
+            context["reinvestment_amount"] = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
         else:
             context["reinvestment_amount"] = 0.0
         context["reinvestment_url"] = ''

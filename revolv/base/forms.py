@@ -2,7 +2,10 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db import IntegrityError
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, get_user_model
+from django.utils.text import capfirst
+from models import RevolvUserProfile
 
 class SignupForm(UserCreationForm):
     """
@@ -15,6 +18,13 @@ class SignupForm(UserCreationForm):
     last_name = forms.CharField(label="Last name")
     subscribed_to_newsletter = forms.BooleanField(initial=True, required=False, label="Subscribe me to the RE-volv Newsletter.", help_text="Subscribe me to the RE-volv Newsletter")
     zipcode = forms.CharField(label="Zipcode", max_length=5)
+
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError("This email already used")
+        return data
+
 
     def save(self, commit=True):
         """
@@ -45,3 +55,22 @@ class SignupForm(UserCreationForm):
         raise IntegrityError(
             "User model could not be saved during signup process."
         )
+
+
+class RevolvUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = RevolvUserProfile
+        fields = ['subscribed_to_newsletter', 'subscribed_to_updates','subscribed_to_repayment_notifications']
+
+
+class UpdateUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
+
+    email = forms.EmailField(label="Email")
+    first_name = forms.CharField(label="First name")
+    last_name = forms.CharField(label="Last name")
+
+
+

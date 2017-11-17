@@ -234,11 +234,15 @@ $(function ($) {
                  {
                     if(data.status == 'donation_success') {
                         $('.modal-title').text('Thank you for donating!');
-                        $('.donation-text').text("Thank you for donating to RE-volv's mission to empower communities with solar energy!");
+                        $('.donation-text').text("Thank you for donating $" +data.amount + " to RE-volv's mission to empower communities with solar energy!");
                     }
                     if(data.status == 'subscription_success') {
                         $('.modal-title').text('Thank you for donating!');
-                        $('.donation-text').text("Thank you for donating monthly to RE-volv's mission to empower communities with solar energy!");
+                        $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
+                    }
+                    if(data.status == 'already_exist') {
+                        $('.modal-title').text('Donation already exist');
+                        $('.donation-text').text("Thank you for showing interest, you are already subscribe for monthly donation!");
                     }
                     $('#donation-spinner').css('display', 'none');
                     $('#operationModal').modal('show');

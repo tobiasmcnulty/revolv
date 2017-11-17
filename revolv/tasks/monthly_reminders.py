@@ -34,7 +34,9 @@ def user_reinvestment_reminder():
                 data['first_name'] = user.user.first_name.title()
             else:
                 data['first_name'] = 'RE-volv Supporter'
-            send_revolv_email(
-                'reinvestment_reminder',
-                data, [user.user.email]
-            )
+            if user.repayment_notification:
+                send_revolv_email(
+                    'reinvestment_reminder',
+                    data, [user.user.email]
+                )
+            

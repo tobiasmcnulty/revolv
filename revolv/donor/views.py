@@ -75,13 +75,14 @@ class DonorDashboardView(UserDataMixin, TemplateView):
                                 'amount__sum'] or 0
         statistics_dictionary['reinvestment'] = admin_reinvestment + user_reinvestment
         context['statistics'] = statistics_dictionary
-        if self.user_profile and self.user_profile.reinvest_pool > 0.0:
-            context["reinvestment_amount"] = self.user_profile.reinvest_pool
+        amount = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
+        if self.user_profile and amount > 0.0:
+            context["reinvestment_amount"] = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
         else:
             context["reinvestment_amount"] = 0.0
 
-        context['category_setter_url'] = reverse('dashboard_category_setter')
-        context['categories'] = Category.objects.all().order_by('title')
-        context['preferred_categories'] = self.user_profile.preferred_categories.all()
+        # context['category_setter_url'] = reverse('dashboard_category_setter')
+        # context['categories'] = Category.objects.all().order_by('title')
+        # context['preferred_categories'] = self.user_profile.preferred_categories.all()
 
         return context

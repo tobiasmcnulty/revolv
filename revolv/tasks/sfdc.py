@@ -42,7 +42,7 @@ def send_donation_info(name, amount,email, project, address=''):
         return
     try:
         res = None
-        payload = {'donorName': name, 'projectName': project, 'donationAmount': amount, 'donorAddress': ''}
+        payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'donorAddress': ''}
         sf = Salesforce(
             username=settings.SFDC_ACCOUNT,
             security_token=settings.SFDC_TOKEN,
@@ -58,5 +58,5 @@ def send_donation_info(name, amount,email, project, address=''):
         logger.info('SFDC donation: success.')
     except Exception as e:
         logger.error('SFDC donation: ERROR for name: %s and data: %s, res: %s', name, payload, res, exc_info=True)
-        send_donation_info.retry(args=[name, amount, project, address], countdown=INTERVAL, exc=e,
-                                 max_retries=MAX_RETRIES)
+        # send_donation_info.retry(args=[name, amount, project, address], countdown=INTERVAL, exc=e,
+        #                          max_retries=MAX_RETRIES)

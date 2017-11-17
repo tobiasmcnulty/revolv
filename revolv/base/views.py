@@ -1,4 +1,5 @@
 import csv
+import stripe
 from collections import OrderedDict
 import logging
 from django.conf import settings
@@ -22,11 +23,11 @@ from django.views.decorators.http import require_http_methods
 from django.views.generic import FormView, TemplateView, View
 from django.template.context import RequestContext
 from django.views.decorators.csrf import csrf_protect
-from revolv.base.forms import SignupForm
+from revolv.base.forms import SignupForm, UpdateUser, RevolvUserProfileForm
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.payments.models import Payment, Tip, RepaymentFragment
-from revolv.project.models import Category, Project, ProjectMatchingDonors
+from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails
 from revolv.project.utils import aggregate_stats
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.base.models import RevolvUserProfile
@@ -40,6 +41,7 @@ import mailchimp
 import json
 import re
 logger = logging.getLogger(__name__)
+ANNOUNCEMENT_ID = settings.ANNOUNCEMENT_ID
 LIST_ID = settings.LIST_ID
 
 class HomePageView(UserDataMixin, TemplateView):
@@ -561,9 +563,11 @@ class ReinvestmentRedirect(UserDataMixin, TemplateView):
         context = super(ReinvestmentRedirect, self).get_context_data(**kwargs)
         active = Project.objects.get_active()
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
-        if self.user_profile and self.user_profile.reinvest_pool > 0.0:
+        if self.user_profile:
+            amount = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
+        if self.user_profile and amount > 0.0:
             context["is_reinvestment"] = True
-            context["reinvestment_amount"] = self.user_profile.reinvest_pool
+            context["reinvestment_amount"] = self.user_profile.reinvest_pool + self.user_profile.solar_seed_fund_pool
 
         return context
 
@@ -1287,16 +1291,291 @@ def add_email_to_mailing_list(request):
         is_email_exist = False
         email_address = request.POST['email']
         list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
+        list.unsubscribe( {'EMAIL': email_address}, delete_member='True')
         for resp in list.con.list_members(list.id)['data']:
             if email_address == resp['email']:
-                is_email_exist = True
+                list.unsubscribe(email_address, {'EMAIL': email_address},double_optin=False)
         if is_email_exist:
             return HttpResponse(json.dumps({'status': 'already_exist'}), content_type="application/json")
         else:
             try:
-                list.subscribe(email_address, {'EMAIL': email_address},double_optin=False)
+                list.subscribe(email_address, {'EMAIL': email_address})
             except Exception:
                 return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
             return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
+
+
+class editprofile(View):
+    def post(self, request):
+        subscribed_to_newsletter = request.POST.get('newsletter')
+        repayment_notification = request.POST.get('repayment_notification')
+        announcement = request.POST.get('announcement')
+        profileup = RevolvUserProfileForm(data=request.POST or None,instance=request.user.revolvuserprofile)
+        if profileup.is_valid():
+            user = profileup.save(commit=False)
+            if subscribed_to_newsletter:
+                is_email_exist = False
+                user.subscribed_to_newsletter = True
+                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
+                for resp in list.con.list_members(list.id)['data']:
+                    if request.user.email == resp['email']:
+                        is_email_exist = True
+                if not is_email_exist:
+                    list.subscribe(request.user.email, {'EMAIL': request.user.email},double_optin=False)
+            else:
+                is_email_exist = False
+                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
+                for resp in list.con.list_members(list.id)['data']:
+                    if request.user.email == resp['email']:
+                        is_email_exist = True
+                if is_email_exist:
+                    list.unsubscribe(request.user.email,delete_member=True)
+            if repayment_notification:
+                user.subscribed_to_repayment_notifications = True
+            if announcement:
+                is_email_exist = False
+                user.subscribed_to_updates = True
+                list = mailchimp.utils.get_connection().get_list_by_id(ANNOUNCEMENT_ID)
+                for resp in list.con.list_members(list.id)['data']:
+                    if request.user.email == resp['email']:
+                        is_email_exist = True
+                if not is_email_exist:
+                    list.subscribe(request.user.email, {'EMAIL': request.user.email}, double_optin=False)
+            else:
+                is_email_exist = False
+                list = mailchimp.utils.get_connection().get_list_by_id(ANNOUNCEMENT_ID)
+                for resp in list.con.list_members(list.id)['data']:
+                    if request.user.email == resp['email']:
+                        is_email_exist = True
+                if is_email_exist:
+                    list.unsubscribe(request.user.email, delete_member=True)
+            user.user = request.user
+            user.save()
+            userup = UpdateUser(request.POST or None,instance=request.user)
+            if userup.is_valid():
+                user = userup.save(commit=False)
+                user.save()
+                messages.success(request, 'Account details successfully updated')
+                return HttpResponseRedirect('/account_settings/')
+
+            else:
+                userprofile = RevolvUserProfile.objects.get(user=request.user)
+                context = {
+                    "form": userup, 'subscribed_to_newsletter': userprofile.subscribed_to_newsletter, 'subscribed_to_repayment_notifications': userprofile.subscribed_to_repayment_notifications, 'subscribed_to_updates': userprofile.subscribed_to_updates
+                }
+                return render(request, 'base/partials/account_settings.html', context)
+
+
+
+@login_required
+def account_settings(request):
+    existing_user = False
+    user = request.user
+    userprofile = RevolvUserProfile.objects.get(user=request.user)
+    project = Project.objects.get(title='Operations')
+    donated_solar_seed = Payment.objects.filter(user=request.user).exclude(project=project).aggregate(Sum('amount'))['amount__sum'] or 0
+    repayment_solar_seed = RepaymentFragment.objects.filter(user=request.user).aggregate(Sum('amount'))['amount__sum'] or 0
+    operation_donation = Payment.objects.filter(user=request.user,project=project).aggregate(Sum('amount'))['amount__sum'] or 0
+    userform = UpdateUser(initial={'first_name':user.first_name, 'last_name':user.last_name, 'username': user.username, 'email':user.email})
+    revolv_profile = RevolvUserProfile.objects.get(user=request.user)
+
+    monthly_operation_donation = StripeDetails.objects.filter(user=request.user).filter(amount__gt=0.0)
+    monthly_solar_donation = StripeDetails.objects.filter(user=request.user).filter(donation_amount__gt=0.0)
+    monthly_donation_amount = 0.0
+    solar_donation = 0.0
+    if monthly_operation_donation or monthly_solar_donation:
+        existing_user = True
+        operation_amount = monthly_operation_donation.aggregate(Sum('amount'))['amount__sum'] or 0.0
+        solar_amount = monthly_solar_donation.aggregate(Sum('donation_amount'))['donation_amount__sum'] or 0.0
+        monthly_donation_amount = operation_amount
+        solar_donation = solar_amount
+    context = {
+        "form": userform,
+        'subscribed_to_newsletter': userprofile.subscribed_to_newsletter,
+        'subscribed_to_repayment_notifications': userprofile.subscribed_to_repayment_notifications,
+        'subscribed_to_updates': userprofile.subscribed_to_updates,
+        'donated_solar_seed': donated_solar_seed,
+        'repayment_solar_seed': repayment_solar_seed,
+        'operation_donation': operation_donation,
+        'monthly_donation_amount': monthly_donation_amount,
+        'monthly_solar_donation': solar_donation,
+        'existing_user': existing_user
+    }
+    return render(request, 'base/partials/account_settings.html', context)
+
+
+def create_subscription(request,donation_type, revolv_profile,amt_in_cents,customer):
+    if donation_type == 'SOLAR_SEED_FUND':
+        plan = stripe.Plan.create(
+            amount=int(amt_in_cents),
+            interval="month",
+            name="Solar Donation " + str(amt_in_cents/100),
+            currency="usd",
+            id="solar_donation" + "_" + customer + "_" + str(amt_in_cents/100))
+
+        subscription = stripe.Subscription.create(
+            customer=customer,
+            plan=plan,
+        )
+        StripeDetails.objects.create(
+            user=revolv_profile,
+            stripe_customer_id=subscription.customer,
+            subscription_id=subscription.id,
+            plan=subscription.plan.id,
+            stripe_email=request.user.email,
+            donation_amount=amt_in_cents/100
+        )
+
+    else:
+        plan = stripe.Plan.create(
+            amount=int(amt_in_cents),
+            interval="month",
+            name="Operation Donation " + str(amt_in_cents/100),
+            currency="usd",
+            id="operation_donation" + "_" + customer + "_" + str(amt_in_cents/100))
+
+        subscription = stripe.Subscription.create(
+            customer=customer,
+            plan=plan,
+        )
+        StripeDetails.objects.create(
+            user=revolv_profile,
+            stripe_customer_id=subscription.customer,
+            subscription_id=subscription.id,
+            plan=subscription.plan.id,
+            stripe_email=request.user.email,
+            amount=amt_in_cents/100
+        )
+
+def delete_subscription(revolv_profile, donation_type):
+    if donation_type == 'SOLAR_SEED_FUND':
+        subscription = StripeDetails.objects.get(user=revolv_profile, donation_amount__gt=0.0)
+    else:
+        subscription = StripeDetails.objects.get(user=revolv_profile, amount__gt=0.0)
+    subscription = stripe.Subscription.retrieve(subscription.subscription_id)
+    customer = subscription.customer
+    plan_id = subscription.plan.id
+    plan = stripe.Plan.retrieve(plan_id)
+    plan.delete()
+    subscription.delete()
+    if donation_type == 'SOLAR_SEED_FUND':
+        StripeDetails.objects.get(user=revolv_profile, donation_amount__gt=0.0).delete()
+    else:
+        StripeDetails.objects.get(user=revolv_profile, amount__gt=0.0).delete()
+    return customer
+
+
+@login_required
+def donation_update(request):
+    try:
+        operation_amt = request.POST.get('operation-amt')
+        donation_amt = request.POST.get('donation-amt')
+        operation_amt_cents = round(float(operation_amt) * 100)
+        donation_amt_cents = round(float(donation_amt) * 100)
+    except KeyError:
+        logger.exception('stripe_payment called without required POST data')
+        return HttpResponseBadRequest('bad POST data')
+
+    revolv_profile = RevolvUserProfile.objects.get(user=request.user)
+    stripedetail = StripeDetails.objects.filter(user=revolv_profile)
+    if stripedetail:
+        try:
+            donation_amount = 0
+            if float(operation_amt) <= 0:
+                try:
+                    donation_type = 'OPERATION'
+                    delete_subscription(revolv_profile,donation_type)
+                except StripeDetails.DoesNotExist:
+                    subscription = None
+            else:
+                try:
+                    amount = StripeDetails.objects.get(user=revolv_profile, amount__gt=0.0).amount
+                except StripeDetails.DoesNotExist:
+                    amount = 0
+                if not abs(float(operation_amt)-float(amount))<0.00000001:
+                    try:
+                        donation_type = 'OPERATION'
+                        customer = delete_subscription(revolv_profile, donation_type)
+                    except StripeDetails.DoesNotExist:
+                        user = StripeDetails.objects.get(user=revolv_profile, donation_amount__gt=0.0)
+                        subscription = stripe.Subscription.retrieve(user.subscription_id)
+                        customer = subscription.customer
+
+                    donation_amount = float(donation_amount) + float(operation_amt)
+                    create_subscription(request,donation_type, revolv_profile, operation_amt_cents, customer)
+
+
+            if float(donation_amt) <= 0:
+                try:
+                    donation_type = 'SOLAR_SEED_FUND'
+                    delete_subscription(revolv_profile, donation_type)
+                except StripeDetails.DoesNotExist:
+                    subscription = None
+            else:
+                try:
+                    amount = StripeDetails.objects.get(user=revolv_profile, donation_amount__gt=0.0).donation_amount
+                except StripeDetails.DoesNotExist:
+                    amount = 0
+                if not abs(float(donation_amt) - float(amount)) < 0.00000001:
+                    try:
+                        donation_type = 'SOLAR_SEED_FUND'
+                        customer = delete_subscription(revolv_profile, donation_type)
+                    except StripeDetails.DoesNotExist:
+                        user = StripeDetails.objects.get(user=revolv_profile, amount__gt=0.0)
+                        subscription = stripe.Subscription.retrieve(user.subscription_id)
+                        customer = subscription.customer
+
+                    donation_type = 'SOLAR_SEED_FUND'
+                    donation_amount = float(donation_amount) + float(donation_amt)
+                    create_subscription(request,donation_type, revolv_profile, donation_amt_cents, customer)
+
+
+        except KeyError:
+            logger.exception('stripe_payment called without required POST data')
+            return HttpResponseBadRequest('bad POST data')
+
+        return HttpResponse(json.dumps({'status': 'donation_updated', 'amount': donation_amount}), content_type="application/json")
+
+    else:
+        token = request.POST['stripeToken']
+        email = request.POST['stripeEmail']
+        try:
+            donation_amount = 0
+            customer = stripe.Customer.create(
+                email=email,
+                description="Donation for RE-volv Operations",
+                source=token  # obtained with Stripe.js
+            )
+
+            if float(operation_amt) > 0.0:
+                donation_type = 'OPERATION'
+                donation_amount = float(donation_amount) + float(operation_amt)
+                create_subscription(request,donation_type, revolv_profile, operation_amt_cents, customer["id"])
+
+            if float(donation_amt) > 0.0:
+                donation_type = 'SOLAR_SEED_FUND'
+                donation_amount = float(donation_amount) + float(donation_amt)
+                create_subscription(request,donation_type, revolv_profile, donation_amt_cents, customer["id"])
+
+
+        except stripe.error.CardError as e:
+            body = e.json_body
+            # error_msg = body['error']['message']
+            messages.error(request, 'Payment error')
+            return redirect('home')
+        except stripe.error.APIConnectionError as e:
+            body = e.json_body
+            # error_msg = body['error']['message']
+            messages.error(request, 'Internet connection error. Please check your internet connection.')
+            return redirect('home')
+        except Exception:
+            error_msg = "Payment error. RE-volv has been notified."
+            logger.exception(error_msg)
+
+            messages.error(request, 'Payment error. RE-volv has been notified.')
+            return redirect('home')
+        return HttpResponse(json.dumps({'status': 'donation_success', 'amount': donation_amount}), content_type="application/json")
+
+

@@ -850,6 +850,7 @@ padding: 0;
      height: auto;
     line-height: normal;
     padding: 0.9em 1%;
+    margin-right: 3rem;
 }
 .header a.btn-blue:hover {
     color: white;
@@ -13444,7 +13445,7 @@ a.How_it_Works:hover {
     padding: 2vmin 1%;
 }
 .header .solar_at_home_rights {
-     padding: 3vmin 4% 0 0;
+     padding: 3vmin 6% 0 0;
 }
 
    .navbar-header .hamburger_color {
@@ -13459,6 +13460,7 @@ a.How_it_Works:hover {
     }
     .background-collapse-color {
             background-color: white;
+            height: auto !important;
     }
 
 
@@ -14788,3 +14790,277 @@ form#change_password_form label {
         height: 450px;
     }
 }
+.container1 {
+    display: inline-block;
+    cursor: pointer;
+}
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #14b1e7;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+}
+.header .txt .navbar-collapse-settings a {
+    color: #999;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 14px;
+}
+.header .txt .navbar-collapse-settings a:hover {
+ color:#14b1e7;
+}
+.navbar-collapse-settings {
+    margin: 0px 0px 0px auto;
+    width: 50%;
+}
+
+.navbar-collapse-border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ededed;
+    margin-left: 0;
+}
+.navbar-collapse-settings-blue {
+    width: 13em;
+    z-index: 10;
+    right: 4.8em;
+}
+.account-heading {
+    background-image: url(/static/images/rectangle_lined.png);
+    margin-top: 13%;
+    height: 7em;
+}
+.account-heading-span {
+    padding-left: 2.8em;
+    font-size: 2.1em;
+}
+.account-tabs {
+    text-align: center;
+    margin-top: 4em;
+}
+.account-tab-text {
+    font-size: 1.5em;
+    color: #ddd;
+    font-weight: 700;
+}
+
+.account-tab-text-active {
+    color: #14b1e7;
+}
+.setting-form-top {
+    margin-top: 4em;
+    border-left: 2px solid #e8e8e8;
+}
+.setting-form-lebel {
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.setting-donation-amount {
+    display: inline-block;
+    margin: 0.7em 1.3em;
+    font-size: 1.4em;
+    color: #9d9d9d;
+}
+.setting-donation-change {
+    float: right;
+    display: inline-block;
+    font-size: 1em;
+    color: #14b1e7;
+    position: relative;
+    margin: -3.6em 1.6em;
+    z-index: 1;
+}
+.setting-input-block {
+    margin-bottom: 2em;
+}
+.setting-donation-details {
+    font-size: 1.3em;
+    color: #777;
+    font-weight: 500;
+}
+.setting-details-margin {
+    margin-bottom: 1.4em;
+}
+.setting-donations {
+    float: right;
+    font-size: 1.3em;
+    color: #777;
+}
+.setting-donation-save {
+    font-size: 1.5em;
+    padding: 0 74px;
+    border-radius: 4.5px;
+    border: 0;
+}
+span.account-tab-text {
+    cursor: pointer;
+}
+span.setting-donation-change {
+    cursor: pointer;
+}
+.field-error {
+    border: 1px solid #F46B7B;
+}
+.error-text {
+    color: #F46B7B;
+}
+.learn-more {
+    position: relative;
+    width: 100%;
+    float: left;
+    /* text-align: center; */
+    margin-left: 6em;
+    margin-top: 0.4em;
+}
+.learn-more-text {
+    color: #eee;
+    font-family: italic;
+    font-weight: 600;
+}
+.leo-content-center {
+    max-width: 43em;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 11em;
+}
+.leo-content-text {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #064f7e;
+}
+
+.leo-content-size {
+    font-size: 16px;
+    margin-top: 2em;
+}
+.leo-donate-btn {
+    text-align: center;
+    margin-top: 2em;
+}
+.infographic {
+    text-align: center;
+    width: 57%;
+    margin: 0 auto;
+    margin-bottom: 4%;
+}
+.myth-box-header-div {
+    text-align: left;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(75, 75, 75, 0.71);
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+}
+.myth-collapse-text {
+    margin: 0 2.7em auto;
+    padding-bottom: 2em;
+    padding-right: 8em;
+    color: #777;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+.myth-box-div {
+    border: 1px solid #e8e8e8;
+    width: 81%;
+    margin-bottom: 2em;
+    border-radius: 5px;
+}
+.myth-collapse-icon {
+    float: right;
+    color: #14b1e7;
+}
+@media (max-width: 767px) {
+    .account-heading{
+        margin-top: 31%;
+    }
+    .myth-box-div {
+        width: 100%;
+    }
+    .myth-collapse-text {
+        padding-right: 0;
+    }
+    .myth-box-header-div {
+        font-size: 12px;
+    }
+    .myth-collapse-text {
+        font-size: 10px;
+    }
+    .account-tab-text {
+        font-size: 1.2em;
+    }
+    .account-heading-span {
+        font-size: 1.8em;
+        padding-left: 0;
+    }
+}
+.setting-input-block {
+    margin-bottom: 2em;
+}
+
+.setting-input-full-width {
+    float: left;
+    width: 100%;
+}
+
+.setting-form-lebel {
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.setting-input-full-width {
+    float: left;
+    width: 100%;
+}
+
+.setting-dollar-label{
+    position: absolute;
+    float: left;
+    top: 1.5rem;
+    left: 1rem;
+    font-size: 1.8rem;
+    color: #777;
+}
+
+.setting-donation-input {
+    height: 2.9em;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5.5px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 2.1rem !important;
+    font-size: 1.4em !important;
+}
+
+.setting-donation-change {
+    float: right;
+    display: inline-block;
+    font-size: 1em;
+    color: #14b1e7;
+    position: relative;
+    margin: -3.6em 1.6em;
+    z-index: 1;
+}
+.facts-row{
+    margin-bottom: 2em;
+    margin-left: 0;
+    margin-right: 0;
+ }

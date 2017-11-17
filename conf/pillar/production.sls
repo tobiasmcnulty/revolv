@@ -254,47 +254,65 @@ secrets:
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQf9GV0UY795svEk/hQOzCr3YbKMQ9rNs01/VUWESmhN/rFX
-      VAOplXRMBNQhRqIss22YBC7Q8NRR9FliT/qA5jcL2vtBHq85k4XgmqNXaIx4EZUC
-      bffh0zW1JRI2RQBPov9DxsHbDboJOndTvyU5G9I6NidAd6FcINdXpyosTnbwEJQ7
-      7QSguyCsT3qB4p13iMatsNghOdsNHIDYfDLwmDNxqFBN/F/HTodNba6CowSohYVS
-      b4AT/IhPXT0yEgcdHNEt4s/Noa2h+xy7wILROAmPb1/75XDLtT28WJmGYikZrqab
-      JPgjVWs2YKHDOPaHMe15+fHmiw+nk4eX14oI6KVaUtJZAfryGm0e6cLa+bvmf2xD
-      opI0mf4+OR0FXPBX8VjO6T8JBDx60QpVTVSlRj+yeA82xj7N9wqV2h7/auZg/CAD
-      18xDMelUNVnZoPruVqgEZIdhtuRwTUzb/wA=
-      =Tz7y
+      hQEMA9aTfmR7xthMAQf/WgIWvcK+8mFVhxEMH9eLCsVJYZUmlW1yIXv+AOx9oSiu
+      LQoIaMvDlVKfE7PNSgNJJo+MeJFD0UoqX2ocbmtJQMyYfu5I/UgosdhT89cCkmmZ
+      zpqD4bbI4LNwZBxljxTEw1+uwwpY1KkAdkZy1sDgoT8d1rnu65fRozBoXBUfg4u0
+      a4mfS52cIzMkRVHuyXetZ/zh93ggRZuvl3yhPSvwc6HNRYvHWqfB6aAS6WC9eO6W
+      9m1Hlk+wTBilXrzMROT9i2kN27TpmEGb/Rvn1bKtPfUY6YlJjMY+YabwF1rnHLhE
+      lSqvGdriX7pcleabvLV+eZNBozK8P2c/5+zqM8IMpNJZAfKwcrxdHtNdcSxsD71F
+      XBHGo1ozc/JO40hjgEUxsVzqH5YL6SVVuboaqm6d436JltStLiyIp99qA+4v8weO
+      aAbrMj0KggPyB/g8lzdmaUk9GJojimQovkk=
+      =3/XP
       -----END PGP MESSAGE-----
+
+
 
     "SFDC_PASSWORD": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQgAwLlNuYz11Z49RoJNogLkfzlpPJ48+SLGet0l2hBH8j4F
-      gQcwxVZC3+MTzNvLko3T8HtLBlR8jNDpTay17LXjMT/nh09LKy31yMMfYUTcN1Ie
-      UovEW4aZveNOSAakFRkt2KFqQ6T/Zzn8+XMy+0R/9G1OiDUAuCyBfkpkKUyiJfng
-      WlLxY25y3dNuM5a9EF3Fh6gXqrZBnTjoACA3GWtP6475dViUnc6jPK8k2TJQ/CEH
-      WYH1DxDXoJqGa6LXKB/Sle9wYxJX5CK1gy8B9KhC4egYPkAjDY8fwETxWCSm+0n7
-      x9YL4/aSawwBqHsdHuSehxylStwbX5AGHYK0MCiYetJFAUmn5HkQ9ucrh07krIUY
-      ocmzZ1zeQo53hElCsUW9F/B+FzX18gxDdyHxKDqDFOgyrvFSeM45aupqBM8aABo7
-      w2mYQHDZ
-      =Dcnw
+      hQEMA9aTfmR7xthMAQf9Ep0pDIC6zEbyrRiIR2XTQ3ECR6q0pp5UGhC2mXIsvm9z
+      3UnVWYYz+DVY6N9YYdxNKMLkUny7u2aDzCdKJvI9/uAGVnIRLLswaXL5LqdgAewy
+      VEOBsJAzKnoCfT9ondEiUUpwn60rpy8gfAdbvYtYvOhHkB0SB88ZDn7n+FYTh4CS
+      aRBfXTvLQimMGgfst5a3E05IuMSGycvk7jGr9Nr2YKJHL47GSNqD+bleta0DNRvM
+      /RbHovKPvZxMe3NBPNWHLUn4sqEnWa2B+PWEOwKW4+Lbzp1M1jmnbQrQiP7zQd5o
+      7CaaKlret0+4e2kKGRPQIOmBifxizkoRlhJ5haUmZdJFAV8N93X8WZ4FbCJElwpR
+      r/ZOP6nCVSBbabs423MzuEQoDWDu4SxEXRLK0mDGkm6CyaExWwax1hCgcfGsNY5y
+      Lmu3lMKA
+      =B7uB
       -----END PGP MESSAGE-----
+
 
     "SFDC_TOKEN": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQgAiScl2l8kZD9DPaQd8F26/mLHNYd2iB/LsDMrwYOhGgEt
-      CU7mLcQYBWa8RG8zgMZw3xwaCSYGQ45pzKEYKqpU3ynLmV+MxuPWSWE8WepSGVO7
-      7oy4CxzP7WPyA7M5GO2qMYZn3TULua+/SC1p+vKbClH+vH2HL5rMIisKohPMqi/7
-      BQomBvxRDvLXnmRIkuznX24Ofatlf4TgPeQlTD79+ATXCuoujwmw4Ivy1TTxKk+M
-      4IAsi+m0bochzvNgGkhj41jlK2wwVWJZcR7j1fOzIaVbzEhgJxByO2+kQkhiHuUQ
-      qtcsViuAif7QSfCk4DptYG/GwdLae2PRoqAH65AJc9JTAc6VRvzdvNakpjWamXG1
-      RKRN7SdBhyhjun4CoxCMrg/sWUoMXCO5zItvEAEhv5Bgjl4R2MEkQPNwGMYX52a9
-      3NtUULJi0clzHtxTs2JBu4Dxvq8=
-      =rNPy
-      -----END PGP MESSAGE-----
+      hQEMA9aTfmR7xthMAQgAhvjDyptZfirJrFuNd5KEhNcjnSV6CxujppjqlJ3X5aYw
+      nEZJ98PvLcZS9IeEoAyaa10hW99YfJ2s+ttp/21G0CXyi4VBHmXubuCge0DP8Z0v
+      p7OKsUVUVE8Z3Czjdu3f2l7JJ/Tcsplukhp9STfl2OQXM3MCXnILCIbqSnfIDFyj
+      Juf47MN52rRMe9nKMauhRddYzS/IVeKnKSwcAfyRGMfhGxuWBEMZUC2lbMycSUOH
+      6dehfY5Krs7au+TqkcsdLOEYluCy5ss0VGiVzZrSJf81G3FLO3G3dWjpqQv1fYkV
+      caeSizzJGydMlL86aJpEtfpsyVl/sLNQPu4hVTD2WtJTAR97wyIxlNAowELPLDEP
+      pXaEHI510MpXvdW/S1gdtTASZtwtPZQOLG05EJSVFnlhitU4DLDzTMokBjmbp7mE
+      jetpsnPZA96BtXhqpe2VTg/RCTY=
+      =1LMi
+      -----END PGP MESSAGE------
 
+
+    "ANNOUNCEMENT_ID": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf9HSS84aqo5tr5X0uJy0QS3jKiL01gx2BR0BTKerUJYMr8
+      ivtCORjdhsrtfz6ysTJFhPwTiBeChypSSymbffKmlRG7s4Ge6yr89Oe8Vxqf2E0U
+      hCyLZzIhvEzzCK9p6X+O2aAUcV4dWtxQj3yzh2kuUHfssVMGkJxsmH3IPV885Qbc
+      zVrJhamD0nhS/KFcP2E50/0jJS2KpAno1D36bj8KY5qsQ14FdgAcyXYiNHqvBB65
+      ypGvtn4D3xJpbdkXLkSLo8GyV6tlj1vXm/RosRRLuw5AycwLlaZ+wHSvCBykLjp+
+      wgK3OC2JN0i5B43KPBpbgUKjn3xVtISgV2/e6klfs9JFAQ25e/N2okZP6rw/D1sj
+      HcRHr4yNDf/QgjeGBMoWvqOk+lwCMjpJJQHGyLjqshT86tKYyQtLarF9HCJmHztH
+      7qKo9/+8
+      =ADWO
+      -----END PGP MESSAGE-----
 
 # Private deploy key. Must be GPG encrypted.
 github_deploy_key: |-
