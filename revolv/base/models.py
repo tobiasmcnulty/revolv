@@ -185,7 +185,7 @@ class RevolvUserProfile(FacebookModel):
         return user_impact
 
     def get_full_name(self):
-        name = '{0} {1}'.format(self.user.first_name.strip(), self.user.last_name.strip())
+        name ='{0} {1}'.format(self.user.first_name, self.user.last_name).encode("utf-8")
         if len(name.strip()) == 0:
             name = self.user.username
         return name
