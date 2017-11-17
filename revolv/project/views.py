@@ -127,7 +127,7 @@ def stripe_payment(request, pk):
     context['tip_cents'] = tip_cents / 100.0
     context['amount_cents'] = amount_cents/100.0
     context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
-    send_donation_info(user.get_full_name(), donation_cents/100.0, user.user.email, project.title, address='')
+    #send_donation_info(user.get_full_name(), donation_cents/100.0, user.user.email, project.title, address='')
     send_revolv_email(
         'post_donation',
         context, [request.user.email]
@@ -210,7 +210,7 @@ def stripe_operation_donation(request):
                     payment_type=PaymentType.objects.get_stripe(),
                 )
 
-            send_donation_info(user.get_full_name(), amount/100,user.user.email,project.title, address='')
+            #send_donation_info(user.get_full_name(), amount/100,user.user.email,project.title, address='')
 
         context = {}
         if not request.user.is_authenticated():
@@ -393,7 +393,7 @@ def stripe_webhook(request):
                         payment_type=PaymentType.objects.get_stripe(),
                     )
                     project = get_object_or_404(Project, title='Operations')
-                    send_donation_info(user.get_full_name(), round(amount/float(100),2) , user.user.email, project.title, address='')
+                    #send_donation_info(user.get_full_name(), round(amount/float(100),2) , user.user.email, project.title, address='')
             else:
                 user = stripeDetails.user
                 user.solar_seed_fund_pool = user.solar_seed_fund_pool + amount/100
@@ -689,8 +689,8 @@ class SubmitDonationView(UserDataMixin, FormView):
         )
         try:
             amount = form.cleaned_data.get('amount')
-            send_donation_info.delay(self.user_profile.get_full_name(), float(amount),
-                                     project.title, self.user_profile.address)
+            #send_donation_info.delay(self.user_profile.get_full_name(), float(amount),
+             #                        project.title, self.user_profile.address)
         except:
             pass
 
