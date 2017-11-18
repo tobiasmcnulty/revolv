@@ -183,3 +183,10 @@ class RevolvUserProfile(FacebookModel):
                 user_impact_for_project = project_impact * user_financial_contribution * 1.0 / project_funding_total
                 user_impact += user_impact_for_project
         return user_impact
+
+    def get_full_name(self):
+        '''
+        Returns the first_name plus the last_name, with a space in between.
+        '''
+        full_name = '%s %s' % (self.user.first_name, self.user.last_name)
+        return full_name.strip()
