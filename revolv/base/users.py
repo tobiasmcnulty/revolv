@@ -138,7 +138,7 @@ def create_user_revolv(strategy, details, user=None, **kwargs):
     user = create_user(strategy, details, user, kwargs)
     if user['is_new']:
         _user = user['user']
-        send_signup_info.delay(_user.revolvuserprofile.get_full_name(), _user.email)
+        send_signup_info(_user.revolvuserprofile.get_full_name(), _user.email)
     return user
 
 

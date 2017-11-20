@@ -67,8 +67,8 @@ def distribute_reinvestment_fund():
                                             amount=format(round(amount, 2))
                                             )
                 monthly_seed_fund.save()
-                send_donation_info(user.get_full_name(), round(amount, 2), user.user.email, project.title,
-                                   address='')
+                #send_donation_info(user.get_full_name(), round(amount, 2), user.user.email, project.title,
+                #                   address='')
                 user.solar_seed_fund_pool = user.solar_seed_fund_pool - amount
                 user.save()
 

@@ -185,10 +185,10 @@ class RevolvUserProfile(FacebookModel):
         return user_impact
 
     def get_full_name(self):
-        name = '{0} {1}'.format(self.user.first_name.strip(), self.user.last_name.strip())
-        if len(name.strip()) == 0:
-            name = self.user.username
-        return name
-
-    def __unicode__(self):
-        return self.get_full_name()
+        '''
+        Returns the first_name plus the last_name, with a space in between.
+        '''
+        full_name = '%s %s' % (self.user.first_name, self.user.last_name)
+        if len(full_name.strip()) == 0:
+            full_name = self.user.username
+        return full_name.strip()
