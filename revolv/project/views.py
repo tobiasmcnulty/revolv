@@ -100,6 +100,7 @@ def stripe_payment(request, pk):
                 tip=tip,
                 payment_type=PaymentType.objects.get_stripe(),
             )
+            send_donation_info(donor.matching_donor.get_full_name(), matching_donation, donor.matching_donor.user.email, project.title, address='')
 
     tip = None
     if tip_cents > 0:
