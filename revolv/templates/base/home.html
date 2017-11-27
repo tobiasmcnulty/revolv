@@ -114,7 +114,7 @@
                         <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
                         </li>
                     {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="#" onclick="return clearInput();" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    <li class="dropdown this-doesnt"> <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="dropdown">DONATE</a>
                     </li>
                 </ul>
             </div>
@@ -178,7 +178,7 @@
       <div class="text_overlay">
         <div class="text_content">
           <div class="space_btn_element">
-            <span class="CREATE_CLEAN_ENERGY">LEONARDO DICAPRIO <br>PARTNERS WITH RE-VOLV</span>
+            <span class="CREATE_CLEAN_ENERGY">LEONARDO DICAPRIO FOUNDATION<br>PARTNERS WITH RE-VOLV</span>
           </div>
           <div class="space_btn_element">
             <span class="Bring_solar_energy__to_communities_around_the_c">Join Leo in supporting <br>solar energy!</span>
@@ -186,7 +186,8 @@
 
         </div>
         <div class="how-it-works-button">
-            <a href="#" class="How_it_Works space_btn_element" data-toggle="modal" data-target="#popup">Become a Monthly Donor</a>
+            <!--<a href="#" class="How_it_Works space_btn_element" data-toggle="modal" data-target="#popup">Become a Monthly Donor</a>-->
+            <a href="{%url 'faithbaptistchurch' %}" class="How_it_Works space_btn_element">Donate Now</a>
         </div>
         <div class="learn-more"><a href="/get-involved/leonardo-dicaprio-foundation-partners-re-volv/" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
       </div>
