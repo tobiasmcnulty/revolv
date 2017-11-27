@@ -80,6 +80,7 @@ urlpatterns = patterns(
     url(r'^harborhouse/$','revolv.base.views.harborhouse', name="harborhouse"),
     url(r'^riverrevitalizationfoundation/$','revolv.base.views.riverrevitalizationfoundation', name="riverrevitalizationfoundation"),
     url(r'^campketcha/$','revolv.base.views.campketcha', name="campketcha"),
+    url(r'^project/faithbaptistchurch/$','revolv.base.views.faithbaptistchurch', name="faithbaptistchurch"),
 
     url(r'^blog/', include('zinnia.urls', namespace='zinnia')),
     url(r'^comments/', include('django_comments.urls')),

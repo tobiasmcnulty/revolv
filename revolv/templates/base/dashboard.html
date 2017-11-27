@@ -38,7 +38,7 @@
           </div>
       {% else %}
 
-        {% if donor_has_no_donated_projects %}
+        {% if donor_has_no_donated_projects and not monthly_donation %}
           <div class="no-donations">
             <div class="row">
               <div class="col-md-12">

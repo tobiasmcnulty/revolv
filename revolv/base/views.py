@@ -672,6 +672,9 @@ def leadership_circle(request):
 def riverrevitalizationfoundation(request):
     return redirect('/project/riverrevitalizationfoundation/')
 
+def faithbaptistchurch(request):
+    return redirect('/project/faithbaptistchurch/')
+
 def campketcha(request):
     return redirect('/project/campketcha/')
 
@@ -1392,7 +1395,6 @@ def account_settings(request):
         monthly_donation_amount = operation_amount
         solar_donation = solar_amount
     context = {
-        "form": userform,
         'subscribed_to_newsletter': userprofile.subscribed_to_newsletter,
         'subscribed_to_repayment_notifications': userprofile.subscribed_to_repayment_notifications,
         'subscribed_to_updates': userprofile.subscribed_to_updates,
@@ -1401,7 +1403,8 @@ def account_settings(request):
         'operation_donation': operation_donation,
         'monthly_donation_amount': monthly_donation_amount,
         'monthly_solar_donation': solar_donation,
-        'existing_user': existing_user
+        'existing_user': existing_user,
+        "form": userform
     }
     return render(request, 'base/partials/account_settings.html', context)
 
