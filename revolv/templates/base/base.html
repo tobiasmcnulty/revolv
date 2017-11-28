@@ -6,6 +6,14 @@
     {% load staticfiles %}
 
     <title>{% block title %}{% endblock %}RE-volv</title>
+    <meta name="description" content="{% if project.description %} {{ project.description | striptags|safe }}
+                                            {% else %} {{ settings.revolv_cms.ShareThisSettings.description }}{% endif %}" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="re-volv.org">
+    <meta name="twitter:title" content="{{ project.title }} | RE-volv">
+    <meta name="twitter:description" content="{% if project.description %} {{ project.description | striptags|safe }}
+                                            {% else %} {{ settings.revolv_cms.ShareThisSettings.description }}{% endif %}">
+    <meta name="twitter:image" content="{% if project.cover_photo %}{{ project.cover_photo.url |fullmediaurl }}{% else %}{{ settings.revolv_cms.ShareThisSettings.image|fullmediaurl }}{% endif %}">
     <meta charset="utf-8">
     <meta property="og:title" content="{{ project.title }} | RE-volv" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
