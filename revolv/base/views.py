@@ -1364,6 +1364,7 @@ class editprofile(View):
                 return HttpResponseRedirect('/account_settings/')
 
             else:
+                existing_user = False
                 userprofile = RevolvUserProfile.objects.get(user=request.user)
                 project = Project.objects.get(title='Operations')
                 donated_solar_seed = \
