@@ -134,7 +134,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
         </div>
     </form>
     <div id="account-info" class="col-xs-12 col-sm-9 setting-form-top">
-        <form method="POST" action="{% url 'userupdate' %}">
+        <form method="POST" action="{% url 'user_update' %}">
             {% csrf_token %}
             <div style="width:65%;margin-left: 1.4em;">
                 <div class="setting-input-block">

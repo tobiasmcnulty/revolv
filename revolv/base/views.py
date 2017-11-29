@@ -1365,8 +1365,36 @@ class editprofile(View):
 
             else:
                 userprofile = RevolvUserProfile.objects.get(user=request.user)
+                project = Project.objects.get(title='Operations')
+                donated_solar_seed = \
+                Payment.objects.filter(user=request.user).exclude(project=project).aggregate(Sum('amount'))[
+                    'amount__sum'] or 0
+                repayment_solar_seed = RepaymentFragment.objects.filter(user=request.user).aggregate(Sum('amount'))[
+                                           'amount__sum'] or 0
+                operation_donation = \
+                Payment.objects.filter(user=request.user, project=project).aggregate(Sum('amount'))['amount__sum'] or 0
+                monthly_operation_donation = StripeDetails.objects.filter(user=request.user).filter(amount__gt=0.0)
+                monthly_solar_donation = StripeDetails.objects.filter(user=request.user).filter(donation_amount__gt=0.0)
+                monthly_donation_amount = 0.0
+                solar_donation = 0.0
+                if monthly_operation_donation or monthly_solar_donation:
+                    existing_user = True
+                    operation_amount = monthly_operation_donation.aggregate(Sum('amount'))['amount__sum'] or 0.0
+                    solar_amount = monthly_solar_donation.aggregate(Sum('donation_amount'))[
+                                       'donation_amount__sum'] or 0.0
+                    monthly_donation_amount = operation_amount
+                    solar_donation = solar_amount
                 context = {
-                    "form": userup, 'subscribed_to_newsletter': userprofile.subscribed_to_newsletter, 'subscribed_to_repayment_notifications': userprofile.subscribed_to_repayment_notifications, 'subscribed_to_updates': userprofile.subscribed_to_updates
+                    'subscribed_to_newsletter': userprofile.subscribed_to_newsletter,
+                    'subscribed_to_repayment_notifications': userprofile.subscribed_to_repayment_notifications,
+                    'subscribed_to_updates': userprofile.subscribed_to_updates,
+                    'donated_solar_seed': donated_solar_seed,
+                    'repayment_solar_seed': repayment_solar_seed,
+                    'operation_donation': operation_donation,
+                    'monthly_donation_amount': monthly_donation_amount,
+                    'monthly_solar_donation': solar_donation,
+                    'existing_user': existing_user,
+                    "form": userup
                 }
                 return render(request, 'base/partials/account_settings.html', context)
 
