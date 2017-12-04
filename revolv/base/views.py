@@ -436,6 +436,12 @@ def solarathome(request):
     return render_to_response('base/solar_at_home.html',
                               context_instance=RequestContext(request))
 
+def completedproject(request):
+    completed_projects = Project.objects.get_completed()
+    # return render_to_response('base/partials/completed_projects.html',context_instance=RequestContext(request))
+    return render(request, 'base/partials/completed_projects.html', {'completed_projects': completed_projects})
+
+
 def bring_solar_tou_your_community(request):
     return render_to_response('base/bring_solar_at_community.html',
                               context_instance=RequestContext(request))
