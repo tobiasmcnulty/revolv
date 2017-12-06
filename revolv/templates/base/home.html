@@ -114,7 +114,7 @@
                         <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
                         </li>
                     {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="dropdown">DONATE</a>
+                    <li class="dropdown this-doesnt"> <a href="#" onclick="return clearInput();" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
                     </li>
                 </ul>
             </div>
@@ -133,8 +133,8 @@
             <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
         {% endif %}
         <!--<a href="#" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>-->
-        <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>
-        <!--<a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>-->
+{#        <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>#}
+        <a href="#" onclick="return clearInput();" class="component-link btn-blue pull-left btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>
         {% if request.user.is_authenticated %}
           <div class="container1" data-toggle="collapse" data-target=".navbar-collapse-settings">
             <div class="bar1"></div>
@@ -186,10 +186,10 @@
 
         </div>
         <div class="how-it-works-button">
-            <!--<a href="#" class="How_it_Works space_btn_element" data-toggle="modal" data-target="#popup">Become a Monthly Donor</a>-->
-            <a href="{%url 'faithbaptistchurch' %}" class="How_it_Works space_btn_element">Donate Now</a>
+            <a href="#" class="How_it_Works space_btn_element" data-toggle="modal" data-target="#popup">Become a Monthly Donor</a>
+{#            <a href="{%url 'faithbaptistchurch' %}" class="How_it_Works space_btn_element">Donate Now</a>#}
         </div>
-        <div class="learn-more"><a href="{%url 'faithbaptistchurch' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
+        <div class="learn-more"><a href="{%url 'leo_page' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
       </div>
       <img class="background-image-size_home" src="static/images/Leonardo_Dicaprio_3.jpg" alt="Leonardo Dicaprio">
     </div>
@@ -455,7 +455,7 @@
 
 <div class="how-it-works-module animated">
   <div class="container">
-    <div class="title-blue-border title-active-projects" style="margin: 72px auto 53px auto;">SOLAR SEED FUND</div>
+    <div id="how_it_works" class="title-blue-border title-active-projects" style="margin: 72px auto 53px auto;">SOLAR SEED FUND</div>
     <!--<div id="how_it_works" class="title-blue-border title-how-it-works">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</div>-->
     <div class="row info-row" style="padding-top: 0;">
       <div class="infographic">

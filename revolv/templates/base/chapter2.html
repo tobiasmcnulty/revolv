@@ -72,8 +72,8 @@
 						<a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup">SIGN UP</a>
 						<a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login">SIGN IN</a>
 					{% endif %}
-					<!--<a href="#" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup">DONATE</a>-->
-				    <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate btn-yellow">DONATE</a>
+					<a href="#" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup">DONATE</a>
+{#				    <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate btn-yellow">DONATE</a>#}
 					{% if request.user.is_authenticated %}
 					  <div class="container1" data-toggle="collapse" data-target=".navbar-collapse-settings">
 						<div class="bar1" style="background-color:rgb(255, 204, 0);"></div>
