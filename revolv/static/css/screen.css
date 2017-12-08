@@ -1152,13 +1152,14 @@ padding: 0;
     position: relative;
     width: 100%;
     z-index: -8;
+    background: url(../images/donatn-backgrnd.png);
 }
 .active-projects-module .container {
     padding: 0 15px;
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-    background: url(../images/donatn-backgrnd.png);
+    /*background: url(../images/donatn-backgrnd.png);*/
      background-repeat: no-repeat;
     background-size: 100%;
 }
