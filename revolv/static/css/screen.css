@@ -15068,3 +15068,10 @@ span.setting-donation-change {
     margin-left: 0;
     margin-right: 0;
  }
+.accelator-sub-heading {
+    margin-top: 1.1em;
+    color: #11ADE5;
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: bold;
+}
