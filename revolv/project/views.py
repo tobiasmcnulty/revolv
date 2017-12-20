@@ -139,7 +139,9 @@ def stripe_payment(request, pk):
 def stripe_operation_donation(request):
     try:
         token = request.POST['stripeToken']
-        amount_cents = request.POST['donation_amount_cents']
+        amount_cents = request.POST.get('donation_amount_cents')
+        if not amount_cents:
+            amount_cents = request.POST.get('donation_amount_in_cents')
         email = request.POST['stripeEmail']
         check = request.POST.get('check')
     except KeyError:
