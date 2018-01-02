@@ -14714,7 +14714,7 @@ form#change_password_form label {
 
 .leo-content-size {
     font-size: 16px;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 .leo-donate-btn {
     text-align: center;
@@ -14770,6 +14770,7 @@ form#change_password_form label {
 .leadship-ui {
     list-style-type : none;
     text-decoration: none;
+    margin-left: 2em;
 }
 .leadership-img-size {
     width: 450px;
@@ -14949,7 +14950,7 @@ span.setting-donation-change {
 
 .leo-content-size {
     font-size: 16px;
-    margin-top: 2em;
+    margin-top: 1 em;
 }
 .leo-donate-btn {
     text-align: center;
@@ -15087,8 +15088,8 @@ span.setting-donation-change {
 }
 .accelerator-bottom-btn {
     margin-bottom: 6em;
-    width: 60%;
-    margin-left: 9%;
+    width: 50%;
+    margin-left: 5%;
 }
 .accelerator-bottom-btn-div {
     text-align: left;
@@ -15099,4 +15100,56 @@ span.setting-donation-change {
     width: 100%;
     min-height:81em;
     position:relative;
+}
+.accelator-flex {
+    display: flex;
+}
+.accelator-page-text-container {
+    width: 70%;
+}
+.accelator-image-text-container {
+    width: 19%;
+    margin-left: 10%;
+}
+@media (max-width: 767px) {
+    .accelerator-bottom-btn-div {
+        text-align: left;
+    display: block;
+    }
+    .accelerator-donate-btn {
+        width: 100%;
+        align-content: center;
+        margin-top: 6%;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .accelator-flex {
+        display: block;
+    }
+    .accelator-page-text-container {
+        width: 100%;
+    }
+    .leadship-ui {
+        list-style-type : none;
+        text-decoration: none;
+        margin-left: 0;
+    }
+    .accelator-sub-heading {
+        margin-top: 1.1em;
+        color: #11ADE5;
+        font-size: 21px;
+        line-height: 30px;
+        font-weight: bold;
+        width: 100%;
+    }
+    .accelator-image-text-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 2em;
+    }
+    .accelerator-bottom-btn {
+        margin-bottom: 6em;
+        width: 100%;
+        margin-left: 0;
+    }
 }
