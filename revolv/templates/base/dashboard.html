@@ -15,15 +15,21 @@
 {% block title %}My Portfolio - {% endblock %}
 {% block head %}
 
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'dist/css/pages/projects-list/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/dashboard.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/screen.css" %}">
     <script type="text/javascript" src="{% static "js/vendor/d3.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/base/util/util.js" %}"></script>
     <script type="text/javascript" src="{% static "js/base/partialcircle.js" %}"></script>
     <script type="text/javascript" src="{% static "js/base/projects-list.js" %}"></script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" id="st_insights_js" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
 
 {% endblock %}
 {% block body %}
+{% include "project/success_modal.html" with project=project %}
 <div class='main-row dashboard'>
 
     <div class="container-fluid after-header">
@@ -38,7 +44,7 @@
           </div>
       {% else %}
 
-        {% if donor_has_no_donated_projects and not monthly_donation %}
+        {% if donor_has_no_donated_projects %}
           <div class="no-donations">
             <div class="row">
               <div class="col-md-12">
@@ -61,5 +67,15 @@
 
     {% block body-bottom %}
     {% endblock %}
+<script>
+
+    $( document ).ready(function() {
+        if ('{{ social }}' == 'donation')
+        {
+            $("#social_media").modal("show");
+        }
+    })
+</script>
+
 
 {% endblock %}

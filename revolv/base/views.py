@@ -586,13 +586,50 @@ class DashboardRedirect(UserDataMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
-        if not self.is_authenticated:
-            return redirect('home')
-        if self.is_administrator:
-            return redirect('administrator:dashboard')
-        if self.is_ambassador:
-            return redirect('ambassador:dashboard')
-        return redirect('donor:dashboard')
+        # social = request.GET.get('social', '')
+        amount = request.session.get('amount')
+        project = request.session.get('project')
+        social = request.session.get('social')
+        url = request.session.get('url')
+        cover_photo = request.session.get('cover_photo','')
+        request.session['amount'] = amount
+        request.session['project'] = project
+        request.session['cover_photo'] = cover_photo
+        request.session['social'] = social
+        request.session['url'] = url
+
+        if bool(request.GET) is False :
+            if not self.is_authenticated:
+                return redirect('home')
+            if self.is_administrator:
+                return redirect('administrator:dashboard')
+            if self.is_ambassador:
+                return redirect('ambassador:dashboard')
+            return redirect(reverse('donor:dashboard'))
+
+        elif social == 'donation':
+            if not self.is_authenticated:
+                return redirect('home')
+
+            if self.is_administrator:
+                return redirect('administrator:dashboard')
+
+            if self.is_ambassador:
+                return redirect(reverse('ambassador:dashboard'))
+            if self.is_donor:
+                return redirect(reverse('donor:dashboard'))
+
+        else:
+            if not self.is_authenticated:
+                return redirect('home')
+
+            if self.is_administrator:
+                return redirect('administrator:dashboard')
+
+            if self.is_ambassador:
+                return redirect(reverse('ambassador:dashboard') + '?social=' + social)
+            if self.is_donor:
+                return redirect(reverse('donor:dashboard') + '?social=' + social)
 
 
 # password reset/change views: thin wrappers around django's built in password

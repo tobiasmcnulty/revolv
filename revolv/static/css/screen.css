@@ -14719,6 +14719,7 @@ form#change_password_form label {
 .leo-donate-btn {
     text-align: center;
     margin-top: 2em;
+    margin-bottom: 2em;
 }
 .leadership-circle-header {
     font-size: 32px;
@@ -15111,6 +15112,16 @@ span.setting-donation-change {
     width: 19%;
     margin-left: 10%;
 }
+.confirm-text {
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #222222;
+    font-size: 2.2vmin;
+    padding: 0 2vmin;
+}
+
 @media (max-width: 767px) {
     .accelerator-bottom-btn-div {
         text-align: left;

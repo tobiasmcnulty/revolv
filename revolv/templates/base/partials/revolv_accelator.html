@@ -3,7 +3,9 @@
 {% load wagtailimages_tags %}
 
 {% block title %}RE-volv Accelerator Page | {% endblock %}
-{
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
+{%endblock%}
 {% block body %}
     <div class="after-header accelerator-main-div">
         <div class="revolv-content-center">

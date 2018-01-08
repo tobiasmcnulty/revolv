@@ -128,6 +128,16 @@ def stripe_payment(request, pk):
     context['tip_cents'] = tip_cents / 100.0
     context['amount_cents'] = amount_cents/100.0
     context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
+
+    amount = donation_cents / 100.0
+    cover_photo = Project.objects.values_list('cover_photo', flat=True).filter(pk=pk)
+    cover_photo = list(cover_photo)
+    request.session['amount'] = str(amount)
+    request.session['project'] = project.title
+    previous_url = request.META.get('HTTP_REFERER')
+    request.session['url'] = previous_url
+    request.session['cover_photo'] = (SITE_URL + '/media/') + ''.join(cover_photo)
+    request.session['social'] = "donation"
     send_donation_info(user.get_full_name(), donation_cents/100.0, user.user.email, project.title, address='')
     send_revolv_email(
         'post_donation',

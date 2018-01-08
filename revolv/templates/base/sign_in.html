@@ -121,6 +121,7 @@
       </div>
 
     <div class="col-md-3 col-md-push-3 col-sm-push-2 col-sm-6">
+        <body>
         <form action="/signup/" method="post" id="login_form">
             {% csrf_token %}
             {% for error in signup_form.non_field_errors %}
@@ -156,12 +157,28 @@
               </label>
             </div>
             <div class="form-group">
-              <button class="submit-button btn-blue" type="submit" value="Log in">{{ settings.revolv_cms.SignupPageSettings.button_text }}</button>
+              <button class="submit-button btn-blue" onclick="loadJS('//www.googleadservices.com/pagead/conversion.js')" type="submit" value="Log in">{{ settings.revolv_cms.SignupPageSettings.button_text }}</button>
             </div>
         </form>
+        </body>
     </div>
 
 </div>
 </div>
 </div>
+<!-- Google Code for Account Sign Ups Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 992644544;
+var google_conversion_label = "qzf6COTRhm4QwJuq2QM";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/992644544/?label=qzf6COTRhm4QwJuq2QM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
 {% endblock %}
