@@ -987,7 +987,7 @@ def payment_data_table(request):
         payment_details['email']=payment.user.user.email
         payment_details['date']=(payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
         payment_details['project']=payment.project.title
-        if payment.user_reinvestment or payment.admin_reinvestment:
+        if payment.user_reinvestment or payment.admin_reinvestment or payment.project.title=="Operations":
             payment_details['amount']=0
         else:
             payment_details['amount']=payment.amount
@@ -999,7 +999,11 @@ def payment_data_table(request):
             payment_details['admin_reinvestment'] = round(payment.amount, 2)
         else:
             payment_details['admin_reinvestment']=0
-        if payment.tip:
+        if payment.tip and payment.project.title=="Operations":
+            payment_details['tip'] = round(payment.tip.amount + payment.amount, 2)
+        if payment.project.title=="Operations":
+            payment_details['tip'] = round( payment.amount, 2)
+        elif payment.tip:
             payment_details['tip'] = round(payment.tip.amount, 2)
         else:
             payment_details['tip'] = 0
