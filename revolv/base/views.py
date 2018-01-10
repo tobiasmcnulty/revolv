@@ -41,7 +41,7 @@ import mailchimp
 import json
 import re
 logger = logging.getLogger(__name__)
-ANNOUNCEMENT_ID = settings.ANNOUNCEMENT_ID
+# ANNOUNCEMENT_ID = settings.ANNOUNCEMENT_ID
 LIST_ID = settings.LIST_ID
 
 class HomePageView(UserDataMixin, TemplateView):
@@ -1390,7 +1390,7 @@ class editprofile(View):
             if announcement:
                 is_email_exist = False
                 user.subscribed_to_updates = True
-                list = mailchimp.utils.get_connection().get_list_by_id(ANNOUNCEMENT_ID)
+                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
                 for resp in list.con.list_members(list.id)['data']:
                     if request.user.email == resp['email']:
                         is_email_exist = True
@@ -1398,7 +1398,7 @@ class editprofile(View):
                     list.subscribe(request.user.email, {'EMAIL': request.user.email}, double_optin=False)
             else:
                 is_email_exist = False
-                list = mailchimp.utils.get_connection().get_list_by_id(ANNOUNCEMENT_ID)
+                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
                 for resp in list.con.list_members(list.id)['data']:
                     if request.user.email == resp['email']:
                         is_email_exist = True
