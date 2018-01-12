@@ -5,6 +5,7 @@
 {% block title %}RE-volv Accelerator Page | {% endblock %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
+
 {%endblock%}
 {% block body %}
     <div class="after-header accelerator-main-div">
@@ -24,8 +25,8 @@
                                         <input type="hidden" name="donation_amount_in_cents" value="10">
                                         <input name="metadata" value="1.00" type="hidden">
                                         <input name="check" value="checked" type="hidden">
-                                        <button type="submit" class="stripe-monthly-donation-button-el component-link btn-blue btn-donate" style="visibility: visible;">
-                                          <span style="display: block; min-height: 30px;">Donate $10 a month</span>
+                                        <button type="submit" class="stripe-monthly-donation-button-el component-link btn-blue btn-donate" style="visibility: visible">
+                                          <span id="b1" style="display: block">Donate $10 a month</span>
                                         </button>
                                       </form>
                                 </div>
@@ -55,7 +56,7 @@
                                         <input name="metadata" value="1.00" type="hidden">
                                         <input name="check" value="checked" type="hidden">
                                         <button type="submit" class="stripe-monthly-donation-button-el component-link btn-blue btn-donate" style="visibility: visible;">
-                                          <span style="display: block; min-height: 30px;">Donate $20 a month</span>
+                                          <span style="display: block;">Donate $20 a month</span>
                                         </button>
                                     </form>
                                 </div>
@@ -73,8 +74,8 @@
                             <img src="/static/images/Group_outside_shot.jpg" width="100%" alt="Solar installations" class="img-center">
                         </div>
                     </div>
-                    <div class="leo-donate-btn" >
-                        <a href="#" onclick="return acceleratorClearInput();" class="component-link btn-blue btn-donate" data-toggle="modal" data-target="#popup">Customize your Monthly Gift</a>
+                    <div class="leo-donate-btn">
+                        <a href="#" id="leo-donate-btn" style="font-size:1em;" onclick="return acceleratorClearInput();" class="component-link btn-blue btn-donate" data-toggle="modal" data-target="#popup">Customize your Monthly Gift</a>
                     </div>
                     <p class="accelator-sub-heading">RE-volv Accelerator perks!</p>
                     <ul class="leadship-ui">

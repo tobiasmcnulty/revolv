@@ -6890,8 +6890,34 @@ width: 580px;
         background-position: -100px -12px;
     }
 }
-/*fix layout issue when smaller than 992px width*/
+/*For accelerator page*/
+@media (min-width: 768px){
 
+
+    .stripe-monthly-donation-button-el_component-link_btn-blue_btn-donate span{
+
+    font-size: 9.2px;
+
+    }
+
+}
+@media (max-width: 767px){
+    .stripe-monthly-donation-button-el{
+        min-height: 5.9em;
+        width: 30em;
+    }
+    .stripe-monthly-donation-button-el span{
+
+        font-size:2.8em;
+        min-height: 27px;
+    }
+    #leo-donate-button{
+        font-size:1em;
+        width: 15em;
+        height: 2.1em;
+    }
+}
+/*fix layout issue when smaller than 992px width*/
 @media (max-width: 991px) {
     .newsletter-msg-cntnr .newsletter-msg {
         width: 70%;
@@ -12344,6 +12370,12 @@ width: 580px;
     .input-group > form#ipad {
       display: none;
     }
+    .account-heading-span{
+        font-size: 1.7em;
+    }
+    .account-heading{
+        text-align: center;
+    }
     .module-box.payment-module > form#phone {
       display: block;
     }
@@ -12403,6 +12435,13 @@ width: 580px;
     }
     .price-tables .right-asides aside.right-aside p.dummy {
         min-height: auto;
+    }
+    #leo-donate-btn{
+        font-size: 1.1em !important;
+        height: 1.8em !important;
+        line-height: 1.8em !important;
+        text-align: center !important;
+        width: 15em;
     }
     #project .btn-blue {
         font-size: 7px;
@@ -12958,6 +12997,15 @@ label.checkmark.animate:after {
 }
 
 }
+.account-heading-span{
+        font-size: 1.7em;
+    }
+    .account-heading{
+        text-align: center;
+    }
+
+
+
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
     .yellow-buttons {
         font-size: 1.8vmin;
@@ -12966,6 +13014,8 @@ label.checkmark.animate:after {
         font-size: 2.2vmin;
     }
 }
+
+
 @media only screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1024px) and (max-width: 1024px) {
     .yellow-buttons {
         font-size: 1.3vmin;
@@ -13028,6 +13078,7 @@ and (orientation : landscape) {
         font-size: 2.5vmin;
     }
 }*/
+
 @media (max-width: 767px){
 .yellow-buttons {
     font-size: 2vmin;
@@ -15163,4 +15214,147 @@ span.setting-donation-change {
         width: 100%;
         margin-left: 0;
     }
+}
+.myth-box-header-div {
+    text-align: left;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(75, 75, 75, 0.71);
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+}
+.myth-collapse-text {
+    margin: 0 2.7em auto;
+    padding-bottom: 2em;
+    padding-right: 8em;
+    color: #777;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+.myth-box-div {
+    border: 1px solid #e8e8e8;
+    width: 81%;
+    margin-bottom: 2em;
+    border-radius: 5px;
+}
+.myth-collapse-icon {
+    float: right;
+    color: #14b1e7;
+}
+@media (max-width: 767px) {
+    .account-heading{
+        margin-top: 31%;
+    }
+    .myth-box-div {
+        width: 100%;
+    }
+    .myth-collapse-text {
+        padding-right: 0;
+    }
+    .myth-box-header-div {
+        font-size: 12px;
+    }
+    .myth-collapse-text {
+        font-size: 10px;
+    }
+    .account-tab-text {
+        font-size: 1.2em;
+    }
+    .account-heading-span {
+        font-size: 1.8em;
+        padding-left: 0;
+    }
+}
+.facts-icon-image{
+     margin-top: 1em;
+     padding: 0.5em;
+     width: 6.5em;
+}
+.facts-label-text{
+    font-size:23px;
+    padding:22px;
+    color:#777;
+    font-weight:700;
+}
+.facts-div-style{
+    position: relative;
+    width: 100%;
+    float: left;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid #ddd;
+    height: 240px;
+}
+.facts-row{
+    margin-bottom: 2em;
+    margin-left: 0;
+    margin-right: 0;
+}
+.fact-card-info{
+    float: left;
+    color: #FFFFFF;
+    font-size: 1.1em;
+}
+.fact-card-text-style{
+    display:none;
+    background-color: #00BFFF;
+    border-radius: 4px;
+    padding: 1em;
+    float: left;
+    height: 240px;
+}
+.fact-bottom-text{
+    float: left;
+    width: 100%;
+    margin-bottom: 4em;
+    color: #b1a6a6;
+    padding-left: 1.5em;
+    padding-top: 0.4em;
+    font-size: 1.4em;
+}
+.fact-card-width{
+    float: left;
+    width: 100%;
+}
+.fact-card-logo-style{
+    float: left;
+    width: 100%;
+    height: 240px;
+    padding: 10px;
+}
+.fact-card-logo{
+    float: left;
+    width: 100%;
+    text-align: center;
+    height: 240px;
+}
+
+.show-card{
+    display: block !important;
+}
+
+.hide-card{
+    display: none !important;
+}
+.source-anchor-link {
+    color: white;
+    font-weight: 700;
+    text-decoration: underline;
+}
+@media (min-width: 767px) and (max-width: 1024px){
+.account-tabs{
+    margin-top: 4em;
+    padding-left: 1.2em;
+    }
+}
+@media (min-width: 1024px){
+     .account-tabs{
+         text-align: left;
+         margin-top: 4em;
+         padding-left: 5.5em;
+     }
+
 }

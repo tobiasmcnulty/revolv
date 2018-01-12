@@ -58,6 +58,20 @@ $(document).ready(function(){
 
     });
 
+    // Common myths box drop down.
+    $('.collapse').on('shown.bs.collapse', function(){
+        $(this).parent().find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        }).on('hidden.bs.collapse', function(){
+        $(this).parent().find(".glyphicon-chevron-up").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+    });
+    // Show fact card info on Exciting facts page.
+    $('.fact-card').on('click', function(){
+        $('.card-logo').removeClass('hide-card');
+        $('.card-info').removeClass('show-card');
+        $(this).find('.card-logo').addClass('hide-card');
+        $(this).find('.card-info').addClass('show-card');
+    });
+
     $(".container1").click(function (event) {
            $(".navbar-collapse-settings").toggle();
     });
