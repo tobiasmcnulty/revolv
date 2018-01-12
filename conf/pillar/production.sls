@@ -235,7 +235,7 @@ secrets:
       =jo6C
       -----END PGP MESSAGE-----
 
-   "LIST_ID": |-
+    "LIST_ID": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
