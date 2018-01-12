@@ -15331,7 +15331,9 @@ span.setting-donation-change {
     text-align: center;
     height: 240px;
 }
-
+.myth-collapse-icon:hover{
+    cursor: pointer;
+}
 .show-card{
     display: block !important;
 }
