@@ -312,24 +312,19 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     @csrf_exempt
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
-        self.amount=request.session.get('amount')
-        self.tip=request.session.get('tip')
-        self.title=request.session.get('title')
         self.next_url = request.POST.get("next", "home")
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         """Log the user in and redirect them to the supplied next page."""
         auth_login(self.request, form.get_user())
-        if self.request.session.get('amount') and self.request.session.get('title') and self.request.session.get('tip'):
-            title=self.title
-            amount= self.amount
-            tip=self.tip
-            del self.request.session['amount']
-            del self.request.session['title']
-            del self.request.session['tip']
-            messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
-            return redirect(reverse('project:view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
+        if self.request.session.get('payment'):
+            Payment.objects.filter(id=self.request.session['payment']).update(user_id=self.request.user.revolvuserprofile, entrant_id =self.request.user.revolvuserprofile )
+            tip=Payment.objects.get(id=self.request.session['payment']).tip_id
+            Tip.objects.filter(id=tip).update(user_id=self.request.user.revolvuserprofile)
+            del self.request.session['payment']
+            # messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
+            # return redirect(reverse('project:view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
         messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
         return redirect(self.next_url)
 
@@ -401,15 +396,11 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
             except Exception, e:
                 logger.exception(e)
 
-        if self.request.session.get('amount') and self.request.session.get('title') and self.request.session.get('tip'):
-            title = self.request.session.get('title')
-            amount = self.request.session['amount']
-            tip = self.request.session['tip']
-            del self.request.session['amount']
-            del self.request.session['title']
-            del self.request.session['tip']
-            messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
-            return redirect(reverse('project:view', kwargs={'title': title}) + '?amount=' + amount + '&tip=' + tip)
+        if self.request.session.get('payment'):
+            Payment.objects.filter(id=self.request.session['payment']).update(user_id=self.request.user.revolvuserprofile, entrant_id =self.request.user.revolvuserprofile )
+            tip=Payment.objects.get(id=self.request.session['payment']).tip_id
+            Tip.objects.filter(id=tip).update(user_id=self.request.user.revolvuserprofile)
+            del self.request.session['payment']
         messages.success(self.request, 'Signed up successfully!')
         return redirect("dashboard")
 

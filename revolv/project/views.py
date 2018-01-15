@@ -35,12 +35,13 @@ MAX_PAYMENT_CENTS = 99999999
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-@login_required
+# @login_required
 def stripe_payment(request, pk):
     try:
         token = request.POST['stripeToken']
         tip_cents = request.POST['metadata']
         amount_cents = request.POST['amount_cents']
+        email = request.POST['stripeEmail']
     except KeyError:
         logger.exception('stripe_payment called without required POST data')
         return HttpResponseBadRequest('bad POST data')
@@ -102,48 +103,76 @@ def stripe_payment(request, pk):
             )
             send_donation_info(donor.matching_donor.get_full_name(), matching_donation, donor.matching_donor.user.email, project.title, address='')
 
+    if request.user.is_authenticated():
+        user = request.user.revolvuserprofile
+    else:
+        user_id = User.objects.get(username='Anonymous').pk
+        user = RevolvUserProfile.objects.get(user_id=user_id)
+
     tip = None
     if tip_cents > 0:
         tip=Tip.objects.create(
             amount=tip_cents / 100.0,
-            user=request.user.revolvuserprofile,
+            user=user,
         )
 
-    Payment.objects.create(
-        user=request.user.revolvuserprofile,
-        entrant=request.user.revolvuserprofile,
+    payment=Payment.objects.create(
+        user=user,
+        entrant=user,
         amount=donation_cents/100.0,
         project=project,
         tip=tip,
         payment_type=PaymentType.objects.get_stripe(),
     )
 
-    SITE_URL = settings.SITE_URL
-    portfolio_link = SITE_URL + reverse('dashboard')
-    user=RevolvUserProfile.objects.get(user=request.user)
-    context = {}
-    context['user'] = request.user
-    context['project'] = project
-    context['amount'] = donation_cents/100.0
-    context['tip_cents'] = tip_cents / 100.0
-    context['amount_cents'] = amount_cents/100.0
-    context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
+    if not request.user.is_authenticated():
+        request.session['payment'] = payment.id
+        SITE_URL = settings.SITE_URL
+        portfolio_link = SITE_URL + reverse('dashboard')
+        context = {}
+        context['project'] = project
+        context['amount'] = donation_cents / 100.0
+        context['tip_cents'] = tip_cents / 100.0
+        context['amount_cents'] = amount_cents / 100.0
+        context['portfolio_link'] = portfolio_link
+        context['first_name'] = "RE-volv"
+        context['last_name'] = "Supporter"
+        send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, address='')
+        send_revolv_email(
+            'post_donation',
+            context, [email]
+        )
+        return redirect('signin')
+    else:
+        SITE_URL = settings.SITE_URL
+        portfolio_link = SITE_URL + reverse('dashboard')
+        user=RevolvUserProfile.objects.get(user=request.user)
+        context = {}
+        context['project'] = project
+        context['amount'] = donation_cents/100.0
+        context['tip_cents'] = tip_cents / 100.0
+        context['amount_cents'] = amount_cents/100.0
+        context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
+        context['first_name'] = request.user.first_name
+        context['last_name'] = request.user.last_name
 
-    amount = donation_cents / 100.0
-    cover_photo = Project.objects.values_list('cover_photo', flat=True).filter(pk=pk)
-    cover_photo = list(cover_photo)
-    request.session['amount'] = str(amount)
-    request.session['project'] = project.title
-    previous_url = request.META.get('HTTP_REFERER')
-    request.session['url'] = previous_url
-    request.session['cover_photo'] = (SITE_URL + '/media/') + ''.join(cover_photo)
-    request.session['social'] = "donation"
-    send_donation_info(user.get_full_name(), donation_cents/100.0, user.user.email, project.title, address='')
-    send_revolv_email(
-        'post_donation',
-        context, [request.user.email]
-    )
-    return redirect('dashboard')
+        amount = donation_cents / 100.0
+        cover_photo = Project.objects.values_list('cover_photo', flat=True).filter(pk=pk)
+        cover_photo = list(cover_photo)
+        request.session['amount'] = str(amount)
+        request.session['project'] = project.title
+        previous_url = request.META.get('HTTP_REFERER')
+        request.session['url'] = previous_url
+        request.session['cover_photo'] = (SITE_URL + '/media/') + ''.join(cover_photo)
+        request.session['social'] = "donation"
+        send_donation_info(user.get_full_name(), donation_cents/100.0, user.user.email, project.title, address='')
+        send_revolv_email(
+            'post_donation',
+            context, [request.user.email]
+        )
+        return redirect('dashboard')
+
+
 
 
 def stripe_operation_donation(request):
@@ -702,8 +731,8 @@ class SubmitDonationView(UserDataMixin, FormView):
         )
         try:
             amount = form.cleaned_data.get('amount')
-            #send_donation_info.delay(self.user_profile.get_full_name(), float(amount),
-             #                        project.title, self.user_profile.address)
+            # send_donation_info.delay(self.user_profile.get_full_name(), float(amount),
+            #                         project.title, self.user_profile.address)
         except:
             pass
 

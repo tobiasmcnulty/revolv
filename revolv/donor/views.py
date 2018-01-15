@@ -66,7 +66,7 @@ class DonorDashboardView(UserDataMixin, TemplateView):
         context["social"] = self.request.session.get('social')
         if self.request.session.get('social'):
             del self.request.session['social']
-        context["donor_has_no_donated_projects"] = Project.objects.donated_projects(self.user_profile).count() == 0
+        context["donor_has_no_donated_projects"] = Payment.objects.filter(user=self.user_profile).count() == 0
 
         context['donated_projects'] = Project.objects.donated_projects(self.user_profile)
         statistics_dictionary = aggregate_stats(self.user_profile)
