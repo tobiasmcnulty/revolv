@@ -439,7 +439,6 @@ def stripe_webhook(request):
             else:
                 user = stripeDetails.user
                 user.solar_seed_fund_pool = user.solar_seed_fund_pool + amount/100
-                user.solar_seed_fund_pool = user.solar_seed_fund_pool
                 user.save()
     except:
         pass
