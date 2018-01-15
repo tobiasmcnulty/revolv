@@ -61,6 +61,25 @@ input.checkbox-settings[type="checkbox"] + label::before {
     border-radius: 7px;
     margin-right: 0.5em;
 }
+
+@media (max-width: 767px) {
+    form{
+        border-left: none;
+        width: 120%;
+{#        margin-left: 2em;#}
+    }
+    .setting-donation-save{
+        width: 8em;
+    }
+    input{
+        width: 15em;
+        font-size: 1em;
+        padding-left: 0;
+    }
+    .setting-donation-change{
+        float: right;
+    }
+}
 </style>
 <script src="{% static 'js/toastr.min.js' %}?version={{ version_number }}"></script>
 {% if messages %}
