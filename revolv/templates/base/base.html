@@ -55,6 +55,16 @@
 
     <!-- Main JS -->
     <script src="{% static 'js/script.js' %}?version={{ version_number }}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26030992-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-26030992-4');
+    </script>
 
     {% block head %}
     {% endblock %}
