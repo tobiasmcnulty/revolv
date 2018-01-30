@@ -108,10 +108,10 @@ $(document).ready(function() {
             }
         });
         $('#export-csv-btn').on('click',function(e){
-            location.replace('/export_csv');
+            location.replace('/export_csv?from_date='+ date1 + '&to_date=' + date2);
         })
         $('#export-excel-btn').on('click',function(e){
-            location.replace('/export_excel');
+            location.replace('/export_excel?from_date='+ date1 + '&to_date=' + date2);
         })
 
 } );
