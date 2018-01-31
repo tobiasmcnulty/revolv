@@ -239,16 +239,17 @@ secrets:
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1
 
-      hQEMA9aTfmR7xthMAQf8DKh574lr6qWWhM/3rZklV6+tw0jLqLp160et9KG5fq5m
-      iEn06Dt6aG4bfVm+1b5C0u2tqMLX4BjRHNx9KtnY0DGMUQHWYvl3JwL+cgSb8m5H
-      RDd6/JmCFfHbuU6lD3+JfhhxLzF7icm4woq0R/x+tZcUBTqr8inxwAeMKFfXfdZc
-      VYRzemAT6aRDb5nzqj8UoLjnvCbCBJmmYDFfe32lBVmAM1SfsXCjDCZmqdz0liLh
-      lp+oNSC3eBXW2euHJinGfIODQt6dYecR6UNJcJr5ht9rN4K/u+jbz4b+4xzJnrYI
-      6NqJUEC6Xt22gt3OzzqKVVRbSp9/KfFpjmKFOffSVNJFAUchc6nrL29tD1NO29TO
-      BaPXWNPIscF0z7TWJ+RVuOyzTdYpMT7VYW1it/OOTsWSQL0EV0wcfsHqe7xxQfl+
-      PzhFsjoA
-      =yXny
+      hQEMA9aTfmR7xthMAQf/UC0/fl3PSPW4eDWaTFcoUpyyxVp9Ah7uCwhsBp214vfO
+      hNbw1z9r1dU10D+dkI23qjSUce0083k9osyPXGEkA8xjYKZ4mOqlkZykm6JvM13l
+      DEDn6WdHjRAGv4Zf0cNdXRMeYd5nD8yccX9DqW6EhmsyM1L8SaHpn87tqBe8RL7K
+      +nyNCMvIi8kKR9L0/lerdp/rT8GpAisqGlcFja8cLRGwerNth+QkEy/0Y0ux60mk
+      QRysBdHUIg9lZEAe73FOI4GHSiCw0n2DcUq5QX+1LqHJ5sq0zKwjB9FzsuIouWe2
+      f6kJLOx8hHAaRIvOt/w9YVqgXRAL8BkLXQwNXQWLt9JFAdn88YXOaSEhXR+cJlUt
+      zRDCrdXW0SZGV7mafwetT5vGG2tbfZFvgRR7MPxrhjHLl3FMPDBIPDdy1F4eVz4K
+      mMZqZOSv
+      =nRJY
       -----END PGP MESSAGE-----
+
 
 
 
@@ -301,20 +302,6 @@ secrets:
       -----END PGP MESSAGE------
 
 
-    "ANNOUNCEMENT_ID": |-
-      -----BEGIN PGP MESSAGE-----
-      Version: GnuPG v1
-
-      hQEMA9aTfmR7xthMAQf9HSS84aqo5tr5X0uJy0QS3jKiL01gx2BR0BTKerUJYMr8
-      ivtCORjdhsrtfz6ysTJFhPwTiBeChypSSymbffKmlRG7s4Ge6yr89Oe8Vxqf2E0U
-      hCyLZzIhvEzzCK9p6X+O2aAUcV4dWtxQj3yzh2kuUHfssVMGkJxsmH3IPV885Qbc
-      zVrJhamD0nhS/KFcP2E50/0jJS2KpAno1D36bj8KY5qsQ14FdgAcyXYiNHqvBB65
-      ypGvtn4D3xJpbdkXLkSLo8GyV6tlj1vXm/RosRRLuw5AycwLlaZ+wHSvCBykLjp+
-      wgK3OC2JN0i5B43KPBpbgUKjn3xVtISgV2/e6klfs9JFAQ25e/N2okZP6rw/D1sj
-      HcRHr4yNDf/QgjeGBMoWvqOk+lwCMjpJJQHGyLjqshT86tKYyQtLarF9HCJmHztH
-      7qKo9/+8
-      =ADWO
-      -----END PGP MESSAGE-----
 
 # Private deploy key. Must be GPG encrypted.
 github_deploy_key: |-

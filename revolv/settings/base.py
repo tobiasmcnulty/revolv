@@ -214,7 +214,6 @@ SITE_ID = 1
 
 MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 LIST_ID = os.environ.get('LIST_ID')
-ANNOUNCEMENT_ID = os.environ.get('ANNOUNCEMENT_ID')
 
 MANDRILL_API_KEY = os.environ.get('MANDRILL_API_KEY')
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"

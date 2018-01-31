@@ -41,8 +41,9 @@ import mailchimp
 import json
 import re
 logger = logging.getLogger(__name__)
-# ANNOUNCEMENT_ID = settings.ANNOUNCEMENT_ID
 LIST_ID = settings.LIST_ID
+NEWSLETTERS = "RE-Volv Newsletter"
+ANNOUNCEMENTS = "RE-Volv Important Announcement"
 
 class HomePageView(UserDataMixin, TemplateView):
     """
@@ -383,16 +384,13 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         user = RevolvUserProfile.objects.get(user=self.request.user)
         if user.subscribed_to_newsletter:
             try:
-                is_email_exist = False
                 list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-                for resp in list.con.list_members(list.id)['data']:
-                    if self.request.user.email == resp['email']:
-                        is_email_exist = True
-                if is_email_exist:
-                    pass
-                else:
-                    list.subscribe(self.request.user.email, {'EMAIL': self.request.user.email},double_optin=False)
-
+                list.con.list_subscribe(list.id, self.request.user.email,
+                                        { 'EMAIL': self.request.user.email,
+                                          'FNAME': self.request.user.first_name,
+                                          'LNAME': self.request.user.last_name,
+                                          'INTERESTS': NEWSLETTERS },
+                                        double_optin=False, update_existing=True)
             except Exception, e:
                 logger.exception(e)
 
@@ -1362,21 +1360,17 @@ def export_repayment_xlsx(request):
 
 def add_email_to_mailing_list(request):
     if request.POST['email']:
-        is_email_exist = False
         email_address = request.POST['email']
         list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-        list.unsubscribe( {'EMAIL': email_address}, delete_member='True')
-        for resp in list.con.list_members(list.id)['data']:
-            if email_address == resp['email']:
-                list.unsubscribe(email_address, {'EMAIL': email_address},double_optin=False)
-        if is_email_exist:
-            return HttpResponse(json.dumps({'status': 'already_exist'}), content_type="application/json")
-        else:
-            try:
-                list.subscribe(email_address, {'EMAIL': email_address})
-            except Exception:
-                return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
-            return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
+        try:
+            list.con.list_subscribe(list.id, email_address,
+                                    {'EMAIL': email_address,
+                                     'INTERESTS': NEWSLETTERS},
+                                    double_optin=False, update_existing=True)
+        except Exception:
+            return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
+
+        return HttpResponse(json.dumps({'status': 'subscription_success'}), content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
 
@@ -1389,42 +1383,33 @@ class editprofile(View):
         profileup = RevolvUserProfileForm(data=request.POST or None,instance=request.user.revolvuserprofile)
         if profileup.is_valid():
             user = profileup.save(commit=False)
+
+            interests = None
             if subscribed_to_newsletter:
-                is_email_exist = False
                 user.subscribed_to_newsletter = True
-                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-                for resp in list.con.list_members(list.id)['data']:
-                    if request.user.email == resp['email']:
-                        is_email_exist = True
-                if not is_email_exist:
-                    list.subscribe(request.user.email, {'EMAIL': request.user.email},double_optin=False)
+                interests = NEWSLETTERS
+
+            if announcement:
+                user.subscribed_to_updates = True
+                if interests:
+                    interests = interests + ", " + ANNOUNCEMENTS
+                else:
+                    interests = ANNOUNCEMENTS
+
+            list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
+
+            if interests:
+                list.con.list_subscribe(list.id, request.user.email, {'EMAIL': request.user.email,
+                                                                      'FNAME': request.user.first_name,
+                                                                      'LNAME': request.user.last_name,
+                                                                      'INTERESTS': interests},
+                                        double_optin=False, update_existing=True)
             else:
-                is_email_exist = False
-                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-                for resp in list.con.list_members(list.id)['data']:
-                    if request.user.email == resp['email']:
-                        is_email_exist = True
-                if is_email_exist:
-                    list.unsubscribe(request.user.email,delete_member=True)
+                list.con.list_unsubscribe(list.id, request.user.email, delete_member=True)
+
             if repayment_notification:
                 user.subscribed_to_repayment_notifications = True
-            if announcement:
-                is_email_exist = False
-                user.subscribed_to_updates = True
-                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-                for resp in list.con.list_members(list.id)['data']:
-                    if request.user.email == resp['email']:
-                        is_email_exist = True
-                if not is_email_exist:
-                    list.subscribe(request.user.email, {'EMAIL': request.user.email}, double_optin=False)
-            else:
-                is_email_exist = False
-                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-                for resp in list.con.list_members(list.id)['data']:
-                    if request.user.email == resp['email']:
-                        is_email_exist = True
-                if is_email_exist:
-                    list.unsubscribe(request.user.email, delete_member=True)
+
             user.user = request.user
             user.save()
             userup = UpdateUser(request.POST or None,instance=request.user)
