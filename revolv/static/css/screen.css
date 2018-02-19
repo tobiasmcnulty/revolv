@@ -683,6 +683,8 @@ z-index: 448;
 
 p.attribution.footer-text {
     color: #337ab7;
+    font-size: 14px;
+    margin-bottom: 0px;
 }
 .dropdown-default .dropdown-menu>li>a {
     font-weight: normal;
@@ -4231,6 +4233,9 @@ header.edit-project-header > .container > h1 {
     font-size: 14px;
     text-align: justify;
     line-height: 24px;
+}
+footer.footer > div.container > div.row > nav > dl > dd {
+    margin-bottom: 0px;
 }
 /* .footer .bottoms */
 
