@@ -15374,3 +15374,34 @@ span.setting-donation-change {
         /*padding-left: 11px;*/
     /*}*/
 }
+
+#project > div.cms-content-row.row.after-header > div > div:nth-child(12) > p > a {
+    margin: 5vmin 47% 0 23%;
+    padding: 2vmin 2vmin 2vmin 2vmin;
+    background-color: rgb(20, 177, 231);
+    color: #fff;
+    border-radius: 3px;
+    width: 100%;
+    text-align: center;
+    line-height: normal;
+    cursor: pointer;
+    font-weight: bold;
+}
+@media only screen and (max-width: 767px) {
+    #project > div.cms-content-row.row.after-header > div > div:nth-child(12) > p > a {
+    	margin-left: 9vw;
+	}
+}
+#project > div.video-row > div:nth-child(5) > a {
+    font-size: 1.5em;
+}
+@media (min-width: 767px) {
+    #project > div.video-row > div:nth-child(5) > a {
+        margin-left: 25%;
+    }
+}
+@media (min-width: 1024px) {
+    #project > div.video-row > div:nth-child(5) > a {
+        margin-left: 35%;
+    }
+}
