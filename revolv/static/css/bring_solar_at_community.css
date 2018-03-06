@@ -293,3 +293,9 @@ img.close-video {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
 }
+#champ-opp {
+    text-align: center;
+}
+#champ-opp > a {
+    font-size: 1.5em;
+}

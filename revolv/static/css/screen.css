@@ -15387,16 +15387,3 @@ span.setting-donation-change {
     cursor: pointer;
     font-weight: bold;
 }
-#project > div.video-row > div:nth-child(5) > a {
-    font-size: 1.5em;
-}
-@media (min-width: 767px) {
-    #project > div.video-row > div:nth-child(5) > a {
-        margin-left: 25%;
-    }
-}
-@media (min-width: 1024px) {
-    #project > div.video-row > div:nth-child(5) > a {
-        margin-left: 35%;
-    }
-}
