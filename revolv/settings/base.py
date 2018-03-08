@@ -166,7 +166,7 @@ LOGGING = {
     },
     'formatters': {
         'basic': {
-            'format': 'app %(asctime)s %(name)-20s %(levelname)-8s %(message)s',
+            'format': '%(asctime)s %(name)-20s %(levelname)-8s %(message)s',
         },
         'papertrail': {
             'format': 'django %(asctime)s %(name)s %(levelname)s: %(message)s',
@@ -206,7 +206,7 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console', 'syslog'],
-        'level': 'DEBUG',
+        'level': 'INFO',
     },
 }
 
@@ -448,6 +448,6 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 
-VERSION_NUM = '1520345052134'
+VERSION_NUM = '1520519979119'
 
 

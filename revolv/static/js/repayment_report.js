@@ -97,10 +97,10 @@ $(document).ready(function() {
             }
         });
         $('#export-csv-btn').on('click',function(e){
-            location.replace('/export_repayment_csv');
+            location.replace('/export_repayment_csv?from_date='+ date1 + '&to_date=' + date2);
         })
         $('#export-excel-btn').on('click',function(e){
-            location.replace('/export_repayment_xlsx');
+            location.replace('/export_repayment_xlsx?from_date='+ date1 + '&to_date=' + date2);
         })
 
 } );

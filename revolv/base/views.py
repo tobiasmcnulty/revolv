@@ -1271,7 +1271,21 @@ def export_repayment_csv(request):
     from django.utils.encoding import smart_str
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=Repayment_report.csv'
-    repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
+    from_date = request.GET.get('from_date')
+    to_date = request.GET.get('to_date')
+    if from_date and to_date:
+        import datetime
+        import pytz
+        date1 = datetime.datetime.strptime(from_date, '%Y-%m-%d').date()
+        date2 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00,
+                                                      created_at__range=[
+                                                          datetime.datetime(date1.year, date1.month, date1.day, 8, 15,
+                                                                            12, 0, pytz.UTC),
+                                                          datetime.datetime(date2.year, date2.month, date2.day, 8, 15,
+                                                                            12, 0, pytz.UTC)]).order_by('-created_at')
+    else:
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
     writer = csv.writer(response, csv.excel)
     response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
     writer.writerow([
@@ -1313,7 +1327,21 @@ def export_repayment_xlsx(request):
     except ImportError:
         from openpyxl.utils import get_column_letter
 
-    repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
+    from_date = request.GET.get('from_date')
+    to_date = request.GET.get('to_date')
+    if from_date and to_date:
+        import datetime
+        import pytz
+        date1 = datetime.datetime.strptime(from_date, '%Y-%m-%d').date()
+        date2 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00,
+                                                      created_at__range=[
+                                                          datetime.datetime(date1.year, date1.month, date1.day, 8, 15,
+                                                                            12, 0, pytz.UTC),
+                                                          datetime.datetime(date2.year, date2.month, date2.day, 8, 15,
+                                                                            12, 0, pytz.UTC)]).order_by('-created_at')
+    else:
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = 'attachment; filename=Repayment_report.xlsx'
     wb = openpyxl.Workbook()
