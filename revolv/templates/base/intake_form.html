@@ -143,7 +143,7 @@ a.How_it_Works:hover {
                         <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
                         </li>
                     {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="#" onclick="return clearInput();" class="dropdown" data-toggle="modal" data-target="#popup">DONATE</a>
+                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="dropdown">DONATE</a>
                     </li>
                 </ul>
             </div>
@@ -169,7 +169,7 @@ a.How_it_Works:hover {
                 {% endif %}
               </div>
               <!--<a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup">DONATE</a>-->
-              <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow">DONATE</a>
+              <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow">DONATE</a>
             </div>
 
           </div>
