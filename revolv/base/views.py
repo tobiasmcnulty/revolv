@@ -1,49 +1,47 @@
-import csv
-import stripe
-from collections import OrderedDict
+import json
 import logging
-from django.conf import settings
+from collections import OrderedDict
 
+import mailchimp
+import stripe
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
+from django.core import serializers
 from django.core.urlresolvers import reverse
-from django.db.models import Sum
 from django.db.models import Q
+from django.db.models import Sum
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render_to_response, get_object_or_404, render
+from django.template.context import RequestContext
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_http_methods
 from django.views.generic import FormView, TemplateView, View
-from django.template.context import RequestContext
-from django.views.decorators.csrf import csrf_protect
-from revolv.base.forms import SignupForm, UpdateUser, RevolvUserProfileForm
+from revolv.base.forms import SignupForm, UpdateUser, RevolvUserProfileForm, SignInForm
+from revolv.base.models import RevolvUserProfile
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
+from revolv.donor.views import humanize_integers, total_donations
+from revolv.lib.mailer import send_revolv_email
 from revolv.payments.models import Payment, Tip, RepaymentFragment
+from revolv.payments.models import UserReinvestment
 from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails
 from revolv.project.utils import aggregate_stats
-from revolv.donor.views import humanize_integers, total_donations
-from revolv.base.models import RevolvUserProfile
 from revolv.tasks.sfdc import send_signup_info
-from revolv.lib.mailer import send_revolv_email
-from django.views.decorators.csrf import csrf_exempt
 from social.apps.django_app.default.models import UserSocialAuth
-from revolv.payments.models import UserReinvestment
-from django.core import serializers
-import mailchimp
-import json
-import re
+
 logger = logging.getLogger(__name__)
 LIST_ID = settings.LIST_ID
 NEWSLETTERS = "RE-Volv Newsletter"
 ANNOUNCEMENTS = "RE-Volv Important Announcement"
+
 
 class HomePageView(UserDataMixin, TemplateView):
     """
@@ -59,17 +57,18 @@ class HomePageView(UserDataMixin, TemplateView):
         """
         Returns: A dictionary of RE-volv wide impact figures.
         """
-        #carbon_saved_by_month = Project.objects.statistics().pounds_carbon_saved_per_month
+        # carbon_saved_by_month = Project.objects.statistics().pounds_carbon_saved_per_month
         # Assume 20 year lifetime.
         # We use str() to avoid django adding commas to integer in the template.
         people_donated_sys_count = RevolvUserProfile.objects.exclude(project=None).count()
-        people_donated_stat_Count = str(int(people_donated_sys_count ))
+        people_donated_stat_Count = str(int(people_donated_sys_count))
 
         global_impacts = {
             # Users who have backed at least one project:
             'num_people_donated': people_donated_stat_Count,
             'num_projects': Project.objects.get_completed().count(),
-            'num_people_affected': Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
+            'num_people_affected':
+                Project.objects.filter(project_status=Project.COMPLETED).aggregate(n=Sum('people_affected'))['n'],
             'co2_avoided': str(int(Project.objects.get_total_avoided_co2())),
         }
         return global_impacts
@@ -83,12 +82,13 @@ class HomePageView(UserDataMixin, TemplateView):
         context["first_project"] = active_projects[0] if len(active_projects) > 0 else None
         # Get top 6 featured projects, Changed to active Projects in final fix
         context["featured_projects"] = active_projects
-        #accept return value from project/model.py and display it on project/home.html file
+        # accept return value from project/model.py and display it on project/home.html file
         context["completed_featured_projects"] = completed_projects
         context["completed_projects_count"] = Project.objects.get_completed().count()
         context["total_donors_count"] = Payment.objects.total_distinct_organic_donors()
         context["global_impacts"] = self.get_global_impacts()
         return context
+
 
 class DonationReportView(UserDataMixin, TemplateView):
     """
@@ -111,6 +111,7 @@ class DonationReportView(UserDataMixin, TemplateView):
         context = super(DonationReportView, self).get_context_data(**kwargs)
         return context
 
+
 class DonationReportForProject(UserDataMixin, TemplateView):
     """
     The project view. Displays project details and allows for editing.
@@ -124,10 +125,12 @@ class DonationReportForProject(UserDataMixin, TemplateView):
         if not request.user.revolvuserprofile.is_ambassador():
             return HttpResponseRedirect(reverse("dashboard"))
         return super(DonationReportForProject, self).dispatch(request, *args, **kwargs)
+
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):
         context = super(DonationReportForProject, self).get_context_data(**kwargs)
         return context
+
 
 class RepaymentReport(UserDataMixin, TemplateView):
     """
@@ -144,10 +147,12 @@ class RepaymentReport(UserDataMixin, TemplateView):
         if not request.user.revolvuserprofile.is_administrator():
             return HttpResponseRedirect(reverse("dashboard"))
         return super(RepaymentReport, self).dispatch(request, *args, **kwargs)
+
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):
         context = super(RepaymentReport, self).get_context_data(**kwargs)
         return context
+
 
 class BaseStaffDashboardView(UserDataMixin, TemplateView):
     """
@@ -166,10 +171,12 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         context = super(BaseStaffDashboardView, self).get_context_data(**kwargs)
 
         project_dict = OrderedDict()
-        project_dict[ProjectGroup('Proposed Projects', "proposed")] = Project.objects.get_proposed(*self.get_filter_args())
+        project_dict[ProjectGroup('Proposed Projects', "proposed")] = Project.objects.get_proposed(
+            *self.get_filter_args())
         project_dict[ProjectGroup('Staged projects', "staged")] = Project.objects.get_staged(*self.get_filter_args())
         project_dict[ProjectGroup('Active Projects', "active")] = Project.objects.get_active(*self.get_filter_args())
-        project_dict[ProjectGroup('Completed Projects', "completed")] = Project.objects.get_completed(*self.get_filter_args())
+        project_dict[ProjectGroup('Completed Projects', "completed")] = Project.objects.get_completed(
+            *self.get_filter_args())
 
         context["project_dict"] = project_dict
         context["role"] = self.role or "donor"
@@ -181,8 +188,9 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         statistics_dictionary['people_served'] = total_people_affected
         humanize_integers(statistics_dictionary)
         admin_reinvestment = \
-        Payment.objects.filter(user=self.user_profile).filter(admin_reinvestment__isnull=False).aggregate(Sum('amount'))[
-            'amount__sum'] or 0
+            Payment.objects.filter(user=self.user_profile).filter(admin_reinvestment__isnull=False).aggregate(
+                Sum('amount'))[
+                'amount__sum'] or 0
         user_reinvestment = UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))[
                                 'amount__sum'] or 0
         statistics_dictionary['reinvestment'] = admin_reinvestment + user_reinvestment
@@ -240,16 +248,16 @@ class SignInView(TemplateView):
         GET: renders the signin page with empty forms.
     """
     template_name = "base/sign_in.html"
-    login_form_class = AuthenticationForm
+    login_form_class = SignInForm
     signup_form_class = SignupForm
 
     def dispatch(self, request, *args, **kwargs):
         amount = request.GET.get('donation_amount')
         tip = request.GET.get('donation_tip')
         title = request.GET.get('title')
-        request.session['amount']= amount
-        request.session['tip']= tip
-        request.session['title']= title
+        request.session['amount'] = amount
+        request.session['tip'] = tip
+        request.session['title'] = title
         if request.user.is_authenticated():
             return redirect("home")
         return super(SignInView, self).dispatch(request, *args, **kwargs)
@@ -277,6 +285,7 @@ class RedirectToSigninOrHomeMixin(object):
 
     This is useful both for the login and signup endpoints.
     """
+
     @method_decorator(sensitive_post_parameters(
         "password", "password1", "password2"
     ))
@@ -293,6 +302,7 @@ class RedirectToSigninOrHomeMixin(object):
             request, *args, **kwargs
         )
 
+
 class LoginView(RedirectToSigninOrHomeMixin, FormView):
     """
     Login endpoint: checks the data from the received request against
@@ -305,7 +315,7 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
             and redirect to the specified next page (home by default), or
             render the sign in page with errors.
     """
-    form_class = AuthenticationForm
+    form_class = SignInForm
     template_name = 'base/sign_in.html'
     url_append = "#login"
     redirect_view = "signin"
@@ -320,8 +330,9 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
         """Log the user in and redirect them to the supplied next page."""
         auth_login(self.request, form.get_user())
         if self.request.session.get('payment'):
-            Payment.objects.filter(id=self.request.session['payment']).update(user_id=self.request.user.revolvuserprofile, entrant_id =self.request.user.revolvuserprofile )
-            tip=Payment.objects.get(id=self.request.session['payment']).tip_id
+            Payment.objects.filter(id=self.request.session['payment']).update(
+                user_id=self.request.user.revolvuserprofile, entrant_id=self.request.user.revolvuserprofile)
+            tip = Payment.objects.get(id=self.request.session['payment']).tip_id
             Tip.objects.filter(id=tip).update(user_id=self.request.user.revolvuserprofile)
             del self.request.session['payment']
             # messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
@@ -386,17 +397,18 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
             try:
                 list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
                 list.con.list_subscribe(list.id, self.request.user.email,
-                                        { 'EMAIL': self.request.user.email,
-                                          'FNAME': self.request.user.first_name,
-                                          'LNAME': self.request.user.last_name,
-                                          'INTERESTS': NEWSLETTERS },
+                                        {'EMAIL': self.request.user.email,
+                                         'FNAME': self.request.user.first_name,
+                                         'LNAME': self.request.user.last_name,
+                                         'INTERESTS': NEWSLETTERS},
                                         double_optin=False, update_existing=True)
             except Exception, e:
                 logger.exception(e)
 
         if self.request.session.get('payment'):
-            Payment.objects.filter(id=self.request.session['payment']).update(user_id=self.request.user.revolvuserprofile, entrant_id =self.request.user.revolvuserprofile )
-            tip=Payment.objects.get(id=self.request.session['payment']).tip_id
+            Payment.objects.filter(id=self.request.session['payment']).update(
+                user_id=self.request.user.revolvuserprofile, entrant_id=self.request.user.revolvuserprofile)
+            tip = Payment.objects.get(id=self.request.session['payment']).tip_id
             Tip.objects.filter(id=tip).update(user_id=self.request.user.revolvuserprofile)
             del self.request.session['payment']
         messages.success(self.request, 'Signed up successfully!')
@@ -405,7 +417,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
     def get_context_data(self, *args, **kwargs):
         context = super(SignupView, self).get_context_data(**kwargs)
         context["signup_form"] = self.get_form(self.form_class)
-        context["login_form"] = AuthenticationForm()
+        context["login_form"] = SignInForm()
         context["referring_endpoint"] = "signup"
         return context
 
@@ -421,15 +433,19 @@ class LogoutView(UserDataMixin, View):
         messages.success(self.request, 'Logged out successfully')
         return redirect('home')
 
+
 def faq(request):
-    return render(request,'base/partials/faq.html')
+    return render(request, 'base/partials/faq.html')
+
 
 def myths_and_facts(request):
     return render(request, 'base/partials/myth_and_facts.html')
 
+
 def solarathome(request):
     return render_to_response('base/solar_at_home.html',
                               context_instance=RequestContext(request))
+
 
 def completedproject(request):
     completed_projects = Project.objects.get_completed()
@@ -440,6 +456,7 @@ def completedproject(request):
 def bring_solar_tou_your_community(request):
     return render_to_response('base/bring_solar_at_community.html',
                               context_instance=RequestContext(request))
+
 
 def intake_form_submit(request):
     try:
@@ -510,7 +527,7 @@ def intake_form_submit(request):
 def select_chapter(request, chapter):
     if chapter == '1':
         return render_to_response('base/chapter.html',
-                              context_instance=RequestContext(request))
+                                  context_instance=RequestContext(request))
     if chapter == '2':
         return render_to_response('base/chapter2.html',
                                   context_instance=RequestContext(request))
@@ -546,9 +563,11 @@ def select_chapter(request, chapter):
                                   '2.html',
                                   context_instance=RequestContext(request))
 
+
 def intake_form(request):
     return render_to_response('base/intake_form.html',
                               context_instance=RequestContext(request))
+
 
 class ReinvestmentRedirect(UserDataMixin, TemplateView):
     '''
@@ -572,6 +591,7 @@ class ReinvestmentRedirect(UserDataMixin, TemplateView):
 
         return context
 
+
 class DashboardRedirect(UserDataMixin, View):
     """
     Redirects user to appropriate dashboard. (e.g. Administrators automagically
@@ -586,14 +606,14 @@ class DashboardRedirect(UserDataMixin, View):
         project = request.session.get('project')
         social = request.session.get('social')
         url = request.session.get('url')
-        cover_photo = request.session.get('cover_photo','')
+        cover_photo = request.session.get('cover_photo', '')
         request.session['amount'] = amount
         request.session['project'] = project
         request.session['cover_photo'] = cover_photo
         request.session['social'] = social
         request.session['url'] = url
 
-        if bool(request.GET) is False :
+        if bool(request.GET) is False:
             if not self.is_authenticated:
                 return redirect('home')
             if self.is_administrator:
@@ -677,6 +697,7 @@ def unsubscribe(request, action):
     return render_to_response('base/minimal_message.html',
                               context_instance=RequestContext(request, data))
 
+
 @login_required
 def social_connection(request):
     """
@@ -691,8 +712,8 @@ def social_connection(request):
 
     for account in accounts:
         for k, v in backend_map.iteritems():
-                if v['name'] == account.provider:
-                    backend_map[k]['connected'] = True
+            if v['name'] == account.provider:
+                backend_map[k]['connected'] = True
 
     return render_to_response('base/social_account.html',
                               context_instance=RequestContext(request, {'accounts': backend_map}))
@@ -701,23 +722,30 @@ def social_connection(request):
 def harborhouse(request):
     return redirect('/project/harborhouse/')
 
+
 def leo_page(request):
-    return render(request,'base/partials/leo_page.html')
+    return render(request, 'base/partials/leo_page.html')
+
 
 def revolv_accelerator(request):
-    return render(request,'base/partials/revolv_accelerator.html')
+    return render(request, 'base/partials/revolv_accelerator.html')
+
 
 def leadership_circle(request):
-    return render(request,'base/partials/leadership-circle.html')
+    return render(request, 'base/partials/leadership-circle.html')
+
 
 def riverrevitalizationfoundation(request):
     return redirect('/project/riverrevitalizationfoundation/')
 
+
 def faithbaptistchurch(request):
     return redirect('/project/faithbaptistchurch/')
 
+
 def campketcha(request):
     return redirect('/project/campketcha/')
+
 
 def sendmail(request):
     revolv_user = get_object_or_404(RevolvUserProfile, pk=request.user.id)
@@ -729,8 +757,9 @@ def sendmail(request):
                 project_list.append(project)
     context = {}
     context['project_list'] = project_list
-    return render(request,'base/ambassador_send_email.html',
-                              context)
+    return render(request, 'base/ambassador_send_email.html',
+                  context)
+
 
 def send_donor_email(request):
     try:
@@ -746,7 +775,7 @@ def send_donor_email(request):
     project = get_object_or_404(Project, pk=pk)
     payments = Payment.objects.filter(project=project)
     for payment in payments:
-        email=payment.user.user.email
+        email = payment.user.user.email
         if email:
             if email not in emails:
                 emails.append(email)
@@ -761,6 +790,7 @@ def send_donor_email(request):
         )
     messages.success(request, 'Emails are sent successfully.')
     return redirect('sendmail')
+
 
 def social_exception(request):
     has_social_exception = request.session.get('has_social_exception')
@@ -806,30 +836,33 @@ class MatchingDonorsView(UserDataMixin, TemplateView):
         context['projects'] = Project.objects.all()
         return context
 
+
 @login_required
 def delete(request):
-    pk=request.REQUEST['id']
+    pk = request.REQUEST['id']
     ProjectMatchingDonor = get_object_or_404(ProjectMatchingDonors, pk=pk)
     ProjectMatchingDonor.delete()
     return HttpResponse(json.dumps({'status': 'delete'}), content_type="application/json")
 
+
 @login_required
 def edit(request):
-    pk=request.REQUEST['id']
+    pk = request.REQUEST['id']
     ProjectMatchingDonor = get_object_or_404(ProjectMatchingDonors, pk=pk)
     serialized_obj = serializers.serialize('json', [ProjectMatchingDonor, ])
     return HttpResponse(json.dumps({'ProjectMatchingDonor': serialized_obj}), content_type="application/json")
 
+
 @login_required
 @require_http_methods(['POST'])
 def add_maching_donors(request):
-    id=request.POST.get('id')
-    user=request.POST['user']
-    project=request.POST['project']
-    amount=request.POST['amount']
-    revolv_user=get_object_or_404(RevolvUserProfile, pk=user)
+    id = request.POST.get('id')
+    user = request.POST['user']
+    project = request.POST['project']
+    amount = request.POST['amount']
+    revolv_user = get_object_or_404(RevolvUserProfile, pk=user)
 
-    matching_project=get_object_or_404(Project, pk=project)
+    matching_project = get_object_or_404(Project, pk=project)
 
     if not id:
         ProjectMatchingDonors.objects.create(
@@ -838,31 +871,32 @@ def add_maching_donors(request):
             amount=amount
         )
     else:
-        projectMatchingDonor=ProjectMatchingDonors.objects.get(id=id)
-        projectMatchingDonor.matching_donor=revolv_user
-        projectMatchingDonor.project=matching_project
-        projectMatchingDonor.amount=amount
+        projectMatchingDonor = ProjectMatchingDonors.objects.get(id=id)
+        projectMatchingDonor.matching_donor = revolv_user
+        projectMatchingDonor.project = matching_project
+        projectMatchingDonor.amount = amount
         projectMatchingDonor.save()
 
     return HttpResponse(json.dumps({'status': 'created'}), content_type="application/json")
 
 
 def ambassador_data_table(request):
-    draw=request.GET.get('draw')
-    datepicker1=request.GET.get('datepicker1')
-    datepicker2=request.GET.get('datepicker2')
-    length=request.GET.get('length')
-    order=request.GET.get('order[0][dir]')
-    start=request.GET.get('start')
-    search=request.GET.get('search[value]')
+    draw = request.GET.get('draw')
+    datepicker1 = request.GET.get('datepicker1')
+    datepicker2 = request.GET.get('datepicker2')
+    length = request.GET.get('length')
+    order = request.GET.get('order[0][dir]')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
     currentSortByCol = request.GET.get('order[0][column]')
 
+    fields = ['user__user__first_name', 'user__user__last_name', 'user__user__username', 'user__user__email',
+              'created_at', 'project__title', 'amount', 'user_reinvestment__amount', 'admin_reinvestment__amount',
+              'tip__amount']
 
-    fields=['user__user__first_name', 'user__user__last_name', 'user__user__username','user__user__email','created_at','project__title','amount','user_reinvestment__amount','admin_reinvestment__amount','tip__amount']
+    order_by = {'desc': '-', 'asc': ''}
 
-    order_by={'desc':'-','asc':''}
-
-    column_order=order_by[order]+fields[int(currentSortByCol)]
+    column_order = order_by[order] + fields[int(currentSortByCol)]
 
     revolv_user = get_object_or_404(RevolvUserProfile, pk=request.user.id)
 
@@ -876,13 +910,12 @@ def ambassador_data_table(request):
     payment_list = Payment.objects.filter(project__in=project_list).order_by((column_order))
 
     if search.strip():
-        payment_list = payment_list.filter(Q(user__user__username__icontains=search)|
-                                              Q(user__user__first_name__icontains=search)|
-                                              Q(project__title__icontains=search)|
-                                              Q(amount__icontains=search)|
-                                              Q(user__user__last_name__icontains=search)|
-                                              Q(user__user__email__icontains=search))
-
+        payment_list = payment_list.filter(Q(user__user__username__icontains=search) |
+                                           Q(user__user__first_name__icontains=search) |
+                                           Q(project__title__icontains=search) |
+                                           Q(amount__icontains=search) |
+                                           Q(user__user__last_name__icontains=search) |
+                                           Q(user__user__email__icontains=search))
 
     if datepicker1 and datepicker2:
         import datetime
@@ -891,23 +924,25 @@ def ambassador_data_table(request):
         date1 = datetime.datetime.strptime(datepicker1, '%Y-%m-%d').date()
         date2 = datetime.datetime.strptime(datepicker2, '%Y-%m-%d').date()
 
-        payment_list = payment_list.filter(created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC), datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
+        payment_list = payment_list.filter(
+            created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
 
-    payments=[]
+    payments = []
 
     for payment in payment_list[int(start):][:int(length)]:
 
-        payment_details={}
-        payment_details['firstname']=payment.user.user.first_name
-        payment_details['lastname']=payment.user.user.last_name
-        payment_details['username']=payment.user.user.username
-        payment_details['email']=payment.user.user.email
-        payment_details['date']=(payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
-        payment_details['project']=payment.project.title
+        payment_details = {}
+        payment_details['firstname'] = payment.user.user.first_name
+        payment_details['lastname'] = payment.user.user.last_name
+        payment_details['username'] = payment.user.user.username
+        payment_details['email'] = payment.user.user.email
+        payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
+        payment_details['project'] = payment.project.title
         if payment.user_reinvestment or payment.admin_reinvestment:
-            payment_details['amount']=0
+            payment_details['amount'] = 0
         else:
-            payment_details['amount']=payment.amount
+            payment_details['amount'] = payment.amount
         if payment.user_reinvestment:
             payment_details['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
         else:
@@ -915,52 +950,54 @@ def ambassador_data_table(request):
         if payment.admin_reinvestment:
             payment_details['admin_reinvestment'] = round(payment.amount, 2)
         else:
-            payment_details['admin_reinvestment']=0
+            payment_details['admin_reinvestment'] = 0
         if payment.tip:
             payment_details['tip'] = round(payment.tip.amount, 2)
         else:
             payment_details['tip'] = 0
         if payment.tip and payment.amount:
-            payment_details['total']=round(payment.tip.amount+payment.amount, 2)
+            payment_details['total'] = round(payment.tip.amount + payment.amount, 2)
         if payment.tip and not payment.amount:
-            payment_details['total']=round(payment.tip.amount, 2)
+            payment_details['total'] = round(payment.tip.amount, 2)
         if payment.amount and not payment.tip:
-            payment_details['total']=round(payment.amount, 2)
+            payment_details['total'] = round(payment.amount, 2)
         if not payment.amount and not payment.tip:
             payment_details['total'] = 0
         payments.append(payment_details)
 
-    json_response={ "draw": draw, "recordsTotal": Payment.objects.filter(project=project).count(), "recordsFiltered": payment_list.count(), "data": payments }
+    json_response = {"draw": draw, "recordsTotal": Payment.objects.filter(project=project).count(),
+                     "recordsFiltered": payment_list.count(), "data": payments}
 
     return HttpResponse(json.dumps(json_response), content_type='application/json')
 
 
 def payment_data_table(request):
-    draw=request.GET.get('draw')
-    datepicker1=request.GET.get('datepicker1')
-    datepicker2=request.GET.get('datepicker2')
-    length=request.GET.get('length')
-    order=request.GET.get('order[0][dir]')
-    start=request.GET.get('start')
-    search=request.GET.get('search[value]')
+    draw = request.GET.get('draw')
+    datepicker1 = request.GET.get('datepicker1')
+    datepicker2 = request.GET.get('datepicker2')
+    length = request.GET.get('length')
+    order = request.GET.get('order[0][dir]')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
     currentSortByCol = request.GET.get('order[0][column]')
 
-    fields=['user__user__first_name', 'user__user__last_name', 'user__user__username','user__user__email','created_at','project__title','amount','user_reinvestment__amount','admin_reinvestment__amount','tip__amount']
+    fields = ['user__user__first_name', 'user__user__last_name', 'user__user__username', 'user__user__email',
+              'created_at', 'project__title', 'amount', 'user_reinvestment__amount', 'admin_reinvestment__amount',
+              'tip__amount']
 
-    order_by={'desc':'-','asc':''}
+    order_by = {'desc': '-', 'asc': ''}
 
-    column_order=order_by[order]+fields[int(currentSortByCol)]
+    column_order = order_by[order] + fields[int(currentSortByCol)]
 
     payment_list = Payment.objects.all().order_by((column_order))
 
     if search.strip():
-        payment_list = payment_list.filter(Q(user__user__username__icontains=search)|
-                                              Q(user__user__first_name__icontains=search)|
-                                              Q(project__title__icontains=search)|
-                                              Q(amount__icontains=search)|
-                                              Q(user__user__last_name__icontains=search)|
-                                              Q(user__user__email__icontains=search))
-
+        payment_list = payment_list.filter(Q(user__user__username__icontains=search) |
+                                           Q(user__user__first_name__icontains=search) |
+                                           Q(project__title__icontains=search) |
+                                           Q(amount__icontains=search) |
+                                           Q(user__user__last_name__icontains=search) |
+                                           Q(user__user__email__icontains=search))
 
     if datepicker1 and datepicker2:
         import datetime
@@ -969,23 +1006,25 @@ def payment_data_table(request):
         date1 = datetime.datetime.strptime(datepicker1, '%Y-%m-%d').date()
         date2 = datetime.datetime.strptime(datepicker2, '%Y-%m-%d').date()
 
-        payment_list = payment_list.filter(created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC), datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
+        payment_list = payment_list.filter(
+            created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
 
-    payments=[]
+    payments = []
 
     for payment in payment_list[int(start):][:int(length)]:
 
-        payment_details={}
-        payment_details['firstname']=payment.user.user.first_name
-        payment_details['lastname']=payment.user.user.last_name
-        payment_details['username']=payment.user.user.username
-        payment_details['email']=payment.user.user.email
-        payment_details['date']=(payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
-        payment_details['project']=payment.project.title
-        if payment.user_reinvestment or payment.admin_reinvestment or payment.project.title=="Operations":
-            payment_details['amount']=0
+        payment_details = {}
+        payment_details['firstname'] = payment.user.user.first_name
+        payment_details['lastname'] = payment.user.user.last_name
+        payment_details['username'] = payment.user.user.username
+        payment_details['email'] = payment.user.user.email
+        payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
+        payment_details['project'] = payment.project.title
+        if payment.user_reinvestment or payment.admin_reinvestment or payment.project.title == "Operations":
+            payment_details['amount'] = 0
         else:
-            payment_details['amount']=payment.amount
+            payment_details['amount'] = payment.amount
         if payment.user_reinvestment:
             payment_details['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
         else:
@@ -993,56 +1032,57 @@ def payment_data_table(request):
         if payment.admin_reinvestment:
             payment_details['admin_reinvestment'] = round(payment.amount, 2)
         else:
-            payment_details['admin_reinvestment']=0
-        if payment.tip and payment.project.title=="Operations":
+            payment_details['admin_reinvestment'] = 0
+        if payment.tip and payment.project.title == "Operations":
             payment_details['tip'] = round(payment.tip.amount + payment.amount, 2)
-        if payment.project.title=="Operations":
-            payment_details['tip'] = round( payment.amount, 2)
+        if payment.project.title == "Operations":
+            payment_details['tip'] = round(payment.amount, 2)
         elif payment.tip:
             payment_details['tip'] = round(payment.tip.amount, 2)
         else:
             payment_details['tip'] = 0
         if payment.tip and payment.amount:
-            payment_details['total']=round(payment.tip.amount+payment.amount, 2)
+            payment_details['total'] = round(payment.tip.amount + payment.amount, 2)
         if payment.tip and not payment.amount:
-            payment_details['total']=round(payment.tip.amount, 2)
+            payment_details['total'] = round(payment.tip.amount, 2)
         if payment.amount and not payment.tip:
-            payment_details['total']=round(payment.amount, 2)
+            payment_details['total'] = round(payment.amount, 2)
         if not payment.amount and not payment.tip:
             payment_details['total'] = 0
         payments.append(payment_details)
 
-    json_response={ "draw": draw, "recordsTotal": Payment.objects.all().count(), "recordsFiltered": payment_list.count(), "data": payments }
+    json_response = {"draw": draw, "recordsTotal": Payment.objects.all().count(),
+                     "recordsFiltered": payment_list.count(), "data": payments}
 
     return HttpResponse(json.dumps(json_response), content_type='application/json')
 
 
 def repayment_table(request):
-    draw=request.GET.get('draw')
-    datepicker1=request.GET.get('datepicker1')
-    datepicker2=request.GET.get('datepicker2')
-    length=request.GET.get('length')
-    order=request.GET.get('order[0][dir]')
-    start=request.GET.get('start')
-    search=request.GET.get('search[value]')
+    draw = request.GET.get('draw')
+    datepicker1 = request.GET.get('datepicker1')
+    datepicker2 = request.GET.get('datepicker2')
+    length = request.GET.get('length')
+    order = request.GET.get('order[0][dir]')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
     currentSortByCol = request.GET.get('order[0][column]')
 
-    fields=['user__user__first_name', 'user__user__last_name', 'user__user__username','user__user__email','created_at','amount','admin_repayment__amount','project__title']
+    fields = ['user__user__first_name', 'user__user__last_name', 'user__user__username', 'user__user__email',
+              'created_at', 'amount', 'admin_repayment__amount', 'project__title']
 
-    order_by={'desc':'-','asc':''}
+    order_by = {'desc': '-', 'asc': ''}
 
-    column_order=order_by[order]+fields[int(currentSortByCol)]
+    column_order = order_by[order] + fields[int(currentSortByCol)]
 
     repayment_list = RepaymentFragment.objects.filter(amount__gt=0.00).order_by((column_order))
 
     if search.strip():
-        repayment_list = repayment_list.filter(Q(user__user__username__icontains=search)|
-                                              Q(user__user__first_name__icontains=search)|
-                                              Q(project__title__icontains=search)|
-                                              Q(amount__icontains=search)|
-                                              Q(user__user__last_name__icontains=search)|
-                                              Q(user__user__email__icontains=search))
-
+        repayment_list = repayment_list.filter(Q(user__user__username__icontains=search) |
+                                               Q(user__user__first_name__icontains=search) |
+                                               Q(project__title__icontains=search) |
+                                               Q(amount__icontains=search) |
+                                               Q(user__user__last_name__icontains=search) |
+                                               Q(user__user__email__icontains=search))
 
     if datepicker1 and datepicker2:
         import datetime
@@ -1051,24 +1091,29 @@ def repayment_table(request):
         date1 = datetime.datetime.strptime(datepicker1, '%Y-%m-%d').date()
         date2 = datetime.datetime.strptime(datepicker2, '%Y-%m-%d').date()
 
-        repayment_list = repayment_list.filter(created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC), datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
+        repayment_list = repayment_list.filter(
+            created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
 
-    payments=[]
+    payments = []
 
     for payment in repayment_list[int(start):][:int(length)]:
-        payment_details={}
-        payment_details['firstname']=payment.user.user.first_name
-        payment_details['lastname']=payment.user.user.last_name
-        payment_details['username']=payment.user.user.username
-        payment_details['email']=payment.user.user.email
-        payment_details['date']=(payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
-        payment_details['project']=payment.project.title
-        payment_details['donated_amount']=round(Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))['amount__sum'] or 0,2)
-        payment_details['repayment_amount']=round(payment.amount,2)
+        payment_details = {}
+        payment_details['firstname'] = payment.user.user.first_name
+        payment_details['lastname'] = payment.user.user.last_name
+        payment_details['username'] = payment.user.user.username
+        payment_details['email'] = payment.user.user.email
+        payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
+        payment_details['project'] = payment.project.title
+        payment_details['donated_amount'] = round(
+            Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))[
+                'amount__sum'] or 0, 2)
+        payment_details['repayment_amount'] = round(payment.amount, 2)
 
         payments.append(payment_details)
 
-    json_response={ "draw": draw, "recordsTotal": RepaymentFragment.objects.all().count(), "recordsFiltered": repayment_list.count(), "data": payments }
+    json_response = {"draw": draw, "recordsTotal": RepaymentFragment.objects.all().count(),
+                     "recordsFiltered": repayment_list.count(), "data": payments}
 
     return HttpResponse(json.dumps(json_response), content_type='application/json')
 
@@ -1091,13 +1136,14 @@ def export_csv(request):
         date1 = datetime.datetime.strptime(from_date, '%Y-%m-%d').date()
         date2 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()
         payments = Payment.objects.filter(
-        created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
-                           datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)]).order_by('-created_at')
+            created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)]).order_by(
+            '-created_at')
     else:
         payments = Payment.objects.all().order_by('-created_at')
 
     writer = csv.writer(response, csv.excel)
-    response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
+    response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
     writer.writerow([
         smart_str(u"FIRST NAME"),
         smart_str(u"LAST NAME"),
@@ -1115,24 +1161,24 @@ def export_csv(request):
 
     for payment in payments:
         if payment.admin_reinvestment:
-            admin_reinvestment=round(payment.amount,2)
+            admin_reinvestment = round(payment.amount, 2)
         else:
-            admin_reinvestment=0
+            admin_reinvestment = 0
 
         if payment.user_reinvestment:
-            user_reinvestment=round(payment.user_reinvestment.amount, 2)
+            user_reinvestment = round(payment.user_reinvestment.amount, 2)
         else:
-            user_reinvestment=0
+            user_reinvestment = 0
 
         if payment.admin_reinvestment or payment.user_reinvestment:
-            donation_amount=0
+            donation_amount = 0
         else:
             donation_amount = payment.amount
 
         if payment.tip:
-            tip=round(payment.tip.amount,2)
+            tip = round(payment.tip.amount, 2)
         else:
-            tip=0
+            tip = 0
 
         if payment.tip and payment.amount:
             total = round(payment.tip.amount + payment.amount, 2)
@@ -1157,6 +1203,7 @@ def export_csv(request):
             smart_str(total),
         ])
     return response
+
 
 def export_xlsx(request):
     """
@@ -1192,17 +1239,17 @@ def export_xlsx(request):
     row_num = 0
 
     columns = [
-        (u"FIRST NAME",30),
-        (u"LAST NAME",30),
-        (u"USERNAME",30),
-        (u"EMAIL",30),
-        (u"DATE",30),
-        (u"NAME OF PROJECT",30),
-        (u"DONATION TO SOLAR SEED FUND",30),
-        (u"REINVESTMENT IN SOLAR SEED FUND",20),
-        (u"ADMIN REINVESTMENT IN SOLAR SEED FUND",20),
-        (u"DONATION TO OPERATION",20),
-        (u"TOTAL DONATIONS",20),
+        (u"FIRST NAME", 30),
+        (u"LAST NAME", 30),
+        (u"USERNAME", 30),
+        (u"EMAIL", 30),
+        (u"DATE", 30),
+        (u"NAME OF PROJECT", 30),
+        (u"DONATION TO SOLAR SEED FUND", 30),
+        (u"REINVESTMENT IN SOLAR SEED FUND", 20),
+        (u"ADMIN REINVESTMENT IN SOLAR SEED FUND", 20),
+        (u"DONATION TO OPERATION", 20),
+        (u"TOTAL DONATIONS", 20),
     ]
 
     for col_num in xrange(len(columns)):
@@ -1261,6 +1308,7 @@ def export_xlsx(request):
     wb.save(response)
     return response
 
+
 def export_repayment_csv(request):
     """
     Export financial report CSV from the admin side.
@@ -1287,7 +1335,7 @@ def export_repayment_csv(request):
     else:
         repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
     writer = csv.writer(response, csv.excel)
-    response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
+    response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
     writer.writerow([
         smart_str(u"FIRST NAME"),
         smart_str(u"LAST NAME"),
@@ -1298,11 +1346,9 @@ def export_repayment_csv(request):
         smart_str(u"DONATION AMOUNT"),
         smart_str(u"REPAYMENT AMOUNT"),
 
-
     ])
 
     for payment in repayments:
-
         writer.writerow([
             smart_str(payment.user.user.first_name),
             smart_str(payment.user.user.last_name),
@@ -1310,10 +1356,13 @@ def export_repayment_csv(request):
             smart_str(payment.user.user.email),
             smart_str(payment.created_at),
             smart_str(payment.project.title),
-            smart_str(round(Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))['amount__sum'] or 0,2)),
-            smart_str(round(payment.amount,2)),
+            smart_str(round(
+                Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))[
+                    'amount__sum'] or 0, 2)),
+            smart_str(round(payment.amount, 2)),
         ])
     return response
+
 
 def export_repayment_xlsx(request):
     """
@@ -1351,14 +1400,14 @@ def export_repayment_xlsx(request):
     row_num = 0
 
     columns = [
-        (u"FIRST NAME",30),
-        (u"LAST NAME",30),
-        (u"USERNAME",30),
-        (u"EMAIL",30),
-        (u"DATE",30),
-        (u"NAME OF PROJECT",30),
-        (u"DONATION AMOUNT",30),
-        (u"REPAYMENT AMOUNT",30),
+        (u"FIRST NAME", 30),
+        (u"LAST NAME", 30),
+        (u"USERNAME", 30),
+        (u"EMAIL", 30),
+        (u"DATE", 30),
+        (u"NAME OF PROJECT", 30),
+        (u"DONATION AMOUNT", 30),
+        (u"REPAYMENT AMOUNT", 30),
     ]
 
     for col_num in xrange(len(columns)):
@@ -1375,7 +1424,8 @@ def export_repayment_xlsx(request):
             payment.user.user.email,
             payment.created_at,
             payment.project.title,
-            round(Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))['amount__sum'] or 0, 2),
+            round(Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))[
+                      'amount__sum'] or 0, 2),
             round(payment.amount, 2)
 
         ]
@@ -1385,6 +1435,7 @@ def export_repayment_xlsx(request):
 
     wb.save(response)
     return response
+
 
 def add_email_to_mailing_list(request):
     if request.POST['email']:
@@ -1408,7 +1459,7 @@ class editprofile(View):
         subscribed_to_newsletter = request.POST.get('newsletter')
         repayment_notification = request.POST.get('repayment_notification')
         announcement = request.POST.get('announcement')
-        profileup = RevolvUserProfileForm(data=request.POST or None,instance=request.user.revolvuserprofile)
+        profileup = RevolvUserProfileForm(data=request.POST or None, instance=request.user.revolvuserprofile)
         if profileup.is_valid():
             user = profileup.save(commit=False)
 
@@ -1433,14 +1484,16 @@ class editprofile(View):
                                                                       'INTERESTS': interests},
                                         double_optin=False, update_existing=True)
             else:
-                list.con.list_unsubscribe(list.id, request.user.email, delete_member=True)
-
+                try:
+                    list.con.list_unsubscribe(list.id, request.user.email, delete_member=True)
+                except:
+                    logger.debug("Error while unsubscribe")
             if repayment_notification:
                 user.subscribed_to_repayment_notifications = True
 
             user.user = request.user
             user.save()
-            userup = UpdateUser(request.POST or None,instance=request.user)
+            userup = UpdateUser(request.POST or None, instance=request.user)
             if userup.is_valid():
                 user = userup.save(commit=False)
                 user.save()
@@ -1452,12 +1505,13 @@ class editprofile(View):
                 userprofile = RevolvUserProfile.objects.get(user=request.user)
                 project = Project.objects.get(title='Operations')
                 donated_solar_seed = \
-                Payment.objects.filter(user=userprofile).exclude(project=project).aggregate(Sum('amount'))[
-                    'amount__sum'] or 0
+                    Payment.objects.filter(user=userprofile).exclude(project=project).aggregate(Sum('amount'))[
+                        'amount__sum'] or 0
                 repayment_solar_seed = RepaymentFragment.objects.filter(user=userprofile).aggregate(Sum('amount'))[
                                            'amount__sum'] or 0
                 operation_donation = \
-                Payment.objects.filter(user=userprofile, project=project).aggregate(Sum('amount'))['amount__sum'] or 0
+                    Payment.objects.filter(user=userprofile, project=project).aggregate(Sum('amount'))[
+                        'amount__sum'] or 0
                 monthly_operation_donation = StripeDetails.objects.filter(user=userprofile).filter(amount__gt=0.0)
                 monthly_solar_donation = StripeDetails.objects.filter(user=userprofile).filter(donation_amount__gt=0.0)
                 monthly_donation_amount = 0.0
@@ -1484,18 +1538,22 @@ class editprofile(View):
                 return render(request, 'base/partials/account_settings.html', context)
 
 
-
 @login_required
 def account_settings(request):
     existing_user = False
     user = request.user
     userprofile = RevolvUserProfile.objects.get(user=request.user)
     project = Project.objects.get(title='Operations')
-    donated_solar_seed = Payment.objects.filter(user=userprofile).exclude(project=project).aggregate(Sum('amount'))['amount__sum'] or 0
-    repayment_solar_seed = RepaymentFragment.objects.filter(user=userprofile).aggregate(Sum('amount'))['amount__sum'] or 0
-    operation_donation = Payment.objects.filter(user=userprofile,project=project).aggregate(Sum('amount'))['amount__sum'] or 0
+    donated_solar_seed = Payment.objects.filter(user=userprofile).exclude(project=project).aggregate(Sum('amount'))[
+                             'amount__sum'] or 0
+    repayment_solar_seed = RepaymentFragment.objects.filter(user=userprofile).aggregate(Sum('amount'))[
+                               'amount__sum'] or 0
+    operation_donation = Payment.objects.filter(user=userprofile, project=project).aggregate(Sum('amount'))[
+                             'amount__sum'] or 0
     tip = Tip.objects.filter(user=userprofile).aggregate(Sum('amount'))['amount__sum'] or 0
-    userform = UpdateUser(initial={'first_name':user.first_name, 'last_name':user.last_name, 'username': user.username, 'email':user.email})
+    userform = UpdateUser(
+        initial={'first_name': user.first_name, 'last_name': user.last_name, 'username': user.username,
+                 'email': user.email})
     revolv_profile = RevolvUserProfile.objects.get(user=request.user)
 
     monthly_operation_donation = StripeDetails.objects.filter(user=revolv_profile).filter(amount__gt=0.0)
@@ -1523,14 +1581,14 @@ def account_settings(request):
     return render(request, 'base/partials/account_settings.html', context)
 
 
-def create_subscription(request,donation_type, revolv_profile,amt_in_cents,customer):
+def create_subscription(request, donation_type, revolv_profile, amt_in_cents, customer):
     if donation_type == 'SOLAR_SEED_FUND':
         plan = stripe.Plan.create(
             amount=int(amt_in_cents),
             interval="month",
-            name="Solar Donation " + str(amt_in_cents/100),
+            name="Solar Donation " + str(amt_in_cents / 100),
             currency="usd",
-            id="solar_donation" + "_" + customer + "_" + str(amt_in_cents/100))
+            id="solar_donation" + "_" + customer + "_" + str(amt_in_cents / 100))
 
         subscription = stripe.Subscription.create(
             customer=customer,
@@ -1542,16 +1600,16 @@ def create_subscription(request,donation_type, revolv_profile,amt_in_cents,custo
             subscription_id=subscription.id,
             plan=subscription.plan.id,
             stripe_email=request.user.email,
-            donation_amount=amt_in_cents/100
+            donation_amount=amt_in_cents / 100
         )
 
     else:
         plan = stripe.Plan.create(
             amount=int(amt_in_cents),
             interval="month",
-            name="Operation Donation " + str(amt_in_cents/100),
+            name="Operation Donation " + str(amt_in_cents / 100),
             currency="usd",
-            id="operation_donation" + "_" + customer + "_" + str(amt_in_cents/100))
+            id="operation_donation" + "_" + customer + "_" + str(amt_in_cents / 100))
 
         subscription = stripe.Subscription.create(
             customer=customer,
@@ -1563,8 +1621,9 @@ def create_subscription(request,donation_type, revolv_profile,amt_in_cents,custo
             subscription_id=subscription.id,
             plan=subscription.plan.id,
             stripe_email=request.user.email,
-            amount=amt_in_cents/100
+            amount=amt_in_cents / 100
         )
+
 
 def delete_subscription(revolv_profile, donation_type):
     if donation_type == 'SOLAR_SEED_FUND':
@@ -1603,7 +1662,7 @@ def donation_update(request):
             if float(operation_amt) <= 0:
                 try:
                     donation_type = 'OPERATION'
-                    delete_subscription(revolv_profile,donation_type)
+                    delete_subscription(revolv_profile, donation_type)
                 except StripeDetails.DoesNotExist:
                     subscription = None
             else:
@@ -1611,7 +1670,7 @@ def donation_update(request):
                     amount = StripeDetails.objects.get(user=revolv_profile, amount__gt=0.0).amount
                 except StripeDetails.DoesNotExist:
                     amount = 0
-                if not abs(float(operation_amt)-float(amount))<0.00000001:
+                if not abs(float(operation_amt) - float(amount)) < 0.00000001:
                     try:
                         donation_type = 'OPERATION'
                         customer = delete_subscription(revolv_profile, donation_type)
@@ -1621,8 +1680,7 @@ def donation_update(request):
                         customer = subscription.customer
 
                     donation_amount = float(donation_amount) + float(operation_amt)
-                    create_subscription(request,donation_type, revolv_profile, operation_amt_cents, customer)
-
+                    create_subscription(request, donation_type, revolv_profile, operation_amt_cents, customer)
 
             if float(donation_amt) <= 0:
                 try:
@@ -1646,14 +1704,15 @@ def donation_update(request):
 
                     donation_type = 'SOLAR_SEED_FUND'
                     donation_amount = float(donation_amount) + float(donation_amt)
-                    create_subscription(request,donation_type, revolv_profile, donation_amt_cents, customer)
+                    create_subscription(request, donation_type, revolv_profile, donation_amt_cents, customer)
 
 
         except KeyError:
             logger.exception('stripe_payment called without required POST data')
             return HttpResponseBadRequest('bad POST data')
 
-        return HttpResponse(json.dumps({'status': 'donation_updated', 'amount': donation_amount}), content_type="application/json")
+        return HttpResponse(json.dumps({'status': 'donation_updated', 'amount': donation_amount}),
+                            content_type="application/json")
 
     else:
         token = request.POST['stripeToken']
@@ -1669,12 +1728,12 @@ def donation_update(request):
             if float(operation_amt) > 0.0:
                 donation_type = 'OPERATION'
                 donation_amount = float(donation_amount) + float(operation_amt)
-                create_subscription(request,donation_type, revolv_profile, operation_amt_cents, customer["id"])
+                create_subscription(request, donation_type, revolv_profile, operation_amt_cents, customer["id"])
 
             if float(donation_amt) > 0.0:
                 donation_type = 'SOLAR_SEED_FUND'
                 donation_amount = float(donation_amount) + float(donation_amt)
-                create_subscription(request,donation_type, revolv_profile, donation_amt_cents, customer["id"])
+                create_subscription(request, donation_type, revolv_profile, donation_amt_cents, customer["id"])
 
 
         except stripe.error.CardError as e:
@@ -1693,6 +1752,5 @@ def donation_update(request):
 
             messages.error(request, 'Payment error. RE-volv has been notified.')
             return redirect('home')
-        return HttpResponse(json.dumps({'status': 'donation_success', 'amount': donation_amount}), content_type="application/json")
-
-
+        return HttpResponse(json.dumps({'status': 'donation_success', 'amount': donation_amount}),
+                            content_type="application/json")

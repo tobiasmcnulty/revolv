@@ -96,7 +96,7 @@ MIDDLEWARE_CLASSES = [
 AUTHENTICATION_BACKENDS = [
     'social.backends.google.GoogleOAuth2',
     'social.backends.facebook.FacebookOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
+    'revolv.base.backends.EmailOrUsernameModelBackend',
     'sesame.backends.ModelBackend',
 ]
 

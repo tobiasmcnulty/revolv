@@ -192,3 +192,12 @@ class RevolvUserProfile(FacebookModel):
         if len(full_name.strip()) == 0:
             full_name = self.user.username
         return full_name.strip()
+
+    def get_username(self):
+        '''
+        Returns the first_name plus the first initial of last_name, with a space in between.
+        '''
+        full_name = '%s %s' % (self.user.first_name, self.user.last_name[0:1])
+        if len(full_name.strip()) == 0:
+            full_name = self.user.username
+        return full_name.strip()

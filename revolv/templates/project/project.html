@@ -470,7 +470,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
               {% for donor in project.donors.all %}
                 <div class="col-md-6">
                   <div class="info-box">
-                    <h4 class="title-h4">{{ donor.get_full_name }}</h4>
+                    <h4 class="title-h4">{{ donor.get_username }}</h4>
                   </div>
                 </div>
               {% endfor %}
