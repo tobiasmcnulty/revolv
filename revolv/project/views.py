@@ -136,7 +136,7 @@ def stripe_payment(request, pk):
         context['amount_cents'] = amount_cents / 100.0
         context['portfolio_link'] = portfolio_link
         context['first_name'] = "RE-volv"
-        context['last_name'] = "Supporter"
+        context['last_name'] = "supporter"
         send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, address='')
         send_revolv_email(
             'post_donation',
@@ -153,8 +153,8 @@ def stripe_payment(request, pk):
         context['tip_cents'] = tip_cents / 100.0
         context['amount_cents'] = amount_cents/100.0
         context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
-        context['first_name'] = request.user.first_name
-        context['last_name'] = request.user.last_name
+        context['first_name'] = request.user.first_name.title
+        context['last_name'] = request.user.last_name.title
 
         amount = donation_cents / 100.0
         cover_photo = Project.objects.values_list('cover_photo', flat=True).filter(pk=pk)
