@@ -332,9 +332,11 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
         if self.request.session.get('payment'):
             Payment.objects.filter(id=self.request.session['payment']).update(
                 user_id=self.request.user.revolvuserprofile, entrant_id=self.request.user.revolvuserprofile)
-            tip = Payment.objects.get(id=self.request.session['payment']).tip_id
-            Tip.objects.filter(id=tip).update(user_id=self.request.user.revolvuserprofile)
+            payment = Payment.objects.get(id=self.request.session['payment'])
+            Tip.objects.filter(id=payment.tip_id).update(user_id=self.request.user.revolvuserprofile)
+            Project.objects.get(id=payment.project_id).donors.add(self.request.user.revolvuserprofile)
             del self.request.session['payment']
+
             # messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
             # return redirect(reverse('project:view', kwargs={'title':title})+'?amount='+amount+'&tip='+tip)
         messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
@@ -408,8 +410,9 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         if self.request.session.get('payment'):
             Payment.objects.filter(id=self.request.session['payment']).update(
                 user_id=self.request.user.revolvuserprofile, entrant_id=self.request.user.revolvuserprofile)
-            tip = Payment.objects.get(id=self.request.session['payment']).tip_id
-            Tip.objects.filter(id=tip).update(user_id=self.request.user.revolvuserprofile)
+            payment = Payment.objects.get(id=self.request.session['payment'])
+            Tip.objects.filter(id=payment.tip_id).update(user_id=self.request.user.revolvuserprofile)
+            Project.objects.get(id=payment.project_id).donors.add(self.request.user.revolvuserprofile)
             del self.request.session['payment']
         messages.success(self.request, 'Signed up successfully!')
         return redirect("dashboard")
