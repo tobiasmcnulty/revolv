@@ -653,7 +653,7 @@ class ProjectReinvestView(UserDataMixin, DetailView):
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE
         context['GOOGLEMAPS_API_KEY'] = settings.GOOGLEMAPS_API_KEY
         context['updates'] = self.get_object().updates.order_by('date').reverse()
-        context['donor_count'] = self.get_object().donors.count()
+        context['donor_count'] = self.get_object().total_donors()
         context['project_donation_levels'] = self.get_object().donation_levels.order_by('amount')
         context["is_draft_mode"] = self.get_object().project_status == self.get_object().DRAFTED
         context['payments'] = Payment.objects.all()
@@ -685,7 +685,7 @@ class ProjectView(UserDataMixin, DetailView):
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE
         context['GOOGLEMAPS_API_KEY'] = settings.GOOGLEMAPS_API_KEY
         context['updates'] = self.get_object().updates.order_by('date').reverse()
-        context['donor_count'] = self.get_object().donors.count()
+        context['donor_count'] = self.get_object().total_donors()
         context['project_donation_levels'] = self.get_object().donation_levels.order_by('amount')
         context['project_matching_donor'] = ProjectMatchingDonors.objects.filter(project=self.get_object(),
                                                                                  amount__gt=0)

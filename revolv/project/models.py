@@ -2,6 +2,7 @@ import datetime
 from itertools import chain
 
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q, Sum
@@ -463,6 +464,26 @@ class Project(models.Model):
         prop = user_donation / self.amount_donated_organically
         assert 0 <= prop <= 1, "proportion_donated is incorrect!"
         return prop
+
+    def get_anonymous_donors_count(self):
+        """
+        Total number of anonymous donors count for project
+        :return:
+        Return anonymous donors count for project
+        """
+        user_id = User.objects.get(username='Anonymous').pk
+        anonymous_user = RevolvUserProfile.objects.get(user_id=user_id)
+        return Payment.objects.donations(anonymous_user, self).values("user").count()
+
+    def total_donors(self):
+        """
+        Total number of donors for the project. This include distinct
+        number of donors to project and all anonymous donors for the project
+        :return:
+            Return total number of donors
+        """
+        anonymous_donors_count = self.get_anonymous_donors_count()
+        return self.donors.count() + anonymous_donors_count
 
     @property
     def amount_donated_organically(self):
