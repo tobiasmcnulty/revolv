@@ -142,10 +142,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <h5 class="title-h5">OUR APPRECIATION</h5>
                   <p>{{ donation_level.description }}</p>
                   <div class="inputs"  >
-                    <label for="tip_edit">Optional support for RE-volv</label>
+                    <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
-                      <input type="number" name="tip_edit" min="0" max="100" step="1" value="15" class="form-control">
-                      <span class="input-group-addon">%</span>
+                      <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control">
+                      <span class="input-group-addon">$</span>
                     </div>
                     <label for="total">Total</label>
                     <div class="input-group">
@@ -175,10 +175,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                     <input type="number" name="value" min="0" value="50" step="1" class="form-control">
                     <span class="input-group-addon">$</span>
                   </div>
-                  <label for="tip_edit">Optional support for RE-volv</label>
+                  <label for="tip_edit">Additional support for RE-volv</label>
                   <div class="input-group">
-                    <input type="number" name="tip_edit" min="0" max="100" step="1" value="15" class="form-control">
-                    <span class="input-group-addon">%</span>
+                    <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control">
+                    <span class="input-group-addon">$</span>
                   </div>
                   <label for="total">Total</label>
                   <div class="input-group">
@@ -231,10 +231,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                     </div>
                   </div>
                   <div class="input-group">
-                    <label for="tip_edit">Optional support for RE-volv</label>
+                    <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
-                      <input type="number" class="form-control donation-tip" value="15" step="1" max="100" min="0" name="tip_edit">
-                      <span class="input-group-addon">%</span>
+                      <input type="number" class="form-control donation-tip" step="any" value="7.50" min="0" name="tip_edit">
+                      <span class="input-group-addon">$</span>
                     </div>
                       <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST" id="ipad">
                         {% csrf_token %}
@@ -330,10 +330,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <h5 class="title-h5">OUR APPRECIATION</h5>
                   <p>{{ donation_level.description }}</p>
                   <div class="inputs">
-                    <label for="tip_edit">Optional support for RE-volv</label>
+                    <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
-                      <input type="number" name="tip_edit" min="0" max="100" step="1" value="15" class="form-control">
-                      <span class="input-group-addon">%</span>
+                      <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control">
+                      <span class="input-group-addon">$</span>
                     </div>
                     <label for="total">Total</label>
                     <div class="input-group">
@@ -362,10 +362,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                     <input type="number" name="value" min="0" value="50" step="1" class="form-control donation-field">
                     <span class="input-group-addon">$</span>
                   </div>
-                  <label for="tip_edit">Optional support for RE-volv</label>
+                  <label for="tip_edit">Additional support for RE-volv</label>
                   <div class="input-group">
-                    <input type="number" name="tip_edit" min="0" max="100" step="1" value="15" class="form-control donation-tip">
-                    <span class="input-group-addon">%</span>
+                    <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control donation-tip">
+                    <span class="input-group-addon">$</span>
                   </div>
                   <label for="total">Total</label>
                   <div class="input-group">
@@ -644,18 +644,6 @@ input:invalid {box-shadow: 0 0 5px 1px red;
 </script>
 
 <script type="text/javascript">
-$( document ).ready(function() {
-       var checkForDonation = "";
-        checkForDonation = {{ request.GET.amount }};
-        if (checkForDonation != "")
-          {
-            $('.donation-field').val({{ request.GET.amount }});
-            $('.donation-tip').val({{ request.GET.tip }});
-
-          }
-         });
-</script>
-<script type="text/javascript">
 
   $(function ($) {
     $('.payment-module').each(function () {
@@ -670,12 +658,20 @@ $( document ).ready(function() {
       var $meta = $module.find('input[name="metadata"]');
       var $donationAmount = $module.find('input[name="donation_amount"]');
       var $donationTip = $module.find('input[name="donation_tip"]');
-      function update () {
+
+      function update (event) {
         var val = parseFloat($value.val() || $value.data('value'));
-        var scale = parseFloat($tip.val()) / 100;
-        var added = scale * val;
-        if (isNaN(val) || isNaN(scale)) {
-          return false;
+        if (isNaN(val)) {
+          $value.val(0);
+          val = 0;
+        }
+        if(!event.data.isTipEvent){
+          $tip.val((val * 15 / 100).toFixed(2));
+        }
+        var added = parseFloat($tip.val());
+        if(isNaN(added)) {
+          $tip.val(0);
+          added = 0;
         }
         $amount.val(Math.round((val + added) * 100));
         $meta.val(Math.round(added * 100));
@@ -710,9 +706,9 @@ $( document ).ready(function() {
       }
       $value.on('keydown', prepress);
       $tip.on('keydown', prepress);
-      $value.on('change keyup', update);
-      $tip.on('change keyup', update);
-      update();
+      $value.on('change keyup', { isTipEvent: false }, update);
+      $tip.on('change keyup mouseup mousedown', { isTipEvent: true }, update);
+      $value.trigger("change", { isTipEvent: false });
     });
   }
    );
