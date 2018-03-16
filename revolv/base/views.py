@@ -901,7 +901,7 @@ def ambassador_data_table(request):
 
     column_order = order_by[order] + fields[int(currentSortByCol)]
 
-    revolv_user = get_object_or_404(RevolvUserProfile, pk=request.user.id)
+    revolv_user = get_object_or_404(RevolvUserProfile, user_id=request.user.id)
 
     projects = Project.objects.all()
     project_list = []
