@@ -142,7 +142,7 @@ def stripe_payment(request, pk):
             'post_donation',
             context, [email]
         )
-        return redirect('signin')
+        return redirect('/signin/#signup')
     else:
         SITE_URL = settings.SITE_URL
         portfolio_link = SITE_URL + reverse('dashboard')
