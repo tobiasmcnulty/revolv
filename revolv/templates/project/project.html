@@ -172,7 +172,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                 <div class="inputs">
                   <label for="value">Donation to the project</label>
                   <div class="input-group">
-                    <input type="number" name="value" min="0" value="50" step="1" class="form-control">
+                    <input type="number" name="value" min="0" value="50" step="any" class="form-control">
                     <span class="input-group-addon">$</span>
                   </div>
                   <label for="tip_edit">Additional support for RE-volv</label>
@@ -226,7 +226,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <div class="input-group">
                     <label for="value">Donation to the project</label>
                     <div class="input-group">
-                      <input type="number" class="form-control donation-field" step="1" value="50" min="0" name="value">
+                      <input type="number" class="form-control donation-field" step="any" value="50" min="0" name="value">
                       <span class="input-group-addon">$</span>
                     </div>
                   </div>
@@ -359,7 +359,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                 <div class="inputs">
                   <label for="value">Donation to the project</label>
                   <div class="input-group">
-                    <input type="number" name="value" min="0" value="50" step="1" class="form-control donation-field">
+                    <input type="number" name="value" min="0" value="50" step="any" class="form-control donation-field">
                     <span class="input-group-addon">$</span>
                   </div>
                   <label for="tip_edit">Additional support for RE-volv</label>
@@ -665,6 +665,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
           $value.val(0);
           val = 0;
         }
+        $value.val(val);
         if(!event.data.isTipEvent){
           $tip.val((val * 15 / 100).toFixed(2));
         }
@@ -673,6 +674,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
           $tip.val(0);
           added = 0;
         }
+        $tip.val(added);
         $amount.val(Math.round((val + added) * 100));
         $meta.val(Math.round(added * 100));
         $total.val((val + added).toFixed(2));
