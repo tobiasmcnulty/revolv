@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+<link href='https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+<link href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'dist/css/pages/project-edit/index.css' %}" />
+<script src="/static/js/jquery.dataTables.min.js"></script>
+<script src="/static/js/dataTables.buttons.min.js"></script>
+<script src="/static/js/buttons.flash.min.js"></script>
+<script src="/static/js/donation_source_tracking.js?version={{ version_number }}"></script>
+{% endblock %}
+{% block body %}
+<div id="matching-donor-spinner"><img src="/static/images/gif/revolv-loader.gif" alt="Matching donors are loading" ></div>
+
+<div class="container after-header" >
+  <table id="matching_donor" class="display nowrap" cellspacing="0" width="100%">
+       <div class="matching-donor-section">Donation Source Tracking Report</div>
+  <thead >
+      <tr>
+        <th>Social Media Source</th>
+        <th>Medium</th>
+        <th>Project Name</th>
+        <th>Total Donated Amount</th>
+        <th>Number of Donors</th>
+      </tr>
+    </thead>
+      <tbody>
+    {% for source in sources %}
+      <tr>
+        <td>{{ source.source }} </td>
+        <td>{{ source.medium }}</td>
+        <td>{{ source.payment_id__project__title }}</td>
+          <td>{{ source.amount }}</td>
+          <td>{{ source.count }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+
+{% endblock %}
+

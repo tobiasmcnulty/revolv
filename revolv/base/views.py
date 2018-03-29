@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseRedirect
@@ -30,7 +30,7 @@ from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.lib.mailer import send_revolv_email
-from revolv.payments.models import Payment, Tip, RepaymentFragment
+from revolv.payments.models import Payment, Tip, RepaymentFragment, ReferralSourceTrack
 from revolv.payments.models import UserReinvestment
 from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails
 from revolv.project.utils import aggregate_stats
@@ -228,6 +228,11 @@ class ProjectListView(UserDataMixin, TemplateView):
         context["is_reinvestment"] = False
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.GET:
+            request.session["utm_params"] = request.GET
+
+        return super(ProjectListView, self).dispatch(request, *args, **kwargs)
 
 class SignInView(TemplateView):
     """Signup and login page. Has three submittable forms: login, signup,
@@ -1757,3 +1762,29 @@ def donation_update(request):
             return redirect('home')
         return HttpResponse(json.dumps({'status': 'donation_success', 'amount': donation_amount}),
                             content_type="application/json")
+
+
+class DonationSourceTrackingView(UserDataMixin, TemplateView):
+    """
+    Display donation source tracking report
+
+    Accessed through /donationsourcetracking/
+    """
+    model = Payment
+    template_name = 'base/partials/donation_source_tracking.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
+        if not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        return super(DonationSourceTrackingView, self).dispatch(request, *args, **kwargs)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(DonationSourceTrackingView, self).get_context_data(**kwargs)
+        sources = ReferralSourceTrack.objects.values('source', 'medium', 'payment_id__project__title')\
+            .annotate(amount=Sum('payment__amount')).annotate(count=Count('payment__id'))\
+            .order_by('source', 'payment_id__project__title')
+        context["sources"] = sources
+        return context

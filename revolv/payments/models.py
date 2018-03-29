@@ -560,3 +560,14 @@ class Tip(models.Model):
 
     def __unicode__(self):
         return 'Tip of %s from %s at %s' % (self.amount, self.user, self.timestamp)
+
+
+class ReferralSourceTrack(models.Model):
+    """
+    Social source donation tracking
+    """
+    source = models.CharField(max_length=255, blank=True, null=True)
+    medium = models.CharField(max_length=255, blank=True, null=True)
+    campaign = models.CharField(max_length=255, blank=True, null=True)
+    content = models.CharField(max_length=255, blank=True, null=True)
+    payment = models.ForeignKey('payments.Payment')

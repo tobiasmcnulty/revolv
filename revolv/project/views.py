@@ -1,34 +1,34 @@
-from decimal import Decimal
+import json
 import logging
+from decimal import Decimal
+from json import load
+from urllib2 import urlopen
+
+import stripe
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse
 from django.http.response import HttpResponseBadRequest, HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic import CreateView, DetailView, UpdateView, TemplateView
 from django.views.generic.edit import FormView
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
-from django.views.decorators.http import require_http_methods, require_POST
-import stripe
-import json
-
+from revolv.base.models import RevolvUserProfile
 from revolv.base.users import UserDataMixin
 from revolv.base.utils import is_user_reinvestment_period
 from revolv.lib.mailer import send_revolv_email
 from revolv.payments.forms import CreditCardDonationForm
-from revolv.payments.models import UserReinvestment, Payment, PaymentType, Tip
-from revolv.base.models import RevolvUserProfile
+from revolv.payments.models import UserReinvestment, Payment, PaymentType, Tip, ReferralSourceTrack
 from revolv.payments.services import PaymentService
 from revolv.project import forms
-from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors, AnonymousUserDetail, StripeDetails
+from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors, AnonymousUserDetail, \
+    StripeDetails
 from revolv.tasks.sfdc import send_donation_info
-from django.contrib.auth.models import User
 from sesame import utils
-from json import load
-from urllib2 import urlopen
 
 logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
@@ -116,7 +116,7 @@ def stripe_payment(request, pk):
             user=user,
         )
 
-    payment=Payment.objects.create(
+    payment = Payment.objects.create(
         user=user,
         entrant=user,
         amount=donation_cents/100.0,
@@ -124,6 +124,19 @@ def stripe_payment(request, pk):
         tip=tip,
         payment_type=PaymentType.objects.get_stripe(),
     )
+    if request.session.has_key("utm_params"):
+        utm_params = request.session.get("utm_params")
+        utm_source = utm_params.get("utm_source")
+        utm_medium = utm_params.get("utm_medium")
+        utm_campaign = utm_params.get("utm_campaign")
+        utm_content = utm_params.get("utm_content")
+        referral_source_track = ReferralSourceTrack.objects.create(
+            source=utm_source,
+            medium=utm_medium,
+            campaign=utm_campaign,
+            content=utm_content,
+            payment=payment
+        )
 
     if not request.user.is_authenticated():
         request.session['payment'] = payment.id
@@ -220,7 +233,6 @@ def stripe_operation_donation(request):
                      payment_type=PaymentType.objects.get_stripe(),
                 )
             else:
-                from requests import get
 
                 my_ip = request.META.get('REMOTE_ADDR')
 
