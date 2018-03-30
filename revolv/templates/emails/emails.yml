@@ -187,7 +187,7 @@ reinvestment_reminder:
     body:
         "
         Dear {{ first_name | title }},
-        The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.
+        The solar projects you invested in have made their monthly lease payment to RE-volv.
 
         You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
@@ -203,7 +203,7 @@ reinvestment_reminder:
     html:
         "
         <p>Dear {{ first_name }},</p>
-        <p>The solar project(s) you invested in has(ve) made their monthly lease payment to RE-volv.</p>
+        <p>The solar projects you invested in have made their monthly lease payment to RE-volv.</p>
 
         <p>You now have ${{ amount|floatformat:'2' }} in RE-volv funds available in your <a href='{{portfolio_link}}'>Portfolio</a> that
         you can reinvest in other solar projects! You can take a look at the projects we have available
