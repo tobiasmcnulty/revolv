@@ -78,7 +78,7 @@
   </div>
  {% if reinvestment_amount %}
   <a href="{% url "reinvest_list" %}">
-  <div class="btn-blue btn-purple">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</div>
+  <div class="btn-blue btn-purple" style="font-size: 3rem;">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</div>
   </a>
   {% else %}
   <a href="{% url "reinvest_list" %}">
