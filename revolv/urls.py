@@ -103,8 +103,10 @@ urlpatterns = patterns(
     url(r'^blog/', include('zinnia.urls.archives')),
     url(r'^blog/', include('zinnia.urls.shortlink')),
     url(r'^blog/', include('zinnia.urls.quick_entry')),
+    url(r'^solar-education-week/', include('revolv.solar_ed_week.urls')),
 
     url(r'', include(wagtail_urls)),
+
 
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

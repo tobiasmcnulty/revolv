@@ -1,0 +1,294 @@
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Solar ed week</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/solar_ed_week.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <script src="{% static 'js/solar_ed_week.js' %}"></script>
+</head>
+<body>
+<header class="main-header">
+    <nav id="nav">
+        <img src="/static/images/sewlogo2@1X.png" alt="Solar Education Week">
+        <ul>
+            <li><a href="#contact">CONTACT US</a></li>
+            <li><a href="#partner">PARTNER AND SPONSOR</a></li>
+            <li><a href="#the-why">THE WHY</a></li>
+            <li><a href="#the-how">THE HOW</a></li>
+            <li><a href="#the-what">THE WHAT</a></li>
+        </ul>
+    </nav>
+
+</header>
+{% block body %}
+<div class="content">
+    <div class="solar-ed-page section-1">
+        <img class="background-image-size-home" src="/static/images/header@1X.png" alt="RE-volv">
+    </div>
+
+        <div id="the-what" class="what-section">
+            <div class="section">
+                <h1 class="bold-header"><b>WHAT IS</b></h1>
+                <h1 class="sub-bold-header">SOLAR EDUCATION WEEK?</h1>
+                <hr width=10%">
+                <br>
+                <p class="paragraph">The week leading up to Earth Day, college students and community members around the country will host
+                    solar education events in their community to spark a national conversation about solar energy,
+                    energy access,
+                    and a just transition to a clean energy economy.</p>
+            </div>
+        </div>
+
+
+
+        <div id="the-how" class="container-field">
+            <div class="section">
+                <h1 class="bold-header"><b>HOW DO</b></h1>
+                <h1 class="sub-bold-header">I PARTICIPATE ?</h1>
+                <hr width="10%">
+            </div>
+            <div class="section-1">
+                <div class="row">
+                    <div class="col-sm-4 host-separator participat-block">
+                        <div class="row-header"> HOST</div>
+                        <p class="paragraph">Host a Solar Education event at your home, workplace,
+                            or local community center. Screen a film, host a discussion, or throw a solar party. Be
+                            creative!
+                        </p>
+                        <button class="event-host host-event" type="submit">Host an Event</button>
+                    </div>
+                    <div class="col-sm-4  participat-block">
+                        <div class="row-header bottom-space"> ATTEND</div>
+                        <p class="paragraph">Check the map for events in your area! Don’t see one? Host an Event!on’t see one? <a href="#the-how" class="host-event">Host
+                            an Event!</a></p>
+                    </div>
+                    <div class="col-sm-4 partner-separator participat-block">
+                        <div class="row-header"> PARTNER</div>
+                        <p class="paragraph">Does your organization support renewable energy? Join RE-volv, GRID Alternatives,
+                            and Sierra Student Coalition to mobilize your members during Solar Education Week!</p>
+                        <button class="event-host become-partner" type="submit">Become a Partner</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="map" style="width: 100%; height: 400px">
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&callback=initMap">
+            </script>
+        </div>
+
+
+
+        <div id="partner" class="section">
+            <h1 class="bold-header"><b>SOLAR EDUCATION WEEK</b></h1>
+            <h1 class="sub-bold-header">PARTNERS</h1>
+            <hr width="10%">
+            <p class="paragraph">Solar Education Week is a partnership effort by organizations including GRID Alternatives,
+                Sierra Student Coalition and RE-volv to engage individuals across the country to organize and participate
+                in Solar Education events!</p>
+        </div>
+
+        <div class="partners-images">
+            <img src="/static/images/user_logos_grid@1X.png" alt="grid alternative">
+            <img src="/static/images/revolv-logo@1X.png" alt="Revolv logo">
+            <img src="/static/images/powershift_logo@1X.png" alt="Powershift logo">
+        </div>
+
+        <div class="section">
+            <h1 class="sub-bold-header">SPONSORS</h1>
+            <hr width="10%">
+            <img src="/static/images/LDF@1X.png" alt="Leonardo Dicaprio Foundation">
+            <img src="/static/images/logo-sun-shot@1X.png" alt="Sun Shot Logo">
+        </div>
+
+
+
+        <div id="the-why" class="why-participate">
+                <div class="participation-cntnr">
+                    <div class="col-sm-6 padding-zero">
+                        <img class="participatio-img" src="/static/images/whyparticipate@1X.png" alt="Participation">
+                    </div>
+                    <div class="col-sm-6 padding-zero participation-main-cntnr">
+                        <h3 class="participation-main-text solar-main-text">WHY PARTICIPATE IN</h3>
+                        <h3 class="participation-sub-text solar-sub-text">SOLAR EDUCATION WEEK?</h3>
+                        <hr class="horizontal-line">
+                        <div class="participation-icons full-width">
+                            <div class="participation-row full-width">
+                                <div class="participation-icon">
+                                    <img src="/static/images/network.png" alt="network icon">
+                                </div>
+                                <p class="participation-text">You can play a critical role in spreading the word about solar and
+                                    how it benefits communities across the nation. The message is simple: solar is affordable,
+                                    sustainable and provides communities at all economic levels with clean energy and energy
+                                    independence.</p>
+                            </div>
+                            <div class="participation-row full-width">
+                                <div class="participation-icon">
+                                    <img src="/static/images/chat.png" alt="chat icon">
+                                </div>
+                                <p class="participation-text">By coordinating a national solar education effort, we can engage
+                                    our local and nationwide networks and the press in order to spread the word about solar and
+                                    promote its increased adoption.</p>
+                            </div>
+                            <div class="participation-row full-width">
+                                <div class="participation-icon">
+                                    <img src="/static/images/idea.png" alt="idea icon">
+                                </div>
+                                <p class="participation-text">Solar is a unique solution to climate change because it’s
+                                    something that anyone can get involved with. Solar Education Week allows everyone to
+                                    participate in reducing carbon emissions and creating a 100% renewable powered future for
+                                    all.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="event-ideas">
+        <img src="/static/images/solar_new.jpg" alt="Event Ideas">
+        <div class="event-ideas-text">
+            <h1>Looking for ideas</h1>
+            <h1>for your Solar Ed Week event?</h1>
+            <p>We recommend hosting a screening of the new clean energy documentary film “Happening” made by
+                award-winning
+                filmmaker Jamie Redford. Watch the trailer and request to host a screening at the Happening website
+                today!</p>
+            <a href="https://happeningthemovie.com/" class="btn button" target="_blank">WATCH THE TRAILER</a>
+            <a href="https://happeningthemovie.com/host-an-event/" class="btn button" target="_blank">REQUEST A SCREENING</a>
+        </div>
+    </div>
+
+    <div class="event-ideas">
+        <img src="/static/images/faith_community.jpg" alt="Event Ideas">
+        <div class="event-ideas-text">
+            <h1>Are you a faith based community?</h1>
+            <p>Register your Solar Education Week event as part of Faith Climate Action Week with our partners,
+                Interfaith Power and Light.</p>
+            <a href="http://www.faithclimateactionweek.org/" class="btn button" target="_blank">REGISTER NOW</a>
+        </div>
+    </div>
+
+
+        <div id="contact" class="footer-info">
+
+            <h3>For more information or to join as a partner organization</h3>
+            <img src="/static/images/message@1X.png">
+            <address><a href="mailto:info@revolv.org">info@revolv.org</a></address>
+            <hr width="20%">
+            <p>SPREAD SOLAR EDUCATION ON SOCIAL MEDIA! #SOLAREDWEEK</p>
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+            <i class="fa fa-google-plus"></i>
+        </div>
+
+
+
+    <div class="become-host-pop-up">
+        <div>
+            {#        <div class="popupCloseButton">X</div>#}
+            <div class="event-form">
+                <br>
+                <header><span>HOST</span> AN EVENT</header>
+                <hr>
+                <label>Your Name</label><input type="text" name="name"/>
+                <label>Email</label><input type="email" name="email"/>
+                <label>Event Title</label><input type="text" name="eventtitle"/>
+                <label>Date</label><input type="date" name="date"/>
+                <label>Address</label><input type="text" name="address"/>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>City</label><input type="text" name="city"/>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>State</label><input type="text" name="state"/>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Zip Code</label><input type="number" name="zipcode"/>
+                    </div>
+                </div>
+                <label>Event Details</label><input type="text" name="eventdetails"/>
+                <label>Link to your Facebook event or Eventbrite page</label><input type="text"
+                                                                                    name="eventbrite"/><br><br>
+                <button type="submit">HOST AN EVENT</button>
+                <br><br>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="become-partner-pop-up">
+        <div>
+            {#        <div class="popupCloseButton_3">X</div>#}
+            <div class="event-form">
+                <br>
+                <header><span>BECOME</span> A PARTNER</header>
+                <hr>
+                <label>Logo</label><br>
+                <img src="/static/images/upload_image@1x.png" class="image-upload"><br>
+                {#        <button class="image-upload" type="submit">Choose file</button><br>#}
+                <label>Name</label><input type="text" name="name"/>
+                <label>Email</label><input type="email" name="email"/>
+                <label>Organization</label><input type="text" name="eventtitle"/>
+                <form class="megawatt" action="">
+                    <input type="checkbox" name="campaign">We agree to promote Solar Education Week by:<br>
+                    <ul>
+                        <li><span>sending at least three emails to our network encouraging them to host events.</span>
+                        </li>
+                        <li>
+                            <span>Sharing at least 10 social media posts leading up to and during Solar Education Week.</span>
+                        </li>
+                        <li><span>Do yo have another way of promoting Solar Education Week you'd like to offer?<br>
+                                    Let us know!</span></li>
+                        <li type="none"><span><input type="text"></span></li>
+                    </ul>
+                </form>
+                <button type="submit">Become a Partner</button>
+                <br><br>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="image-container-pop-up">
+        <div>
+            <div class="popupCloseButton_4">X</div>
+            <div class="file-upload">
+                {#  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>#}
+
+                <div class="image-upload-wrap">
+                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*"/>
+                    <div class="drag-text">
+                        <img src="/static/images/upload_image@1x.png">
+                    </div>
+                </div>
+                <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image"/>
+                    <div class="image-title-wrap">
+                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                class="image-title">Uploaded Image</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="copyright-text">
+        © 2018 Solar Education Week. All Rights Reserved
+    </footer>
+</div>
+{% endblock %}
+
+</body>
+</html>
