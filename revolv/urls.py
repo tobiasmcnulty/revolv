@@ -12,6 +12,7 @@ from revolv.project import views as project_views
 from revolv.base.views import solarathome, bring_solar_tou_your_community, select_chapter, intake_form, intake_form_submit, account_settings, editprofile, donation_update
 
 from revolv.project.views import ProjectView
+from revolv.solar_ed_week.views import (solar_education, host_event)
 
 urlpatterns = patterns(
     '',
@@ -103,7 +104,9 @@ urlpatterns = patterns(
     url(r'^blog/', include('zinnia.urls.archives')),
     url(r'^blog/', include('zinnia.urls.shortlink')),
     url(r'^blog/', include('zinnia.urls.quick_entry')),
-    url(r'^solar-education/solar-education-week/', include('revolv.solar_ed_week.urls')),
+    # url(r'^solar-education/solar-education-week/', include('revolv.solar_ed_week.urls')),
+    url(r'^solar-education/solar-education-week/host-event/$', host_event, name='host_event'),
+    url(r'^solar-education/solar-education-week/$', solar_education, name='solar_education'),
 
     url(r'', include(wagtail_urls)),
 

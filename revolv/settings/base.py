@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'revolv.ambassador',
     'revolv.donor',
     'revolv.payments',
+    'revolv.solar_ed_week',
 
     # 3rd-party apps
     'django_facebook',

@@ -6,7 +6,10 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/static/css/solar_ed_week.css">
+    <link rel="stylesheet" href="{% static "typeahead/typeahead.css" %}" />
+    <link rel="stylesheet" href="{% static "chosen/chosen.css" %}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -14,40 +17,48 @@
     <script src="{% static 'js/solar_ed_week.js' %}"></script>
 </head>
 <body>
-<header class="main-header">
-    <nav id="nav">
-        <img src="/static/images/sewlogo2@1X.png" alt="Solar Education Week">
-        <ul>
+    <nav class="menu nav" id="hamburger-nav">
+        <img class="header-image" src="/static/images/sewlogo2@1X.png" alt="Solar Education Week">
+        <label class="burger-label" for="toggle">&#9776;</label>
+        <input type="checkbox" id="toggle"/>
+        <ul class="menu-list">
             <li><a href="#contact">CONTACT US</a></li>
             <li><a href="#partner">PARTNER AND SPONSOR</a></li>
             <li><a href="#the-why">THE WHY</a></li>
             <li><a href="#the-how">THE HOW</a></li>
-            <li><a href="#the-what">THE WHAT</a></li>
+            <li><a href="#the-what" class="active">THE WHAT</a></li>
         </ul>
     </nav>
-
-</header>
+    <nav class="menu nav" id="nav">
+        <img class="header-image" src="/static/images/sewlogo2@1X.png" alt="Solar Education Week">
+        <label class="burger-label" for="toggle">&#9776;</label>
+        <input type="checkbox" id="toggle"/>
+        <ul class="menu-list">
+            <li><a href="#contact">CONTACT US</a></li>
+            <li><a href="#partner">PARTNER AND SPONSOR</a></li>
+            <li><a href="#the-why">THE WHY</a></li>
+            <li><a href="#the-how">THE HOW</a></li>
+            <li><a href="#the-what" class="active">THE WHAT</a></li>
+        </ul>
+    </nav>
 {% block body %}
-<div class="content">
     <div class="solar-ed-page section-1">
         <img class="background-image-size-home" src="/static/images/header@1X.png" alt="RE-volv">
     </div>
-
-        <div id="the-what" class="what-section">
+    <section id="the-what">
+        <div class="what-section">
             <div class="section">
                 <h1 class="bold-header"><b>WHAT IS</b></h1>
-                <h1 class="sub-bold-header">SOLAR EDUCATION WEEK?</h1>
+                <h1>SOLAR EDUCATION WEEK?</h1>
                 <hr width=10%">
                 <br>
-                <p class="paragraph">The week leading up to Earth Day, college students and community members around the country will host
+                <p>The week leading up to Earth Day, college students and community members around the country will host
                     solar education events in their community to spark a national conversation about solar energy,
                     energy access,
                     and a just transition to a clean energy economy.</p>
             </div>
         </div>
-
-
-
+    </section>
         <div id="the-how" class="container-field">
             <div class="section">
                 <h1 class="bold-header"><b>HOW DO</b></h1>
@@ -62,7 +73,7 @@
                             or local community center. Screen a film, host a discussion, or throw a solar party. Be
                             creative!
                         </p>
-                        <button class="event-host host-event" type="submit">Host an Event</button>
+                        <button id="event-host-button" class="event-host host-event" type="submit">Host an Event</button>
                     </div>
                     <div class="col-sm-4  participat-block">
                         <div class="row-header bottom-space"> ATTEND</div>
@@ -73,46 +84,39 @@
                         <div class="row-header"> PARTNER</div>
                         <p class="paragraph">Does your organization support renewable energy? Join RE-volv, GRID Alternatives,
                             and Sierra Student Coalition to mobilize your members during Solar Education Week!</p>
-                        <button class="event-host become-partner" type="submit">Become a Partner</button>
+                        <button id="become-partner-button" class="event-host become-partner" type="submit">Become a Partner</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
         <div id="map" style="width: 100%; height: 400px">
             <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&callback=initMap">
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&libraries=places">
             </script>
         </div>
-
-
-
         <div id="partner" class="section">
             <h1 class="bold-header"><b>SOLAR EDUCATION WEEK</b></h1>
             <h1 class="sub-bold-header">PARTNERS</h1>
             <hr width="10%">
-            <p class="paragraph">Solar Education Week is a partnership effort by organizations including GRID Alternatives,
-                Sierra Student Coalition and RE-volv to engage individuals across the country to organize and participate
-                in Solar Education events!</p>
+            <p class="paragraph">Does your organization support renewable energy? Join the movement and mobilize your members during Solar Education Week!
+            Solar Education Week is a partnership effort by leading clean energy organizations to engage individuals across the country to organize and participate in Solar Education events!</p>
         </div>
-
         <div class="partners-images">
             <img src="/static/images/user_logos_grid@1X.png" alt="grid alternative">
             <img src="/static/images/revolv-logo@1X.png" alt="Revolv logo">
             <img src="/static/images/powershift_logo@1X.png" alt="Powershift logo">
+            <img src="/static/images/redford.jpg" alt="Redford logo">
+            <img src="/static/images/Vote_Solar_Logo.jpg" alt="Vote solar logo">
         </div>
-
         <div class="section">
             <h1 class="sub-bold-header">SPONSORS</h1>
             <hr width="10%">
+        </div>
+        <div class="sponsors-image">
             <img src="/static/images/LDF@1X.png" alt="Leonardo Dicaprio Foundation">
             <img src="/static/images/logo-sun-shot@1X.png" alt="Sun Shot Logo">
         </div>
-
-
-
+        <div class="section"></div>
         <div id="the-why" class="why-participate">
                 <div class="participation-cntnr">
                     <div class="col-sm-6 padding-zero">
@@ -149,12 +153,10 @@
                                     participate in reducing carbon emissions and creating a 100% renewable powered future for
                                     all.</p>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
     <div class="event-ideas">
         <img src="/static/images/solar_new.jpg" alt="Event Ideas">
         <div class="event-ideas-text">
@@ -168,8 +170,7 @@
             <a href="https://happeningthemovie.com/host-an-event/" class="btn button" target="_blank">REQUEST A SCREENING</a>
         </div>
     </div>
-
-    <div class="event-ideas">
+    <div class="event-register">
         <img src="/static/images/faith_community.jpg" alt="Event Ideas">
         <div class="event-ideas-text">
             <h1>Are you a faith based community?</h1>
@@ -178,10 +179,7 @@
             <a href="http://www.faithclimateactionweek.org/" class="btn button" target="_blank">REGISTER NOW</a>
         </div>
     </div>
-
-
         <div id="contact" class="footer-info">
-
             <h3>For more information or to join as a partner organization</h3>
             <img src="/static/images/message@1X.png">
             <address><a href="mailto:info@revolv.org">info@revolv.org</a></address>
@@ -192,81 +190,122 @@
             <i class="fa fa-linkedin"></i>
             <i class="fa fa-google-plus"></i>
         </div>
-
-
-
     <div class="become-host-pop-up">
         <div>
-            {#        <div class="popupCloseButton">X</div>#}
             <div class="event-form">
                 <br>
                 <header><span>HOST</span> AN EVENT</header>
                 <hr>
-                <label>Your Name</label><input type="text" name="name"/>
-                <label>Email</label><input type="email" name="email"/>
-                <label>Event Title</label><input type="text" name="eventtitle"/>
-                <label>Date</label><input type="date" name="date"/>
-                <label>Address</label><input type="text" name="address"/>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label>City</label><input type="text" name="city"/>
+                <form method="POST" id="host_event_form">
+                    {% csrf_token %}
+                    <label>Your Name</label><input type="text" name="name" required/>
+                    <label>Email</label><input type="email" name="email" required/>
+                    <label>Event Title</label><input type="text" name="event_title" required/>
+                    <label>Date</label><input type="date" name="date" required/>
+                    <label>Address</label><input type="text" name="address" id="id_address" required/>
+                    <label></label>
+                    <input id="latitude" type="hidden" name="latitude">
+                    <input id="longitude" type="hidden" name="longitude">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>City</label><input type="text" name="city" required/>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>State</label><input type="text" name="state" required/>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Zip Code</label><input type="number" name="zipcode" required/>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <label>State</label><input type="text" name="state"/>
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Zip Code</label><input type="number" name="zipcode"/>
-                    </div>
-                </div>
-                <label>Event Details</label><input type="text" name="eventdetails"/>
-                <label>Link to your Facebook event or Eventbrite page</label><input type="text"
-                                                                                    name="eventbrite"/><br><br>
-                <button type="submit">HOST AN EVENT</button>
+                    <label>Event Details</label><input type="text" name="event_detail" required/>
+                    <label>Link to your Facebook event or Eventbrite page</label><input type="text"
+                                                                                        name="eventbrite"/><br><br>
+                    <button type="submit">HOST AN EVENT</button>
+                    <span class="response_message"></span>
+                </form>
                 <br><br>
+            </div>
+        </div>
+        <script src="{% static 'typeahead/typeahead.bundle.js' %}"></script>
+        <script src="{% static 'typeahead/typeahead-addresspicker.js' %}"></script>
+    </div>
+
+    <div class="become-sponsor-pop-up">
+        <div>
+            <div class="event-form">
+                <form>
+                    <br>
+                    <header><span>BECOME A SPONSER</span></header>
+                    <hr>
+                    <label>Logo</label><br>
+                    <div style="height:0px;overflow:hidden">
+                        <input type="file" id="sponsorFileInput" name="fileInput"/>
+                    </div>
+                    <img type="button" id="sponsorImage" onclick="chooseSponsorFile();" src="/static/images/upload_image@1x.png"><br>
+                    <label>Name</label><input type="text" name="partner_name"/>
+                    <label>Email</label><input type="email" name="partner_email"/>
+                    <label>Organization</label><input type="text" name="organization"/>
+                    <div class="megawatt">
+                        <input type="checkbox" name="campaign" required>We agree to financially support the campaign:<br>
+                        <ul>
+                            <li><span>Megawatt Sponsor (name and logo listed on page): $1,500</span></li>
+                            <li><span>Kilowatt Sponsor (name listed on page, no logo)</span></li>
+                            <p class="required"><span>*</span>RE-volv is a 501c3 nonprofit. All donations are tax-deductible.
+                            </p>
+                        </ul>
+                    </div>
+                    <button type="submit">Become a Sponser</button>
+                    <br><br>
+                </form>
             </div>
         </div>
     </div>
 
-
     <div class="become-partner-pop-up">
         <div>
-            {#        <div class="popupCloseButton_3">X</div>#}
             <div class="event-form">
                 <br>
                 <header><span>BECOME</span> A PARTNER</header>
                 <hr>
                 <label>Logo</label><br>
-                <img src="/static/images/upload_image@1x.png" class="image-upload"><br>
-                {#        <button class="image-upload" type="submit">Choose file</button><br>#}
-                <label>Name</label><input type="text" name="name"/>
-                <label>Email</label><input type="email" name="email"/>
-                <label>Organization</label><input type="text" name="eventtitle"/>
-                <form class="megawatt" action="">
-                    <input type="checkbox" name="campaign">We agree to promote Solar Education Week by:<br>
-                    <ul>
-                        <li><span>sending at least three emails to our network encouraging them to host events.</span>
-                        </li>
-                        <li>
-                            <span>Sharing at least 10 social media posts leading up to and during Solar Education Week.</span>
-                        </li>
-                        <li><span>Do yo have another way of promoting Solar Education Week you'd like to offer?<br>
-                                    Let us know!</span></li>
-                        <li type="none"><span><input type="text"></span></li>
-                    </ul>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div style="height:0px;overflow:hidden">
+                        <input type="file" id="fileInput" name="fileInput" />
+                    </div>
+                    <img id="image" type="button" onclick="choosePartnerFile();" src="/static/images/upload_image@1x.png"><br>
+                    <label>Name</label><input type="text" name="partner_name"/>
+                    <label>Email</label><input type="email" name="partner_email"/>
+                    <label>Organization</label><input type="text" name="organization"/>
+                    <div class="megawatt">
+                        <input type="checkbox" name="campaign" required>We agree to promote Solar Education Week by:<br>
+                        <ul>
+                            <li><span>sending at least three emails to our network encouraging them to host events.</span>
+                            </li>
+                            <li>
+                                <span>Sharing at least 10 social media posts leading up to and during Solar Education Week.</span>
+                            </li>
+                            <li><span>Do yo have another way of promoting Solar Education Week you'd like to offer?<br>
+                                        Let us know!</span></li>
+                            <li type="none"><span><input type="text"></span></li>
+                        </ul>
+                    </div>
+                    <button type="submit">Become a Partner</button>
+                    <hr style="margin: 15px 0 10px 0;"/>
+                    <div class="megawatt">
+                        Are you a foundation or company interested in sponsoring? <span class="partner-click-here">Click here.</span>
+                    </div>
                 </form>
-                <button type="submit">Become a Partner</button>
+                </div>
                 <br><br>
             </div>
         </div>
     </div>
-
-
     <div class="image-container-pop-up">
         <div>
             <div class="popupCloseButton_4">X</div>
             <div class="file-upload">
                 {#  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>#}
-
                 <div class="image-upload-wrap">
                     <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*"/>
                     <div class="drag-text">
@@ -283,12 +322,10 @@
             </div>
         </div>
     </div>
-
     <footer class="copyright-text">
         © 2018 Solar Education Week. All Rights Reserved
     </footer>
 </div>
 {% endblock %}
-
 </body>
 </html>

@@ -1,64 +1,92 @@
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-var map, infoWindow;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 6
+$(document).ready(function () {
+    $('a[href^="#"]').on('click', function (e) {
+        $('a').each(function () {
+            $(this).removeClass('active');
+        })
+        $(this).addClass('active');
     });
-    infoWindow = new google.maps.InfoWindow;
 
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+    $(".host-event").on('click', function(){
+        $('.become-host-pop-up').fadeIn('slow');
+    });
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
-        map.setCenter(pos);
-      }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  }
+    $(".become-partner").on('click', function(){
+        $('.become-partner-pop-up').fadeIn('slow');
+    });
 
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                          'Error: The Geolocation service failed.' :
-                          'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-  }
+    $(document).keydown(function(e) {
+        if (e.keyCode == 27) {
+            $('.become-host-pop-up').fadeOut();
+            $('.become-partner-pop-up').fadeOut();
+            $(".become-sponsor-pop-up").fadeOut();
+            $("#host_event_form")[0].reset();
+        }
+    });
 
-  $(document).ready(function () {
-		$('a[href^="#"]').on('click', function (e) {
-			$('a').each(function () {
-				$(this).removeClass('active');
-			})
-			$(this).addClass('active');
-		});
+    $(".partner-click-here").on('click', function (e) {
+        $('.become-partner-pop-up').fadeOut();
+        $(".become-sponsor-pop-up").fadeIn('slow');
+    });
 
-	    $(".host-event").on('click', function(){
-            $('.become-host-pop-up').fadeIn('slow');
-        });
+    var addressPicker = new AddressPicker({
+        map: {
+            center: new google.maps.LatLng(36.778259, -119.417931),
+            id: '#map',
+            displayMarker: true,
+            zoom: 3
+        },
+        zoomForLocation: 18,
+        draggable: false,
+        reverseGeocoding: true,
+        utocompleteService: {
+            componentRestrictions: {
+                country: 'US'
+            }
+        }
+    });
+       // instantiate the typeahead UI
+    $('#id_address').typeahead(null, {
+        displayKey: 'description',
+        source: addressPicker.ttAdapter()
+    });
+    // add click listeners
+    addressPicker.bindDefaultTypeaheadEvent($('#id_address'));
+    $(addressPicker).on('addresspicker:selected', function (event, result) {
+        $("#latitude").val(result.lat());
+        $("#longitude").val(result.lng());
+    });
 
-        $(".become-partner").on('click', function(){
-            $('.become-partner-pop-up').fadeIn('slow');
-        });
 
-        $(document).keydown(function(e) {
-            if (e.keyCode == 27) {
-                $('.become-host-pop-up').fadeOut();
-                $('.become-partner-pop-up').fadeOut();
+    $("#host_event_form").on('submit', function(e) {
+        $.ajax({
+            type: "POST",
+            url: "host-event/",
+            data: $("#host_event_form").serialize(),
+            success: function(data)
+            {
+                if(data.success) {
+                    $(".response_message").removeClass("error");
+                    $(".response_message").addClass("success");
+                } else {
+                    $(".response_message").removeClass("success");
+                    $(".response_message").addClass("error");
+                }
+                $(".response_message").text(data.message);
             }
         });
-	});
+        e.preventDefault();
+    });
+
+});
+
+function chooseSponsorFile() {
+    $("#sponsorFileInput").click();
+    var new_image = $("#sponsorFileInput").val();
+    $("#sponsorImage").attr("src", new_image);
+}
+
+function choosePartnerFile() {
+    $("#fileInput").click();
+    var new_image = $("#fileInput").val();
+    $("#image").attr("src", new_image);
+}
