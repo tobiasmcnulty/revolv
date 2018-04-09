@@ -22,3 +22,18 @@ class HostEvent(models.Model):
         decimal_places=14,
         default=0.0
     )
+
+
+class BecomePartner(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    organization = models.CharField(max_length=255)
+    promote_solar = models.BooleanField(default=False)
+    promoting_way = models.TextField()
+
+
+class BecomeSponsor(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    organization = models.CharField(max_length=255)
+    financially_support = models.BooleanField(default=False)

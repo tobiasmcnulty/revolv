@@ -249,7 +249,8 @@
     <div class="become-sponsor-pop-up">
         <div>
             <div class="event-form">
-                <form>
+                <form id="become_sponsor_form">
+                    {% csrf_token %}
                     <br>
                     <header><span>BECOME A SPONSER</span></header>
                     <hr>
@@ -258,19 +259,20 @@
                         <input type="file" id="sponsorFileInput" name="fileInput"/>
                     </div>
                     <img type="button" id="sponsorImage" onclick="chooseSponsorFile();" src="/static/images/upload_image@1x.png"><br>
-                    <label>Name</label><input type="text" name="partner_name"/>
-                    <label>Email</label><input type="email" name="partner_email"/>
-                    <label>Organization</label><input type="text" name="organization"/>
+                    <label>Name</label><input type="text" name="sponsor_name" required/>
+                    <label>Email</label><input type="email" name="sponsor_email" required/>
+                    <label>Organization</label><input type="text" name="sponsor_organization" required/>
                     <div class="megawatt">
-                        <input type="checkbox" name="campaign" required>We agree to financially support the campaign:<br>
+                        <input type="checkbox" name="financially_support">We agree to financially support the campaign:<br>
                         <ul>
                             <li><span>Megawatt Sponsor (name and logo listed on page): $1,500</span></li>
-                            <li><span>Kilowatt Sponsor (name listed on page, no logo)</span></li>
+                            <li><span>Kilowatt Sponsor (name listed on page, no logo): $750</span></li>
                             <p class="required"><span>*</span>RE-volv is a 501c3 nonprofit. All donations are tax-deductible.
                             </p>
                         </ul>
                     </div>
                     <button type="submit">Become a Sponser</button>
+                    <span class="sponsor_response_message"></span>
                     <br><br>
                 </form>
             </div>
@@ -284,17 +286,17 @@
                 <header><span>BECOME</span> A PARTNER</header>
                 <hr>
                 <label>Logo</label><br>
-                <form method="POST">
+                <form id="become_partner_form">
                     {% csrf_token %}
                     <div style="height:0px;overflow:hidden">
                         <input type="file" id="fileInput" name="fileInput" />
                     </div>
                     <img id="image" type="button" onclick="choosePartnerFile();" src="/static/images/upload_image@1x.png"><br>
-                    <label>Name</label><input type="text" name="partner_name"/>
-                    <label>Email</label><input type="email" name="partner_email"/>
-                    <label>Organization</label><input type="text" name="organization"/>
+                    <label>Name</label><input type="text" name="partner_name" required/>
+                    <label>Email</label><input type="email" name="partner_email" required/>
+                    <label>Organization</label><input type="text" name="partner_organization" required/>
                     <div class="megawatt">
-                        <input type="checkbox" name="campaign" required>We agree to promote Solar Education Week by:<br>
+                        <input type="checkbox" name="promote_solar">We agree to promote Solar Education Week by:<br>
                         <ul>
                             <li><span>sending at least three emails to our network encouraging them to host events.</span>
                             </li>
@@ -303,10 +305,11 @@
                             </li>
                             <li><span>Do yo have another way of promoting Solar Education Week you'd like to offer?<br>
                                         Let us know!</span></li>
-                            <li type="none"><span><input type="text"></span></li>
+                            <li type="none"><span><input type="text" name="promoting_way"></span></li>
                         </ul>
                     </div>
                     <button type="submit">Become a Partner</button>
+                    <span class="partner_response_message"></span>
                     <hr style="margin: 15px 0 10px 0;"/>
                     <div class="megawatt">
                         Are you a foundation or company interested in sponsoring? <span class="partner-click-here">Click here.</span>

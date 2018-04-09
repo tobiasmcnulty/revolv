@@ -3,7 +3,7 @@ import datetime
 from django.http import JsonResponse
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from revolv.solar_ed_week.models import HostEvent
+from revolv.solar_ed_week.models import HostEvent, BecomePartner, BecomeSponsor
 
 
 def solar_education(request):
@@ -52,9 +52,46 @@ def host_event(request):
 
 
 def become_partner(request):
+    data = {}
+    try:
+        name = request.POST.get('partner_name')
+        email = request.POST.get('partner_email')
+        organization = request.POST.get('partner_organization')
+        promote_solar = request.POST.get('promote_solar', False)
+        promoting_way = request.POST.get('promoting_way')
+        BecomePartner.objects.create(
+            name=name,
+            email=email,
+            organization=organization,
+            promote_solar=promote_solar,
+            promoting_way=promoting_way
+        )
+        data["success"] = True
+        data["message"] = "Saved successfully"
+    except Exception:
+        data["success"] = False
+        data["message"] = "Error while saving data"
 
-    name = request.POST.get('partner_name')
-    email = request.POST.get('partner_email')
-    organization = request.POST.get('organization')
+    return JsonResponse(data)
 
-    return render(request, '/404.html')
+
+def become_sponsor(request):
+    data = {}
+    try:
+        name = request.POST.get('sponsor_name')
+        email = request.POST.get('sponsor_email')
+        organization = request.POST.get('sponsor_organization')
+        financially_support = request.POST.get('financially_support', False)
+        BecomeSponsor.objects.create(
+            name=name,
+            email=email,
+            organization=organization,
+            financially_support=financially_support
+        )
+        data["success"] = True
+        data["message"] = "Saved successfully"
+    except Exception:
+        data["success"] = False
+        data["message"] = "Error while saving data"
+
+    return JsonResponse(data)
