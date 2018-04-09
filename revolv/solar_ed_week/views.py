@@ -1,10 +1,16 @@
+import datetime
+
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
 from revolv.solar_ed_week.models import HostEvent
 
 
 def solar_education(request):
-    return render(request, 'solar_ed_week/solar_ed_week.html')
+    today = datetime.datetime.today()
+    host_events = HostEvent.objects.filter(date__gte=today).values()
+    return render_to_response('solar_ed_week/solar_ed_week.html',
+                              context_instance=RequestContext(request, {'host_events': host_events}))
 
 
 def host_event(request):
