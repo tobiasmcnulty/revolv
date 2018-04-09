@@ -55,7 +55,14 @@ $(document).ready(function () {
 
                             var title = $("#event-title").val();
                             var details = $("#details").val();
-                            addMarker(title, details, latitude, longitude);
+                            var date = $("#date").val();
+                            var address = $("#address").val();
+                            var city = $("#city").val();
+                            var state = $("#state").val();
+                            var link = $("#link").val();
+                            var name = $("#name").val();
+                            var email = $("#email").val();
+                            addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email);
                             $('.become-host-pop-up').fadeOut();
                         } else {
                             $(".response_message").removeClass("success");
@@ -117,7 +124,7 @@ function initialize() {
 
 }
 
-function addMarker(title, details, latitude, longitude) {
+function addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email) {
     var position = new google.maps.LatLng(latitude, longitude);
     bounds.extend(position);
     var marker = new google.maps.Marker({
@@ -129,7 +136,17 @@ function addMarker(title, details, latitude, longitude) {
     // Allow each marker to have an info window
     google.maps.event.addListener(marker, 'click', (function(marker) {
         return function() {
-            var detail = "<div><h4>" + title + "</h4><p>" + details + "</p></div>";
+            var detail = "<div>";
+            detail += "<div><h4>" + title + "</h4></div>";
+            detail += "<div><span><i>Date: </i></span><b>" + date + "</b></div>";
+            detail += "<div><span><i>Address: </i></span><b>" + address + "</b></div>";
+            detail += "<div><span><i>City: </i></span><b>" + city + "</b></div>";
+            detail += "<div><span><i>State: </i></span><b>" + state + "</b></div>";
+            detail += "<div><span><i>Details: </i></span><b>" + details + "</b></div>";
+            detail += "<div><span><i>Link: </i></span><b><a href='" + link + "'>" + link + "</a></b></div>";
+            detail += "<div><span><i>Name: </i></span><b>" + name + "</b></div>";
+            detail += "<div><span><i>Email: </i></span><b>" + email + "</b></div>";
+            detail += "</div>";
             infoWindow.setContent(detail);
             infoWindow.open(map, marker);
         }
