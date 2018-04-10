@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import ImageField
 
 
 class HostEvent(models.Model):
@@ -30,6 +31,11 @@ class BecomePartner(models.Model):
     organization = models.CharField(max_length=255)
     promote_solar = models.BooleanField(default=False)
     promoting_way = models.TextField()
+    logo = ImageField(
+        upload_to='become_partner/',
+        blank=True,
+        null=True
+    )
 
 
 class BecomeSponsor(models.Model):
@@ -37,3 +43,8 @@ class BecomeSponsor(models.Model):
     email = models.CharField(max_length=255)
     organization = models.CharField(max_length=255)
     financially_support = models.BooleanField(default=False)
+    logo = ImageField(
+        upload_to='become_sponsor/',
+        blank=True,
+        null=True
+    )

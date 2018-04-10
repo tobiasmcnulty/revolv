@@ -21,17 +21,14 @@ $(document).ready(function () {
 
     $(document).keydown(function(e) {
         if (e.keyCode == 27) {
-            $('.become-host-pop-up').fadeOut();
-            $('.become-partner-pop-up').fadeOut();
-            $(".become-sponsor-pop-up").fadeOut();
-            $("#host_event_form")[0].reset();
-            $("#become_partner_form")[0].reset();
-            $("#become_sponsor_form")[0].reset();
+            closeHostEventPopup();
+            closeBecomePartnerPopup();
+            closeBecomeSponsorPopup();
         }
     });
 
     $(".partner-click-here").on('click', function (e) {
-        $('.become-partner-pop-up').fadeOut();
+        closeBecomePartnerPopup();
         $(".become-sponsor-pop-up").fadeIn('slow');
     });
 
@@ -65,13 +62,13 @@ $(document).ready(function () {
                             var name = $("#name").val();
                             var email = $("#email").val();
                             addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email);
-                            $('.become-host-pop-up').fadeOut();
-                            $("#host_event_form")[0].reset();
+                            closeHostEventPopup();
                         } else {
                             $(".response_message").removeClass("success");
                             $(".response_message").addClass("error");
+                            $(".response_message").text(data.message);
                         }
-                        $(".response_message").text(data.message);
+
                     }
                 });
             } else {
@@ -82,63 +79,74 @@ $(document).ready(function () {
     });
 
     $("#become_partner_form").on('submit', function(e) {
+        var form = $("#become_partner_form")[0];
+        var formData = new FormData(form);
+
         $.ajax({
             type: "POST",
             url: "become-partner/",
-            data: $("#become_partner_form").serialize(),
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function(data)
             {
                 if(data.success) {
                     $(".partner_response_message").removeClass("error");
                     $(".partner_response_message").addClass("success");
-                    $('.become-partner-pop-up').fadeOut();
-                    $("#become_partner_form")[0].reset();
+                    closeBecomePartnerPopup();
                 } else {
                     $(".partner_response_message").removeClass("success");
                     $(".partner_response_message").addClass("error");
+                    $(".partner_response_message").text(data.message);
                 }
-                $(".partner_response_message").text(data.message);
             }
         });
         e.preventDefault();
     });
 
     $("#become_sponsor_form").on('submit', function(e) {
+        var form = $("#become_sponsor_form")[0];
+        var formData = new FormData(form);
+
         $.ajax({
             type: "POST",
             url: "become-sponsor/",
-            data: $("#become_sponsor_form").serialize(),
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function(data)
             {
                 if(data.success) {
                     $(".sponsor_response_message").removeClass("error");
                     $(".sponsor_response_message").addClass("success");
-                    $(".become-sponsor-pop-up").fadeOut();
-                    $("#become_sponsor_form")[0].reset();
+                    closeBecomeSponsorPopup();
                 } else {
                     $(".sponsor_response_message").removeClass("success");
                     $(".sponsor_response_message").addClass("error");
+                    $(".sponsor_response_message").text(data.message);
                 }
-                $(".sponsor_response_message").text(data.message);
             }
         });
         e.preventDefault();
     });
 
+    $("#partnerLogoImage").on("click", function(){
+        $("#partnerFileInput").click();
+    });
+
+    $("#sponsorLogoImage").on("click", function(){
+        $("#sponsorFileInput").click();
+    });
+
+    $("#partnerFileInput").on("change", function(){
+        readURL(this, "partnerLogoImage");
+    });
+
+    $("#sponsorFileInput").on("change", function(){
+        readURL(this, "sponsorLogoImage");
+    });
+
 });
-
-function chooseSponsorFile() {
-    $("#sponsorFileInput").click();
-    var new_image = $("#sponsorFileInput").val();
-    $("#sponsorImage").attr("src", new_image);
-}
-
-function choosePartnerFile() {
-    $("#fileInput").click();
-    var new_image = $("#fileInput").val();
-    $("#image").attr("src", new_image);
-}
-
 
 
 jQuery(function($) {
@@ -201,4 +209,37 @@ function addMarker(title, details, latitude, longitude, date, address, city, sta
 
     // Automatically center the map fitting all markers on the screen
     map.fitBounds(bounds);
+}
+
+function readURL(input, id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function closeHostEventPopup() {
+    $('.become-host-pop-up').fadeOut();
+    $("#host_event_form")[0].reset();
+    $(".response_message").text("");
+}
+
+function closeBecomePartnerPopup() {
+    $('.become-partner-pop-up').fadeOut();
+    $("#become_partner_form")[0].reset();
+    $(".partner_response_message").text("");
+    $("#partnerFileInput").val('');
+    $('#partnerLogoImage').attr('src', '/static/images/upload_image@1x.png');
+}
+
+function closeBecomeSponsorPopup() {
+    $(".become-sponsor-pop-up").fadeOut();
+    $("#become_sponsor_form")[0].reset();
+    $(".sponsor_response_message").text("");
+    $("#sponsorFileInput").val('');
+    $('#sponsorLogoImage').attr('src', '/static/images/upload_image@1x.png');
 }

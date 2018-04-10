@@ -248,13 +248,13 @@
                 <form id="become_sponsor_form">
                     {% csrf_token %}
                     <br>
-                    <header><span>BECOME A SPONSER</span></header>
+                    <header><span>BECOME A SPONSOR</span></header>
                     <hr>
                     <label>Logo</label><br>
                     <div style="height:0px;overflow:hidden">
-                        <input type="file" id="sponsorFileInput" name="fileInput"/>
+                        <input type="file" id="sponsorFileInput" name="sponsor_logo"/>
                     </div>
-                    <img type="button" id="sponsorImage" onclick="chooseSponsorFile();" src="/static/images/upload_image@1x.png"><br>
+                    <img type="button" id="sponsorLogoImage" src="/static/images/upload_image@1x.png"><br>
                     <label>Name</label><input type="text" name="sponsor_name" required/>
                     <label>Email</label><input type="email" name="sponsor_email" required/>
                     <label>Organization</label><input type="text" name="sponsor_organization" required/>
@@ -285,9 +285,9 @@
                 <form id="become_partner_form">
                     {% csrf_token %}
                     <div style="height:0px;overflow:hidden">
-                        <input type="file" id="fileInput" name="fileInput" />
+                        <input type="file" id="partnerFileInput" name="partner_logo" />
                     </div>
-                    <img id="image" type="button" onclick="choosePartnerFile();" src="/static/images/upload_image@1x.png"><br>
+                    <img id="partnerLogoImage" type="button" src="/static/images/upload_image@1x.png"><br>
                     <label>Name</label><input type="text" name="partner_name" required/>
                     <label>Email</label><input type="email" name="partner_email" required/>
                     <label>Organization</label><input type="text" name="partner_organization" required/>
@@ -313,27 +313,6 @@
                 </form>
                 </div>
                 <br><br>
-            </div>
-        </div>
-    </div>
-    <div class="image-container-pop-up">
-        <div>
-            <div class="popupCloseButton_4">X</div>
-            <div class="file-upload">
-                {#  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>#}
-                <div class="image-upload-wrap">
-                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*"/>
-                    <div class="drag-text">
-                        <img src="/static/images/upload_image@1x.png">
-                    </div>
-                </div>
-                <div class="file-upload-content">
-                    <img class="file-upload-image" src="#" alt="your image"/>
-                    <div class="image-title-wrap">
-                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
-                                class="image-title">Uploaded Image</span></button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -722,7 +722,7 @@ html, body {
 }
 
 /* Popup box BEGIN */
-.become-host-pop-up, .become-sponsor-pop-up, .become-partner-pop-up, .image-container-pop-up {
+.become-host-pop-up, .become-sponsor-pop-up, .become-partner-pop-up {
     background: rgba(0, 0, 0, .4);
     cursor: pointer;
     display: none;
@@ -733,7 +733,7 @@ html, body {
     z-index: 10000;
 }
 
-.become-host-pop-up > div, .become-sponsor-pop-up > div, .become-partner-pop-up > div, .image-container-pop-up > div {
+.become-host-pop-up > div, .become-sponsor-pop-up > div, .become-partner-pop-up > div {
     background-color: #fff;
     box-shadow: 10px 10px 60px #555;
     height: auto;
@@ -993,13 +993,13 @@ body {
     height: 50px;
 }
 
-.become-host-pop-up header, .become-partner-pop-up header {
+.become-host-pop-up header, .become-partner-pop-up header, .become-sponsor-pop-up header {
     font-family: Rubik-Light;
     font-size: 20pt;
     text-align: center;
 }
 
-.become-host-pop-up header > span, .become-partner-pop-up header > span {
+.become-host-pop-up header > span, .become-partner-pop-up header > span, .become-sponsor-pop-up header > span {
     font-family: Rubik-Black;
 }
 
@@ -1038,4 +1038,8 @@ body {
     #event-host-button, #become-partner-button {
         display: none;
     }
+}
+
+.become-sponsor-pop-up img {
+    height: 100px;
 }

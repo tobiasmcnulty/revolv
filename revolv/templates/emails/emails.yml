@@ -523,3 +523,35 @@ intake_form:
 
                      <p>{{orgInterestBlock}}</p>
             "
+
+become_partner_template:
+       subject: "Become A Partner"
+       body:
+            "
+            Enquiry details.
+
+              Name: {{name}}
+
+              Email: {{email}}
+
+              Organization: {{organization}}
+
+              Agree to promote Solar Education Week: {{promote_solar}}
+
+              Way of promoting Solar Education Week: {{promoting_way}}
+            "
+
+become_sponsor_template:
+       subject: "Become A Sponsor"
+       body:
+            "
+            Enquiry details.
+
+              Name: {{name}}
+
+              Email: {{email}}
+
+              Organization: {{organization}}
+
+              Agree to financially support the campaign: {{financially_support}}
+            "
