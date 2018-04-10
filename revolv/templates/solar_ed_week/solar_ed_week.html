@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="/static/css/solar_ed_week.css?version={{ version_number }}">
-    <!--<link rel="stylesheet" href="{% static "typeahead/typeahead.css" %}" />-->
-    <!--<link rel="stylesheet" href="{% static "chosen/chosen.css" %}" />-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -41,11 +39,11 @@
         <label class="burger-label" for="toggle">&#9776;</label>
         <input type="checkbox" id="toggle"/>
         <ul class="menu-list">
-            <li><a href="#contact">CONTACT US</a></li>
-            <li><a href="#partner">PARTNER AND SPONSOR</a></li>
-            <li><a href="#the-why">THE WHY</a></li>
-            <li><a href="#the-how">THE HOW</a></li>
             <li><a href="#the-what" class="active">THE WHAT</a></li>
+            <li><a href="#the-how">THE HOW</a></li>
+            <li><a href="#the-why">THE WHY</a></li>
+            <li><a href="#partner">PARTNER & SPONSOR</a></li>
+            <li><a href="#contact">CONTACT US</a></li>
         </ul>
     </nav>
     <nav class="menu nav" id="nav">
@@ -53,11 +51,11 @@
         <label class="burger-label" for="toggle">&#9776;</label>
         <input type="checkbox" id="toggle"/>
         <ul class="menu-list">
-            <li><a href="#contact">CONTACT US</a></li>
-            <li><a href="#partner">PARTNER AND SPONSOR</a></li>
-            <li><a href="#the-why">THE WHY</a></li>
-            <li><a href="#the-how">THE HOW</a></li>
             <li><a href="#the-what" class="active">THE WHAT</a></li>
+            <li><a href="#the-how">THE HOW</a></li>
+            <li><a href="#the-why">THE WHY</a></li>
+            <li><a href="#partner">PARTNER & SPONSOR</a></li>
+            <li><a href="#contact">CONTACT US</a></li>
         </ul>
     </nav>
 {% block body %}
@@ -96,13 +94,12 @@
                     </div>
                     <div class="col-sm-4  participat-block">
                         <div class="row-header bottom-space"> ATTEND</div>
-                        <p class="paragraph">Check the map for events in your area! Don’t see one? Host an Event!on’t see one? <a href="#the-how" class="host-event">Host
+                        <p class="paragraph">Check the map for events in your area! Don’t see one? <a href="#the-how" class="host-event">Host
                             an Event!</a></p>
                     </div>
                     <div class="col-sm-4 partner-separator participat-block">
                         <div class="row-header"> PARTNER</div>
-                        <p class="paragraph">Does your organization support renewable energy? Join RE-volv, GRID Alternatives,
-                            and Sierra Student Coalition to mobilize your members during Solar Education Week!</p>
+                        <p class="paragraph">Does your organization support renewable energy? Join the movement and mobilize your members during Solar Education Week!</p>
                         <button id="become-partner-button" class="event-host become-partner" type="submit">Become a Partner</button>
                     </div>
                 </div>
@@ -114,15 +111,14 @@
             <h1 class="bold-header"><b>SOLAR EDUCATION WEEK</b></h1>
             <h1 class="sub-bold-header">PARTNERS</h1>
             <hr width="10%">
-            <p class="paragraph">Does your organization support renewable energy? Join the movement and mobilize your members during Solar Education Week!
-            Solar Education Week is a partnership effort by leading clean energy organizations to engage individuals across the country to organize and participate in Solar Education events!</p>
+            <p class="paragraph">Solar Education Week is a partnership effort by leading clean energy organizations to engage individuals across the country to organize and participate in Solar Education events!</p>
         </div>
         <div class="partners-images">
             <img src="/static/images/user_logos_grid@1X.png" alt="grid alternative">
             <img src="/static/images/revolv-logo@1X.png" alt="Revolv logo">
             <img src="/static/images/powershift_logo@1X.png" alt="Powershift logo">
-            <img src="/static/images/redford.jpg" alt="Redford logo">
-            <img src="/static/images/Vote_Solar_Logo.jpg" alt="Vote solar logo">
+            <img src="/static/images/redford.jpeg" alt="Redford logo">
+            <img src="/static/images/Vote_Solar_Logo.png" alt="Vote solar logo">
         </div>
         <div class="section">
             <h1 class="sub-bold-header">SPONSORS</h1>
