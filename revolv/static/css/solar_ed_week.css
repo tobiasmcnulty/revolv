@@ -349,8 +349,6 @@ html, body {
 .background-image-size-home {
     width: 100%;
     float: left;
-    /*-webkit-filter: brightness(50%); !* Safari 6.0 - 9.0 *!*/
-    /*filter: brightness(50%);*/
 }
 
 /*Date display section over the image*/
@@ -535,6 +533,11 @@ html, body {
 
 .sponsors-image {
     text-align: center;
+
+}
+
+.sponsors-image img {
+    padding: 5px;
 
 }
 
@@ -787,19 +790,39 @@ html, body {
 }
 
 @media (max-width: 768px) {
-    .become-host-pop-up div:first-child {
-        width: 75%;
-        /*max-height: 600px;*/
-        /*overflow-y: scroll;*/
+    .become-host-pop-up > div:first-child, .become-partner-pop-up > div:first-child, .become-sponsor-pop-up > div:first-child {
+        max-height: 600px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    .become-host-pop-up > div:first-child {
+        width: 50%;
+        margin-top: 20px;
+    }
+    .become-partner-pop-up > div:first-child, .become-sponsor-pop-up > div:first-child {
+        width: 60%;
+        margin: 20px auto;
+    }
+    .event-form {
+        width: 85%;
+    }
+    .row .city-class {
+        padding-right: 0px;
+    }
+    .row .zip-code-class {
+        padding-left: 0px;
     }
 }
 
-@media (max-width: 768px) {
-    .become-partner-pop-up div:first-child {
+@media (max-width: 550px) {
+    .become-host-pop-up > div:first-child, .become-partner-pop-up > div:first-child, .become-sponsor-pop-up > div:first-child {
         width: 75%;
-        margin: 20px auto;
-        /*max-height: 600px;*/
-        /*overflow-y: scroll;*/
+    }
+    .event-form {
+        width: 95%;
+    }
+    .become-host-pop-up button.host-event-btn {
+        width: 100%;
     }
 }
 
@@ -1007,11 +1030,6 @@ body {
     float: left;
 }
 
-.event-form .row .col-sm-4 {
-    width: 32.1%;
-    padding-left: 0px;
-}
-
 .response_message {
     padding: 10px;
 }
@@ -1034,12 +1052,21 @@ body {
     color: #ffc323;
 }
 
-@media screen and (max-width: 768px) {
-    #event-host-button, #become-partner-button {
-        display: none;
-    }
+.row {
+    padding: 15px;
+}
+
+.row .city-class {
+    padding-left: 0px;
 }
 
 .become-sponsor-pop-up img {
     height: 100px;
+}
+.row .state-class {
+    padding: 0px;
+}
+
+.row .zip-code-class {
+    padding-right: 0px;
 }
