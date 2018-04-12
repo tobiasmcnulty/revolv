@@ -549,9 +549,9 @@ html, body {
     }
 }
 
-.partners-images > img, .section > img {
+.partners-images a > img, .section > img {
     margin-right: 10px;
-    width: 30%;
+    width: 25%;
     padding: 5px;
 }
 

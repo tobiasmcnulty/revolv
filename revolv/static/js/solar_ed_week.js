@@ -2,6 +2,7 @@
 var map;
 var bounds;
 var infoWindow;
+var oms;
 
 $(document).ready(function () {
     $('a[href^="#"]').on('click', function (e) {
@@ -154,6 +155,9 @@ jQuery(function($) {
     var script = document.createElement('script');
     script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&sensor=false&callback=initialize";
     document.body.appendChild(script);
+    var markerSpiderfierScript = document.createElement('script');
+    markerSpiderfierScript.src = "//cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js";
+    document.body.appendChild(markerSpiderfierScript);
 });
 
 function initialize() {
@@ -161,22 +165,22 @@ function initialize() {
     var mapOptions = {
         mapTypeId: 'roadmap',
         center: new google.maps.LatLng(36.778259, -119.417931),
-        zoom: 5
+        zoom: 7
     };
 
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     map.setTilt(45);
 
+    oms = new OverlappingMarkerSpiderfier(map, {
+        markersWontMove: true,
+        markersWontHide: true,
+        basicFormatEvents: true
+      });
+
     // Display multiple markers on a map
     infoWindow = new google.maps.InfoWindow();
     initializeMarker();
-    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
-    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(5);
-        google.maps.event.removeListener(boundsListener);
-    });
-
 }
 
 function addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email) {
@@ -189,7 +193,7 @@ function addMarker(title, details, latitude, longitude, date, address, city, sta
     });
 
     // Allow each marker to have an info window
-    google.maps.event.addListener(marker, 'click', (function(marker) {
+    google.maps.event.addListener(marker, 'spider_click', (function(marker) {
         return function() {
             var detail = "<div>";
             detail += "<div><h4>" + title + "</h4></div>";
@@ -206,6 +210,8 @@ function addMarker(title, details, latitude, longitude, date, address, city, sta
             infoWindow.open(map, marker);
         }
     })(marker));
+
+    oms.addMarker(marker);
 
     // Automatically center the map fitting all markers on the screen
     map.fitBounds(bounds);
