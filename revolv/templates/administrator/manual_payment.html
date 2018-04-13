@@ -1,0 +1,77 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static "css/dashboard.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/manual_payment.css" %}">
+<script type="text/javascript" src="{% static 'js/manual_payment.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<div class='main-row dashboard'>
+    <div class="container-fluid after-header">
+
+        <div class="dashboard-sidebar col-md-3">
+            {% include "base/partials/dashboard_sidebar.html" with user=user %}
+        </div>
+        <div class="col-md-9 manual-payment">
+            <div class="row">
+
+                <div class="module-box payment-module">
+                    <form id="manual_payment_form">
+                        {% csrf_token %}
+                        <div class="inputs">
+                            <h1 class="title-h5">Payment Manually</h1>
+                            <div class="input-group">
+                                <label for="first_name">First name</label>
+                                <div class="input-group">
+                                    <input name="first_name" id="first_name" type="text"
+                                           class="form-control donation-field" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="last_name">Last name</label>
+                                <div class="input-group">
+                                    <input name="last_name" id="last_name" type="text"
+                                           class="form-control donation-field" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="project_name">Select project</label>
+                                <select class="form-control donation-field" id="project_name" name="project_id" required>
+                                    {% for project in active_projects %}
+                                    <option value="{{ project.id }}">{{ project.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="amount">Donation to the project</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control donation-field" step="any"
+                                           min="0" name="amount" id="amount" required>
+                                    <span class="input-group-addon">$</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="manual-payment-buttons">
+                            <button type="submit" class="stripe-button-el payment-button">
+                                <span>Add Payment</span>
+                            </button>
+                            <button type="reset" class="stripe-button-el reset-button">
+                                <span>Reset</span>
+                            </button>
+                        </div>
+                        <div class="response_message"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

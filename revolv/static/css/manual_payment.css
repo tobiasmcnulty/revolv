@@ -1,0 +1,74 @@
+.module-box {
+    background: #ededed none repeat scroll 0 0;
+    margin: 0 auto;
+    min-height: 200px;
+    padding: 24px;
+    display: table;
+    width: 55%;
+    max-width: 450px;
+}
+.module-box .inputs label {
+    color: #4c4c4c;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 5px 10px;
+}
+
+.dashboard-sidebar, .manual-payment {
+    margin-top: 4rem;
+}
+@media (max-width: 991px) {
+    .module-box.payment-module .inputs .input-group:last-child > label {
+        float: left;
+        text-align: left;
+    }
+    .dashboard-sidebar {
+        width: 30%;
+        float: left;
+    }
+    .module-box.payment-module .inputs .input-group:last-child .input-group {
+        float: left;
+    }
+    .module-box.payment-module .inputs .input-group .input-group {
+        width: 100%;
+    }
+}
+@media (max-width: 650px) {
+    .dashboard-sidebar {
+        width: 40%;
+    }
+}
+@media (max-width: 500px) {
+    .dashboard-sidebar {
+        width: 40%;
+    }
+}
+@media (max-width: 400px) {
+    .dashboard-sidebar {
+        width: 100%;
+    }
+    .manual-payment {
+        margin-top: 45rem;
+    }
+}
+@media (min-width: 768px) {
+    #manual-payment-buttons .reset-button, #manual-payment-buttons .payment-button {
+        width: 40%;
+    }
+    .reset-button {
+        float: right;
+    }
+}
+@media (max-width: 768px) {
+    #manual-payment-buttons .reset-button, #manual-payment-buttons .payment-button {
+        width: 100% !important;
+    }
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
