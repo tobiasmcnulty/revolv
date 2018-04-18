@@ -482,8 +482,18 @@ class Project(models.Model):
         :return:
             Return total number of donors
         """
-        anonymous_donors_count = self.get_anonymous_donors_count()
-        return self.donors.count() + anonymous_donors_count
+        user_id = User.objects.get(username='Anonymous').pk
+        anonymous_user = RevolvUserProfile.objects.get(user_id=user_id)
+
+        donor_count = Payment.objects.filter(project=self, admin_reinvestment__isnull=True).exclude(
+            user=anonymous_user).values("user").distinct().count()
+        anonymous_donors_count = Payment.objects.filter(project=self, user=anonymous_user).values("user").count()
+
+        return donor_count + anonymous_donors_count
+
+    def total_donors_user(self):
+        payments = Payment.objects.filter(project=self, admin_reinvestment__isnull=True).distinct('user__id')
+        return payments
 
     @property
     def amount_donated_organically(self):
