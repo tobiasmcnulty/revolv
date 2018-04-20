@@ -756,7 +756,7 @@ def campketcha(request):
 
 
 def sendmail(request):
-    revolv_user = get_object_or_404(RevolvUserProfile, pk=request.user.id)
+    revolv_user = get_object_or_404(RevolvUserProfile, user_id=request.user.id)
     projects = Project.objects.all()
     project_list = []
     for project in projects:
