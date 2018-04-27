@@ -14107,7 +14107,7 @@ a.How_it_Works:hover {
 }
 @media (max-width: 500px) {
     #myCarousel .carousel-fourth-img .background-image-size_home{
-        content:url(../images/mobile/Leonardo_Dicaprio_414*515.jpg);
+        content:url(../images/mobile/mobile_slide4.jpg);
     }
     #myCarousel .carousel-third-img .background-image-size_home{
         content:url(../images/mobile/mobile_slide1.jpg);
