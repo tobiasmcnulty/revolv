@@ -144,7 +144,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <div class="inputs"  >
                     <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
-                      <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control">
+                      <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control tip_edit1">
+                      <span id="edit_value1" class="input-group-addon">Edit</span>
                       <span class="input-group-addon">$</span>
                     </div>
                     <label for="total">Total</label>
@@ -177,7 +178,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   </div>
                   <label for="tip_edit">Additional support for RE-volv</label>
                   <div class="input-group">
-                    <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control">
+                    <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control tip_edit2">
+                    <span id="edit_value2" class="input-group-addon">Edit</span>
                     <span class="input-group-addon">$</span>
                   </div>
                   <label for="total">Total</label>
@@ -233,7 +235,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <div class="input-group">
                     <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
-                      <input type="number" class="form-control donation-tip" step="any" value="7.50" min="0" name="tip_edit">
+                      <input type="number" class="form-control donation-tip tip_edit3" step="any" value="7.50" min="0" name="tip_edit">
+                      <span id="edit_value3" class="input-group-addon">Edit</span>
                       <span class="input-group-addon">$</span>
                     </div>
                       <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST" id="ipad">
@@ -332,7 +335,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   <div class="inputs">
                     <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
-                      <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control">
+                      <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control tip_edit4">
+                      <span id="edit_value4" class="input-group-addon">Edit</span>
                       <span class="input-group-addon">$</span>
                     </div>
                     <label for="total">Total</label>
@@ -364,7 +368,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;
                   </div>
                   <label for="tip_edit">Additional support for RE-volv</label>
                   <div class="input-group">
-                    <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control donation-tip">
+                    <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control donation-tip tip_edit5">
+                    <span id="edit_value5" class="input-group-addon">Edit</span>
                     <span class="input-group-addon">$</span>
                   </div>
                   <label for="total">Total</label>
@@ -714,6 +719,32 @@ input:invalid {box-shadow: 0 0 5px 1px red;
     });
   }
    );
+  $('.tip_edit1, .tip_edit2, .tip_edit3, .tip_edit4, .tip_edit5').prop('readonly', true);
+  $('#edit_value1').click(function() {
+            $('.tip_edit1').prop('readonly', false);
+            $('.tip_edit1').focus();
+            $('#edit_value1').remove()
+        });
+  $('#edit_value2').click(function() {
+            $('.tip_edit2').prop('readonly', false);
+            $('.tip_edit2').focus();
+            $('#edit_value2').remove()
+        });
+  $('#edit_value3').click(function() {
+            $('.tip_edit3').prop('readonly', false);
+            $('.tip_edit3').focus();
+            $('#edit_value3').remove()
+        });
+  $('#edit_value4').click(function() {
+            $('.tip_edit4').prop('readonly', false);
+            $('.tip_edit4').focus();
+            $('#edit_value4').remove()
+        });
+  $('#edit_value5').click(function() {
+            $('.tip_edit5').prop('readonly', false);
+            $('.tip_edit5').focus();
+            $('#edit_value5').remove()
+        });
 </script>
 
 {% endblock %}

@@ -15390,3 +15390,10 @@ span.setting-donation-change {
     cursor: pointer;
     font-weight: bold;
 }
+
+#edit_value1, #edit_value2, #edit_value3, #edit_value4, #edit_value5 {
+    color: #14b1e7;
+    border-left: none;
+    cursor: pointer;
+    readonly: readonly;
+}
