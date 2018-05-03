@@ -492,8 +492,10 @@ class Project(models.Model):
         return donor_count + anonymous_donors_count
 
     def total_donors_user(self):
+        user_id = User.objects.get(username='Anonymous').pk
+        anonymous_user = RevolvUserProfile.objects.get(user_id=user_id).id
         payments = Payment.objects.filter(project=self, admin_reinvestment__isnull=True).distinct('user__id')\
-            .exclude(user_id=1810)
+            .exclude(user_id=anonymous_user)
         return payments
 
     @property
