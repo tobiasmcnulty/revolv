@@ -492,7 +492,8 @@ class Project(models.Model):
         return donor_count + anonymous_donors_count
 
     def total_donors_user(self):
-        payments = Payment.objects.filter(project=self, admin_reinvestment__isnull=True).distinct('user__id')
+        payments = Payment.objects.filter(project=self, admin_reinvestment__isnull=True).distinct('user__id')\
+            .exclude(user_id=1810)
         return payments
 
     @property
