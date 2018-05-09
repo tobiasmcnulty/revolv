@@ -1126,18 +1126,17 @@ def repayment_table(request):
     return HttpResponse(json.dumps(json_response), content_type='application/json')
 
 
+import csv
+from StringIO import StringIO
+
+from django.http import StreamingHttpResponse
+
+
 def export_csv(request):
-    """
-    Export financial report CSV from the admin side.
-    :param request:
-    :return: Generate CSV report of selected records.
-    """
-    import csv
     from django.utils.encoding import smart_str
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=RE-volv_report.csv'
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
+
     if from_date and to_date:
         import datetime
         import pytz
@@ -1145,71 +1144,84 @@ def export_csv(request):
         date2 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()
         payments = Payment.objects.filter(
             created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
-                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)]).order_by(
-            '-created_at')
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])\
+            .order_by('-created_at')\
+            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
+            .iterator()
     else:
-        payments = Payment.objects.all().order_by('-created_at')
-
-    writer = csv.writer(response, csv.excel)
-    response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
-    writer.writerow([
-        smart_str(u"FIRST NAME"),
-        smart_str(u"LAST NAME"),
-        smart_str(u"USERNAME"),
-        smart_str(u"EMAIL"),
-        smart_str(u"DATE"),
-        smart_str(u"NAME OF PROJECT"),
-        smart_str(u"DONATION TO SOLAR SEED FUND"),
-        smart_str(u"REINVESTMENT IN SOLAR SEED FUND"),
-        smart_str(u"ADMIN REINVESTMENT IN SOLAR SEED FUND"),
-        smart_str(u"DONATION TO OPERATION"),
-        smart_str(u"TOTAL DONATIONS"),
-
-    ])
-
-    for payment in payments:
-        if payment.admin_reinvestment:
-            admin_reinvestment = round(payment.amount, 2)
-        else:
-            admin_reinvestment = 0
-
-        if payment.user_reinvestment:
-            user_reinvestment = round(payment.user_reinvestment.amount, 2)
-        else:
-            user_reinvestment = 0
-
-        if payment.admin_reinvestment or payment.user_reinvestment:
-            donation_amount = 0
-        else:
-            donation_amount = payment.amount
-
-        if payment.tip:
-            tip = round(payment.tip.amount, 2)
-        else:
-            tip = 0
-
-        if payment.tip and payment.amount:
-            total = round(payment.tip.amount + payment.amount, 2)
-        if payment.tip and not payment.amount:
-            total = round(payment.tip.amount, 2)
-        if payment.amount and not payment.tip:
-            total = round(payment.amount, 2)
-        if not payment.amount and not payment.tip:
-            total = 0
-
+        payments = Payment.objects.all().order_by('-created_at')\
+            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
+            .iterator()
+    # Define a generator to stream data directly to the client
+    def stream():
+        buffer_ = StringIO()
+        writer = csv.writer(buffer_)
         writer.writerow([
-            smart_str(payment.user.user.first_name),
-            smart_str(payment.user.user.last_name),
-            smart_str(payment.user.user.username),
-            smart_str(payment.user.user.email),
-            smart_str(payment.created_at),
-            smart_str(payment.project.title),
-            smart_str(donation_amount),
-            smart_str(user_reinvestment),
-            smart_str(admin_reinvestment),
-            smart_str(tip),
-            smart_str(total),
+            smart_str(u"FIRST NAME"),
+            smart_str(u"LAST NAME"),
+            smart_str(u"USERNAME"),
+            smart_str(u"EMAIL"),
+            smart_str(u"DATE"),
+            smart_str(u"NAME OF PROJECT"),
+            smart_str(u"DONATION TO SOLAR SEED FUND"),
+            smart_str(u"REINVESTMENT IN SOLAR SEED FUND"),
+            smart_str(u"ADMIN REINVESTMENT IN SOLAR SEED FUND"),
+            smart_str(u"DONATION TO OPERATION"),
+            smart_str(u"TOTAL DONATIONS"),
+
         ])
+        for payment in payments:
+            if payment.admin_reinvestment:
+                admin_reinvestment = round(payment.amount, 2)
+            else:
+                admin_reinvestment = 0
+
+            if payment.user_reinvestment:
+                user_reinvestment = round(payment.user_reinvestment.amount, 2)
+            else:
+                user_reinvestment = 0
+
+            if payment.admin_reinvestment or payment.user_reinvestment:
+                donation_amount = 0
+            else:
+                donation_amount = payment.amount
+
+            if payment.tip:
+                tip = round(payment.tip.amount, 2)
+            else:
+                tip = 0
+
+            if payment.tip and payment.amount:
+                total = round(payment.tip.amount + payment.amount, 2)
+            if payment.tip and not payment.amount:
+                total = round(payment.tip.amount, 2)
+            if payment.amount and not payment.tip:
+                total = round(payment.amount, 2)
+            if not payment.amount and not payment.tip:
+                total = 0
+
+            writer.writerow([
+                smart_str(payment.user.user.first_name),
+                smart_str(payment.user.user.last_name),
+                smart_str(payment.user.user.username),
+                smart_str(payment.user.user.email),
+                smart_str(payment.created_at),
+                smart_str(payment.project.title),
+                smart_str(donation_amount),
+                smart_str(user_reinvestment),
+                smart_str(admin_reinvestment),
+                smart_str(tip),
+                smart_str(total),
+            ])
+            buffer_.seek(0)
+            data = buffer_.read()
+            buffer_.seek(0)
+            buffer_.truncate()
+            yield data
+
+    # Create the streaming response  object with the appropriate CSV header.
+    response = StreamingHttpResponse(stream(), content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="RE-volv_report.csv"'
     return response
 
 
@@ -1235,9 +1247,13 @@ def export_xlsx(request):
         payments = Payment.objects.filter(
             created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
                                datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0,
-                                                 pytz.UTC)]).order_by('-created_at')
+                                                 pytz.UTC)]).order_by('-created_at')\
+            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
+            .iterator()
     else:
-        payments = Payment.objects.all().order_by('-created_at')
+        payments = Payment.objects.all().order_by('-created_at') \
+            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
+            .iterator()
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = 'attachment; filename=RE-volv.xlsx'
     wb = openpyxl.Workbook()
@@ -1314,6 +1330,7 @@ def export_xlsx(request):
             c.value = row[col_num]
 
     wb.save(response)
+    payments.close()
     return response
 
 
@@ -1325,8 +1342,8 @@ def export_repayment_csv(request):
     """
     import csv
     from django.utils.encoding import smart_str
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=Repayment_report.csv'
+    # response = HttpResponse(content_type='text/csv')
+    # response['Content-Disposition'] = 'attachment; filename=Repayment_report.csv'
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
     if from_date and to_date:
@@ -1339,36 +1356,51 @@ def export_repayment_csv(request):
                                                           datetime.datetime(date1.year, date1.month, date1.day, 8, 15,
                                                                             12, 0, pytz.UTC),
                                                           datetime.datetime(date2.year, date2.month, date2.day, 8, 15,
-                                                                            12, 0, pytz.UTC)]).order_by('-created_at')
+                                                                            12, 0, pytz.UTC)]).order_by('-created_at') \
+            .select_related("user", "project", "user__user").iterator()
     else:
-        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
-    writer = csv.writer(response, csv.excel)
-    response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
-    writer.writerow([
-        smart_str(u"FIRST NAME"),
-        smart_str(u"LAST NAME"),
-        smart_str(u"USERNAME"),
-        smart_str(u"EMAIL"),
-        smart_str(u"DATE"),
-        smart_str(u"NAME OF PROJECT"),
-        smart_str(u"DONATION AMOUNT"),
-        smart_str(u"REPAYMENT AMOUNT"),
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at') \
+            .select_related("user", "project", "user__user").iterator()
+    # writer = csv.writer(response, csv.excel)
+    # response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
 
-    ])
-
-    for payment in repayments:
+    def stream():
+        buffer_ = StringIO()
+        writer = csv.writer(buffer_)
         writer.writerow([
-            smart_str(payment.user.user.first_name),
-            smart_str(payment.user.user.last_name),
-            smart_str(payment.user.user.username),
-            smart_str(payment.user.user.email),
-            smart_str(payment.created_at),
-            smart_str(payment.project.title),
-            smart_str(round(
-                Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))[
-                    'amount__sum'] or 0, 2)),
-            smart_str(round(payment.amount, 2)),
+            smart_str(u"FIRST NAME"),
+            smart_str(u"LAST NAME"),
+            smart_str(u"USERNAME"),
+            smart_str(u"EMAIL"),
+            smart_str(u"DATE"),
+            smart_str(u"NAME OF PROJECT"),
+            smart_str(u"DONATION AMOUNT"),
+            smart_str(u"REPAYMENT AMOUNT"),
+
         ])
+
+        for payment in repayments:
+            writer.writerow([
+                smart_str(payment.user.user.first_name),
+                smart_str(payment.user.user.last_name),
+                smart_str(payment.user.user.username),
+                smart_str(payment.user.user.email),
+                smart_str(payment.created_at),
+                smart_str(payment.project.title),
+                smart_str(round(
+                    Payment.objects.filter(user=payment.user).filter(project=payment.project).aggregate(Sum('amount'))[
+                        'amount__sum'] or 0, 2)),
+                smart_str(round(payment.amount, 2)),
+            ])
+            buffer_.seek(0)
+            data = buffer_.read()
+            buffer_.seek(0)
+            buffer_.truncate()
+            yield data
+
+            # Create the streaming response  object with the appropriate CSV header.
+    response = StreamingHttpResponse(stream(), content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Repayment_report.csv"'
     return response
 
 
@@ -1396,9 +1428,11 @@ def export_repayment_xlsx(request):
                                                           datetime.datetime(date1.year, date1.month, date1.day, 8, 15,
                                                                             12, 0, pytz.UTC),
                                                           datetime.datetime(date2.year, date2.month, date2.day, 8, 15,
-                                                                            12, 0, pytz.UTC)]).order_by('-created_at')
+                                                                            12, 0, pytz.UTC)]).order_by('-created_at') \
+            .select_related("user", "project", "user__user").iterator()
     else:
-        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at')
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at') \
+            .select_related("user", "project", "user__user").iterator()
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = 'attachment; filename=Repayment_report.xlsx'
     wb = openpyxl.Workbook()
@@ -1440,7 +1474,6 @@ def export_repayment_xlsx(request):
         for col_num in xrange(len(row)):
             c = ws.cell(row=row_num + 1, column=col_num + 1)
             c.value = row[col_num]
-
     wb.save(response)
     return response
 
