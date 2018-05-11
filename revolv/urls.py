@@ -46,6 +46,9 @@ urlpatterns = patterns(
     url(r'^get-involved/revolv-accelerator/', 'revolv.base.views.revolv_accelerator', name='revolv_accelerator'),
     url(r'^get-involved/leadership-circle/', 'revolv.base.views.leadership_circle', name='leadership_circle'),
     url(r'^solar-education/myths-and-facts/', 'revolv.base.views.myths_and_facts', name='myths_and_facts'),
+    url(r'^my-portfolio/monthlyrepaymentreport/', base_views.MonthlyRepaymentReport.as_view(),
+        name='monthlyrepaymentreport'),
+    url(r'^monthly_repayment_table/$', 'revolv.base.views.monthly_repayment_table', name='monthly_repayment_table'),
 
     url(r'^what-we-do/projects/', base_views.ProjectListView.as_view(), name='projects_list'),
     url(r'^signin/$', base_views.SignInView.as_view(), name='signin'),

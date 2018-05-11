@@ -8,7 +8,7 @@
 <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
 <style>
 input:focus:invalid {box-shadow: 0 0 5px 1px red;}
-input:invalid {box-shadow: 0 0 5px 1px red;
+input:invalid {box-shadow: 0 0 5px 1px red;}
 </style>
 {% endblock %}
 {% block title %}Project | {% endblock %}
@@ -726,6 +726,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;
     });
   }
    );
+  $("input[type='number']").css({"-moz-appearance": "textfield", "-webkit-appearance": "textfield", "appearance": "textfield"})
   $('.tip_edit1, .tip_edit2, .tip_edit3, .tip_edit4, .tip_edit5').prop('readonly', true);
   $('#edit_value1').click(function() {
             $('.tip_edit1').prop('readonly', false);

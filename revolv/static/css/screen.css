@@ -12366,7 +12366,7 @@ width: 580px;
         background-position: -61px -8px;
     }
     #project .active-projects-module .row {
-        padding: 2em 5.6% 6em;
+        padding: 2em 5.6% 0;
     }
     #project .curnt-projct-lst-head {
         padding: 10rem calc(32px + 5.6%) 5vmin;
@@ -15397,3 +15397,21 @@ span.setting-donation-change {
     cursor: pointer;
     readonly: readonly;
 }
+
+@media (max-width: 400px) {
+    .title-active-projects {
+        width: unset !important;
+        font-size: 11px !important;
+    }
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/*input[name=tip_edit] {*/
+    /*-moz-appearance:textfield;*/
+/*}*/

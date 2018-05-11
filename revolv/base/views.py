@@ -31,7 +31,7 @@ from revolv.base.utils import ProjectGroup
 from revolv.donor.views import humanize_integers, total_donations
 from revolv.lib.mailer import send_revolv_email
 from revolv.payments.models import Payment, Tip, RepaymentFragment, ReferralSourceTrack
-from revolv.payments.models import UserReinvestment
+from revolv.payments.models import UserReinvestment, AdminRepayment
 from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails
 from revolv.project.utils import aggregate_stats
 from revolv.tasks.sfdc import send_signup_info
@@ -1136,7 +1136,6 @@ def export_csv(request):
     from django.utils.encoding import smart_str
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
-
     if from_date and to_date:
         import datetime
         import pytz
@@ -1152,6 +1151,7 @@ def export_csv(request):
         payments = Payment.objects.all().order_by('-created_at')\
             .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
             .iterator()
+
     # Define a generator to stream data directly to the client
     def stream():
         buffer_ = StringIO()
@@ -1218,7 +1218,6 @@ def export_csv(request):
             buffer_.seek(0)
             buffer_.truncate()
             yield data
-
     # Create the streaming response  object with the appropriate CSV header.
     response = StreamingHttpResponse(stream(), content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="RE-volv_report.csv"'
@@ -1821,3 +1820,69 @@ class DonationSourceTrackingView(UserDataMixin, TemplateView):
             .order_by('source', 'payment_id__project__title')
         context["sources"] = sources
         return context
+
+
+class MonthlyRepaymentReport(UserDataMixin, TemplateView):
+    """
+    The project view. Displays project details and allows for editing.
+
+    Accessed through /project/{project_id}
+    """
+    model = Payment
+    template_name = 'base/partials/monthly_repayment_report.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
+        if not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        return super(MonthlyRepaymentReport, self).dispatch(request, *args, **kwargs)
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(MonthlyRepaymentReport, self).get_context_data(**kwargs)
+        return context
+
+
+def monthly_repayment_table(request):
+    import calendar
+
+    draw = request.GET.get('draw')
+    length = request.GET.get('length')
+    order = request.GET.get('order[0][dir]')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
+    currentSortByCol = request.GET.get('order[0][column]')
+
+    fields = ['created_at', 'project', 'amount']
+
+    order_by = {'asc': '-', 'desc': ''}
+
+    column_order = order_by[order] + fields[int(currentSortByCol)]
+
+    monthly_repayment_list = AdminRepayment.objects.filter(amount__gt=0.00).order_by(column_order)
+    admin_repayment_list = []
+
+    admin_repayment_list.append(AdminRepayment.objects.all())
+
+    if search.strip():
+        monthly_repayment_list = monthly_repayment_list.filter(Q(project__title__icontains=search) |
+                                                               Q(amount__icontains=search) |
+                                                               Q(created_at__icontains=search))
+    if int(length) == -1:
+        length = monthly_repayment_list.count()
+    payments = []
+
+    for payment in monthly_repayment_list[int(start):][:int(length)]:
+        month = calendar.month_name[payment.created_at.month]
+        payment_details={}
+        payment_details['month'] = str(month)
+        payment_details['year'] = int(payment.created_at.year)
+        payment_details['project_name'] = payment.project.title
+        payment_details['repayment_amount'] = float(round(payment.amount, 2))
+        payments.append(payment_details)
+
+    json_response = {"draw": draw, "recordsTotal": AdminRepayment.objects.all().count(),
+                     "recordsFiltered": monthly_repayment_list.count(), "data": payments}
+
+    return HttpResponse(json.dumps(json_response), content_type='application/json')
+
