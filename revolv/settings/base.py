@@ -337,7 +337,7 @@ ADMIN_PAYMENT_USERNAME = 'administrator'
 #date of the month when user can execute reinvest
 USER_REINVESTMENT_DATE = {'day': 1, 'hour': 00, 'minute': 00}
 #date of the month when automatic reinvest execute
-ADMIN_REINVESTMENT_DATE = {'day': 15, 'hour': 00, 'minute': 00}
+ADMIN_REINVESTMENT_DATE = {'day': 17, 'hour': 00, 'minute': 00}
 
 now = datetime.now()
 #Datetime object when automatic reinvest run, we need to increase a little to prevent overlap with user reinvestment
