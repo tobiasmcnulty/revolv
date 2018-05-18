@@ -14,9 +14,12 @@ from revolv.base.views import solarathome, bring_solar_tou_your_community, selec
 from revolv.project.views import ProjectView
 from revolv.solar_ed_week.views import (solar_education, host_event, become_partner, become_sponsor)
 
+from django.views.generic import TemplateView
+
 urlpatterns = patterns(
     '',
     (r'^ckeditor/', include('ckeditor.urls')),  # for assets for the ckedit widget, etc
+    url(r'^sitemap\.xml/$', TemplateView.as_view(template_name='sitemap.xml', content_type='text/xml')),
     url(r'^facebook/', include('django_facebook.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
