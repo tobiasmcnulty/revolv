@@ -385,7 +385,11 @@
                       <div class="info-main">
                         <div class="blue-bar">
                           <span class="pull-left">${{ completed_project.amount_donated|floatformat:"0"|intcomma }}</span>
-                          <span class="pull-right">{{ completed_project.days_left }} Days Left</span>
+                          {% if completed_project.days_left > 0 %}
+                              <span class="pull-right">{{ completed_project.days_left }} Days Left</span>
+                          {% else %}
+                              <span class="pull-right">Campaign completed</span>
+                          {% endif %}
                         </div>
                         <!-- end .blue-bar -->
                         <div class="dark-blue-bar">
