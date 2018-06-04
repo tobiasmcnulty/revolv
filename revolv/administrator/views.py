@@ -179,7 +179,6 @@ class ProjectRepaymentSchedule(UserDataMixin, TemplateView):
         context['project_list'] = Project.objects.get_completed()
         context['project_repayment_list'] = ProjectMontlyRepaymentConfig.objects.filter(project_id__isnull=False) \
             .order_by('project__id').distinct('project__id')
-
         return context
 
     @transaction.atomic
@@ -199,8 +198,8 @@ class ProjectRepaymentSchedule(UserDataMixin, TemplateView):
                 data["message"] = "Please check the year input."
                 return JsonResponse(data)
             starting_date = datetime.strptime(start_date, '%Y-%m')
-            start_year = int(start_year)
             start_month = int(start_month)
+            start_year = int(start_year)
 
             if request.POST.get("end-date"):
                 end_date = request.POST.get("end-date")
@@ -208,61 +207,26 @@ class ProjectRepaymentSchedule(UserDataMixin, TemplateView):
                 relative_date = relativedelta.relativedelta(ending_date, starting_date)
                 total_months = ((relative_date.years * 12) + relative_date.months) + 1
                 end_year, end_month = end_date.split('-')
-                end_year = int(end_year)
                 end_month = int(end_month)
+                end_year = int(end_year)
 
                 if end_year == start_year and end_month <= start_month:
                     data["success"] = False
-                    data["message"] = "End month cannot be prior or same as starting month."
+                    data["message"] = "The ending date cannot be prior or same of starting date."
                     return JsonResponse(data)
 
                 if end_year < start_year or len(str(end_year)) > 4:
                     data["success"] = False
-                    data["message"] = "Please check the end year input."
+                    data["message"] = "Please check the ending year input."
                     return JsonResponse(data)
-            else:
-                total_months = 12
-                end_date = False
-            if project:
-                update_entry = ProjectMontlyRepaymentConfig.objects.filter(
-                    project=project, repayment_type='SSF', starting_year=start_year,
-                    starting_month=calendar.month_name[start_month])
-                filtered_list = []
-                if end_date:
-                    initial_month = start_month
-                    initial_year = start_year
-                    for i in range(0, total_months, 1):
-                        exists_entry = ProjectMontlyRepaymentConfig.objects.filter(
-                            project=project, repayment_type='SSF', starting_year=initial_year,
-                            starting_month=calendar.month_name[initial_month])
-                        filtered_list.append(exists_entry)
-                        initial_month += 1
-                        if initial_month > 12:
-                            initial_month = 1
-                            initial_year += 1
-                    if len(filtered_list) > 0:
-                        for month in range(0, total_months, 1):
-                            filter_entry = ProjectMontlyRepaymentConfig.objects.filter(
-                                project=project, repayment_type='SSF', starting_year=start_year,
-                                starting_month=calendar.month_name[start_month])
-                            if filter_entry:
-                                filter_entry.update(amount=amount)
-                            else:
-                                ProjectMontlyRepaymentConfig.objects.create(
-                                    project=project,
-                                    repayment_type='SSF',
-                                    starting_year=start_year,
-                                    starting_month=calendar.month_name[start_month],
-                                    amount=amount,
-                                )
-                            start_month += 1
-                            if start_month > 12:
-                                start_month = 1
-                                start_year += 1
-                elif update_entry:
-                    update_entry.update(amount=amount)
-                else:
-                    for i in range(0, total_months, 1):
+
+                for i in range(0, total_months, 1):
+                    exists_entry = ProjectMontlyRepaymentConfig.objects.filter(
+                        project=project, repayment_type='SSF', starting_year=start_year,
+                        starting_month=calendar.month_name[start_month])
+                    if exists_entry:
+                        exists_entry.update(amount=amount)
+                    else:
                         ProjectMontlyRepaymentConfig.objects.create(
                             project=project,
                             repayment_type='SSF',
@@ -270,11 +234,24 @@ class ProjectRepaymentSchedule(UserDataMixin, TemplateView):
                             starting_month=calendar.month_name[start_month],
                             amount=amount,
                         )
-                        start_month += 1
-                        if start_month > 12:
-                            start_month = 1
-                            start_year += 1
-
+                    start_month += 1
+                    if start_month > 12:
+                        start_month = 1
+                        start_year += 1
+            else:
+                update_entry = ProjectMontlyRepaymentConfig.objects.filter(
+                    project=project, repayment_type='SSF', starting_year=start_year,
+                    starting_month=calendar.month_name[start_month])
+                if update_entry:
+                    update_entry.update(amount=amount)
+                else:
+                    ProjectMontlyRepaymentConfig.objects.create(
+                        project=project,
+                        repayment_type='SSF',
+                        starting_year=start_year,
+                        starting_month=calendar.month_name[start_month],
+                        amount=amount,
+                    )
             data["success"] = True
             data["message"] = "Repayment scheduled successfully"
         except Exception:
