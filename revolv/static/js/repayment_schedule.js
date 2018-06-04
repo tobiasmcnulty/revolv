@@ -7,8 +7,8 @@ $(document).ready(function () {
                 if (data.success) {
                     $(".response_message").addClass("error");
                     $(".response_message").addClass("success");
+                    $(".response_message").show();
                     $(".response_message").text(data.message);
-                    $(':input[type="submit"]').prop('disabled', true);
                     location.reload(true);
                 } else {
                     $(".response_message").addClass("success");
@@ -20,6 +20,14 @@ $(document).ready(function () {
         e.preventDefault();
 
     });
+    $('#repayment_entry').hide();
+    $('#button1').hide();
+    $("#button, #button1").click(function () {
+        $('#repayment_entry, #repayment_table').toggle(600);
+        $('#button, #button1').toggle();
+    });
+    $('#search_button').remove();
+    $('#repayment-schedule').hide();
     $('#end_date_toggle').hide();
     $('#end_date').click (function () {
         $('#end_date_toggle').show(500);
@@ -34,17 +42,9 @@ $(document).ready(function () {
         min = (year + '-' + '0' + month);
     else
         min = (year + '-' + month);
-    $("#start-date, #end-date").attr({
+    $("#start-date").attr({
         "min": min
     });
-    $('#repayment_entry').hide();
-    $('#button1').hide();
-    $("#button, #button1").click(function () {
-        $('#repayment_entry, #repayment_table').toggle(600);
-        $('#button, #button1').toggle();
-    });
-    $('#search_button').remove();
-    $('#repayment-schedule').hide();
     $(".project-name").change(function () {
         $('#repayment-schedule').show();
         var repayment_schedule = '#repayment-schedule';
@@ -73,7 +73,6 @@ $(document).ready(function () {
                     }
 
                 ],
-                // "order": [[ 4, "desc" ]],
                 "ajax": {
                     url: '/repayment_config/',
                     "data": function (d) {
