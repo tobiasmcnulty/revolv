@@ -1,0 +1,115 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static "css/dashboard.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/manual_payment.css" %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{% static 'js/repayment_schedule.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div id="repayment_table" class="main-row-dashboard">
+        <div class="container-fluid after-header">
+            <div class="row">
+
+                <div class="module-box payment-module">
+                    <select title="Select Project" class="project-name form-control donation-field">
+                        <option disabled selected>Select Project</option>
+                        {% for project in project_repayment_list %}
+                            <option id="project-title"
+                                    value={{ project.project.id }}>{{ project.project.title }}</option>
+                        {% endfor %}
+                    </select><br>
+                    <div class="container">
+                        <table id="repayment-schedule" class="display nowrap" cellspacing="0" width="100%" style="display: none">
+                            <thead>
+                            <tr>
+                                <th>YEAR</th>
+                                <th>MONTH</th>
+                                <th>AMOUNT</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="repayment_entry" class='main-row dashboard' style="display: none">
+        <div class="container-fluid after-header">
+
+            <div class="dashboard-sidebar col-md-3">
+                {% include "base/partials/dashboard_sidebar.html" with user=user %}
+            </div>
+            <div class="col-md-9 manual-payment">
+                <div class="row">
+
+                    <div class="module-box payment-module">
+                        <form id="schedule_repayment">
+                            {% csrf_token %}
+                            <div class="inputs">
+                                <h1 class="title-h5">Schedule Repayment</h1>
+                                <div class="input-group">
+                                    <label for="project_name">Select project</label>
+                                    <select class="form-control donation-field" id="project_name" name="project_id"
+                                            required>
+                                        {% for project in project_list %}
+                                            <option value="{{ project.id }}">{{ project.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Schedule Repayment From</label>
+                                    <div class="input-group">
+                                        <input title="Start Date" name="start-date" id="start-date" type="month" pattern="[0-9]{4}-[0-9]{2}" min=""
+                                               class="form-control donation-field" required>
+                                    </div>
+                                </div>
+                                <label id="end_date" style="color: #00a1d9; cursor: pointer" title="Default is one year">Add an end date</label>
+                                <div class="input-group" id="end_date_toggle">
+                                    <label title="Default is one year">Stop Repayment On</label>
+                                    <div class="input-group">
+                                        <input title="End Date" name="end-date" id="end-date" type="month" pattern="[0-9]{4}-[0-9]{2}" min=""
+                                               class="form-control donation-field">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="amount">Repayment Config Amount</label>
+                                    <div class="input-group">
+                                        <input type="number" min="0" step="any" value="50" name="amount" id="amount"
+                                               class="form-control donation-field" required>
+                                        <span class="input-group-addon">$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="manual-payment-buttons">
+                                <button id="submit-button" type="submit" class="stripe-button-el payment-button">
+                                    <span>Submit</span>
+                                </button>
+                                <button id="reset-button" type="reset" class="stripe-button-el reset-button">
+                                    <span>Reset</span>
+                                </button>
+                            </div>
+                            <div class="response_message"></div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="dialog-confirm"></div>
+    <br>
+    <div style="text-align: center">
+        <button id="button" href="#" class="schedule-repayment-toggle-button">Schedule Repayment</button>
+        <button id="button1" href="#" class="schedule-repayment-toggle-button" style="display: none">Repayment Config Report</button>
+    </div><br>
+{% endblock %}

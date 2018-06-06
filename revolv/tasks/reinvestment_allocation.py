@@ -9,6 +9,8 @@ from datetime import date
 
 import logging
 import sys
+import calendar
+import datetime
 import time
 
 logger = logging.getLogger(__name__)
@@ -25,6 +27,7 @@ def calculate_montly_reinvesment_allocation():
     3. Set project monthly_reinvestment_cap with above value
     4. Send email alert to user
     """
+    today = datetime.datetime.today()
     ADMIN_PAYMENT_USERNAME = settings.ADMIN_PAYMENT_USERNAME
     logger.info('Calculate monthly allocation')
     try:
@@ -35,11 +38,13 @@ def calculate_montly_reinvesment_allocation():
 
     reinvest_balance = RevolvUserProfile.objects.all().aggregate(total=Sum('reinvest_pool'))['total']
     logger.info('Current reinvestment balance: %s' % reinvest_balance)
-    competed_unpaid_off_project=filter(lambda p: p.amount_left <= 0.0, Project.objects.get_completed_unpaid_off_projects())
-    for project in competed_unpaid_off_project:
+    completed_unpaid_off_project = filter(lambda p: p.amount_left <= 0.0, Project.objects.get_completed_unpaid_off_projects())
+    for project in completed_unpaid_off_project:
         try:
             repayment_config = project.projectmontlyrepaymentconfig_set\
-                .get(repayment_type=ProjectMontlyRepaymentConfig.SOLAR_SEED_FUND)
+                .get(repayment_type=ProjectMontlyRepaymentConfig.SOLAR_SEED_FUND,
+                     month=calendar.month_name[today.month],
+                     year=today.year)
         except ProjectMontlyRepaymentConfig.DoesNotExist:
             logger.error("Project %s - %s doesn't have repayment config!", project.id, project.title)
             continue
