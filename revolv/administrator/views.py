@@ -1,5 +1,7 @@
 import csv
+import calendar
 import time
+import json
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -12,8 +14,7 @@ from revolv.base.users import UserDataMixin
 from revolv.base.utils import ProjectGroup
 from revolv.base.views import BaseStaffDashboardView
 from revolv.project.models import Project, ProjectMatchingDonors
-from revolv.payments.models import Payment, PaymentType
-
+from revolv.payments.models import Payment, PaymentType, ProjectMontlyRepaymentConfig
 
 class AdministratorDashboardView(BaseStaffDashboardView):
     """
@@ -149,4 +150,111 @@ class AdminManualPaymentView(UserDataMixin, TemplateView):
             data["success"] = False
             data["message"] = "Error while saving manual payment."
 
+        return JsonResponse(data)
+
+
+def repayment_config(request):
+    draw = request.GET.get('draw')
+    project_id = request.GET.get('project_id')
+    repayment_config_list = ProjectMontlyRepaymentConfig.objects.filter(project_id=project_id)
+    payments = []
+    for payment in repayment_config_list:
+        payment_details = {}
+        payment_details['year'] = payment.year
+        payment_details['month'] = payment.month
+        payment_details['amount'] = payment.amount
+        payments.append(payment_details)
+
+    json_response = {"draw": draw, "recordsTotal": ProjectMontlyRepaymentConfig.objects.all().count(),
+                     "recordsFiltered": repayment_config_list.count(), "data": payments}
+
+    return HttpResponse(json.dumps(json_response), content_type='application/json')
+
+
+class ProjectRepaymentSchedule(UserDataMixin, TemplateView):
+    template_name = 'administrator/project_repayment_scheduling.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectRepaymentSchedule, self).get_context_data(**kwargs)
+        context['project_list'] = Project.objects.get_completed()
+        context['project_repayment_list'] = ProjectMontlyRepaymentConfig.objects.filter(project_id__isnull=False) \
+            .order_by('project__id').distinct('project__id')
+        return context
+
+    @transaction.atomic
+    def post(self, request):
+        from datetime import datetime
+        from dateutil import relativedelta
+        data = {}
+        try:
+            amount = request.POST.get("amount")
+            project_id = request.POST.get("project_id")
+            date = request.POST.get("start-date")
+            project = get_object_or_404(Project, pk=project_id)
+            year, month = date.split('-')
+
+            if len(year) > 4:
+                data["success"] = False
+                data["message"] = "Please check the year input."
+                return JsonResponse(data)
+            starting_date = datetime.strptime(date, '%Y-%m')
+            month = int(month)
+            year = int(year)
+
+            if request.POST.get("end-date"):
+                end_date = request.POST.get("end-date")
+                ending_date = datetime.strptime(end_date, '%Y-%m')
+                relative_date = relativedelta.relativedelta(ending_date, starting_date)
+                total_months = ((relative_date.years * 12) + relative_date.months) + 1
+                end_year, end_month = end_date.split('-')
+                end_month = int(end_month)
+                end_year = int(end_year)
+
+                if end_year == year and end_month <= month:
+                    data["success"] = False
+                    data["message"] = "The ending date cannot be prior or same of starting date."
+                    return JsonResponse(data)
+
+                if end_year < year or len(str(end_year)) > 4:
+                    data["success"] = False
+                    data["message"] = "Please check the ending year input."
+                    return JsonResponse(data)
+
+                for i in range(0, total_months, 1):
+                    exists_entry = ProjectMontlyRepaymentConfig.objects.filter(
+                        project=project, repayment_type='SSF', year=year,
+                        month=calendar.month_name[month])
+                    if exists_entry:
+                        exists_entry.update(amount=amount)
+                    else:
+                        ProjectMontlyRepaymentConfig.objects.create(
+                            project=project,
+                            repayment_type='SSF',
+                            year=year,
+                            month=calendar.month_name[month],
+                            amount=amount,
+                        )
+                    month += 1
+                    if month > 12:
+                        month = 1
+                        year += 1
+            else:
+                update_entry = ProjectMontlyRepaymentConfig.objects.filter(
+                    project=project, repayment_type='SSF', year=year,
+                    month=calendar.month_name[month])
+                if update_entry:
+                    update_entry.update(amount=amount)
+                else:
+                    ProjectMontlyRepaymentConfig.objects.create(
+                        project=project,
+                        repayment_type='SSF',
+                        year=year,
+                        month=calendar.month_name[month],
+                        amount=amount,
+                    )
+            data["success"] = True
+            data["message"] = "Repayment scheduled successfully"
+        except Exception:
+            data["success"] = False
+            data["message"] = "Error while saving repayment scheduling."
         return JsonResponse(data)
