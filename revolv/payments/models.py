@@ -549,7 +549,7 @@ class ProjectMontlyRepaymentConfig(models.Model):
     factories = ImportProxy('revolv.payments.factories', 'ProjectMontlyRepaymentConfigFactory')
 
     def __unicode__(self):
-        return '%s %s in %s for %s' % (self.repayment_type, self.amount, self.year, self.project)
+        return '%s %s in %s %s for %s' % (self.repayment_type, self.amount, self.month, self.year, self.project)
 
 
 class Tip(models.Model):
