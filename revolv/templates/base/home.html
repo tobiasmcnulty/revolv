@@ -17,50 +17,11 @@
     <script src="{% static 'js/mediaelement-and-player.min.js' %}"></script>
     <link href="{% static 'css/mediaelementplayer.min.css' %}" rel="stylesheet" />
     <link href="{% static 'dist/css/pages/home/index.css' %}" rel="stylesheet" />
-<link href="{% static 'css/slick.css' %}?version={{ version_number }}" rel="stylesheet" />
+    <link href="{% static 'css/slick.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link href="{% static 'css/slick-theme.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
-<style>
-
-    .carousel-indicators li {
-      border: 0;
-      background-color: grey;
-    }
-    .carousel-indicators .active {
-        background-color: #fff;
-    }
-
-    .next-button {
-        margin-top: -10px !important;
-        font-size: 0.85em !important;
-    }
-
-    .menu-list {
-        position: absolute;
-        background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
-        background-color: transparent;
-        border: transparent;
-        border-radius: 0px;
-        box-shadow: none;
-    }
-    * {
-      box-sizing: border-box;
-    }
-
-    .slider {
-        width: 100%;
-    }
-
-    .slick-slide {
-      margin: 0px 20px;
-    }
-
-    .slick-prev:before,
-    .slick-next:before {
-        color: black;
-    }
-
-</style>
+    <link rel="manifest" href="{% static 'manifest.json' %}" />
+    <meta name="theme-color" content="#14b1e7" />
 
 {% endblock %}
 {% block body_class %}class="home-page-content"{% endblock %}
