@@ -14452,16 +14452,6 @@ img.close-donate-popup {
     width: 2.4vmin;
     cursor: pointer;
 }
-@media screen and (max-width: 768px) {
-    .donate-popup {
-        width: 75%;
-    }
-}
-@media screen and (max-width: 736px) and (orientation: landscape) {
-    .donate-popup {
-        width: 61%;
-    }
-}
 @media (min-width: 768px) {
  .container .navbar-collapse.collapse {
         display: none !important;
