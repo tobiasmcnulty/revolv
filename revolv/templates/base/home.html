@@ -20,6 +20,47 @@
     <link href="{% static 'css/slick.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link href="{% static 'css/slick-theme.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
+<style>
+
+    .carousel-indicators li {
+      border: 0;
+      background-color: grey;
+    }
+    .carousel-indicators .active {
+        background-color: #fff;
+    }
+
+    .next-button {
+        margin-top: -10px !important;
+        font-size: 0.85em !important;
+    }
+
+    .menu-list {
+        position: absolute;
+        background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+        background-color: transparent;
+        border: transparent;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 100%;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+
+</style>
 
 {% endblock %}
 {% block body_class %}class="home-page-content"{% endblock %}
@@ -222,15 +263,11 @@
       </div>
   </a>
 </div>
-<div class="modal-body imageContainer join-mov-btn-cntnr" style="background-image: url(static/images/revolv_blue_background.jpg);">
+<div id="desktop" class="modal-body imageContainer join-mov-btn-cntnr" style="background-image: url(static/images/revolv_blue_background.jpg);">
   <div class="text_on_blue_image"><span>Want to see solar energy spread rapidly across the country?</span><span><b> Join The Movement.</b></span></div>
   <div class="col-xs-12 join-mov-btns-cntnr">
       <div class="col-xs-4 join-mov-btns">
-          {% if active_projects %}
-            <a class="Go_Solar_at_Home column-left"  href="{% url 'projects_list' %}"><span class="yellow-buttons">Fund Solar Energy Projects</span></a>
-          {% else %}
-            <a class="Go_Solar_at_Home column-left" href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup"><span class="yellow-buttons">Fund Solar Energy Projects</span></a>
-          {% endif %}
+         <a class="Go_Solar_at_Home column-left"  href="{% url 'projects_list' %}"><span class="yellow-buttons">Fund Solar Energy Projects</span></a>
       </div>
       <div class="col-xs-4 join-mov-btns">
         <a class="Go_Solar_at_Home column-right"  href="{% url 'bring_solar_to_your_community' %}"><span class="yellow-buttons">Bring Solar to Your Community</span></a>
@@ -240,7 +277,20 @@
       </div>
   </div>
 </div>
-
+<div id="mobile" class="modal-body imageContainer join-mov-btn-cntnr" style="background-image: url(static/images/revolv_blue_background.jpg);">
+  <div class="text_on_blue_image"><span>Want to see solar energy spread rapidly across the country?</span><span><b> Join The Movement.</b></span></div>
+  <div class="col-xs-12 join-mov-btns-cntnr">
+      <div class="col-xs-12 join-mov-btns">
+         <a class="Go_Solar_at_Home column-left"  href="{% url 'projects_list' %}"><span class="yellow-buttons">Fund Solar Energy Projects</span></a>
+      </div>
+      <div class="col-xs-12 join-mov-btns">
+        <a class="Go_Solar_at_Home column-right"  href="{% url 'bring_solar_to_your_community' %}"><span class="yellow-buttons">Bring Solar to Your Community</span></a>
+      </div>
+      <div class="col-xs-12 join-mov-btns">
+        <a  class="Go_Solar_at_Home column-center" href="{% url 'solar_at_home' %}"><span class="yellow-buttons">Go Solar at Home</span></a>
+      </div>
+  </div>
+</div>
 
 {% if active_projects %}
 <div id="active-projects" class="active-projects-module animated">
@@ -348,11 +398,11 @@
                       <div class="info-main">
                         <div class="blue-bar">
                           <span class="pull-left">${{ completed_project.amount_donated|floatformat:"0"|intcomma }}</span>
-                          {% if completed_project.days_left > 0 %}
-                              <span class="pull-right">{{ completed_project.days_left }} Days Left</span>
-                          {% else %}
-                              <span class="pull-right">Campaign completed</span>
-                          {% endif %}
+                            {% if completed_project.days_left > 0 %}
+                                <span class="pull-right">{{ completed_project.days_left }} Days Left</span>
+                            {% else %}
+                                <span class="pull-right">Campaign completed</span>
+                            {% endif %}
                         </div>
                         <!-- end .blue-bar -->
                         <div class="dark-blue-bar">
@@ -376,7 +426,7 @@
 
 <div class="our-impacts-module animated">
   <div class="container">
-    <div class="title-blue-border title-our-impacts">OUR IMPACT</div>
+    <div class="title-blue-border title-our-impacts">OUR IMPACTS</div>
     <div class="row">
       <div class="col-md-3">
         <div class="module-box">

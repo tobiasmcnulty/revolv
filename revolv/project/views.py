@@ -150,7 +150,7 @@ def stripe_payment(request, pk):
         context['portfolio_link'] = portfolio_link
         context['first_name'] = "RE-volv"
         context['last_name'] = "supporter"
-        send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, address='')
+        send_donation_info(email, donation_cents / 100.0, email, project.title, address='')
         send_revolv_email(
             'post_donation',
             context, [email]

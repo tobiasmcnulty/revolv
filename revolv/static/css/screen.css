@@ -6976,6 +6976,9 @@ width: 580px;
     #project .col-lg-8.col-md-8.col-sm-12.col-xs-12 {
       padding: 0 !important;
     }
+    .modal-body > .text_on_blue_image > .col-xs-12 > .col-xs-12 {
+
+    }
     #project .header .btn-donate {
         min-width: 117px;
     }
@@ -12930,7 +12933,7 @@ label.checkmark.animate:after {
         width: 115px;
     }
     .home-page-content .imageContainer {
-        height: 28vh;
+        height: 300px;
     }
     a.Ellipse_543.left.carousel-control.arrow-left {
         top: 88%;
@@ -12967,11 +12970,11 @@ label.checkmark.animate:after {
     }
 }
 @media only screen and (max-width: 768px) and (min-width: 319px) and (orientation: portrait) {
-    .Go_Solar_at_Home.column-center {
-        padding: 4vmin 0;
-    }
+    /*.Go_Solar_at_Home.column-center {*/
+        /*padding: 4vmin 0;*/
+    /*}*/
     .Go_Solar_at_Home {
-        padding: 2.8vmin 1%;
+        padding: 2vmin 1%;
     }
 }
 @media (min-width: 768px){
@@ -13090,7 +13093,7 @@ and (orientation : landscape) {
 
 @media (max-width: 767px){
 .yellow-buttons {
-    font-size: 2vmin;
+    font-size: 3.6vmin;
 }
 .dropdown-title {
     font-size: 4vmin;
@@ -14452,6 +14455,16 @@ img.close-donate-popup {
     width: 2.4vmin;
     cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+    .donate-popup {
+        width: 75%;
+    }
+}
+@media screen and (max-width: 736px) and (orientation: landscape) {
+    .donate-popup {
+        width: 61%;
+    }
+}
 @media (min-width: 768px) {
  .container .navbar-collapse.collapse {
         display: none !important;
@@ -15401,10 +15414,29 @@ input[type=number]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+
 .schedule-repayment-toggle-button {
             background-color: #00a1d9;
             color: #FFF;
             text-align: center;
             border: none;
             height: 35px;
+}
+.error
+{
+  color: red;
+}
+.success
+{
+  color: black;
+}
+@media (min-width: 767px) {
+    #mobile {
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    #desktop {
+        display: none;
+    }
 }
