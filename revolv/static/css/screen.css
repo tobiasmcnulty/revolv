@@ -12970,11 +12970,13 @@ label.checkmark.animate:after {
     }
 }
 @media only screen and (max-width: 768px) and (min-width: 319px) and (orientation: portrait) {
-    /*.Go_Solar_at_Home.column-center {*/
-        /*padding: 4vmin 0;*/
-    /*}*/
     .Go_Solar_at_Home {
-        padding: 2vmin 1%;
+        padding: 2.8vmin 1%;
+    }
+}
+@media only screen and (max-width: 768px) and (min-width: 720px) and (orientation: portrait) {
+    .Go_Solar_at_Home.column-center {
+        padding: 4vmin 0;
     }
 }
 @media (min-width: 768px){
@@ -14455,16 +14457,16 @@ img.close-donate-popup {
     width: 2.4vmin;
     cursor: pointer;
 }
-@media screen and (max-width: 768px) {
-    .donate-popup {
-        width: 75%;
-    }
-}
-@media screen and (max-width: 736px) and (orientation: landscape) {
-    .donate-popup {
-        width: 61%;
-    }
-}
+/*@media screen and (max-width: 768px) {*/
+    /*.donate-popup {*/
+        /*width: 75%;*/
+    /*}*/
+/*}*/
+/*@media screen and (max-width: 736px) and (orientation: landscape) {*/
+    /*.donate-popup {*/
+        /*width: 61%;*/
+    /*}*/
+/*}*/
 @media (min-width: 768px) {
  .container .navbar-collapse.collapse {
         display: none !important;
