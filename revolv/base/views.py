@@ -84,6 +84,7 @@ class HomePageView(UserDataMixin, TemplateView):
         context["featured_projects"] = active_projects
         # accept return value from project/model.py and display it on project/home.html file
         context["completed_featured_projects"] = completed_projects
+        context["active_projects_count"] = Project.objects.get_active().count()
         context["completed_projects_count"] = Project.objects.get_completed().count()
         context["total_donors_count"] = Payment.objects.total_distinct_organic_donors()
         context["global_impacts"] = self.get_global_impacts()

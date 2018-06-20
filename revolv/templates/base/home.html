@@ -115,8 +115,12 @@
                         <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
                         </li>
                     {% endif %}
-                    {% if active_projects %}
+                    {% if active_projects_count > 1 %}
                         <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="dropdown">DONATE</a></li>
+                    {% elif active_projects_count == 1 %}
+                        {% for active_project in active_projects %}
+                            <li class="dropdown this-doesnt"><a href="{% url "project:view" title=active_project.project_url %}" onclick="return clearInput();" class="dropdown">DONATE</a></li>
+                        {% endfor %}
                     {% else %}
                         <li class="dropdown this-doesnt"> <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="dropdown">DONATE</a></li>
                     {% endif %}
@@ -136,10 +140,12 @@
             <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate" data-component="signup">SIGN UP</a>
             <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
         {% endif %}
-        <!--<a href="#" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>-->
-{#        <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>#}
-        {% if active_projects %}
+        {% if active_projects_count > 1 %}
             <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="component-link btn-blue pull-left btn-donate">DONATE</a>
+        {% elif active_projects_count == 1 %}
+            {% for active_project in active_projects %}
+                <a href="{% url "project:view" title=active_project.project_url %}"  onclick="return clearInput();" class="component-link btn-blue pull-left btn-donate">DONATE</a>
+            {% endfor %}
         {% else %}
             <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="component-link btn-blue pull-left btn-donate">DONATE</a>
         {% endif %}
@@ -420,7 +426,7 @@
 
 <div class="our-impacts-module animated">
   <div class="container">
-    <div class="title-blue-border title-our-impacts">OUR IMPACTS</div>
+    <div class="title-blue-border title-our-impacts">OUR IMPACT</div>
     <div class="row">
       <div class="col-md-3">
         <div class="module-box">
