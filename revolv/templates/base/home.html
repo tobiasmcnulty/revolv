@@ -503,15 +503,15 @@
 <div class="testimonial-module animated">
   <div class="container">
     <div class="title-blue-border title-testimonial">TESTIMONIALS</div>
-    <div class="row head-row">
+    <div class="row head-row testimonial-desktop">
       <ul>
         {% with testimonial_image="images/testimonials/enio_ximenes.png" testimonial_image_mobile="images/testimonials/enio_ximenes.png" %}
           {% include "base/partials/testimonial-head.html" %}
         {% endwith %}
-        {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" %}
+        {% with testimonial_image="images/testimonials/rebecca_johnson.jpg" testimonial_image_mobile="images/testimonials/rebecca_johnson.jpg" %}
           {% include "base/partials/testimonial-head.html" %}
         {% endwith %}
-        {% with testimonial_image="images/testimonials/rebecca_johnson.jpg" testimonial_image_mobile="images/testimonials/rebecca_johnson.jpg" testimonial_active=True %}
+        {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" testimonial_active=True %}
           {% include "base/partials/testimonial-head.html" %}
         {% endwith %}
         {% with testimonial_image="images/testimonials/Jennifer_martin_color.jpg" testimonial_image_mobile="images/testimonials/Jennifer_martin_color.jpg" %}
@@ -525,16 +525,21 @@
         {% endwith %}
       </ul>
     </div>
+    <div class="row head-row testimonial-mobile">
+        {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" testimonial_active=True %}
+          {% include "base/partials/testimonial-head.html" %}
+        {% endwith %}
+    </div>
     <!-- end .head-row -->
     {% with testimonial_name="Enio Ximenes" testimonial_position="Donor" testimonial_text="I had the pleasure to see one of RE-volv’s projects right in my neighborhood, at a worker-owned grocery co-op called Other Avenues. I try to volunteer on the solar installs as much as I can and I grab every chance I can get to raise funds for RE-volv because I know that every dollar is well spent, and will be used over and over again to bring positive change and progress while helping other nonprofits that are doing important work." %}
       {% include "base/partials/testimonial-info-area.html" %}
     {% endwith %}
 
-    {% with testimonial_name="Darryl Dea" testimonial_position="President, Other Avenues Food Cooperative" testimonial_text="Over the years I’d been looking at different possibilities and then RE-volv came around, and it was like the perfect fit for us! Contributing to this revolving fund that’s going to, futher down the line, help out other co-ops and nonprofits, we’re excited about that. This is going to save us in the neighborhood of $300,000 over the course of 20 years!" %}
+    {% with testimonial_name="Rebecca Johnson" testimonial_position="Executive Director, Shawl-Anderson Dance Center" testimonial_text="We’re really excited and honored to be the first project for RE-volv. We’d been looking to go solar for quite a few years, and when Andreas came to us and proposed this amazing plan, it was like a perfect fit. This is another reason for people to say ‘yes,’ to being here, and another reason to love being here." %}
       {% include "base/partials/testimonial-info-area.html" %}
     {% endwith %}
 
-    {% with testimonial_name="Rebecca Johnson" testimonial_position="Executive Director, Shawl-Anderson Dance Center" testimonial_text="We’re really excited and honored to be the first project for RE-volv. We’d been looking to go solar for quite a few years, and when Andreas came to us and proposed this amazing plan, it was like a perfect fit. This is another reason for people to say ‘yes,’ to being here, and another reason to love being here." testimonial_active=True %}
+    {% with testimonial_name="Darryl Dea" testimonial_position="President, Other Avenues Food Cooperative" testimonial_text="Over the years I’d been looking at different possibilities and then RE-volv came around, and it was like the perfect fit for us! Contributing to this revolving fund that’s going to, futher down the line, help out other co-ops and nonprofits, we’re excited about that. This is going to save us in the neighborhood of $300,000 over the course of 20 years!" testimonial_active=True %}
       {% include "base/partials/testimonial-info-area.html" %}
     {% endwith %}
 
