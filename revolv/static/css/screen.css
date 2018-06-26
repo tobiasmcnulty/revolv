@@ -7273,7 +7273,7 @@ width: 580px;
     .active-projects-module .img-main .txt {
         font-size: 43.01px;
         line-height: 62px;
-        padding: 0 130px 46px 130px;
+        /*padding: 0 130px 46px 130px;*/
     }
     .active-projects-module .img-main .img-link {
         height: 750px;
@@ -10162,7 +10162,7 @@ width: 580px;
     .active-projects-module .img-main .txt {
         font-size: 21px;
         line-height: 31px;
-        padding: 0 65px 23px 65px;
+        /*padding: 0 65px 23px 65px;*/
     }
     .active-projects-module .img-main .img-link img {
         height: 7vh;
