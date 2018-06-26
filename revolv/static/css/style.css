@@ -1087,3 +1087,41 @@ margin-right: -66px !important; }
 .et_monarch .et_social_icon_facebook:before, .et_monarch .et_social_icon_facebook:after {
     content: "\e63f";
 }
+
+.carousel-indicators li {
+  border: 0;
+  background-color: grey;
+}
+.carousel-indicators .active {
+	background-color: #fff;
+}
+
+.next-button {
+	margin-top: -10px !important;
+	font-size: 0.85em !important;
+}
+
+.menu-list {
+	position: absolute;
+	background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
+	background-color: transparent;
+	border: transparent;
+	border-radius: 0px;
+	box-shadow: none;
+}
+* {
+  box-sizing: border-box;
+}
+
+.slider {
+	width: 100%;
+}
+
+.slick-slide {
+  margin: 0px 20px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	color: black;
+}

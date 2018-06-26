@@ -762,8 +762,10 @@ padding: 0;
 .zinnia .header .rights > a.btn-blue:last-child {
     margin-right: 0;
 }
-.zinnia.blue .header a:visited {
-    color: #fff;
+@media (min-width: 768px){
+    .zinnia.blue .header a:visited {
+        color: #fff;
+    }
 }
 #project .header .logo {
     margin: 3rem 0 0 calc(5.6% + 30px);
