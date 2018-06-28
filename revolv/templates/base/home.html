@@ -154,13 +154,24 @@
             <span class="CREATE_CLEAN_ENERGY">LEONARDO DICAPRIO FOUNDATION<br>PARTNERS WITH RE-VOLV</span>
           </div>
           <div class="space_btn_element" style="margin-top: 0;">
-            <span class="Bring_solar_energy__to_communities_around_the_c">LDF is now matching <br>all solar crowdfunding donations!</span>
+          {% if active_projects %}
+              <span class="Bring_solar_energy__to_communities_around_the_c">LDF is now matching <br>all solar crowdfunding donations!</span>
+          {% else %}
+              <span class="Bring_solar_energy__to_communities_around_the_c">Join LDF in supporting solar energy!</span>
+          {% endif %}
           </div>
 
         </div>
         <div class="how-it-works-button">
-            <a href="/what-we-do/projects/" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
-{#            <a href="{%url 'faithbaptistchurch' %}" class="How_it_Works space_btn_element">Donate Now</a>#}
+            {% if active_projects_count > 1 %}
+                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+            {% elif active_projects_count == 1 %}
+                {% for active_project in active_projects %}
+                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+                {% endfor %}
+            {% else %}
+                <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="How_it_Works space_btn_element" style="margin-top: 0;">Become a Monthly Donor</a>
+            {% endif %}
         </div>
         <div class="learn-more"><a href="{%url 'leo_page' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
       </div>
