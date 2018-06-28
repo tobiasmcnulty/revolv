@@ -15447,3 +15447,10 @@ input[type=number]::-webkit-outer-spin-button {
         width: 90vw;
     }
 }
+#user_record_loader {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: url("/static/images/gif/revolv-loader.gif") no-repeat center center rgba(66, 66, 66, 1)
+}

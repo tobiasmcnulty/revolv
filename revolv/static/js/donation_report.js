@@ -13,12 +13,12 @@ $(document).ready(function() {
             },
             {
                extend:    'excelHtml5',
-               orientation: 'landscape',
+               orientation: 'landscape'
            },
            {
                extend:    'csvHtml5',
-               orientation: 'landscape',
-           },
+               orientation: 'landscape'
+           }
 
         ],
          "order": [[ 4, "desc" ]],
@@ -31,7 +31,7 @@ $(document).ready(function() {
           d.datepicker1 = date1;
           d.datepicker2 = date2;
         },
-         "dataSrc": "data",
+         "dataSrc": "data"
 
         },
         "columns": [
@@ -45,7 +45,7 @@ $(document).ready(function() {
             { "data": "user_reinvestment"},
             { "data": "admin_reinvestment"},
             { "data": "tip"},
-            { "data": "total"},
+            { "data": "total"}
         ],
         "columnDefs": [
         {
@@ -55,7 +55,7 @@ $(document).ready(function() {
         {
             "targets":10,
             "orderable": false
-        },
+        }
         ]
 
     } );
@@ -107,10 +107,10 @@ $(document).ready(function() {
                 alert('Invalid date');
             }
         });
-        $('#export-csv-btn').on('click',function(e){
+        $('#export-csv-btn').on('click',function(){
             location.replace('/export_csv?from_date='+ date1 + '&to_date=' + date2);
-        })
-        $('#export-excel-btn').on('click',function(e){
+        });
+        $('#export-excel-btn').on('click',function(){
             location.replace('/export_excel?from_date='+ date1 + '&to_date=' + date2);
         })
 
