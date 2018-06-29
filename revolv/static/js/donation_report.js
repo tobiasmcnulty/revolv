@@ -45,7 +45,7 @@ $(document).ready(function() {
             { "data": "user_reinvestment"},
             { "data": "admin_reinvestment"},
             { "data": "tip"},
-            { "data": "total"},
+            { "data": "total"}
         ],
         "columnDefs": [
         {

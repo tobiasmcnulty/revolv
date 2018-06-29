@@ -1887,3 +1887,26 @@ def monthly_repayment_table(request):
 
     return HttpResponse(json.dumps(json_response), content_type='application/json')
 
+
+class UserListView(UserDataMixin, TemplateView):
+    """
+    Display user's details report
+
+    Accessed through /UserListView/
+    """
+    model = RevolvUserProfile
+    template_name = 'base/partials/user_details.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
+        if not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        return super(UserListView, self).dispatch(request, *args, **kwargs)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(UserListView, self).get_context_data(**kwargs)
+        user_list = RevolvUserProfile.objects.all()
+        context["users"] = user_list.order_by("-user__date_joined")
+        return context
