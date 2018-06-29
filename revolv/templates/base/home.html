@@ -154,13 +154,24 @@
             <span class="CREATE_CLEAN_ENERGY">LEONARDO DICAPRIO FOUNDATION<br>PARTNERS WITH RE-VOLV</span>
           </div>
           <div class="space_btn_element" style="margin-top: 0;">
+          {% if active_projects %}
             <span class="Bring_solar_energy__to_communities_around_the_c">LDF is now matching <br>all solar crowdfunding donations!</span>
+          {% else %}
+            <span class="Bring_solar_energy__to_communities_around_the_c">Join LDF in supporting solar energy!</span>
+          {% endif %}
           </div>
 
         </div>
         <div class="how-it-works-button">
-            <a href="/what-we-do/projects/" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
-{#            <a href="{%url 'faithbaptistchurch' %}" class="How_it_Works space_btn_element">Donate Now</a>#}
+            {% if active_projects_count > 1 %}
+                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+            {% elif active_projects_count == 1 %}
+                {% for active_project in active_projects %}
+                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+                {% endfor %}
+            {% else %}
+                <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="How_it_Works space_btn_element" style="margin-top: 0;">Become a Monthly Donor</a>
+            {% endif %}
         </div>
         <div class="learn-more"><a href="{%url 'leo_page' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
       </div>
@@ -645,7 +656,7 @@
          <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
           {% csrf_token %}
 		  <a class="btn-blue newsletter-signup btn-sign-up">SIGN UP</a>
-          <span class="inputs"><input id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="youareawesome@example.com" required /></span>
+          <span class="inputs"><input id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required /></span>
           <div style='height: 0px; overflow: hidden'><label for="comment">Do Not Fill This Out</label>
             <textarea name="comment" id="comment" rows="1" cols="1" ></textarea>
           </div>
@@ -655,7 +666,7 @@
       </div>
         <div class="mobile-form-group hidden-sm hidden-md hidden-lg">
         <form id="form2" name="form2" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-          <span class="inputs"><input id="Field0" name="Field0" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="youareawesome@example.com" required /></span>
+          <span class="inputs"><input id="Field0" name="Field0" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required /></span>
           <a class="btn-blue newsletter-signup btn-sign-up">SIGN UP</a>
           <div style='height: 0px; overflow: hidden'><label for="comment">Do Not Fill This Out</label>
           <textarea name="comment" id="comment" rows="1" cols="1" ></textarea>
