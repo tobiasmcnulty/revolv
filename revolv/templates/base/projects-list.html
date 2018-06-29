@@ -12,7 +12,11 @@
     <script type="text/javascript" src="{% static 'js/base/util/util.js' %}?version={{ version_number }}"></script>
     <script type="text/javascript" src="{% static 'js/base/partialcircle.js' %}?version={{ version_number }}"></script>
     <script type="text/javascript" src="{% static 'js/base/projects-list.js' %}?version={{ version_number }}"></script>
-
+    <style>
+        .modal-backdrop.in {
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 
