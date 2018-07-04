@@ -7467,7 +7467,6 @@ width: 580px;
         border-bottom: 1px solid #cacaca;
     }
     .how-it-works-module .carousel {
-        min-height: 265px;
         margin-right: 85px;
         margin-left: 85px;
     }
@@ -9598,7 +9597,7 @@ width: 580px;
     }
     .footer .row .col-info:nth-child(5) dt a {
         font-size: 16.38px;
-        color: #6f6f6f;
+        /*color: #6f6f6f;*/
     }
     .footer .row .col-info dt {
         padding-bottom: 7px;
