@@ -64,8 +64,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                       <div class="input-group">
                         <label for="value">Reinvestment In this Project</label>
                         <div class="input-group">
-                          <input type="number" class="form-control" id = "amt" step="0.01" name="amount" value="{{reinvestment_amount|floatformat:2}}" min="0.01" max="{{reinvestment_amount|floatformat:2}}"  >
                           <span class="input-group-addon">$</span>
+                          <input type="number" class="form-control" id = "amt" step="0.01" name="amount" value="{{reinvestment_amount|floatformat:2}}" min="0.01" max="{{reinvestment_amount|floatformat:2}}"  >
                         </div>
                       </div>
                       <div >
@@ -148,14 +148,14 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                   <div class="inputs"  >
                     <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
+                      <span class="input-group-addon">$</span>
                       <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control tip_edit1">
                       <span id="edit_value1" class="input-group-addon">Edit</span>
-                      <span class="input-group-addon">$</span>
                     </div>
                     <label for="total">Total</label>
                     <div class="input-group">
+                      <span class="input-group-addon">$</span>
                       <input type="number" name="total" value="10" step="1" class="form-control" disabled>
-                        <span class="input-group-addon">$</span>
                     </div>
                   </div>
                   <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
@@ -177,19 +177,19 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                 <div class="inputs">
                   <label for="value">Donation to the project</label>
                   <div class="input-group">
-                    <input type="number" name="value" min="0" value="50" step="any" class="form-control">
                     <span class="input-group-addon">$</span>
+                    <input type="number" name="value" min="0" value="50" step="any" class="form-control">
                   </div>
                   <label for="tip_edit">Additional support for RE-volv</label>
                   <div class="input-group">
+                    <span class="input-group-addon">$</span>
                     <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control tip_edit2">
                     <span id="edit_value2" class="input-group-addon">Edit</span>
-                    <span class="input-group-addon">$</span>
                   </div>
                   <label for="total">Total</label>
                   <div class="input-group">
-                    <input type="number" name="total" value="10" step="1" class="form-control" disabled>
                     <span class="input-group-addon">$</span>
+                    <input type="number" name="total" value="10" step="1" class="form-control" disabled>
                   </div>
                 </div>
                   {% for level in project_donation_levels %}
@@ -232,16 +232,16 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                   <div class="input-group">
                     <label for="value">Donation to the project</label>
                     <div class="input-group">
-                      <input type="number" class="form-control donation-field" step="any" value="50" min="0" name="value">
                       <span class="input-group-addon">$</span>
+                      <input type="number" class="form-control donation-field" step="any" value="50" min="0" name="value">
                     </div>
                   </div>
                   <div class="input-group">
                     <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
+                      <span class="input-group-addon">$</span>
                       <input type="number" class="form-control donation-tip tip_edit3" step="any" value="7.50" min="0" name="tip_edit">
                       <span id="edit_value3" class="input-group-addon">Edit</span>
-                      <span class="input-group-addon">$</span>
                     </div>
                       <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST" id="ipad">
                         {% csrf_token %}
@@ -256,8 +256,8 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                   <div class="input-group">
                     <label for="total">Total</label>
                     <div class="input-group">
-                      <input type="number" disabled="" class="form-control" step="1" value="10" name="total">
                       <span class="input-group-addon">$</span>
+                      <input type="number" disabled="" class="form-control" step="1" value="10" name="total">
                     </div>
                   </div>
                 </div>
@@ -343,14 +343,14 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                   <div class="inputs">
                     <label for="tip_edit">Additional support for RE-volv</label>
                     <div class="input-group">
+                      <span class="input-group-addon">$</span>
                       <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control tip_edit4">
                       <span id="edit_value4" class="input-group-addon">Edit</span>
-                      <span class="input-group-addon">$</span>
                     </div>
                     <label for="total">Total</label>
                     <div class="input-group">
+                      <span class="input-group-addon">$</span>
                       <input type="number" name="total" value="10" step="1" class="form-control" disabled>
-                        <span class="input-group-addon">$</span>
                     </div>
                   </div>
                   <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
@@ -371,19 +371,19 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                 <div class="inputs">
                   <label for="value">Donation to the project</label>
                   <div class="input-group">
-                    <input type="number" name="value" min="0" value="50" step="any" class="form-control donation-field">
                     <span class="input-group-addon">$</span>
+                    <input type="number" name="value" min="0" value="50" step="any" class="form-control donation-field">
                   </div>
                   <label for="tip_edit">Additional support for RE-volv</label>
                   <div class="input-group">
+                    <span class="input-group-addon">$</span>
                     <input type="number" name="tip_edit" min="0" step="any" value="7.50" class="form-control donation-tip tip_edit5">
                     <span id="edit_value5" class="input-group-addon">Edit</span>
-                    <span class="input-group-addon">$</span>
                   </div>
                   <label for="total">Total</label>
                   <div class="input-group">
-                    <input type="number" name="total" value="10" step="1" class="form-control" disabled>
                     <span class="input-group-addon">$</span>
+                    <input type="number" name="total" value="10" step="1" class="form-control" disabled>
                   </div>
                 </div>
 
