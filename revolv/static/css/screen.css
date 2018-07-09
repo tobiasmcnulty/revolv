@@ -4213,6 +4213,7 @@ header.edit-project-header > .container > h1 {
 
 .footer .row .col-menu {
     width: 17%;
+    text-align: left;
 }
 .footer .row .col-menu dt {
     padding-bottom: 0;
@@ -7466,7 +7467,6 @@ width: 580px;
         border-bottom: 1px solid #cacaca;
     }
     .how-it-works-module .carousel {
-        min-height: 265px;
         margin-right: 85px;
         margin-left: 85px;
     }
@@ -9597,7 +9597,7 @@ width: 580px;
     }
     .footer .row .col-info:nth-child(5) dt a {
         font-size: 16.38px;
-        color: #6f6f6f;
+        /*color: #6f6f6f;*/
     }
     .footer .row .col-info dt {
         padding-bottom: 7px;
@@ -10325,7 +10325,7 @@ width: 580px;
         line-height: 10px;
     }
     .how-it-works-module .info-row .txt-area .txt-td p {
-        font-size: 8px;
+        font-size: 100%;
         line-height: 16px;
     }
     /* .how-it-works-module .step-row */
@@ -10450,10 +10450,10 @@ width: 580px;
         padding: 17px 30px 0 30px;
     }
     .testimonial-module .info-area p {
-        font-size: 8px;
+        font-size: 100%;
         line-height: 16px;
         letter-spacing: -0.1px;
-        width: 320px;
+        width: 90%;
         padding-bottom: 7px;
     }
     .testimonial-module .user-group {
@@ -10463,7 +10463,7 @@ width: 580px;
         font-size: 12px;
     }
     .testimonial-module .user-group .txt {
-        font-size: 8px;
+        font-size: 80%;
         padding: 0 0 12px 0;
     }
     .testimonial-module .user-group .btn-blue {
@@ -15436,3 +15436,8 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 9999;
     background: url("/static/images/gif/revolv-loader.gif") no-repeat center center rgba(66, 66, 66, 1)
 }
+@media (max-width: 335px) {
+     .testimonial-module .head-row li .head-img .mobile-head {
+         width: 90vw;
+     }
+ }
