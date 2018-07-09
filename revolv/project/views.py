@@ -145,7 +145,10 @@ def stripe_payment(request, pk):
         context = {}
         context['project'] = project
         context['amount'] = donation_cents / 100.0
-        context['tip_cents'] = tip_cents / 100.0
+        if tip_cents != 0:
+            context['tip_cents'] = tip_cents / 100.0
+        else:
+            context['tip_cents'] = False
         context['amount_cents'] = amount_cents / 100.0
         context['portfolio_link'] = portfolio_link
         context['first_name'] = "RE-volv"
@@ -163,7 +166,10 @@ def stripe_payment(request, pk):
         context = {}
         context['project'] = project
         context['amount'] = donation_cents/100.0
-        context['tip_cents'] = tip_cents / 100.0
+        if tip_cents != 0:
+            context['tip_cents'] = tip_cents / 100.0
+        else:
+            context['tip_cents'] = False
         context['amount_cents'] = amount_cents/100.0
         context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
         context['first_name'] = request.user.first_name.title
