@@ -209,8 +209,18 @@ input.checkbox-settings[type="checkbox"] + label::before {
                 <div class="setting-input-block">
                     <span class="setting-form-lebel">EMAIL:</span>
                     <div>
-                        {{ form.email|add_class:"setting-donation-input" }}
+                        {% if form.email.errors %}
+                            {{ form.email|add_class:"setting-donation-input field-error" }}
+                        {% else %}
+                            {{ form.email|add_class:"setting-donation-input" }}
+                        {% endif %}
                     </div>
+                        <span id="emaillabel" class="setting-donation-change">Edit</span>
+                        {% if form.email.errors %}
+                            <div class="error-text">
+                               {{ form.email.errors }}
+                            </div>
+                        {% endif %}
                 </div>
                 <div class="setting-input-block">
                     <span class="setting-form-lebel">PASSWORD:</span>

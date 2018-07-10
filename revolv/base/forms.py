@@ -78,6 +78,12 @@ class UpdateUser(forms.ModelForm):
     first_name = forms.CharField(label="First name")
     last_name = forms.CharField(label="Last name")
 
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError("User with this email address already exists")
+        return data
+
 
 class SignInForm(AuthenticationForm):
     username = forms.CharField(label="Username or Email")
