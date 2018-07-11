@@ -37,10 +37,10 @@
 <div class="role-select-options">
     <div class="dashboard-header">View as:</div>
     {% if user.revolvuserprofile.is_administrator %}
-        <div class="role-select-option"><a href="/dashboard/admin/">Administrator</a></div>
+        <div class="role-select-option"><a href="{% url "administrator:dashboard" %}">Administrator</a></div>
     {% endif %}
-    <div class="role-select-option"><a href="/dashboard/ambassador/">Ambassador</a></div>
-    <div class="role-select-option"><a href="/dashboard/donor/">Donor</a></div>
+    <div class="role-select-option"><a href="{% url "ambassador:dashboard" %}">Ambassador</a></div>
+    <div class="role-select-option"><a href="{% url "donor:dashboard" %}">Donor</a></div>
 </div>
 {% endif %}
 
