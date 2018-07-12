@@ -722,7 +722,7 @@ class ProjectView(UserDataMixin, DetailView):
         # always populate self.user, etc
         super_response = super(ProjectView, self).dispatch(request, *args, **kwargs)
         project = self.get_object()
-        if (project.is_active or project.is_completed or
+        if (project.is_active or project.is_completed or project.is_staged or
                 (self.user.is_authenticated() and (project.has_owner(self.user_profile) or self.is_administrator or self.is_ambassador))):
             return super_response
         else:
