@@ -81,10 +81,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
         <div class="info-main">
           <div class="blue-bar">
             <span class="pull-left"><span class="bold">${{ project.amount_donated|floatformat:"0"|intcomma }}</span> Donated</span>
-            {% if completed_project.days_left > 0 %}
-                <span class="pull-right"><span class="bold">{{ completed_project.days_left }}</span> Days Left</span>
+            {% if project.is_completed %}
+                <span class="pull-right"><span class="bold">Campaign completed</span></span>
             {% else %}
-                <span class="pull-right bold">Campaign completed</span>
+                <span class="pull-right"><span class="bold">{{ project.days_left }}</span> Days Left</span>
             {% endif %}
           </div>
           <!-- end .blue-bar -->
@@ -276,10 +276,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
         <div class="info-main">
           <div class="blue-bar">
             <span class="pull-left"><span class="bold">${{ project.amount_donated|floatformat:"0"|intcomma }}</span> Donated</span>
-            {% if completed_project.days_left > 0 %}
-                <span class="pull-right"><span class="bold">{{ completed_project.days_left }}</span> Days Left</span>
+            {% if project.is_completed %}
+                <span class="pull-right"><span class="bold">Campaign completed</span></span>
             {% else %}
-                <span class="pull-right bold">Campaign completed</span>
+                <span class="pull-right"><span class="bold">{{ project.days_left }}</span> Days Left</span>
             {% endif %}
           </div>
           <!-- end .blue-bar -->
