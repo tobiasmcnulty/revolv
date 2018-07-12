@@ -15453,3 +15453,16 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 9999;
     background: url("/static/images/gif/revolv-loader.gif") no-repeat center center rgba(66, 66, 66, 1)
 }
+@media (min-width: 1024px) {
+    .zinnia .container {
+        max-width: 85em;
+    }
+
+    body.zinnia > .container > #content {
+        width: auto;
+        font-size: inherit;
+    }
+}
+#sidebar {
+    display: none;
+}
