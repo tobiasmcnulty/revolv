@@ -26,6 +26,7 @@
 <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" id="st_insights_js" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
 {% endblock %}
 {% block body %}
@@ -70,9 +71,10 @@
 <script>
 
     $( document ).ready(function() {
-        if ('{{ social }}' == 'donation')
+        if (('{{ social }}' == 'donation') || $.cookie('last_project'))
         {
             $("#social_media").modal("show");
+            $.removeCookie('last_project', { path: '/' });
         }
     })
 </script>

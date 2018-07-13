@@ -329,7 +329,10 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     @csrf_exempt
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
-        self.next_url = request.POST.get("next", "home")
+        if request.COOKIES.get("last_project"):
+            self.next_url = request.POST.get("next", "dashboard")
+        else:
+            self.next_url = request.POST.get("next", "home")
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):

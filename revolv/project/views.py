@@ -145,9 +145,15 @@ def stripe_payment(request, pk):
         context = {}
         context['project'] = project
         context['amount'] = donation_cents / 100.0
-        context['tip_cents'] = tip_cents / 100.0
+        if tip_cents != 0:
+            context['tip_cents'] = tip_cents / 100.0
+        else:
+            context['tip_cents'] = False
         context['amount_cents'] = amount_cents / 100.0
         context['portfolio_link'] = portfolio_link
+        request.session['project'] = project.title
+        previous_url = request.META.get('HTTP_REFERER')
+        request.session['url'] = previous_url
         context['first_name'] = "RE-volv"
         context['last_name'] = "supporter"
         send_donation_info(email, donation_cents / 100.0, email, project.title, address='')
@@ -155,7 +161,9 @@ def stripe_payment(request, pk):
             'post_donation',
             context, [email]
         )
-        return redirect('/signin/#signup')
+        response = redirect('/signin/#signup')
+        response.set_cookie('last_project', payment.project.title)
+        return response
     else:
         SITE_URL = settings.SITE_URL
         portfolio_link = SITE_URL + reverse('dashboard')
@@ -163,7 +171,10 @@ def stripe_payment(request, pk):
         context = {}
         context['project'] = project
         context['amount'] = donation_cents/100.0
-        context['tip_cents'] = tip_cents / 100.0
+        if tip_cents != 0:
+            context['tip_cents'] = tip_cents / 100.0
+        else:
+            context['tip_cents'] = False
         context['amount_cents'] = amount_cents/100.0
         context['portfolio_link'] = portfolio_link + utils.get_query_string(request.user)
         context['first_name'] = request.user.first_name.title
@@ -716,7 +727,7 @@ class ProjectView(UserDataMixin, DetailView):
         # always populate self.user, etc
         super_response = super(ProjectView, self).dispatch(request, *args, **kwargs)
         project = self.get_object()
-        if (project.is_active or project.is_completed or
+        if (project.is_active or project.is_completed or project.is_staged or
                 (self.user.is_authenticated() and (project.has_owner(self.user_profile) or self.is_administrator or self.is_ambassador))):
             return super_response
         else:
