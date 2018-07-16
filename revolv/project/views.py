@@ -153,7 +153,6 @@ def stripe_payment(request, pk):
         context['portfolio_link'] = portfolio_link
         request.session['project'] = project.title
         previous_url = request.META.get('HTTP_REFERER')
-        print 'previous_url', previous_url
         request.session['url'] = previous_url
         context['first_name'] = "RE-volv"
         context['last_name'] = "supporter"
