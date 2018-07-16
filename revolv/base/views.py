@@ -10,6 +10,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -329,7 +330,10 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
     @csrf_exempt
     @method_decorator(sensitive_post_parameters('password'))
     def dispatch(self, request, *args, **kwargs):
-        self.next_url = request.POST.get("next", "home")
+        if request.COOKIES.get("last_project"):
+            self.next_url = request.POST.get("next", "dashboard")
+        else:
+            self.next_url = request.POST.get("next", "home")
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -1910,3 +1914,25 @@ class UserListView(UserDataMixin, TemplateView):
         user_list = RevolvUserProfile.objects.all()
         context["users"] = user_list.order_by("-user__date_joined")
         return context
+
+@csrf_exempt
+def user_details_chart(request):
+    year = request.GET.get('year')
+
+    from django.contrib.auth.models import User
+    import calendar
+    user_details = []
+    user_list = {}
+    for i in range(1, 13, 1):
+        user_list[str(calendar.month_abbr[i])] = User.objects.filter(date_joined__year=year).filter(date_joined__month=i)\
+            .count()
+        print '***USER LIST***', user_list
+        user_details.append(user_list)
+        user_list = {}
+        print '@@@@@@@@', user_details
+
+    print user_details
+
+    json_response = {"data": user_details}
+
+    return HttpResponse(json.dumps(json_response), content_type='application/json')

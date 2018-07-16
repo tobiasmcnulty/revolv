@@ -151,6 +151,10 @@ def stripe_payment(request, pk):
             context['tip_cents'] = False
         context['amount_cents'] = amount_cents / 100.0
         context['portfolio_link'] = portfolio_link
+        request.session['project'] = project.title
+        previous_url = request.META.get('HTTP_REFERER')
+        print 'previous_url', previous_url
+        request.session['url'] = previous_url
         context['first_name'] = "RE-volv"
         context['last_name'] = "supporter"
         send_donation_info(email, donation_cents / 100.0, email, project.title, address='')
@@ -158,7 +162,9 @@ def stripe_payment(request, pk):
             'post_donation',
             context, [email]
         )
-        return redirect('/signin/#signup')
+        response = redirect('/signin/#signup')
+        response.set_cookie('last_project', payment.project.title)
+        return response
     else:
         SITE_URL = settings.SITE_URL
         portfolio_link = SITE_URL + reverse('dashboard')
