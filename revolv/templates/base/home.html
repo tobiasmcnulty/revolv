@@ -160,10 +160,10 @@
         </div>
         <div class="how-it-works-button">
             {% if active_projects_count > 1 %}
-                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DONATE</a>
             {% elif active_projects_count == 1 %}
                 {% for active_project in active_projects %}
-                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DONATE</a>
                 {% endfor %}
             {% else %}
                 <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="How_it_Works space_btn_element" style="margin-top: 0;">Become a Monthly Donor</a>
