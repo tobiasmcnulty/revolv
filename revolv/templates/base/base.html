@@ -125,7 +125,7 @@
                 <div class="et_social_popup_content et_social_resize et_social_fadein" style="height: 176px; max-height: 392px; top: 108px;">
 					<a href="#" class="et_social_icon et_social_icon_cancel"></a>
 					<div class="et_social_header" style="padding-bottom: 2em;text-align: center;">
-						<span class="confirm-text">Thank you for donating. Please spread the word about this project below!</span>
+						<span class="confirm-text">Thank you for donating! Now help us spread the word!</span>
 					</div>
 					<div class="et_social_networks et_social_3col et_social_slide et_social_rounded et_social_left et_social_withcounts et_social_withnetworknames" style="height: 112px;">
 
@@ -261,6 +261,23 @@ $(function ($) {
   $(window).on('popstate', function () {
     handler.close();
   });
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var str_amount = url.searchParams.get("amount");
+  var int_amount = parseFloat(str_amount);
+  if (url.pathname == "/") {
+      if (int_amount > 0) {
+          setTimeout(function () {
+              $(".stripe-button-el").trigger('click');
+          }, 10);
+      }
+      else if (str_amount == "custom") {
+          setTimeout(function () {
+              $("#footer-donation-modal").trigger('click');
+          }, 10);
+      }
+  }
+
   $(document).on('click','.stripe-button-el',function (e) {
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
@@ -276,11 +293,18 @@ $(function ($) {
     }
 
     $.each(serialized, function () {
-      if (this.name === 'donation_amount_cents') {
-        amount = this.value*100;
+      if (int_amount) {
+          amount = int_amount*100;
+          metadata = int_amount;
       }
-      if (this.name === 'metadata') {
-        metadata = this.value;
+      else
+      {
+          if (this.name === 'donation_amount_cents') {
+              amount = this.value * 100;
+          }
+          if (this.name === 'metadata') {
+              metadata = this.value;
+          }
       }
     });
     if (typeof amount !== 'undefined') {
@@ -349,8 +373,17 @@ $(function ($) {
  });
 </script>
 <script>
-     $("#social_media_operation").on("hidden.bs.modal", function () {
-      location.reload();
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var str_amount = new URL(url_string).searchParams.get("amount");
+    var int_amount = parseFloat(new URL(window.location.href).searchParams.get("amount"));
+    $("#social_media_operation").on("hidden.bs.modal", function () {
+        if (int_amount) {
+            window.location = url.origin + url.pathname
+        }
+        else {
+            window.location.reload()
+        }
     });
 
 </script>
