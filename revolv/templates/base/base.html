@@ -378,7 +378,7 @@ $(function ($) {
     var str_amount = new URL(url_string).searchParams.get("amount");
     var int_amount = parseFloat(new URL(window.location.href).searchParams.get("amount"));
     $("#social_media_operation").on("hidden.bs.modal", function () {
-        if (int_amount) {
+        if (int_amount || str_amount) {
             window.location = url.origin + url.pathname
         }
         else {
