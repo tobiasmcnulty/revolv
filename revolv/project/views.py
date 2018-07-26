@@ -245,22 +245,22 @@ def stripe_operation_donation(request):
                 )
             else:
 
-                # my_ip = request.META.get('REMOTE_ADDR')
+                my_ip = load(urlopen('http://jsonip.com'))['ip']
 
-                # url = 'http://freegeoip.net/json/' + my_ip
+                url = 'http://ip-api.com/json/' + my_ip
 
-                # response = load(urlopen(url))
+                response = load(urlopen(url))
 
                 AnonymousUserDetail.objects.create(
                     email=email,
-                    # ip_address=my_ip,
+                    ip_address=my_ip,
                     amount=amount / 100,
-                    # city=response['city'],
-                    # region_code=response['region_code'],
-                    # region_name=response['region_name'],
-                    # time_zone=response['time_zone'],
-                    # country_name=response['country_name'],
-                    # zip_code=response['zip_code']
+                    city=response['city'],
+                    region_code=response['region'],
+                    region_name=response['regionName'],
+                    time_zone=response['timezone'],
+                    country_name=response['country'],
+                    zip_code=response['zip']
                 )
 
                 anonymous_user = User.objects.get(username='Anonymous')
@@ -382,22 +382,22 @@ def stripe_operation_donation(request):
                     messages.error(request, 'Payment error. RE-volv has been notified.')
                     return redirect('home')
 
-                # my_ip = load(urlopen('http://jsonip.com'))['ip']
+                my_ip = load(urlopen('http://jsonip.com'))['ip']
 
-                # url = 'http://freegeoip.net/json/' + my_ip
+                url = 'http://ip-api.com/json/' + my_ip
 
-                # response = load(urlopen(url))
+                response = load(urlopen(url))
 
                 AnonymousUserDetail.objects.create(
-                    email = email,
-                    # ip_address = my_ip,
-                    amount = amount / 100,
-                    # city = response['city'],
-                    # region_code = response['region_code'],
-                    # region_name = response['region_name'],
-                    # time_zone = response['time_zone'],
-                    # country_name = response['country_name'],
-                    # zip_code = response['zip_code']
+                    email=email,
+                    ip_address=my_ip,
+                    amount=amount / 100,
+                    city=response['city'],
+                    region_code=response['region'],
+                    region_name=response['regionName'],
+                    time_zone=response['timezone'],
+                    country_name=response['country'],
+                    zip_code=response['zip']
                 )
                 anonymous_user = User.objects.get(username='Anonymous')
                 user = RevolvUserProfile.objects.get(user=anonymous_user)
