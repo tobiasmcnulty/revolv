@@ -85,6 +85,7 @@
   <div class="btn-blue">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</div>
   </a>
  {% endif %}
+  <div class="btn-donation-history"><a href="{% url "donation_history" %}">DONATION HISTORY</a></div>
 {% if donated_projects %}
   <div class="row">
     <p class="title-blue-border title-active-projects">PROJECTS YOU'VE SUPPORTED:</p>

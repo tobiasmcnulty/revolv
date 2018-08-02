@@ -39,6 +39,7 @@ urlpatterns = patterns(
     url(r'^my-portfolio/matchingdonors/', base_views.MatchingDonorsView.as_view(), name='matchingdonors'),
     url(r'^my-portfolio/donationsourcetracking/', base_views.DonationSourceTrackingView.as_view(), name='donationsourcetracking'),
     url(r'^my-portfolio/reinvest_list/', base_views.ReinvestmentRedirect.as_view(), name='reinvest_list'),
+    url(r'^my-portfolio/donationhistory/', base_views.DonationHistory.as_view(), name='donation_history'),
     url(r'^my-portfolio/sendmail/', 'revolv.base.views.sendmail', name='sendmail'),
     url(r'^my-portfolio/senddonoremail/', 'revolv.base.views.send_donor_email', name='senddonoremail'),
     url(r'^account_settings/', 'revolv.base.views.account_settings', name='account_settings'),

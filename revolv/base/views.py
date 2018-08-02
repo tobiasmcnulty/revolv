@@ -1913,3 +1913,25 @@ class UserListView(UserDataMixin, TemplateView):
         user_list = RevolvUserProfile.objects.all()
         context["users"] = user_list.order_by("-user__date_joined")
         return context
+
+
+class DonationHistory(UserDataMixin, TemplateView):
+    """
+    Display user's donation history
+
+    Accessed through /DonationHistory/
+    """
+    model = Payment
+    template_name = 'base/partials/donation_history.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
+        return super(DonationHistory, self).dispatch(request, *args, **kwargs)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        context = super(DonationHistory, self).get_context_data(**kwargs)
+        donation_list = Payment.objects.filter(user__user__username=self.user_profile)
+        context["donation_history"] = donation_list
+        return context
