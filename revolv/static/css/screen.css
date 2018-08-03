@@ -12780,7 +12780,7 @@ label.checkmark.animate:after {
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 46px;
 }
-.dashboard .impact h3 {
+.dashboard .impact h3, .dashboard .impact .row h3 {
     font-weight: 300;
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 41px;
@@ -15472,17 +15472,24 @@ input[type=number]::-webkit-outer-spin-button {
     }
 }
 .btn-donation-history {
+
     display: block;
     font-size: 20px;
     font-weight: bold;
-    margin-top: 15px;
+    margin: 15px auto;
     text-align: center;
 }
 .btn-donation-history a {
-    border: 2px solid #00a1d9;
+    background-color: #2c3691;
+    color: white;
     padding: 5px;
+    border-radius: 3px;
 }
 .btn-donation-history a:hover {
     background-color: #00a1d9;
     color: #ffffff;
+}
+.zinnia > .container > #content > article > header > h2 {
+    font-size: 40px;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
 }

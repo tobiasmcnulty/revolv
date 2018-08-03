@@ -30,17 +30,15 @@
   <table id="donation_report" class="display nowrap" cellspacing="0" width="100%" >
   <thead >
       <tr>
-        <th>Username</th>
         <th>Date</th>
         <th>Project Name</th>
         <th>Project Donation</th>
-        <th>Tip Amount</th>
+        <th>Additional Amount</th>
       </tr>
      </thead>
   <tbody>
     {% for donation in donation_history %}
       <tr>
-        <td>{{ donation.user }}</td>
         <td>{{ donation.created_at }}</td>
         <td>{{ donation.project.title }}</td>
         <td>{{ donation.amount }}</td>

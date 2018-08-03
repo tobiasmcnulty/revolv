@@ -88,7 +88,7 @@
   <div class="btn-donation-history"><a href="{% url "donation_history" %}">DONATION HISTORY</a></div>
 {% if donated_projects %}
   <div class="row">
-    <p class="title-blue-border title-active-projects">PROJECTS YOU'VE SUPPORTED:</p>
+    <h3>PROJECTS YOU'VE SUPPORTED</h3>
   </div>
   {% include "base/partials/list_projects.html" with active_projects=donated_projects %}
 {% endif %}
