@@ -664,6 +664,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
 </script>
 
 <script type="text/javascript">
+var url_string = window.location.href;
+var url = new URL(url_string);
+var str_amount = url.searchParams.get("amount");
+var int_amount = parseFloat(str_amount);
 
   $(function ($) {
     $('.payment-module').each(function () {
@@ -686,7 +690,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
           val = 0;
         }
         $value.val(val);
-        if(!event.data.isTipEvent){
+        if((int_amount > 0) || (!event.data.isTipEvent)){
           $tip.val((val * 15 / 100).toFixed(2));
         }
         var added = parseFloat($tip.val());
@@ -725,6 +729,13 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
         if ((val+'').match(/^\d+\.\d\d\d+/)) {
           $(this).val((val+'').match(/^\d+\.\d\d/)[0]);
         }
+      }
+      if (int_amount > 0) {
+          $('.donation-field').val(int_amount);
+          var url = window.location.href.split('?')[0];
+          window.history.pushState("string", "Title", url);
+          update();
+          $(".stripe-button-el").trigger('click');
       }
       $value.on('keydown', prepress);
       $tip.on('keydown', prepress);

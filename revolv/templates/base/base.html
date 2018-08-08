@@ -261,23 +261,6 @@ $(function ($) {
   $(window).on('popstate', function () {
     handler.close();
   });
-  var url_string = window.location.href;
-  var url = new URL(url_string);
-  var str_amount = url.searchParams.get("amount");
-  var int_amount = parseFloat(str_amount);
-  if (url.pathname == "/") {
-      if (int_amount > 0) {
-          setTimeout(function () {
-              $(".stripe-button-el").trigger('click');
-          }, 10);
-      }
-      else if (str_amount == "custom") {
-          setTimeout(function () {
-              $("#footer-donation-modal").trigger('click');
-          }, 10);
-      }
-  }
-
   $(document).on('click','.stripe-button-el',function (e) {
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
@@ -291,20 +274,12 @@ $(function ($) {
     } else {
        donationtype = 'Donate';
     }
-
     $.each(serialized, function () {
-      if (int_amount) {
-          amount = int_amount*100;
-          metadata = int_amount;
+      if (this.name === 'donation_amount_cents') {
+        amount = this.value*100;
       }
-      else
-      {
-          if (this.name === 'donation_amount_cents') {
-              amount = this.value * 100;
-          }
-          if (this.name === 'metadata') {
-              metadata = this.value;
-          }
+      if (this.name === 'metadata') {
+        metadata = this.value;
       }
     });
     if (typeof amount !== 'undefined') {
@@ -347,7 +322,6 @@ $(function ($) {
                         $('#operationModal').modal('show');
                     }
                     $('#donation-spinner').css('display', 'none');
-
                  },
                  error: function(data)
                  {
@@ -357,7 +331,6 @@ $(function ($) {
                     $('#operationModal').modal('show');
                  }
                });
-
           e.preventDefault(); // avoid to execute the actual submit of the form.
       });
           $form.trigger('submit');
@@ -373,19 +346,9 @@ $(function ($) {
  });
 </script>
 <script>
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var str_amount = new URL(url_string).searchParams.get("amount");
-    var int_amount = parseFloat(new URL(window.location.href).searchParams.get("amount"));
-    $("#social_media_operation").on("hidden.bs.modal", function () {
-        if (int_amount || str_amount) {
-            window.location = url.origin + url.pathname
-        }
-        else {
-            window.location.reload()
-        }
+     $("#social_media_operation").on("hidden.bs.modal", function () {
+      location.reload();
     });
-
 </script>
 </body>
 
