@@ -244,9 +244,10 @@ def stripe_operation_donation(request):
                      payment_type=PaymentType.objects.get_stripe(),
                 )
             else:
-                my_ip = load(urlopen('http://jsonip.com'))['ip']
 
-                url = 'http://api.ipstack.com/' + my_ip + '?access_key=' + settings.IP_STACK_ACCESS_KEY
+                my_ip = request.META.get('REMOTE_ADDR')
+
+                url = 'http://freegeoip.net/json/' + my_ip
 
                 response = load(urlopen(url))
 
@@ -257,8 +258,9 @@ def stripe_operation_donation(request):
                     city=response['city'],
                     region_code=response['region_code'],
                     region_name=response['region_name'],
+                    time_zone=response['time_zone'],
                     country_name=response['country_name'],
-                    zip_code=response['zip']
+                    zip_code=response['zip_code']
                 )
 
                 anonymous_user = User.objects.get(username='Anonymous')
@@ -382,21 +384,21 @@ def stripe_operation_donation(request):
 
                 my_ip = load(urlopen('http://jsonip.com'))['ip']
 
-                url = 'http://api.ipstack.com/' + my_ip + '?access_key=' + settings.IP_STACK_ACCESS_KEY
+                url = 'http://freegeoip.net/json/' + my_ip
 
                 response = load(urlopen(url))
 
                 AnonymousUserDetail.objects.create(
-                    email=email,
-                    ip_address=my_ip,
-                    amount=amount / 100,
-                    city=response['city'],
-                    region_code=response['region_code'],
-                    region_name=response['region_name'],
-                    country_name=response['country_name'],
-                    zip_code=response['zip']
+                    email = email,
+                    ip_address = my_ip,
+                    amount = amount / 100,
+                    city = response['city'],
+                    region_code = response['region_code'],
+                    region_name = response['region_name'],
+                    time_zone = response['time_zone'],
+                    country_name = response['country_name'],
+                    zip_code = response['zip_code']
                 )
-
                 anonymous_user = User.objects.get(username='Anonymous')
                 user = RevolvUserProfile.objects.get(user=anonymous_user)
 
