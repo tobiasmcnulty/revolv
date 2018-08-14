@@ -523,7 +523,6 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
         }
         //this.value = parseFloat(this.value).toFixed(2);
     }); */
-
     function setTwoNumberDecimal(event) {
         console.log("input", $("#amt").val().indexOf('.'))
       if ((pointPos = $("#amt").val().indexOf('.')) >= 0){
@@ -537,7 +536,6 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
     $('.btn-reinvest').on('click', function (e) {
         $('.btn-reinvest').prop('disabled', true);
          document.getElementById("amt").value = parseFloat(document.getElementById("amt").value).toFixed(2)
-
          if (parseFloat($("#amt").val()) > {{reinvestment_amount|floatformat:2}} || parseFloat($("#amt").val()) < 0.01 || $("#amt").val() == ""){
                 toastr.options.positionClass = "toast-bottom-right";
                 toastr.error('Invalid amount');
@@ -553,18 +551,14 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                data: $form.serializeArray(),
                success: function(data)
                {
-
                   $('#reinvest-spinner').css('display', 'none');
                   $("#confirmModal").modal();
                   $(".modal-body p > span").text(parseFloat(document.getElementById("amt").value).toFixed(2));
                   $('.btn-reinvest').prop('disabled', false);
-
-
                }
              });
          }
      });
-
 </script>
 <script>
   $(function ($) {
@@ -664,7 +658,10 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
 </script>
 
 <script type="text/javascript">
-
+var url_string = window.location.href;
+var url = new URL(url_string);
+var str_amount = url.searchParams.get("amount");
+var int_amount = parseFloat(str_amount);
   $(function ($) {
     $('.payment-module').each(function () {
       $module = $(this);
@@ -678,7 +675,6 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
       var $meta = $module.find('input[name="metadata"]');
       var $donationAmount = $module.find('input[name="donation_amount"]');
       var $donationTip = $module.find('input[name="donation_tip"]');
-
       function update (event) {
         var val = parseFloat($value.val() || $value.data('value'));
         if (isNaN(val)) {
@@ -686,7 +682,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
           val = 0;
         }
         $value.val(val);
-        if(!event.data.isTipEvent){
+        if((int_amount > 0) || (!event.data.isTipEvent)){
           $tip.val((val * 15 / 100).toFixed(2));
         }
         var added = parseFloat($tip.val());
@@ -700,9 +696,7 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
         $total.val((val + added).toFixed(2));
         $donationAmount.val($value.val());
         $donationTip.val($tip.val());
-
       }
-
       function prepress (e) {
         /*
           Prevent the user from ever entering in "-".
@@ -725,6 +719,13 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
         if ((val+'').match(/^\d+\.\d\d\d+/)) {
           $(this).val((val+'').match(/^\d+\.\d\d/)[0]);
         }
+      }
+      if (int_amount > 0) {
+          $('.donation-field').val(int_amount);
+          var url = window.location.href.split('?')[0];
+          window.history.pushState("string", "Title", url);
+          update();
+          $(".stripe-button-el").trigger('click');
       }
       $value.on('keydown', prepress);
       $tip.on('keydown', prepress);
