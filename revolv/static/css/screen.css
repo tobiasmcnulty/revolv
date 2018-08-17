@@ -12780,7 +12780,7 @@ label.checkmark.animate:after {
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 46px;
 }
-.dashboard .impact h3 {
+.dashboard .impact h3, .dashboard .impact .row h3 {
     font-weight: 300;
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     font-size: 41px;
@@ -15416,11 +15416,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .schedule-repayment-toggle-button {
-            background-color: #00a1d9;
-            color: #FFF;
-            text-align: center;
-            border: none;
-            height: 35px;
+    background-color: #00a1d9;
+    color: #FFF;
+    text-align: center;
+    border: none;
+    height: 35px;
 }
 .error
 {
@@ -15437,8 +15437,46 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 9999;
     background: url("/static/images/gif/revolv-loader.gif") no-repeat center center rgba(66, 66, 66, 1)
 }
+@media (min-width: 1024px) {
+     .zinnia .container {
+         max-width: 85em;
+     }
+
+     body.zinnia > .container > #content {
+         width: auto;
+         font-size: inherit;
+     }
+ }
+ #sidebar {
+     display: none;
+ }
+
 @media (max-width: 335px) {
      .testimonial-module .head-row li .head-img .mobile-head {
          width: 90vw;
      }
  }
+.btn-donation-history {
+     display: block;
+     font-size: 20px;
+     font-weight: bold;
+     margin: 15px auto;
+     text-align: center;
+}
+.btn-donation-history a {
+     background-color: #2c3691;
+     color: white;
+     padding: 5px;
+     border-radius: 3px;
+}
+.btn-donation-history a:hover {
+     background-color: #00a1d9;
+     color: #ffffff;
+}
+.zinnia > .container > #content > article > header > h2 {
+     font-size: 40px;
+     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
+.zinnia.blue a:hover, .zinnia.blue a:active {
+    color: #268bd2 !important;
+}
