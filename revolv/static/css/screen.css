@@ -15480,3 +15480,8 @@ input[type=number]::-webkit-outer-spin-button {
 .zinnia.blue a:hover, .zinnia.blue a:active {
     color: #268bd2 !important;
 }
+@media only screen and (max-width: 767px) {
+    div.info-section > div > div.video-main > div > div.video-area > div > iframe {
+        height: 100%!important;
+    }
+}
