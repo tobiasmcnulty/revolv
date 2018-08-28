@@ -16,48 +16,60 @@ y.classList.remove("after-scroll-header-fixed");
         <div class="row">
             <nav class="col-menu">
                 <dl>
-                    <dt><a href="/">Home</a></dt>
-                    <dt><a href="/about-us/">About us</a></dt>
-                    <dt><a href="/about-us/our-team/" class="footer-colmn-links">Team</a></dt>
-                    <dt><a href="/about-us/partners/" class="footer-colmn-links">Partners</a></dt>
-                    <dt><a href="/about-us/jobs/" class="footer-colmn-links">Jobs</a></dt>
-                    <dt><a href="/about-us/contact/" class="footer-colmn-links">Contact us</a></dt>
-                    <dt><a href="/blog/" class="footer-colmn-links">Blog</a></dt>
-                    <dd class="hide"></dd>
+                    <dt><a href="/">Home</a><span data-toggle="collapse" data-target="#info-block-1"
+                                                   class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></dt>
+                     <div id="info-block-1" class="collapse info-block">
+                         <dt><a href="/about-us/" class="footer-colmn-links">About us</a></dt>
+                         <dt><a href="/about-us/our-team/" class="footer-colmn-links">Team</a></dt>
+                         <dt><a href="/about-us/partners/" class="footer-colmn-links">Partners</a></dt>
+                         <dt><a href="/about-us/jobs/" class="footer-colmn-links">Jobs</a></dt>
+                         <dt><a href="/about-us/contact/" class="footer-colmn-links">Contact us</a></dt>
+                         <dt><a href="/blog/" class="footer-colmn-links">Blog</a></dt>
+ {#                        <dd class="hide"></dd>#}
+                     </div>
                 </dl>
             </nav>
             <!-- end .col-menu -->
-            <nav class="col-info">
+            <nav class="col-menu">
                 <dl>
-                    <dt><a href="/what-we-do/">what we do</a></dt>
-                    <dd><a href="/what-we-do/how-it-works/">How It Works</a></dd>
-                    <dd><a href="{% url 'projects_list' %}">Projects</a></dd>
-                    <dd><a href="/what-we-do/media/">Media</a></dd>
+                    <dt><a href="/what-we-do/">what we do</a><span data-toggle="collapse" data-target="#info-block-2"
+                                                   class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></dt>
+                     <div id="info-block-2" class="collapse info-block">
+                         <dt><a href="/what-we-do/how-it-works/" class="footer-colmn-links">How It Works</a></dt>
+                         <dt><a href="{% url 'projects_list' %}" class="footer-colmn-links">Projects</a></dt>
+                         <dt><a href="/what-we-do/media/" class="footer-colmn-links">Media</a></dt>
+                     </div>
                 </dl>
             </nav>
             <!-- end .col-info -->
-            <nav class="col-info">
+            <nav class="col-menu">
                 <dl>
-                    <dt><a href="/get-involved/">get involved</a></dt>
-                    <dd><a href="https://re-volv.org/#newsletter">Join the RE-volv newsletter</a></dd>
-                    <dd><a href="{% url 'projects_list' %}">Fund a solar project</a></dd>
-                    <dd><a href="/bring_solar_to_your_community/">Start a solar project</a></dd>
-                    <dd><a href="/get-involved/solar-champion-program">Solar Champion program</a></dd>
-                    <dd><a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup">Support our work</a></dd>
-                    <dd><a href="/get-involved/leadership-circle/">Join the Leadership Circle</a></dd>
-                    <dd><a href="{% url 'revolv_accelerator' %}">RE-volv Accelerator</a></dd>
-                    <dd><a href="{% url 'faq' %}">RE-volv FAQ</a></dd>
+                    <dt><a href="/get-involved/">get involved</a><span data-toggle="collapse" data-target="#info-block-3"
+                                                   class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></dt>
+                     <div id="info-block-3" class="info-block collapse">
+                         <dt><a href="https://re-volv.org/#newsletter" class="footer-colmn-links">Join the RE-volv newsletter</a></dt>
+                         <dt><a href="{% url 'projects_list' %}" class="footer-colmn-links">Fund a solar project</a></dt>
+                         <dt><a href="/bring_solar_to_your_community/" class="footer-colmn-links">Start a solar project</a></dt>
+                         <dt><a href="/get-involved/solar-champion-program" class="footer-colmn-links">Solar Champion program</a></dt>
+                         <dt><a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="footer-colmn-links">Support our work</a></dt>
+                         <dt><a href="/get-involved/leadership-circle/" class="footer-colmn-links">Join the Leadership Circle</a></dt>
+                         <dt><a href="{% url 'revolv_accelerator' %}" class="footer-colmn-links">RE-volv Accelerator</a></dt>
+                         <dt><a href="{% url 'faq' %}" class="footer-colmn-links">RE-volv FAQ</a></dt>
+                     </div>
                 </dl>
             </nav>
             <!-- end .col-info -->
-            <nav class="col-info">
+            <nav class="col-menu">
                 <dl>
-                    <dt><a href="/solar-education/">solar education</a></dt>
-                    <dd><a href="/solar_at_home/">Go solar at home</a></dd>
-                    <dd><a href="/solar-education/">Educational Resources</a></dd>
-                    <dd><a href="/get-involved/solar-ambassador-program/">Solar Ambassador Program</a></dd>
-                    <dd><a href="/solar-education/myths-and-facts/">Common Myths and Exciting Facts</a></dd>
-                    <dd><a href="/solar-education/solar-education-week/">Solar Education Week</a></dd>
+                    <dt><a href="/solar-education/">solar education</a><span data-toggle="collapse" data-target="#info-block-4"
+                                                   class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></dt>
+                     <div id="info-block-4" class="info-block collapse">
+                         <dt><a href="/solar_at_home/" class="footer-colmn-links">Go solar at home</a></dt>
+                         <dt><a href="/solar-education/" class="footer-colmn-links">Educational Resources</a></dt>
+                         <dt><a href="/get-involved/solar-ambassador-program/" class="footer-colmn-links">Solar Ambassador Program</a></dt>
+                         <dt><a href="/solar-education/myths-and-facts/" class="footer-colmn-links">Common Myths and Exciting Facts</a></dt>
+                         <dt><a href="/solar-education/solar-education-week/" class="footer-colmn-links">Solar Education Week</a></dt>
+                     </div>
                 </dl>
             </nav>
             <!-- end .col-info -->
@@ -111,6 +123,11 @@ y.classList.remove("after-scroll-header-fixed");
 
         <!-- end .bottoms -->
     </div>
+    <script>
+ if (screen.width >= 768) {
+     $('.info-block').removeClass("collapse myth-collapse-icon glyphicon glyphicon-chevron-down");
+ }
+ </script>
 </footer>
 <!-- end .footer -->
 
