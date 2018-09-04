@@ -1835,7 +1835,7 @@ padding: 0;
 
 
 .featured-on-module .logo-doe {
-    background: url(../images/DOE_logo.jpg) no-repeat;
+    background: url(../images/sunshot.png) no-repeat;
     background-position: top;
     background-size: 100% auto;
     height: 65px;
@@ -12204,13 +12204,13 @@ width: 580px;
     /* .footer */
 
     .footer .row {
-        padding: 0 21.5px 0 32.5px;
+        padding: 20px 21.5px 0 32.5px;
     }
     .footer .row .col-info {
         padding: 17px 0 9px 0;
     }
     .footer .row .col-menu {
-        padding: 26px 0 11px 0;
+        padding: 0 0 11px 0;
     }
     /* .footer .col-info */
 
@@ -15020,12 +15020,6 @@ span.setting-donation-change {
     text-align: center;
     margin-top: 2em;
 }
-.infographic {
-    text-align: center;
-    width: 57%;
-    margin: 0 auto;
-    margin-bottom: 4%;
-}
 .myth-box-header-div {
     text-align: left;
     font-size: 22px;
@@ -15080,6 +15074,12 @@ span.setting-donation-change {
     .account-heading-span {
         font-size: 1.8em;
         padding-left: 0;
+    }
+    .infographic {
+        text-align: center;
+        width: auto;
+        margin: 0 auto;
+        margin-bottom: 4%;
     }
 }
 .setting-input-block {
@@ -15482,6 +15482,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media only screen and (max-width: 767px) {
     div.info-section > div > div.video-main > div > div.video-area > div > iframe {
-        height: 100%!important;
+        height: 100% !important;
     }
 }
