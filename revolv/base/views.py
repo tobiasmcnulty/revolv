@@ -1076,6 +1076,7 @@ def repayment_table(request):
     length = request.GET.get('length')
     order = request.GET.get('order[0][dir]')
     start = request.GET.get('start')
+
     search = request.GET.get('search[value]')
     currentSortByCol = request.GET.get('order[0][column]')
 
@@ -1140,23 +1141,29 @@ def export_csv(request):
     from django.utils.encoding import smart_str
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
+    search = request.GET.get('search_value') or ''
+    search_query = Q()
+    if search:
+        search_query = Q(user__user__username__icontains=search) | \
+                       Q(user__user__first_name__icontains=search) | \
+                       Q(project__title__icontains=search) | \
+                       Q(amount__icontains=search) | \
+                       Q(user__user__last_name__icontains=search) | \
+                       Q(user__user__email__icontains=search)
     if from_date and to_date:
         import datetime
         import pytz
         date1 = datetime.datetime.strptime(from_date, '%Y-%m-%d').date()
         date2 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()
-        payments = Payment.objects.filter(
+        payments = Payment.objects.filter(search_query).filter(
             created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
                                datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])\
             .order_by('-created_at')\
-            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
-            .iterator()
+            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
     else:
-        payments = Payment.objects.all().order_by('-created_at')\
+        payments = Payment.objects.filter(search_query).order_by('-created_at')\
             .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
             .iterator()
-
-    # Define a generator to stream data directly to the client
     def stream():
         buffer_ = StringIO()
         writer = csv.writer(buffer_)
@@ -1242,6 +1249,15 @@ def export_xlsx(request):
 
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
+    search = request.GET.get('search_value') or ''
+    search_query = Q()
+    if search:
+        search_query = Q(user__user__username__icontains=search) | \
+                       Q(user__user__first_name__icontains=search) | \
+                       Q(project__title__icontains=search) | \
+                       Q(amount__icontains=search) | \
+                       Q(user__user__last_name__icontains=search) | \
+                       Q(user__user__email__icontains=search)
     if from_date and to_date:
         import datetime
         import pytz
@@ -1250,11 +1266,10 @@ def export_xlsx(request):
         payments = Payment.objects.filter(
             created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
                                datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0,
-                                                 pytz.UTC)]).order_by('-created_at')\
-            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
-            .iterator()
+                                                 pytz.UTC)]).order_by('-created_at').filter(search_query)\
+            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
     else:
-        payments = Payment.objects.all().order_by('-created_at') \
+        payments = Payment.objects.filter(search_query).order_by('-created_at') \
             .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
             .iterator()
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -1349,6 +1364,15 @@ def export_repayment_csv(request):
     # response['Content-Disposition'] = 'attachment; filename=Repayment_report.csv'
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
+    search = request.GET.get('search_value') or ''
+    search_query = Q()
+    if search:
+        search_query = Q(user__user__username__icontains=search) | \
+                       Q(user__user__first_name__icontains=search) | \
+                       Q(project__title__icontains=search) | \
+                       Q(amount__icontains=search) | \
+                       Q(user__user__last_name__icontains=search) | \
+                       Q(user__user__email__icontains=search)
     if from_date and to_date:
         import datetime
         import pytz
@@ -1360,9 +1384,9 @@ def export_repayment_csv(request):
                                                                             12, 0, pytz.UTC),
                                                           datetime.datetime(date2.year, date2.month, date2.day, 8, 15,
                                                                             12, 0, pytz.UTC)]).order_by('-created_at') \
-            .select_related("user", "project", "user__user").iterator()
+            .select_related("user", "project", "user__user").filter(search_query).iterator()
     else:
-        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at') \
+        repayments = RepaymentFragment.objects.filter(amount__gt=0.00).filter(search_query).order_by('-created_at') \
             .select_related("user", "project", "user__user").iterator()
     # writer = csv.writer(response, csv.excel)
     # response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
@@ -1421,6 +1445,15 @@ def export_repayment_xlsx(request):
 
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
+    search = request.GET.get('search_value') or ''
+    search_query = Q()
+    if search:
+        search_query = Q(user__user__username__icontains=search) | \
+                       Q(user__user__first_name__icontains=search) | \
+                       Q(project__title__icontains=search) | \
+                       Q(amount__icontains=search) | \
+                       Q(user__user__last_name__icontains=search) | \
+                       Q(user__user__email__icontains=search)
     if from_date and to_date:
         import datetime
         import pytz
@@ -1432,10 +1465,10 @@ def export_repayment_xlsx(request):
                                                                             12, 0, pytz.UTC),
                                                           datetime.datetime(date2.year, date2.month, date2.day, 8, 15,
                                                                             12, 0, pytz.UTC)]).order_by('-created_at') \
-            .select_related("user", "project", "user__user").iterator()
+            .select_related("user", "project", "user__user").filter(search_query).iterator()
     else:
         repayments = RepaymentFragment.objects.filter(amount__gt=0.00).order_by('-created_at') \
-            .select_related("user", "project", "user__user").iterator()
+            .select_related("user", "project", "user__user").filter(search_query).iterator()
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = 'attachment; filename=Repayment_report.xlsx'
     wb = openpyxl.Workbook()

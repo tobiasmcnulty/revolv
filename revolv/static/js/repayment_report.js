@@ -25,6 +25,7 @@ $(document).ready(function() {
         "ajax": {
          url: '/repayment_table/',
           "data": function ( d ) {
+          search_value = $('input[type=search]').val();
           date1=$('#datepicker-1').val();
           date2=$('#datepicker-2').val();
 
@@ -97,10 +98,10 @@ $(document).ready(function() {
             }
         });
         $('#export-csv-btn').on('click',function(e){
-            location.replace('/export_repayment_csv?from_date='+ date1 + '&to_date=' + date2);
+            location.replace('/export_repayment_csv?from_date='+ date1 + '&to_date=' + date2 + '&search_value=' + search_value);
         })
         $('#export-excel-btn').on('click',function(e){
-            location.replace('/export_repayment_xlsx?from_date='+ date1 + '&to_date=' + date2);
+            location.replace('/export_repayment_xlsx?from_date='+ date1 + '&to_date=' + date2 + '&search_value=' + search_value);
         })
 
 } );
