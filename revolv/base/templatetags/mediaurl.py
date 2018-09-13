@@ -1,3 +1,5 @@
+import urlparse
+from urlparse import parse_qs
 from django import template
 from django.conf import settings
 register = template.Library()
