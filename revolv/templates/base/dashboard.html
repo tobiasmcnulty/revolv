@@ -70,13 +70,20 @@
     {% endblock %}
 <script>
 
-    $( document ).ready(function() {
-        if (('{{ social }}' == 'donation') || $.cookie('last_project'))
-        {
+    $(document).ready(function () {
+        if (('{{ social }}' == 'donation') || $.cookie('last_project')) {
             $("#social_media").modal("show");
-            $.removeCookie('last_project', { path: '/' });
+            $.removeCookie('last_project', {path: '/'});
         }
-    })
+    });
+    $(document).on("click", ".solar-seed-fund-amount", function (e) {
+        swal({
+            title: 'Hi {{ user }}',
+            text: 'Total Solar seed fund amount is {{ statistics.reinvest_pool_amount }}',
+            icon: "info",
+            button: "Ok",
+        });
+    });
 </script>
 
 

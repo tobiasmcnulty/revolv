@@ -50,8 +50,10 @@
 </div>
 {% endif %}
 {% if user.revolvuserprofile.is_administrator %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <div><a href="{% url "user_details" %}" class="create-new-button">User Details</a></div>
     <div><a href="{% url "donationreport" %}" class="create-new-button">Financial Report</a></div>
+    <div><a class="create-new-button solar-seed-fund-amount">Solar Seed Fund</a></div>
     <div><a href="{% url "repaymentreport" %}" class="create-new-button">Repayment Report</a></div>
     <div><a href="{% url "monthlyrepaymentreport" %}" class="create-new-button">Monthly Repayment</a></div>
     <div><a href="{% url "matchingdonors" %}" class="create-new-button">Matching Donors</a></div>
