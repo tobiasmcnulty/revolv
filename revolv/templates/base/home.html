@@ -463,109 +463,185 @@
 <!-- end .our-impacts-module -->
 
 <div class="how-it-works-module animated">
-  <div class="container">
-    <div id="how_it_works" class="title-blue-border title-active-projects" style="margin: 72px auto 53px auto;">SOLAR SEED FUND</div>
-    <!--<div id="how_it_works" class="title-blue-border title-how-it-works">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</div>-->
-    <div class="row info-row" style="padding-top: 0;">
-      <div class="infographic">
-        <img class="background-image-size_home" width="100%" src="static/images/infographic1.png" alt="Leonardo Dicaprio">
-      </div>
-      <div class="video-area pull-right" id="how-it-works">
-        <div class="video">
-          <iframe src="{{ settings.revolv_cms.MainPageSettings.how_it_works_video_url }}" allowfullscreen></iframe>
+    <div class="container">
+        <div id="how_it_works" class="title-blue-border title-active-projects" style="margin: 53px auto;">
+            SOLAR SEED FUND
         </div>
-      </div>
-      <div class="txt-area">
-        <div class="txt-table">
-          <div class="txt-td">
-              <p>{{ settings.revolv_cms.MainPageSettings.how_it_works_intro }}</p>
-          </div>
+        <!--<div id="how_it_works" class="title-blue-border title-how-it-works">{{ settings.revolv_cms.MainPageSettings.how_it_works_heading|upper }}</div>-->
+        <div class="row info-row" style="padding-top: 0;">
+            <div class="infographic">
+                <img class="background-image-size_home" width="100%" src="static/images/infographic1.png"
+                     alt="Leonardo Dicaprio">
+            </div>
+            <div class="video-area pull-right" id="how-it-works">
+                <div class="video">
+                    <iframe src="{{ settings.revolv_cms.MainPageSettings.how_it_works_video_url }}"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="txt-area">
+                <div class="txt-table">
+                    <div class="txt-td">
+                        <p>{{ settings.revolv_cms.MainPageSettings.how_it_works_intro }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!-- end .info-row -->
-    <div class="row step-row">
-      <div id="step-carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="">
-        <!-- Indicators -->
-{#        <ol class="carousel-indicators">#}
-{#          <li data-target="#step-carousel-example-generic" data-slide-to="0" class="active"></li>#}
-{#          <li data-target="#step-carousel-example-generic" data-slide-to="1"></li>#}
-{#          <li data-target="#step-carousel-example-generic" data-slide-to="2"></li>#}
-{#        </ol>#}
+        <!-- end .info-row -->
+        <div class="row step-row">
+            <div id="step-carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="">
+                <!-- Indicators -->
+                {#        <ol class="carousel-indicators">#}
+                {#          <li data-target="#step-carousel-example-generic" data-slide-to="0" class="active"></li>#}
+                {#          <li data-target="#step-carousel-example-generic" data-slide-to="1"></li>#}
+                {#          <li data-target="#step-carousel-example-generic" data-slide-to="2"></li>#}
+                {#        </ol>#}
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#step-carousel-example-generic" role="button" data-slide="prev">
-          <span class="icons icon-arrow-left" aria-hidden="true"></span>
-        </a>
-        <a class="right carousel-control" href="#step-carousel-example-generic" role="button" data-slide="next">
-          <span class="icons icon-arrow-right" aria-hidden="true"></span>
-        </a>
-      </div>
-      <!-- end .carousel -->
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#step-carousel-example-generic" role="button"
+                       data-slide="prev">
+                        <span class="icons icon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                    <a class="right carousel-control" href="#step-carousel-example-generic" role="button"
+                       data-slide="next">
+                        <span class="icons icon-arrow-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- end .carousel -->
+            </div>
+            <!-- end .step-row -->
+        </div>
     </div>
-    <!-- end .step-row -->
-  </div>
 </div>
 <!-- end .how-it-works-module -->
 
 <div class="testimonial-module animated">
-  <div class="container">
-    <div class="title-blue-border title-testimonial">TESTIMONIALS</div>
-    <div class="row head-row testimonial-desktop">
-      <ul>
-        {% with testimonial_image="images/testimonials/enio_ximenes.png" testimonial_image_mobile="images/testimonials/enio_ximenes.png" %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-        {% with testimonial_image="images/testimonials/rebecca_johnson.jpg" testimonial_image_mobile="images/testimonials/rebecca_johnson.jpg" %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-        {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" testimonial_active=True %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-        {% with testimonial_image="images/testimonials/Jennifer_martin_color.jpg" testimonial_image_mobile="images/testimonials/Jennifer_martin_color.jpg" %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-        {% with testimonial_image="images/testimonials/ralph_silber.png" testimonial_image_mobile="images/testimonials/ralph_silber.png" %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-		{% with testimonial_image="images/testimonials/nathan_chan.png" testimonial_image_mobile="images/testimonials/nathan_chan.png" %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-      </ul>
+    <div class="container">
+        <div class="title-blue-border title-testimonial">TESTIMONIALS</div>
+        <div class="testimonial-desktop">
+            <div class="row head-row">
+                <ul>
+                    {% with testimonial_image="images/testimonials/enio_ximenes.png" testimonial_image_mobile="images/testimonials/enio_ximenes.png" %}
+                        {% include "base/partials/testimonial-head.html" %}
+                    {% endwith %}
+                    {% with testimonial_image="images/testimonials/rebecca_johnson.jpg" testimonial_image_mobile="images/testimonials/rebecca_johnson.jpg" %}
+                        {% include "base/partials/testimonial-head.html" %}
+                    {% endwith %}
+                    {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" testimonial_active=True %}
+                        {% include "base/partials/testimonial-head.html" %}
+                    {% endwith %}
+                    {% with testimonial_image="images/testimonials/Jennifer_martin_color.jpg" testimonial_image_mobile="images/testimonials/Jennifer_martin_color.jpg" %}
+                        {% include "base/partials/testimonial-head.html" %}
+                    {% endwith %}
+                    {% with testimonial_image="images/testimonials/ralph_silber.png" testimonial_image_mobile="images/testimonials/ralph_silber.png" %}
+                        {% include "base/partials/testimonial-head.html" %}
+                    {% endwith %}
+                    {% with testimonial_image="images/testimonials/nathan_chan.png" testimonial_image_mobile="images/testimonials/nathan_chan.png" %}
+                        {% include "base/partials/testimonial-head.html" %}
+                    {% endwith %}
+                </ul>
+            </div>
+            {% with testimonial_name="Enio Ximenes" testimonial_position="Donor" testimonial_text="I had the pleasure to see one of RE-volv’s projects right in my neighborhood, at a worker-owned grocery co-op called Other Avenues. I try to volunteer on the solar installs as much as I can and I grab every chance I can get to raise funds for RE-volv because I know that every dollar is well spent, and will be used over and over again to bring positive change and progress while helping other nonprofits that are doing important work." %}
+                {% include "base/partials/testimonial-info-area.html" %}
+            {% endwith %}
+
+            {% with testimonial_name="Rebecca Johnson" testimonial_position="Executive Director, Shawl-Anderson Dance Center" testimonial_text="We’re really excited and honored to be the first project for RE-volv. We’d been looking to go solar for quite a few years, and when Andreas came to us and proposed this amazing plan, it was like a perfect fit. This is another reason for people to say ‘yes,’ to being here, and another reason to love being here." %}
+                {% include "base/partials/testimonial-info-area.html" %}
+            {% endwith %}
+
+            {% with testimonial_name="Darryl Dea" testimonial_position="President, Other Avenues Food Cooperative" testimonial_text="Over the years I’d been looking at different possibilities and then RE-volv came around, and it was like the perfect fit for us! Contributing to this revolving fund that’s going to, futher down the line, help out other co-ops and nonprofits, we’re excited about that. This is going to save us in the neighborhood of $300,000 over the course of 20 years!" testimonial_active=True %}
+                {% include "base/partials/testimonial-info-area.html" %}
+            {% endwith %}
+
+            {% with testimonial_name="Jennifer Martin" testimonial_position="Chair, RE-volv Board of Directors; Executive Director, Center for Resource Solutions" testimonial_text="What’s really inspiring about RE-volv and what excites me about being involved in the organization is the real tangible feeling you get when you can actually see the results of the labor." %}
+                {% include "base/partials/testimonial-info-area.html" %}
+            {% endwith %}
+
+            {% with testimonial_name="Ralph Silber" testimonial_position="Greening Committee Chair, Kehilla Community Synagogue" testimonial_text="One of our basic values is about community and community building and the importance of that. And because of the crowdfunding model that RE-volv uses, it fit perfectly with our idea. Even if somebody would have handed us a check for the money we needed, that wouldn’t have been our first choice, because by doing the fundraising we were accomplishing one of our other goals which is informing more people about the availability of solar." %}
+                {% include "base/partials/testimonial-info-area.html" %}
+            {% endwith %}
+
+            {% with testimonial_name="Nathan Chan" testimonial_position="Donor" testimonial_text="I support RE-volv because after meeting with the team, I could not imagine working with a more sincere, dedicated, and knowledgeable set of people, especially on the scale of the climate problem. They are also solving a very unique problem in the transition to clean energy, targeting the non-profits who do not benefit from current subsidies, while figuring out a way to empower those of us who want to do something, but are not sure how." %}
+                {% include "base/partials/testimonial-info-area.html" %}
+            {% endwith %}
+        </div>
+        <div class="row head-row testimonial-mobile">
+            <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" testimonial_active=True %}
+                            {% include "base/partials/testimonial-head.html" %}
+                        {% endwith %}
+                        {% with testimonial_name="Darryl Dea" testimonial_position="President, Other Avenues Food Cooperative" testimonial_text="Over the years I’d been looking at different possibilities and then RE-volv came around, and it was like the perfect fit for us! Contributing to this revolving fund that’s going to, futher down the line, help out other co-ops and nonprofits, we’re excited about that. This is going to save us in the neighborhood of $300,000 over the course of 20 years!" testimonial_active=True %}
+                            {% include "base/partials/testimonial-info-area.html" %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="item">
+                        {% with testimonial_image="images/testimonials/rebecca_johnson.jpg" testimonial_image_mobile="images/testimonials/rebecca_johnson.jpg" testimonial_active=True %}
+                            {% include "base/partials/testimonial-head.html" %}
+                        {% endwith %}
+                        {% with testimonial_name="Rebecca Johnson" testimonial_position="Executive Director, Shawl-Anderson Dance Center" testimonial_text="We’re really excited and honored to be the first project for RE-volv. We’d been looking to go solar for quite a few years, and when Andreas came to us and proposed this amazing plan, it was like a perfect fit. This is another reason for people to say ‘yes,’ to being here, and another reason to love being here." testimonial_active=True %}
+                            {% include "base/partials/testimonial-info-area.html" %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="item">
+                        {% with testimonial_image="images/testimonials/enio_ximenes.png" testimonial_image_mobile="images/testimonials/enio_ximenes.png" testimonial_active=True %}
+                            {% include "base/partials/testimonial-head.html" %}
+                        {% endwith %}
+                        {% with testimonial_name="Enio Ximenes" testimonial_position="Donor" testimonial_text="I had the pleasure to see one of RE-volv’s projects right in my neighborhood, at a worker-owned grocery co-op called Other Avenues. I try to volunteer on the solar installs as much as I can and I grab every chance I can get to raise funds for RE-volv because I know that every dollar is well spent, and will be used over and over again to bring positive change and progress while helping other nonprofits that are doing important work." testimonial_active=True %}
+                            {% include "base/partials/testimonial-info-area.html" %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="item">
+                        {% with testimonial_image="images/testimonials/Jennifer_martin_color.jpg" testimonial_image_mobile="images/testimonials/Jennifer_martin_color.jpg" testimonial_active=True %}
+                            {% include "base/partials/testimonial-head.html" %}
+                        {% endwith %}
+                        {% with testimonial_name="Jennifer Martin" testimonial_position="Chair, RE-volv Board of Directors; Executive Director, Center for Resource Solutions" testimonial_text="What’s really inspiring about RE-volv and what excites me about being involved in the organization is the real tangible feeling you get when you can actually see the results of the labor." testimonial_active=True %}
+                            {% include "base/partials/testimonial-info-area.html" %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="item">
+                        {% with testimonial_image="images/testimonials/ralph_silber.png" testimonial_image_mobile="images/testimonials/ralph_silber.png" testimonial_active=True %}
+                            {% include "base/partials/testimonial-head.html" %}
+                        {% endwith %}
+                        {% with testimonial_name="Ralph Silber" testimonial_position="Greening Committee Chair, Kehilla Community Synagogue" testimonial_text="One of our basic values is about community and community building and the importance of that. And because of the crowdfunding model that RE-volv uses, it fit perfectly with our idea. Even if somebody would have handed us a check for the money we needed, that wouldn’t have been our first choice, because by doing the fundraising we were accomplishing one of our other goals which is informing more people about the availability of solar." testimonial_active=True %}
+                            {% include "base/partials/testimonial-info-area.html" %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="item">
+                        {% with testimonial_image="images/testimonials/nathan_chan.png" testimonial_image_mobile="images/testimonials/nathan_chan.png" testimonial_active=True %}
+                            {% include "base/partials/testimonial-head.html" %}
+                        {% endwith %}
+                        {% with testimonial_name="Nathan Chan" testimonial_position="Donor" testimonial_text="I support RE-volv because after meeting with the team, I could not imagine working with a more sincere, dedicated, and knowledgeable set of people, especially on the scale of the climate problem. They are also solving a very unique problem in the transition to clean energy, targeting the non-profits who do not benefit from current subsidies, while figuring out a way to empower those of us who want to do something, but are not sure how." testimonial_active=True %}
+                            {% include "base/partials/testimonial-info-area.html" %}
+                        {% endwith %}
+                    </div>
+                </div>
+                <!-- End for Slides Wrapper  -->
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" style="background-image: none; height: 18px; top: 180px;" href="#testimonialCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" style="background-image: none; height: 18px; top: 180px;" href="#testimonialCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <!-- end .head-row -->
+
     </div>
-    <div class="row head-row testimonial-mobile">
-        {% with testimonial_image="images/testimonials/darryl_dea.png" testimonial_image_mobile="images/testimonials/darryl_dea.png" testimonial_active=True %}
-          {% include "base/partials/testimonial-head.html" %}
-        {% endwith %}
-    </div>
-    <!-- end .head-row -->
-    {% with testimonial_name="Enio Ximenes" testimonial_position="Donor" testimonial_text="I had the pleasure to see one of RE-volv’s projects right in my neighborhood, at a worker-owned grocery co-op called Other Avenues. I try to volunteer on the solar installs as much as I can and I grab every chance I can get to raise funds for RE-volv because I know that every dollar is well spent, and will be used over and over again to bring positive change and progress while helping other nonprofits that are doing important work." %}
-      {% include "base/partials/testimonial-info-area.html" %}
-    {% endwith %}
-
-    {% with testimonial_name="Rebecca Johnson" testimonial_position="Executive Director, Shawl-Anderson Dance Center" testimonial_text="We’re really excited and honored to be the first project for RE-volv. We’d been looking to go solar for quite a few years, and when Andreas came to us and proposed this amazing plan, it was like a perfect fit. This is another reason for people to say ‘yes,’ to being here, and another reason to love being here." %}
-      {% include "base/partials/testimonial-info-area.html" %}
-    {% endwith %}
-
-    {% with testimonial_name="Darryl Dea" testimonial_position="President, Other Avenues Food Cooperative" testimonial_text="Over the years I’d been looking at different possibilities and then RE-volv came around, and it was like the perfect fit for us! Contributing to this revolving fund that’s going to, futher down the line, help out other co-ops and nonprofits, we’re excited about that. This is going to save us in the neighborhood of $300,000 over the course of 20 years!" testimonial_active=True %}
-      {% include "base/partials/testimonial-info-area.html" %}
-    {% endwith %}
-
-    {% with testimonial_name="Jennifer Martin" testimonial_position="Chair, RE-volv Board of Directors; Executive Director, Center for Resource Solutions" testimonial_text="What’s really inspiring about RE-volv and what excites me about being involved in the organization is the real tangible feeling you get when you can actually see the results of the labor." %}
-      {% include "base/partials/testimonial-info-area.html" %}
-    {% endwith %}
-
-    {% with testimonial_name="Ralph Silber" testimonial_position="Greening Committee Chair, Kehilla Community Synagogue" testimonial_text="One of our basic values is about community and community building and the importance of that. And because of the crowdfunding model that RE-volv uses, it fit perfectly with our idea. Even if somebody would have handed us a check for the money we needed, that wouldn’t have been our first choice, because by doing the fundraising we were accomplishing one of our other goals which is informing more people about the availability of solar." %}
-      {% include "base/partials/testimonial-info-area.html" %}
-    {% endwith %}
-
-	{% with testimonial_name="Nathan Chan" testimonial_position="Donor" testimonial_text="I support RE-volv because after meeting with the team, I could not imagine working with a more sincere, dedicated, and knowledgeable set of people, especially on the scale of the climate problem. They are also solving a very unique problem in the transition to clean energy, targeting the non-profits who do not benefit from current subsidies, while figuring out a way to empower those of us who want to do something, but are not sure how." %}
-      {% include "base/partials/testimonial-info-area.html" %}
-    {% endwith %}
-  </div>
 </div>
 <!-- end .testimonial-module -->
 
@@ -705,7 +781,6 @@
     </div>
     <!-- end .group-main -->
   </div>
-</div>
 </div>
 <!-- end .newsletter-module -->
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{GOOGLEMAPS_API_KEY}}">
