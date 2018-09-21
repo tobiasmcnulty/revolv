@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Category, DonationLevel, Project, ProjectUpdate, AnonymousUserDetail, StripeDetails
 
 class ProjectAdmin(admin.ModelAdmin):
-    filter_horizontal = ('ambassadors',)
+    filter_horizontal = ('ambassadors', 'donors')
 
 admin.site.register(Category)
 admin.site.register(DonationLevel)
