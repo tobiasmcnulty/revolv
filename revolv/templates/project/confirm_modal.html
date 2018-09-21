@@ -1,9 +1,14 @@
+{% load staticfiles %}
+
+{% block head %}
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/dashboard.css" %}">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
+
+{% endblock %}
 <div class="modal fade" id="confirmModal" role="dialog">
     <div class="modal-dialog">
-
-      <!-- Modal content-->
-
-      <div class="modal-content modal-reinvest" style="width: 80%;margin-top: 30%;margin-left: 8%;">
+       <div class="modal-content modal-reinvest" style="width: 80%;margin-top: 30%;margin-left: 8%;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" >&times;</button>
             <h4 class="modal-title"><span><b>Thank you for reinvesting!</b></span></h4>
@@ -14,17 +19,64 @@
                 <br><p class="reinvestment-text">We're now {{ project.percent_complete }}% of the way there!</p> <br><p class="reinvestment-text">Would you also like to donate to help <b>{{ project.title }}</b> go solar?</p></p>
         </div>
         <div class="modal-footer">
-            <a href="{% url 'project:view' title=project.project_url %}" class="btn btn-primary">Yes, definitely!</a>
-             <a href="{% url 'dashboard' %}"  class="btn btn-primary">Not right now</a>
+             <a href="{% url 'project:view' title=project.project_url %}" class="btn btn-primary">Yes, definitely!</a>
+             <a href="#"  class="btn btn-primary shareButton">Not right now</a>
         </div>
       </div>
-
-    </div>
+     </div>
   </div>
-
-<style>
+ <style>
     #confirmModal .modal-header .close{
         margin-top: 2px;
     }
 </style>
-
+<div id="sharingModal" style="z-index: 9999; opacity: 1" class="modal fade et_monarch" role="dialog">
+	<div class="et_social_popup_content et_social_resize et_social_fadein modal-dialog" style="height: 176px; max-height: 392px; top: 108px;">
+		<a href="#" class="et_social_icon et_social_icon_cancel"></a>
+		<div class="et_social_header" style="padding-bottom: 2em;text-align: center;">
+			<span class="confirm-text">Thank you for donating! Now help us spread the word!</span>
+		</div>
+		<div class="et_social_networks et_social_3col et_social_slide et_social_rounded et_social_left et_social_withcounts et_social_withnetworknames" style="height: 112px;">
+			<ul class="et_social_icons_container"><li class="et_social_facebook">
+						<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ "https://re-volv.org/project/"|add:project.project_url }}&title={{ project.title }}&description=I just donated to help {{ project.title }} go solar! Check it out!&picture={{ cover_photo }}" class="et_social_share et_social_display_count" rel="nofollow" data-social_name="facebook" data-post_id="7661" data-social_type="share" data-location="popup" data-min_count="0">
+							<i class="et_social_icon et_social_icon_facebook" aria-hidden="true"></i><div class="et_social_network_label"><div class="et_social_networkname">Facebook</div><div class="et_social_count">
+		</div></div><span class="et_social_overlay"></span>
+						</a>
+					</li><li class="et_social_twitter">
+						<a target="_blank" href="http://twitter.com/share?text=I just donated to help {{ project.title }} go solar! Check it out!&url={{ "https://re-volv.org/project/"|add:project.project_url }}&image={{cover_photo}}" class="et_social_share" rel="nofollow" data-social_name="twitter" data-post_id="7661" data-social_type="share" data-location="popup">
+							<i class="et_social_icon et_social_icon_twitter"></i><div class="et_social_network_label"><div class="et_social_networkname">Twitter</div><div class="et_social_count">
+		</div></div><span class="et_social_overlay"></span>
+						</a>
+					</li><li class="et_social_pinterest">
+						<a target="_blank" href="https://www.pinterest.com/pin/create/button/?url={{ "https://re-volv.org/project/"|add:project.project_url }}&media={{cover_photo}}&description=I just donated to help {{ project.title }} go solar! Check it out!" rel="nofollow" data-social_name="pinterest" data-post_id="7661" data-social_type="share" data-location="popup" data-min_count="0">
+							<i class="et_social_icon et_social_icon_pinterest"></i><div class="et_social_network_label"><div class="et_social_networkname">Pinterest</div><div class="et_social_count">
+		</div></div><span class="et_social_overlay"></span>
+						</a>
+					</li><li class="et_social_linkedin">
+						<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url={{ "https://re-volv.org/project/"|add:project.project_url }}&title=I just donated to help {{ project.title }} go solar! Check it out!" class="et_social_share" rel="nofollow" data-social_name="linkedin" data-post_id="7661" data-social_type="share" data-location="popup">
+							<i class="et_social_icon et_social_icon_linkedin"></i><div class="et_social_network_label"><div class="et_social_networkname">linkedin</div></div><span class="et_social_overlay"></span>
+						</a>
+					</li><li class="et_social_reddit">
+						<a href="http://www.reddit.com/submit?url={{ "https://re-volv.org/project/"|add:project.project_url }}title=I just donated to help {{ project.title }} go solar! Check it out!" class="et_social_share" rel="nofollow" data-social_name="reddit" data-post_id="7661" data-social_type="share" data-location="popup">
+							<i class="et_social_icon et_social_icon_reddit"></i><div class="et_social_network_label"><div class="et_social_networkname">reddit</div></div><span class="et_social_overlay"></span>
+						</a>
+					</li><li class="et_social_googleplus">
+						<a target="_blank" href="https://plus.google.com/share?url={{ "https://re-volv.org/project/"|add:project.project_url }}&t=I just donated to help {{ project.title }} go solar! Check it out!" class="et_social_share" rel="nofollow" data-social_name="googleplus" data-post_id="7661" data-social_type="share" data-location="popup">
+							<i class="et_social_icon et_social_icon_googleplus"></i><div class="et_social_network_label"><div class="et_social_networkname">googleplus</div></div><span class="et_social_overlay"></span>
+						</a>
+					</li></ul>
+		</div>
+	</div>
+</div>
+<script>
+	$('#newModal').hide();
+	$('.shareButton').click(function () {
+	    $('#confirmModal').hide();
+		$('#sharingModal').show().css("display", "block");
+    });
+$(document).keydown(function(e) {
+    if (e.keyCode === 27) {
+        $("#sharingModal").fadeOut();
+    }
+});
+</script>
