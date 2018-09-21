@@ -15,7 +15,7 @@
 {% block title %}My Portfolio - {% endblock %}
 {% block head %}
 
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'dist/css/pages/projects-list/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/dashboard.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/screen.css" %}">
@@ -23,61 +23,69 @@
     <script type="text/javascript" src="{% static "js/base/util/util.js" %}"></script>
     <script type="text/javascript" src="{% static "js/base/partialcircle.js" %}"></script>
     <script type="text/javascript" src="{% static "js/base/projects-list.js" %}"></script>
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" id="st_insights_js" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script type="text/javascript">var switchTo5x = true;</script>
+    <script type="text/javascript" id="st_insights_js" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
 {% endblock %}
 {% block body %}
-{% include "project/success_modal.html" with project=project %}
-<div class='main-row dashboard'>
+    {% include "project/success_modal.html" with project=project %}
+    <div class='main-row dashboard'>
 
-    <div class="container-fluid after-header">
-      {% if role == 'ambassador' or role == 'admin' %}
-          <div class="dashboard-sidebar col-md-2">
-            {% include "base/partials/dashboard_sidebar.html" with user=user %}
-          </div>
-          <div class="col-md-9 col-md-offset-1">
-            <div class="row">
-              {% include "base/partials/impact_statistics.html" with statistics=statistics user=user donated_projecs=donated_projects %}
-            </div>
-          </div>
-      {% else %}
+        <div class="container-fluid after-header">
+            {% if role == 'ambassador' or role == 'admin' %}
+                <div class="dashboard-sidebar col-md-2">
+                    {% include "base/partials/dashboard_sidebar.html" with user=user %}
+                </div>
+                <div class="col-md-9 col-md-offset-1">
+                    <div class="row">
+                        {% include "base/partials/impact_statistics.html" with statistics=statistics user=user donated_projecs=donated_projects %}
+                    </div>
+                </div>
+            {% else %}
 
-        {% if donor_has_no_donated_projects %}
-          <div class="no-donations">
-            <div class="row">
-              <div class="col-md-12">
-                  <h2>Thanks for signing up with RE-volv! Looks like you haven't supported any solar projects yet.</h2>
-                  {% if first_project %}
-                  <p><a class="btn btn-blue" href="{% url "projects_list" %}">Start contributing now!</a></p>
-                  {% endif %}
-              </div>
-            </div>
-          </div>
-        {% else %}
-          {% include "base/partials/impact_statistics.html" with statistics=statistics user=user donated_projecs=donated_projects %}
-        {% endif %}
+                {% if donor_has_no_donated_projects %}
+                    <div class="no-donations">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Thanks for signing up with RE-volv! Looks like you haven't supported any solar
+                                    projects yet.</h2>
+                                {% if first_project %}
+                                    <p><a class="btn btn-blue" href="{% url "projects_list" %}">Start contributing
+                                        now!</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    {% include "base/partials/impact_statistics.html" with statistics=statistics user=user donated_projecs=donated_projects %}
+                {% endif %}
 
-      {% endif %}
+            {% endif %}
+        </div>
+
     </div>
-
-</div>
-
 
     {% block body-bottom %}
     {% endblock %}
-<script>
+    <script>
 
-    $( document ).ready(function() {
-        if (('{{ social }}' == 'donation') || $.cookie('last_project'))
-        {
-            $("#social_media").modal("show");
-            $.removeCookie('last_project', { path: '/' });
-        }
-    })
-</script>
+        $(document).ready(function () {
+            if (('{{ social }}' == 'donation') || $.cookie('last_project')) {
+                $("#social_media").modal("show");
+                $.removeCookie('last_project', {path: '/'});
+            }
+        });
+        $(document).on("click", ".solar-seed-fund-amount", function (e) {
+            swal({
+                title: 'Hi {{ user }}',
+                text: 'Total Solar seed fund amount is ${{ statistics.reinvest_pool_amount }}',
+                icon: "info",
+                button: "Ok",
+            });
+        });
+    </script>
 
 
 {% endblock %}

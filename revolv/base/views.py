@@ -195,6 +195,12 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         user_reinvestment = UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))[
                                 'amount__sum'] or 0
         statistics_dictionary['reinvestment'] = admin_reinvestment + user_reinvestment
+        reinvest_pool_amount = RevolvUserProfile.objects.filter(reinvest_pool__isnull=False).aggregate(Sum('reinvest_pool'))[
+            'reinvest_pool__sum']
+        if reinvest_pool_amount > 0 & self.is_administrator:
+            statistics_dictionary['reinvest_pool_amount'] = float("{0:.2f}".format(reinvest_pool_amount))
+        else:
+            statistics_dictionary['reinvest_pool_amount'] = 0
         context['statistics'] = statistics_dictionary
 
         return context
