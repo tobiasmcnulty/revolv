@@ -21,3 +21,7 @@ class Paymentadmin(admin.ModelAdmin):
 
 admin.site.unregister(Payment)
 admin.site.register(Payment, Paymentadmin)
+admin.site.unregister(RepaymentFragment)
+admin.site.register(RepaymentFragment, Paymentadmin)
+admin.site.unregister(UserReinvestment)
+admin.site.register(UserReinvestment, Paymentadmin)
