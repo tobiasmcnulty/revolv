@@ -32,8 +32,34 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
     <div class="container">
       <div class="col-md-12 col-xs-12">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 active-pr-button">
-          <div class="title-blue-border title-active-project pull-right">{{ project.status_display|upper }} PROJECT
-          </div>
+            {% if project.status_display|upper == 'ACTIVE' %}
+                <div class="title-active-project pull-right">
+                    <div id="share-buttons">
+                        <!-- Buffer -->
+                        <a href="http://www.facebook.com/sharer.php?u=https://re-volv.org/project/{{ project.project_url }}"
+                           target="_blank">
+                            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook"/>
+                        </a>
+                        <a href="https://twitter.com/share?url=https://re-volv.org/project/{{ project.project_url }}&amp;text=I%20saw%20this%20and%20thought%20of%20sharing%20this%20Project&amp;"
+                           target="_blank">
+                            <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter"/>
+                        </a>
+                        <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+                            <img src="https://simplesharebuttons.com/images/somacro/pinterest.png" alt="Pinterest"/>
+                        </a>
+                        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://re-volv.org/project/{{ project.project_url }}"
+                           target="_blank">
+                            <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn"/>
+                        </a>
+                        <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20sharing%20this!%20 https://re-volv.org/project/{{ project.project_url }}">
+                            <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email"/>
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="title-blue-border title-active-project pull-right">{{ project.status_display|upper }} PROJECT
+                </div>
+            {% endif %}
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
           <h1 class="title-h1 title-right-new">{{ project.title }}</h1>
