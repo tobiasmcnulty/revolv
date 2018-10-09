@@ -26,7 +26,7 @@ from revolv.payments.models import UserReinvestment, Payment, PaymentType, Tip, 
 from revolv.payments.services import PaymentService
 from revolv.project import forms
 from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors, AnonymousUserDetail, \
-    StripeDetails
+    StripeDetails, AnonymousUserDonation
 from revolv.tasks.sfdc import send_donation_info
 from sesame import utils
 
@@ -139,6 +139,25 @@ def stripe_payment(request, pk):
         )
 
     if not request.user.is_authenticated():
+        my_ip = load(urlopen('http://jsonip.com'))['ip']
+
+        url = 'http://ip-api.com/json/' + my_ip
+
+        response = load(urlopen(url))
+        try:
+            AnonymousUserDonation.objects.create(
+                payment = payment,
+                email = email,
+                ip_address = my_ip,
+                city = response['city'],
+                region_code = response['region'],
+                region_name = response['regionName'],
+                time_zone = response['timezone'],
+                country_name = response['country'],
+                zip_code = response['zip']
+            )
+        except:
+            AnonymousUserDonation.objects.create(email=email, payment=payment)
         request.session['payment'] = payment.id
         SITE_URL = settings.SITE_URL
         portfolio_link = SITE_URL + reverse('dashboard')
