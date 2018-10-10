@@ -797,6 +797,7 @@ class AnonymousUserDetail(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
+
 class ProjectUpdate(models.Model):
     factories = ImportProxy("revolv.project.factories", "ProjectUpdateFactories")
     update_text = RichTextField(
@@ -863,3 +864,17 @@ class DonationLevel(models.Model):
 
     def __unicode__(self):
         return '%s: %s = %s' % (self.project, self.amount, self.description)
+
+
+class AnonymousUserDonation(models.Model):
+    payment = models.ForeignKey(Payment)
+    email = models.CharField(max_length=254, blank=True, null=True)
+    ip_address = models.IPAddressField(blank=True, null=True, default=None)
+    city = models.CharField(max_length=254, blank=True, null=True)
+    region_code = models.CharField(max_length=10, blank=True, null=True)
+    region_name = models.CharField(max_length=254, blank=True, null=True)
+    time_zone = models.CharField(max_length=254, blank=True, null=True)
+    country_name = models.CharField(max_length=254, blank=True, null=True)
+    zip_code = models.CharField(max_length=30, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)

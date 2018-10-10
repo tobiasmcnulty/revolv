@@ -32,7 +32,7 @@ from revolv.donor.views import humanize_integers, total_donations
 from revolv.lib.mailer import send_revolv_email
 from revolv.payments.models import Payment, Tip, RepaymentFragment, ReferralSourceTrack
 from revolv.payments.models import UserReinvestment, AdminRepayment
-from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails
+from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails, AnonymousUserDonation
 from revolv.project.utils import aggregate_stats
 from revolv.tasks.sfdc import send_signup_info
 from social.apps.django_app.default.models import UserSocialAuth
@@ -195,7 +195,8 @@ class BaseStaffDashboardView(UserDataMixin, TemplateView):
         user_reinvestment = UserReinvestment.objects.filter(user=self.user_profile).aggregate(Sum('amount'))[
                                 'amount__sum'] or 0
         statistics_dictionary['reinvestment'] = admin_reinvestment + user_reinvestment
-        reinvest_pool_amount = RevolvUserProfile.objects.filter(reinvest_pool__isnull=False).aggregate(Sum('reinvest_pool'))[
+        reinvest_pool_amount = \
+            RevolvUserProfile.objects.filter(reinvest_pool__isnull=False).aggregate(Sum('reinvest_pool'))[
             'reinvest_pool__sum']
         if reinvest_pool_amount > 0 & self.is_administrator:
             statistics_dictionary['reinvest_pool_amount'] = float("{0:.2f}".format(reinvest_pool_amount))
@@ -350,6 +351,7 @@ class LoginView(RedirectToSigninOrHomeMixin, FormView):
             payment = Payment.objects.get(id=self.request.session['payment'])
             Tip.objects.filter(id=payment.tip_id).update(user_id=self.request.user.revolvuserprofile)
             Project.objects.get(id=payment.project_id).donors.add(self.request.user.revolvuserprofile)
+            AnonymousUserDonation.objects.filter(payment_id=self.request.session['payment']).delete()
             del self.request.session['payment']
 
             # messages.success(self.request, 'Logged in as ' + self.request.POST.get('username'))
@@ -428,6 +430,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
             payment = Payment.objects.get(id=self.request.session['payment'])
             Tip.objects.filter(id=payment.tip_id).update(user_id=self.request.user.revolvuserprofile)
             Project.objects.get(id=payment.project_id).donors.add(self.request.user.revolvuserprofile)
+            AnonymousUserDonation.objects.filter(payment_id=self.request.session['payment']).delete()
             del self.request.session['payment']
         messages.success(self.request, 'Signed up successfully!')
         return redirect("dashboard")
@@ -1032,11 +1035,15 @@ def payment_data_table(request):
 
     for payment in payment_list[int(start):][:int(length)]:
 
+        anonymous_donor_filter = AnonymousUserDonation.objects.filter(payment_id = payment.id)
         payment_details = {}
         payment_details['firstname'] = payment.user.user.first_name
         payment_details['lastname'] = payment.user.user.last_name
         payment_details['username'] = payment.user.user.username
-        payment_details['email'] = payment.user.user.email
+        if anonymous_donor_filter:
+            payment_details['email'] = AnonymousUserDonation.objects.get(payment_id=payment.id).email
+        else:
+            payment_details['email'] = payment.user.user.email
         payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
         payment_details['project'] = payment.project.title
         if payment.user_reinvestment or payment.admin_reinvestment or payment.project.title == "Operations":
@@ -1082,7 +1089,6 @@ def repayment_table(request):
     length = request.GET.get('length')
     order = request.GET.get('order[0][dir]')
     start = request.GET.get('start')
-
     search = request.GET.get('search[value]')
     currentSortByCol = request.GET.get('order[0][column]')
 
@@ -1170,6 +1176,8 @@ def export_csv(request):
         payments = Payment.objects.filter(search_query).order_by('-created_at')\
             .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
             .iterator()
+
+    # Define a generator to stream data directly to the client
     def stream():
         buffer_ = StringIO()
         writer = csv.writer(buffer_)
@@ -1216,12 +1224,16 @@ def export_csv(request):
                 total = round(payment.amount, 2)
             if not payment.amount and not payment.tip:
                 total = 0
+            if AnonymousUserDonation.objects.filter(payment_id=payment.id):
+                email = AnonymousUserDonation.objects.get(payment_id=payment.id).email
+            else:
+                email = payment.user.user.email
 
             writer.writerow([
                 smart_str(payment.user.user.first_name),
                 smart_str(payment.user.user.last_name),
                 smart_str(payment.user.user.username),
-                smart_str(payment.user.user.email),
+                smart_str(email),
                 smart_str(payment.created_at),
                 smart_str(payment.project.title),
                 smart_str(donation_amount),
@@ -1334,13 +1346,17 @@ def export_xlsx(request):
             total = round(payment.amount, 2)
         if not payment.amount and not payment.tip:
             total = 0
+        if AnonymousUserDonation.objects.filter(payment_id=payment.id):
+            email = AnonymousUserDonation.objects.get(payment_id=payment.id).email
+        else:
+            email = payment.user.user.email
 
         row_num += 1
         row = [
             payment.user.user.first_name,
             payment.user.user.last_name,
             payment.user.user.username,
-            payment.user.user.email,
+            email,
             payment.created_at,
             payment.project.title,
             donation_amount,
