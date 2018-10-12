@@ -233,7 +233,11 @@ $(document).ready(function() {
     var tmr1;
 
     function delayProgress(){
-      m1 += 1;
+      m1 += 5;
+      if (m1 > endval)
+      {
+          m1 = endval;
+      }
       $elem.val(m1).trigger('change');
       if(m1 === endval || m1 === 100) {
         clearInterval(tmr1);
