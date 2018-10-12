@@ -546,19 +546,26 @@ input:invalid {box-shadow: 0 0 5px 1px red;}
                 $('#reinvest-spinner').css('display', 'flex');
                 var $form = $(this).closest('form');
                 $.ajax({
-               type: "POST",
-               url: '{% url 'project:reinvest' pk=project.pk %}',
-               data: $form.serializeArray(),
-               success: function(data)
-               {
-                  $('#reinvest-spinner').css('display', 'none');
-                  $("#confirmModal").modal();
-                  $(".modal-body p > span").text(parseFloat(document.getElementById("amt").value).toFixed(2));
-                  $('.btn-reinvest').prop('disabled', false);
-               }
-             });
-         }
-     });
+                    type: "POST",
+                    url: '{% url 'project:reinvest' pk=project.pk %}',
+                    data: $form.serializeArray(),
+                    success: function (data) {
+                        $('#reinvest-spinner').css('display', 'none');
+                        $("#confirmModal").modal();
+                        $(".modal-body p > span").text(parseFloat(document.getElementById("amt").value).toFixed(2));
+                        $('.btn-reinvest').prop('disabled', false);
+                    },
+                    statusCode: {
+                        308: function (data) {
+                            window.location.reload(true);
+                        }
+                    },
+                    error: function (data) {
+                        window.location.href = "/my-portfolio/";
+                    }
+                });
+            }
+        });
 </script>
 <script>
   $(function ($) {

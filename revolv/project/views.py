@@ -838,9 +838,15 @@ def reinvest(request, pk):
     except (Project.DoesNotExist, Project.MultipleObjectsReturned):
         return HttpResponseBadRequest()
 
-    UserReinvestment.objects.create(user=request.user.revolvuserprofile,
-                                    amount=amount,
-                                    project=project)
-
-    messages.success(request, 'Reinvestment Successful')
-    return redirect("project:view", title=project.project_url)
+    available_amount = RevolvUserProfile.objects.get(user=request.user).reinvest_pool + RevolvUserProfile.objects.get(
+        user=request.user).solar_seed_fund_pool
+    if float(amount) > 0 and (available_amount - float(amount)) >= 0:
+        UserReinvestment.objects.create(user=request.user.revolvuserprofile,
+                                        amount=amount,
+                                        project=project)
+        messages.success(request, 'Reinvestment Successful')
+        return redirect("project:view", title=project.project_url)
+    elif float(amount) > available_amount > 0:
+        return HttpResponse("error", status=308)
+    else:
+        return HttpResponse("error", status=404)
