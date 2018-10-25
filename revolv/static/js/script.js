@@ -43,19 +43,31 @@ $(document).ready(function(){
             $(".container1").click();
         }
     });
-
+    $('#email-preference-info').hide();
     $('#account-link').click(function (event) {
         $('#account-info').show();
+        $('#account-information-block').show();
         $('#donation-info').hide();
+        $('#email-preference-info').hide();
         $('#account-link').addClass('account-tab-text-active');
         $('#donation-link').removeClass('account-tab-text-active');
+        $('#email-preference-link').removeClass('account-tab-text-active');
     });
     $('#donation-link').click(function (event) {
         $('#donation-info').show();
         $('#account-info').hide();
         $('#account-link').removeClass('account-tab-text-active');
+        $('#email-preference-link').removeClass('account-tab-text-active');
         $('#donation-link').addClass('account-tab-text-active');
-
+    });
+    $('#email-preference-link').click (function () {
+        $('#account-info').show();
+        $('#account-information-block').hide();
+        $('#donation-info').hide();
+        $('#email-preference-info').show();
+        $('#account-link').removeClass('account-tab-text-active');
+        $('#donation-link').removeClass('account-tab-text-active');
+        $('#email-preference-link').addClass('account-tab-text-active');
     });
 
     // Common myths box drop down.
