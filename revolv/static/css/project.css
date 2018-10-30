@@ -1,0 +1,239 @@
+.social-circle .fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50px;
+}
+
+.social-circle .fa:hover {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0.8;
+}
+
+.social-circle .fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.social-circle .fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.social-circle .fa-google {
+    background: #dd4b39;
+    color: white;
+}
+
+.social-circle .fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.social-circle .fa-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+.social-circle .fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.social-circle .fa-pinterest {
+    background: #cb2027;
+    color: white;
+}
+
+.social-circle .fa-snapchat-ghost {
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.social-circle .fa-skype {
+    background: #00aff0;
+    color: white;
+}
+
+.fa-android {
+    background: #a4c639;
+    color: white;
+}
+
+.fa-dribbble {
+    background: #ea4c89;
+    color: white;
+}
+
+.fa-vimeo {
+    background: #45bbff;
+    color: white;
+}
+
+.fa-tumblr {
+    background: #2c4762;
+    color: white;
+}
+
+.fa-vine {
+    background: #00b489;
+    color: white;
+}
+
+.fa-foursquare {
+    background: #45bbff;
+    color: white;
+}
+
+.fa-stumbleupon {
+    background: #eb4924;
+    color: white;
+}
+
+.fa-flickr {
+    background: #f40083;
+    color: white;
+}
+
+.fa-yahoo {
+    background: #430297;
+    color: white;
+}
+
+.fa-soundcloud {
+    background: #ff5500;
+    color: white;
+}
+
+.fa-reddit {
+    background: #ff5700;
+    color: white;
+}
+
+.fa-rss {
+    background: #ff6600;
+    color: white;
+}
+
+.social-circle .fa-envelope {
+    background: #ff6600;
+    color: white;
+}
+
+.social-share-project {
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+}
+
+.social ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.social {
+  position: fixed;
+  top: 30%;
+  z-index: 99999;
+}
+.social ul {
+  padding: 0;
+  -webkit-transform: translate(-110px, 0);
+  -moz-transform: translate(-110px, 0);
+  -ms-transform: translate(-110px, 0);
+  -o-transform: translate(-110px, 0);
+  transform: translate(-110px, 0);
+}
+.social ul li {
+  display: block;
+  margin: 5px;
+  background: #14b1e74D;
+  width: 150px;
+  text-align: right;
+  padding: 10px;
+  -webkit-border-radius: 0 30px 30px 0;
+  -moz-border-radius: 0 30px 30px 0;
+  border-radius: 0 30px 30px 0;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+.social ul li:hover {
+  -webkit-transform: translate(70px, 0);
+  -moz-transform: translate(70px, 0);
+  -ms-transform: translate(70px, 0);
+  -o-transform: translate(70px, 0);
+  transform: translate(70px, 0);
+  background: rgba(20, 177, 231, 0.4);
+}
+.social ul li:hover a {
+  color: #000;
+}
+.social ul li:hover i {
+  color: #fff;
+  background: rgba(20, 177, 231, 0.6);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+.social ul li i {
+  margin-left: 10px;
+  color: #000;
+  background-color: #fff;
+  padding: 5px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.title-active-project p {
+    text-align: center;
+    color: #14b1e7;
+    font-family: "Source Sans Pro", Sans-Serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.project-status-desktop-top {
+    text-align: center;
+    width: calc(100% - 10px);
+}
+
+@media screen and (min-width: 1200px) {
+    .project-status-mobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .project-status-desktop-left,
+    .project-status-desktop-top {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1199px) {
+    .container {
+        width: 100%;
+    }
+}

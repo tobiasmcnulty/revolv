@@ -406,7 +406,8 @@ div#myCarousel {
     }
 
 .logo-home {
-     background: url(../images/logo-white.png);
+    background: url(../images/logo-white.png);
+    background-size: 171px 70px;
     margin: 1.1em 0 0 9%;
     background-repeat: no-repeat;
     width: 171px;
@@ -748,6 +749,7 @@ padding: 0;
 }
 .header .logo {
     background: url(../images/logo.png) no-repeat;
+    background-size: 171px 70px;
     margin: 17px 0 0 85px;
     width: 171px;
     height: 70px;
@@ -2054,7 +2056,6 @@ header.edit-project-header > .container > h1 {
     font-weight: 900;
     line-height: 56px;
     margin-top: -12px;
-    width: 70%;
 }
 /* sign in page */
 

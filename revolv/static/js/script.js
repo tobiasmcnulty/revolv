@@ -43,19 +43,31 @@ $(document).ready(function(){
             $(".container1").click();
         }
     });
-
+    $('#email-preference-info').hide();
     $('#account-link').click(function (event) {
         $('#account-info').show();
+        $('#account-information-block').show();
         $('#donation-info').hide();
+        $('#email-preference-info').hide();
         $('#account-link').addClass('account-tab-text-active');
         $('#donation-link').removeClass('account-tab-text-active');
+        $('#email-preference-link').removeClass('account-tab-text-active');
     });
     $('#donation-link').click(function (event) {
         $('#donation-info').show();
         $('#account-info').hide();
         $('#account-link').removeClass('account-tab-text-active');
+        $('#email-preference-link').removeClass('account-tab-text-active');
         $('#donation-link').addClass('account-tab-text-active');
-
+    });
+    $('#email-preference-link').click (function () {
+        $('#account-info').show();
+        $('#account-information-block').hide();
+        $('#donation-info').hide();
+        $('#email-preference-info').show();
+        $('#account-link').removeClass('account-tab-text-active');
+        $('#donation-link').removeClass('account-tab-text-active');
+        $('#email-preference-link').addClass('account-tab-text-active');
     });
 
     // Common myths box drop down.
@@ -254,7 +266,7 @@ $(document).ready(function(){
         {
           $("header").removeClass("top-section-header").addClass("after-scroll-header");
           $("header").hide();
-          $(".logo-home").css("background",'url(/static/images/logo.png) no-repeat');
+          $(".logo-home").css({"background": "url(/static/images/logo.png) no-repeat", "background-size": "171px 70px"});
           $("header").slideDown();
         }
       }
@@ -265,7 +277,7 @@ $(document).ready(function(){
           $("header").slideUp();
           setTimeout(function(){
             $("header").removeClass("after-scroll-header").addClass("top-section-header");
-            $(".logo-home").css("background",'url(/static/images/logo-white.png) no-repeat');
+            $(".logo-home").css({"background":"url(/static/images/logo-white.png) no-repeat", "background-size": "171px 70px"});
             $("header").show();
           },500);
         }

@@ -106,6 +106,9 @@ input.checkbox-settings[type="checkbox"] + label::before {
         <div style="margin-bottom: 2em;">
             <span id="donation-link" class="account-tab-text">Donation Information</span>
         </div>
+        <div style="margin-bottom: 2em;">
+            <span id="email-preference-link" class="account-tab-text">Email Preferences</span>
+        </div>
     </div>
     <form method="POST" action="{% url 'donation_update' %}">
         {% csrf_token %}
@@ -156,68 +159,71 @@ input.checkbox-settings[type="checkbox"] + label::before {
         <form method="POST" action="{% url 'user_update' %}">
             {% csrf_token %}
             <div style="width:65%;margin-left: 1.4em;">
-                <div class="setting-input-block">
-                    <span class="setting-form-lebel">FIRST NAME:</span>
-                     <div>
-                        {% if form.first_name.errors %}
-                            {{ form.first_name|add_class:"setting-donation-input field-error" }}
-                        {% else %}
-                            {{ form.first_name|add_class:"setting-donation-input" }}
-                        {% endif %}
-                    </div>
+                <div id="account-information-block">
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">FIRST NAME:</span>
+                        <div>
+                            {% if form.first_name.errors %}
+                                {{ form.first_name|add_class:"setting-donation-input field-error" }}
+                            {% else %}
+                                {{ form.first_name|add_class:"setting-donation-input" }}
+                            {% endif %}
+                        </div>
                         <span id="firstnamelabel" class="setting-donation-change">Edit</span>
                         {% if form.first_name.errors %}
                             <div class="error-text">
-                               {{ form.first_name.errors }}
+                                {{ form.first_name.errors }}
                             </div>
                         {% endif %}
                     </div>
-                <div class="setting-input-block">
-                    <span class="setting-form-lebel">LAST NAME:</span>
-                    <div>
-                        {% if form.last_name.errors %}
-                            {{ form.last_name|add_class:"setting-donation-input field-error" }}
-                        {% else %}
-                            {{ form.last_name|add_class:"setting-donation-input" }}
-                        {% endif %}
-                    </div>
-                    <span id="lastnamelabel" class="setting-donation-change">Edit</span>
-                    {% if form.last_name.errors %}
-                        <div class="error-text">
-                           {{ form.last_name.errors }}
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">LAST NAME:</span>
+                        <div>
+                            {% if form.last_name.errors %}
+                                {{ form.last_name|add_class:"setting-donation-input field-error" }}
+                            {% else %}
+                                {{ form.last_name|add_class:"setting-donation-input" }}
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-                <div class="setting-input-block">
-                    <span class="setting-form-lebel">USERNAME:</span>
-
-
-                    <div>
-                        {% if form.username.errors %}
-                            {{ form.username|add_class:"setting-donation-input field-error" }}
-                        {% else %}
-                            {{ form.username|add_class:"setting-donation-input" }}
+                        <span id="lastnamelabel" class="setting-donation-change">Edit</span>
+                        {% if form.last_name.errors %}
+                            <div class="error-text">
+                                {{ form.last_name.errors }}
+                            </div>
                         {% endif %}
                     </div>
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">USERNAME:</span>
+
+
+                        <div>
+                            {% if form.username.errors %}
+                                {{ form.username|add_class:"setting-donation-input field-error" }}
+                            {% else %}
+                                {{ form.username|add_class:"setting-donation-input" }}
+                            {% endif %}
+                        </div>
                         <span id="usernamelabel" class="setting-donation-change">Edit</span>
                         {% if form.username.errors %}
                             <div class="error-text">
-                               {{ form.username.errors }}
+                                {{ form.username.errors }}
                             </div>
                         {% endif %}
                     </div>
-                <div class="setting-input-block">
-                    <span class="setting-form-lebel">EMAIL:</span>
-                    <div>
-                        {{ form.email|add_class:"setting-donation-input" }}
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">EMAIL:</span>
+                        <div>
+                            {{ form.email|add_class:"setting-donation-input" }}
+                        </div>
                     </div>
-                </div>
-                <div class="setting-input-block">
-                    <span class="setting-form-lebel">PASSWORD:</span>
-                    <input id="password" type="password" name="password" class="setting-donation-input" value='*******' disabled/>
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">PASSWORD:</span>
+                        <input id="password" type="password" name="password" class="setting-donation-input"
+                               value='*******' disabled/>
                         <span id="passwordlabel" class="setting-donation-change">Change Password</span>
                     </div>
-                <div class="setting-input-block">
+                </div>
+                <div id="email-preference-info" class="setting-input-block">
                     <p class="setting-form-lebel setting-input-block">EMAIL PREFERENCES</p>
                     <div class="checkbox-margin">
                         <input type="checkbox" class="checkbox-settings" name="repayment_notification" id="repayment_notification" checked>
@@ -361,7 +367,5 @@ input.checkbox-settings[type="checkbox"] + label::before {
      }
   });
 });
-
-</script>
 
 {% endblock %}

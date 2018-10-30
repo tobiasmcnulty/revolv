@@ -199,6 +199,10 @@ reinvestment_reminder:
         Thank you,
         The RE-volv Team
 
+
+        {% if unsubscribe_url %}
+        <a href='{{ unsubscribe_url }}'>Stop receiving repayment notification emails</ a>
+        {% endif %}
         "
     html:
         "
@@ -215,6 +219,10 @@ reinvestment_reminder:
         <p>Thank you,<br>
         The RE-volv Team</p>
 
+
+        {% if unsubscribe_url %}
+        <a href='{{ unsubscribe_url }}'>Stop receiving repayment notification emails</ a>
+        {% endif %}
         "
 
 signup_newsletter:
