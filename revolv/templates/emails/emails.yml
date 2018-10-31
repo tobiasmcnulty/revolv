@@ -201,7 +201,7 @@ reinvestment_reminder:
 
 
         {% if unsubscribe_url %}
-        <a href='{{ unsubscribe_url }}'>Stop receiving repayment notification emails</ a>
+        <a href='{{ unsubscribe_url }}'>Stop receiving repayment notification emails</a>
         {% endif %}
         "
     html:
@@ -221,7 +221,7 @@ reinvestment_reminder:
 
 
         {% if unsubscribe_url %}
-        <a href='{{ unsubscribe_url }}'>Stop receiving repayment notification emails</ a>
+        <a href='{{ unsubscribe_url }}'>Stop receiving repayment notification emails</a>
         {% endif %}
         "
 
