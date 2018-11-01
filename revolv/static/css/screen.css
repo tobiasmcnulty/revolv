@@ -10006,7 +10006,7 @@ width: 580px;
         border-bottom: 1px solid #c6c6c6;
     }
     .header.after-scroll-header .logo {
-        background: url(../images/mobile/mobile-logo.png) no-repeat;
+        background: url(../images/mobile/logo.png) no-repeat;
         background-size: 129px auto;
         width: 129px;
         height: 51px;
@@ -12627,7 +12627,7 @@ width: 580px;
 @media (max-width: 414px) {
 
     .header.after-scroll-header .logo {
-      background-image: url("../images/mobile/mobile-logo_mobile.png") !important;
+      background-image: url("../images/logo.png") !important;
       background-size: 50px auto !important;
       width: 50px !important;
       background-repeat: no-repeat !important;
@@ -12919,12 +12919,12 @@ label.checkmark.animate:after {
         padding-bottom: 5vmin;
     }
     .header .logo {
-        background: url(../images/mobile/mobile-logo.png) no-repeat;
+        background: url(../images/logo.png) no-repeat;
         margin: 2vmin 0 2px 3vmin;
         display: block;
     }
     .header .logo-solar-at-home {
-        background: url(../images/mobile/mobile-logo-white.png);
+        background: url(../images/logo-white.png);
         margin: 1.3em 0 2px 3vmin;
         display: block;
         background-repeat: no-repeat;
@@ -13122,8 +13122,8 @@ and (orientation : landscape) {
 }
 
 .logo-home {
-     background: url(../images/mobile/mobile-logo-white.png);
-     margin: 1.1em 0 0 1.4em;
+    background: url(../images/logo-white.png);
+    margin: 1.1em 0 0 1.4em;
     background-repeat: no-repeat;
     background-size: 120px !important;
     padding: 0;
