@@ -207,11 +207,12 @@
 }
 
 .title-active-project p {
-    text-align: center;
     color: #14b1e7;
     font-family: "Source Sans Pro", Sans-Serif;
     font-size: 18px;
     font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 .project-status-desktop-top {
@@ -219,13 +220,13 @@
     width: calc(100% - 10px);
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 992px) {
     .project-status-mobile {
         display: none;
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 991px) {
     .project-status-desktop-left,
     .project-status-desktop-top {
         display: none;

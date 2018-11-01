@@ -13,6 +13,17 @@
         };
 
     </script>
+    <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js"
+            data-dojo-config="usePlainJson: true, isDebug: false"></script>
+    <script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function (L) {
+        L.start({
+            "baseUrl": "mc.us7.list-manage.com",
+            "uuid": "d6fcaa93d5386e056cacbd94c",
+            "lid": "2441c75727",
+            "uniqueMethods": true
+        })
+    })
+    </script>
     <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
     <script src="{% static 'js/mediaelement-and-player.min.js' %}"></script>
     <link href="{% static 'css/mediaelementplayer.min.css' %}" rel="stylesheet" />

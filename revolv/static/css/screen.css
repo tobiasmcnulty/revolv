@@ -520,7 +520,7 @@ z-index: 448;
     float: right;
 }
 
- #myCarousel .background-image-size_home {
+#myCarousel .background-image-size_home {
        width: 100vw;
     height: 70vh;
     right: 0;
@@ -2052,7 +2052,7 @@ header.edit-project-header > .container > h1 {
 .title-h1 {
     color: #14b1e7;
     font-family: "Source Sans Pro";
-    font-size: 48px;
+    font-size: 44px;
     font-weight: 900;
     line-height: 56px;
     margin-top: -12px;
@@ -5341,7 +5341,7 @@ display: none;
         padding-left: 12px;
     }
     .title-h1 {
-        font-size: 39.68px;
+        font-size: 34.48px;
         line-height: 48px;
     }
     /* sign in page */
