@@ -362,11 +362,6 @@ CELERYBEAT_SCHEDULE = {
         "task": "revolv.tasks.reinvestment_allocation.calculate_montly_reinvesment_allocation",
         "schedule": crontab(hour=USER_REINVESTMENT_DATE['hour'], minute=USER_REINVESTMENT_DATE['minute'],
                             day_of_month=USER_REINVESTMENT_DATE['day']),
-    },
-    "reinvestment_rollover": {
-        "task": "revolv.tasks.reinvestment_rollover.distribute_reinvestment_fund",
-        "schedule": crontab(hour=ADMIN_REINVESTMENT_DATE['hour'], minute=ADMIN_REINVESTMENT_DATE['minute'],
-                            day_of_month=ADMIN_REINVESTMENT_DATE['day']),
     }
 }
 
@@ -450,6 +445,6 @@ STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 IP_STACK_ACCESS_KEY = os.environ.get('IP_STACK_ACCESS_KEY')
 
-VERSION_NUM = '1542004893650'
+VERSION_NUM = '1542227587668'
 
 
