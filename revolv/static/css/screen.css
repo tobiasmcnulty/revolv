@@ -4210,7 +4210,7 @@ header.edit-project-header > .container > h1 {
 /* .footer .col-menu */
 
 .footer .row .col-menu {
-    width: 17%;
+    width: 20%;
 }
 .footer .row .col-menu dt {
     padding-bottom: 0;
@@ -4218,7 +4218,7 @@ header.edit-project-header > .container > h1 {
 /* .footer .col-info */
 
 .footer .row .col-info {
-    width: 20.75%;
+    width: 20%;
 }
 .footer .row .col-info dt {
     padding-bottom: 4px;
@@ -4231,7 +4231,7 @@ header.edit-project-header > .container > h1 {
 .footer .row .col-info p {
     color: #8a8a8a;
     font-size: 14px;
-    text-align: justify;
+    /*text-align: justify;*/
     line-height: 24px;
 }
 footer.footer > div.container > div.row > nav > dl > dd {
