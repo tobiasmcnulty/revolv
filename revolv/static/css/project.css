@@ -138,6 +138,7 @@
   position: fixed;
   top: 30%;
   z-index: 99999;
+  max-width: 100px;
 }
 .social ul {
   padding: 0;
