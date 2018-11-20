@@ -337,7 +337,7 @@ ADMIN_PAYMENT_USERNAME = 'administrator'
 #date of the month when user can execute reinvest
 USER_REINVESTMENT_DATE = {'day': 1, 'hour': 00, 'minute': 00}
 #date of the month when automatic reinvest execute
-ADMIN_REINVESTMENT_DATE = {'day': 15, 'hour': 00, 'minute': 00}
+ADMIN_REINVESTMENT_DATE = {'day': 20, 'hour': 12, 'minute': 05}
 
 now = datetime.now()
 #Datetime object when automatic reinvest run, we need to increase a little to prevent overlap with user reinvestment
@@ -362,6 +362,11 @@ CELERYBEAT_SCHEDULE = {
         "task": "revolv.tasks.reinvestment_allocation.calculate_montly_reinvesment_allocation",
         "schedule": crontab(hour=USER_REINVESTMENT_DATE['hour'], minute=USER_REINVESTMENT_DATE['minute'],
                             day_of_month=USER_REINVESTMENT_DATE['day']),
+    },
+    "reinvestment_rollover": {
+        "task": "revolv.tasks.reinvestment_rollover.distribute_reinvestment_fund",
+        "schedule": crontab(hour=ADMIN_REINVESTMENT_DATE['hour'], minute=ADMIN_REINVESTMENT_DATE['minute'],
+                            day_of_month=ADMIN_REINVESTMENT_DATE['day']),
     }
 }
 
@@ -445,6 +450,6 @@ STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 IP_STACK_ACCESS_KEY = os.environ.get('IP_STACK_ACCESS_KEY')
 
-VERSION_NUM = '1542261591925'
+VERSION_NUM = '1542714798034'
 
 
