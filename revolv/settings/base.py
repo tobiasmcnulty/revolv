@@ -337,7 +337,7 @@ ADMIN_PAYMENT_USERNAME = 'administrator'
 #date of the month when user can execute reinvest
 USER_REINVESTMENT_DATE = {'day': 1, 'hour': 00, 'minute': 00}
 #date of the month when automatic reinvest execute
-ADMIN_REINVESTMENT_DATE = {'day': 20, 'hour': 12, 'minute': 05}
+ADMIN_REINVESTMENT_DATE = {'day': 20, 'hour': 15, 'minute': 00}
 
 now = datetime.now()
 #Datetime object when automatic reinvest run, we need to increase a little to prevent overlap with user reinvestment
@@ -450,6 +450,6 @@ STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 IP_STACK_ACCESS_KEY = os.environ.get('IP_STACK_ACCESS_KEY')
 
-VERSION_NUM = '1542714798034'
+VERSION_NUM = '1542717703453'
 
 
