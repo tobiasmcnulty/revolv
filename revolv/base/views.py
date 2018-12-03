@@ -709,7 +709,7 @@ def unsubscribe(request, action):
     data = {}
     if action and action.lower() == 'updates':
         user_profile = request.user.revolvuserprofile
-        user_profile.subscribed_to_updates = False
+        user_profile.subscribed_to_repayment_notifications = False
         user_profile.save()
         data = {'msg': "You have successfully unsubscribed"}
     else:
