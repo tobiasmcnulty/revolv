@@ -121,7 +121,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                             <span class="setting-dollar-label">$</span>
                         </div>
                         <div style="width: 100%;">
-                            <input id="donation-amt" type="text" name="donation-amt" value="{{monthly_solar_donation|floatformat:"2"}}" class="setting-donation-input"/>
+                            <input id="donation-amt" type="text" name="donation-amt" value="{{monthly_solar_donation|floatformat:'2'}}" class="setting-donation-input" />
                         </div>
                         <div>
                             <span class="setting-donation-change solar-donation">Change</span>
@@ -150,7 +150,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                     <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to RE-volv Operations</span> <span class="setting-donations">${{operation_donation|floatformat:"2"}}</span></p>
                 </div>
                 <div class="setting-input-block" style="float: right;">
-                    <a  type="submit" class="component-link pull-left btn-blue btn-donate setting-donation-save operation-donation-submit">SAVE</a>
+                    <button type="submit" class="component-link pull-left btn-blue btn-donate setting-donation-save operation-donation-submit">SAVE</button>
                 </div>
             </div>
         </div>
@@ -231,11 +231,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                     </div>
                     <div class="checkbox-margin">
                         <input type="checkbox" class="checkbox-settings" name="newsletter" id="newsletter" checked>
-                        <label for="newsletter" style="font-family: 'SExtralight'; font-size:14px;"><span class="checkbox-text">Receive RE-volv Newsletter</span></label>
-                    </div>
-                    <div class="checkbox-margin">
-                        <input type="checkbox" class="checkbox-settings" name="announcement" id="announcement" checked>
-                        <label for="announcement" style="font-family: 'SExtralight'; font-size:14px;"><span class="checkbox-text">Receive Important RE-volv Announcements</span></label>
+                        <label for="newsletter" style="font-family: 'SExtralight'; font-size:14px;"><span class="checkbox-text">Receive RE-volv updates</span></label>
                     </div>
                 </div>
                 <div class="setting-input-block" style="float: right;">
@@ -367,5 +363,6 @@ input.checkbox-settings[type="checkbox"] + label::before {
      }
   });
 });
+</script>
 
 {% endblock %}

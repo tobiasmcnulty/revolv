@@ -1559,7 +1559,7 @@ class editprofile(View):
         repayment_notification = request.POST.get('repayment_notification')
         announcement = request.POST.get('announcement')
         profileup = RevolvUserProfileForm(data=request.POST or None, instance=request.user.revolvuserprofile)
-        if profileup.is_valid():
+        if (profileup.is_valid()) and (request.user.email == request.POST.get('email')):
             user = profileup.save(commit=False)
 
             interests = None
@@ -1635,6 +1635,9 @@ class editprofile(View):
                     "form": userup
                 }
                 return render(request, 'base/partials/account_settings.html', context)
+        else:
+            messages.error(request, 'Account details update failed.')
+            return HttpResponseRedirect('/account_settings/')
 
 
 @login_required
@@ -1809,9 +1812,8 @@ def donation_update(request):
         except KeyError:
             logger.exception('stripe_payment called without required POST data')
             return HttpResponseBadRequest('bad POST data')
-
-        return HttpResponse(json.dumps({'status': 'donation_updated', 'amount': donation_amount}),
-                            content_type="application/json")
+        messages.success(request, 'Donation details successfully updated')
+        return HttpResponseRedirect('/account_settings/')
 
     else:
         token = request.POST['stripeToken']
