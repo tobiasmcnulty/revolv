@@ -580,8 +580,7 @@ def select_chapter(request, chapter):
         return render_to_response('base/chapter11.html',
                                   context_instance=RequestContext(request))
     if chapter == '12':
-        return render_to_response('base/chapter1'
-                                  '2.html',
+        return render_to_response('base/chapter12.html',
                                   context_instance=RequestContext(request))
 
 
@@ -794,7 +793,7 @@ def send_donor_email(request):
 
     emails = []
     project = get_object_or_404(Project, pk=pk)
-    payments = Payment.objects.filter(project=project)
+    payments = Payment.objects.filter(project=project).filter(admin_reinvestment_id__isnull=True).distinct('user_id')
     for payment in payments:
         email = payment.user.user.email
         if email:
@@ -929,7 +928,8 @@ def ambassador_data_table(request):
                 project_list.append(project)
 
     payment_list = Payment.objects.filter(project__in=project_list).order_by((column_order))
-
+    if int(length) == -1:
+        length = payment_list.count()
     if search.strip():
         payment_list = payment_list.filter(Q(user__user__username__icontains=search) |
                                            Q(user__user__first_name__icontains=search) |

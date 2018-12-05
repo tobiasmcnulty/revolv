@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    table = $('#donation_report').DataTable( {
+    var table = $('#donation_report').DataTable( {
+        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "processing": true,
         "serverSide": true,
          "dom": 'lfrtBip',
