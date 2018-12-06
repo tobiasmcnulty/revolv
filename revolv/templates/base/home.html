@@ -138,113 +138,46 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel"  data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
-  </ol>
+
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <div class="item carousel-fourth-img active">
+    <div class="item carousel-fourth-img help_power_community active">
+      <div class="text_content hidden-xs">
+        <div class="space_btn_element">
+          <span class="CREATE_CLEAN_ENERGY" style="text-transform: none;">Powering communities with clean energy<br>one nonprofit at a time</span>
+        </div>
+        <div class="space_btn_element" style="margin-top: 20px;">
+          <span class="Bring_solar_energy__to_communities_around_the_c"> </span>
+        </div>
+      </div>
       <div class="text_overlay">
-        <div class="text_content">
-          <div class="space_btn_element" style="margin-top: 5em;">
-            <span class="CREATE_CLEAN_ENERGY">LEONARDO DICAPRIO FOUNDATION<br>PARTNERS WITH RE-VOLV</span>
+        <div class="text_content hidden-sm hidden-md hidden-lg hidden-xl">
+          <div class="space_btn_element">
+            <span class="CREATE_CLEAN_ENERGY" style="text-transform: none;">Powering communities with clean energy<br>one nonprofit at a time</span>
           </div>
-          <div class="space_btn_element" style="margin-top: 0;">
-          {% if active_projects %}
-              <span class="Bring_solar_energy__to_communities_around_the_c">LDF is now matching <br>all solar crowdfunding donations!</span>
-          {% else %}
-              <span class="Bring_solar_energy__to_communities_around_the_c">Join LDF in supporting solar energy!</span>
-          {% endif %}
+          <div class="space_btn_element" style="margin-top: 20px;">
+            <span class="Bring_solar_energy__to_communities_around_the_c"> </span>
           </div>
 
         </div>
         <div class="how-it-works-button">
             {% if active_projects_count > 1 %}
-                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DONATE</a>
             {% elif active_projects_count == 1 %}
                 {% for active_project in active_projects %}
-                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DOUBLE YOUR IMPACT</a>
+                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DONATE</a>
                 {% endfor %}
             {% else %}
                 <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="How_it_Works space_btn_element" style="margin-top: 0;">Become a Monthly Donor</a>
             {% endif %}
         </div>
-        <div class="learn-more"><a href="{%url 'leo_page' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
+        <div class="learn-more" style="text-align: center; margin-left: 0"><a href="{%url 'leo_page' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
       </div>
       <img class="background-image-size_home" src="static/images/revolv_background4@1500*500.jpg" alt="Leonardo Dicaprio">
     </div>
 
-    <div class="item carousel-second-img">
-      <div class="text_overlay">
-        <div class="text_content">
-          <div class="space_btn_element">
-            <span class="CREATE_CLEAN_ENERGY">COMMUNITY-DRIVEN SOLUTIONS <br>TO CLIMATE CHANGE</span>
-          </div>
-          <div class="space_btn_element">
-            <span class="Bring_solar_energy__to_communities_around_the_c">We all can play a role in solving climate change.</span>
-          </div>
-        </div>
-        <div class="how-it-works-button">
-            <a href="/what-we-do/projects/" class="How_it_Works space_btn_element">Support solar energy</a>
-          </div>
-      </div>
-
-      <img class="background-image-size_home"  src="static/images/revolv_background2@1500*500.jpg" alt="RE-volv background image">
-    </div>
-
-    <div class="item carousel-first-img" >
-      <div class="text_overlay">
-        <div class="text_content">
-          <div class="space_btn_element">
-            <span class="CREATE_CLEAN_ENERGY">CREATE<br>CLEAN ENERGY</span>
-          </div>
-          <div class="space_btn_element">
-            <span class="Bring_solar_energy__to_communities_around_the_c">Bring solar energy to<br>your community.</span>
-          </div>
-        </div>
-        <div class="how-it-works-button">
-            <a href="/bring_solar_to_your_community/" class="How_it_Works space_btn_element">Start a project</a>
-          </div>
-      </div>
-
-      <img class="background-image-size_home" src="static/images/revolv_background1@1500*500.jpg" alt="RE-volv background image">
-    </div>
-    <div class="item carousel-third-img">
-      <div class="text_overlay">
-        <div class="text_content">
-          <div class="space_btn_element">
-            <span class="CREATE_CLEAN_ENERGY">BUILDING COMMUNITY<br>THROUGH SOLAR</span>
-          </div>
-          <div class="space_btn_element">
-            <span class="Bring_solar_energy__to_communities_around_the_c">Helping communities thrive.<br>One solar panel at a time.</span>
-          </div>
-
-        </div>
-        <div class="how-it-works-button">
-            <a href="#how_it_works" class="How_it_Works space_btn_element">How It Works</a>
-          </div>
-      </div>
-      <img class="background-image-size_home" src="static/images/revolv_background3@1500*500.jpg" alt="RE-volv background image">
-    </div>
-
   </div>
-
-  <a class="Ellipse_543 left carousel-control arrow-left"  href="#myCarousel" role="button" data-slide="prev">
-      <div style="position:relative;">
-          <span class=" glyphicon glyphicon-chevron-left next-button carousel-prev-button" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-      </div>
-  </a>
-  <a class="Ellipse_543 right carousel-control arrow-right"  href="#myCarousel" role="button" data-slide="next">
-      <div style="position:relative;">
-          <span class=" glyphicon glyphicon-chevron-right next-button carousel-next-button" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-      </div>
-  </a>
 </div>
 <div id="desktop" class="modal-body imageContainer join-mov-btn-cntnr" style="background-image: url(static/images/revolv_blue_background.jpg);">
   <div class="text_on_blue_image"><span>Want to see solar energy spread rapidly across the country?</span><span><b> Join The Movement.</b></span></div>
