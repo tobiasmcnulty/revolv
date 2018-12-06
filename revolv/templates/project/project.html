@@ -645,7 +645,8 @@
 
         $('.btn-reinvest').on('click', function (e) {
             $('.btn-reinvest').prop('disabled', true);
-            document.getElementById("amt").value = parseFloat(document.getElementById("amt").value).toFixed(2)
+            document.getElementById("amt").value = parseFloat(document.getElementById("amt").value).toFixed(2);
+            e.preventDefault();
             if (parseFloat($("#amt").val()) > {{reinvestment_amount|floatformat:2}} || parseFloat($("#amt").val()) < 0.01 || $("#amt").val() == "") {
                 toastr.options.positionClass = "toast-bottom-right";
                 toastr.error('Invalid amount');
