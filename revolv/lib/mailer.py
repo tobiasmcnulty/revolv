@@ -1,4 +1,5 @@
 import yaml
+import HTMLParser
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import Context, Template
@@ -38,6 +39,7 @@ def send_revolv_email(
             if True, will raise an exception on error.
     :return: the return status of EmailMultiAlternatives.send()
     """
+    parser = HTMLParser.HTMLParser()
     with open(settings.EMAIL_TEMPLATES_PATH, 'r') as template:
         template_data = yaml.load(template)
     context = Context(context_dict)
@@ -47,8 +49,8 @@ def send_revolv_email(
         html_template = Template(template_data[template_name]['html'])
     else:
         html_template = False
-    subject = subject_template.render(context)
-    body = body_template.render(context)
+    subject = parser.unescape(subject_template.render(context))
+    body = parser.unescape(body_template.render(context))
     if html_template:
         html_body = html_template.render(context)
     else:
