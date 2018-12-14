@@ -28,12 +28,6 @@
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'Gotham-Medium';
-    src: url('../fonts/GothamMedium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 treehugger_logo
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -100,7 +94,6 @@ a:hover {
 
 .logo-size {
     width: 26vmin;
-    /* height: 50%; */
     float: right;
 }
 
@@ -117,9 +110,6 @@ a:hover {
     width: 100%;
     font-weight: 500;
     position: relative;
-    /* margin-top: 15vmin; */
-    /* left: 0%; */
-    /* margin-left: -3%; */
     padding-top: 1vmin;
     color: #fff;
 }
@@ -15188,19 +15178,22 @@ label.checkmark.animate:after {
     height: auto;
     line-height: 43px;
 }
+
 .help_power_community .text_content.hidden-xs {
     position: absolute;
     top: 14vmin;
 }
+
 .help_power_community .text_overlay {
     top: unset;
     bottom: 40px;
 }
+
 @media only screen and (min-width: 319px) and (max-width: 768px) {
     .footer-next-button a.next-button {
         width: 100%;
         text-align: center;
-        padding: 2vmin 0% 2vmin 0%;
+        padding: 2vmin 0 2vmin 0;
     }
 
     .footer-content {
@@ -15350,20 +15343,6 @@ label.checkmark.animate:after {
     }
 }
 
-/*@media only screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1366px) and (max-width: 1366px) and (orientation: landscape) {
-    .yellow-buttons {
-        font-size: 1.3vmin;
-    }
-    #myCarousel .carousel-prev-button {
-        left: 13%;
-    }
-    #myCarousel .carousel-next-button {
-        left: 18%;
-    }
-    .video-desc {
-        font-size: 2.5vmin;
-    }
-}*/
 @media only screen
 and (min-device-width: 768px)
 and (max-device-width: 1024px)
@@ -15383,30 +15362,18 @@ and (orientation: landscape) {
     .video-desc {
         font-size: 2.5vmin;
     }
-}
 
-/*@media only screen
-and (min-device-width : 1024px)
-and (max-device-width : 1366px)
-and (orientation : landscape) {
-  .yellow-buttons {
-        font-size: 1.9vmin;
+    .help_power_community .text_content.hidden-xs {
+        position: absolute;
+        top: 14vmin;
     }
-    #myCarousel .carousel-prev-button {
-        left: 11%;
-    }
-    #myCarousel .carousel-next-button {
-        left: 15%;
-    }
-    .video-desc {
-        font-size: 2.5vmin;
-    }
-}*/
+}
 
 @media (max-width: 767px) {
     .help_power_community .CREATE_CLEAN_ENERGY {
         font-size: 3rem;
     }
+
     .yellow-buttons {
         font-size: 2vmin;
     }
@@ -16898,8 +16865,7 @@ CSS for financial report*/
 }
 
 #donation_report_filter input[type="search"],
-#all_donation_report_filter input[type="search"]
-{
+#all_donation_report_filter input[type="search"] {
     font-size: 1.4rem;
 }
 
