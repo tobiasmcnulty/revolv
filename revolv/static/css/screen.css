@@ -5,6 +5,36 @@
     src: url(../fonts/SourceSansPro-Bold.otf);
 }
 
+@font-face {
+    font-family: 'Gotham-Medium';
+    src: url('../fonts/gothammedium.eot');
+    src: url('../fonts/gothammedium.woff2') format('woff2'),
+    url('../fonts/gothammedium.woff') format('woff'),
+    url('../fonts/gothammedium.ttf') format('truetype'),
+    url('../fonts/gothammedium.svg#Gotham-Medium') format('svg'),
+    url('../fonts/gothammedium.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham-Book';
+    src: url('../fonts/gothambook.eot');
+    src: url('../fonts/gothambook.woff2') format('woff2'),
+    url('../fonts/gothambook.woff') format('woff'),
+    url('../fonts/gothambook.ttf') format('truetype'),
+    url('../fonts/gothambook.svg#Gotham-Book') format('svg'),
+    url('../fonts/gothambook.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gotham-Medium';
+    src: url('../fonts/GothamMedium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 treehugger_logo
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
@@ -215,16 +245,21 @@ a:hover {
 }
 
 .CREATE_CLEAN_ENERGY {
-    font-size: 4.3rem;
+    font-size: 40px;
     line-height: 1em;
-    font-family: "SourceSansProBold";
+    font-family: Gotham-Medium, Sans-Serif;
     color: #fefefe;
     text-transform: uppercase;
     text-align: right;
     position: relative;
     z-index: 462;
-    font-weight: bold;
+    font-weight: 500;
     word-break: break-word;
+}
+
+.CREATE_CLEAN_ENERGY_sub {
+    font-size: 33px;
+    font-family: Gotham-Book, Sans-Serif;
 }
 
 .Bring_solar_energy__to_communities_around_the_c {
@@ -242,7 +277,7 @@ a:hover {
 .How_it_Works {
     font-size: 1.7rem;
     font-weight: bold;
-    font-family: "Source Sans Pro";
+    font-family: "Source Sans Pro", Sans-Serif;
     color: #fff;
     text-transform: uppercase;
     padding: 0.9em 0;
@@ -16806,7 +16841,8 @@ signup > .row .social-login-buttons {
 
 /*
 CSS for financial report*/
-#donation_report_wrapper label {
+#donation_report_wrapper label,
+#all_donation_report_wrapper label {
     font-size: 1.4rem;
 }
 
@@ -16814,7 +16850,8 @@ CSS for financial report*/
     font-size: 1.4rem;
 }
 
-#donation_report_wrapper select {
+#donation_report_wrapper select,
+#all_donation_report_wrapper select {
     font-size: 1.4rem;
     padding: 0.6rem;
     height: 3.2125rem;
@@ -16826,7 +16863,10 @@ CSS for financial report*/
     height: 3.2125rem;
 }
 
-#donation_report_wrapper table thead tr th, #donation_report_wrapper table tr td {
+#donation_report_wrapper table thead tr th,
+#donation_report_wrapper table tr td,
+#all_donation_report_wrapper table thead tr th,
+#all_donation_report_wrapper table tr td {
     color: #222222;
     font-size: 1.3rem;
 }
@@ -16836,7 +16876,12 @@ CSS for financial report*/
     font-size: 1.3rem;
 }
 
-#donation_report_wrapper button.dt-button, #donation_report_wrapper div.dt-button, #donation_report_wrapper a.dt-button {
+#donation_report_wrapper button.dt-button,
+#donation_report_wrapper div.dt-button,
+#donation_report_wrapper a.dt-button,
+#all_donation_report_wrapper button.dt-button,
+#all_donation_report_wrapper div.dt-button,
+#all_donation_report_wrapper a.dt-button {
     font-size: 1.4rem;
 }
 
@@ -16852,11 +16897,14 @@ CSS for financial report*/
     font-size: 1.6rem;
 }
 
-#donation_report_filter input[type="search"] {
+#donation_report_filter input[type="search"],
+#all_donation_report_filter input[type="search"]
+{
     font-size: 1.4rem;
 }
 
-#donation_report_wrapper .dataTables_paginate {
+#donation_report_wrapper .dataTables_paginate,
+#all_donation_report_wrapper .dataTables_paginate {
     padding-bottom: 2em;
 }
 
@@ -16864,7 +16912,8 @@ CSS for financial report*/
     padding-bottom: 2em;
 }
 
-#donation_report_wrapper .dt-buttons {
+#donation_report_wrapper .dt-buttons,
+#all_donation_report_wrapper .dt-buttons {
     padding-top: 2em;
 }
 
@@ -16936,6 +16985,14 @@ img.close-donate-popup {
     border: 1px solid #ccc;
     width: 2.4vmin;
     cursor: pointer;
+}
+
+.switch-view-ambassador-financial-rp {
+    padding: 6px;
+    background-color: #14b1e7;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {
