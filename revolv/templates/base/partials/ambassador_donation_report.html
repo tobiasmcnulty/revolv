@@ -4,21 +4,29 @@
 {% load mathfilters %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'typeahead/typeahead.css' %}" />
-<link rel="stylesheet" href="{% static 'chosen/chosen.css' %}" />
-<link rel="stylesheet" href="{% static 'dist/css/pages/project-edit/index.css' %}" />
+<link rel="stylesheet" href="{% static 'typeahead/typeahead.css' %}"/>
+<link rel="stylesheet" href="{% static 'chosen/chosen.css' %}"/>
+<link rel="stylesheet" href="{% static 'dist/css/pages/project-edit/index.css' %}"/>
 <link href='https://fonts.googleapis.com/css?family=Lato:300,500,800' rel='stylesheet' type='text/css'>
 <link href='https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
 <link href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css'>
 <style type="text/css">
-    #map-canvas { width: 100%; height: 300px; margin-bottom: 20px; padding: 0;}
-    #map-canvas img {max-width: none;}
+    #map-canvas {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    #map-canvas img {
+        max-width: none;
+    }
 </style>
 
- <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-         rel = "stylesheet">
-      <script src = "https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="/static/js/moment.min.js"></script>
 <script src="/static/js/datetime-moment.js"></script>
@@ -29,45 +37,77 @@
 <script src="/static/js/vfs_fonts.js"></script>
 <script src="/static/js/buttons.html5.min.js"></script>
 <script src="/static/js/buttons.print.min.js"></script>
-<script src="/static/js/ambassador_donation_report.js"></script>
+<script src="/static/js/ambassador_donation_report.js?v={{ version_number }}"></script>
 
 
 {% endblock %}
 
 {% block body %}
 
-<div class="container after-header" >
-  <table id="donation_report" class="display nowrap" cellspacing="0" width="100%" >
-   <div id="date_range" class="form-group donation-report-padding">
-       <div>
-            <div class="range-label">From:</div>
-            <input type="text" class="range-date" id="datepicker-1"/>
+<div class="container after-header">
+    <table id="donation_report" class="display nowrap" cellspacing="0" width="100%">
+        <div id="date_range" class="form-group donation-report-padding">
+            <div>
+                <div class="range-label">From:</div>
+                <input type="text" class="range-date" id="datepicker-1"/>
+            </div>
+            <div>
+                <div class="range-label">To:</div>
+                <input type="text" class="range-date" id="datepicker-2"/>
+            </div>
+            <div>
+                <input type="button" class="btnSearch" value="Search" id="search_button"/>
+            </div>
         </div>
         <div>
-            <div class="range-label">To:</div>
-            <input type="text" class="range-date" id="datepicker-2"/>
+            <a href="#" class="switch-view-ambassador-financial-rp">Show Auto Reinvestments</a>
+        </div>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Name of Project</th>
+            <th>Donation to Solar Seed Fund</th>
+            <th>Reinvestment in Solar Seed Fund</th>
+            <th>Donation to Operations</th>
+            <th>Total Donations</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div class="container after-header hidden">
+    <table id="all_donation_report" class="display nowrap" cellspacing="0" width="100%">
+        <div class="form-group donation-report-padding">
+            <div>
+                <div class="range-label">From:</div>
+                <input type="text" class="range-date" id="datepicker-1"/>
+            </div>
+            <div>
+                <div class="range-label">To:</div>
+                <input type="text" class="range-date" id="datepicker-2"/>
+            </div>
+            <div>
+                <input type="button" class="btnSearch" value="Search" id="search_button2"/>
+            </div>
         </div>
         <div>
-            <input type="button" class="btnSearch" value="Search" id="search_button"/>
+            <a href="#" class="switch-view-ambassador-financial-rp">Show Active Donors</a>
         </div>
-    </div>
-  <thead >
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Username</th>
-         <th>Email</th>
-         <th>Date</th>
-        <th>Name of Project</th>
-        <th>Donation to Solar Seed Fund</th>
-        <th>Reinvestment in Solar Seed Fund</th>
-          <th>Admin Reinvestment in Solar Seed Fund</th>
-        <th>Donation to Operations</th>
-        <th>Total Donations</th>
-      </tr>
-     </thead>
-  </table>
-
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Name of Project</th>
+            <th>Total Donations</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 {% endblock %}

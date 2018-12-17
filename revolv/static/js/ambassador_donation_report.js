@@ -1,8 +1,9 @@
 $(document).ready(function() {
-    table = $('#donation_report').DataTable( {
+    var table = $('#donation_report').DataTable( {
+        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "processing": true,
         "serverSide": true,
-         "dom": 'lfrtBip',
+        "dom": 'lfrtBip',
         "scrollX": true,
         buttons: [
              'print',
@@ -21,7 +22,7 @@ $(document).ready(function() {
            },
 
         ],
-         "order": [[ 4, "desc" ]],
+        "order": [[ 4, "desc" ]],
         "ajax": {
          url: '/ambassador_data_table/',
           "data": function ( d ) {
@@ -31,9 +32,10 @@ $(document).ready(function() {
           d.datepicker1 = date1;
           d.datepicker2 = date2;
         },
-         "dataSrc": "data",
+         "dataSrc": "all-data",
 
         },
+        "recordsFiltered": { "data": "recordsFiltered1"},
         "columns": [
             { "data": "firstname"},
             { "data": "lastname"},
@@ -43,20 +45,50 @@ $(document).ready(function() {
             { "data": "project"},
             { "data": "amount"},
             { "data": "user_reinvestment"},
-            { "data": "admin_reinvestment"},
             { "data": "tip"},
             { "data": "total"},
         ],
-        "columnDefs": [
-        {
-            "targets": 8,
-            "orderable": false
+
+    } );
+
+    var allDataTable = $('#all_donation_report').DataTable( {
+        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "processing": true,
+        "serverSide": true,
+        "dom": 'lfrtBip',
+        "scrollX": true,
+        buttons: [
+             'print',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL'
+            },
+            {
+               extend:    'excelHtml5',
+               orientation: 'landscape',
+           },
+           {
+               extend:    'csvHtml5',
+               orientation: 'landscape',
+           },
+
+        ],
+        "ajax": {
+         url: '/ambassador_data_table_auto_reinvestors/',
+        "dataSrc": "auto-reinvestors-data",
         },
-        {
-            "targets":10,
-            "orderable": false
-        },
-        ]
+        "order": [[ 6, "asc" ]],
+        "aaSorting": [[ 6, "desc" ]],
+        "columns": [
+            { "data": "firstname"},
+            { "data": "lastname"},
+            { "data": "username"},
+            { "data": "email"},
+            { "data": "date"},
+            { "data": "project"},
+            { "data": "admin_reinvestment"},
+        ],
 
     } );
 
@@ -103,9 +135,12 @@ $(document).ready(function() {
 
             }
             else {
-
                 alert('Invalid date');
             }
         });
-
+    $('.switch-view-ambassador-financial-rp').on('click', function () {
+        $('.container.after-header').toggleClass("hidden");
+        table.columns.adjust().draw();
+        allDataTable.columns.adjust().draw();
+    });
 } );
