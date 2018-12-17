@@ -33,6 +33,8 @@ urlpatterns = patterns(
     url(r'^payment_ajax_url/$', 'revolv.base.views.payment_data_table', name='payment_ajax_url'),
     url(r'^repayment_table/$', 'revolv.base.views.repayment_table',name='repayment_table'),
     url(r'^ambassador_data_table/$', 'revolv.base.views.ambassador_data_table', name='ambassador_data_table'),
+    url(r'^ambassador_data_table_auto_reinvestors/$', 'revolv.base.views.ambassador_data_table_auto_reinvestors',
+        name='ambassador_data_table_auto_reinvestors'),
     url(r'^my-portfolio/donationreport/', base_views.DonationReportView.as_view(), name='donationreport'),
     url(r'^my-portfolio/financialreport/', base_views.DonationReportForProject.as_view(), name='financialreport'),
     url(r'^my-portfolio/repaymentreport/', base_views.RepaymentReport.as_view(), name='repaymentreport'),

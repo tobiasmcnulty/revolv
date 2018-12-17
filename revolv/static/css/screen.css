@@ -5,6 +5,30 @@
     src: url(../fonts/SourceSansPro-Bold.otf);
 }
 
+@font-face {
+    font-family: 'Gotham-Medium';
+    src: url('../fonts/gothammedium.eot');
+    src: url('../fonts/gothammedium.woff2') format('woff2'),
+    url('../fonts/gothammedium.woff') format('woff'),
+    url('../fonts/gothammedium.ttf') format('truetype'),
+    url('../fonts/gothammedium.svg#Gotham-Medium') format('svg'),
+    url('../fonts/gothammedium.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham-Book';
+    src: url('../fonts/gothambook.eot');
+    src: url('../fonts/gothambook.woff2') format('woff2'),
+    url('../fonts/gothambook.woff') format('woff'),
+    url('../fonts/gothambook.ttf') format('truetype'),
+    url('../fonts/gothambook.svg#Gotham-Book') format('svg'),
+    url('../fonts/gothambook.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 treehugger_logo
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
@@ -70,7 +94,6 @@ a:hover {
 
 .logo-size {
     width: 26vmin;
-    /* height: 50%; */
     float: right;
 }
 
@@ -87,9 +110,6 @@ a:hover {
     width: 100%;
     font-weight: 500;
     position: relative;
-    /* margin-top: 15vmin; */
-    /* left: 0%; */
-    /* margin-left: -3%; */
     padding-top: 1vmin;
     color: #fff;
 }
@@ -147,6 +167,7 @@ a:hover {
     margin-right: 0;
 }
 
+.carousel-second-img .how-it-works-button,
 .carousel-fourth-img .how-it-works-button {
     float: left;
     text-align: center;
@@ -216,7 +237,7 @@ a:hover {
 .CREATE_CLEAN_ENERGY {
     font-size: 40px;
     line-height: 1em;
-    font-family: Montserrat, Sans-Serif;
+    font-family: Gotham-Medium, Sans-Serif;
     color: #fefefe;
     text-transform: uppercase;
     text-align: right;
@@ -224,6 +245,11 @@ a:hover {
     z-index: 462;
     font-weight: 500;
     word-break: break-word;
+}
+
+.CREATE_CLEAN_ENERGY_sub {
+    font-size: 33px;
+    font-family: Gotham-Book, Sans-Serif;
 }
 
 .Bring_solar_energy__to_communities_around_the_c {
@@ -240,8 +266,8 @@ a:hover {
 
 .How_it_Works {
     font-size: 1.7rem;
-    font-weight: 500;
-    font-family: Montserrat, Sans-Serif;
+    font-weight: bold;
+    font-family: "Source Sans Pro", Sans-Serif;
     color: #fff;
     text-transform: uppercase;
     padding: 0.9em 0;
@@ -2100,7 +2126,7 @@ p.attribution.footer-text {
 }
 
 .featured-on-module .logo-doe {
-    background: url(../images/Sunshot.png) no-repeat;
+    background: url(../images/sunshot.png) no-repeat;
     background-position: top;
     background-size: 100% auto;
     height: 65px;
@@ -4913,7 +4939,8 @@ header.edit-project-header > .container > h1 {
 /* .footer .col-menu */
 
 .footer .row .col-menu {
-    width: 20%;
+    width: 17%;
+    text-align: left;
 }
 
 .footer .row .col-menu dt {
@@ -4923,7 +4950,7 @@ header.edit-project-header > .container > h1 {
 /* .footer .col-info */
 
 .footer .row .col-info {
-    width: 20%;
+    width: 20.75%;
 }
 
 .footer .row .col-info dt {
@@ -4939,7 +4966,7 @@ header.edit-project-header > .container > h1 {
 .footer .row .col-info p {
     color: #8a8a8a;
     font-size: 14px;
-    /*text-align: justify;*/
+    text-align: justify;
     line-height: 24px;
 }
 
@@ -6236,7 +6263,7 @@ li:before.active > *::before {
     }
 
     .title-h1 {
-        font-size: 39.68px;
+        font-size: 34.48px;
         line-height: 48px;
     }
 
@@ -15028,7 +15055,7 @@ label.checkmark.animate:after {
 }
 
 .dashboard .stats .info > div:first-child {
-    height: 36px;
+    height: 43px;
 }
 
 .dashboard .stats .info > div:last-child {
@@ -15151,19 +15178,22 @@ label.checkmark.animate:after {
     height: auto;
     line-height: 43px;
 }
+
 .help_power_community .text_content.hidden-xs {
     position: absolute;
     top: 14vmin;
 }
+
 .help_power_community .text_overlay {
     top: unset;
     bottom: 40px;
 }
+
 @media only screen and (min-width: 319px) and (max-width: 768px) {
     .footer-next-button a.next-button {
         width: 100%;
         text-align: center;
-        padding: 2vmin 0% 2vmin 0%;
+        padding: 2vmin 0 2vmin 0;
     }
 
     .footer-content {
@@ -15313,20 +15343,6 @@ label.checkmark.animate:after {
     }
 }
 
-/*@media only screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1366px) and (max-width: 1366px) and (orientation: landscape) {
-    .yellow-buttons {
-        font-size: 1.3vmin;
-    }
-    #myCarousel .carousel-prev-button {
-        left: 13%;
-    }
-    #myCarousel .carousel-next-button {
-        left: 18%;
-    }
-    .video-desc {
-        font-size: 2.5vmin;
-    }
-}*/
 @media only screen
 and (min-device-width: 768px)
 and (max-device-width: 1024px)
@@ -15346,30 +15362,18 @@ and (orientation: landscape) {
     .video-desc {
         font-size: 2.5vmin;
     }
-}
 
-/*@media only screen
-and (min-device-width : 1024px)
-and (max-device-width : 1366px)
-and (orientation : landscape) {
-  .yellow-buttons {
-        font-size: 1.9vmin;
+    .help_power_community .text_content.hidden-xs {
+        position: absolute;
+        top: 14vmin;
     }
-    #myCarousel .carousel-prev-button {
-        left: 11%;
-    }
-    #myCarousel .carousel-next-button {
-        left: 15%;
-    }
-    .video-desc {
-        font-size: 2.5vmin;
-    }
-}*/
+}
 
 @media (max-width: 767px) {
     .help_power_community .CREATE_CLEAN_ENERGY {
         font-size: 3rem;
     }
+
     .yellow-buttons {
         font-size: 3.6vmin;
     }
@@ -16804,7 +16808,8 @@ signup > .row .social-login-buttons {
 
 /*
 CSS for financial report*/
-#donation_report_wrapper label {
+#donation_report_wrapper label,
+#all_donation_report_wrapper label {
     font-size: 1.4rem;
 }
 
@@ -16812,7 +16817,8 @@ CSS for financial report*/
     font-size: 1.4rem;
 }
 
-#donation_report_wrapper select {
+#donation_report_wrapper select,
+#all_donation_report_wrapper select {
     font-size: 1.4rem;
     padding: 0.6rem;
     height: 3.2125rem;
@@ -16824,7 +16830,10 @@ CSS for financial report*/
     height: 3.2125rem;
 }
 
-#donation_report_wrapper table thead tr th, #donation_report_wrapper table tr td {
+#donation_report_wrapper table thead tr th,
+#donation_report_wrapper table tr td,
+#all_donation_report_wrapper table thead tr th,
+#all_donation_report_wrapper table tr td {
     color: #222222;
     font-size: 1.3rem;
 }
@@ -16834,7 +16843,12 @@ CSS for financial report*/
     font-size: 1.3rem;
 }
 
-#donation_report_wrapper button.dt-button, #donation_report_wrapper div.dt-button, #donation_report_wrapper a.dt-button {
+#donation_report_wrapper button.dt-button,
+#donation_report_wrapper div.dt-button,
+#donation_report_wrapper a.dt-button,
+#all_donation_report_wrapper button.dt-button,
+#all_donation_report_wrapper div.dt-button,
+#all_donation_report_wrapper a.dt-button {
     font-size: 1.4rem;
 }
 
@@ -16850,11 +16864,13 @@ CSS for financial report*/
     font-size: 1.6rem;
 }
 
-#donation_report_filter input[type="search"] {
+#donation_report_filter input[type="search"],
+#all_donation_report_filter input[type="search"] {
     font-size: 1.4rem;
 }
 
-#donation_report_wrapper .dataTables_paginate {
+#donation_report_wrapper .dataTables_paginate,
+#all_donation_report_wrapper .dataTables_paginate {
     padding-bottom: 2em;
 }
 
@@ -16862,7 +16878,8 @@ CSS for financial report*/
     padding-bottom: 2em;
 }
 
-#donation_report_wrapper .dt-buttons {
+#donation_report_wrapper .dt-buttons,
+#all_donation_report_wrapper .dt-buttons {
     padding-top: 2em;
 }
 
@@ -16934,6 +16951,14 @@ img.close-donate-popup {
     border: 1px solid #ccc;
     width: 2.4vmin;
     cursor: pointer;
+}
+
+.switch-view-ambassador-financial-rp {
+    padding: 6px;
+    background-color: #14b1e7;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {
@@ -18062,24 +18087,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 .success {
     color: black;
-}
-
-@media (min-width: 767px) {
-    #mobile {
-        display: none;
-    }
-}
-
-@media (max-width: 767px) {
-    #desktop {
-        display: none;
-    }
-}
-
-@media (max-width: 335px) {
-    .testimonial-module .head-row li .head-img .mobile-head {
-        width: 90vw;
-    }
 }
 
 #user_record_loader {
