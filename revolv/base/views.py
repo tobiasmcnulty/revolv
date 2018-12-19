@@ -927,7 +927,8 @@ def ambassador_data_table(request):
             if revolv_user == ambassador:
                 project_list.append(project)
 
-    payment_list = Payment.objects.filter(project__in=project_list).order_by((column_order))
+    payment_list = Payment.objects.filter(project__in=project_list, admin_reinvestment__isnull=True).order_by((column_order))
+    total_records_count = payment_list.count()
     if int(length) == -1:
         length = payment_list.count()
     if search.strip():
@@ -950,44 +951,100 @@ def ambassador_data_table(request):
                                datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
 
     payments = []
-
     for payment in payment_list[int(start):][:int(length)]:
 
-        payment_details = {}
-        payment_details['firstname'] = payment.user.user.first_name
-        payment_details['lastname'] = payment.user.user.last_name
-        payment_details['username'] = payment.user.user.username
-        payment_details['email'] = payment.user.user.email
-        payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
-        payment_details['project'] = payment.project.title
-        if payment.user_reinvestment or payment.admin_reinvestment:
-            payment_details['amount'] = 0
-        else:
-            payment_details['amount'] = payment.amount
+        payment_details_all = {}
+        payment_details_all['firstname'] = payment.user.user.first_name
+        payment_details_all['lastname'] = payment.user.user.last_name
+        payment_details_all['username'] = payment.user.user.username
+        payment_details_all['email'] = payment.user.user.email
+        payment_details_all['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
+        payment_details_all['project'] = payment.project.title
+        payment_details_all['amount'] = payment.amount
         if payment.user_reinvestment:
-            payment_details['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
+            payment_details_all['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
         else:
-            payment_details['user_reinvestment'] = 0
-        if payment.admin_reinvestment:
-            payment_details['admin_reinvestment'] = round(payment.amount, 2)
-        else:
-            payment_details['admin_reinvestment'] = 0
+            payment_details_all['user_reinvestment'] = 0
         if payment.tip:
-            payment_details['tip'] = round(payment.tip.amount, 2)
+            payment_details_all['tip'] = payment.tip.amount
         else:
-            payment_details['tip'] = 0
-        if payment.tip and payment.amount:
-            payment_details['total'] = round(payment.tip.amount + payment.amount, 2)
-        if payment.tip and not payment.amount:
-            payment_details['total'] = round(payment.tip.amount, 2)
-        if payment.amount and not payment.tip:
-            payment_details['total'] = round(payment.amount, 2)
-        if not payment.amount and not payment.tip:
-            payment_details['total'] = 0
-        payments.append(payment_details)
+            payment_details_all['tip'] = 0
+        total = payment_details_all['amount'] + payment_details_all['user_reinvestment'] + payment_details_all['tip']
+        payment_details_all['total'] = total
+        payments.append(payment_details_all)
 
-    json_response = {"draw": draw, "recordsTotal": Payment.objects.filter(project=project).count(),
-                     "recordsFiltered": payment_list.count(), "data": payments}
+    json_response = {"draw": draw, "recordsTotal": total_records_count,
+                     "recordsFiltered": payment_list.count(), "all-data": payments}
+
+    return HttpResponse(json.dumps(json_response), content_type='application/json')
+
+
+def ambassador_data_table_auto_reinvestors(request):
+    draw = request.GET.get('draw')
+    datepicker1 = request.GET.get('datepicker1')
+    datepicker2 = request.GET.get('datepicker2')
+    length = request.GET.get('length')
+    order = request.GET.get('order[0][dir]')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
+    currentSortByCol = request.GET.get('order[0][column]')
+
+    fields = ['user__user__first_name', 'user__user__last_name', 'user__user__username', 'user__user__email',
+              'created_at', 'project__title', 'amount', 'user_reinvestment__amount', 'admin_reinvestment__amount',
+              'tip__amount']
+
+    order_by = {'desc': '-', 'asc': ''}
+
+    column_order = order_by[order] + fields[int(currentSortByCol)]
+
+    revolv_user = get_object_or_404(RevolvUserProfile, user_id=request.user.id)
+
+    projects = Project.objects.all()
+    project_list = []
+    for project in projects:
+        for ambassador in project.ambassadors.all():
+            if revolv_user == ambassador:
+                project_list.append(project)
+
+    auto_reinvestors_list = Payment.objects.filter(project__in=project_list, admin_reinvestment__isnull=False, amount__gt=0).order_by((column_order))
+    total_records_count = auto_reinvestors_list.count()
+    if int(length) == -1:
+        length = len(auto_reinvestors_list)
+    if search.strip():
+        auto_reinvestors_list = auto_reinvestors_list.filter(Q(user__user__username__icontains=search) |
+                                           Q(user__user__first_name__icontains=search) |
+                                           Q(project__title__icontains=search) |
+                                           Q(amount__icontains=search) |
+                                           Q(user__user__last_name__icontains=search) |
+                                           Q(user__user__email__icontains=search))
+
+    if datepicker1 and datepicker2:
+        import datetime
+        import pytz
+
+        date1 = datetime.datetime.strptime(datepicker1, '%Y-%m-%d').date()
+        date2 = datetime.datetime.strptime(datepicker2, '%Y-%m-%d').date()
+
+        auto_reinvestors_list = auto_reinvestors_list.filter(
+            created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
+
+    auto_reinvestors = []
+
+    if auto_reinvestors_list:
+        for payment in auto_reinvestors_list[int(start):][:int(length)]:
+            if payment.amount > 0:
+                payment_details = {}
+                payment_details['firstname'] = payment.user.user.first_name
+                payment_details['lastname'] = payment.user.user.last_name
+                payment_details['username'] = payment.user.user.username
+                payment_details['email'] = payment.user.user.email
+                payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
+                payment_details['project'] = payment.project.title
+                payment_details['admin_reinvestment'] = round(payment.amount, 2)
+                auto_reinvestors.append(payment_details)
+    json_response = {"draw": draw, "recordsTotal": total_records_count,
+                     "recordsFiltered": len(auto_reinvestors_list), "auto-reinvestors-data": auto_reinvestors}
 
     return HttpResponse(json.dumps(json_response), content_type='application/json')
 
