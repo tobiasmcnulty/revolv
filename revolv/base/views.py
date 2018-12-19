@@ -123,6 +123,8 @@ class DonationReportForProject(UserDataMixin, TemplateView):
     template_name = 'base/partials/ambassador_donation_report.html'
 
     def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous():
+            return HttpResponseRedirect(reverse("login"))
         if not request.user.revolvuserprofile.is_ambassador():
             return HttpResponseRedirect(reverse("dashboard"))
         return super(DonationReportForProject, self).dispatch(request, *args, **kwargs)
