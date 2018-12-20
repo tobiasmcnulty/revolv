@@ -963,14 +963,16 @@ def ambassador_data_table(request):
         payment_details_all['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
         payment_details_all['project'] = payment.project.title
         payment_details_all['amount'] = payment.amount
-        if payment.user_reinvestment:
-            payment_details_all['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
-        else:
-            payment_details_all['user_reinvestment'] = 0
         if payment.tip:
             payment_details_all['tip'] = payment.tip.amount
         else:
             payment_details_all['tip'] = 0
+        if payment.user_reinvestment:
+            payment_details_all['amount'] = 0
+            payment_details_all['tip'] = 0
+            payment_details_all['user_reinvestment'] = round(payment.user_reinvestment.amount, 2)
+        else:
+            payment_details_all['user_reinvestment'] = 0
         total = payment_details_all['amount'] + payment_details_all['user_reinvestment'] + payment_details_all['tip']
         payment_details_all['total'] = total
         payments.append(payment_details_all)

@@ -51,7 +51,7 @@ def stripe_payment(request, pk):
         amount_cents = int(amount_cents)
         if not (0 < amount_cents < MAX_PAYMENT_CENTS):
             raise ValueError('amount_cents cannot be negative')
-        if not (0 <= tip_cents < amount_cents):
+        if not (0 <= tip_cents <= amount_cents):
             raise ValueError('tip_cents cannot be negative or more than project contribution')
     except ValueError:
         logger.exception('stripe_payment called with improper POST data')
