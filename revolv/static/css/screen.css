@@ -4906,7 +4906,8 @@ header.edit-project-header > .container > h1 {
 
 /* .footer .row */
 
-.footer .row {
+.footer .row,
+.active-projects-module #footer .row {
     margin: 0;
     padding: 0 112px 0 115px;
     max-width: 100%;
@@ -7866,7 +7867,7 @@ width: 580px;
 
     .footer .row .col-menu,
     .footer .row .col-info {
-        padding: 55px 0 48px 0;
+        padding: 20px 0 0;
     }
 
     .footer .row .col-menu dt,
@@ -11574,7 +11575,6 @@ width: 580px;
     }
 
     .donors-module {
-        padding: 0 64px;
         position: relative;
         width: 100%;
     }
