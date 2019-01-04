@@ -472,7 +472,7 @@ div#myCarousel {
 
 .imageContainer {
     width: 100%;
-    height: 34vh;
+    height: 215px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
@@ -589,8 +589,8 @@ left .carousel-controls {
 }
 
 #myCarousel .background-image-size_home {
-    width: 100vw;
-    height: 70vh;
+    width: 100%;
+    height: 455px;
     right: 0;
 }
 
@@ -774,14 +774,15 @@ left .carousel-controls {
 p.attribution.footer-text {
     color: #337ab7;
     font-size: 14px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .dropdown-default .dropdown-menu > li > a {
-    font-weight: normal;
     color: #4b4b4b;
-    padding: 0 25px;
+    font-weight: normal;
     line-height: 24px;
+    padding: 0 25px;
 }
 
 .dropdown-default .dropdown-menu > li > a:hover,
@@ -2250,11 +2251,11 @@ p.attribution.footer-text {
 }
 
 .newsletter-module .title-newsletter {
-    letter-spacing: 8.5px;
     background: none;
+    letter-spacing: 8.5px;
+    margin: 84px auto 43px auto;
     padding-left: 20px;
     width: 370px;
-    margin: 84px auto 43px auto;
 }
 
 /* .newsletter-module .container */
@@ -4939,8 +4940,14 @@ header.edit-project-header > .container > h1 {
 /* .footer .col-menu */
 
 .footer .row .col-menu {
-    width: 17%;
+    width: 20%;
     text-align: left;
+    letter-spacing: 0.2px;
+}
+
+.footer .row .col-menu:nth-child(1),
+.footer .row .col-menu:nth-child(2) {
+    width: 17%;
 }
 
 .footer .row .col-menu dt {
@@ -4950,7 +4957,8 @@ header.edit-project-header > .container > h1 {
 /* .footer .col-info */
 
 .footer .row .col-info {
-    width: 20.75%;
+    width: 20%;
+    float: right;
 }
 
 .footer .row .col-info dt {
@@ -4966,8 +4974,8 @@ header.edit-project-header > .container > h1 {
 .footer .row .col-info p {
     color: #8a8a8a;
     font-size: 14px;
-    text-align: justify;
     line-height: 24px;
+    letter-spacing: 0.2px;
 }
 
 footer.footer > div.container > div.row > nav > dl > dd {
@@ -4989,8 +4997,9 @@ footer.footer > div.container > div.row > nav > dl > dd {
 
 .footer .bottoms ul li {
     float: left;
-    padding: 0;
     font-size: 3vmin;
+    list-style-type: none;
+    padding: 0;
 }
 
 .footer .copyright {
@@ -5440,6 +5449,15 @@ li:before.active > *::before {
 
 .input-group > form#ipad {
     display: none;
+}
+
+.donationTableLoader {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    padding-top: 15%;
+    position: absolute;
+    background: #fff;
 }
 
 /*fix layout issue when smaller than 1221px width*/
@@ -11247,10 +11265,10 @@ width: 580px;
     }
 
     /* .footer .col-menu */
-    .footer .row .col-menu {
+    .footer .row .col-menu,
+    .footer .row .col-menu:nth-child(1), .footer .row .col-menu:nth-child(2) {
         width: 100%;
         float: none;
-        padding: 45px 0 10px 0;
     }
 
     .footer .row .col-menu dt {
@@ -15014,6 +15032,9 @@ label.checkmark.animate:after {
     }
 }
 
+.active-projects-module footer .col-info {
+    text-align: left;
+}
 /* Dashboard */
 
 .dashboard .active-projects-module {
@@ -15181,7 +15202,7 @@ label.checkmark.animate:after {
 
 .help_power_community .text_content.hidden-xs {
     position: absolute;
-    top: 14vmin;
+    top: 100px;
 }
 
 .help_power_community .text_overlay {
@@ -15216,10 +15237,6 @@ label.checkmark.animate:after {
         padding: 0 9vmin;
         background-size: 110px;
         width: 115px;
-    }
-
-    .home-page-content .imageContainer {
-        height: 28vh;
     }
 
     a.Ellipse_543.left.carousel-control.arrow-left {
@@ -15365,7 +15382,6 @@ and (orientation: landscape) {
 
     .help_power_community .text_content.hidden-xs {
         position: absolute;
-        top: 14vmin;
     }
 }
 
