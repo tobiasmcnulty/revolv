@@ -635,6 +635,16 @@ class DashboardRedirect(UserDataMixin, View):
         request.session['social'] = social
         request.session['url'] = url
 
+        if self.is_authenticated:
+            if self.request.session.get('payment'):
+                Payment.objects.filter(id=self.request.session['payment']).update(
+                    user_id=self.request.user.revolvuserprofile, entrant_id=self.request.user.revolvuserprofile)
+                payment = Payment.objects.get(id=self.request.session['payment'])
+                Tip.objects.filter(id=payment.tip_id).update(user_id=self.request.user.revolvuserprofile)
+                Project.objects.get(id=payment.project_id).donors.add(self.request.user.revolvuserprofile)
+                AnonymousUserDonation.objects.filter(payment_id=self.request.session['payment']).delete()
+                del self.request.session['payment']
+
         if bool(request.GET) is False:
             if not self.is_authenticated:
                 return redirect('home')
