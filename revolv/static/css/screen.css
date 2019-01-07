@@ -14684,6 +14684,13 @@ width: 580px;
         padding: 0 3px;
     }
 
+    #project .btn-purple {
+        font-size: 1.5rem!important;
+        height: auto;
+        line-height: initial;
+        padding: 0 3px;
+    }
+
     #project .header .btn-donate {
         min-width: 66px;
     }
@@ -15225,8 +15232,9 @@ label.checkmark.animate:after {
 
     .header .logo {
         background: url(../images/logo.png) no-repeat;
-        margin: 2vmin 0 2px 3vmin;
+        background-size: 100px;
         display: block;
+        margin: 2vmin 0 2px 3vmin;
     }
 
     .header .logo-solar-at-home {
@@ -15594,6 +15602,29 @@ and (orientation: landscape) {
         display: block !important;
         margin: 4vmin 0 2px 3vmin;
         padding: 0;
+    }
+
+    .dashboard .stats .info .val {
+        font-size: 36px;
+    }
+    .dashboard .stats .info > div:first-child {
+        height: auto;
+    }
+    .dashboard .stats .info > div:not(.tall):first-child {
+        line-height: 1;
+    }
+    .dashboard .stats .col-xs-6 {
+        height: 250px;
+    }
+    .dashboard .impact h2 {
+        font-size: 36px;
+    }
+    .champion-background-image {
+        height: 200px;
+        background-size: 100% 200px;
+    }
+    .header-content {
+        padding-top: 70px;
     }
 
 }
