@@ -31,6 +31,9 @@
     <link href="{% static 'css/slick.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link href="{% static 'css/slick-theme.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 
 {% endblock %}
 {% block body_class %}class="home-page-content"{% endblock %}
@@ -136,8 +139,6 @@
             </div>
         {% endif %}
       </div>
-      <!--<a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>-->
-      <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
     </div>
   </div>
     </div>
@@ -169,18 +170,18 @@
           </div>
 
         </div>
-        <div class="how-it-works-button">
-            {% if active_projects_count > 1 %}
-                <a href="{% url 'projects_list' %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DONATE</a>
-            {% elif active_projects_count == 1 %}
-                {% for active_project in active_projects %}
-                    <a href="{% url "project:view" title=active_project.project_url %}" class="How_it_Works space_btn_element" style="margin-top: 0;">DONATE</a>
-                {% endfor %}
-            {% else %}
-                <a href="#" onclick="return clearInput();" data-toggle="modal" data-target="#popup" class="How_it_Works space_btn_element" style="margin-top: 0;">Become a Monthly Donor</a>
-            {% endif %}
+        <div id="donor-community" class="homepage-lightbox-popup mfp-hide">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/nQtU98Pa_kY" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
         </div>
-        <div class="learn-more" style="text-align: center; margin-left: 0"><a href="{%url 'leo_page' %}" ><span class="learn-more-text"><i>Learn more</i></span></a></div>
+        <div class="lightBoxLinkContainer">
+            <a href="#donor-community" class="open-popup-link mfp-zoom-in">
+              {#            Image from https://img.icons8.com/ios/50/FFFFFF/circled-play.png#}
+              <img src="static/images/icons8-play-button-circled-40.png">
+              <span>WATCH OUR STORY</span>
+            </a>
+        </div>
       </div>
       <img class="background-image-size_home" src="static/images/revolv_background4@1500*500.jpg" alt="Leonardo Dicaprio">
     </div>
@@ -728,6 +729,12 @@
     $(".donate-popup .next-button").removeClass("stripe-button-el");
    $(".donate-popup .next-button").addClass("disable-donation-btn");
  }
+</script>
+<script>
+    $('.open-popup-link').magnificPopup({
+        type: 'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
 </script>
 
 {% endblock %}
