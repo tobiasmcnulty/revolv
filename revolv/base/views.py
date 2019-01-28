@@ -548,42 +548,11 @@ def intake_form_submit(request):
 
 
 def select_chapter(request, chapter):
-    if chapter == '1':
-        return render_to_response('base/chapter.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '2':
-        return render_to_response('base/chapter2.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '3':
-        return render_to_response('base/chapter3.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '4':
-        return render_to_response('base/chapter4.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '5':
-        return render_to_response('base/chapter5.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '6':
-        return render_to_response('base/chapter6.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '7':
-        return render_to_response('base/chapter7.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '8':
-        return render_to_response('base/chapter8.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '9':
-        return render_to_response('base/chapter9.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '10':
-        return render_to_response('base/chapter10.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '11':
-        return render_to_response('base/chapter11.html',
-                                  context_instance=RequestContext(request))
-    if chapter == '12':
-        return render_to_response('base/chapter12.html',
-                                  context_instance=RequestContext(request))
+    if 1 <= int(chapter) <= 12:
+        return render_to_response("base/chapter{0}.html".format(chapter if int(chapter) != 1 else ''),
+                                context_instance=RequestContext(request))
+    else:
+        return redirect('bring_solar_to_your_community')
 
 
 def intake_form(request):
@@ -723,6 +692,8 @@ def unsubscribe(request, action):
         user_profile.subscribed_to_repayment_notifications = False
         user_profile.save()
         data = {'msg': "You have successfully unsubscribed"}
+    elif action and action.lower() == 'confirmation':
+        return render_to_response('base/unsub_conf.html', context_instance=RequestContext(request, data))
     else:
         data = {'msg': 'Please specify which section you want to unsubscribe'}
 

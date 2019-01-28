@@ -1,0 +1,85 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.4/sweetalert2.all.min.js"></script>
+<style>
+    .swal2-popup {
+        width: 35em;
+        font-size: 1.3em;
+    }
+    .swal2-container.swal2-shown {
+        background-color: whitesmoke;
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(".container, footer, header").css("display", "none");
+    let str = 'Account Settings';
+    let accountLink = str.link("/account_settings");
+    Swal({
+        text: "Are you sure you want to unsubscribe from from repayment notification emails? If so, you won't find out everytime you get repaid!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Yes, I want to keep receiving repayment notifications',
+        confirmButtonText: 'No, I want to unsubscribe',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: "GET",
+                url: '/unsubscribe/updates',
+                success: function (data) {
+                    Swal(
+                        'Unsubscribed!',
+                        'Thanks for being a part of the RE-volv community. We\'ll unsubscribe you from repayment notifications ' +
+                        'going forward. You can always update your email preferences in your ' + accountLink + ' page.',
+                        'success'
+                    );
+                    $('.swal2-confirm').on('click', function (e) {
+                        if (e.target.innerHTML === "OK") {
+                            window.location = ('/')
+                        }
+                    })
+                },
+                error: function () {
+                    Swal(
+                        'Sorry!',
+                        'Something Went Wrong. Please try again later.'
+                    )
+                }
+            });
+        }
+        else {
+            Swal(
+                'Thank You!',
+                'Thanks for being a part of the RE-volv community.',
+                'success'
+            );
+            $('.swal2-confirm').on('click', function (e) {
+                if (e.target.innerHTML === "OK") {
+                    window.location = ('/')
+                }
+            })
+        }
+        $(".swal2-modal").click(function () {
+
+            $(".swal2-modal").css("pointer-events", "none");
+            //do something
+            $(".swal2-modal").css("pointer-events", "auto");
+        })
+    })
+</script>
+{% endblock %}
+
+
+{% block body %}
+<div class="row about">
+    <div class="about-inset"><!-- Call to action --></div>
+</div>
+
+{% endblock %}
