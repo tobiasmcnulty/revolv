@@ -561,7 +561,6 @@ html, body {
 
 .event-register {
     background: url('./../images/faith_community.jpg');
-    padding-bottom: 20px;
 }
 
 /*Todo need to remove all the image css*/
@@ -575,10 +574,11 @@ html, body {
 
 .event-ideas-text {
     background-color: rgba(0, 0, 0, 0.5);
-    overflow: auto;
-    font-size: 30px;
-    text-align: center;
     color: rgb(255, 195, 35);
+    font-size: 30px;
+    overflow: auto;
+    padding-bottom: 20px;
+    text-align: center;
     width: 100%;
 }
 
