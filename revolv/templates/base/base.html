@@ -32,6 +32,7 @@
     <link href="{% static 'lib/bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
 
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
 
     <!-- Main CSS -->
     <link href="{% static 'css/jqtransform.css' %}" rel="stylesheet" />
@@ -59,6 +60,13 @@
     <script src="{% static 'js/script.js' %}?version={{ version_number }}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26030992-4"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PHW869');</script>
+    <!-- End Google Tag Manager -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
@@ -80,6 +88,10 @@
         fbq('init', '2015459712109364');
         fbq('track', 'PageView');
     </script>
+    <script id="mcjs">!function (c, h, i, m, p) {
+        m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p)
+    }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/d6fcaa93d5386e056cacbd94c/f5a999b8ee12e0095a52dca02.js");
+    </script>
     <noscript>
         <img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=2015459712109364&ev=PageView&noscript=1"/>
@@ -92,6 +104,10 @@
 </head>
 
 <body {% block body_class %}{% endblock%} class="main-body" id="project">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHW869"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 <div id="donation-spinner"><img src="/static/images/gif/revolv-loader.gif" alt="reinvestment is loading" ></div>
     {% block nav %}
     {% include "base/partials/nav.html" %}
