@@ -103,9 +103,9 @@ class DonationReportView(UserDataMixin, TemplateView):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_anonymous():
             return HttpResponseRedirect(reverse("login"))
-        if not request.user.revolvuserprofile.is_administrator():
-            return HttpResponseRedirect(reverse("dashboard"))
-        return super(DonationReportView, self).dispatch(request, *args, **kwargs)
+        if request.user.revolvuserprofile.is_administrator() or request.user.revolvuserprofile.is_ambassador():
+            return super(DonationReportView, self).dispatch(request, *args, **kwargs)
+        return HttpResponseRedirect(reverse("dashboard"))
 
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):
@@ -1036,13 +1036,14 @@ def ambassador_data_table_auto_reinvestors(request):
 
 def payment_data_table(request):
     draw = request.GET.get('draw')
-    datepicker1 = request.GET.get('datepicker1')
-    datepicker2 = request.GET.get('datepicker2')
+    date_picker_1 = request.GET.get('datepicker1')
+    date_picker_2 = request.GET.get('datepicker2')
     length = request.GET.get('length')
     order = request.GET.get('order[0][dir]')
     start = request.GET.get('start')
-    search = request.GET.get('search[value]')
-    currentSortByCol = request.GET.get('order[0][column]')
+    search = request.GET.get('search[value]').strip()
+    current_sort_by_col = request.GET.get('order[0][column]')
+    report_length = request.GET.get('reportLength')
 
     fields = ['user__user__first_name', 'user__user__last_name', 'user__user__username', 'user__user__email',
               'created_at', 'project__title', 'amount', 'user_reinvestment__amount', 'admin_reinvestment__amount',
@@ -1050,24 +1051,58 @@ def payment_data_table(request):
 
     order_by = {'desc': '-', 'asc': ''}
 
-    column_order = order_by[order] + fields[int(currentSortByCol)]
+    column_order = order_by[order] + fields[int(current_sort_by_col)]
 
-    payment_list = Payment.objects.all().order_by((column_order))
+    auth_user = get_object_or_404(RevolvUserProfile, user_id=request.user.id)
 
-    if search.strip():
+    projects = Project.objects.all()
+    project_list = []
+    if request.user.revolvuserprofile.is_administrator():
+        for project in projects:
+            project_list.append(project)
+    elif request.user.revolvuserprofile.is_ambassador():
+        for project in projects:
+            for ambassador in project.ambassadors.all():
+                if auth_user == ambassador:
+                    project_list.append(project)
+    else:
+        return HttpResponseRedirect(reverse("dashboard"))
+
+    payment_list = Payment.objects.filter(project__in=project_list).order_by(column_order)
+    total_records_count = payment_list.count()
+    if int(report_length) == -4:
+        payment_list = Payment.objects.filter(project__in=project_list,
+                                              admin_reinvestment__isnull=True,
+                                              user_reinvestment__isnull=True).order_by(column_order)
+        total_records_count = payment_list.count()
+    if int(report_length) == -3:
+        payment_list = Payment.objects.filter(project__in=project_list,
+                                              admin_reinvestment__isnull=True).order_by(
+            column_order)
+        total_records_count = payment_list.count()
+    report_length = int(report_length)
+    if int(report_length) < 0:
+        if -2 < int(report_length) or int(report_length) < -4 or not isinstance(report_length, int):
+            return HttpResponseRedirect(reverse("donationreport"))
+        length = 10
+    if search:
+        anonymous_donations = AnonymousUserDonation.objects.\
+            filter(email__icontains=search).\
+            values_list('payment_id', flat=True)
         payment_list = payment_list.filter(Q(user__user__username__icontains=search) |
                                            Q(user__user__first_name__icontains=search) |
                                            Q(project__title__icontains=search) |
+                                           Q(id__in=anonymous_donations) |
                                            Q(amount__icontains=search) |
                                            Q(user__user__last_name__icontains=search) |
                                            Q(user__user__email__icontains=search))
 
-    if datepicker1 and datepicker2:
+    if date_picker_1 and date_picker_2:
         import datetime
         import pytz
 
-        date1 = datetime.datetime.strptime(datepicker1, '%Y-%m-%d').date()
-        date2 = datetime.datetime.strptime(datepicker2, '%Y-%m-%d').date()
+        date1 = datetime.datetime.strptime(date_picker_1, '%Y-%m-%d').date()
+        date2 = datetime.datetime.strptime(date_picker_2, '%Y-%m-%d').date()
 
         payment_list = payment_list.filter(
             created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
@@ -1077,16 +1112,16 @@ def payment_data_table(request):
 
     for payment in payment_list[int(start):][:int(length)]:
 
-        anonymous_donor_filter = AnonymousUserDonation.objects.filter(payment_id = payment.id)
-        payment_details = {}
-        payment_details['firstname'] = payment.user.user.first_name
-        payment_details['lastname'] = payment.user.user.last_name
+        anonymous_donor_filter = AnonymousUserDonation.objects.filter(payment_id=payment.id)
+        payment_details = dict()
+        payment_details['first_name'] = payment.user.user.first_name
+        payment_details['last_name'] = payment.user.user.last_name
         payment_details['username'] = payment.user.user.username
         if anonymous_donor_filter:
             payment_details['email'] = AnonymousUserDonation.objects.get(payment_id=payment.id).email
         else:
             payment_details['email'] = payment.user.user.email
-        payment_details['date'] = (payment.created_at).strftime("%Y/%m/%d %H:%M:%S")
+        payment_details['date'] = payment.created_at.strftime("%Y/%m/%d %H:%M:%S")
         payment_details['project'] = payment.project.title
         if payment.user_reinvestment or payment.admin_reinvestment or payment.project.title == "Operations":
             payment_details['amount'] = 0
@@ -1118,7 +1153,7 @@ def payment_data_table(request):
             payment_details['total'] = 0
         payments.append(payment_details)
 
-    json_response = {"draw": draw, "recordsTotal": Payment.objects.all().count(),
+    json_response = {"draw": draw, "recordsTotal": total_records_count,
                      "recordsFiltered": payment_list.count(), "data": payments}
 
     return HttpResponse(json.dumps(json_response), content_type='application/json')
@@ -1196,28 +1231,55 @@ def export_csv(request):
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
     search = request.GET.get('search_value') or ''
-    search_query = Q()
+    report_length = request.GET.get('report_length')
+
+    auth_user = get_object_or_404(RevolvUserProfile, user_id=request.user.id)
+
+    projects = Project.objects.all()
+    project_list = []
+    if request.user.revolvuserprofile.is_administrator():
+        for project in projects:
+            project_list.append(project)
+    elif request.user.revolvuserprofile.is_ambassador():
+        for project in projects:
+            for ambassador in project.ambassadors.all():
+                if auth_user == ambassador:
+                    project_list.append(project)
+    else:
+        return HttpResponseRedirect(reverse("dashboard"))
+
+    payment_list = Payment.objects.filter(project__in=project_list)
+    if int(report_length) == -4:
+        payment_list = Payment.objects.filter(project__in=project_list,
+                                              admin_reinvestment__isnull=True,
+                                              user_reinvestment__isnull=True)
+    if int(report_length) == -3:
+        payment_list = Payment.objects.filter(project__in=project_list,
+                                              admin_reinvestment__isnull=True)
+    anonymous_donations = AnonymousUserDonation.objects.filter(email__icontains=search).\
+        values_list('payment_id', flat=True)
     if search:
-        search_query = Q(user__user__username__icontains=search) | \
-                       Q(user__user__first_name__icontains=search) | \
-                       Q(project__title__icontains=search) | \
-                       Q(amount__icontains=search) | \
-                       Q(user__user__last_name__icontains=search) | \
-                       Q(user__user__email__icontains=search)
+        payment_list = payment_list.filter(Q(user__user__username__icontains=search) |
+                                           Q(user__user__first_name__icontains=search) |
+                                           Q(project__title__icontains=search) |
+                                           Q(id__in=anonymous_donations) |
+                                           Q(amount__icontains=search) |
+                                           Q(user__user__last_name__icontains=search) |
+                                           Q(user__user__email__icontains=search))
+
+    if int(report_length) < 0:
+        if -2 < int(report_length) or int(report_length) < -4:
+            return HttpResponseRedirect(reverse("donationreport"))
     if from_date and to_date:
         import datetime
         import pytz
+
         date1 = datetime.datetime.strptime(from_date, '%Y-%m-%d').date()
         date2 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()
-        payments = Payment.objects.filter(search_query).filter(
+
+        payment_list = payment_list.filter(
             created_at__range=[datetime.datetime(date1.year, date1.month, date1.day, 8, 15, 12, 0, pytz.UTC),
-                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])\
-            .order_by('-created_at')\
-            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
-    else:
-        payments = Payment.objects.filter(search_query).order_by('-created_at')\
-            .select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")\
-            .iterator()
+                               datetime.datetime(date2.year, date2.month, date2.day, 8, 15, 12, 0, pytz.UTC)])
 
     # Define a generator to stream data directly to the client
     def stream():
@@ -1237,7 +1299,7 @@ def export_csv(request):
             smart_str(u"TOTAL DONATIONS"),
 
         ])
-        for payment in payments:
+        for payment in payment_list:
             if payment.admin_reinvestment:
                 admin_reinvestment = round(payment.amount, 2)
             else:
