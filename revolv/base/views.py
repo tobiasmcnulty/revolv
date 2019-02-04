@@ -1248,14 +1248,17 @@ def export_csv(request):
     else:
         return HttpResponseRedirect(reverse("dashboard"))
 
-    payment_list = Payment.objects.filter(project__in=project_list)
+    payment_list = Payment.objects.filter(project__in=project_list).\
+        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
     if int(report_length) == -4:
         payment_list = Payment.objects.filter(project__in=project_list,
                                               admin_reinvestment__isnull=True,
-                                              user_reinvestment__isnull=True)
+                                              user_reinvestment__isnull=True).\
+        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
     if int(report_length) == -3:
         payment_list = Payment.objects.filter(project__in=project_list,
-                                              admin_reinvestment__isnull=True)
+                                              admin_reinvestment__isnull=True).\
+        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
     anonymous_donations = AnonymousUserDonation.objects.filter(email__icontains=search).\
         values_list('payment_id', flat=True)
     if search:
@@ -1300,6 +1303,7 @@ def export_csv(request):
 
         ])
         for payment in payment_list:
+            user_info = payment.user.user
             if payment.admin_reinvestment:
                 admin_reinvestment = round(payment.amount, 2)
             else:
@@ -1334,9 +1338,9 @@ def export_csv(request):
                 email = payment.user.user.email
 
             writer.writerow([
-                smart_str(payment.user.user.first_name),
-                smart_str(payment.user.user.last_name),
-                smart_str(payment.user.user.username),
+                smart_str(user_info.first_name),
+                smart_str(user_info.last_name),
+                smart_str(user_info.username),
                 smart_str(email),
                 smart_str(payment.created_at),
                 smart_str(payment.project.title),

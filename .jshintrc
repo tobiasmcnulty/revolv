@@ -10,7 +10,7 @@
     "boss": true,
     "eqnull": true,
     "browser": true,
-    "undef": true,
+    "esversion": 6,
     "trailing": true,
     "jquery": true,
     "indent": 4
