@@ -1249,16 +1249,16 @@ def export_csv(request):
         return HttpResponseRedirect(reverse("dashboard"))
 
     payment_list = Payment.objects.filter(project__in=project_list).\
-        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
+        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")
     if int(report_length) == -4:
         payment_list = Payment.objects.filter(project__in=project_list,
                                               admin_reinvestment__isnull=True,
                                               user_reinvestment__isnull=True).\
-        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
+        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")
     if int(report_length) == -3:
         payment_list = Payment.objects.filter(project__in=project_list,
                                               admin_reinvestment__isnull=True).\
-        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user").iterator()
+        select_related("user", "project", "admin_reinvestment", "user_reinvestment", "tip", "user__user")
     anonymous_donations = AnonymousUserDonation.objects.filter(email__icontains=search).\
         values_list('payment_id', flat=True)
     if search:
