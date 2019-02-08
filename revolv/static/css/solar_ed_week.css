@@ -680,8 +680,11 @@ html, body {
     margin-bottom: 3px;
 }
 
-.footer-info > i {
-    margin: 15px 35px 15px 0;
+.footer-info .social-icons {
+    color: black;
+    line-height: 45px;
+    margin-right: 10px;
+    text-decoration: none;
 }
 
 .copyright-text {
