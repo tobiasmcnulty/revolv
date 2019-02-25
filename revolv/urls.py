@@ -86,6 +86,14 @@ urlpatterns = patterns(
     url(r'^export_excel/$', 'revolv.base.views.export_xlsx', name='export_excel'),
     url(r'^export_repayment_csv/$', 'revolv.base.views.export_repayment_csv', name='export_repayment_csv'),
     url(r'^export_repayment_xlsx/$', 'revolv.base.views.export_repayment_xlsx', name='export_repayment_xlsx'),
+    url(r'^my-portfolio/solar-event-report/', base_views.SolarWeekEventReportView.as_view(),
+        name='solarweekeventreportview'),
+    url(r'^event_data_table/$', 'revolv.base.views.solar_ed_event_data_table',
+        name='solar_ed_event_data_table'),
+    url(r'^my-portfolio/solar-partners-report/', base_views.SolarWeekPartnerReportView.as_view(),
+        name='solarweekpartnersreportview'),
+    url(r'^partner_data_table/$', 'revolv.base.views.solar_ed_partner_data_table',
+        name='solar_ed_partners_data_table'),
 
     # wagtail urls, see http://wagtail.readthedocs.org/en/v1.0b2/howto/settings.html
     # note: we're not including the search module for public users, so we don't define it here

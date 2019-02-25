@@ -34,6 +34,7 @@ from revolv.payments.models import Payment, Tip, RepaymentFragment, ReferralSour
 from revolv.payments.models import UserReinvestment, AdminRepayment
 from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails, AnonymousUserDonation
 from revolv.project.utils import aggregate_stats
+from revolv.solar_ed_week.models import HostEvent, BecomePartner
 from revolv.tasks.sfdc import send_signup_info
 from social.apps.django_app.default.models import UserSocialAuth
 
@@ -2100,3 +2101,132 @@ class DonationHistory(UserDataMixin, TemplateView):
         donation_list = Payment.objects.filter(user__user__username=self.user_profile)
         context["donation_history"] = donation_list
         return context
+
+
+class SolarWeekEventReportView(UserDataMixin, TemplateView):
+    """
+    The project view. Displays project details and allows for editing.
+
+    Accessed through /project/{project_id}
+    """
+    template_name = 'base/partials/solar_ed_week_event_report.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous() or not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        else:
+            return super(SolarWeekEventReportView, self).dispatch(request, *args, **kwargs)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        event_records = HostEvent.objects.all()
+        context = super(SolarWeekEventReportView, self).get_context_data(**kwargs)
+        context['total'] = event_records.count()
+        return context
+
+
+def solar_ed_event_data_table(request):
+    draw = request.GET.get('draw')
+    length = request.GET.get('length')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
+    order = request.GET.get('order[0][dir]')
+    current_sort_by_col = request.GET.get('order[0][column]')
+    order_by = {'desc': '-', 'asc': ''}
+
+    fields = ['name', 'email', 'title', 'date',
+              'address', 'city', 'amount', 'state', 'zip_code']
+
+    column_order = order_by[order] + fields[int(current_sort_by_col)]
+
+    event_list = HostEvent.objects.all().order_by(column_order)
+    if int(length) == -1:
+        length = event_list.count()
+    if search:
+        event_list = event_list.filter(Q(name__icontains=search) |
+                                       Q(email__icontains=search) |
+                                       Q(title__icontains=search) |
+                                       Q(date__icontains=search) |
+                                       Q(address__icontains=search) |
+                                       Q(city__icontains=search) |
+                                       Q(state__icontains=search) |
+                                       Q(zip_code__icontains=search) |
+                                       Q(detail__icontains=search))
+
+    events = []
+    for event in event_list[int(start):][:int(length)]:
+
+        event_details = dict()
+        event_details['name'] = event.name
+        event_details['email'] = event.email
+        event_details['title'] = event.title
+        event_details['date'] = str(event.date)
+        event_details['address'] = event.address
+        event_details['city'] = event.city
+        event_details['state'] = event.state
+        event_details['zip_code'] = event.zip_code
+        event_details['detail'] = event.detail
+        events.append(event_details)
+    json_response = {"draw": draw, "recordsTotal": event_list.count(),
+                     "recordsFiltered": event_list.count(), "all-data": events}
+
+    return HttpResponse(json.dumps(json_response), content_type='application/json')
+
+
+class SolarWeekPartnerReportView(UserDataMixin, TemplateView):
+    """
+    The project view. Displays project details and allows for editing.
+
+    Accessed through /project/{project_id}
+    """
+    template_name = 'base/partials/solar_ed_week_partners_report.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous() or not request.user.revolvuserprofile.is_administrator():
+            return HttpResponseRedirect(reverse("dashboard"))
+        else:
+            return super(SolarWeekPartnerReportView, self).dispatch(request, *args, **kwargs)
+
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        event_records = HostEvent.objects.all()
+        context = super(SolarWeekPartnerReportView, self).get_context_data(**kwargs)
+        context['total'] = event_records.count()
+        return context
+
+
+def solar_ed_partner_data_table(request):
+    draw = request.GET.get('draw')
+    length = request.GET.get('length')
+    start = request.GET.get('start')
+    search = request.GET.get('search[value]')
+    order = request.GET.get('order[0][dir]')
+    current_sort_by_col = request.GET.get('order[0][column]')
+    order_by = {'desc': '-', 'asc': ''}
+
+    fields = ['name', 'email', 'organization', 'promoting_way']
+
+    column_order = order_by[order] + fields[int(current_sort_by_col)]
+
+    partner_list = BecomePartner.objects.all().order_by(column_order)
+    if int(length) == -1:
+        length = partner_list.count()
+    if search:
+        partner_list = partner_list.filter(Q(name__icontains=search) |
+                                           Q(email__icontains=search) |
+                                           Q(organization__icontains=search) |
+                                           Q(promoting_way__icontains=search))
+
+    partners = []
+    for partner in partner_list[int(start):][:int(length)]:
+
+        partner_details = dict()
+        partner_details['name'] = partner.name
+        partner_details['email'] = partner.email
+        partner_details['organization'] = partner.organization
+        partner_details['promoting_way'] = partner.promoting_way
+        partners.append(partner_details)
+    json_response = {"draw": draw, "recordsTotal": partner_list.count(),
+                     "recordsFiltered": partner_list.count(), "all-data": partners}
+
+    return HttpResponse(json.dumps(json_response), content_type='application/json')

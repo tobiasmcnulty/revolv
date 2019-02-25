@@ -60,6 +60,8 @@
     <div><a href="{% url "donationsourcetracking" %}" class="create-new-button">Donation Tracking</a></div>
     <div><a href="{% url "administrator:manualpayment" %}" class="create-new-button">Manual Payment</a></div>
     <div><a href="{% url "administrator:repayment_schedule" %}" class="create-new-button">Schedule Repayment</a></div>
+    <div><a href="{% url "solarweekeventreportview" %}" class="create-new-button">Solar Ed Week Events</a></div>
+    <div><a href="{% url "solarweekpartnersreportview" %}" class="create-new-button">Solar Ed Week Partners</a></div>
 {% endif %}
 {% if user.revolvuserprofile.is_ambassador or user.revolvuserprofile.is_administrator %}
     <div><a href="{% url "donationreport" %}" class="create-new-button">Financial Report</a></div>
