@@ -840,7 +840,7 @@ def reinvest(request, pk):
 
     available_amount = RevolvUserProfile.objects.get(user=request.user).reinvest_pool + RevolvUserProfile.objects.get(
         user=request.user).solar_seed_fund_pool
-    if float(amount) > 0 and (available_amount - float(amount)) >= 0:
+    if float(amount) > 0 and (float(format(round(available_amount,2))) - float(amount)) >= 0:
         UserReinvestment.objects.create(user=request.user.revolvuserprofile,
                                         amount=amount,
                                         project=project)
