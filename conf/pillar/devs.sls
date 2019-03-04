@@ -47,3 +47,7 @@ users:
     paresh:
         public_key:
             - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAxyOEgXKbASGNap/+0b3u9Gs0zPvQyt/nVyuOwQ4Fc8yBGxP/uB7F/c5eGLBSO4M0XOd7hLoKl3XvHAlR+D2UHMRxfV2sjeLTm7awvVCapS94cy4TqLKNEx+4cdRq3Zr/V7Dl8AfrPpvWnXAG7hypTFacZt8q41N5yv3VAlRyHOM8UTbWLQwNqxGOLI5zkKQlC1Qf+UBy1LtMq3N8Bwv6+/aWlGWqwGZshVvN8GIr41IZxP4RF80gK2RbFjeyn9IsjtuOUp5Iadu457WCTYGh1JSCNH9GCwY+JwXnJdt8GKANRID5A87L7j8m+TXwsGv5+L/GUZdUXl2foOEzKueY/w==
+
+    mark:
+        public_key:
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMvXq+7UaRnYbI7fjJDm1kZE07fi5BaAdxRMw9X0ITRXkdSjwj5c1889UREjv5jZ7T42mK8QpsEJgWw0hC5mfEr/WMuDX909AMOcOsIU+W1kqxXK5Bq9vr7rUyESgY+XZm6eCy61eBjgZtWi9kZ6o3+djgTuZ7UJUdDcJ4w/6JVskREEz8F6hHXyB/y+hIUffcLw4knlsL8vcVgfIbYffhMG5C3gCjnouSNqC/hJkd1cdeXFjV/qMG3kbB+234Ud+WCYRggpEP1KbXz8+NmlQnjFkxG+ktHsiaF2J2Pr//PgDZqXtwVnjZuiYZ/JnSm9pYbpK6t4DlR7m2pkz+O9aN remark@RE-Mark
