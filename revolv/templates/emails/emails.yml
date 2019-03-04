@@ -563,3 +563,46 @@ become_sponsor_template:
 
               Agree to financially support the campaign: {{financially_support}}
             "
+
+host_event_template:
+       subject: "Hosting event notification"
+       body:
+            "
+
+              {% if name %}{{name}}{% else %}An User{% endif %} has just filled the form to host an Event.
+
+              Please find the Event details below.
+
+              {% if email %}
+                Email: {{email}}
+              {% endif %}
+
+              {% if title %}
+                Title: {{title}}
+              {% endif %}
+
+              {% if date %}
+                Date: {{date}}
+              {% endif %}
+
+              {% if address %}
+                Address: {{address}}
+              {% endif %}
+
+              {% if city %}
+                City: {{city}}
+              {% endif %}
+
+              {% if state %}
+                State: {{state}}
+              {% endif %}
+
+              {% if zip_code %}
+                Zip Code: {{zip_code}}
+              {% endif %}
+
+              {% if detail %}
+                Event details: {{detail}}
+              {% endif %}
+
+            "

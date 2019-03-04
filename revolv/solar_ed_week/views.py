@@ -46,6 +46,17 @@ def host_event(request):
         )
         data["success"] = True
         data["message"] = "Saved successfully"
+        context = {'name': name,
+                   'email': email,
+                   'title': title,
+                   'date': date,
+                   'address': address,
+                   'city': city,
+                   'state': state,
+                   'zip_code': zipcode,
+                   'detail': event_detail}
+        thr = threading.Thread(target=send_email, args=('host_event_template', context), kwargs={})
+        thr.start()
     except Exception:
         data["success"] = False
         data["message"] = "Error while saving data"
