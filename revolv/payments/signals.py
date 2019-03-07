@@ -97,6 +97,8 @@ def post_save_payment(**kwargs):
     instance = kwargs.get('instance')
     #if instance.is_organic:
     if instance.project:
+        if instance.project.rounded_amount_left <= 0:
+            instance.project.complete_project()
         instance.project.donors.add(instance.user)
         for donor in instance.project.donors.all():
             payment_count=Payment.objects.filter(user=donor).count()
