@@ -551,7 +551,7 @@ html, body {
 
 .partners-images a > img, .section > img {
     margin-right: 10px;
-    width: 25%;
+    width: 22%;
     padding: 5px;
 }
 
@@ -1072,4 +1072,32 @@ body {
 
 .row .zip-code-class {
     padding-right: 0px;
+}
+
+.solar-ideas .wrapper {
+    margin-top: 40px;
+    text-align: center;
+    width: 102%;
+}
+
+.solar-ideas .wrapper > ul {
+    text-align: left;
+    display: inline-block;
+}
+
+.solar-ideas .wrapper > ul > li  {
+    font-size:18px;   
+    font-weight: 500; 
+    margin: 15px 0;
+    list-style-type:none; 
+    position:relative;    
+    text-align:left;
+}
+.solar-ideas .wrapper > ul > li:before  {
+    content:"\2022";   
+    font-size:1.2em;      
+    position:absolute;
+    top:.23em;           
+    left:-.5em;  
+    margin: -8px;       
 }
