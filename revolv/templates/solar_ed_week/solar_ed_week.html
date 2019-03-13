@@ -31,6 +31,7 @@
             {% endfor %}
         }
     </script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
     <script src="/static/js/solar_ed_week.js?version={{ version_number }}" async></script>
 </head>
 <body>
@@ -114,19 +115,20 @@
             <p class="paragraph">Solar Education Week is a partnership effort by leading clean energy organizations to engage individuals across the country to organize and participate in Solar Education events!</p>
         </div>
         <div class="partners-images">
-            <a href="https://gridalternatives.org/" target="_blank"><img src="/static/images/user_logos_grid@1X.png" alt="grid alternative"></a>
-            <a href="https://re-volv.org/" target="_blank"><img src="/static/images/revolv-logo@1X.png" alt="Revolv logo"></a>
-            <a href="https://happeningthemovie.com/" target="_blank"><img src="/static/images/redford.jpeg" alt="Redford logo"></a>
-            <a href="https://votesolar.org/" target="_blank"><img src="/static/images/Vote_Solar_Logo.png" alt="Vote solar logo"></a>
-            <a href="https://www.sierraclub.org/ready-for-100" target="_blank"><img src="/static/images/ReadyFor100_logo.png" alt="ReadyFor100 logo"></a>
+            <a href="https://gridalternatives.org/" target="_blank"><img src="/static/images/partner_grid.png" alt="grid alternative"></a>
+            <a href="https://re-volv.org/" target="_blank"><img src="/static/images/partner_sun.jpg" alt="Revolv logo"></a>
+            <a href="https://happeningthemovie.com/" target="_blank"><img src="/static/images/partner_redford.png" alt="Redford logo"></a>
+            <a href="https://votesolar.org/" target="_blank"><img src="/static/images/partner_vsolar.jpg" alt="Vote solar logo"></a>
+            <a href="https://www.sierraclub.org/ready-for-100" target="_blank"><img src="/static/images/partner_r100.png" alt="ReadyFor100 logo"></a>
+            <a href="https://theclimatemusicproject.org/" target="_blank"><img src="/static/images/partner_cmp.png" alt="The Climate Music Project logo"></a>
         </div>
         <div class="section">
             <h1 class="sub-bold-header">SPONSORS</h1>
             <hr width="10%">
         </div>
         <div class="sponsors-image">
-            <img src="/static/images/LDF@1X.png" alt="Leonardo Dicaprio Foundation">
-            <img src="/static/images/logo-sun-shot@1X.png" alt="Sun Shot Logo">
+            <img src="/static/images/sponsor_ldf.png" alt="Leonardo Dicaprio Foundation">
+            <img src="/static/images/sponsor_sun2.png" alt="Sun Shot Logo">
         </div>
         <div class="section"></div>
         <div id="the-why" class="why-participate">
@@ -205,10 +207,10 @@
             </a>
         </div>
     <div class="become-host-pop-up">
-        <div>
             <div class="event-form">
                 <br>
-                <header><span>HOST</span> AN EVENT</header>
+                <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
+                <header><span>HOST</span> AN EVENT</header> 
                 <hr>
                 <form method="POST" id="host_event_form">
                     {% csrf_token %}
@@ -239,7 +241,6 @@
                 </form>
                 <br><br>
             </div>
-        </div>
         <script src="{% static 'typeahead/typeahead.bundle.js' %}"></script>
         <script src="{% static 'typeahead/typeahead-addresspicker.js' %}"></script>
     </div>
@@ -250,6 +251,7 @@
                 <form id="become_sponsor_form">
                     {% csrf_token %}
                     <br>
+                    <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
                     <header><span>BECOME A SPONSOR</span></header>
                     <hr>
                     <label>Logo</label><br>
@@ -281,6 +283,7 @@
         <div>
             <div class="event-form">
                 <br>
+                <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
                 <header><span>BECOME</span> A PARTNER</header>
                 <hr>
                 <label>Logo</label><br>

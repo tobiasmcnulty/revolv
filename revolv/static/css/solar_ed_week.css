@@ -527,7 +527,7 @@ html, body {
 
 .partners-images {
     margin: 0 auto;
-    width: 80%;
+    width: 42%;
     text-align: center;
 }
 
@@ -538,10 +538,10 @@ html, body {
 
 .sponsors-image img {
     padding: 5px;
-
+    margin: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     .partners-images, .sponsors-image {
         display: block;
         width: 100%;

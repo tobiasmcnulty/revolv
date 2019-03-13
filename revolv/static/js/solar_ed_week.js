@@ -20,6 +20,18 @@ $(document).ready(function () {
         $('.become-partner-pop-up').fadeIn('slow');
     });
 
+    $('.close-icon').on('click',function() {
+        $(this).closest('.become-host-pop-up').fadeOut();
+    })
+
+    $('.close-icon').on('click',function() {
+        $(this).closest('.become-partner-pop-up').fadeOut();
+    })
+
+    $('.close-icon').on('click',function() {
+        $(this).closest('.become-sponsor-pop-up').fadeOut();
+    })
+
     $(document).keydown(function(e) {
         if (e.keyCode == 27) {
             closeHostEventPopup();
@@ -149,15 +161,11 @@ $(document).ready(function () {
 
 });
 
-
 jQuery(function($) {
     // Asynchronously Load the map API
     var script = document.createElement('script');
-    script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&sensor=false&callback=initialize";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&sensor=false&callback=initialize";
     document.body.appendChild(script);
-    var markerSpiderfierScript = document.createElement('script');
-    markerSpiderfierScript.src = "//cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js";
-    document.body.appendChild(markerSpiderfierScript);
 });
 
 function initialize() {
