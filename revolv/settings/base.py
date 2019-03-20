@@ -19,7 +19,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
-    ('RE-volv Team', 're-volv@zibtek.com'),
+    ('RE-volv Team', 'mark@re-volv.org'),
 )
 
 # Application definition
@@ -450,6 +450,6 @@ STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 IP_STACK_ACCESS_KEY = os.environ.get('IP_STACK_ACCESS_KEY')
 
-VERSION_NUM = '1551089072559'
+VERSION_NUM = '1551089072561'
 
 

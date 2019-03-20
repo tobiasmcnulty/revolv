@@ -573,7 +573,6 @@ html, body {
 }
 
 .event-ideas-text {
-    background-color: rgba(0, 0, 0, 0.5);
     color: rgb(255, 195, 35);
     font-size: 30px;
     overflow: auto;
@@ -633,7 +632,7 @@ html, body {
 
 .event-ideas-text .button:hover {
     background-color: transparent;
-    color: white;
+    color: rgba(64, 64, 64, 255);
 }
 
 .footer-info {
