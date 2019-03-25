@@ -1100,3 +1100,9 @@ body {
     left:-.5em;  
     margin: -8px;       
 }
+
+@media screen and (max-width: 1400px) {
+    .solar-ideas .myth-box-div .myth-box-header-div .featured-images {
+        display: none;
+    }
+}
