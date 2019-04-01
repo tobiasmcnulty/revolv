@@ -76,16 +76,20 @@ $(document).ready(function () {
                             var email = $("#email").val();
                             addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email);
                             closeHostEventPopup();
+                            location.reload()
                         } else {
                             $(".response_message").removeClass("success");
                             $(".response_message").addClass("error");
                             $(".response_message").text(data.message);
                         }
-
+                        
                     }
                 });
             } else {
                 alert("Unable to find the address. Please enter valid address");
+                var btn = document.getElementById('host-submit');
+                btn.disabled = false;
+                btn.innerText = 'HOST AN EVENT '
             }
         });
         e.preventDefault();
@@ -167,6 +171,12 @@ jQuery(function($) {
     script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDeO2HEVcajZ2BcHnJoSfr4XFwUEpXcVkQ&sensor=false&callback=initialize";
     document.body.appendChild(script);
 });
+
+function disableButton() {
+    var btn = document.getElementById('host-submit');
+    btn.disabled = true;
+    btn.innerText = 'Posting...'
+}
 
 function initialize() {
     bounds = new google.maps.LatLngBounds();
