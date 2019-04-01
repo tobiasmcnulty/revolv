@@ -74,6 +74,9 @@ urlpatterns = patterns(
     url(r'^my_social_account/$', 'revolv.base.views.social_connection', name='social-connection'),
     url(r'^delete/$', 'revolv.base.views.delete', name='delete'),
     url(r'^edit/$', 'revolv.base.views.edit', name='edit'),
+    url(r'^delete_event/$', 'revolv.base.views.delete_event', name='delete_event'),
+    url(r'^edit_event/$', 'revolv.base.views.edit_event', name='edit_event'),
+    url(r'^add_events_form/$', 'revolv.base.views.add_events_form', name='add_events_form'),
     url(r'^add_matching_donor/$', 'revolv.base.views.add_maching_donors', name='add_matching_donor'),
     url(r'^social_connect_failed/$', 'revolv.base.views.social_exception', name='social-exception'),
 

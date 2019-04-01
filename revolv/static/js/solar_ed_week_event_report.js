@@ -1,59 +1,77 @@
 $(document).ready(function () {
-    let donation_report = $('#donation_report');
-    let table = donation_report.DataTable({
-        "processing": true,
-        "serverSide": true,
+    table = $('#matching_donor').DataTable({
         "dom": 'lfrtBip',
         "scrollX": true,
-        "aLengthMenu": [[10, 25, 50, 100, 150, -1], [10, 25, 50, 100, 150, "All"]],
-        "ordering": true,
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
-            },
-            {
-                extend: 'excelHtml5',
-                orientation: 'landscape',
-            },
-            {
-                extend: 'csvHtml5',
-                orientation: 'landscape',
-            },
-
-        ],
-        "order": [[ 3, "desc" ]],
-        "ajax": {
-            url: '/event_data_table/',
-            "data": function (d) {
-                $('.dataTables_length select').on('change', function () {
-                    $(".container, footer, header").css("display", "none");
-                    $(".donationTableLoader").css("display", "block");
-                });
-                d.search_value = $('input[type=search]').val();
-            },
-            "dataSrc": function (data) {
-                $(".container, footer, header").css("display", "block");
-                $(".donationTableLoader").css("display", "none");
-                return data["all-data"];
-            },
-        },
-        "columns": [
-            {"data": "name"},
-            {"data": "email"},
-            {"data": "title"},
-            {"data": "date"},
-            {"data": "address"},
-            {"data": "city"},
-            {"data": "state"},
-            {"data": "zip_code"},
-            {"data": "detail"},
-        ],
+        buttons: [],
         "columnDefs": [{
-            "targets": 8,
+            "targets": 3,
             "orderable": false
-        }]
+        }],
+        aoColumnDefs: [
+            {
+                bSortable: false,
+                aTargets: [3, 4]
+            }]
+    })
+
+    $(document).on("click", ".close-btn", function () {
+        id = $(this).attr('data-id');
+        var tr = $(this).closest('tr');
+        if (confirm("Are you sure you want to delete this?")) {
+            $.ajax({
+                type: "GET",
+                url: '/delete_event/',
+                data: { id: id },
+                success: function () {
+                    tr.fadeOut(1000, function () {
+                        $(this).remove();
+                        table.row(tr).remove().draw();
+                    });
+
+                }
+            });
+        }
+    });
+
+
+    $(document).on("click", ".edit", function () {
+        var id = $(this).attr('data-id');
+        $(this).closest('td').data()
+        $.ajax({
+            type: "GET",
+            url: '/edit_event/',
+            data: { id: id },
+            success: function (response) {
+                matchingDonor = JSON.parse(response.emp);
+                $('#name').val(matchingDonor[0].fields.name);
+                $('#title').val(matchingDonor[0].fields.title);
+                $('#email').val(matchingDonor[0].fields.email);
+                $('#date').val(matchingDonor[0].fields.date);
+                $('#address').val(matchingDonor[0].fields.address);
+                $('#city').val(matchingDonor[0].fields.city);
+                $('#state').val(matchingDonor[0].fields.state);
+                $('#zip_code').val(matchingDonor[0].fields.zip_code);
+                $('#detail').val(matchingDonor[0].fields.detail);
+                $('#facebook_link').val(matchingDonor[0].fields.facebook_link);
+                $('#id').val(matchingDonor[0].pk);
+                $('#matching_donor_modal').modal('toggle');
+                $("#matching-donor-save").removeAttr('disabled');
+            }
+
+        });
+    });
+
+    $('#matching-donor-save').click(function () { 
+        var $frm = $('#add_matching_donor');
+        $.ajax({
+            type: "POST",
+            url: '/add_events_form/',
+            data: $frm.serialize(),
+            success: function (data) {
+                var id = $("#id").val();
+                location.reload()
+            }
+        });
     });
     $("input[type=search]").keyup(function (e) {
         let search_input = e.target.value.trim();

@@ -1,6 +1,10 @@
 import json
 import logging
+import datetime
 from collections import OrderedDict
+from datetime import date
+from django.db.models import Count
+from django.db.models import Q
 
 import mailchimp
 import stripe
@@ -2117,13 +2121,83 @@ class SolarWeekEventReportView(UserDataMixin, TemplateView):
         else:
             return super(SolarWeekEventReportView, self).dispatch(request, *args, **kwargs)
 
-    # pass in Project Categories and Maps API key
-    def get_context_data(self, **kwargs):
+    def post(self, request, *args, **kwargs):
+        # self.object = self.get_object()
         event_records = HostEvent.objects.all()
         context = super(SolarWeekEventReportView, self).get_context_data(**kwargs)
-        context['total'] = event_records.count()
-        return context
+        context['total'] = event_records
+        context['events'] = event_records
+        return self.render_to_response(context)
 
+    # pass in Project Categories and Maps API key
+    def get_context_data(self, **kwargs):
+        today = datetime.datetime.today()
+        event_records = HostEvent.objects.all()
+        context = super(SolarWeekEventReportView, self).get_context_data(**kwargs)
+        context['total'] = event_records.filter(date__gte=today).count()
+        context['events'] = event_records
+        context['states'] = event_records.values('state').annotate(the_count=Count('state')).count()
+        return context
+        
+@login_required
+def delete_event(request):
+    pk = request.REQUEST['id']
+    emp = HostEvent.objects.get(pk=pk)
+    emp.delete()
+    return HttpResponse('deleted')
+
+@login_required
+def edit_event(request):
+    pk = request.REQUEST['id']
+    emp = HostEvent.objects.get(pk=pk)
+    serialized_obj = serializers.serialize('json', [emp, ])
+    return HttpResponse(json.dumps({'emp': serialized_obj}), content_type="application/json")
+
+@login_required
+@require_http_methods(['POST'])
+def add_events_form(request):
+    id = request.POST.get('id')
+    otherid = request.REQUEST['id']
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    title = request.POST.get('title')
+    date = request.POST.get('date')
+    address = request.POST.get('address')
+    city = request.POST.get('city')
+    state = request.POST.get('state')
+    zip_code = request.POST.get('zip_code')
+    detail = request.POST.get('detail')
+    facebook_link = request.POST.get('facebook_link')
+    
+    if not id:
+            HostEvent.objects.create(
+        name = name,
+        email= email,
+        title = title,
+        date = date,
+        address = address,
+        city = city,
+        state = state,
+        zip_code = zip_code,
+        detail = detail,
+        facebook_link = facebook_link
+        )
+
+    else:
+        hostEventReport = HostEvent.objects.get(id=id)
+        hostEventReport.name = name
+        hostEventReport.email = email
+        hostEventReport.title = title
+        hostEventReport.date = date
+        hostEventReport.address = address
+        hostEventReport.city = city
+        hostEventReport.state = state
+        hostEventReport.zip_code = zip_code
+        hostEventReport.detail = detail
+        hostEventReport.facebook_link = facebook_link
+        hostEventReport.save()
+
+    return HttpResponse(json.dumps({'status': 'created'}), content_type="application/json")
 
 def solar_ed_event_data_table(request):
     draw = request.GET.get('draw')
