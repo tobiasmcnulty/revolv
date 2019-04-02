@@ -296,10 +296,10 @@
                 <br>
                 <span class="pull-right clickable close-icon" data-effect="fadeOut"><i class="fa fa-times"></i></span>
                 <header><span>HOST</span> AN EVENT</header> 
-                <hr>
+                <hr style="margin:10px 0;">
                 <form method="POST" id="host_event_form" onsubmit='disableButton()'>
                     {% csrf_token %}
-                    <label>Your Name</label><input type="text" name="name" id="name" required/>
+                    <label>Organization/Name</label><input type="text" name="name" id="name" required/>
                     <label>Email</label><input type="email" name="email" id="email" required/>
                     <label>Event Title</label><input type="text" name="event_title" id="event-title" required/>
                     <label>Date</label><input type="date" name="date" id="date" required/>
@@ -312,7 +312,8 @@
                             <label>City</label><input type="text" name="city" id="city" required/>
                         </div>
                         <div class="col-sm-4 state-class">
-                            <label>State</label><input type="text" list="states" name="state" id="state" required/>
+                            <label>State</label><input type="text" list="states" name="state" id="state" maxlength="2" 
+                            oninput="this.value = this.value.toUpperCase()" required/>
                             <datalist id="states">
                             </datalist>
                         </div>
