@@ -104,7 +104,11 @@
                                 {% if solar_counter %}
                                 <span style="margin: 0 10px;font-size: 30px; color:black; text-align: center;">{{ solar_counter }}</span>
                                 {% endif %}
-                                Events
+                                Events in
+                                {% if state_counter %}
+                                <span style="margin: 0 10px; font-size: 30px; color:black; text-align: center;">{{ state_counter }}</span>
+                                {% endif %}
+                                States
                             </p>
                     </div>
                     <div class="col-sm-4 partner-separator participat-block">
@@ -308,7 +312,9 @@
                             <label>City</label><input type="text" name="city" id="city" required/>
                         </div>
                         <div class="col-sm-4 state-class">
-                            <label>State</label><input type="text" name="state" id="state" required/>
+                            <label>State</label><input type="text" list="states" name="state" id="state" required/>
+                            <datalist id="states">
+                            </datalist>
                         </div>
                         <div class="col-sm-4 zip-code-class">
                             <label>Zip Code</label><input type="number" name="zipcode" id="zipcode" required/>

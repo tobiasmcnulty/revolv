@@ -13,7 +13,7 @@ def solar_education(request):
     today = datetime.datetime.today()
     host_events = HostEvent.objects.filter(date__gte=today).values()
     solar_counter = HostEvent.objects.filter(date__gte=today).count()
-    state_counter = HostEvent.objects.values('state').annotate(the_count=Count('state')).count()
+    state_counter = HostEvent.objects.filter(date__gte=today).values('state').annotate(the_count=Count('state')).count()
     return render_to_response('solar_ed_week/solar_ed_week.html',
                               context_instance=RequestContext(request, {'host_events': host_events,'solar_counter': solar_counter,'state_counter': state_counter}))    
 
