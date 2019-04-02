@@ -6,14 +6,16 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from revolv.lib.mailer import send_revolv_email
 from revolv.solar_ed_week.models import HostEvent, BecomePartner, BecomeSponsor
-
+from datetime import timedelta
+from django.db.models import Count
 
 def solar_education(request):
     today = datetime.datetime.today()
     host_events = HostEvent.objects.filter(date__gte=today).values()
+    solar_counter = HostEvent.objects.filter(date__gte=today).count()
+    state_counter = HostEvent.objects.values('state').annotate(the_count=Count('state')).count()
     return render_to_response('solar_ed_week/solar_ed_week.html',
-                              context_instance=RequestContext(request, {'host_events': host_events}))
-
+                              context_instance=RequestContext(request, {'host_events': host_events,'solar_counter': solar_counter,'state_counter': state_counter}))    
 
 def host_event(request):
     data = {}

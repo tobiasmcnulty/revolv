@@ -100,6 +100,16 @@
                         <div class="row-header bottom-space"> ATTEND</div>
                         <p class="paragraph">Check the map for events in your area! Don’t see one? <a href="#the-how" class="host-event">Host
                             an Event!</a></p>
+                            <p class="event-count" style="margin-top: 148px; font-size:20px;">
+                                {% if solar_counter %}
+                                <span style="margin: 0 10px;font-size: 30px; color:black; text-align: center;">{{ solar_counter }}</span>
+                                {% endif %}
+                                Events in
+                                {% if state_counter %}
+                                <span style="margin: 0 10px; font-size: 30px; color:black; text-align: center;">{{ state_counter }}</span>
+                                {% endif %}
+                                States
+                            </p>
                     </div>
                     <div class="col-sm-4 partner-separator participat-block">
                         <div class="row-header"> PARTNER</div>
