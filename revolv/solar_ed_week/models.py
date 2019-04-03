@@ -7,7 +7,6 @@ class HostEvent(models.Model):
     email = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     date = models.DateField()
-    evtime = models.TimeField(null=True)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255, blank=True, null=True)
     state = models.CharField(max_length=255, blank=True, null=True)
