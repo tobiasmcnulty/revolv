@@ -23,6 +23,7 @@ class HostEvent(models.Model):
         decimal_places=14,
         default=0.0
     )
+    evntime = models.TimeField(null=True)
 
 
 class BecomePartner(models.Model):
