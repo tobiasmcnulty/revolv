@@ -71,6 +71,11 @@
             
             </div>
             <div>
+              <label class="matching-donor-label">Time</label>
+              <input id="evntime" type="time" class="matching-donor-dropdown"  name="evntime" class="form-field" required="false">
+           
+            </div>
+            <div>
                 <label class="matching-donor-label">Address</label>
                 <input id="address" type="text" class="matching-donor-dropdown"  name="address" class="form-field" required="false">
               
@@ -119,6 +124,7 @@
         <th>Email</th>
         <th>Title</th>
         <th>Date</th>
+        <th>Time</th>
         <th>Address</th>
         <th>City</th>
         <th>State</th>
@@ -136,6 +142,7 @@
           <td>{{ event.email }}</td>
           <td>{{ event.title }}</td>
           <td>{{ event.date }}</td>
+          <td>{{ event.evntime }}</td>
           <td>{{ event.address }}</td>
           <td>{{ event.city }}</td>
           <td>{{ event.state }}</td>

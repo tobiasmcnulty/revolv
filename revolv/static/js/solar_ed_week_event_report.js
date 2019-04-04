@@ -46,6 +46,7 @@ $(document).ready(function () {
                 $('#name').val(matchingDonor[0].fields.name);
                 $('#title').val(matchingDonor[0].fields.title);
                 $('#email').val(matchingDonor[0].fields.email);
+                $('#evntime').val(matchingDonor[0].fields.evntime);
                 $('#date').val(matchingDonor[0].fields.date);
                 $('#address').val(matchingDonor[0].fields.address);
                 $('#city').val(matchingDonor[0].fields.city);

@@ -23,6 +23,7 @@ def host_event(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         title = request.POST.get('event_title')
+        evntime = request.POST.get('evntime')
         date = request.POST.get('date')
         address = request.POST.get('address')
         city = request.POST.get('city')
@@ -36,6 +37,7 @@ def host_event(request):
             name=name,
             email=email,
             title=title,
+            evntime=evntime,
             date=date,
             address=address,
             city=city,

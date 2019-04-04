@@ -263,7 +263,7 @@ function initialize() {
     initializeMarker();
 }
 
-function addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email) {
+function addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email, evntime) {
     var position = new google.maps.LatLng(latitude, longitude);
     bounds.extend(position);
     var marker = new google.maps.Marker({
@@ -277,7 +277,12 @@ function addMarker(title, details, latitude, longitude, date, address, city, sta
         return function() {
             var detail = "<div>";
             detail += "<div><h4>" + title + "</h4></div>";
-            detail += "<div><span><i>Date: </i></span><b>" + date + "</b></div>";
+            if ( evntime == 'None') {
+                detail += "<div><span><i>Date: </i></span><b>" + date + "</b></div>";
+            }
+            else{
+                detail += "<div><span><i>Date: </i></span><b>" + date + " , " +  evntime + "</b></div>";
+            }
             detail += "<div><span><i>Address: </i></span><b>" + address + "</b></div>";
 //            detail += "<div><span><i>City: </i></span><b>" + city + "</b></div>";
 //            detail += "<div><span><i>State: </i></span><b>" + state + "</b></div>";

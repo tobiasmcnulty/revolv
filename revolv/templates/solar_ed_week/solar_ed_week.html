@@ -23,6 +23,7 @@
                 var details = '{{ host_event.detail }}';
                 var latitude = '{{ host_event.latitude }}';
                 var longitude = '{{ host_event.longitude }}';
+                var evntime = '{{ host_event.evntime }}';
                 var date = '{{ host_event.date }}';
                 var address = '{{ host_event.address }}';
                 var city = '{{ host_event.city }}';
@@ -30,7 +31,7 @@
                 var link = '{{ host_event.facebook_link }}';
                 var name = '{{ host_event.name }}';
                 var email = '{{ host_event.email }}';
-                addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email);
+                addMarker(title, details, latitude, longitude, date, address, city, state, link, name, email, evntime);
             {% endfor %}
         }
     </script>
@@ -328,6 +329,7 @@
                     <label>Email</label><input type="email" name="email" id="email" required/>
                     <label>Event Title</label><input type="text" name="event_title" id="event-title" required/>
                     <label>Date</label><input type="date" name="date" id="date" required/>
+                    <label>Time</label><input type="time" name="evntime" id="evntime" required/>
                     <label>Address</label><input type="text" name="address" id="address" required/>
                     <label></label>
                     <input id="latitude" type="hidden" name="latitude">
