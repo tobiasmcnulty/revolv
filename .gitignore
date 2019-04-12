@@ -53,3 +53,8 @@ node_modules
 # Generated css
 revolv/static/*.css
 revolv/static/dist/**/*.css
+
+# Others
+requirements/base.txt
+revolv/settings/base.py
+.vscode
