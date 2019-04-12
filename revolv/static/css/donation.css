@@ -1,0 +1,256 @@
+/* NAVIGATION BAR */
+
+.nav-bar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100000
+}
+
+.nav-bar-section {
+  padding: 0 20px;
+  position: relative;
+  height: 58px
+}
+
+.nav-bar-section a {
+  color: white;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: .9px
+}
+
+.nav-bar-section .button-links>a {
+  border: 1px solid;
+  padding: 5px 7px;
+  border-radius: 4px
+}
+
+.nav-bar-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0
+}
+
+/* mobile nav on display none
+.nav-bar-section .nav-items, .nav-bar-section .right-side {
+  display: none;
+  position: relative;
+  line-height: 58px
+}
+*/
+
+.nav-bar-section .logo {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+
+.nav-bar-section .logo a {
+  display: block;
+  text-indent: -999em;
+  background-image: url(../images/REVOLV_logo_White.png);
+  background-size: cover;
+  width:79px; 
+  height:56px; 
+}
+
+@media only screen and (min-width:1025px) {
+  .nav-bar-section {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto
+  }
+  .nav-bar-section .nav-items, .nav-bar-section .right-side {
+    display: block
+  }
+}
+
+@media only screen and (min-width:1025px) and (min-width:1025px) {
+  .nav-bar-section .offcanvas-open-link {
+    display: none
+  }
+}
+
+@media only screen and (min-width:1025px) {
+  .nav-bar-section .logo {
+    left: 0
+  }
+  .nav-bar-section .offcanvas-open-link {
+    right: -20px
+  }
+  .nav-bar-section .nav-items {
+    margin-left: 135px;
+    float: left
+  }
+  .nav-bar-section .nav-items:after {
+    clear: both;
+    content: "";
+    display: table
+  }
+  .nav-bar-section .nav-items>li {
+    display: block;
+    float: left;
+    margin-left: 15px;
+    line-height: 58px
+  }
+  .nav-bar-section .right-side, .nav-bar-section .right-side .mycw-nav {
+    float: right
+  }
+  .nav-bar-section .right-side .mycw-nav .user-access {
+    line-height: 58px
+  }
+  .nav-bar-section .nav-buttons {
+    float: left;
+    display: flex
+  }
+  .nav-bar-section .button-links {
+    margin-right: 10px
+  }
+  .nav-bar-section .has-dropdown {
+    position: relative;
+    line-height: 58px
+  }
+}
+
+
+/* SECTION 1 */
+
+.main-hero {
+  background-image: url(/static/images/DONATE-HEADER-BG.jpg);     
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 670px;
+}
+
+.main-hero .main-hero-wrap {
+  padding:200px; 
+  color:white;
+}
+
+.main-hero .main-hero-wrap .hero-text-1 {
+  max-width:738; 
+  text-align: center;
+}
+
+.main-hero .main-hero-wrap .hero-text-1 > h1 {
+  margin: 0 auto 10px;
+  font-size: 3.8em;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.1em; 
+  font-family: “Montserrat”, Calibri, Sans-Serif, Arial;
+}
+
+.main-hero .main-hero-wrap .hero-text-2 {
+  max-width:738; 
+  text-align: center;
+}
+
+.main-hero .main-hero-wrap .hero-text-2 > h4 {
+  margin: 0 auto 10px;
+  font-size: 2.4em;
+  font-weight: 300; 
+  font-family: “Montserrat”, Calibri, Sans-Serif, Arial;
+}
+
+
+/* SECTION 2 */
+
+.hero .hero-inner .text-donate > h4 {
+  font-size: 2.0em; 
+  margin-top:10px; 
+  font-family: “Montserrat”, Calibri, Sans-Serif, Arial;
+  font-size: 1.5em
+  font-weight: 300;
+  letter-spacing: 0.05rem;
+}
+
+.hero .hero-inner .text-donate > h1 {
+  font-size:42px; 
+  font-family: “Montserrat”, Calibri, Sans-Serif, Arial;
+  font-weight: 300;
+  letter-spacing: 0.05rem;
+}
+
+
+/* SECTION QUOTES */
+.quotes .wrap .middle-quote .content-quote .left-quote {
+  z-index: 0; position:absolute; top: 53%; left:3%;
+}
+
+.quotes .wrap .middle-quote .content-quote .right-quote {
+  z-index: 0; position:absolute; right:2%; bottom:37%;
+}
+
+.quotes .wrap .middle-quote .content-quote > h1{
+  text-align: center; 
+  margin: 0 auto; 
+  font-size: 3em; 
+  max-width: 1100px;
+}
+
+.quotes .wrap .middle-quote .content-quote > h4 {
+  text-align: center; 
+  margin: 0 auto; 
+  margin-top:20px; 
+  font-size: 2.4em; 
+  max-width: 400px; 
+  font-family: “Montserrat”, Calibri, Sans-Serif, Arial;
+  font-weight: 600;
+  color: #333333;
+}
+
+
+/* SECTION IMAGE MAP */
+
+.map-stats-section {
+  background: url(/static/images/solar-campaign-bg.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width:100%;
+  height:100%;
+  padding: 100px 20px;
+}
+
+.map-stats-section > h3 {
+  font-size: 2.8em;
+  max-width: 800px;    
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  font-weight: 550;
+  line-height: 1.1em;
+  text-align: center;
+  letter-spacing: 4px;
+  margin-top:40px; 
+  color: #FFF;
+  font-family: “Montserrat”, Calibri, Sans-Serif, Arial;
+  Font-weight: 500;
+}
+
+
+
+
+/* SECTION SIGNUP */
+
+.signup-section .signup-container > h3 {
+  color: white;
+  font-size: 30px;
+  max-width: 800px;
+  letter-spacing: 1.2px;
+}
+
+.signup-section .signup-container .subscribe-button > a > button {
+  background: grey;
+  padding: 0px 49px;
+  margin: -7px 10px 0px 0px;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 6px;
+}

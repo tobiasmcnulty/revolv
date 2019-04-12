@@ -732,7 +732,11 @@ def leo_page(request):
 
 
 def revolv_accelerator(request):
-    return render(request, 'base/partials/revolv_accelerator.html')
+    context = {}
+    active_projects = Project.objects.get_active()
+    context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active_projects)
+    return render_to_response('base/partials/revolv_accelerator.html',
+                              context_instance=RequestContext(request, {'active_projects': active_projects}))
 
 
 def leadership_circle(request):

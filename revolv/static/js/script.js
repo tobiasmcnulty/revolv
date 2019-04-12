@@ -162,27 +162,63 @@ $(document).ready(function(){
         window.location.href='/my-portfolio/';
     });
 
-     $(".stripe-button-el").click(function(){
-         if($(this).find("span:last-child").text() != "Next") {
-            $(".input-custom-amount input[type=number]").val($(this).find("span:last-child").text());
-         }
-     });
+    $(".stripe-button-el").click(function(){
+       
+    });
+
+    $('#twenty-amount').click(function(){
+        $('#donation-inputz').val('25');
+ 
+    });
+  
+    $('#fifty-amount').click(function(){
+        $('#donation-inputz').val('50');
+
+    });
+
+    $('#seventyfive-amount').click(function(){
+      $('#donation-inputz').val('75');
+
+    });
+
+    $('#hundred-amount').click(function(){
+        $('#donation-inputz').val('100');
+
+    });
+
+    $(".other-amount-button").click(function(){
+      $(".donate-form-body .donation-values .amount-buttons-wrapper .other-amount-button").addClass("hidden");
+      $(".donate-form-body .donation-values .amount-buttons-wrapper .other-input-button").removeClass("hidden");
+    });
+
+    $(".amount-button").click(function(){
+      $(".donate-form-body .donation-values .amount-buttons-wrapper .other-amount-button").removeClass("hidden");
+      $(".donate-form-body .donation-values .amount-buttons-wrapper .other-input-button").addClass("hidden");
+    });
+
+    $(".amount-button").on("click", function(e) {
+      $(this).addClass("selected").siblings().removeClass("selected");
+    });
+
     // $(".u-background--grey div:first-child").off();
      $(".u-background--grey label").click(function() {
        console.log("clicked")
           $(".monthly-plan-msg").toggle();
      });
-     $(".input-custom-amount input[type=number]").change(function(){
+
+    // Donation form 
+     $(".donate-form-body .donation-values .amount-buttons-wrapper .input-wrapper .input-field-container input[type=number]").change(function(){
        if($(this).val().trim() > 0) {
-           $(".donate-popup .next-button").addClass("stripe-button-el");
-           $(".donate-popup .next-button").css("background-color", "#4EB181");
-           $(".donate-popup .next-button").removeClass("disable-donation-btn");
+           $(".donate-form-body .donation-values .amount-buttons-wrapper .next-button").addClass("stripe-button-el");
+           $(".donate-form-body .donation-values .amount-buttons-wrapper .next-button").css("background-color", "#FF8A00"); 
+           $(".donate-form-body .donation-values .amount-buttons-wrapper .next-button").removeClass("disable-donation-btn");
        } else {
-          $(".donate-popup .next-button").css("background-color", "#9a9a9a");
-           $(".donate-popup .next-button").removeClass("stripe-button-el");
-           $(".donate-popup .next-button").addClass("disable-donation-btn");
+          $(".donate-form-body .donation-values .amount-buttons-wrapper .next-button").css("background-color", "#9a9a9a");
+           $(".donate-form-body .donation-values .amount-buttons-wrapper .next-button").removeClass("stripe-button-el");
+           $(".donate-form-body .donation-values .amount-buttons-wrapper .next-button").addClass("disable-donation-btn");
        }
      });
+
      $(document).on('click','.stripe-button-el',function (e) {
           $(this).closest(".modal").hide();
      });

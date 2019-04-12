@@ -58,3 +58,4 @@ revolv/static/dist/**/*.css
 requirements/base.txt
 revolv/settings/base.py
 .vscode
+src/
