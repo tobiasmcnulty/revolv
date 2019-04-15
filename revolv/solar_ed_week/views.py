@@ -11,7 +11,7 @@ from django.db.models import Count
 
 def solar_education(request):
     today = datetime.datetime.today()
-    last_month = today - timedelta(days=25)
+    last_month = today - timedelta(days=30)
     host_events = HostEvent.objects.filter(date__gte=today).values()
     solar_counter = HostEvent.objects.filter(date__gte=last_month).count()
     state_counter = HostEvent.objects.filter(date__gte=last_month).values('state').annotate(the_count=Count('state')).count()
