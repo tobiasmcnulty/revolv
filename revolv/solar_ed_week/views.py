@@ -11,10 +11,9 @@ from django.db.models import Count
 
 def solar_education(request):
     today = datetime.datetime.today()
-    last_month = today - timedelta(days=30)
     host_events = HostEvent.objects.filter(date__gte=today).values()
-    solar_counter = HostEvent.objects.filter(date__gte=last_month).count()
-    state_counter = HostEvent.objects.filter(date__gte=last_month).values('state').annotate(the_count=Count('state')).count()
+    solar_counter = HostEvent.objects.filter(date__range=["2019-03-24", "2019-04-30"]).count()
+    state_counter = HostEvent.objects.filter(date__range=["2019-03-24", "2019-04-30"]).values('state').annotate(the_count=Count('state')).count()
     return render_to_response('solar_ed_week/solar_ed_week.html',
                               context_instance=RequestContext(request, {'host_events': host_events,'solar_counter': solar_counter,'state_counter': state_counter}))    
 
