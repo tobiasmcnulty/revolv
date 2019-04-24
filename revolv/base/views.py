@@ -1686,7 +1686,7 @@ class editprofile(View):
                     interests = interests + ", " + ANNOUNCEMENTS
                 else:
                     interests = ANNOUNCEMENTS
-
+            """
             list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
 
             if interests:
@@ -1700,6 +1700,7 @@ class editprofile(View):
                     list.con.list_unsubscribe(list.id, request.user.email, delete_member=True)
                 except:
                     logger.debug("Error while unsubscribe")
+            """
             if repayment_notification:
                 user.subscribed_to_repayment_notifications = True
 
