@@ -166,7 +166,7 @@ def stripe_payment(request, pk):
             AnonymousUserDonation.objects.create(email=email, payment=payment)
         request.session['payment'] = payment.id
         SITE_URL = settings.SITE_URL
-        portfolio_link = SITE_URL + reverse('dashboard')
+        portfolio_link = SITE_URL + reverse('projects_list')
         context = {}
         context['project'] = project
         context['amount'] = donation_cents / 100.0
@@ -191,7 +191,7 @@ def stripe_payment(request, pk):
         return response
     else:
         SITE_URL = settings.SITE_URL
-        portfolio_link = SITE_URL + reverse('dashboard')
+        portfolio_link = SITE_URL + reverse('projects_list')
         user = RevolvUserProfile.objects.get(user=request.user)
         context = {}
         context['project'] = project
@@ -219,7 +219,7 @@ def stripe_payment(request, pk):
             'post_donation',
             context, [request.user.email]
         )
-        return redirect('dashboard')
+        return redirect('projects_list')
 
 
 def stripe_operation_donation(request):

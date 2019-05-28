@@ -241,6 +241,16 @@ class ProjectListView(UserDataMixin, TemplateView):
         active = Project.objects.get_active()
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
         context["is_reinvestment"] = False
+
+        #Social share modal
+        context["donated_amount"] = self.request.session.get('amount')
+        context["donated_project"] = self.request.session.get('project')
+        context["cover_photo"] = self.request.session.get('cover_photo')
+        context["url"] = self.request.session.get('url')
+        context["social"] = self.request.session.get('social')
+        if self.request.session.get('social'):
+            del self.request.session['social']
+
         return context
 
     def dispatch(self, request, *args, **kwargs):
