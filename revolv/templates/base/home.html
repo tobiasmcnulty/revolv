@@ -24,6 +24,7 @@
         })
     })
     </script>
+    <script src="{% static 'js/base/subscribelist.js' %}?version={{ version_number }}"></script>
     <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
     <script src="{% static 'js/mediaelement-and-player.min.js' %}"></script>
     <link href="{% static 'css/mediaelementplayer.min.css' %}" rel="stylesheet" />
@@ -666,29 +667,31 @@
     <div class="group-main">
       <p>Get all our updates</p>
       <div class="group hidden-xs">
-         <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-          {% csrf_token %}
-		  <a class="btn-blue newsletter-signup btn-sign-up">SIGN UP</a>
-          <span class="inputs"><input id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required /></span>
-          <div style='height: 0px; overflow: hidden'><label for="comment">Do Not Fill This Out</label>
-            <textarea name="comment" id="comment" rows="1" cols="1" ></textarea>
-          </div>
-          <input type="hidden" id="idstamp" name="idstamp" value="9X+cjERjxi6m2dDjRLw2bzjqm4tI/nry48G0TQb8qtk=" />
+        <form action="//mc.us7.list-manage.com/subscribe/post?u=d6fcaa93d5386e056cacbd94c&amp;id=2441c75727" method="post" 
+          id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+          <input class="btn-blue newsletter-signup btn-sign-up" type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="button">
+          <input type="email" placeholder="Enter your email address" 
+          name="EMAIL" id="mce-EMAIL" title="The domain portion of the email address is invalid (the portion after the @)." 
+          pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$" 
+          style="font-size: 26px; color: #4b4b4b; background: none;  border: none; outline: none; height: 53px; line-height: 53px; width: 65%;" required>
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f2d244c0df42a0431bd08ddea_aeaa9dd034" tabindex="-1" value=""></div>
+          <div class="mc-status"></div>
         </form>
-
       </div>
-        <div class="mobile-form-group hidden-sm hidden-md hidden-lg">
-        <form id="form2" name="form2" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-          <span class="inputs"><input id="Field0" name="Field0" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required /></span>
-          <a class="btn-blue newsletter-signup btn-sign-up">SIGN UP</a>
-          <div style='height: 0px; overflow: hidden'><label for="comment">Do Not Fill This Out</label>
-          <textarea name="comment" id="comment" rows="1" cols="1" ></textarea>
-          </div>
-          <input type="hidden" id="idstamp" name="idstamp" value="9X+cjERjxi6m2dDjRLw2bzjqm4tI/nry48G0TQb8qtk=" />
+      <div class="mobile-form-group hidden-sm hidden-md hidden-lg">
+        <form action="//mc.us7.list-manage.com/subscribe/post?u=d6fcaa93d5386e056cacbd94c&amp;id=2441c75727" method="post" 
+        id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" style="padding: 0 7%;" class="validate" target="_blank">
+          <span class="inputs">
+          <input type="email" placeholder="Enter your email address" 
+          name="EMAIL" id="mce-EMAIL" title="The domain portion of the email address is invalid (the portion after the @)." 
+          pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$" 
+          required>
+          </span>
+          <input class="btn-blue newsletter-signup btn-sign-up" type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="button">
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f2d244c0df42a0431bd08ddea_aeaa9dd034" tabindex="-1" value=""></div>
+          <div class="mc-status"></div>
         </form>
-
       </div>
-
     </div>
     <!-- end .group-main -->
   </div>
