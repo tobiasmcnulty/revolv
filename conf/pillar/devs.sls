@@ -51,3 +51,7 @@ users:
     mark:
         public_key:
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMvXq+7UaRnYbI7fjJDm1kZE07fi5BaAdxRMw9X0ITRXkdSjwj5c1889UREjv5jZ7T42mK8QpsEJgWw0hC5mfEr/WMuDX909AMOcOsIU+W1kqxXK5Bq9vr7rUyESgY+XZm6eCy61eBjgZtWi9kZ6o3+djgTuZ7UJUdDcJ4w/6JVskREEz8F6hHXyB/y+hIUffcLw4knlsL8vcVgfIbYffhMG5C3gCjnouSNqC/hJkd1cdeXFjV/qMG3kbB+234Ud+WCYRggpEP1KbXz8+NmlQnjFkxG+ktHsiaF2J2Pr//PgDZqXtwVnjZuiYZ/JnSm9pYbpK6t4DlR7m2pkz+O9aN remark@RE-Mark
+
+    amit:
+        public_key:
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4djLcLUwf8vG+g/kXv0Oy3x38dslwCubqY3Tqz9jB+T45v/xHIRTcRvACbf0/GLQZlIJnrWv1AddJf1Vd9Xsqlfe+M0oB/EaYgt/wMhvuaXG2hGjxLXwm1J6z2y8l+xwCa00O1pwLyunZRX8Rkf1xlIRYPJhcSCBpz8XnYGJfXb1xZJ+c+7Clvvse0B1aKrSmjR+zGn2cu7nGA0cTRcFXgj5FBxdhbnf7ehKAgxlipi1dBtnavUrQiGWfVTi8G/C1bZ4FTwiQPQNXlg0Mbf0VOMF5P4C5ELDxzKWhkE+z0vdTZvJT+5m0pK2PmR/p4iIQPDW7odXQpJgy7MgDZ7Id lt-118@lt118-Vostro-3558ti
