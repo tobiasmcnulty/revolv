@@ -1,1 +1,1 @@
-web: gunicorn revolv.wsgi --timeout 90
+web: gunicorn revolv.wsgi

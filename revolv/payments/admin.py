@@ -25,3 +25,9 @@ admin.site.unregister(RepaymentFragment)
 admin.site.register(RepaymentFragment, Paymentadmin)
 admin.site.unregister(UserReinvestment)
 admin.site.register(UserReinvestment, Paymentadmin)
+
+class PaymentAdmin(admin.ModelAdmin):
+    exclude = ('admin_reinvestment','solar_seed_monthly','user_reinvestment','tip')
+
+admin.site.unregister(Payment)
+admin.site.register(Payment, PaymentAdmin)
