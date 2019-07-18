@@ -17,7 +17,7 @@ admin.site.register(Tip)
 class Paymentadmin(admin.ModelAdmin):
 
     search_fields = ('user__user__username','user__user__first_name','user__user__last_name','user__user__email','amount')
-
+    exclude = ('admin_reinvestment','solar_seed_monthly','user_reinvestment','tip')
 
 admin.site.unregister(Payment)
 admin.site.register(Payment, Paymentadmin)
@@ -25,9 +25,3 @@ admin.site.unregister(RepaymentFragment)
 admin.site.register(RepaymentFragment, Paymentadmin)
 admin.site.unregister(UserReinvestment)
 admin.site.register(UserReinvestment, Paymentadmin)
-
-class PaymentAdmin(admin.ModelAdmin):
-    exclude = ('admin_reinvestment','solar_seed_monthly','user_reinvestment','tip')
-
-admin.site.unregister(Payment)
-admin.site.register(Payment, PaymentAdmin)
