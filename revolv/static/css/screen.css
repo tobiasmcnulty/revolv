@@ -1469,9 +1469,9 @@ p.attribution.footer-text {
 }
 
 .active-projects-module .img-main .funded-round .round-depict {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat';
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     color: #039;
     display: block;
     position: absolute;
@@ -1562,7 +1562,7 @@ p.attribution.footer-text {
 
 .active-projects-module .info-main .blue-bar span,
 .active-projects-module .info-main .dark-blue-bar span {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat';
     font-weight: 700;
 }
 
