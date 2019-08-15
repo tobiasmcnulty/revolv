@@ -3,11 +3,23 @@
 {% block title %}{{ self.title }} | {% endblock title %}
 
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/pages/cms-page/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="/static/css/cms-page.css?version={{ version_number }}" />  
 {% endblock head %}
 
 {% block body %}
-    <div class="cms-content-row row after-header">
+<div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+        <div class="col hero-text align-self-end">
+        <h4 class="text-light"> </h4>
+        </div>
+    </div>
+    </div>
+<div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+</div>
+    <div class="cms-content-row row after-header" style="display:block; margin-left: auto; margin-right: auto;">
         <div class="small-12 columns">
             <h1>{{ self.title }}</h1>
             {% for block in self.body %}

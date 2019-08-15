@@ -1,0 +1,166 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css"/>
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css"/>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'>
+
+<style>
+  #top-section-min {
+    background-position: center !important;;
+    position: relative !important;;
+    overflow: hidden !important;;
+    background-size: 100% !important;
+  }
+  
+  /* fixes overflow of banner images ie. repeating or extra space */
+  @media (max-width: 1600px) {
+  
+    #top-section-min {
+      background-size: auto !important;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+    <main role="main" class="container-fluid">
+      <div class="container-fluid fundraise-header" id="top-section-min" style="background: url(../../../static/images/blog-monthly-img/fundraise-header.png);">
+        <div class="row">
+          <div class="col hero-text align-self-end">
+            <div class="fundraise-header-title">
+              <div class="fundraise-user">
+                <img src="../../../static/images/blog-monthly-img/profile-img.png">
+              </div>
+              <h1 class="text-white fw-300 mb-1">Lakeshore Avenue Baptist Church</h1>
+              <h4 class="orange-text fw-500">Sandra Anderson</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="fundraise-body" style="position: relative;top: -46px; z-index: 1; background: white;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row">
+              <div class="col-sm-12 col-md-4 pr-4">
+                <div class="campaign-col">
+                  <div class="title-container">  
+                    <h1><sup>$</sup> 500 <small>Raised</small></h1>
+                  </div>
+                  <div class="campaign-text">
+                    <ul class="progress-text">
+                      <li class="current-progress">50%</li>
+                      <li class="target-progress">$1000</li>
+                    </ul>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="w-100"></div>
+                    <h3 class="fw-700 mt-3 mb-0">210,358</h3>
+                    <h5 class="fw-700 my-0">lbs CO2 Avoided</h5>
+                    <a class="btn btn-orange btn-me btn-arrow-white mt-4" href="#" role="button" tabindex="0">Back this project</a>
+                  </div>
+                </div>
+                <div class="tips-col">
+                  <h3 class="blue-text my-3 ml-5">Help Tips</h3>
+                  <div class="line-section pb-2">
+                    <div class="line-left"></div>
+                  </div>
+                  <ul class="tips-list">
+                    <li><a href="#">Sed ut perspiciatis</a></li>
+                    <li><a href="#">Unde omnis iste natus</a></li>
+                    <li><a href="#">Error sit voluptatem</a></li>
+                    <li><a href="#">Accusantium doloremque</a></li>
+                    <li><a href="#">Eaque ipsa quae ab illo</a></li>
+                    <li><a href="#">Inventore veritatis et quasi</a></li>
+                    <li><a href="#">Architecto beatae vitae</a></li>
+                    <li><a href="#">Dicta sunt explicabo</a></li>
+                  </ul>
+                </div>
+                <div class="updates-col">
+                  <h3 class="blue-text my-3 ml-5">Updates</h3>
+                  <div class="line-section pb-2">
+                    <div class="line-left"></div>
+                  </div>
+                  <div class="updates-inner-col mt-5">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>               
+                  </div>
+                  <div class="updates-inner-col">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <img src="../../../static/images/blog-monthly-img/updates-img.png">
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>               
+                  </div>
+                  <div class="updates-inner-col">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>               
+                  </div>
+                  <div class="updates-inner-col">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>               
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-8 fundraise-body-text pl-4">
+                <h2 class="orange-text fw-300">Let the sun shine on Lakeshore!</h2>
+                <h6 class="fw-600">Join us, and let’s bring solar to a multicultural church in Oakland, CA, Lakeshore Avenue Baptist Church</h6>
+                <p>Lakeshore Avenue Baptist Church is a modern, multicultural powerhouse. From welcoming the LGBTQ+ community into their congregation to supporting the Black Lives Matter movement, Lakeshore is committed to serving the needs of the Oakland community and those most in need. The savings generated from switching to solar will directly benefit a number of services they offer to the community. Lakeshore’s Hunger Task Force runs a food bank and also provides clothing and shelter for community members and refugees. Lakeshore also runs a robust youth program including before and after school services and outdoor programming to expose urban youth to the wonder of nature.</p>
+
+                <h6 class="fw-600">Crowdfunding Campaign Details</h6>
+                <p>RE-volv Solar Champions are crowdfunding over $40,000 for Lakeshore’s solar system. Jinko, the world’s largest solar panel manufacturer has donated 12 panels to the campaign. As a result of this installation, there will be a reduction of over 1 million pounds of C02 and Lakeshore will save over $143,000 on electric costs during the lifetime of the system!</p>
+
+                <h6 class="fw-600">Why Is RE-volv Helping Bring Solar to Oakland?</h6>
+                <p>RE-volv is a national nonprofit that helps community-serving nonprofits go solar. RE-volv’s mission is to empower people to bring clean energy to their communities. This crowdfunding campaign will cover the upfront costs of the solar installation at Lakeshore. Once the solar energy system is up and running, Lakeshore will pay RE-volv back over time through a solar lease at a rate much less than what they were paying the utility company. Those payments grow a revolving fund for solar called the Solar Seed Fund.</p>
+
+                <div class="plyr-video" data-plyr-provider="youtube" data-plyr-embed-id="C469pyc9q3Q"></div>
+
+                <h6 class="fw-600 mt-4">Impact beyond this project</h6>
+                <p>The Solar Seed Fund is a unique pay-it-forward model that grows with every donation. When a nonprofit goes solar, a portion of the upfront costs comes from this revolving fund. The impact of your donation dollar multiplies over time as RE-volv continually reinvests in additional projects. Past projects have shown that when a community-serving organization shows leadership in environmental stewardship it inspires others in the community to do the same.</p>
+
+                <h6 class="fw-600">Take action now</h6>
+                <ul class="line-list">
+                  <li>Take 2 minutes and donate a few dollars</li>
+                  <li>Spread the word on Facebook, Twitter, or whatever your preferred social media platform is.</li>
+                  <li>Tell a friend who cares about Oakland, the environment, their faith, or building the new clean energy economy!</li>
+                </ul>
+
+                <h6 class="fw-600">Thanks to our amazing partners Interfaith Power & Light and Green the Church for supporting this project. Thanks to our long term solar installation partner SunWork who will install the solar energy system. Thanks to our most frequent solar panel supplier Jinko Solar for donating the solar panels for this project.</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="share-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-12 col-lg-12 text-center">
+            <h1 class="text-white fw-300 mb-5">Follow us on social media</h1>
+            <ul class="sharing-icons">
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/js/tooltipster.bundle.min.js'></script>
+    <script src="js/plyr.polyfilled.js"></script>
+    <script src="js/script.js"></script>
+{% endblock %}

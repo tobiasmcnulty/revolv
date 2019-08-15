@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% load humanize %}
@@ -24,7 +24,7 @@ input.checkbox-settings[type="checkbox"]:checked + label::after {
     background: rgba(0, 0, 0, 0);
     top: 1.2ex;
     left: 0.9ex;
-    border: 3px solid #14b1e7;
+    border: 3px solid #100084;
     border-top: none;
     border-right: none;
     -webkit-transform: rotate(-45deg);
@@ -95,10 +95,19 @@ input.checkbox-settings[type="checkbox"] + label::before {
 {% endblock %}
 {% block title %}Project | {% endblock %}
 {% block body %}
-<div class="contents after-header">
-    <div class='account-heading'>
-        <div style="padding-top: 2.3%;"><span class="account-heading-span">Account Settings</span></div>
+<div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+        <div class="col hero-text align-self-end">
+        <h4 class="text-light" style="font-size: 30px;"> SETTINGS<br />  </h4>
+        </div>
     </div>
+</div>
+<div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+</div>
+<div class="contents after-header" style="margin-top:0px !important;">
     <div class="col-xs-12 col-sm-3 account-tabs">
         <div style="margin-bottom: 2em;">
             <span id="account-link" class="account-tab-text account-tab-text-active">Account Information</span>
@@ -114,6 +123,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
         {% csrf_token %}
         <div id="donation-info" class="col-xs-12 col-sm-9 setting-form-top" style="display:none;">
             <div style="width:65%;margin-left: 1.4em;">
+                <!-- 
                 <div class="setting-input-block setting-input-full-width" >
                     <span class="setting-form-lebel setting-input-full-width" >CURRENT MONTHLY DONATION TO SOLAR SEED FUND:</span>
                     <div class="full-width">
@@ -143,15 +153,18 @@ input.checkbox-settings[type="checkbox"] + label::before {
                     </div>
 
                 </div>
+                -->
                 <div class="setting-input-block">
                     <p class="setting-form-lebel setting-input-block">DONATION HISTORY</p>
                     <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to the Solar Seed Fund</span> <span class="setting-donations">${{donated_solar_seed|floatformat:"2"}}</span></p>
                     <p class="setting-details-margin"><span class="setting-donation-details">How much I've been repaid by the Solar Seed Fund</span> <span class="setting-donations">${{repayment_solar_seed|floatformat:"2"}}</span></p>
                     <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to RE-volv Operations</span> <span class="setting-donations">${{operation_donation|floatformat:"2"}}</span></p>
                 </div>
+                <!-- 
                 <div class="setting-input-block" style="float: right;">
                     <button type="submit" class="component-link pull-left btn-blue btn-donate setting-donation-save operation-donation-submit">SAVE</button>
                 </div>
+                -->
             </div>
         </div>
     </form>

@@ -1,0 +1,149 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<style>
+@media (max-width: 906px) {
+  .edu-cen-re-header10 {
+    background-size: auto !important;
+  }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header10" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-700 mb-0 txt-shadow">Solar Financing 101</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Going solar is a great deal, saving homeowners and businesses 15% or more on their electricity bills. But because the up-front costs are still significant, most individuals or organizations rely on solar financing to reduce or eliminate the up-front costs of a solar installation.</p>
+              <p class="grey-text">Unfortunately, certain types of end-users, including non-profits, may have a difficult time accessing solar financing. Let’s first look at the types of financing that’s out there, and then explore why non-profits are often left out - and what solutions there are to this problem. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. User-owned vs. third-party owned</h5>
+            <p class="grey-text">When it comes to financing a solar energy installation, there are two main types: user owned and third-party owned. As the name implies, under the user-owned model, the homeowner or business going solar takes out a loan themselves (often through a lender specializing in solar financing) to purchase the solar equipment and have it installed it on their property.</p>
+            <p class="grey-text">In most cases, the solar loan covers the entire up-front cost of the installation and allows the end user to gradually pay it off the overtime with their electricity bill savings. Importantly, the income tax credits associated with the system also belong to the owner, which has made this a popular option for homeowners or businesses looking to reduce their taxes.</p>
+            <p class="grey-text">Under the third-party ownership (TPO) model, a separate company pays for the upfront costs and owns the solar system, then sells the energy or leases the equipment to the end user. With a solar lease, the energy user leases the solar system on their roof for a fixed monthly payment, with monthly “true-ups” for the customer if the system produces less than expected. In a solar power purchasing agreement (PPA), the energy user is purchasing power from the system owner and simply makes payments based on what the system actually produces each month.</p>
+            <p class="grey-text">Each of these options allows a homeowner or business to go solar for no up-front cost and save money from day one, just like a solar loan. However, there’s a crucial difference - the third party company that owns the solar system also owns the tax credit associated with it, not the end user. Of course, not everyone has a lot of taxes to offset, so this option still makes sense for many homeowners and businesses.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Why do nonprofits struggle to find solar financing?</h5>
+                  <p class="grey-text">Solar financing seems like it would be an ideal fit for budget-strapped nonprofits - there's no upfront cost, and they get to save money on their operating costs (and thereby dedicate more of their budget to their mission).</p>
+                  <p class="grey-text">Unfortunately, in reality, nonprofits often find themselves unable to access solar financing. There are a few reasons why: </p>
+                  <div style="margin-left:4px;">
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Because nonprofits don't pay taxes, they can't take advantage of the solar income tax credit, which makes solar loans less feasible.</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Nonprofits don't have an easy way to demonstrate their credit for a solar lease. While homeowners can demonstrate their credit with a FICO score, there's not an equivalent for nonprofits. </p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Nonprofits also typically lack significant cash reserves, another challenge for proving their creditworthiness.</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Many nonprofit projects are small (30 kW or less) compared to solar systems installed by other businesses, reducing economies of scale and thus cost savings. </p>
+                  </div>
+                  <p class="grey-text">On top of all that, nonprofits tend to have large bodies of decision-makers (e.g. a Board of Trustees), making the sales, as well as financing process, is more lengthy and difficult than for homeowners. </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. That's where RE-volv steps in!</h5>
+            <p class="grey-text">RE-volv's mission is to provide options for these smaller nonprofits that have been left out of traditional solar financing, with a solar lease solution built specifically with their needs in mind.</p>
+            <p class="grey-text">We raise the upfront cost of the system through our crowdfunding campaigns, then use a revolving fund, called the Solar Seed Fund, to help pay for the projects. The Solar Seed Fund allows our donors to reinvest the proceeds from previous solar projects to help pay for new projects. At the end of the lease, we transfer ownership to the nonprofit at no cost. This is referred to as a lease-to-own model.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="/get-involved/education/solarenergy/">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/solarenergythumb.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="orange-text">Solar Energy 101</h6>
+                      <p class="grey-text">We’re living through a massive boom in solar energy - an infinitely available, low-cost, zero-pollution source of electricity..</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

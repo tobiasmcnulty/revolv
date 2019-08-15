@@ -42,6 +42,10 @@ from revolv.solar_ed_week.models import HostEvent, BecomePartner
 from revolv.tasks.sfdc import send_signup_info
 from social.apps.django_app.default.models import UserSocialAuth
 
+# pip install createsend
+from createsend import Subscriber
+from createsend import Transactional
+
 logger = logging.getLogger(__name__)
 LIST_ID = settings.LIST_ID
 NEWSLETTERS = "RE-Volv Newsletter"
@@ -241,16 +245,6 @@ class ProjectListView(UserDataMixin, TemplateView):
         active = Project.objects.get_active()
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
         context["is_reinvestment"] = False
-
-        #Social share modal
-        context["donated_amount"] = self.request.session.get('amount')
-        context["donated_project"] = self.request.session.get('project')
-        context["cover_photo"] = self.request.session.get('cover_photo')
-        context["url"] = self.request.session.get('url')
-        context["social"] = self.request.session.get('social')
-        if self.request.session.get('social'):
-            del self.request.session['social']
-
         return context
 
     def dispatch(self, request, *args, **kwargs):
@@ -475,6 +469,138 @@ class LogoutView(UserDataMixin, View):
 def faq(request):
     return render(request, 'base/partials/faq.html')
 
+def aboutus(request):
+    return render(request, 'base/partials/about.html')
+
+def solar_ambassador(request):
+    return render(request, 'base/partials/ambassador.html')
+
+def nonprofit_app(request):
+    return render(request, 'base/partials/nonprofit_app.html')
+
+
+# education center categories
+def solarenergysection(request):
+    return render(request, 'base/partials/solarenergyfinancing.html')
+
+def bringsolarsection(request):
+    return render(request, 'base/partials/bringsolartocommunity.html')
+
+def solarcrowdfundingsection(request):
+    return render(request, 'base/partials/solarcrowdfunding.html')
+
+def solarcareerssection(request):
+    return render(request, 'base/partials/solarcareers.html')
+
+
+# education center resource articles
+def solarforall(request):
+    return render(request, 'base/education_center_resources1.html')
+
+def reasonforsolar(request):
+    return render(request, 'base/education_center_resources2.html')
+
+def bringsolar(request):
+    return render(request, 'base/education_center_resources3.html')
+
+def waystoget(request):
+    return render(request, 'base/education_center_resources4.html')
+
+def launchcrowd(request):
+    return render(request, 'base/education_center_resources5.html')
+
+def impactfilm(request):
+    return render(request, 'base/education_center_resources6.html')
+
+def meetcrowd(request):
+    return render(request, 'base/education_center_resources7.html')
+
+def lookingsolar(request):
+    return render(request, 'base/education_center_resources8.html')
+
+def solarenergy(request):
+    return render(request, 'base/education_center_resources9.html')
+
+def solarfinance(request):
+    return render(request, 'base/education_center_resources10.html')
+
+def solartax(request):
+    return render(request, 'base/education_center_resources11.html')
+
+def solarizenonprofit(request):
+    return render(request, 'base/education_center_resources12.html')
+
+#--  
+
+def solarpolicy(request):
+    return render(request, 'base/education_center_resources13.html')
+
+def historysolar(request):
+    return render(request, 'base/education_center_resources14.html')
+
+def leadingcity(request):
+    return render(request, 'base/education_center_resources15.html')
+
+def beststatesolar(request):
+    return render(request, 'base/education_center_resources16.html')
+
+#---------- Blog
+
+
+def blogcenter(request):
+    return render(request, 'base/partials/blog.html')
+
+
+#-----------Blog Articles
+
+def solararticles(request):
+    return render(request, 'base/partials/blog-article.html')
+
+def newyearrevolution(request):
+    return render(request, 'base/partials/blog-article1.html')
+
+#-----------Donate Monthly
+
+
+def monthly_donor(request):
+    return render(request, 'base/partials/monthly-donate.html')
+
+#--------------------------------
+
+def ambassador_info(request):
+    return render(request, 'base/partials/solar-ambassador.html')
+
+
+def media_archive(request):
+    return render(request, 'base/partials/media.html')
+
+
+def education_center_section(request):
+    return render(request, 'base/partials/education-center.html')
+
+#-----------fundraise, etc.-------------------
+
+def fundraise_form(request):
+    return render(request, 'base/fundraise-form.html')
+
+def fundraise_pld(request):
+    return render(request, 'base/fundraise-personalized.html')
+
+def fundraise_choose(request):
+    return render(request, 'base/fundraise-project-choose.html')
+    
+def new_campaign(request):
+    return render(request, 'base/campaign.html')
+    
+#--------------------------------
+
+def howitworks(request):
+    return render(request, 'base/partials/howitworks.html')
+
+def newsletter_confirm(request):
+    return render(request, 'base/partials/confirmationpage.html')
+
+#-----------------------------
 
 def myths_and_facts(request):
     return render(request, 'base/partials/myth_and_facts.html')
@@ -556,7 +682,7 @@ def intake_form_submit(request):
     context['orgInterestBlock'] = orgInterestBlock
     send_revolv_email(
         'intake_form',
-        context, ['info@re-volv.org']
+        context, ['mark@re-volv.org']
     )
 
     return redirect('bring_solar_to_your_community')
@@ -572,6 +698,14 @@ def select_chapter(request, chapter):
 
 def intake_form(request):
     return render_to_response('base/intake_form.html',
+                              context_instance=RequestContext(request))
+
+def intake_form2(request):
+    return render_to_response('base/intake_form2.html',
+                              context_instance=RequestContext(request))
+
+def intake_form3(request):
+    return render_to_response('base/intake_form3.html',
                               context_instance=RequestContext(request))
 
 
@@ -746,8 +880,11 @@ def leo_page(request):
 
 
 def revolv_accelerator(request):
-    return render(request, 'base/partials/revolv_accelerator.html')
-
+    context = {}
+    active_projects = Project.objects.get_active()
+    context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active_projects)
+    return render_to_response('base/partials/revolv_accelerator.html',
+                              context_instance=RequestContext(request, {'active_projects': active_projects}))
 
 def leadership_circle(request):
     return render(request, 'base/partials/leadership-circle.html')
@@ -1661,13 +1798,52 @@ def export_repayment_xlsx(request):
 
 def add_email_to_mailing_list(request):
     if request.POST['email']:
-        email_address = request.POST['email']
-        list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
+        
         try:
-            list.con.list_subscribe(list.id, email_address,
-                                    {'EMAIL': email_address,
-                                     'INTERESTS': NEWSLETTERS},
-                                    double_optin=False, update_existing=True)
+            # Authenticate with your API Key
+            auth = {'api_key': settings.CM_KEY }
+            # auth = {'api_key': 'yJ4aWg3HLZlrL1XHvzlvpmUFt4EoTF1lG2TY0p3uBjO5bcFnfdAYvRIB5GjDajOtSkP6zWRGQrtPLXcXJhqEmPJR906Ez+MQOkPfAaIUC9Yz5HLOFvWYBTutTeOfefm0wI0nOLTpqS994LJmEgWaQA=='}
+            # The unique identifier for this smart email
+            list_id = settings.CM_LIST_ID
+            emailz = request.POST['email']
+
+
+            # Create a new mailer and define your message
+            tx_add = Subscriber(auth)
+
+            smart_email_id = '491d867d-b1ac-4917-98e6-2b21f226e741'
+
+            # Create a new mailer and define your message
+            tx_mailer = Transactional(auth)
+
+            my_data = {
+                'firstname': 'firstnameTestValue',
+                'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+                'href^="tel"': 'href^="tel"TestValue',
+                'href^="sms"': 'href^="sms"TestValue',
+                'owa': 'owaTestValue',
+                'role=section': 'role=sectionTestValue',
+                'style*="font-size:1px"': 'style*="font-size:1px"TestValue'
+            }
+
+            my_datax = {
+                'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+                'href^="tel"': 'href^="tel"TestValue',
+                'href^="sms"': 'href^="sms"TestValue',
+                'owa': 'owaTestValue',
+                'role=section': 'role=sectionTestValue',
+                'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
+                'firstname': 'firstnameTestValue'
+            }
+            # Add consent to track value
+            consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+
+            # Send the message and save the response
+            # response = tx_mailer.smart_email_send(smart_email_id, emailz, consent_to_track, data = my_datax)
+
+            # Send the message and save the response , add subscriber to sample list re-volv, blank 
+            response = tx_add.add(list_id, emailz, "", [] , True, consent_to_track)
+
         except Exception:
             return HttpResponse(json.dumps({'status': 'subscription_fail'}), content_type="application/json")
 
@@ -1682,6 +1858,8 @@ class editprofile(View):
         repayment_notification = request.POST.get('repayment_notification')
         announcement = request.POST.get('announcement')
         profileup = RevolvUserProfileForm(data=request.POST or None, instance=request.user.revolvuserprofile)
+        name = request.user.get_full_name()
+        email = request.user.email
         if (profileup.is_valid()) and (request.user.email == request.POST.get('email')):
             user = profileup.save(commit=False)
 
@@ -1696,21 +1874,43 @@ class editprofile(View):
                     interests = interests + ", " + ANNOUNCEMENTS
                 else:
                     interests = ANNOUNCEMENTS
-            """
-            list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
 
             if interests:
-                list.con.list_subscribe(list.id, request.user.email, {'EMAIL': request.user.email,
-                                                                      'FNAME': request.user.first_name,
-                                                                      'LNAME': request.user.last_name,
-                                                                      'INTERESTS': interests},
-                                        double_optin=False, update_existing=True)
+                # Authenticate with your API Key
+                auth = {'api_key': settings.CM_KEY }
+                # auth = {'api_key': 'yJ4aWg3HLZlrL1XHvzlvpmUFt4EoTF1lG2TY0p3uBjO5bcFnfdAYvRIB5GjDajOtSkP6zWRGQrtPLXcXJhqEmPJR906Ez+MQOkPfAaIUC9Yz5HLOFvWYBTutTeOfefm0wI0nOLTpqS994LJmEgWaQA=='}
+                # The unique identifier for this smart email
+                list_id = settings.CM_LIST_ID
+                emailz = email
+                namez = name
+                # Create a new mailer and define your message
+                tx_add = Subscriber(auth)
+
+                # Add consent to track value
+                consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+
+                # Send the message and save the response
+                response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
             else:
                 try:
-                    list.con.list_unsubscribe(list.id, request.user.email, delete_member=True)
+                    user_profile = request.user.email
+
+                    # Authenticate with your API Key
+                    auth = {'api_key': settings.CM_KEY }
+                    # auth = {'api_key': 'yJ4aWg3HLZlrL1XHvzlvpmUFt4EoTF1lG2TY0p3uBjO5bcFnfdAYvRIB5GjDajOtSkP6zWRGQrtPLXcXJhqEmPJR906Ez+MQOkPfAaIUC9Yz5HLOFvWYBTutTeOfefm0wI0nOLTpqS994LJmEgWaQA=='}
+                    # The unique identifier for this smart email
+                    list_id = settings.CM_LIST_ID
+
+                    # Create a new mailer and define your message
+                    tx_add = Subscriber(auth)
+
+                    subscriber = Subscriber(auth, list_id, user_profile)
+
+                    # Send the message and save the response
+                    response = subscriber.unsubscribe()
                 except:
                     logger.debug("Error while unsubscribe")
-            """
+
             if repayment_notification:
                 user.subscribed_to_repayment_notifications = True
 

@@ -266,10 +266,12 @@ $(document).ready(function() {
                  {
                     $('#donation-spinner').css('display', 'none');
                     if (data.status == 'subscription_success') {
+                      window.location.href = "/newsletter_confirm/";
                                         $('#newslettermodal').modal('show');
                                         $('.donation-text').text("Thank you for signing up for our newsletter, we look forward to keeping in touch!");
                     }
                     else if (data.status == 'already_exist') {
+                      window.location.href = "/newsletter_confirm/";
                                         $('#newslettermodal').modal('show');
                                         $('.donation-text').text("Thank you for showing the interest, this email is already registered.");
                     }

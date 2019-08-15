@@ -1,0 +1,167 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<style>
+@media (max-width: 761px) {
+  .edu-cen-re-header12 {
+    background-size: auto !important;
+  }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header12" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-700 mb-0 txt-shadow">Solarizing a Nonprofit <br />in Your Community</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Everyone wants to go solar these days, from massive corporations to individual homeowners. Nonprofits are no exception - and in fact, they might have extra motivation to go solar due to their social mission as well as their greater need to save on energy costs. Some of the biggest benefits for nonprofits include:</p>
+              <div style="margin-left:4px;">
+                <p class="grey-text"><span class="fw-600 fw-points">Savings:</span> Nonprofits can save 15% or more on their electricity bills, freeing up their budget to do more positive work in their community.
+                </p>
+                <p class="grey-text"><span class="fw-600 fw-points">Climate Action:</span> Over the lifetime of the solar panels, the nonprofit will prevent thousands or even millions of lbs. of CO2 from entering the atmosphere.
+                </p>
+                <p class="grey-text"><span class="fw-600 fw-points">Awareness:</span> Nonprofits can raise awareness of the power of solar as well as their own commitment to sustainability, potentially attracting new donors.
+                </p>
+              </div>
+              <p class="grey-text">Crowdfunding gives you the power to make these benefits a reality for deserving nonprofits by bringing together supporters in your community. To make it easy, organizations like Re-volv that specialize in nonprofit solar crowdfunding can work with you to ensure that the nonprofit won’t have to pay any upfront costs, and won’t have to worry about managing the installation process or the maintenance of their solar system.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Identifying the “Right” Nonprofit</h5>
+            <p class="grey-text">Going solar can be a terrific deal for a nonprofit, and a win-win-win for them, your community, and the environment. So how do you identify the “right” nonprofit to solarize with a community crowdfunding campaign? There are a few key characteristics to look for:</p>
+            <div style="margin-left:4px;">
+              <p class="grey-text"><span class="fw-600 fw-points">Well-Established:</span> Organizations should have a strong local presence, with a demonstrated commitment to the community. Ideally, they should have been operating at their current location for at least 5 years. 
+              </p>
+              <p class="grey-text"><span class="fw-600 fw-points">Solid Finances:</span> Nonprofits can go solar for no up-front cost under the crowdfunding model popularized by Re-volv, but they need to be on firm financial footing to qualify for the required financing. Organizations will thus have to submit financial statements as part of the process.
+              </p>
+              <p class="grey-text"><span class="fw-600 fw-points">Ownership (or Long-Term Lease):</span> Solar panels are a long-term investment, so the nonprofit should have certainty that they’ll be at their current location for a long time. Ideally, they will own their building, but a long-term lease (and a good relationship with their landlord) can also work.
+
+              </p>
+              <p class="grey-text"><span class="fw-600 fw-points">A New(ish) Roof:</span> Roofs typically need replacing every 15 to 30 years. Since solar panels will produce power for 25 years or more, it’s best to install them on a roof that’s less than 5 years old to minimize additional costs when the roof is replaced.  
+              </p>
+              <p class="grey-text"><span class="fw-600 fw-points">Shading:</span> Another thing to watch out for is shading. For example, if there are trees or tall buildings next to the nonprofit that cast shade on the roof, this will reduce the amount of energy the solar panels produce. Google has a tool called Project Sunroof, which shows the solar access of rooftops across the U.S. Not all roofs appear in Project Sunroof, but it's worth taking a look! 
+              </p>
+            </div>
+            <p class="grey-text">Finally, the nonprofit should care about clean energy! Advancing clean energy or the environment doesn’t have to be its core mission - though it’s great if it is! - but the organization should broadly support solar power and be interested in promoting its project in the community. After all, part of the benefit of solarizing a nonprofit is setting an example for others!</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Finding the Right Partners for Your Campaign</h5>
+                  <p class="grey-text">You might already know a nonprofit in your community that fits this description. Perhaps you volunteer there or serve on the board, or your child attends the school, or you’re a member of the congregation. The benefit of working with nonprofit you already have a strong relationship with is that you’ll already be familiar with the organization, what their values are, and how they like to do things. 
+                  </p>
+                  <p class="grey-text">You can also do some research about what nonprofits are in your area. Ask your friends, family, and colleagues (or Google) if they know any great local nonprofits. Then, check out their website to see who they are and what they do - and, if you'd be interested in supporting their work, reach out! Chances are they’ll be excited to hear from you and happy to help you determine whether they’re a good fit for a solar crowdfunding campaign.
+                  </p>
+                  <p class="grey-text">Finally, unless you’re a solar expert yourself, you’ll probably need support in planning, financing, and installing your chosen nonprofit’s solar system. Re-volv has developed a unique crowdfunding model for solarizing nonprofits that eliminates up-front costs, guarantees smooth operations of the solar system over the course of its life, and puts the proceeds into financing for even more nonprofits in the future. Learn more at Re-volv’s website!
+                  </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Solar Sales Representatives</h5>
+            <p class="grey-text">Solar may be booming, but those solar panels don’t sell themselves! Solar sales representatives are employed by installation companies that sell to homeowners and business, either by phone or door-to-door. Higher up the supply chain, solar equipment manufacturers also have wholesale sales representatives that engage in more complex negotiations with other solar companies. </p>
+            <p class="grey-text">After the sale, consumer-facing solar companies may employ large numbers of customer service representatives to ensure a high level of customer satisfaction (and good reviews and referrals). Regardless of whether you’re dealing with home solar prospects, existing customers, or buyers from downstream solar companies, all of these sales representative positions require strong communications skills.</p>
+            <p class="grey-text">According to the Solar Foundation, there are about 36,000 solar sales reps in the U.S. While the National Solar Jobs Census doesn’t have wage data for these roles in the solar context, Bureau of Labor Statistics data indicates a median wage of $11.24/hour for retail sales roles in general, $15.81 for customer service reps, and $29.01/hour for wholesale and manufacturing sales reps.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="/get-involved/education/meetcrowd/">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/reachgoalthumb.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="orange-text">How to Meet Your Crowdfunding Campaign Goals</h6>
+                      <p class="grey-text">Crowdfunding is the art of raising money from lots of people, typically in small amounts. When you were a kid, did you ever.. </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

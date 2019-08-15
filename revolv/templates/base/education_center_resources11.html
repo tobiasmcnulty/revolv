@@ -1,0 +1,163 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header11" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-300 mb-0">Solar Tax <br /> Incentives 101</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Going solar can reduce your electricity bills by 15% or more every month. That’s not all, though - it can reduce the taxes you owe, thanks to tax credits and other incentives available at the federal as well as state level.</p>
+              <p class="grey-text">The exact amount of savings will vary depending on the specific tax situation of an individual or organization, as well as where they are located. Let’s take a closer look at what solar incentives are available and who qualifies for them.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Federal Tax Incentives</h5>
+            <p class="grey-text">The main tax incentive offered by the federal government is known as the solar investment tax credit (ITC) for businesses, or the residential renewable energy tax credit for households. In either case, the federal tax credit allows you to reduce your income taxes owed by up to 30% of the total cost of a solar system installation.</p>
+            <p class="grey-text">For example, if your rooftop solar system costs $30,000, you could reduce your income tax bill by 30% of that, or $9,000. The only catch is, you need to owe a sufficient amount in taxes to be able to make full use of this credit, which may be an issue for retired individuals or those on a fixed income. It is possible to carry the unused amount forward to the subsequent tax year, but after two years any remaining credit you’ve earned goes away.</p>
+            <p class="grey-text">These solar tax credits were established in 2005, and have been extended 3 times since due to their popularity in supporting the growth of solar for businesses and homeowners. However, it is currently set to phase out over the course of the next few years. The tax credit will step down to 26% in 2020, then 22% in 2021, then remain permanent at 10% for commercial projects (while the residential credit will phase out).</p>
+            <p class="grey-text">As you can see in the chart below from the Solar Energy Industries Association, these solar tax credits have been hugely successful, with 59% compound annual solar growth since they were enacted.</p>
+            <p class="grey-text">The other primary federal tax incentive for solar is bonus depreciation, which is available only for businesses that go solar before January 1, 2023. This rule allows companies to claim 100% of the cost of their solar system as a business expense in the first year after installation, instead of spreading out the cost over 5 years or more with normal depreciation rules. Because businesses generally prefer to claim their tax savings as soon as possible, this is expected to further incentivize solar.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. State and Local Solar Tax Incentives (And More)</h5>
+                  <p class="grey-text">Many state and municipal governments also offer tax incentives for solar installations as a way to encourage the local environmental benefits and good jobs they generate. Just as the federal solar tax credit reduces your federal income tax bill, state solar tax credits can reduce your amount of state taxes owed.</p>
+                  <p class="grey-text">As you might expect, the amount, as well as the structure of these credits, vary widely from state to state. For example, South Carolina offers a solar income tax credit worth 25% of the cost of a solar installation, up to $3,500 of which may be claimed per year; by contrast, Iowa’s solar income tax credit is worth 15% of the cost of an installation, but a maximum of $5,000 can be claimed. </p>
+                  <p class="grey-text">Other states have different types of tax incentives. Many states have exempted solar energy equipment from state sales and use taxes, such as New Jersey, Florida, and others. Alternately, some states have exempted the value of rooftop solar installations from residential property taxes, including Texas and Connecticut. </p>
+                  <p class="grey-text">That’s not all. Some state and municipal governments, and even some utilities may offer direct cash rebates or grants for solar installations, and others can offer incentives for every kilowatt-hour of solar energy generated. To find out what types of tax incentives and other types of helpful solar policies are available in your area, just enter your ZIP code into the DSIRE database maintained by the U.S. Department of Energy and North Carolina State University.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Supporting Solar Energy For All</h5>
+            <p class="grey-text">The combination of federal and state incentives have helped to reduce the cost of solar for countless businesses and homeowners across America, playing a crucial role in supporting the U.S. solar boom. All of that said, not everyone can benefit from these incentives, however. As noted previously, businesses and individuals that don’t owe sufficient income taxes may not be able to claim the full value of their 30% solar tax credit. Moreover, nonprofits don't pay taxes at all, so these tax incentives don’t reduce their cost of going solar. </p>
+            <p class="grey-text">The good news is, communities can come together to help nonprofits go solar with innovative new crowdfunding models.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-1.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-2.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-3.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

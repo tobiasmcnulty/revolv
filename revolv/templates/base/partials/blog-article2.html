@@ -1,0 +1,135 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+<style>
+@media (max-width: 1600px) {
+  .container-fluid .blog-post-header {
+    background-size: auto !important;
+  }
+}
+</style>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css"/>
+{% endblock %}
+
+{% block body %}
+    <main role="main" class="container-fluid">
+      <div class="container-fluid blog-post-header" id="top-section" style="background: url(../../../static/images/blog-monthly-img/blog-post-header.png) no-repeat; background-size: 100%;">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end mb-5">
+            <h1 class="text-white fw-300 mb-1">Solar Energy as an Investment </h1>
+            <h3 class="orange-text fw-300 mb-5">By <span class="article-auther">Jack Stevens</span>, <span class="article-date">Feb-26-2019</span></h3>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/blog-monthly-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="article-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <p>I don’t know about you, but I value my money. I want to stretch my dollar as far as possible...</p>
+
+            <p>Solar Energy as an Investment - by Jack Stevens</p>
+
+            <p>I don’t know about you, but I value my money. I want to stretch my dollar as far as possible. Electricity, being a resource that is constantly used in our day to day lives is a good place to start looking for ways to reduce your monthly bill.</p>
+
+            <img src="../../../static/images/blog-monthly-img/article-img.png">
+
+            <p>What if you could generate your own electricity, and not have to pay the utility company as much (or any amount, if you generate 100%) per month, month after month? Installing solar panels onto your house is one way to do just that. There are, of course, upfront costs that come with originally getting them, but the amount of money saved on electric bills should outweigh the costs in the long-run. Thus, solar panels can be seen as an investment, putting down some money now to get returns in the future.</p>
+
+            <p>But just how good of an investment is it for the typical household? Let’s run some numbers…
+              According to the U.S. Energy Information Administration (EIA), the average U.S. household used 10,399 kWh in the year 2017. The size of the solar power system required to produce that amount of electricity in a year, with the typical output of a solar panel only being 15% of the maximum amount it could generate (for reasons I won’t get into), would be (10399 kWh) / (15% * 24 hr/day * 365 days/year) = 7.914 kW. At the start of 2019, according to energysage.com, the average cost of solar units was $3.05/W of power, so ($3.05/W) * (1000W/kW) * (7.914kW) = $24,137.71 would be the total cost of the system.</p>
+
+            <p>In the United States, there is a tax credit for 30% of the cost of the solar unit (known as the Solar Investment Tax Credit or ITC), therefore the net cost would end up being $24137.71- (30% * $24137.71) = $16,896.40.</p>
+
+            <p>That’s quite the pretty penny, but keep in mind that this occurs in place of the cost from traditional utility bills paid over time. The average cost of electricity for residential buildings in the United States, according to the December 2018 report by the EIA, was $0.1295 per kilowatt hour. That would make the average annual price for electricity to be (10399 kWh/year) * ($0.1295/kWh) = $1346.67/year. Setting the cost of installing the solar panels equal to the cost of the standard electricity bill per year would make the break-even point be ($16896.40) / ($1346.67/year) = 12.55 years.</p>
+
+            <p>What does this mean? After 12 years and 7 months, having solar panels on your home will be more and more cost-effective than sticking with getting electricity from a utility company month after month. Solar panels tend to a have a typical lifespan of anywhere from 25-40 years before they need to be replaced: meaning it will generate anywhere from 12.45-27.45 years of free electricity in its lifetime. Plugging that back into our traditional cost of annual electricity, that comes out to $16,677.04-$36,966.09 in savings!</p>
+
+            <p>Now, this is a huge oversimplification of what installing solar panels on a home would look like in reality: there are costs of installation labor and panel maintenance, additional equipment needed to convert solar energy into usable electricity, tax subsidies available at the state and local levels, the fact that not many contractors would recommend an exactly 7.914 kW system, and the many variables in the calculations that were average values in this scenario. Some states will be more ideal for putting up solar panels than others, and this exercise is by no means financial advice. The purpose of all this is to better illustrate how solar energy can be seen as an investment, how the start-up costs at the very beginning can look frightening but are more than outweighed by the lack of costs in the long-run.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="recent-posts">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h3 class="blue-text ml-3 text-uppercase">Recent <span class="orange-text">Posts</span></h3>
+            <div class="row justify-content-start align-items-center mt-5">
+              <!-- Blog post loop start -->
+              <div class="col-sm-12 col-md-4 blog-posts-col">
+                <div class="blog-post-inner">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/blog-monthly-img/blog-thumb-1.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <h4 class="meta-title">Solar Energy as an Investment</h4>
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Blog post loop end -->
+              <div class="col-sm-12 col-md-4 blog-posts-col">
+                <div class="blog-post-inner">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/blog-monthly-img/blog-thumb-2.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <h4 class="meta-title">Solar Energy as an Investment</h4>
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4 blog-posts-col">
+                <div class="blog-post-inner">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/blog-monthly-img/blog-thumb-3.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date">MARCH 25, 2019</span>
+                    <h4 class="meta-title">Solar Energy as an Investment</h4>
+                    <p>Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+                  <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
+                </div>
+
+
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main><!-- /.container -->
+
+{% endblock %}

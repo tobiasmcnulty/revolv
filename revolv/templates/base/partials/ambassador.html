@@ -1,0 +1,132 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid ambassador-header" id="top-section">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light">Bring Solar to Your <br />Community</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/about-abr-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="ambassador-section-second">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+              <h2 class="blue-text fw-300 mb-3">Become a RE-volv Solar Ambassador and bring solar to a nonprofit in your community</h2>
+              <p class="grey-text">RE-volv trains college students and community members to run crowdfunding campaigns that help nonprofits go solar.  Join one of our two programs and receive the tools, training, and platform to make solar dreams a reality.</p>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="ambassador-section-three">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row justify-content-center align-items-center text-center">
+            </div>
+            <div class="row justify-content-center align-items-center mt-5">
+              <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/bring_solar_to_your_community/intake_form/signup/" role="button">Sign up to become a Solar Ambassador</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="ambassador-section-second" style="background: whitesmoke; padding-bottom: 3%; padding-top: 3% !important;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+            <h2 class="orange-text fw-300 mb-5">About the College Fellowship</h2>
+            <p class="grey-text text-center mb-5">The Solar Ambassador College Fellowship is a year-long fellowship for college students who want to help a community-serving nonprofit organization near their campus go solar. RE-volv trains Solar Ambassadors in crowdfunding, solar policy, community engagement, and project management. In turn, the Solar Ambassadors educate their campus communities about solar energy, develop a deep understanding of the energy sector, produce a tangible reduction in carbon emissions, and join a national network of environmental stewards. This fellowship also provides valuable training for careers in the solar industry. </p>
+            <a class="btn btn-blue btn-me btn-arrow-orange my-3" href="/ambassador_info/" role="button">Learn more about being a College Fellow</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="ambassador-section-five">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-12 col-lg-8 text-center">
+            <h2 class="text-white mb-4">About the <br />Community Champion Program</h2>
+            <p class="grey-text">As a RE-volv Solar Ambassador Community Champion, you will spearhead a local solar project from start to finish. Don’t know much about solar? Not to worry. RE-volv will train you on everything you need to know to run a successful solar crowdfunding campaign and make a mark on your community.</p>
+            <a class="btn btn-orange btn-me btn-arrow-white my-4" href="#" role="button" style="display: none;">Learn more about being a Community Champion</a>
+            <div class="row justify-content-center align-items-center margin-top:40px;">
+                <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/bring_solar_to_your_community/intake_form/signup/" role="button">Reach out to learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container-fluid" id="ambassador-section-three">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row justify-content-center align-items-center text-center">
+              <div class="ambassador-col">
+                <img src="../../../static/images/about-abr-img/ambassador-col-1.png">
+                <p>Learn about clean energy</p>
+              </div>
+              <div class="ambassador-col">
+                <img src="../../../static/images/about-abr-img/ambassador-col-2.png">
+                <p>Receive solar industry job training</p>
+              </div>
+              <div class="ambassador-col">
+                <img src="../../../static/images/about-abr-img/ambassador-col-3.png">
+                <p>Join a community of solar activists</p>
+              </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+              <div class="ambassador-col">
+                <img src="../../../static/images/about-abr-img/ambassador-col-4.png">
+                <p>Get trained by industry experts</p>
+              </div>
+              <div class="ambassador-col">
+                <img src="../../../static/images/about-abr-img/ambassador-col-5.png">
+                <p>Attend <br />sustainability <br />events</p>
+              </div>
+              <div class="ambassador-col">
+                <img src="../../../static/images/about-abr-img/ambassador-col-6.png">
+                <p>Receive a letter of recommendation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="ambassador-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-8">
+            <div class="row justify-content-center align-items-center text-center" id="ambassador-player-section">
+                <h2 class="text-white fw-300 mb-5">Watch our Ambassadors in action</h2>
+                <div class="player-skin">
+                  <video controls crossorigin playsinline poster="../../../static/images/about-abr-img/ambassador-player-poster.png" id="ambassador-player">
+                    <!-- Video files -->
+                    <!-- <source src="../../../static/images/about-abr-img/ambassador540.mp4" type="video/mp4" size="576"> -->
+                    <source src="../../../static/images/about-abr-img/ambassador720.mp4" type="video/mp4" size="720">
+                    <source src="../../../static/images/about-abr-img/ambassador540.mp4" type="video/mp4" size="576">
+                    <!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080"> -->
+
+                    <!-- Fallback for browsers that don't support the <video> element -->
+                    <!-- <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a> -->
+                    <a href="../../../static/images/about-abr-img/ambassador720.mp4" download>Download</a>
+                  </video>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main><!-- /.container -->
+    
+    <!-- responsive navigation bar -->
+
+{% endblock %}

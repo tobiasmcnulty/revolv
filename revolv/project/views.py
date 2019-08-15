@@ -34,6 +34,8 @@ logger = logging.getLogger(__name__)
 MAX_PAYMENT_CENTS = 99999999
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+from createsend import Transactional
+
 
 # @login_required
 def stripe_payment(request, pk):
@@ -64,6 +66,51 @@ def stripe_payment(request, pk):
     donation_cents = amount_cents - tip_cents
 
     error_msg = None
+
+
+    # emailz = request.POST['email']
+    # Authenticate with your API Key
+    auth = {'api_key': settings.CM_KEY }
+
+    # The unique identifier for this smart email
+    smart_email_id = 'ec6571f2-8519-4e95-8b97-0c960328be1b'
+
+    # Create a new mailer and define your message
+    tx_mailer = Transactional(auth)
+
+    donation_value = donation_cents / 100.00
+
+    donor_email_cm = request.POST['stripeEmail']
+
+    my_data = {
+        'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+        'href^="tel"': 'href^="tel"TestValue',
+        'href^="sms"': 'href^="sms"TestValue',
+        'owa': 'owaTestValue',
+        'role=section': 'role=sectionTestValue',
+        'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
+        'donation': donation_value
+    }
+
+    # Add consent to track value
+    consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+
+
+    # anon and logged in users gets stripe email sends to that email
+
+    # Send the message and save the response   
+    # on request post data parameters -> transfer  
+    # email -> placeholder  get email data - post -> email
+    # donations to projects, wb etc for monthly donations function 
+    # amount cents  data -> amount cents
+
+    # response = tx_mailer.smart_email_send(smart_email_id, 'Ryan Dexter <mark@re-volv.org>', consent_to_track, data = my_datax)
+
+    # Send the message and save the response
+    # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
+
+    response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
+
     try:
         stripe.Charge.create(source=token, description="Donation for " + project.title, currency="usd",
                              amount=amount_cents)
@@ -222,6 +269,9 @@ def stripe_payment(request, pk):
         return redirect('projects_list')
 
 
+
+# -----------------------------------------------------------------------------------------------
+
 def stripe_operation_donation(request):
     try:
         token = request.POST['stripeToken']
@@ -309,13 +359,60 @@ def stripe_operation_donation(request):
                 context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
 
         context['amount'] = amount / 100.0
+
+        #----- old re-volv send emailer post donation  ---- 
         send_revolv_email(
             'Post_operations_donation',
             context, [email]
         )
+        #----- Campaign monitor --------
+        # emailz = request.POST['email']
+        # Authenticate with your API Key
+        auth = {'api_key': settings.CM_KEY }
+
+        # The unique identifier for this smart email
+        smart_email_id = 'ec6571f2-8519-4e95-8b97-0c960328be1b'
+
+        # Create a new mailer and define your message
+        tx_mailer = Transactional(auth)
+
+        donation_amount = amount / 100.00
+
+        donor_email_cm = request.POST['stripeEmail']
+
+        my_data = {
+            'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+            'href^="tel"': 'href^="tel"TestValue',
+            'href^="sms"': 'href^="sms"TestValue',
+            'owa': 'owaTestValue',
+            'role=section': 'role=sectionTestValue',
+            'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
+            'donation': donation_amount
+        }
+
+        # Add consent to track value
+        consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+
+
+        # anon and logged in users gets stripe email sends to that email
+
+        # Send the message and save the response   
+        # on request post data parameters -> transfer  
+        # email -> placeholder  get email data - post -> email
+        # donations to projects, wb etc for monthly donations function 
+        # amount cents  data -> amount cents
+
+        # response = tx_mailer.smart_email_send(smart_email_id, 'Ryan Dexter <mark@re-volv.org>', consent_to_track, data = my_datax)
+
+        # Send the message and save the response
+        # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
+
+        response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
+
 
         return HttpResponse(json.dumps({'status': 'donation_success', 'amount': amount / float(100)}),
                             content_type="application/json")
+
 
     else:
         if amount_cents > 0:
@@ -447,6 +544,51 @@ def stripe_operation_donation(request):
                 'Post_operations_donation',
                 context, [email]
             )
+
+            #----- Campaign monitor --------
+            # emailz = request.POST['email']
+            # Authenticate with your API Key
+            auth = {'api_key': settings.CM_KEY }
+
+            # The unique identifier for this smart email
+            smart_email_id = 'ec6571f2-8519-4e95-8b97-0c960328be1b'
+
+            # Create a new mailer and define your message
+            tx_mailer = Transactional(auth)
+
+            donation_amount = amount / 100.00
+
+            donor_email_cm = request.POST['stripeEmail']
+
+            my_data = {
+                'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+                'href^="tel"': 'href^="tel"TestValue',
+                'href^="sms"': 'href^="sms"TestValue',
+                'owa': 'owaTestValue',
+                'role=section': 'role=sectionTestValue',
+                'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
+                'donation': donation_amount
+            }
+
+            # Add consent to track value
+            consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+
+
+            # anon and logged in users gets stripe email sends to that email
+
+            # Send the message and save the response   
+            # on request post data parameters -> transfer  
+            # email -> placeholder  get email data - post -> email
+            # donations to projects, wb etc for monthly donations function 
+            # amount cents  data -> amount cents
+
+            # response = tx_mailer.smart_email_send(smart_email_id, 'Ryan Dexter <mark@re-volv.org>', consent_to_track, data = my_datax)
+
+            # Send the message and save the response
+            # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
+
+            response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
+
             return HttpResponse(json.dumps({'status': 'subscription_success', 'amount': amount / float(100)}),
                                 content_type="application/json")
 

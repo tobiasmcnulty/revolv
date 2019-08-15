@@ -1,0 +1,168 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header15" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-300 mb-0">These 5 Cities Are Leading <br /> The Way To 100% Renewable Energy</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">It’s no secret that the current administration in Washington, DC is a much bigger fan of fossil fuels than renewable energy. But cities across America are showing that you can grow green jobs and the clean energy economy locally, with initiatives like renewables-friendly regulations, electric vehicle charging stations, direct municipal investments in wind and solar, and much, much more.  </p>
+              <p class="grey-text">The Sierra Club’s #ReadyFor100 campaign is a fantastic example of how powerful this local energy can be, with over 100 cities pledging to go all the way to 100% renewable energy - and many that are well on their way to that goal already! If you’re looking to start a career in solar or other renewable energy industries, these 5 cities highlighted in the Sierra Club’s 2018 Case Study Report are great places to start.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Denver, CO</h5>
+            <p class="grey-text">Before #ReadyFor100 had even begun, Colorado’s capital had established itself as a leader in city climate policy with its 2015 Climate Action Plan. That plan pledged to reduce Denver’s carbon emissions by 80% by the year 2050, and includes strategies to encourage community solar, energy efficiency, electric vehicles, mass transit, and even land use changes.</p>
+            <p class="grey-text">With this foundation, it was only a matter of time (July 2018, specifically) before Denver set a goal for 100% renewable electricity. It plans to reach 100% by 2030 at the latest, and has put pressure on regional utility giant Xcel Energy to help out. So far, it seems to be working: last year Xcel announced plans to retire its coal-fired units in Colorado and get to 80% zero-carbon electricity by 2030 en route to 100% by 2050 across its entire 8-state territory!</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Fayetteville, AR</h5>
+                  <p class="grey-text">Historically, Arkansas may be coal country, but in January 2018 the fast-growing city of Fayetteville became the first in the state to commit to 100% renewable energy. The city’s Energy Action Plan targets 100% renewables for the city government by 2030 and for the city as a whole by 2050, and also includes targets for energy efficiency, public transportation, and even shade cover!</p>
+                  <p class="grey-text">While the initiative is only a year old, significant progress is underway. The city has installed electric vehicle charging stations, launched a bike-share program, and is promoting energy efficiency programs for homes and businesses. The next step for Fayetteville is developing municipal renewable energy generation, and it is partnering with the University of Arkansas - the city’s largest employer - to explore opportunities to build a wind or solar farm</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Minneapolis, MN</h5>
+            <p class="grey-text">Like Denver, Minneapolis has a track record of leadership on climate, with the passage of a Climate Action Plan in 2013 that includes strategies on energy, transportation, land use, and waste. That plan set a goal of reducing the city’s greenhouse emissions by 80% by 2050, and in April 2018 Minneapolis set an even bolder target of reaching 100% renewable energy by 2030!  </p>
+            <p class="grey-text">In addition to becoming the largest city in the midwest to commit to 100% renewables, Minneapolis is leading the way by putting equity at the center of its energy agenda. Community solar is playing a major role, with 92% of participants in Xcel’s community solar program in the state saving money on bills and a third of the program’s power going to public sector entities like schools. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Orlando, FL</h5>
+            <p class="grey-text">Orlando is famously “The Theme Park Capital of the World,” but it is also making a name for itself as a leader in the 100% renewable energy movement. In August 2017, its city council passed a resolution for municipal operations to be 100% renewable by 2030 and for the entire city to reach 100% by 2050, making it the 2nd largest city in Florida to be #ReadyFor100.</p>
+            <p class="grey-text">The city already made impressive progress, with two solar farms built to provide 100% of the electricity needs of Orlando’s city hall, all 17 fire stations, and its police headquarters. The municipal utility is helping residents and businesses to buy solar power through its Community Solar program or even go solar themselves at a reduced cost through its Collective Solar program, and the city itself has launched a $500 million PACE clean energy financing program. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. Santa Barbara, CA</h5>
+            <p class="grey-text">No list of renewables-positive cities would be complete without a representative from California, the epicenter of all things green! Santa Barbara committed early to the #ReadyFor100 movement, setting a goal in June 2017 to get 50% of the power needed for city operations from renewables by 2020, and 100% of the entire city’s electricity from renewables by 2030. </p>
+            <p class="grey-text">It is also an early adopter of Community Choice Aggregation (CCA), a solution that allows cities to bypass their utilities and make more ambitious renewable energy purchasing decisions at the municipal level. Santa Barbara has formed a CCA called Central Coast Power with neighboring Goleta and Carpinteria that will allow it to increase the city’s share of renewables to 50% when it launches in 2021 and lead the way towards its goal of 100% by 2030. </p>
+          </div>
+        </div>
+      </div>
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-1.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-2.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-3.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

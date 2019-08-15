@@ -1,0 +1,151 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<style>
+@media (max-width: 906px) {
+  .edu-cen-re-header3 {
+    background-size: auto !important;
+  }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header3" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-700 mb-0 txt-shadow">5 Steps to bring solar <br />to your community</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Climate change is a generational challenge for the entire planet, but transitioning our energy system away from fossil fuels can start today right in your hometown. By bringing your community together around climate solutions like solar power, you can help catalyze this global transition while delivering positive impacts where you live.</p>
+              <p class="grey-text">Helping a local nonprofit to go solar is one of the most effective ways you can participate in this movement. And the good news is, you don’t have to be a solar energy expert to lead a community solar project. All you need is some determination, the right partners - and these 5 steps.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Put a team together</h5>
+            <p class="grey-text">Community solar projects work best as a team effort. After all, community is all about teamwork - and there’s a lot of work to do.</p>
+            <p class="grey-text">Use your personal networks, community message boards, or social media to assemble at least 3 trustworthy teammates that share your passion for solar. One person should be designated as Project Lead, another to handle press and social media, and another to focus on event planning. There will be plenty of work associated with each of these areas as your project progresses, so definitely keep adding team members as needed - the more the merrier!</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Find a nonprofit to solarize</h5>
+                  <p class="grey-text">This is the most important step: you need to identify a nonprofit organization that serves an important role in your community, owns their building, and wants to reduce their electricity costs. It could be a homeless shelter, a nonprofit school, a house of worship, a community center, a food kitchen, an arts center, a health clinic - you name it!</p>
+                  <p class="grey-text">You might have a nonprofit in mind already, or you might have to do some research and outreach in your community. Either way, Re-volv is an organization specializing in community solar projects that can help you determine if a given nonprofit is a good fit for a solar project.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Run a crowdfunding campaign</h5>
+            <p class="grey-text">Once you determine how much going solar will cost your nonprofit - Re-volv can help with this, too - it’s time to raise the money. This is really the heart of your work on the campaign, and you can use videos, social media, events, and other fundraising initiatives to reach your goal.</p>
+            <p class="grey-text">Be creative, tap into the skills of your talented team, and most importantly have fun! Remember, you’re raising money for a great cause for your community and the entire planet, so don’t be shy about getting the word out.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Document the installation</h5>
+            <p class="grey-text">Project implementation will be taken care of by professionals, but you and your team will be responsible for capturing the solar magic as it happens. The design and installation process for a solar project can take a few months, but it’s hugely satisfying to see, and worth documenting every step of the way.</p>
+            <p class="grey-text">Posting videos, photos, and writing blogs about the progress of your solar project will be greatly appreciated by your project supporters - after all, they helped to make it happen! It will also help other nonprofits learn how they can benefit from solar too, so your good work can reverberate beyond your community.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. Celebrate!</h5>
+            <p class="grey-text">Once the installation is complete, it’s time to celebrate! Work with your team and your newly-solarized nonprofit partner to hold a public ribbon-cutting event to unveil the solar project to your community.</p>
+            <p class="grey-text">Try to line up a “headliner” to say a few words to introduce the project. It could be the mayor, the president of the nonprofit, a local celebrity - anyone who can help draw attention to the solar energy future you’re helping to build. And be sure to invite the press, community leaders, local solar installers, and any other relevant groups.</p>
+            <p class="grey-text">Finally, it’s time to high five your entire team - not only have you made an important positive impact on your community, you’re helping to inspire more solar love around the world! </p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="/get-involved/education/reasonforsolar/">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/4reasonthumb.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="orange-text">4 Reasons to Bring Solar to Your Community</h6>
+                      <p class="grey-text">When we think about solar energy, there’s a natural tendency to think about the big picture. After all, the sun literally lights up..</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

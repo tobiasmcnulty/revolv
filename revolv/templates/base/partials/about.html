@@ -1,0 +1,176 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid about-header" id="top-section">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light">RE-volv empowers people to bring clean <br> energy to thier communities</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/about-abr-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="about-section-second">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+             <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="misvis-col text-center">
+                  <h2 class="blue-text">Mission</h2>
+                  <div class="line-section">
+                    <div class="line-center"></div>
+                  </div>
+                  <p>RE-volv empowers people and communities to invest collectively in renewable energy</p>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div class="misvis-col text-center">
+                  <h2 class="blue-text">Vision</h2>
+                  <div class="line-section">
+                    <div class="line-center"></div>
+                  </div>
+                  <p>We envision a world where people are thriving in communities powered by clean energy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="about-section-three">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-5">
+                <h1 class="orange-text">Our Theory <br><span class="text-white">of</span> Change</h1>
+                <p class="text-white fw-300"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span></p>
+                <p class="text-white fw-300">So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.</p>
+                <p class="text-white fw-300"><span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span></p>
+              </div>
+            </div>
+          </div>
+        </div>          
+      </div>
+      <div class="container-fluid" id="about-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12 col-md-5 text-right">
+                <h1 class="orange-text">How It Works</h1>
+                <p class="grey-text fw-400">Nonprofits save 15% or more on their electric bills when they go solar with RE-volv. These organizations save money on their electric costs while paying RE-volv back through a Power Purchase Agreement or lease.</p>
+                <p class="grey-text fw-400">Those payments are reinvested in a revolving fund, the Solar Seed Fund, which continually finances more nonprofit solar projects.</p>
+                <a class="btn btn-blue btn-lg btn-arrow-orange mt-4" href="/How_it_works/" role="button" tabindex="0">Learn more</a>
+              </div>
+
+              <div class="col-sm-12 col-md-5">
+                <img src="../../../static/images/about-abr-img/girlbball-solarfin.png">
+                <!-- <img src="../../../static/images/about-abr-img/girlbballsolar.jpg"> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+                  <p class="fw-400">Stay updated and get great content.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="about-section-six">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-12 col-lg-10 text-center">
+            <h1 class="blue-text fw-300 mb-5">Get Involved</h1>
+            <div class="line-section mb-5">
+              <div class="line-center"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center align-items-center mt-5">
+          <div class="col-sm-12 co-md-12 col-lg-10 px-3">
+            <div class="row justify-content-center align-items-center about-six-row-f">
+              <a href="/monthly_donor/">
+                <div class="involve-col">
+                  <img src="../../../static/images/about-abr-img/involve-1.png">
+                  <p>Donate to the Solar Seed Fund</p>
+                </div>
+              </a>
+              <a href="/get-involved/solar-ambassador/">
+                <div class="involve-col">
+                  <img src="../../../static/images/about-abr-img/involve-2.png">
+                  <p>Become a Solar Ambassador</p>
+                </div>
+              </a>
+              <a href="/#newsletter-anchor">
+                <div class="involve-col">
+                  <img src="../../../static/images/about-abr-img/involve-3.png">
+                  <p>Join our<br> mailing list</p>
+                </div>
+              </a>
+            </div>
+            <div class="row justify-content-center align-items-center about-six-row-l">
+              <a href="/about-us/jobs/">
+                <div class="involve-col">
+                  <img src="../../../static/images/about-abr-img/involve-4.png">
+                  <p>Work or volunteer with us</p>
+                </div>
+              </a>
+              <a href="/get-involved/education/">
+                <div class="involve-col">
+                  <img src="../../../static/images/about-abr-img/involve-5.png">
+                  <p>Learn more <br>about solar energy</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="about-section-seven">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-12 col-lg-12 text-center">
+            <h1 class="text-white fw-300 mb-5">Follow us on social media</h1>
+            <ul class="sharing-icons">
+              <li><a href="https://www.facebook.com/solarseedfund/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="https://twitter.com/RE_volv" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="https://www.youtube.com/user/REvolvSolarSeedFund" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a></li>
+              <li><a href="https://www.instagram.com/re.volv/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main><!-- /.container -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}

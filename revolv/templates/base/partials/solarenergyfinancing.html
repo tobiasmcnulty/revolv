@@ -1,0 +1,145 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+
+{% block body %}
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-ce-header" id="top-section" style="height: 582px !important; background-position: top !important;">
+        <div class="row text-center">
+          <div class="col hero-text align-self-start" style="margin-top: 250px;">
+            <h1 class="text-white fw-700 mb-1">Education Center</h1>
+            <h3 class="text-white fw-300 mb-5">Get the skills to pay the bills!</h3>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/edu-media-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="edu-re-cats">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-11 col-lg-11">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-6 col-md-3">
+                <a href="/get-involved/education/solarenergyfinancing/">
+                  <div class="edu-re-cat-col cat-one" >
+                    <div class="edu-re-cat-text" style="border-bottom: 10px solid #00bfcb;">
+                      <h3>Solar Energy & Financing</h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <a href="/get-involved/education/solarcommunity/">
+                  <div class="edu-re-cat-col cat-two">
+                    <div class="edu-re-cat-text">
+                      <h3>Bring Solar to Your Community</h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <a href="/get-involved/education/crowdfunding/">
+                  <div class="edu-re-cat-col cat-three">
+                    <div class="edu-re-cat-text">
+                      <h3>Solar Crowdfunding </h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <a href="/get-involved/education/careers/">
+                  <div class="edu-re-cat-col cat-four">
+                    <div class="edu-re-cat-text">
+                      <h3>Solar Careers</h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="blog-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3 text-uppercase">Solar Energy & Financing <span class="orange-text"> </span></h2>
+            <div class="row justify-content-start align-items-center mt-5">
+              <!-- Blog post loop start -->
+             
+                <div class="col-sm-12 col-md-4 blog-posts-col">
+                  <div class="blog-post-inner">
+                    <a href="/get-involved/education/solarenergy/">
+                      <div class="blog-thumb-wrapper">
+                        <img src="../../../static/images/eduresource-img/solarenergythumb.png">
+                      </div>
+                      <div class="blog-excerpt-wrapper">
+                        <span class="meta-date"> </span>
+                        <h4 class="meta-title">Solar Energy 101</h4>
+                        <p>We’re living through a massive boom in solar energy - an infinitely available, low-cost, zero-pollution source of electricity..</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 blog-posts-col">
+                    <div class="blog-post-inner">
+                      <a href="/get-involved/education/solarfinance/">
+                        <div class="blog-thumb-wrapper">
+                          <img src="../../../static/images/eduresource-img/solarfinancethumb.png">
+                        </div>
+                        <div class="blog-excerpt-wrapper">
+                          <span class="meta-date"> </span>
+                          <h4 class="meta-title">Solar Financing 101</h4>
+                          <p>Going solar is a great deal, saving homeowners and businesses 15% or more on their electricity bills. But because the up-front costs..</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+              <!-- Blog post loop end -->
+
+            </div>
+            <div class="row justify-content-center align-items-center text-center">
+              <a class="btn btn-grey btn-lg btn-arrow-white my-2" href="#" role="button">Load More</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+                  <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
+                </div>
+
+
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main><!-- /.container -->
+    <!-- responsive navigation bar -->
+
+{% endblock %}

@@ -1,0 +1,207 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+
+<style>
+
+.margin-team {
+  margin: 60px 0px;
+}
+
+.span-team {
+  color:#100084; 
+  font-size:2em;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid ambassador-header" id="top-section">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light">Ambassador<br />Fellowship & Program Info</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/about-abr-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="ambassador-section-second" style="padding-bottom: 6%;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+              <h2 class="blue-text fw-300 mb-3">Fellowship Description</h2>
+              <p class="grey-text">Are you a college student passionate about renewable energy? Are you interested in taking action to put up solar in your community? If the opportunity to install a solar energy system on a nonprofit or cooperative near you sounds exciting, then RE-volv wants to help you make it happen.</p>
+              <p class="grey-text">The Solar Ambassador Fellowship is a fellowship for one academic year that gives college students the opportunity to spearhead a solar project in their community using RE-volv’s innovative solar financing model. We are looking for creative, passionate, and resourceful college students who are eager to spread solar across the country. <p>
+              <p class="grey-text">Interested in applying but have questions? Reach out to Elyse Wood at elyse@re-volv.org to set up an intro call.</p>
+              <p class="grey-text"> </p>
+                
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="application-section-five" style="background-size:100%;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-start">
+              <div class="col-sm-12 col-md-5">
+                <h1 class="orange-text mb-4">Requirements</h1>
+                <ul class="requirment-list text-white">
+                  <li>The team is comprised of at least 3 but no more than 10 college students who will be enrolled in a college or university 2019-2020</li>
+                  <li>The team completes a Team Application</li>
+                  <li>The team completes an online training to help them gather a list of nonprofits that may want to go solar through RE-volv </li>
+                  <li>The team begins formal training to run a successful campaign and complete the project</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="application-section-second">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+                <h2 class="blue-text fw-300 mb-3">Benefits</h2>
+                <p class="grey-text">During the academic year, RE-volv will help teams bring their solar projects to fruition. To facilitate this, each team will select one Project Lead who will be invited to an all-expense-paid Solar Ambassador Leadership Summit held in July or August in the San Francisco Bay Area. This summit will train Project Leads on solar finance and policy, crowdfunding, event planning, communications, and community engagement - all the skills needed to complete their proposed project! Every Solar Ambassador will also be provided with exclusive resources and campaign materials.</p>
+                <p class="grey-text">During the academic year, all team members will participate in biweekly webinars with RE-volv staff and special guests from leading environmental organizations and solar companies. Topics range from renewable energy to environmental justice, and these webinars will serve as discussion rooms for fellow Solar Ambassadors to share ideas. All Solar Ambassadors will also receive close mentoring and guidance from RE-volv staff.</p>
+  
+            </div>
+            
+            <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+                <p class="grey-text">Interested in applying? Before you do, reach out to Elyse Wood at elyse@re-volv.org to set up an intro call.</p>
+            </div>
+          <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+              <a class="btn btn-blue btn-me btn-arrow-orange mx-2" style="margin-top:20px;" href="/bring_solar_to_your_community/intake_form/signup" role="button">Sign up now!</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container-fluid" id="ambassador-section-second" style="padding-bottom: 6%;">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+                <h2 class="blue-text fw-300 mb-3">Meet the 2018-2019 Solar Ambassadors!</h2>
+                <img src="../../../static/images/team-edu-img/ambassadorteampic.jpg">
+                <p class="grey-text"> </p>
+
+                <div class="">
+                <section class="row">
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/yaleuni.png" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">Yale University</span>
+                        <strong><br>Project Lead:</strong> Carrie Heilbrun
+                        <strong><br>Team:</strong> Katie Schlick, Kendall Brent, Lauren Delgado
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/americauni.png" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">American University</span>
+                        <strong><br>Project Lead:</strong> Zainab Mirza, Samantha Miller
+                        <strong><br>Team:</strong> Sarah Lyon, Paige Shoemaker, Danielle Dumais, Ana Lipton, Max Camateros-Mann Fraser, Lee Hudgins.
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>    
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/newenglanduni.jpg" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">University of Dayton</span>
+                        <strong><br>Project Lead:</strong> Sam Dasco 
+                        <strong><br>Team:</strong> Tess Isemann, Colin Joern, Thomas Abrams, Emily Burns, Nicholas Oesterling, Melissa Padera, Nina Santarpia, Luke Skobieranda
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>    
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/wisconsinuni.jpg" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">University of Wisconsin-Madison</span>
+                        <strong><br>Project Lead:</strong> Ryan Arbuckle
+                        <strong><br>Team:</strong> Carmen Dancy, Caleb Pulliam, Sam MacKenzie, Kathryn Willer, John (Jack) MacMullin
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>     
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/milwaukeeuni.jpg" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">University of Wisconsin-Milwaukee</span>
+                        <strong><br>Project Lead:</strong> Nathan Tennies
+                        <strong><br>Team:</strong> Lukas Guillien, Liz Fennimore, Fidel Sierra, Bill Becker, Kyle Gasariowitz Rachelle, McDowell Madhur, Malhorta Kuldeep Mann
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/purdueuni.jpg" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">Purdue University</span>
+                        <strong><br>Project Lead:</strong> Hannah Jongkind
+                        <strong><br>Team:</strong> Anna Adamsson, Artha Lou C Da Silva, Casey Stowers, Liana Zogbi, Samuel Heath
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/oregonuni.jpg" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">University of Oregon</span>
+                        <strong><br>Project Lead:</strong> Haley Hemphill
+                        <strong><br>Team:</strong> Bryce Shortal, Anna Yee,  Jaron Malcom, Richwill (Ama) Duru
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/dukeuni.png" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">Duke University</span>
+                        <strong><br>Project Lead:</strong> Jack Ferrante
+                        <strong><br>Team:</strong> Conrad Mitchell, Grant Mak, Quin Ferrante, Manish Kumar, Jake Gerard
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/coastuni.png" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">Coastal Carolina University</span>
+                        <strong><br>Project Lead:</strong> Shani Caplan-Chernoff
+                        <strong><br>Team:</strong> Breanna Dew, Emily Doscher, Lyle Ciardi, Danielle A. Kvadas, Allison Lavallee, Lucie Marshall, Griffin Unruh, Cat Sweeny, Daniel Hallock, Anthony (Stosh) Hess, Jacob Doty
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                    <article class="col-md-12 margin-team">
+                      <img src="../../../static/images/team-edu-img/ucsbuni.png" class="img-fluid rounded float-left mr-5" alt="...">
+                      <p style="text-align:left;"><span class="span-team">University of California Santa Barbara</span>
+                        <strong><br>Project Lead:</strong> Brendan Abatecola
+                        <strong><br>Team:</strong> Veronica Hsu, Andrew Lee, Briana Zhen, Luis Aragon, Jacob Ruvalcaba, Cynthia Torres, Ryan Zinniger, Iris Li, Caroline Fyfe, Jennifer Olguin, Elvia Cruz-Garcia, Sydney Bartone
+                        <strong><br>Partner:</strong> TBA
+                      </p>
+                    </article>
+                  </section>
+                  </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+        
+        
+    
+      <div class="container-fluid" id="ambassador-section-five">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-12 col-lg-8 text-center">
+            <h2 class="text-white mb-4">About the <br />Solar Ambassador Fellowship</h2>
+            <p class="grey-text">The Solar Ambassador Fellowship is a year-long fellowship for college students who want to help a community-serving organization near their campus go solar! RE-volv trains ambassadors in crowdfunding, solar policy, community engagement, and project management. In turn, the Solar Ambassadors educate their campus communities about solar energy, develop a deep understanding of the energy sector, produce a tangible reduction in carbon emissions, and build a national network of environmental stewards. </p>
+            <p class="grey-text">Interested in applying? Before you do, reach out to Elyse Wood at <a href>elyse@re-volv.org </a> to set up an intro call.</p>
+            <a class="btn btn-orange btn-me btn-arrow-white my-4" href="#" role="button" style="display: none;">Learn more about being a Community Champion</a>
+            <div class="row justify-content-center align-items-center margin-top:40px;">
+                <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/bring_solar_to_your_community/intake_form/signup/" role="button">Reach out to learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main><!-- /.container -->
+    
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/home-js/script.js' %}"></script>
+{% endblock %}

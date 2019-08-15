@@ -6,6 +6,23 @@
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static "dist/css/pages/auth/index.css" %}">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" >
+    <link href="{% static 'css/font-awesome.css' %}?version={{ version_number }}"  rel="stylesheet" />
+
+    <style>
+    .row.slb_socialButtons.slb-google {
+      color: #100084;
+    }
+
+    .row.slb_socialButtons.slb-google:hover {
+      background-color: #100084;
+      color: white;
+      border: 1px #100084 solid; 
+    }
+
+    .social-login-buttons {
+      margin-left: 0px;
+    }
+    </style>
 {% endblock %}
 
 {% block javascripts %}
@@ -20,14 +37,27 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+        <div class="col hero-text align-self-end">
+        <h4 class="text-light"> </h4>
+        </div>
+    </div>
+    </div>
+<div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+</div>
+
 <div class="contents top150 auth">
 
 <div class="login" {% if referring_endpoint == "signup" or referring_endpoint == "" %}style="display: none"{% endif %}>
     {% if request.session.payment %}
       <h4 class="donation-welcome-msg">Thank you for your interest in supporting this project! The next step is to log in or create an account here.</h4>
     {% endif %}
-    <div class="row">
-    <div class="col-md-3 col-md-push-3 col-sm-3 col-sm-push-1">
+    <div class="row text-center justify-content-center">
+    <div class="col-md-3 col-md-push-3 col-sm-3 col-sm-push-1" style="text-align: left;">
         <!--{% if reason and reason == "donate" %}-->
             <!--<h1>{{ settings.revolv_cms.LoginPageSettings.heading_for_donation }}</h1>-->
             <!--{{ settings.revolv_cms.LoginPageSettings.login_paragraph_for_donation|safe }}-->
@@ -90,7 +120,7 @@
     {% if request.session.payment %}
       <h4 class="donation-welcome-msg">Thank you so much for supporting this project! The next step is to log in or create an account here.</h4>
     {% endif %}
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-md-3 col-md-push-3 col-sm-3 col-sm-push-1">
            {% if not request.session.payment %}
             <h1>{{ settings.revolv_cms.SignupPageSettings.heading }}</h1>

@@ -17,15 +17,17 @@
     <meta charset="utf-8">
     <meta property="og:title" content="{{ project.title }} | RE-volv" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/> -->
     <meta property="og:title" content="{{ project.title }} | RE-volv" />
     <meta property="og:image" content="{% if project.video_url %}{{ project.video_url |fullmediaurl }}{% else %}{{ settings.revolv_cms.ShareThisSettings.image|fullmediaurl }}{% endif %}" />
     <meta property="og:description" content="{% if project.description %} {{ project.description | striptags|safe }}
                                             {% else %} {{ settings.revolv_cms.ShareThisSettings.description }}{% endif %}" />
-    <link rel="icon" type="image/png" href="{% static 'images/revolv-logo.png' %}" />
+    <!-- Meta icon -->
+    <link rel="icon" type="image/png" href="{% static 'images/revolvorange.png' %}" />
     {% block meta %}
     {% endblock %}
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap 
 
     <link href="{% static 'css/font-awesome.css' %}?version={{ version_number }}"  rel="stylesheet" />
     <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -33,19 +35,22 @@
 
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
-
+    -->
+    
     <!-- Main CSS -->
     <link href="{% static 'css/jqtransform.css' %}" rel="stylesheet" />
     <link href="{% static 'css/animate.css' %}?version={{ version_number }}" rel="stylesheet" />
     <link href="{% static 'css/screen.css' %}?version={{ version_number }}"  rel="stylesheet" />
     <link rel="manifest" href="{% static 'manifest.json' %}" />
-    <meta name="theme-color" content="#14b1e7" />
+    <meta name="theme-color" content="#100084" />
 
     <!-- Toastr CSS -->
     <link href="{% static 'css/toastr.min.css' %}?version={{ version_number }}"  rel="stylesheet" />
 
     <!-- jQuery library -->
-    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <!-- temporay comment out jquery older version, new code on webpages are on jquery     -->
+    <!-- <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'js/jquery.knob.js' %}"></script>
     <script src="{% static 'js/parallax.min.js' %}"></script>
@@ -53,7 +58,7 @@
     <script src="{% static 'js/hammer.min.js' %}"></script>
     <script src="{% static 'js/jquery.hammer.js' %}"></script>
     <script src="{% static 'js/jquery.jqtransform.js' %}"></script>
-    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!--  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script> -->
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
     <!-- Main JS -->
@@ -119,7 +124,7 @@
     {% block body-bottom %}
     {% endblock %}
 
-    {% include "base/partials/foot.html" %}
+    {% include "base/partials/foot.html" %}  
 
     <script src="{% static 'js/toastr.min.js' %}?version={{ version_number }}"></script>
 
@@ -137,33 +142,7 @@
     {% render_block "js" %}
     {% block javascripts %}
     {% endblock %}
-<div class="modal fade et_monarch" id="social_media_operation" role="dialog">
-                <div class="et_social_popup_content et_social_resize et_social_fadein" style="height: 176px; max-height: 392px; top: 108px;">
-					<a href="#" class="et_social_icon et_social_icon_cancel"></a>
-					<div class="et_social_header" style="padding-bottom: 2em;text-align: center;">
-						<span class="confirm-text">Thank you for donating! Now help us spread the word!</span>
-					</div>
-					<div class="et_social_networks et_social_3col et_social_slide et_social_rounded et_social_left et_social_withcounts et_social_withnetworknames" style="height: 112px;">
-						<ul class="et_social_icons_container"><li class="et_social_facebook">
-									<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://re-volv.org/&title=RE-volv Operations&description=I just donated to RE-volv, a clean energy nonprofit! Join me in bringing solar energy to communities across the country!&picture={{ cover_photo }}" class="et_social_share et_social_display_count" rel="nofollow" data-social_name="facebook" data-post_id="7661" data-social_type="share" data-location="popup" data-min_count="0">
-										<i class="et_social_icon et_social_icon_facebook" aria-hidden="true"></i><div class="et_social_network_label"><div class="et_social_networkname">Facebook</div><div class="et_social_count">
-					</div></div><span class="et_social_overlay"></span>
-									</a>
-								</li><li class="et_social_twitter">
-									<a target="_blank" href="http://twitter.com/share?text=I just donated to RE-volv, a clean energy nonprofit! Join me in bringing solar energy to communities across the country!&url=https://re-volv.org/&image={{cover_photo}}" class="et_social_share" rel="nofollow" data-social_name="twitter" data-post_id="7661" data-social_type="share" data-location="popup">
-										<i class="et_social_icon et_social_icon_twitter"></i><div class="et_social_network_label"><div class="et_social_networkname">Twitter</div><div class="et_social_count">
-					</div></div><span class="et_social_overlay"></span>
-									</a>
-                                </li>
-                                <li class="et_social_linkedin">
-									<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=https://re-volv.org/&title=I just donated to RE-volv, a clean energy nonprofit! Join me in bringing solar energy to communities across the country!" class="et_social_share" rel="nofollow" data-social_name="linkedin" data-post_id="7661" data-social_type="share" data-location="popup">
-										<i class="et_social_icon et_social_icon_linkedin"></i><div class="et_social_network_label"><div class="et_social_networkname">linkedin</div></div><span class="et_social_overlay"></span>
-									</a>
-                                </li>
-                                </ul>
-					</div>
-				</div>
-</div>
+
 <div class="modal fade" id="operationModal" role="dialog">
     <div class="modal-dialog">
 
@@ -171,11 +150,10 @@
 
       <div class="modal-content modal-reinvest" style="width: 80%;margin-top: 30%;margin-left: 8%;">
         <div class="modal-header">
-          <button type="button" class="close" onclick="return refreshpage();" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title" style="font-weight: bold;"></h4>
+            <h4 class="modal-title" style="font-weight: bold;">Thank you for your generous donation to RE-volv!</h4>
         </div>
         <div class="modal-body">
-            <p class="donation-text"></p>
+            <p class="donation-text"> Your commitment to solar energy is appreciated by the communities we serve and the environment we work to protect.</p>
         </div>
         <div class="modal-footer align-center">
             <a href="" class="btn btn-primary donate-ok-btn">OK</a>
@@ -192,7 +170,7 @@
         <div class="full-width modal-header">
             <div class="full-width donate-popup-header">
                 <div class="col-xs-10">
-                    <img class="background-image-size" src="/static/images/revolv-logo.png">
+                    <img class="background-image-size" src="/static/images/revolvorange.png">
                     <h4 class="modal-title">RE-volv</h4>
                 </div>
                 <div class="col-xs-2">
@@ -256,7 +234,7 @@
 $(function ($) {
   var handler = StripeCheckout.configure({
     key: '{{ stripe_publishable_key }}'
-    , image: '{% static "images/revolv-logo.png" %}'
+    , image: '{% static "images/revolvorange.png" %}'
     , locale: 'auto'
     , name: 'RE-volv'
     , email: '{{request.user.email}}'

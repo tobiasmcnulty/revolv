@@ -1,0 +1,864 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+<style>
+
+.content {
+
+display: none;
+}
+#loadMore {
+
+}
+#loadMore:hover {
+
+}
+.noContent {
+color: #000 !important;
+background-color: transparent !important;
+pointer-events: none;
+}
+</style>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+
+{% block body %}
+    <main role="main" class="container-fluid">
+      <div class="container-fluid media-header" id="top-section">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end mb-5">
+            <h1 class="text-white fw-700 mb-5">RE-volv News</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/edu-media-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="media-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h1 class="grey-text mb-5 fw-700 text-center">Featured in</h1>
+            <div class="row justify-content-start align-items-center">
+              <div class="col-sm-6">
+                <a href="http://grist.org/news/re-volv-is-making-a-community-pot-of-solar-gold/">
+                  <div class="media-col">
+                    <div class="media-logo">
+                      <img src="https://s2.wp.com/wp-content/themes/vip/grist-responsive/img/logos/logo-header.png"  style="width:143px; height:63px;">
+                    </div>
+                    <div class="media-txt">
+                      <h5 class="orange-text">Grist</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <a href="https://www.fastcompany.com/3025639/a-new-way-to-finance-solar-a-use-solar-power-to-pay-for-more-solar-power">
+                  <div class="media-col">
+                    <div class="media-logo">
+                      <img src="https://laracasey.com/wp-content/uploads/2019/04/fast-company-logo-1-e1528767788332.png" style="width:143px; height:63px;">
+                    </div>
+                    <div class="media-txt">
+                      <h5 class="orange-text">Fast Company</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <a href="http://dotearth.blogs.nytimes.com/2016/02/23/bill-gates-the-impatient-optimist-lays-out-his-clean-energy-innovation-agenda/?_r=1">
+                  <div class="media-col">
+                    <div class="media-logo">
+                      <img src="https://www.sjpl.org/sites/default/files/images/1718/nyt.png" style="width:143px; height:83px;">
+                    </div>
+                    <div class="media-txt">
+                      <h5 class="orange-text">New York Times</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <a href="http://www.forbes.com/sites/billtucker/2015/07/09/re-volv-ing-around-solar/">
+                  <div class="media-col">
+                    <div class="media-logo">
+                      <img src="https://cdn-images-1.medium.com/max/1440/1*UMb1VBufUL8VFLhXVnUvlw@2x.png" style="width:143px; height:63px;">
+                    </div>
+                    <div class="media-txt">
+                      <h5 class="orange-text">Forbes</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <a href="https://cleantechnica.com/2013/04/04/re-volv-signs-first-solar-lease-with-shawl-anderson-dance-center/">
+                  <div class="media-col">
+                    <div class="media-logo">
+                      <img src="https://s3.amazonaws.com/media.muckrack.com/groups/icons/cleantechnica.png" style="width:143px; height:63px;">
+                    </div>
+                    <div class="media-txt">
+                      <h5 class="orange-text">CleanTechnica</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <h1 class="grey-text mb-5 mt-5 fw-700 text-center">Archive</h1>
+            <div class="row justify-content-start align-items-center">
+              <div class="col-sm-6 content">
+                <a href="https://www.solarpowerworldonline.com/2019/04/nonprofit-coalition-national-solar-education-week/">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">April 15, 2019</span>
+                      <h5 class="orange-text">Solar Power World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://solarindustrymag.com/solar-education-week-launches-across-the-country/">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">April 15, 2019</span>
+                      <h5 class="orange-text">Solar Energy</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.altenergymag.com/news/2019/04/15/coalition-of-solar-nonprofits-organize-national-week-of-solar-education-events-solar-education-week/30760">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">April 15, 2019</span>
+                      <h5 class="orange-text">Alt Energy Mag</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.wdtn.com/news/local-news/ud-students-launching-new-solar-panel-campaign/1797271237">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">February 20, 2019</span>
+                      <h5 class="orange-text">WDTN 2 News</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- 2018 -->
+              <div class="col-sm-6 content">
+                <a href="https://cleanenergy.org/blog/vfw-post-goes-solar-serves-vets-saves-money-and-protects-environment-in-sc/">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">November 9, 2018</span>
+                      <h5 class="orange-text">Clean Energy</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://re-volv.org/documents/73/Financing_Community_Solar_Based_Projects.pdf">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">February 19, 2018</span>
+                      <h5 class="orange-text">SEPA</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://blueavocado.org/fundraising/empowering-next-generation-leaders-through-crowdfunding/">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">October 18, 2018</span>
+                      <h5 class="orange-text">Blue Avocado</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://sej.stanford.edu/sourcing-crowd-sustainable-energy-future">
+                  <div class="media-col">
+                    <div class="media-txt">
+                      <span class="meta-date">October 18, 2018</span>
+                      <h5 class="orange-text">Standford Energy Journal</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.treehugger.com/renewable-energy/help-crowdfund-solar-affordable-housing.html">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">July 18, 2018</span>
+                      <h5 class="orange-text">TreeHugger</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://pvsolarreport.com/re-volv-and-grid-alternatives-partner-on-solar-installation-for-low-income-california-families/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">July 18, 2018</span>
+                      <h5 class="orange-text">PV Solar Report</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://greenlivingguy.com/2018/05/leonardo-dicaprio-foundation-supports-community-nonprofit-solar-projects-with-re-volv/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">May 8, 2018</span>
+                      <h5 class="orange-text">Green Living Guy</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.greentechmedia.com/articles/read/political-climate-live-the-only-way-to-save-ourselves#gs.Q=QucA8">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">May 4, 2018</span>
+                      <h5 class="orange-text">Greentech Media</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://flyernews.com/sub/ud-community-celebrates-earth-day-with-earthfest/04/24/2018/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 24, 2018</span>
+                      <h5 class="orange-text">Flyer News</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://solarindustrymag.com/fourth-annual-solar-education-week-kicks-off-across-the-country">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 19, 2018</span>
+                      <h5 class="orange-text">Solar Industry</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.solarpowerworldonline.com/2018/04/solar-nonprofits-celebrate-solar-education-week-before-earth-day/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 17, 2018</span>
+                      <h5 class="orange-text">Solar Power World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.altenergymag.com/news/2018/04/17/leading-solar-nonprofits-spotlight-solar-climate-solutions-in-fourth-annual-%E2%80%9Csolar-education-week%E2%80%9D/28355/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 17, 2018</span>
+                      <h5 class="orange-text">Alt Energy Mag</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.energycentral.com/c/cp/crowdfunding-campaigns-give-nonprofits-access-solar-power">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 2, 2018</span>
+                      <h5 class="orange-text">Energy Central</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.jdsupra.com/legalnews/renewable-energy-update-march-2018-4-96785/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 30, 2018</span>
+                      <h5 class="orange-text">JD Supra</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://urbanmilwaukee.com/2018/03/28/midwest-energy-crowdfunding-program-creates-solar-power/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 28, 2018</span>
+                      <h5 class="orange-text">Urban Milwaukee</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.pvsolarreport.com/leonardo-dicaprio-foundation-community-nonprofit-solar-revolv/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 27, 2018</span>
+                      <h5 class="orange-text">PV Solar Report</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://energynews.us/midwest/crowdfunding-campaigns-give-nonprofits-access-to-solar-power/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 26, 2018</span>
+                      <h5 class="orange-text">Energy News</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.solarpowerworldonline.com/2018/03/re-volv-crowdfunds-solar-east-oakland-faith-baptist-church/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">MARCH 22, 2018</span>
+                      <h5 class="orange-text">Solar Power World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://solarindustrymag.com/east-oakland-church-to-slash-electric-bills-with-new-solar-array">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 22, 2018</span>
+                      <h5 class="orange-text">Solar Industry</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://swarthmorephoenix.com/2018/03/22/students-join-with-north-philadelphia-community-to-solarize-arts-nonprofit/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 22, 2018</span>
+                      <h5 class="orange-text">The Phoenix</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://solarbuildermag.com/news/how-re-volv-works-with-students-in-the-midwest-install-solar-at-nonprofits/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 16, 2018</span>
+                      <h5 class="orange-text">Solar Builder</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.solarpowerworldonline.com/2018/03/midwest-college-students-serve-as-re-volv-solar-ambassadors/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 14, 2018</span>
+                      <h5 class="orange-text">Solar Power World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://goodcrowd.info/solar-project-box-program-empowers-citizens-power-communities/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">February 22, 2018</span>
+                      <h5 class="orange-text">GoodCrowd.info</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.altenergymag.com/news/2018/02/21/%E2%80%9Csolar-project-in-a-box%E2%80%9D-program-empowers-citizens-to-power-communities/27962/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">February 21, 2018</span>
+                      <h5 class="orange-text">Alt Energy Mag</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://leader.mainelymediallc.com/news/2018-01-26/Community_News/Camp_Ketcha_celebrates_solar_installation.html">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">January 26, 2018</span>
+                      <h5 class="orange-text">Scarborough Leader</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.theeagleonline.com/article/2018/01/au-alum-nonprofit-helps-students-tackle-climate-change">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">January 22, 2018</span>
+                      <h5 class="orange-text">The Eagle</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.youris.com/energy/renewables/green-crowdfunding-disruption-or-opportunity.kl">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">January 11, 2018</span>
+                      <h5 class="orange-text">European Research Media</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.crowdfundres.eu/news/green-crowdfunding-disruption-opportunity/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">January 11, 2018</span>
+                      <h5 class="orange-text">Crowdfundres</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+               <!-- 2017 -->
+              <div class="col-sm-6 content">
+                <a href="http://goodcrowd.info/partnering-dicaprio-foundation-re-volv-completes-crowdfunding-campaign-1-day/?utm_content=buffer617a8&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">December 22, 2017</span>
+                      <h5 class="orange-text">GoodCrowd.info</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://thekindlife.com/blog/2017/12/guest-blog-powering-our-communities-with-the-sun/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">December 11, 2017</span>
+                      <h5 class="orange-text">Alicia Silverstone's The Kind Life</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.leonardodicaprio.org/re-volv-launches-first-of-five-projects-matched-by-ldf/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">December 4, 2017</span>
+                      <h5 class="orange-text">Leonardo DiCaprio Foundation </h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.renewableenergyworld.com/ugc/articles/2017/11/27/6-solar-nonprofits-to-give-back-to-this-givingtuesday.html?cmpid=enl_rew_solar_energy_news_2017-12-02&email_address=stavride@hotmail.com&eid=291124937&bid=1940107">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">November 28, 2017</span>
+                      <h5 class="orange-text">Renewable Energy World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://nonprofitquarterly.org/2017/10/02/now-growing-solar-energy-fundraising-options-leonardo-dicaprio-foundations-reach/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">October 2, 2017</span>
+                      <h5 class="orange-text">Nonprofit Quarterly</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.insidephilanthropy.com/home/2017/9/28/as-dicaprios-foundation-grows-new-grants-to-solar-lions-and-more">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 28,, 2017</span>
+                      <h5 class="orange-text">Inside Philanthropy</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.treehugger.com/climate-change/support-solar-leonardo-dicaprio-will-match-your-donations.html">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 26, 2017</span>
+                      <h5 class="orange-text">Tree Hugger</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://solarmagazine.com/ldf-awarded-solar-crowdfunding-project-developer-re-volv/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 25, 2017</span>
+                      <h5 class="orange-text">Solar Magazine</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://solarindustrymag.com/leonardo-dicaprio-foundation-backs-solar-nonprofit-re-volv">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 21, 2017</span>
+                      <h5 class="orange-text">Solar Industry Magazine</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://pvsolarreport.com/leonardo-dicaprio-foundation-award-re-volv/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 21, 2017</span>
+                      <h5 class="orange-text">PV Solar Report</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.renewableenergyworld.com/articles/2017/09/leonardo-dicaprio-gives-20m-to-the-climate-focused-organizations.html">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 20, 2017</span>
+                      <h5 class="orange-text">Renewable Energy World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://goodcrowd.info/leonardo-dicaprio-foundation-partners-solar-nonprofit-first-kind-crowdfunding-opportunity/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 20, 2017</span>
+                      <h5 class="orange-text">GoodCrowd.info</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://renewablesnaps.com/leonardo-dicaprio-gives-20m-to-climate-focused-organizations/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 20, 2017</span>
+                      <h5 class="orange-text">RenewableSnaps.com</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.sixdegreesnews.org/archives/19083/leonardo-dicaprio-foundation-awards-20-million-in-environmental-grants">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 20, 2017</span>
+                      <h5 class="orange-text">Six Degrees</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://cleantechnica.com/2017/03/09/pssst-wanna-get-cheap-solar-energy-loan/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 9, 2017</span>
+                      <h5 class="orange-text">CleanTechnica</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.eenews.net/greenwire/stories/1060048787">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">January 23, 2017</span>
+                      <h5 class="orange-text">Greenwire</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- 2016 -->
+              <div class="col-sm-6 content">
+                <a href="https://www.whitehouse.gov/the-press-office/2016/07/19/fact-sheet-obama-administration-announces-clean-energy-savings-all">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">July 19, 2016</span>
+                      <h5 class="orange-text">White House Press Office</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://stories.openideo.com/building-community-with-the-sun-8ed73b3ab4eb#.fweahnoxy">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">May 25, 2016</span>
+                      <h5 class="orange-text">OpenIDEO</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.renewableenergyworld.com/ugc/blogs/2016/03/community-drivensol.html">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">March 30, 2016</span>
+                      <h5 class="orange-text">Renewable Energy World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://dotearth.blogs.nytimes.com/2016/02/23/bill-gates-the-impatient-optimist-lays-out-his-clean-energy-innovation-agenda/?_r=1">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">February 23, 2016</span>
+                      <h5 class="orange-text">The New York Times</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.sierraclub.org/wisconsin/blog/2016/02/students-take-clean-energy-revolution-their-own-hands">
+                  <div class="media-col">
+ 
+                    <div class="media-txt">
+                      <span class="meta-date">February 8, 2016</span>
+                      <h5 class="orange-text">Sierra Club</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- 2013 -->
+              <div class="col-sm-6 content">
+                <a href="http://www.renewableenergyworld.com/rea/blog/post/2013/12/three-more-crowdfunding-examples-to-support-community-solar">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">December 6, 2013</span>
+                      <h5 class="orange-text">Renewable Energy World</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.highbrowmagazine.com/2839-how-solar-energy-got-necessary-boost">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">September 26, 2013</span>
+                      <h5 class="orange-text">Highbrow Magazine</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://dotearth.blogs.nytimes.com/2013/05/23/dot-chat-from-energy-campaigner-to-solar-finance-entrepreneur/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">May 23, 2013</span>
+                      <h5 class="orange-text">The New York Times</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="https://www.philanthropy.com/article/Raising-Money-From-the-Crowd-/150707">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 7, 2013</span>
+                      <h5 class="orange-text">The Chronicle of Philanthropy</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://350.org/re-volv-launches-first-revolving-fund-community-based-solar-energy-projects/">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">April 2, 2013</span>
+                      <h5 class="orange-text">350.org</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.eenews.net/stories/1059975616">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">january 31, 2013</span>
+                      <h5 class="orange-text">E&E Publishing, LLC</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.shareable.net/blog/solar-crowdfunding-in-california-part-1-re-volv">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">January 7, 2013</span>
+                      <h5 class="orange-text">Shareable</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- 2012 -->
+              <div class="col-sm-6 content">
+                <a href="http://350.org/en/about/blogs/re-volv-launches-crowdfunding-campaign-community-solar">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">December 26, 2012</span>
+                      <h5 class="orange-text">350.org</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://www.theenergycollective.com/rosana-francescato/157011/solar-crowdfunding-california-part-1-re-volv">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">December 14, 2012</span>
+                      <h5 class="orange-text">The Energy Collective</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 content">
+                <a href="http://communitypowernetwork.com/node/320">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">October 16, 2012</span>
+                      <h5 class="orange-text">Community Power Network</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- 2011 -->
+              <div class="col-sm-6 content">
+                <a href="http://www.theenergycollective.com/rosana-francescato/61003/power-community">
+                  <div class="media-col">
+
+                    <div class="media-txt">
+                      <span class="meta-date">July 11, 2011</span>
+                      <h5 class="orange-text">The Energy Collective</h5>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="row justify-content-center align-items-center text-center mt-5">
+              <a class="btn btn-lg btn-arrow-white my-2 btn-orange" href="#" id="loadMore" role="button">Load More</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+                  <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
+                </div>
+
+
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main><!-- /.container -->
+    <!-- responsive navigation bar -->
+      <script>
+      $(document).ready(function(){
+  $(".content").slice(0, 4).show();
+  $("#loadMore").on("click", function(e){
+    e.preventDefault();
+    $(".content:hidden").slice(0, 4).slideDown();
+    if($(".content:hidden").length == 0) {
+      $("#loadMore").text("No Content").addClass("noContent");
+    }
+  });
+  
+})
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+
+{% endblock %}

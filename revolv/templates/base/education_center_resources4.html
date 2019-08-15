@@ -1,0 +1,168 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header4" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-300 mb-0">5 Ways to Talk to Conservatives <br /> About Renewable Energy</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">America is more politically polarized than ever, and unfortunately, climate change has become a partisan issue too. Despite overwhelming consensus among scientists that climate change is happening and is caused by human activity, your conservative friends and family members might put more stock in the consensus among Fox News pundits that it’s a “hoax.”</p>
+              <p class="grey-text">The good news is, you don’t have to convince them to agree on the problem to get them excited about the solution. Renewable energy sources like wind and solar power are truly a bright spot of bipartisanship, with a ton of appeal to Americans of all political stripes. Here are 5 ways you can get conservatives on board with renewables, including some handy facts to back you up.
+              </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Renewables Save Money</h5>
+            <p class="grey-text">Conservatives sometimes claim that renewable energy is expensive, but that’s old news. Over the past decade of the renewables revolution, the cost of electricity from wind has fallen by 75% and from large-scale solar farms by 71%. As a result, wind and solar are now the cheapest type of electricity in most parts of the country!</p>
+            <p class="grey-text">You can also directly save money on your electricity bills by going solar yourself. According to EnergySage, adding solar to your roof can save you $20,000 to $30,000 on your utility bills over 20 years. Businesses, schools, and nonprofits can save 15% or more, too - and working together to help non-profits go solar lets these great organizations do more of their important work in your community.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Renewables Create Jobs</h5>
+                  <p class="grey-text">While coal miners and oil drillers may have played an important role in providing our energy needs in the 20th century, the future is all about renewable energy jobs. According to the National Solar Jobs Census, there are over 242,000 solar workers in America - that’s twice as many jobs as the coal industry! If you really want to bring the point home, you can also find solar job stats for individual states, counties, and metro areas.</p>
+                  <p class="grey-text">These jobs are growing fast, too. Solar jobs have grown six times faster than jobs in other sectors over the past five years, with over 100,000 new workers hired, and the Bureau of Labor Statistics projects that solar installer will be one of the fastest-growing jobs of the next decade.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Renewables are Reliable</h5>
+            <p class="grey-text">Regardless of what you think about climate change, it’s undeniable that extreme weather events like hurricanes and snowstorms can knock out the power to your home for hours or even days at a time. Fortunately, the sun keeps shining even when the grid is down - and if you combine solar panels with battery storage, you can guarantee a reliable supply of power for you and your family regardless of what’s happening outside. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Renewables are a Path to Energy Independence</h5>
+            <p class="grey-text">As Americans, we come together to celebrate our independence every 4th of July, and energy independence is a value that transcends politics. By going solar, you can reduce your dependence on your utility - or even eliminate it altogether if you combine solar with battery storage. </p>
+            <p class="grey-text">And as a country, the use of wind and solar power to charge electric vehicles offers a path to eliminating our dependence on foreign oil. Despite recent increases in domestic oil production, America still sends $225 billion overseas for oil every year. By reducing these imports, renewables can strengthen our national security - a big issue for many conservatives. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. Renewables are Good for Your Health</h5>
+            <p class="grey-text">Finally, even if most conservatives don’t think of themselves as “environmentalists,” you can bet they care about the health and the well-being of their families. And according to the American Lung Association, nearly 134 million Americans live in areas where pollution from fossil fuels is at an unhealthy level, creating serious risks from asthma attacks, lung cancer, and more. </p>
+            <p class="grey-text">Wind and solar are zero-emission sources of electricity, so by replacing fossil fuels they can clean our air and reduce threats to our health. It also means that wind and solar reduce the emissions of carbon dioxide that cause climate change - but you don’t have to tell your conservative friends and family members that. ;) </p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-1.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-2.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-3.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

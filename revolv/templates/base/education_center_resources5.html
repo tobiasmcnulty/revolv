@@ -1,0 +1,202 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header5" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-300 mb-0">7 Steps to Launching <br /> a Crowdfunding Campaign</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Crowdfunding campaigns are all about inclusion. By working together with other members of your community to collect donations and spread the word about your campaign, you can help great nonprofit organizations make the world a better place.</p>
+              <p class="grey-text">However, even though anyone can help with a crowdfunding campaign, successful ones need someone to take the lead on launching it. The good news is, you don’t need any specialized expertise or prior experience to be that leader - just a solid plan of action. Here are the 7 steps you need to follow to launch your own crowdfunding campaign.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Write Your Campaign Title and Copy</h5>
+            <p class="grey-text">Your first step is to come up with a catchy title and a few paragraphs of copy for your campaign that describe your mission succinctly. You'll want to ask yourself:  What is the campaign for and why is it important? What about this would grab someone’s attention?</p>
+            <p class="grey-text">To get someone excited about your project, you have to tell a story. That story should focus on the nonprofit you’re supporting, the great work they do for the community, how many people they serve, and how your campaign will help them improve their work and create positive change.</p>
+            <p class="grey-text">For example, if you’re helping a nonprofit go solar, you’ll want to talk about how it will save them on their electricity costs and increase their budget for their mission. You’ll also want to want to go beyond that, and talk about how solar creates broader benefits by reducing the threat of climate change and supporting good local jobs. </p>
+            <p class="grey-text">Here's an example from a campaign to help the True Fellowship Baptist Church go solar.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Make a Video</h5>
+                  <p class="grey-text">One of the most important (and fun!) parts of your crowdfunding campaign will be making a video to capture people’s attention and get them excited to donate. The video should be no more than three minutes and tell a clear and compelling story. </p>
+                  <p class="grey-text">In the story, your video should clearly explain what we’re going to do with the money and how it’s going to make the world a better place. You might want to have some interviews with the staff of the nonprofit, people from the community who benefit from the nonprofit’s work, and you, talking about why you wanted to lead this project. </p>
+                  <p class="grey-text">You want to weave this information together to tell a compelling story and ask for the viewer’s support. You also want to make sure you ask them to spread the word! You can get a better sense of what works by watching other videos from successful crowdfunding campaigns - don’t be afraid to borrow (or steal!) good ideas.</p>
+                  <p class="grey-text">Remember, your video doesn’t need to be super fancy, you can even shoot it on your phone. What’s most important is that it tells an exciting story. </p>
+                  <p class="grey-text">For more tips on making a great crowdfunding video, read this article on 9 rules for impact filmmaking.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Email your personal contact list</h5>
+            <p class="grey-text">While there are lots of good causes for people to support, what often makes us support a particular cause is that someone we know asked us to. That’s why a huge portion of your crowdfunding efforts will involve mobilizing your personal network - your family, friends, co-workers, community members - to support your campaign. In fact, 80% of your donations will likely come from personalized emails to people in your network.</p>
+            <p class="grey-text">Before your campaign starts you and your teammates should each make a personalized list of all the people who you’re going to ask to support the campaign. Go through your cell phone and email inbox and jot down the names of all the people you know who might be able to chip in a few dollars. Don’t be afraid to reach back to high school friends, former work colleagues, or anyone else that might be interested - it never hurts to ask!</p>
+            <p class="grey-text">On launch day, you’ll want to send everyone on your lists a personalized email - not a mass CC email - using the campaign title and copy you drafted in the previous step. Ask them politely but directly to watch your video and, if they can, to support your campaign. If they step up to donate right away, be sure to send them a personal email to thank them and ask them to spread the word so their donation multiplies. And if they don’t donate, don’t get discouraged - but do follow up the following week. </p>
+            <p class="grey-text">Consistently emailing your entire list of personal contacts and asking them to watch your video and support your campaign is one of the most effective crowdfunding strategies, and it will be critical to your success. As your campaign gets going, more and more people outside of your network will get involved. But in order for that momentum to happen, you’re going to have to start off with a strong push from your friends and family.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Get Your Campaign on Social Media</h5>
+            <p class="grey-text">Social media is another powerful tool you can use to spread the word about your campaign throughout your personal network and beyond. You’ll want to make use of all the main social media channels, including Facebook, Twitter, Instagram, and even LinkedIn.</p>
+            <p class="grey-text">One of your first steps should be to create a Facebook presence for your campaign. You can do that by creating a page just for your campaign and inviting all your friends to like it, or by creating a Facebook event that you invite all your friends to. Similarly, you can either create special handles on Twitter and Instagram for your campaign or just use your own.</p>
+            <p class="grey-text">Whether you give your campaign its own social media presence or decide to leverage your personal social media presence, you should keep everyone updated on the campaign through regular posts. People will get excited when they see news about hitting a campaign milestone, and they’ll be more likely to donate if they see that progress unfolding day after day.  </p>
+            <p class="grey-text">In addition to posting regularly, there are a few rules of thumb you should follow in your social media strategy:</p>
+            <div style="margin-left:4px;">
+            <p class="grey-text"><span class="fw-600">Draft Posts in Advance:</span> Before the campaign launches, draft short and compelling social media posts tagging diverse groups and organizations whose audience would be interested in the mission of your campaign. You'll be sending these out throughout the campaign, and it’ll save you a lot of time to have them ready beforehand. Here’s a template that you can use and customize for each social media channel:</p>
+            <p class="grey-text">Date for release: _/_/_</p>
+            <p class="grey-text">Text:</p>
+            <p class="grey-text">Make sure to draft a version of 280 characters or less for Twitter</p>
+            <p class="grey-text">Photo:</p>
+            <p class="grey-text">Campaign Link:</p>
+            <p class="grey-text">Hashtags:</p>
+            <p class="grey-text">Handles:</p>
+            </div>
+            <p class="grey-text"><span class="fw-600">Foster Engagement:</span> Make sure you, your teammates, and all your friends and family and supporters are actively liking, commenting, and sharing your posts. Algorithms on Facebook and other social media networks will then decide that your post is popular content and show it to more people. </p>
+            <p class="grey-text"><span class="fw-600">Make it Easy to Donate:</span> Always, always, always include a link to your campaign donation page with every post, and make sure it’s easy for your audience to find the donate button if they follow the link. This might sound obvious, since donations are your ultimate goal, but you’d be surprised how many campaigns forget this rule.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. Find sponsors and donors</h5>
+            <p class="grey-text">How can you reach the broader community beyond your personal and social media networks? One way is to identify other organizations that might be good partners to help get the word out about your campaign, as well as local companies that might want to donate themselves.</p>
+            <p class="grey-text">Partner organizations could include environmental organizations or other nonprofits that support the mission of your nonprofit. These organizations can help out by promoting the campaign through email, on their website, and through social media. In return, you can give them exposure by listing them as a partner on your campaign page, in marketing materials, and in press releases.</p>
+            <p class="grey-text">Sponsors could include local companies that want to donate money, goods or services to help with the campaign. For example, a local foundation or corporation based in your area might want to donate money to help you reach your crowdfunding goal. Alternately, a local grocery store might want to donate food for your events, or a local clothing store could donate a few items for you to raffle. Just like partner organizations, these sponsors can be rewarded by giving them a shoutout on your campaign page and in any promotional materials.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">6. Put Together a Press List </h5>
+            <p class="grey-text">Another major opportunity to attract support for your campaign is to get it covered in the news. Local, regional, even national news outlets might be excited to cover your story. “Team of volunteers spearhead solar project for local nonprofit” is a great headline. And there will be plenty of opportunities, from the launch to the ribbon cutting, to get press coverage.</p>
+            <p class="grey-text">But in order to take advantage of hitting those campaign milestones, you’re going to have to prepare ahead of time by putting together a press list. Come up with a list of all the newspapers, radio stations, and TV news programs that cover local events. These are your best outlets to get something picked up. </p>
+            <p class="grey-text">Then, look up the contact information of the relevant reporters at each media outlet including their name, their email, their phone number, and what areas they write about. Compile everything in a spreadsheet. You’re going to need a good list to get the word out quickly to reporters about your campaign once it’s in full swing.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">7. Email your personal contact list</h5>
+            <p class="grey-text">Finally, hosting an event is one of the most fun ways you can promote your crowdfunding campaign, and it can serve multiple purposes. Done right, events can attract media attention, educate attendees on your crowdfunding mission and why it’s important, and generate excitement (and donations) for your project.</p>
+            <p class="grey-text">At a minimum, you should host three events over the course of your campaign: a launch event, a mid-campaign education event, and, if all goes well, a celebration and ribbon-cutting at the end for all your supporters.</p>
+            <p class="grey-text">When thinking about your events, you'll want to ask yourself: where can you hold an event? Who would you invite? How can you entice people to come? Chances are you won’t have too much of a budget, so you’ll want to lean on your network and partner organizations to help with the planning, organizing, and hosting duties. </p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-1.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-2.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-3.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

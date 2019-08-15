@@ -1,10 +1,26 @@
 {% load static humanize %}
+{% load staticfiles %}
 
-<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
-<div class="active-projects-module animated embedded">
-  <div class="container">
+{% block head %}
+
+  <style>
+    .align-items-start .col-sm-12 {
+      text-align: left;
+    }
+    .body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+  </style>
+    <link href="{% static 'css/font-awesome.css' %}?version={{ version_number }}"  rel="stylesheet" />
+  
+
+    <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+{% endblock %}
+
+<div class="active-projects-module animated embedded" style="padding-bottom: 0px !important;">
+  <div class="container"> 
     {% if active_projects %}
-    <div class="row">
+    <div class="row" style="margin-top: 40px; padding:0px 0px 0px 0px;">
       {% for active_project in active_projects %}
       <div class="col-md-4 facts-row">
         <div class="module-box">
@@ -28,16 +44,16 @@
                 </span>
                 <!-- end .status-text -->
                 <div class="status-indicator desktop-circle">
-                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="105" data-height="105" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".24">
+                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="105" data-height="105" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".24">
                 </div>
                 <div class="status-indicator small-circle">
-                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="92" data-height="92" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".2">
+                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="92" data-height="92" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".2">
                 </div>
                 <div class="status-indicator tablet-circle">
-                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="200" data-height="200" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
+                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="200" data-height="200" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".12">
                 </div>
                 <div class="status-indicator mobile-circle">
-                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="98" data-height="98" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
+                  <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="98" data-height="98" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".12">
                 </div>
               </div>
             </div>

@@ -1,0 +1,66 @@
+{% load staticfiles revolv_cms_tags %}
+
+<style>
+  @media only screen and (max-width: 992px) {
+   .bottom-social-footer {
+     min-height: 240px !important;
+   }
+  }
+  </style>
+  
+  <footer style="overflow: hidden;">
+  <!-- <footer style="overflow: visible;"> -->
+    <div class="container">
+      <div class="row justify-content-center align-items-start">
+        <div class="col-sm-12 col-md-4 footer-logo">
+          <img src="../../../static/images/home-img/REVOLV_logo_footer.png">
+        </div>
+        <div class="col-sm-12 col-md-2">
+          <ul class="footer-links">
+            <li><a href="/about-us/re-volv">About</a></li>
+            <li><a href="/about-us/our-team/">Team</a></li>
+            <li><a href="/about-us/jobs/">Jobs</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="/about-us/contact/">Contact</a></li>
+            <li><a href="/blog-center/articles/">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-2">
+          <ul class="footer-links">
+            <li><a href="{% url 'projects_list' %}">Projects </a></li>
+            <li><a href="/get-involved/solar-ambassador/">Ambassador Program </a></li>
+            <li><a href="/get-involved/apply/">Solar for Nonprofits</a></li>
+            <li><a href="#section-six">Newsletter</a></li>
+            <li><a href="#signup">Signup</a></li>
+            <li><a href="{% url 'faq' %}">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-4 footer-last-col">
+          <ul class="footer-links">
+            <li><a href="get-involved/education/" class="fw-700">Education Center</a></li>
+            <li><a href="/get-involved/education/">Crowdfunding</a></li>
+            <li><a href="/get-involved/education/">Solar Energy &amp; Financing</a></li>
+            <li><a href="/get-involved/education/">Bring Solar to your community</a></li>
+            <li><a href="/get-involved/education/solarjobs/">Solar Careers</a></li>
+            <li><a href="/solar_at_home/">Go Solar at Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div class="row justify-content-between align-items-center">
+          <div class="col-sm-12 col-md-6">
+            <p class="text-white mb-0">Copyright © 2019 RE-volv  |  All Rights Reserve</p>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <ul class="social-links">
+              <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </footer>

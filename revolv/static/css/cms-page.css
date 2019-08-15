@@ -1,0 +1,283 @@
+html, body {
+  height: 100%; }
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html,
+body {
+  font-size: 100%; }
+
+body {
+  background: #fff;
+  color: #222;
+  cursor: auto;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  position: relative; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+img {
+  -ms-interpolation-mode: bicubic; }
+
+img {
+  display: inline-block;
+  vertical-align: middle; }
+
+/**
+ * This file overrides specific foundation settings in order to make foundation
+ * work nicely with revolv's design. Note that only some, but not all, of
+ * foundation's settings are overriden here: for the full list, see _settings.scss
+ * in revolv/static/node_modules/foundation-sites/scss/foundation.
+ */
+.row {
+  margin: 0 auto;
+  max-width: 62.5rem;
+  width: 100%; }
+  .row:before, .row:after {
+    content: " ";
+    display: table; }
+  .row:after {
+    clear: both; }
+
+.columns {
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  width: 100%;
+  float: left; }
+
+@media only screen {
+  .columns {
+    position: relative;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    float: left; }
+  .small-12 {
+    width: 100%; } }
+
+@media only screen and (min-width: 40.0625em) {
+  .columns {
+    position: relative;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    float: left; } }
+
+@media only screen and (min-width: 64.0625em) {
+  .columns {
+    position: relative;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    float: left; } }
+
+/* Accessibility - hides the forward slash */
+
+/* Clearing Styles */
+
+/* Foundation Dropdowns */
+
+/* Standard Forms */
+
+/* Using forms within rows, we need to set some defaults */
+
+/* Label Styles */
+
+/* Attach elements to the beginning or end of an input */
+
+/* Adjust padding, alignment and radius if pre/post element is a button */
+
+/* Separate prefix and postfix styles when on span or label so buttons keep their own */
+
+/* We use this to get basic styling on all basic form elements */
+
+/* Respect enforced amount of rows for textarea */
+
+/* Not allow resize out of parent */
+
+::-webkit-input-placeholder {
+  color: #666666; }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #666666; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #666666; }
+
+:-ms-input-placeholder {
+  color: #666666; }
+
+/* Add height value for select elements to match text input height */
+
+/* Adjust margin for form elements below */
+
+/* Normalize file input width */
+
+/* HTML5 Number spinners settings */
+/* We add basic fieldset styling */
+
+/* Error Handling */
+
+/* Foundation Joyride */
+
+/* Default styles for the container */
+
+/* Add a little css triangle pip, older browser just miss out on the fanciness of it */
+
+/* Typography */
+
+/* Styles for screens that are at least 768px; */
+
+/* Orbit Graceful Loading */
+
+/* Pagination centred wrapper */
+
+/* Panels */
+
+/* Pricing Tables */
+
+/* Progress Bar */
+
+/* Image Thumbnails */
+
+/* Tooltips */
+
+/* Wrapped around .top-bar to contain to grid width */
+
+.text-center {
+  text-align: center !important; }
+
+/* Typography resets */
+div,
+h1 {
+  margin: 0;
+  padding: 0; }
+
+/* Default Link Styles */
+
+/* Default paragraph styles */
+
+/* Default header styles */
+h1 {
+  color: #222222;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+  text-rendering: optimizeLegibility; }
+
+h1 {
+  font-size: 2.125rem; }
+
+/* Helpful Typography Defaults */
+
+/* Lists */
+
+/* Unordered Lists */
+
+/* Ordered Lists */
+
+/* Definition Lists */
+
+/* Abbreviations */
+
+/* Blockquotes */
+
+/* Microformats */
+
+@media only screen and (min-width: 40.0625em) {
+  h1 {
+    line-height: 1.4; }
+  h1 {
+    font-size: 2.75rem; } }
+
+/*
+       * Print styles.
+       *
+       * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
+       * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
+      */
+@media print {
+  * {
+    background: transparent !important;
+    color: #000000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important; }
+  img {
+    page-break-inside: avoid; }
+  img {
+    max-width: 100% !important; }
+  @page {
+    margin: 0.34in; } }
+
+/* small displays */
+
+/* medium displays */
+
+/* large displays */
+
+/* xlarge displays */
+
+/* xxlarge displays */
+
+/* Orientation targeting */
+
+/* Specific visibility for tables */
+
+@media only screen and (orientation: landscape) {
+  /* Specific visibility for tables */ }
+
+@media only screen and (orientation: portrait) {
+  /* Specific visibility for tables */ }
+
+/* Touch-enabled device targeting */
+
+/* Specific visibility for tables */
+
+/* Screen reader-specific classes */
+
+/* Print visibility */
+
+.cms-content-row {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  margin-top: 102px;
+  font-weight: 400;
+  padding: 15px 0; }
+  @media (max-width: 1199px) {
+    .cms-content-row {
+      margin-top: 85px;
+      width: 100%;
+      max-width: 970px; } }
+  @media (max-width: 991px) {
+    .cms-content-row {
+      margin-top: 185px; } }
+  @media (max-width: 767px) {
+    .cms-content-row {
+      margin-top: 92.5px; } }
+  .cms-content-row > .columns {
+    max-width: 960px;
+    margin: 0 auto; }
+  .cms-content-row h1 {
+    margin-bottom: 20px;
+    font-weight: bold; }
+  .cms-content-row h1 {
+    font-size: 32px;
+    line-height: 36px;
+    color: #064f7e; }

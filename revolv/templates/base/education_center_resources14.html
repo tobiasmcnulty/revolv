@@ -1,0 +1,167 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header14" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-300 mb-0">The History of Solar</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Solar power seems like an incredibly advanced technology, creating electricity directly from sunlight as if by magic. And considering the fact that it generates that electricity with no smog-forming or climate-warming emissions - and that it’s now cheaper than fossil fueled energy in more and more places around the world - it’s definitely the future of energy.</p>
+              <p class="grey-text">But as high-tech as it seems, the history of solar power goes back to the 19th century! It’s almost hard to believe it’s taken us this long to turn solar panels into a mainstream technology, but there have been a few twists and turns along the way. Let’s look at the longer-than-you-think history of this critical energy source for our future.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. The First Solar Cell</h5>
+            <p class="grey-text">In 1883, an American inventor named Charles Fritts developed the first solar cell, using selenium as a semiconductor. The electrical efficiency of the cell was less than 1%, and the use of selenium made it very expensive, but it's the first instance of successful conversion of sunlight into electricity. The first rooftop solar array using this technology was installed in New York City the following year. </p>
+            <p class="grey-text">Unfortunately, the industrial revolution was in full swing at this point, and 1884 also saw the invention of the modern steam turbine. This fossil fuel-burning invention outclassed early solar technology in both the amount and cost of energy it produced, and it went on to become the dominant energy technology that powered the 20th century.  </p>
+            <p class="grey-text">Solar was largely ignored for its potential as a major source of energy through the subsequent decades. That changed with the dawn of the space race. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. The Beginning of Modern Solar</h5>
+                  <p class="grey-text">In the 1950s, NASA tasked researchers at Bell Laboratories to find a reliable energy generation technology that could survive the harsh vacuum of space. By testing different semiconductive materials, they discovered that using silicon instead of selenium increased the solar efficiency of their cells to 6%. </p>
+                  <p class="grey-text">The New York Times hailed the discovery for creating a practical way to tap into the “limitless energy of the sun," and it was rapidly adopted by the space program. By 1972, nearly every U.S. satellite was running on solar power, and this important use case led to renewed efforts to reduce the cost of silicon-based solar cell production.</p>
+                  <p class="grey-text">These efforts went into overdrive after the oil shocks of 1973 and 1979, which caused the price of oil to skyrocket from $3 a barrel to $40 a barrel. To reduce the rising economic and social impacts of using foreign oil, the development of renewable energy alternatives like solar and wind became a major national priority. </p>
+                  <p class="grey-text">While the urgency of this drive waned again in the 1980s and 1990s, solar technology continued to improve. And in the 21st century, the world finally decided to get serious about solar.</p>
+                </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. The Environmental Imperative</h5>
+            <p class="grey-text">The rise of solar power is closely tied to rising awareness of the dangers of climate change and the need for low-cost, zero carbon sources of electricity. Following the signing of the Kyoto Protocol in 1997, a growing number of countries instituted policies to promote the use of solar in the 2000s, led by Japan, Germany, China - and even the United States, which put in place solar tax credits [link to our solar tax incentives 101 article] in 2005 despite not being a party to the Kyoto Protocol. </p>
+            <p class="grey-text">As demand for solar cells accelerated around the world, bigger and bigger production facilities were built, and the price of solar panels began to fall dramatically. The trajectory of solar costs has been analogous to that of computer chips, which are similarly based on silicon wafers and have seen prices similarly plummet with manufacturing economies of scale. </p>
+            <p class="grey-text">In the solar industry, this tendency is known as Swanson's Law, which observes a 20% decrease in cost for every doubling of cumulative shipped solar modules.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Our Bright Solar Future</h5>
+            <p class="grey-text">Fast forward to the present, and this rapid decline in costs has made solar the fastest-growing source of power in the world - and, in more and more places, it’s also the cheapest. Today, going solar can help homeowners, businesses, and other organizations save 15% or more compared to grid electricity prices in most U.S. states. </p>
+            <p class="grey-text">And, thanks to the creation of innovative new crowdfunding models, communities across America are coming together to help nonprofits like schools, churches, and social service providers participate in this low-cost, zero-emission solar future.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-1.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-2.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-3.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

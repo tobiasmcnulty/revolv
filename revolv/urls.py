@@ -49,6 +49,61 @@ urlpatterns = patterns(
     url(r'^donation_update/', 'revolv.base.views.donation_update', name='donation_update'),
     url(r'^get-involved/leonardo-dicaprio-foundation-partners-re-volv/', 'revolv.base.views.leo_page', name='leo_page'),
     url(r'^get-involved/faq', 'revolv.base.views.faq', name='faq'),
+
+
+    url(r'^about-us/re-volv', 'revolv.base.views.aboutus', name='aboutus'),
+    url(r'^get-involved/solar-ambassador', 'revolv.base.views.solar_ambassador', name='solar_ambassador'),
+    url(r'^get-involved/apply', 'revolv.base.views.nonprofit_app', name='nonprofit_app'),
+
+
+    #education center categories
+    url(r'^get-involved/education/solarenergyfinancing', 'revolv.base.views.solarenergysection', name='solarenergysection'),
+    url(r'^get-involved/education/solarcommunity', 'revolv.base.views.bringsolarsection', name='bringsolarsection'),
+    url(r'^get-involved/education/crowdfunding', 'revolv.base.views.solarcrowdfundingsection', name='solarcrowdfundingsection'),
+    url(r'^get-involved/education/careers', 'revolv.base.views.solarcareerssection', name='solarcareerssection'),
+
+    #education center articles
+    url(r'^get-involved/education/solarjobs', 'revolv.base.views.solarforall', name='solarforall'),
+    url(r'^get-involved/education/reasonforsolar', 'revolv.base.views.reasonforsolar', name='reasonforsolar'),
+    url(r'^get-involved/education/bringsolar', 'revolv.base.views.bringsolar', name='bringsolar'),
+    url(r'^get-involved/education/waystoget', 'revolv.base.views.waystoget', name='waystoget'),
+    url(r'^get-involved/education/launchcrowd', 'revolv.base.views.launchcrowd', name='launchcrowd'),
+    url(r'^get-involved/education/impactfilm', 'revolv.base.views.impactfilm', name='impactfilm'),
+    url(r'^get-involved/education/meetcrowd', 'revolv.base.views.meetcrowd', name='meetcrowd'),
+    url(r'^get-involved/education/lookingsolar', 'revolv.base.views.lookingsolar', name='lookingsolar'),
+    url(r'^get-involved/education/solarenergy', 'revolv.base.views.solarenergy', name='solarenergy'),
+    url(r'^get-involved/education/solarfinance', 'revolv.base.views.solarfinance', name='solarfinance'),
+    url(r'^get-involved/education/solartax', 'revolv.base.views.solartax', name='solartax'),
+    url(r'^get-involved/education/solarizenonprofit', 'revolv.base.views.solarizenonprofit', name='solarizenonprofit'),
+
+    url(r'^get-involved/education/solarpolicy', 'revolv.base.views.solarpolicy', name='solarpolicy'),
+    url(r'^get-involved/education/historysolar', 'revolv.base.views.historysolar', name='historysolar'),
+    url(r'^get-involved/education/leadingcity', 'revolv.base.views.leadingcity', name='leadingcity'),
+    url(r'^get-involved/education/beststatesolar', 'revolv.base.views.beststatesolar', name='beststatesolar'),
+
+
+    url(r'^blog-center/articles/$', 'revolv.base.views.blogcenter', name='blogcenter'),
+
+    url(r'^blog-center/articles/solarinvestment/', 'revolv.base.views.solararticles', name='solararticles'),
+    url(r'^blog-center/articles/newyearrevolution/', 'revolv.base.views.newyearrevolution', name='newyearrevolution'),
+
+    url(r'^monthly_donor', 'revolv.base.views.monthly_donor', name='monthly_donor'),
+
+    url(r'^ambassador_info/', 'revolv.base.views.ambassador_info', name='ambassador_info'),
+
+    url(r'^re-volv/media', 'revolv.base.views.media_archive', name='media_archive'),
+    url(r'^get-involved/education/', 'revolv.base.views.education_center_section', name='education_center_section'),
+
+    url(r'^fundraise_form/', 'revolv.base.views.fundraise_form', name='fundraise_form'),
+    url(r'^fundraise/sample', 'revolv.base.views.fundraise_pld', name='fundraise_pld'),
+    url(r'^choose/', 'revolv.base.views.fundraise_choose', name='fundraise_choose'),
+    url(r'^sampleproject/', 'revolv.base.views.new_campaign', name='new_campaign'),
+
+    url(r'^How_it_works/', 'revolv.base.views.howitworks', name='howitworks'),
+
+    url(r'^newsletter_confirm/', 'revolv.base.views.newsletter_confirm', name='newsletter_confirm'),
+#-----
+
     url(r'^get-involved/revolv-accelerator/', 'revolv.base.views.revolv_accelerator', name='revolv_accelerator'),
     url(r'^get-involved/leadership-circle/', 'revolv.base.views.leadership_circle', name='leadership_circle'),
     url(r'^solar-education/myths-and-facts/', 'revolv.base.views.myths_and_facts', name='myths_and_facts'),
@@ -70,6 +125,8 @@ urlpatterns = patterns(
     url(r'^bring_solar_to_your_community/$',bring_solar_tou_your_community, name='bring_solar_to_your_community'),
     url(r'^bring_solar_to_your_community/chapter/(?P<chapter>\d+)/$',select_chapter, name='chapter'),
     url(r'^bring_solar_to_your_community/intake_form/$',intake_form, name='intake_form'),
+    url(r'^bring_solar_to_your_community/intake_form/signup/$','revolv.base.views.intake_form2', name='intake_form2'),
+    url(r'^bring_solar_to_your_community/intake_form/nonprofit/$','revolv.base.views.intake_form3', name='intake_form3'),
     url(r'^bring_solar_to_your_community/intake_form/submit/$',intake_form_submit, name='intake_form_submit'),
     url(r'^my_social_account/$', 'revolv.base.views.social_connection', name='social-connection'),
     url(r'^delete/$', 'revolv.base.views.delete', name='delete'),

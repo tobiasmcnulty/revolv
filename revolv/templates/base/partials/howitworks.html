@@ -1,0 +1,96 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+<style>
+  #top-section-works {
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    background-size: 100%;
+  }
+  
+  /* fixes overflow of banner images ie. repeating or extra space */
+  @media (max-width: 1600px) {
+  
+    #top-section-works {
+      background-size: auto !important;
+    }
+  }
+  </style>
+{% block body %}
+    
+    <main role="main" class="container-fluid">
+      <div class="container-fluid works-header" id="top-section-works">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light">How it Works</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="application-section-second">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-left">
+            <p class="grey-text">
+
+              The model that we have pioneered is a simple and elegant model. We crowdsource funding to put solar panels
+              on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money
+              into more solar projects in communities across the country. This creates a revolving fund for solar energy
+              that continually perpetuates itself building more and more solar. It's a pay-it-forward model for solar
+              energy. We call it the Solar Seed Fund.
+
+            </p>
+            <p class="grey-text">
+              In July of 2019, RE-volv partnered with Trisolaris LLC – a multi-million dollar investment firm with a
+              track record of promoting solar across the country.
+            </p>
+            <p class="grey-text">
+              This partnership will allow for a rapid expansion of solar to small and medium-sized nonprofits across the
+              country by combining the field expertise of RE-volv, with the financial investment capacity of Trisolaris.
+              With two financing products to choose from, solarizing nonprofits will be even easier.
+
+            </p>
+            <p class="grey-text">
+              Our newest product is a power-purchase agreement with Trisolaris that boasts a quicker installation
+              turn-around-time and locked-in payment schedule. We will also continue to offer our solar lease product
+              that utilizes funds from our Solar Seed Fund and allows Solar Ambassadors to raise funds from the
+              surrounding community. Both of which will operate fairly similarly from the customer’s perspective –
+              including no up-front costs and at least 15% savings on electric bills on day one. For both financial
+              models, RE-volv will continue to be the main point of contact and will continue to provide all of the
+              operations and maintenance services on an ongoing basis.
+            </p>
+          </div>
+      </div>
+
+
+      <div class="container-fluid" id="application-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12">
+                <div class="nonprofit-app-slick">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main><!-- /.container -->
+
+    <script src="{% static 'js/nonprofit-js/script.js' %}"></script>
+
+{% endblock %}

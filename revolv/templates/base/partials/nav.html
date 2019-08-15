@@ -6,114 +6,192 @@
 {% load staticfiles revolv_cms_tags %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
-<script>
-  $(document).ready(function() {
-    $('#mobile-burger-icon').click(function() {
-      $('.navbar-collapse').toggleClass('burger-sub-menu');
-    });
-  });
-  </script>
+<!--  
+<link rel="stylesheet" type="text/css" href="/static/css/donateform.css?version={{ version_number }}" />
+-->
+<!--   
+commented out overrides padding etc... 
+<link rel="stylesheet" type="text/css" href="/static/css/accelerator.css?version={{ version_number }}" />  
+-->
+<link rel="stylesheet" type="text/css" href="/static/css/donation.css?version={{ version_number }}" />
 
+<!-- Bootstrap stackpath needed for nav bar alignment -->
+<!-- Bootstrap stackpath alters project page size -->
+<!-- CMS container alignment is not centered -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link href="{% static 'css/home-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/about-abr-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/about-abr-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/nonprofit-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/nonprofit-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<!-- monthly donor, blog, blog articles -->
+<link href="{% static 'css/blog-monthly-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/blog-monthly-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<!-- edu , fundraise, fundraise project, media -->
+<link href="{% static 'css/edu-media-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/edu-media-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+
+
+<!-- Placeholder signin-->
 <style>
-    .menu-list {
-    position: absolute;
-    background-image: none;
-    background-color: #fff;
-    border: 0;
-    right: 0;
-    box-shadow: none;
+  .cms-content-row h1 {
+  color: #100084 !important;
 }
-.burger-sub-menu {
-    display: block;
-    background-color: #fff;
+.cms-content-row h2, .cms-content-row h3, .cms-content-row h4, .cms-content-row h5, .cms-content-row h6 {
+  color: #FF8A00 !important;
 }
 
-    .hamburger_color {
-        border-color: transparent;
-        color: white;
-    }
-    .background-collapse-color {
-            background-color: white;
-    }
-    .container .navbar-collapse {
-        width: 100%;
-        padding: 0px;
-        position: absolute;
-        top: 79px;
-        border-top: 1px solid rgb(204, 204, 204);
-        margin: 0px;
-    }
-    .navbar-default .navbar-toggle:hover {
-        background-color: #fff;
-    }
+  #dropdownz{
+      
+  }
+  #dropdownz{
+      position: relative;
+      line-height: 58px;
+      margin-right: 20px;
+  }
+  #dropdownz a{
+      display: block;
+      color: #333;
+      text-decoration: none;
+  }
+  #dropdownz .dropdown > li a:hover{
+      border-radius: 2px;
+      background: #ff8a00;
 
+  }
+  #dropdownz ul.dropdown{
+      min-width: 200%; /* Set width of the dropdown */
+      background:  #100084;
+      opacity: 0.86;
+      display: none;
+      position: absolute;
+      border-radius: 10px;
+      z-index: 999;
+      left: 0;
+  }
+  #dropdownz:hover ul.dropdown{
+      display: block;	/* Display the dropdown */
+  }
+  #dropdownz ul.dropdown li{
+      display: block;
+      
+  }
 
+  #dropdownz ul.dropdown li > a{
+      color: white !important;
+      margin-left: -20px;
+      margin-right: -20px;
+      font-size:10px;
+      text-align: left;
+      padding-left: 10px;
+      font-weight: bolder;
+  }
+
+  #dropdownz ul.dropdown li:hover{
+      border-radius: 5px;
+      
+  }
+
+  @media (max-width: 991px) {
+    #dropdownz ul.dropdown{
+      min-width: auto;
+    }
+  }
 </style>
 {% endblock %}
 
-<header class="header top-section-header">
-   <div class="container">
-        <a class="navbar-brand logo" href="{% url 'home' %}"></a>
-        <!-- Static navbar -->
-        <div class="navbar navbar-default menu-list">
-            <div class="navbar-header">
-                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                </button>
 
-            </div>
-        </div>
-        <div class="navbar-collapse collapse background-collapse-color">
-                <ul class="nav">
-                    {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
-                        </li>
-                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
-                        </li>
-                    {% else %}
-                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
-                        </li>
-                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
-                        </li>
-                    {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" class="dropdown">DONATE</a>
-                    </li>
-                </ul>
-            </div>
-    <!-- end .logo -->
-    <div class="rights pull-right">
-      <div class="txt pull-left">
+{% block body %}
 
-        {% if request.user.is_authenticated %}
-            <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate">MY PORTFOLIO</a>
-            <!--<a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate">SIGN OUT</a>-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-overlay top-nav" id="navbar-section" style="padding-bottom: 20px;">
+      <a class="navbar-brand" href="/">
+        <img src="../../../static/images/home-img/REVOLV_logo_light.png">
+      </a>
+      <button class="navbar-toggler hamburger hamburger--stand" type="button" data-toggle="offcanvas" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <div class="offcanvas-collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ml-auto">
+
+          <li id="dropdownz" class="nav-item">
+            <a class="nav-link" href="/about-us/re-volv" >About</a>
+            <ul class="dropdown">
+              <li><a href="/about-us/re-volv" >About Us</a></li>
+              <li><a href="/about-us/our-team/" >Team</a></li>
+              <li><a href="/about-us/jobs/" >Jobs</a></li>
+              <li><a href="/re-volv/media/" >News</a></li>
+              <li><a href="/about-us/contact/" >Contact Us</a></li>
+            </ul>
+          </li>
+          <li id="dropdownz" class="nav-item">
+            <a class="nav-link" href="/get-involved/solar-ambassador/">Get Involved</a>
+            <ul class="dropdown">
+              <li><a href="/get-involved/solar-ambassador/" >Solar Ambassador</a></li>
+              <li><a href="/get-involved/apply/" >Solar for Nonprofits</a></li>
+              <li><a href="/#newsletter-anchor" >Newsletter sign up</a></li>
+            </ul>
+          </li>
+          <li id="dropdownz" class="nav-item">
+            <a class="nav-link" href="{% url 'projects_list' %}">Projects</a>
+          </li>
+          <li id="dropdownz" class="nav-item">
+            <a class="nav-link" href="/get-involved/education/">Education</a>
+            <ul class="dropdown">
+              <li><a href="/get-involved/education/" >Resource center</a></li>
+              <li style="display: none;"><a href="/get-involved/faq" >FAQ</a></li>
+              <li><a href="/blog-center/articles/" >Blog</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <form class="form-inline">
+          <a href="/monthly_donor/" class="btn btn-orange" >Donate</a>
+          <a href="#" class="btn btn-outline" style="display:none;">Fundraise</a>
+          {% if request.user.is_authenticated %}
+
+          <li id="dropdownz" class="has-dropdown " data-link-name="donate" 
+          style="text-decoration: none; list-style: none; font-size: 20px; color: orange;">
+            <a href="#" style="    text-decoration: none; list-style: none;padding-right: .5rem;padding-left: .5rem;font-size: 20px;color: #fff;font-weight: 600;text-transform: uppercase;font-size: 13px; letter-spacing: 1px; position: relative;">Account &#9662;</a>
+            <ul class="dropdown" style="min-width:100% !important; width: auto !important;">
+                <li><a href="{% url 'dashboard' %}" >Portfolio</a></li>
+                <li><a href="{% url 'account_settings' %}" >Settings</a></li>
+                <li><a href="{% url 'logout' %}" >Sign out</a></li>
+            </ul>
+          </li>
           {% else %}
-            <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate" data-component="signup">SIGN UP</a>
-            <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
-        {% endif %}
-        <!--<a href="#" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>-->
-{#          <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>#}
-        <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>
-        {% if request.user.is_authenticated %}
-          <div class="container1" data-toggle="collapse" data-target=".navbar-collapse-settings">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-          </div>
-          <div class="navbar-collapse-settings collapse background-collapse-color" >
-                <ul class="nav navbar-collapse-border">
-
-                    <li><a href="{% url 'account_settings' %}" class="dropdown">ACCOUNT SETTINGS</a>
-                    </li>
-                    <li> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
-                    </li>
-                </ul>
-            </div>
-        {% endif %}
+              <a href="{% url 'signin' %}" class="btn btn-outline btn-white" >Sign in</a>
+          {% endif %}
+        </form>
       </div>
-      <!--<a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate" data-toggle="modal" data-target="#popup">DONATE</a>-->
-      <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
-    </div>
-  </div>
-</header>
+    </nav>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><\/script>')</script>
+    -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <script src="{% static 'js/home-js/script.js' %}"></script>
+    <script src="{% static 'js/about-abr-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/about-abr-js/script.js' %}"></script>
+    <script src="{% static 'js/nonprofit-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/nonprofit-js/script.js' %}"></script>
+    <!-- monthly donor, blog, blog articles-->
+    <script src='https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/js/tooltipster.bundle.min.js'></script>
+
+    <script src="{% static 'js/edu-media-css/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/edu-media-css/script.js' %}"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+
+<style>
+@media (max-width: 906px) {
+  .edu-cen-re-header9 {
+    background-size: auto !important;
+  }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header9" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-700 mb-0 txt-shadow">Solar Energy 101</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">We’re living through a massive boom in solar energy - an infinitely available, low-cost, zero-pollution source of electricity that just might save the planet from climate change. </p>
+              <p class="grey-text">Solar is an incredibly exciting energy technology, but it can also seem exotic and difficult to understand for many people. We’re used to seeing power plants with smokestacks burning coal or natural gas to generate the electricity we use every day, and by comparison, solar panels can seem incredibly futuristic. </p>
+              <p class="grey-text">Don’t worry, we’ve got you covered. Here are the basics you need to understand what solar energy is, how it works, and just how much solar energy potential there is here in the United States.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. What do we mean by "solar energy"?</h5>
+            <p class="grey-text">Solar energy is fueled by the sunlight that shines every single day, making it a renewable source of energy that will never run out - unlike fossil fuels such as coal or natural gas. Solar photovoltaics, or PV” for short, turn sunshine ("photons") directly into electricity ("voltage") through a scientific phenomenon known as the photovoltaic effect.</p>
+            <p class="grey-text">The basic unit of a solar panel is a solar cell, made out of silicon wafers similar to those used in computer chips. These cells are assembled into solar modules, which in turn are connected together in rectangular solar panels - which you’ll probably recognize as an increasingly familiar sight on rooftops everywhere!</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. A Different Kind of Solar System</h5>
+                  <p class="grey-text">Forget everything you learned in school about the "solar system" - when we say solar system in this context, we aren't talking about stars and planets! We're talking about the network of electrical components designed to convert solar energy (formerly known as sunlight) into electricity. </p>
+                  <p class="grey-text">The defining components of a solar system are solar panels (1), the inverter (2), the electrical panel in the home (3), and the electricity meter (4) - all of which connects to the (much) larger electricity network known as the grid (5). An easy way to understand how solar systems work is to follow the flow of energy from component to component, as depicted in the diagram below:</p>
+                  <div style="margin-left:4px;">
+                    <p class="grey-text"><span class="fw-600">1. Solar Panels:</span> Solar cells are combined in solar modules, which are combined into solar panels, which produce electricity from sunlight through the photovoltaic effect. </p>
+                    <p class="grey-text"><span class="fw-600">2. Inverter:</span> Your solar electricity is then sent to an inverter, which transforms the electricity from DC (Direct Current) to the AC (Alternating Current) that we use in our homes and appliances. </p>
+                    <p class="grey-text"><span class="fw-600">3. Electrical Panel:</span> The inverter then feeds this AC electricity to the building's electrical panel, allowing it to power the electrical appliances and lights in the building.</p>
+                    <p class="grey-text"><span class="fw-600">4. Electricity Meter:</span> Any excess electricity that is not used within the building is then measured by an electricity meter as it flows onto the utility's electricity network, also known as… </p>
+                    <p class="grey-text"><span class="fw-600">5. The Grid:</span> For every kilowatt-hour (kWh) of electricity a solar system sends back to the grid, homeowners in many areas can get a credit on their electric bill - a very valuable solar accounting method known as net metering. </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Watts, Kilowatts, and Kilowatt-Hours</h5>
+            <p class="grey-text">Watts and kilowatt-hours are the most familiar units of electricity that we use - but what do they measure, and how do they relate to solar panels? Watts (W) measure the amount of power an appliance consumes or produces - for example, a LED lightbulb might use 10 W of electricity. A typical solar panel ranges from 180-360 W, which refers to the amount of electricity it produces when sitting directly in the sun. </p>
+            <p class="grey-text">We track electricity consumption and production over time in Watt-hours (Wh), which measure one W of consumption over one hour. So, if you left that 10 W LED bulb on for two hours, it would consume 20 Wh, and a 300 W solar panel would produce 600 Wh if it were soaking up the sun for two hours. </p>
+            <p class="grey-text">As you can imagine, those Wh can add up quickly in most homes, so your electricity bill uses kilowatt-hours (kWh) (1,000 Watt-hours) to measure your electricity consumption over the course of a month - as well as your electricity production if you have solar panels!</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Time To Shine for Your Solar Panels</h5>
+            <p class="grey-text">Obviously, solar panels don’t generate power at night when the sun isn’t shining - but did you know that the energy output of solar systems varies throughout the year, too? </p>
+            <p class="grey-text">In the summer, the sun rises higher in the sky, generating more power at midday when it shines directly on the solar panels. The sun also stays out longer, allowing more sunshine to hit the panels over the course of the day and more electricity to be generated. During the winter, solar systems tend to produce less because the sun is lower in the sky and because there are fewer hours of sunlight.</p>
+            <p class="grey-text"> </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. Azimuth, Tilt, Shading, and Solar Panel Placement</h5>
+            <p class="grey-text">Another key factor in determining the output of a solar system is the direction that the panels are facing. Here in the northern hemisphere, the sun is in the southern sky, so it's ideal for solar panels to face south. The direction in which the panels are facing is called azimuth, and is measured in degrees - i.e., 0 degrees is due north, 90 degrees due east, 180 degrees due south, and 270 degrees is due west. </p>
+            <p class="grey-text">Since the sun is always in the southern sky in the U.S., the ideal azimuth is 180 degrees. You’ll want to place solar panels on whichever roof plane is closest to this ideal - and avoid placing them on north-facing roofs. </p>
+            <p class="grey-text">Another factor to keep in mind is the pitch of the roof, which determines the tilt of the solar array. Tilt ranges from 0 to 90 degrees, where 0 degrees is laying flat horizontally and 90 degrees is standing vertically. The ideal tilt for a solar system depends on geographic latitude, but you should generally position it to receive the most direct sunlight over the course of an average day. </p>
+            <p class="grey-text">Lastly, the amount of sunlight that actually reaches the panels is a major factor in energy production. While clouds don't completely block sunlight from reaching the solar panels, a tree will cast nearly perfect shade on the area directly below it. When looking for potential sites for solar panels, be aware of any trees or neighboring buildings that would cast a shadow on the solar system - an issue referred to as "shading.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">6. Solar’s Massive Potential in the United States</h5>
+            <p class="grey-text">OK, taking all these factors into consideration, what is the potential for rooftop solar systems in the U.S.?  </p>
+            <p class="grey-text">Google’s Project Sunroof, an initiative combining data from Google Maps and Google Earth with 3D modeling and machine learning, has estimated that a whopping 79% of all homes in America have rooftops that are “technically viable” for solar - meaning that they have adequate roof space and receive sufficient sunlight. </p>
+            <p class="grey-text">Not only that, but a study by the National Renewable Energy Laboratory estimated that we could produce nearly 40% of all the electricity we use from solar installed on all the roofs in America - including homes as well as businesses, factories, nonprofits, government buildings, and other structures.</p>
+            <p class="grey-text">So, the most important thing to understand about solar is that it’s here, today, and it’s a huge opportunity for households and organizations across America to save on electricity while helping to save the world.  What are we waiting for? </p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="/get-involved/education/solarfinance/">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/solarfinancethumb.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="orange-text">Solar Financing 101</h6>
+                      <p class="grey-text">Going solar is a great deal, saving homeowners and businesses 15% or more on their electricity bills. But because the up-front costs..</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

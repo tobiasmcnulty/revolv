@@ -1,0 +1,168 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<style>
+@media (max-width: 906px) {
+  .edu-cen-re-header1 {
+    background-size: auto !important;
+  }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header1" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-700 mb-0 txt-shadow">Solar Jobs For All: <br />What a Career in Solar Could Mean For You</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">Solar is booming, and so are solar job opportunities. According to the most recent National Solar Jobs Census, there are over 242,000 solar workers in America - that’s twice as many jobs as the coal industry! And with over 100,000 of these jobs added in just the past five years, and another 17,000 expected to be added in 2019, it’s a great time to start a career in solar.</p>
+              <p class="grey-text">Best of all, there are solar jobs available for workers across a wide range of skillsets and educational levels, from entry-level installation and sales positions to specialized engineering and design roles. If having a career in this fast-growing, world-saving industry sounds good to you, here are five ways you can work in solar.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Solar Installer</h5>
+            <p class="grey-text">Solar is booming, and so are solar job opportunities. According to the most recent National Solar Jobs Census, there are over 242,000 solar workers in America - that’s twice as many jobs as the coal industry! And with over 100,000 of these jobs added in just the past five years, and another 17,000 expected to be added in 2019, it’s a great time to start a career in solar.</p>
+            <p class="grey-text">Best of all, there are solar jobs available for workers across a wide range of skillsets and educational levels, from entry-level installation and sales positions to specialized engineering and design roles. If having a career in this fast-growing, world-saving industry sounds good to you, here are five ways you can work in solar.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Solar Manufacturing</h5>
+                  <p class="grey-text">Solar power installations are made up of hundreds of components, from solar modules that generate power to the racking systems that hold them in place to the inverters that connect the system to your home. While some of these components are produced overseas, many are manufactured right here in America, in factories that employ workers similar to other high-tech industries.</p>
+                  <p class="grey-text">Solar module producers accounted for 31% of manufacturing respondents to the National Solar Jobs Census, including six major manufacturing facilities reporting plans to expand operations. Another 28% of U.S. solar manufacturers produce mounting hardware, 24% produce monitoring systems, 15% produce inverters, 12% produce trackers, and 21% produce other solar-related equipment. (That adds up to more than 100% because some vertically-integrated manufacturers produce equipment for more than one part of the supply chain.)</p>
+                  <p class="grey-text">According to the Solar Foundation, there are over 17,000 solar manufacturing and production roles in the U.S. Entry-level manufacturing jobs pay a median wage of $24.46/hour, with median wages going up to $32.61/hour for the highest-paid manufacturing workers.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Solar Sales Representatives</h5>
+            <p class="grey-text">Solar may be booming, but those solar panels don’t sell themselves! Solar sales representatives are employed by installation companies that sell to homeowners and business, either by phone or door-to-door. Higher up the supply chain, solar equipment manufacturers also have wholesale sales representatives that engage in more complex negotiations with other solar companies. </p>
+            <p class="grey-text">After the sale, consumer-facing solar companies may employ large numbers of customer service representatives to ensure a high level of customer satisfaction (and good reviews and referrals). Regardless of whether you’re dealing with home solar prospects, existing customers, or buyers from downstream solar companies, all of these sales representative positions require strong communications skills.</p>
+            <p class="grey-text">According to the Solar Foundation, there are about 36,000 solar sales reps in the U.S. While the National Solar Jobs Census doesn’t have wage data for these roles in the solar context, Bureau of Labor Statistics data indicates a median wage of $11.24/hour for retail sales roles in general, $15.81 for customer service reps, and $29.01/hour for wholesale and manufacturing sales reps.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Administrative Positions</h5>
+            <p class="grey-text">Administrative professionals make up the backbone of any company, and solar companies are no exception. In fact, office staff like receptionists, administrative assistants, and filing clerks make up one of the largest segments of the solar workforce! These roles may require little or no solar-specific training and are a great way to get involved in solar if you have administrative experience from another industry.</p>
+            <p class="grey-text">According to the Solar Foundation, there are over 38,478 administrative positions at U.S. solar companies. While the National Jobs Census doesn’t have solar-specific wage data for these positions, the Bureau of Labor Statistics lists a median wage for receptionists of $13.65/hour, for office clerks of $15.14/hour, and for administrative assistants of $18.21/hour. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. “Other” Solar Jobs</h5>
+            <p class="grey-text">While the four roles described above account for over three quarters of all jobs in the solar industry, there are a wide range of more specialized career paths as well. These “other” solar jobs include academic research, government oversight, research & development, training, management, nonprofits, finance, engineering, consulting, law, and communications.</p>
+            <p class="grey-text">Some of these positions may require years of solar-specific expertise, such as solar system designers or engineers, while others leverage skills used in a wide range of industries. For example, like most high-tech industries, a growing number of solar companies employ software developers. There’s also demand for experienced professionals in finance, legal, and other professional and support services. </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="edu-cen-re-section-three">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-job.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h1 class="orange-text fw-300 mt-4">But How Do <br />You Get a Solar Job?</h1>
+                <p class="grey-text">As these examples show, there are many paths to a solar-powered career. And if working in this exciting, fast-growing industry appeals to you, your next question is probably “So, how do I actually get one of these solar jobs?”</p>
+                <p class="grey-text">We’ll dig into the details of the education background and work experience typically required for these roles, as well as some useful job search resources, in our next post. In the meantime, if you want to support solar jobs while helping deserving local non-profits do more good work.</p>
+                <p class="grey-text">According to the Solar Foundation, there are over 17,000 solar manufacturing and production roles in the U.S. Entry-level manufacturing jobs pay a median wage of $24.46/hour, with median wages going up to $32.61/hour for the highest-paid manufacturing workers.</p>
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="/get-involved/education/beststatesolar/">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/beststatesthumb.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="orange-text">What Are The Best States for Solar Jobs - and Why?</h6>
+                      <p class="grey-text">There are over 242,000 solar jobs in America today, and employment in this fast-growing industry has grown at six times the..</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

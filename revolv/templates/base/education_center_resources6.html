@@ -1,0 +1,210 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header6" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-300 mb-0">9 rules of impact filmmaking</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">In the YouTube era, video has become an indispensable medium for reaching people, no matter what your message is. And if your message is about creating a positive impact in the world, it can be even more important - no other form of storytelling delivers the immediate human connection and emotional impact that a good video can. </p>
+              <p class="grey-text">Now that you can make a great-looking movie with just your phone, virtually everybody has the tools they need to tell powerful, impactful stories with video. However, that doesn’t mean it’s easy, especially if you’re a first-time director. Here are 9 rules of impact filmmaking you can use to ensure that your important message comes through loud and clear enough to make the world a better place. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Steal what works! </h5>
+            <p class="grey-text">As Picasso said “good artists copy, great artists steal.” Get together with your group and watch 3-5 impactful videos that you think are relevant to your campaign. Write down what worked and what you would like to emulate in your video, use them as examples in your pre-production doc, and reference them liberally throughout your scriptwriting, shooting, and editing process.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. It’s all about the pre-production </h5>
+                  <p class="grey-text">Chances are, at some point in the life you’ve heard about “the 5 Ps”: Prior Preparation Prevents Poor Performance. It’s as true for filmmaking as it is for sports or musical performance, but here you can replace the 2 Ps of “prior preparation” with “Pre-Production.”</p>
+                  <p class="grey-text">So, before you do anything else, put together a pre-production doc that will be your bible for scriptwriting, shooting, and editing your video. It should contain the following: </p>
+                  <div style="margin-left:4px;">
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Video goals</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Video audience</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Video inspiration</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Length of video</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Description of the video</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Roles and responsibilities</p>
+                    <p class="grey-text"><span class="fw-600 fw-points"></span>Production timeline</p>
+                  </div>
+                  <p class="grey-text">Spend some time on this - a good pre-production doc will make everything else much easier. And if you’re working with a team, be sure to share it with everyone (via Google Docs or otherwise) so that everyone’s on the same page.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Keep it snappy</h5>
+            <p class="grey-text">One of the biggest mistakes people make when making a video is trying to squeeze in too much information. Studies show that you have 8 seconds to grab your audience's attention before they decide whether to watch more or move on to something more immediately entertaining. So make sure to start with a good hook! </p>
+            <p class="grey-text">Even after you nail the intro, remember that audiences today have lots of demands on their time and attention, whether it’s important work, valuable family time, or just scrolling through social media. So make sure you deliver your message as quickly and efficiently as possible. Your goal should be to produce a video that is 2 minutes or less. </p>
+            <p class="grey-text">It’s especially important to keep this rule in mind when you conduct interviews. If your interviewee gives an answer that goes on too long, tell them that that was a great answer, but ask if they can say it again in a way that is shorter and more succinct.  </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">4. Clearly identify your problem and your solution </h5>
+            <p class="grey-text">Even if your story is only 2 minutes long, it needs an arc that creates interest and drama. And, like a good Hollywood movie, that means having a villain and a hero!</p>
+            <p class="grey-text">Of course, in impact filmmaking, your villain isn’t (usually) going to be a moustache-twirling criminal mastermind - it’s going to be a social problem that your mission addresses, such as pollution from a coal-fired power plant resulting in kids getting asthma in your community.</p>
+            <p class="grey-text">Similarly, your hero isn’t going to be wearing a cape! Instead, it’s your solution - in this example, helping to support the spread of solar power to reduce the use of fossil fuels. Best of all, this framing lets you invite your audience to become the hero of your story by supporting your campaign.</p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">5. Structure your video like a good school paper</h5>
+            <p class="grey-text">Think back to high school or college. When you have to write a paper for class, what do you need to include to get an A+? </p>
+            <div style="margin-left:4px;">
+              <p class="grey-text"><span class="fw-600">Introduction:</span>We’ve already covered the intro in rule #2: deliver a good synopsis of your message in the first 10 seconds. </p>
+              <p class="grey-text"><span class="fw-600">Hypothesis:</span>Next, state your ‘hypothesis.’ What is your mission, and how will your campaign make the world a better place if you succeed? </p>
+              <p class="grey-text"><span class="fw-600">Proof:</span>Make your solution real for your audience by providing the details of what your mission is and how it will help make the world a better place. Can you show examples of campaigns like this succeeding in other cases? Can you interview people that would benefit from your mission? </p>
+              <p class="grey-text"><span class="fw-600">Conclusion:</span>Your conclusion should be a call to action. Now that your audience is motivated to help, tell them what they can do to make your solution a reality. </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">6. Shoot interviews that evoke emotion</h5>
+            <p class="grey-text">A great impact video needs to help your audience understand who they’re helping and why. And there’s no better way to create that personal, emotional connection than by shooting good interviews with members of your community that will benefit from your mission.</p>
+            <p class="grey-text">Producing good interviews is an art form. You need your interviewee to provide the details that will make your campaign a reality for your audience, but you also need to ask questions that will make them a reality - as people, not just a project. </p>
+            <p class="grey-text">There’s no magic formula for how to evoke the kind of responses that will make your video impactful, but here are some interview tips: </p>
+            <div style="margin-left:4px;">
+              <p class="grey-text"><span class="fw-600 fw-points"></span>Make them feel comfortable - smile, nod when they are talking, tell them they are doing a great job. Be super friendly! </p>
+              <p class="grey-text"><span class="fw-600 fw-points"></span>Warm up with some softball questions: Ask their name, their job, what they do in the community, etc.</p>
+              <p class="grey-text"><span class="fw-600 fw-points"></span>Ask follow-up questions to go deeper on a subject or a feeling. For example, how does it make you feel when you hear that asthma rates are increasing in your area? </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">7. Don’t forget the b-roll</h5>
+            <p class="grey-text">Video is a visual medium. So, in addition to interviews, you need to make sure to have plenty of good images to show to make your video compelling.</p>
+            <p class="grey-text">That’s where your “b-roll” comes in. The b-roll is all the non-interview video footage that helps to tell the story. Examples include shots of the streets and neighborhood around a community organization, or footage of the organization helping people. To make things easy, plan your video interviews on days when you can shoot lots of good material for your b-roll as well. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">8. Music makes the mood</h5>
+            <p class="grey-text">Of course, the emotional power of video is all about the combination of image and sound, which is why music is an essential part of filmmaking. Can you imagine Jaws being half as scary without John Williams’s famous two-note theme? </p>
+            <p class="grey-text">That’s why even the most inspiring mission driven by the most powerful personal stories will benefit from well-chosen music. Do you want your audience to feel sad? Do you want your audience to get pumped up and ready to run a marathon? Find music that tells your story and takes viewers from the drama of the problem to the hopefulness and positivity of your solution. </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">9. Have a clear call to action at the end of your video </h5>
+            <p class="grey-text">The call to action (CTA) comes at the end of your video, but it might be the most crucial part other than your attention-grabbing intro. You need to ask people to support your campaign - and you need to do it clearly and directly.</p>
+            <p class="grey-text">Ask your audience to donate, and tell them the web address where they can do it. Almost as importantly, you also want them to share the campaign on their social networks, which will help spread the word more effectively and credibly. Ask and you shall receive!</p>
+          </div>
+        </div>
+      </div>
+
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-1.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-2.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <a href="#">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/related-img-3.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="grey-text fw-600">MARCH 25, 2019</h6>
+                      <h6 class="orange-text">Bring Solar to Your Community</h6>
+                      <p class="grey-text">Lorem ipsum dolor sit amet doro consectetur adipiscing elit sed</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

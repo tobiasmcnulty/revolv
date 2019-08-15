@@ -31,7 +31,7 @@
 
 treehugger_logo
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -597,7 +597,7 @@ left .carousel-controls {
 
 /* btn */
 .btn-reinvest {
-    background: #14b1e7 none repeat scroll 0 0;
+    background: #100084 none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;
     color: white;
@@ -607,37 +607,14 @@ left .carousel-controls {
     margin-top: 20px;
 }
 
-.btn-blue {
-    font-family: 'Source Sans Pro';
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: #fff;
-    height: 52px;
-    line-height: 52px;
-    padding: 0 10px;
-    text-align: center;
-    display: inline-block;
-    border-radius: 0.5vmin;
-}
+
 
 .zinnia .btn-blue {
     font-size: 0.8rem;
 }
 
-.btn-blue:hover,
-.btn-blue:focus {
-    text-decoration: none;
-    color: #fff;
-}
 
-.btn-blue {
-    background-color: #14b1e7;
-}
 
-.btn-blue:hover,
-.btn-blue:focus {
-    background-color: #2c3691;
-}
 
 .btn-icon-gray {
     text-align: center;
@@ -699,8 +676,8 @@ left .carousel-controls {
 }
 
 .title-blue-border {
-    color: #14b1e7;
-    border: 2px solid #14b1e7;
+    color: #100084;
+    border: 2px solid #100084;
 }
 
 /* .dropdown-default */
@@ -960,7 +937,7 @@ p.attribution.footer-text {
 
 .header .txt a:hover,
 .header .txt a:focus {
-    color: #14b1e7;
+    color: #100084;
 }
 
 /* .after-scroll-header */
@@ -993,7 +970,7 @@ p.attribution.footer-text {
 
 .header.after-scroll-header .txt a:hover,
 .header.after-scroll-header .txt a:focus {
-    color: #14b1e7;
+    color: #100084;
 }
 
 /* .top-section-header */
@@ -1363,7 +1340,7 @@ p.attribution.footer-text {
 }
 
 .option:hover {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .how_it_works_rectangle.space_btn_element:hover {
@@ -1387,8 +1364,8 @@ p.attribution.footer-text {
 .active-projects-module .container {
     padding: 0 15px;
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
     /*background: url(../images/donatn-backgrnd.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
@@ -1467,7 +1444,7 @@ p.attribution.footer-text {
 }
 
 .active-projects-module .img-main .txt {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat';
     font-weight: 700;
     font-size: 30px;
     line-height: 32px;
@@ -1568,11 +1545,11 @@ p.attribution.footer-text {
 }
 
 .active-projects-module .info-main .blue-bar {
-    background: #14b1e7;
+    background: #100084;
 }
 
 .active-projects-module .info-main .dark-blue-bar {
-    background: #003399;
+    background: #FF8A00;
 }
 
 .active-projects-module .info-main .actual-energy,
@@ -1845,7 +1822,7 @@ p.attribution.footer-text {
 
 .how-it-works-module .step-row .icon-blue-round {
     text-align: center;
-    background: #00a1d9;
+    background: #100084;
     width: 70px;
     height: 70px;
     border-radius: 100%;
@@ -1889,7 +1866,7 @@ p.attribution.footer-text {
     line-height: 20px;
     padding-bottom: 10px;
     margin-top: -4px;
-    color: #14b1e7;
+    color: #100084;
 }
 
 .how-it-works-module .step-row .info-txt p {
@@ -1963,7 +1940,7 @@ p.attribution.footer-text {
 
 .testimonial-module .head-row li .head-img.active {
     background-color: #ebfaff;
-    border: 2px solid #14b1e7;
+    border: 2px solid #100084;
     border-radius: 6px;
     margin: 0;
     padding: 23px;
@@ -2017,7 +1994,7 @@ p.attribution.footer-text {
     font-family: 'Source Sans Pro';
     font-weight: 700;
     font-size: 18px;
-    color: #00a1d9;
+    color: #100084;
 }
 
 .testimonial-module .user-group .txt {
@@ -2382,7 +2359,7 @@ header.edit-project-header {
 
 header.edit-project-header > .container > h1 {
     display: inline-block;
-    color: #11ADE5;
+    color: #FF8A00;
     font-size: 2rem;
     text-align: center;
     line-height: 75px;
@@ -2423,7 +2400,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .title-h1 {
-    color: #14b1e7;
+    color: #100084;
     font-family: "Source Sans Pro";
     font-size: 44px;
     font-weight: 900;
@@ -2485,7 +2462,7 @@ header.edit-project-header > .container > h1 {
 .sign-in .sign-in-left a {
     font-size: 14px;
     line-height: 20px;
-    color: #14b1e7;
+    color: #100084;
     padding-left: 4px;
 }
 
@@ -2590,7 +2567,7 @@ header.edit-project-header > .container > h1 {
 .sign-up .sign-up-left a {
     font-size: 14px;
     line-height: 28px;
-    color: #14b1e7;
+    color: #100084;
     padding-left: 4px;
 }
 
@@ -2841,7 +2818,7 @@ header.edit-project-header > .container > h1 {
 
 .mains-tabs .tab-index .row .col-lg-3 a:hover,
 .mains-tabs .tab-index .row .col-lg-3 a.active {
-    border-top: 4px solid #00a1d9;
+    border-top: 4px solid #100084;
     color: #4b4b4b;
     background-color: #f4f4f4;
 }
@@ -3055,11 +3032,11 @@ header.edit-project-header > .container > h1 {
 }
 
 .list-area .info-main .blue-bar {
-    background: #14b1e7;
+    background: #100084;
 }
 
 .list-area .info-main .dark-blue-bar {
-    background: #003399;
+    background: #FF8A00;
 }
 
 .list-area .info-main .blue-bar span,
@@ -3092,7 +3069,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .list-area .row .rights h2 a:hover {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .list-area .row .rights .time {
@@ -3264,7 +3241,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .past-projects-module .info-main h2 a:hover {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .past-projects-module .info-main .time {
@@ -3344,7 +3321,7 @@ header.edit-project-header > .container > h1 {
 
 .details-active-project-module {
     position: relative;
-    padding-top: 74px;
+    /* padding-top: 74px; */
 }
 
 .details-active-project-module .banners.min-height455 {
@@ -3492,11 +3469,11 @@ header.edit-project-header > .container > h1 {
 }
 
 .details-active-project-module .info-main .blue-bar {
-    background: #14b1e7;
+    background: #100084;
 }
 
 .details-active-project-module .info-main .dark-blue-bar {
-    background: #003399;
+    background: #FF8A00;
 }
 
 .details-active-project-module .info-main .blue-bar span,
@@ -3648,7 +3625,7 @@ header.edit-project-header > .container > h1 {
 .project-updates-module .list-area .left-date .month-txt {
     font-family: 'Source Sans Pro';
     font-weight: 700;
-    color: #00a1d9;
+    color: #100084;
     display: block;
     padding: 0 50px 0 28px;
 }
@@ -3797,7 +3774,7 @@ header.edit-project-header > .container > h1 {
 
 .project-updates-module .right-aside .module-box .stripe-button-el {
     border-radius: 0;
-    background: #14b1e7;
+    background: #100084;
     text-transform: uppercase;
     width: 100%;
     color: white;
@@ -3831,7 +3808,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .project-updates-module .right-aside .btn-i-want-to-donate {
-    background-color: #00a1d9;
+    background-color: #100084;
     letter-spacing: 4px;
     padding-top: 0;
     padding-left: 20px;
@@ -4056,7 +4033,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .partners-contents .content-info h4 a:hover {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .partners-contents .content-info p {
@@ -4500,7 +4477,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .grid-area.row .info-main .title-h2 a:hover {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .grid-area.row .info-main .title-h2 {
@@ -4798,7 +4775,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .comments-module .comments-area .comments-list .info-box .title-h4 a:hover {
-    color: #00a1d9;
+    color: #100084;
 }
 
 .comments-module .comments-area .comments-list .info-box p {
@@ -4974,7 +4951,7 @@ header.edit-project-header > .container > h1 {
 .footer .row .col-info dt a {
     font-family: 'Source Sans Pro';
     font-weight: 700;
-    color: #14b1e7;
+    color: #100084;
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -5241,7 +5218,7 @@ footer.footer > div.container > div.row > nav > dl > dd {
 
 #modal-how-it-works .step-area .icon-blue-round {
     text-align: center;
-    background: #00a1d9;
+    background: #100084;
     width: 70px;
     height: 70px;
     border-radius: 100%;
@@ -5331,7 +5308,7 @@ footer.footer > div.container > div.row > nav > dl > dd {
 }
 
 .txt-area1 .btn-i-want-to-donate {
-    background-color: #00a1d9;
+    background-color: #100084;
     font-size: 14px !important;
     height: 45px;
     letter-spacing: 4px;
@@ -5415,7 +5392,7 @@ footer.footer > div.container > div.row > nav > dl > dd {
 }
 
 .right-asides aside.right-aside .btn-i-want-to-donate {
-    background-color: #00a1d9;
+    background-color: #100084;
     font-size: 14px !important;
     height: 45px;
     letter-spacing: 4px;
@@ -5532,13 +5509,6 @@ li:before.active > *::before {
     /* btn */
     .venue-area {
         text-align: left;
-    }
-
-    .btn-blue {
-        font-size: 1.4rem;
-        height: 39px;
-        line-height: 43px;
-        padding: 0px 5px 0 5px;
     }
 
     .btn-icon-gray {
@@ -11718,7 +11688,7 @@ width: 580px;
     }
 
     .title-blue-border {
-        border: 1px solid #14b1e7;
+        border: 1px solid #100084;
     }
 
     .title-white-border {
@@ -14590,7 +14560,7 @@ width: 580px;
     }
 
     .details-active-project-module .title-white-border {
-        border: 2px solid #14b1e7;
+        border: 2px solid #100084;
         font-size: 18px;
         height: auto;
         line-height: 42px;
@@ -14658,7 +14628,7 @@ width: 580px;
     }
 
     .details-active-project-module .title-white-border {
-        border: 2px solid #14b1e7;
+        border: 2px solid #100084;
         float: none !important;
         height: auto;
         padding: 0 45px;
@@ -14720,13 +14690,6 @@ width: 580px;
         line-height: 1.8em !important;
         text-align: center !important;
         width: 15em;
-    }
-
-    #project .btn-blue {
-        font-size: 7px;
-        height: 26.5px;
-        line-height: 26.5px;
-        padding: 0 3px;
     }
 
     #project .btn-purple {
@@ -15034,8 +14997,8 @@ label.checkmark:after {
     -ms-transform-origin: left top;
     -webkit-transform-origin: left top;
     transform-origin: left top;
-    border-right: 5px solid #11ade5;
-    border-top: 5px solid #11ade5;
+    border-right: 5px solid #FF8A00;
+    border-top: 5px solid #FF8A00;
     content: '';
     height: 10vmin;
     left: 5vmin;
@@ -15184,7 +15147,7 @@ label.checkmark.animate:after {
     position: fixed;
     z-index: 1020;
     width: 100%;
-    background-color: #14b1e7;
+    background-color: #100084;
     padding: 1em;
     color: white;
     font-weight: bold;
@@ -15242,7 +15205,7 @@ label.checkmark.animate:after {
 }
 
 .module-box.payment-module form button.stripe-button-el {
-    background: #14b1e7 none repeat scroll 0 0;
+    background: #100084 none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;
     color: white;
@@ -16218,14 +16181,14 @@ a.How_it_Works:hover {
     font-size: 24px;
     margin: 30px calc(30px + 5.6%);
     width: 100%;
-    color: #064f7e;
+    color: #100084;
     font-weight: 100;
     margin-top: 110px;
     display: block;
     height: 0.5em;
     line-height: 1em;
     border: none;
-    border-bottom: 1px solid #064f7e;
+    border-bottom: 1px solid #100084;
     margin-bottom: 0.5em;
     text-align: center;
     font-size: 25px;
@@ -16672,7 +16635,7 @@ a.How_it_Works:hover {
 }
 
 .form-submit-msg-btn {
-    background-color: #14B1E7;
+    background-color: #100084;
     text-align: center;
     color: #fff;
     font-weight: bold;
@@ -16730,23 +16693,10 @@ form#password_reset_confirm_form .placeholder-field-label:last-child {
     }
 }
 
-html.skrollr.skrollr-desktop {
-    font-size: 10px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
 
-html.skrollr-desktop {
-    font-size: 10px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-html.app-root-element {
-    font-size: 10px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
 
 .donate-on-sign-up {
-    background: #14b1e7 none repeat scroll 0 0;
+    background: #100084 none repeat scroll 0 0;
     border: medium none;
     border-radius: 0;
     color: white;
@@ -16794,9 +16744,7 @@ html.app-root-element {
 .donation-welcome-msg {
     text-align: center;
     padding-bottom: 20px;
-    color: #337ab7;
-    float: left;
-    width: 100%;
+    color: #100084;
 }
 
 body.main-body {
@@ -17020,7 +16968,7 @@ CSS for financial report*/
 }
 
 .donate-btn-login, .donate-as-guest {
-    background-color: #14B1E7;
+    background-color: #100084;
     text-align: center;
     color: #fff;
     font-weight: bold;
@@ -17051,7 +16999,7 @@ img.close-donate-popup {
 
 .switch-view-ambassador-financial-rp {
     padding: 6px;
-    background-color: #14b1e7;
+    background-color: #100084;
     display: inline-block;
     color: white;
     font-size: 16px;
@@ -17141,7 +17089,7 @@ CSS for Newsletter pop-up*/
 }
 
 .newsletter-submit-msg-btn {
-    background-color: #14B1E7;
+    background-color: #100084;
     text-align: center;
     color: #fff;
     font-weight: bold;
@@ -17426,7 +17374,7 @@ form#change_password_form label {
     font-size: 32px;
     font-weight: 700;
     line-height: 36px;
-    color: #064f7e;
+    color: #100084;
 }
 
 .leo-content-size {
@@ -17444,18 +17392,18 @@ form#change_password_form label {
     font-size: 32px;
     font-weight: 600;
     line-height: 36px;
-    color: #064f7e;
+    color: #100084;
 }
 
 .leadership-circle-sub-header {
-    color: #11ADE5;
+    color: #FF8A00;
     font-weight: 600;
     font-size: 25px;
     line-height: 28px;
 }
 
 .leadership-circle-sub-header {
-    color: #11ADE5;
+    color: #FF8A00;
     font-weight: 600;
     font-size: 25px;
     line-height: 28px;
@@ -17469,7 +17417,7 @@ form#change_password_form label {
 .leadership-circle-sub-text {
     font-size: 18px;
     line-height: 20px;
-    color: #11ADE5;
+    color: #FF8A00;
     font-weight: 600;
     font-family: Lato, sans-serif;
     font-style: normal;
@@ -17534,7 +17482,7 @@ form#change_password_form label {
 .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
-    background-color: #14b1e7;
+    background-color: #100084;
     margin: 6px 0;
     transition: 0.4s;
 }
@@ -17561,7 +17509,7 @@ form#change_password_form label {
 }
 
 .header .txt .navbar-collapse-settings a:hover {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .navbar-collapse-settings {
@@ -17605,7 +17553,7 @@ form#change_password_form label {
 }
 
 .account-tab-text-active {
-    color: #14b1e7;
+    color: #100084;
 }
 
 .setting-form-top {
@@ -17630,7 +17578,7 @@ form#change_password_form label {
     float: right;
     display: inline-block;
     font-size: 1em;
-    color: #14b1e7;
+    color: #100084;
     position: relative;
     margin: -3.6em 1.6em;
     z-index: 1;
@@ -17713,7 +17661,7 @@ span.setting-donation-change {
     font-size: 32px;
     font-weight: 600;
     line-height: 36px;
-    color: #064f7e;
+    color: #100084;
 }
 
 .leo-content-size {
@@ -17756,8 +17704,7 @@ span.setting-donation-change {
 
 .myth-collapse-icon {
     float: right;
-
-    color: #14b1e7;
+    color: #100084;
 }
 
 @media (max-width: 767px) {
@@ -17842,7 +17789,7 @@ span.setting-donation-change {
     float: right;
     display: inline-block;
     font-size: 1em;
-    color: #14b1e7;
+    color: #100084;
     position: relative;
     margin: -3.6em 1.6em;
     z-index: 1;
@@ -17856,7 +17803,7 @@ span.setting-donation-change {
 
 .accelator-sub-heading {
     margin-top: 1.1em;
-    color: #11ADE5;
+    color: #FF8A00;
     font-size: 21px;
     line-height: 30px;
     font-weight: bold;
@@ -17947,7 +17894,7 @@ span.setting-donation-change {
 
     .accelator-sub-heading {
         margin-top: 1.1em;
-        color: #11ADE5;
+        color: #FF8A00;
         font-size: 21px;
         line-height: 30px;
         font-weight: bold;
@@ -18147,7 +18094,7 @@ span.setting-donation-change {
 
 #project > div.cms-content-row.row.after-header > div > div:nth-child(12) > p > a {
     padding: 0.7em;
-    background-color: rgb(20, 177, 231);
+    background: #FF8A00;
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
@@ -18155,7 +18102,7 @@ span.setting-donation-change {
 }
 
 #edit_value1, #edit_value2, #edit_value3, #edit_value4, #edit_value5 {
-    color: #14b1e7;
+    color: #100084;
     border-left: none;
     cursor: pointer;
     readonly: readonly;
@@ -18177,7 +18124,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .schedule-repayment-toggle-button {
-    background-color: #00a1d9;
+    background-color: #100084;
     color: #FFF;
     text-align: center;
     border: none;
@@ -18245,7 +18192,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn-donation-history a:hover {
-    background-color: #00a1d9;
+    background-color: #100084;
     color: #ffffff;
 }
 

@@ -34,67 +34,6 @@
     <div class="champion-background-image">
        <header class="header top-section-header">
   <div class="container">
-        <div class="container">
-        <div class="navbar navbar-default menu-list">
-            <div class="navbar-header">
-                <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
-                 <span class="icon-bar"></span>
-                 <span class="icon-bar"></span>
-                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
-            </div>
-            <div class="navbar-collapse collapse background-collapse-color">
-                <ul class="nav navbar-nav">
-                    {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
-                        </li>
-                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
-                        </li>
-                    {% else %}
-                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
-                        </li>
-                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
-                        </li>
-                    {% endif %}
-                    <li class="dropdown this-doesnt"> <a onclick="return clearInput();" href="{% url 'projects_list' %}" class="dropdown">DONATE</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-            <div class="solar_at_home_rights pull-right">
-              <div class="txt pull-left">
-
-					{% if request.user.is_authenticated %}
-					  <!--<li class="user-controls has-dropdown">-->
-						<a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
-						<!--<a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate">SIGN OUT</a>-->
-
-					  <!--</li>-->
-					  {% else %}
-						<a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup">SIGN UP</a>
-						<a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login">SIGN IN</a>
-					{% endif %}
-					<a href="{% url 'projects_list' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate btn-yellow">DONATE</a>
-{#				    <a href="{%url 'faithbaptistchurch' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate btn-yellow">DONATE</a>#}
-					{% if request.user.is_authenticated %}
-					  <div class="container1" data-toggle="collapse" data-target=".navbar-collapse-settings">
-						<div class="bar1" style="background-color:rgb(255, 204, 0);"></div>
-						<div class="bar2" style="background-color:rgb(255, 204, 0);"></div>
-						<div class="bar3" style="background-color:rgb(255, 204, 0);"></div>
-					  </div>
-					  <div class="navbar-collapse-settings collapse background-collapse-color navbar-collapse-settings-blue" style="position: absolute;">
-							<ul class="nav navbar-collapse-border">
-
-								<li><a href="{% url 'dashboard' %}" class="dropdown">ACCOUNT SETTINGS</a>
-								</li>
-								<li> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
-								</li>
-							</ul>
-						</div>
-					{% endif %}
-				  </div>
-              <!--<a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup">DONATE</a>-->
-            </div>
-          </div>
              <div class="header-content">
                 <div class="header-content-div">
                   <div class="header-tagline">

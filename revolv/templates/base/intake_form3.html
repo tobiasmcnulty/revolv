@@ -1,0 +1,115 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block title %}Home | {% endblock %}
+{% block head %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/bring_solar_at_community.css?version={{ version_number }}">
+        <link rel="stylesheet" type="text/css" href="/static/css/intake_form.css?version={{ version_number }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="/static/js/base/bring_solar_at_home.js?version={{ version_number }}"></script>
+        <script src="/static/js/base/bring_solar_at_nonprofit.js?version={{ version_number }}"></script>
+        <script src="/static/js/base/jquery.cookie.js"></script>
+	
+{%endblock%}
+
+{% block body %}
+
+    <div class="container-fluid ambassador-header" id="top-section" style="height: 260px;">
+      <div class="row text-center">
+        <div class="col hero-text">
+          <h1 class="text-light" style="margin-top:90px;">Bring Solar to Your <br />Community</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid scroll-section" id="scroll-section">
+        <div class="scroll-icon">
+          <img class="scroll-arrow bouncing" src="../../../static/images/about-abr-img/scroll-icon.png">
+        </div>
+    </div>
+    <div class="full-width intake-form-container">
+    
+        <div class="form-step-3" style="display:block;">
+            <div class="full-width step-1-heading">
+                Tell Us More About The Organization.
+            </div>
+            <div class="full-width input-full-name">
+                <input type="text" placeholder="Your Name" class="full-width">
+            </div>
+            <div class="full-width input-email-code">
+                <div class="col-xs-12 col-sm-8 padding-zero" style="padding-left: 0px;">
+                    <input type="text" placeholder="Your Email">
+                </div>
+                <div class="col-xs-12 col-sm-4 padding-zero" style="padding-right: 0px;">
+                    <input type="text" placeholder="ZIP Code">
+                </div>
+            </div>
+            <div class="full-width organization-details">
+                <div class="full-width org-name-taxid">
+                    <div class="col-xs-12  padding-zero organization-name" style="padding-right:0%;">
+                        <input type="text" placeholder="Organization Name">
+                    </div>
+                    <div class="col-xs-12 col-sm-4 padding-zero" style="display:none;">
+                        <input type="text" placeholder="Tax Id">
+                    </div>
+                </div>
+                <div class="full-width org-address">
+                    <input type="text" placeholder="Organization Address">
+                </div>
+              
+                 <div class="full-width webite-and-phone" >
+                    <div class="col-xs-12 padding-zero website-name" style="padding-right:0%;">
+                        <input type="text" placeholder="Please enter your Organization Website">
+                    </div>
+                    <div class="col-xs-12 col-sm-4 padding-zero" style="display:none;">
+                        <input type="text" placeholder="Phone Number">
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width affiliation-org-cntnr">
+                <div class="full-width affiliation-org-block">
+                    <div>
+                        What is your affiliation to this organization?
+                    </div>
+                    <div>
+                        <textarea rows="3" class="text-area" style="width:100%"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="full-width solar-proj-need-block">
+                <div class="full-width solar-proj-need-cntnr">
+                    <div>
+                       Is your non profit 501(c)(3) ?
+                    </div>
+                    <div class="full-width interest-block flex flex-aln-itm-cnt">
+                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                            <div class="mark-checkbox" data-checkbox-status="checked"></div>
+                        </div>
+                        <div class="interest-text">
+                             Yes
+                        </div>
+                    </div>
+                    <div class="full-width interest-block flex flex-aln-itm-cnt">
+                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
+                        </div>
+                        <div class="interest-text">
+                             No
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="full-width form-submit-btnon">
+                SUBMIT
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{GOOGLEMAPS_API_KEY}}">
+</script>
+
+    <script src="/static/js/base/jquery.maskedinput.min.js"></script>
+{%endblock%}

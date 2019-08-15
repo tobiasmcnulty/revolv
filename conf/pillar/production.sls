@@ -302,6 +302,40 @@ secrets:
       -----END PGP MESSAGE------
 
 
+    "CM_KEY": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQgAvNete1mwaF0X0O5rWp05s9bAcZqaHSpLTbHLxUh6NW2k
+      6jLtPi0mYDTn4FrJBvpmacS47yO0C7bbz3kOwAkqcwoWrpxMTQAxEXuEwcloXZbl
+      OLKZpgLCNrcu0m7Mspkt+BURi1SwJlSLJAa2t8z8v/CgDRWNB5dVSRkFp+1Ep/5/
+      LQ748C0usXlX9YHh0BE+8UbbwhdVBNaGaeuOWlb/o8UU+XAENVuTbIY679taoBY1
+      BU/83WlTH/cnTcrjK21dhp3ZB1AzY6HlLAVgQZ9IQhxXT8N6JbpPGtVBKXgLX1BP
+      m4zucG2j+XTkms/oGWJ5jwcl4LJa9zH2VXPtXvHX+dLADgFwpFUoolrBrsRUcd72
+      y0Pg4vaNmG7Nmt2TB5YxNRbPD8waCb7h/7cTk4K2Vzya5FGK3EZmWiRJEAGn/rFQ
+      FPJWna03HaJ/xjmcoThKynhP4q1/BWnD78Y70mHH7bqFu1resiTjUA00GGhJf0Nz
+      ruDNxfQMJMvwqIURSbE/4Dv0ygRpDYS21ewOL660lIkcFS9SePYblpzSbmYP9XvI
+      YF/A8nC49ulgAkw+MnhikeK/qAjb4cPBKk2yCEn9b0F12bOt3UxGfxzfdqV11D4v
+      =PP15
+      -----END PGP MESSAGE-----
+
+
+    "CM_LIST_ID": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf+I26WrhcBskQJdRsjwZzqblRLvCg/4mWQ5qn6Z8qDzcBT
+      jAGiopJXp+ng9IJrOm1kYPxagS67bO9D9eTXKNvc2QQcGxdzvCbEt9xEZ6g6pi/+
+      h5qXQQbu3BtPODcTDx1w/8rqXkdrtUaGD8VtoO983CeHm8AK1T27w2iVyBN94uaA
+      X22lLL/Ci6s4BUdgAospkdKIPjhpUz6qMYmNBMKezu5RuWlzKhRL7W9DYAyCZTkd
+      GX8k3EtHE0gJ8JtOaLBkURm7Ftf0SnjdIkigFsPlfjJwqbqY3+CYHJ1u/VmBmqYg
+      zxszIzET/July7rGdtNVaVpwSUjMAhTytrpKXYjBSNJbAcFg4nBs1BiYBjpZU3f/
+      tq1Ysvmmy/e9sq2gZmFqSc44yzHpmJe6PpXJd+SLSPjJQlSjf07i4213PFwZPlBo
+      uAYXviY0Cn7+kNIMb0uYLViuuEV/b4f773qSTA==
+      =+h71
+      -----END PGP MESSAGE-----
+
+
     "IP_STACK_ACCESS_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1

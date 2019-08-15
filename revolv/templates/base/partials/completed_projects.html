@@ -11,6 +11,11 @@
     <script type="text/javascript" src="{% static 'js/base/util/util.js' %}?version={{ version_number }}"></script>
     <script type="text/javascript" src="{% static 'js/base/partialcircle.js' %}?version={{ version_number }}"></script>
     <script type="text/javascript" src="{% static 'js/base/projects-list.js' %}?version={{ version_number }}"></script>
+
+    <link href="{% static 'css/font-awesome.css' %}?version={{ version_number }}"  rel="stylesheet" />
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+
     <style>
     project-link a:hover, project-linka:focus {
         color: #0078a0;
@@ -27,14 +32,14 @@
     .divider-title {
       margin: 30px auto;
       width: 75%;
-      color: #064f7e;
+      color: #100084;
       font-weight: 100;
       margin-top: 110px;
       display: block;
       height: 0.5em;
       line-height: 1em;
       border: none;
-      border-bottom: 1px solid #064f7e;
+      border-bottom: 1px solid #100084;
       text-align: center;
       font-size: 25px;
       margin-bottom: 1.5em; }
@@ -71,10 +76,21 @@
 {% block body %}
 
 <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
-    <div class="divider-title"> COMPLETED PROJECTS </div>
+<div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+        <div class="col hero-text align-self-end">
+        <h4 class="text-light" style="font-size: 30px;"> COMPLETED<br /> PROJECTS</h4>
+        </div>
+    </div>
+    </div>
+<div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+</div>
 <div class="active-projects-module animated">
   <div class="container">
-    <div class="row">
+    <div class="row" style="margin-top: 40px; padding: 0px 0px 0px 0px;">
         <div class="regular slider">
 
             {% for completed_project in completed_projects %}
@@ -97,16 +113,16 @@
                                 </span>
                                 <!-- end .status-text -->
                                 <div class="status-indicator desktop-circle">
-                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="105" data-height="105" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".24">
+                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="105" data-height="105" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".24">
                                 </div>
                                 <div class="status-indicator small-circle">
-                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="92" data-height="92" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".2">
+                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="92" data-height="92" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".2">
                                 </div>
                                 <div class="status-indicator tablet-circle">
-                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="200" data-height="200" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
+                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="200" data-height="200" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".12">
                                 </div>
                                 <div class="status-indicator mobile-circle">
-                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="98" data-height="98" data-bgcolor="#fff" data-fgcolor="#14b1e7" data-max="100" data-readonly="true" data-thickness=".12">
+                                  <input type="text" value="{{ completed_project.percent_complete }}" data-min="0" data-width="98" data-height="98" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".12">
                                 </div>
                               </div>
                             </div>

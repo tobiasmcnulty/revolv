@@ -1,0 +1,82 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'>
+<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css"/>
+
+{% endblock %}
+
+{% block body %}
+    <main role="main" class="container-fluid">
+      <div class="container-fluid fundraise-project-header" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end mb-5">
+            <h1 class="text-white fw-300 mb-5">Fundraise <br />for this campaign</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/edu-media-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="fundraise-project-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-8">
+            <div class="row justify-content-center align-items-center mb-5">
+              <form class="fundraise-project-form">
+                <div class="form-group row">
+                  <label for="fundraise-for" class="col-sm-3 col-form-label">Fundraise for</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control-plaintext" id="fundraise-for" value="">
+                  </div>
+                </div>
+                <div class="form-group row fundraise-project-form">
+                  <label for="campaign-title" class="col-sm-3 col-form-label">Campaign title</label>
+                  <div class="col-sm-9">
+                    <input type="text" readonly class="form-control-plaintext" id="campaign-title" value="">
+                  </div>
+                </div>
+                <div class="form-group row fundraise-project-form">
+                  <label for="fundraise-goal" class="col-sm-3 col-form-label">Fundraising goal</label>
+                  <div class="col-sm-9">
+                    <input type="text" readonly class="form-control-plaintext" id="fundraise-goal" value="">
+                  </div>
+                </div>
+                <div class="form-group row fundraise-project-form">
+                  <label for="fundraise-deadline" class="col-sm-3 col-form-label">Fundraising deadline</label>
+                  <div class="col-sm-9">
+                    <input id="fundraise-deadline">
+                  </div>
+                </div>
+                <div class="form-group row fundraise-project-form">
+                  <label for="fundraise-photo" class="col-sm-3 col-form-label">Campaign Photo</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control-file" id="fundraise-photo" placeholder="Upload your file">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-orange btn-me btn-arrow-white my-4">START FUNDRAISER</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div> 
+      
+    </main><!-- /.container -->
+
+    <script>
+      $('#fundraise-deadline').datepicker({
+          uiLibrary: 'bootstrap4'
+      });
+    </script>
+{% endblock %}
+

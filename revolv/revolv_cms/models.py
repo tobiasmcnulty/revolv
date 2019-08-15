@@ -224,7 +224,7 @@ class LoginPageSettings(BaseSetting):
     login_paragraph = RichTextField(
         blank=True,
         help_text="The paragraph of text to be shown under the heading on the login page, but before the links to the register page and the forgot password page.",
-        default="<p>Log in to see the impact you've had on communities that use renewable solar energy.</p>"
+        default="<p>Log in to see the impact you're having, bringing solar energy to communities around the country.</p>"
     )
     login_paragraph_for_donation = RichTextField(
         blank=True,

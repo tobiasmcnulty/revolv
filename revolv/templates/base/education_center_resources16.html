@@ -1,0 +1,177 @@
+{% extends "base/base3.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<style>
+@media (max-width: 906px) {
+  .edu-cen-re-header16 {
+    background-size: auto !important;
+  }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <main role="main" class="container-fluid">
+      <div class="container-fluid edu-cen-re-header16" id="top-section-min">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light fw-700 mb-0 txt-shadow">What Are The Best States <br /> for Solar Jobs - and Why?</h1>
+            <h5 class="orange-text fw-400 mb-5"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-two">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+              <p class="grey-text">There are over 242,000 solar jobs in America today, and employment in this fast-growing industry has grown at six times the rate of the economy as a whole! It’s a great time to be a part of this industry, and many entry-level positions don’t require a college degree or previous industry experience. (And, if you’re looking for a solar job, read this post). </p>
+              <p class="grey-text">
+                While there are solar workers in literally every state, those 242,000 jobs aren’t divided up evenly across the country. Let’s dig into the data to see which states have the most solar jobs, and look at why these states are emerging as leaders in building the clean energy economy. 
+                </p>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">1. Looking at the Data</h5>
+            <p class="grey-text">The Solar Jobs Census published by the Solar Foundation is an incredible tool for research on the industry, with tons of data as well as fact sheets, case studies, and even career development resources.  </p>
+            <p class="grey-text">In addition to the top-line national data provided by the report, the Solar States page includes state-level, county-level, and even Congressional District-level data on solar jobs, providing a powerful lens into where this industry is truly thriving. </p>
+            <p class="grey-text">Let’s start with a look at the top 10 states for solar jobs nationwide:
+            </p>
+            <p class="grey-text">Total Solar Jobs, 2018</p>
+            <div style="margin-left:4px;">
+              <p class="grey-text"><span class="fw-600">1.</span> California: 76,838 </p>
+              <p class="grey-text"><span class="fw-600">2.</span> Florida: 10,358 </p>
+              <p class="grey-text"><span class="fw-600">3.</span> Massachusetts: 10,210 </p>
+              <p class="grey-text"><span class="fw-600">4.</span> New York: 9,729 </p>
+              <p class="grey-text"><span class="fw-600">5.</span> Texas: 9,612 </p>
+              <p class="grey-text"><span class="fw-600">6.</span> Arizona: 7,524 </p>
+              <p class="grey-text"><span class="fw-600">7.</span> Ohio: 7,162 </p>
+              <p class="grey-text"><span class="fw-600">8.</span> Colorado: 6,847 </p>
+              <p class="grey-text"><span class="fw-600">9.</span> North Carolina: 6,719 </p>
+              <p class="grey-text"><span class="fw-600">10.</span> Nevada: 6,680 </p>
+            </div>
+            <p class="grey-text">The fact that California is the #1 state probably isn’t surprising. In addition to being famous for its “green” lifestyle and sunny days, the Golden State also has the largest economy and biggest population of any state. If you look at those jobs on a per capita basis, the list changes a bit - although six of the top 10 states appear on both lists!</p>
+            <p class="grey-text">Solar Jobs Per Capita, 2018</p>
+            <div style="margin-left:4px;">
+              <p class="grey-text"><span class="fw-600">1.</span> Nevada: 1:454 (* that is, one solar job for every 454 residents)</p>
+              <p class="grey-text"><span class="fw-600">2.</span> Vermont: 1:509</p>
+              <p class="grey-text"><span class="fw-600">3.</span> California: 1:515</p>
+              <p class="grey-text"><span class="fw-600">4.</span> Utah: 1:523 </p>
+              <p class="grey-text"><span class="fw-600">5.</span> Washington, DC: 1:643</p>
+              <p class="grey-text"><span class="fw-600">6.</span> Hawaii: 1:670 </p>
+              <p class="grey-text"><span class="fw-600">7.</span> Massachusetts: 1:676</p>
+              <p class="grey-text"><span class="fw-600">8.</span> Colorado: 1:832</p>
+              <p class="grey-text"><span class="fw-600">9.</span> Arizona: 1:953 </p>
+              <p class="grey-text"><span class="fw-600">10.</span> New Mexico: 1:967 </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <img src="../../../static/images/eduresource-img/solar-manufacturing.png">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <h5 class="grey-text fw-600">2. Why These States Are Solar Jobs Leaders</h5>
+                  <p class="grey-text">You might expect solar jobs states to match California’s profile: coastal “blue” states with lots of sunshine. However, these lists show that solar jobs winners are spread out across the north, south, east, west, and the middle of this country, and politically they include some of the reddest red states (Utah and Texas, step right up!) as well as lots of blue and purple.   </p>
+                  <p class="grey-text">However, even if these states have very different politics, they share a common denominator in two key solar-supporting policies: net metering, and renewable portfolio standards. While these policies can vary in their details from state to state, they each encourage investments in solar power by ensuring that they are compensated appropriately by utilities. </p>
+                  <div style="margin-left:4px;">
+                    <p class="grey-text"><span class="fw-600 fw-points">Net Metering: </span> Net metering allows homeowners and businesses with solar panels to receive credits on their utility bill for every kilowatt-hour (kWh) of electricity they generate. Most net metering policies provide a 1:1 credit for customer generation - in other words, if you produce 3 kWh of solar, your electricity bill will be reduced by 3 kWh. </p>
+                    <p class="grey-text"><span class="fw-600 fw-points">Renewable portfolio standards:</span> require utilities to supply a rising percentage of their electricity from renewable sources like solar and wind until an overall target is reached. For example, New Jersey will require 50% of its electricity to be renewable by 2030, and California has committed to getting 100% of its electricity from renewables by 2045.</p>
+                  </div>
+                  <p class="grey-text">DSIRE is a great resource for solar policy research, and if you look at their handy summary maps of states with net metering and renewable portfolio standard policies, you’ll quickly notice something about the states on those solar jobs lists: every single state has either net metering or a renewable portfolio standard in place, and most have both! </p>
+                  <p class="grey-text">Every state is different of course, but there’s a clear lesson here: if you want to grow the solar industry in your state, these two policies are proven to encourage lots of solar power development - and the solar jobs that come with it!</p>
+                </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10 mb-4">
+            <h5 class="grey-text fw-600">3. Supporting Solar Jobs in Your State</h5>
+            <p class="grey-text">With more and more states adopting these policies and other solar incentives, chances are you might already be living in a great state for solar jobs! You can help support the solar job boom in your state by going solar yourself - or by helping deserving non-profits save money and do more great work by helping them go solar.</p>
+            <p class="grey-text"> </p>
+          </div>
+        </div>
+      </div>
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Get more great content.</h2>
+                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container-fluid" id="related-section">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <h2 class="blue-text ml-3">Related <span class="orange-text">Content</span></h2>
+            <div class="row align-items-center justify-content-left mt-4">
+              <div class="col-sm-12 col-md-4">
+                <a href="/get-involved/education/solarjobs/">
+                  <div class="related-content-col">
+                    <img src="../../../static/images/eduresource-img/whatcareerinsolarthumb.png" style="width:100% !important;">
+                    <div class="related-content-col-inner">
+                      <h6 class="orange-text">Solar Jobs For All</h6>
+                      <p class="grey-text">Solar is booming, and so are solar job opportunities. According to the most recent National Solar Jobs Census..</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="edu-cen-re-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="orange-text">Donate</h1>
+                <h6 class="text-white fw-700">About RE-volv</h6>
+                <p class="text-white fw-300 mb-3"><span class="fw-500">We believe that everyone should have the ability to support and spread clean energy.</span>
+                So we created a new way for people to take action. It's a pretty simple idea. We crowdsource funding to put solar panels on community-serving nonprofit organizations. As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. This creates a revolving fund for solar energy that continually perpetuates itself building more and more solar.
+                <span class="fw-500">It's a pay-it-forward model for solar energy. We call it the Solar Seed Fund.</span>
+                Spread clean energy and make a tax-deductible donation to the Solar Seed Fund.</p>
+                <h6 class="text-white fw-700">RE-volv is 501c3 nonprofit. </h6>
+                <p class="text-white fw-300"></p>
+                <a class="btn btn-orange btn-me btn-arrow-white my-4" href="/monthly_donor/" role="button">Let's do this</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </main><!-- /.container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <!-- responsive navigation bar -->
+    <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+{% endblock %}

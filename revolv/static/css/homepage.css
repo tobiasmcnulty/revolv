@@ -1,0 +1,124 @@
+/* FOOTER HOMEPAGE MOBILE */ 
+
+
+@media only screen and (max-width: 1141px) {
+  .footer-ex {
+    height: 250px !important;
+  }
+}
+
+
+
+@media only screen and (max-width: 992px) {
+  .footer-ex {
+    height: 680px !important;
+  }
+  .footer-ex .mobile-ex {
+    float:left;
+  }
+
+  .footer-ex .mobile-ex .about-footer {
+    margin: 0px !important;
+  }
+
+  .footer-ex .mobile-ex .involved-footer {
+    margin: 0px !important;
+  }
+
+  .footer-ex .mobile-ex .edu-footer > ul  {
+    margin-left: 0px !important;
+  }
+
+  .footer-ex .mobile-ex .projects-footer > ul {
+    margin-left: 0px !important;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 626px) {
+  .ac-projects {
+    min-height: 670px !important;
+  }
+  .testimonials {
+    min-height: 640px !important;
+  }
+}
+
+
+
+
+
+
+
+
+/* Morphist Anim */
+
+.morphist > * {
+	 display: none;
+}
+ .morphist > .animated {
+	 display: inline-block;
+}
+
+
+
+ a {
+	 color: teal;
+	 text-decoration: none;
+}
+ a:hover {
+	 color: steelblue;
+}
+ .spotlight-wrapper {
+	 text-align: center;
+	 -webkit-transition: 3s ease-in-out;
+	 -moz-transition: 3s ease-in-out;
+	 -ms-transition: 3s ease-in-out;
+	 -o-transition: 3s ease-in-out;
+	 transition: 3s ease-in-out;
+}
+ .spotlight-lable {
+	 color: white;
+   margin:10px;
+   font-size: 45px;
+   font-weight: 600;
+}
+
+  .morphist-rotating {
+   color: white;
+   font-size: 45px;
+   font-weight: 600;
+}
+
+ .animated {
+	 -webkit-animation-duration: 0.4s;
+	 animation-duration: 0.4s;
+	 -webkit-animation-fill-mode: both;
+	 animation-fill-mode: both;
+}
+
+
+
+
+
+@media only screen and (max-width: 992px) {
+  .signup-container {
+    display: block !important;
+    max-width: 400px !important;
+  }
+
+  .signup-container .subscribe-button > a > button {
+    margin: 20px !important;
+  }
+}
+
+
+
+@media only screen and (max-width: 1368px) {
+  .footer-ex .mobile-ex {
+  
+  }
+}
+

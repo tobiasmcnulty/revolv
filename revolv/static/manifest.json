@@ -1,7 +1,7 @@
 {
   "name": "RE-volv",
   "short_name": "RE-volv",
-  "theme_color": "#14b1e7",
+  "theme_color": "#100084",
   "background_color": "#52b6d8",
   "display": "standalone",
   "orientation": "portrait",

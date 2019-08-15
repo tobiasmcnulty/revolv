@@ -6,6 +6,9 @@ from django.template import Context, Template
 from revolv.base.utils import get_all_administrator_emails
 
 
+# pip install createsend
+from createsend import Transactional
+
 def send_revolv_email(
     template_name,
     context_dict,

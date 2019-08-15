@@ -12,177 +12,23 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="/static/js/base/bring_solar_at_home.js?version={{ version_number }}"></script>
         <script src="/static/js/base/jquery.cookie.js"></script>
-		<title>Revolv</title>
-    <script>
-    $(document).ready(function() {
-      $(".navbar-toggle").click(function (event) {
-          var clickover = $(event.target);
-          var _opened = $(".navbar-collapse").hasClass("collapse in");
-          if (_opened === true ) {
-          	  $('.navbar-collapse').removeClass('in');
-			  event.stopPropagation();
-              <!--$('.navbar-collapse').collapse('hide');-->
-            }
-          });
-        $(document).click(function (event) {
-          var clickover = $(event.target);
-          var _opened = $(".navbar-collapse").hasClass("collapse in");
-          if (_opened === true ) {
-          	  $('.navbar-collapse').removeClass('in');
-			  event.stopPropagation();
-            }
-          });
-
-        $('.dropdown-title').on('click', function() {
-    $('.dropdown-menu').toggle();
-    });
-    });
-
-
-
-  </script>
-
-    <style>
-    .dropdown-triangle {
-        float: right;
-        padding-right: 2%;
-
-    }
-
-a.How_it_Works:hover {
-    text-decoration: none;
-    color: #fff;
-}
-
-.header.top-section-header {
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0);
-    margin-top: 0;
-    position: absolute;
-}
-
-.menu-list {
-    position: absolute;
-    width: 100%;
-    background-image: linear-gradient(to bottom,transparent 0,transparent 100%);
-    background-color: transparent;
-    border: transparent;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.header .solar_at_home_rights .btn-yellow {
-    <!--background-color: rgb(255, 204, 0);-->
-    <!--padding: 0px 84px 0 0;-->
-        border-radius: 6%;
-    background-color: rgb(255, 204, 0);
-    color: black;
-    /* width: 30%; */
-    height: auto;
-    line-height: normal;
-    padding: 2vmin 1%;
-}
-.header .solar_at_home_rights {
-     padding: 2vmin 2vmin 0 0;
-}
-
-    .hamburger_color {
-        border-color: transparent;
-        color: white;
-    }
-    .background-collapse-color {
-            background-color: white;
-    }
-
-    </style>
-
+	
 {%endblock%}
-{% block nav %}
 
-{%endblock%}
 {% block body %}
-    <div id="video-popup">
-            <div class="video-popup-body">
-                <div class="play-main-video">
-                    <div class="pop-up-vid-cntnr">
-						<video poster="" id="pop-up-video" controls>
-						    <source src="" type="video/mp4">
-						    Your browser does not support HTML5 video.
-						</video>
-					</div>
-                </div>
-            </div>
+
+    <div class="container-fluid ambassador-header" id="top-section" style="height: 260px;">
+      <div class="row text-center">
+        <div class="col hero-text">
+          <h1 class="text-light" style="margin-top:90px;">Bring Solar to Your <br />Community</h1>
         </div>
-    <div style="height: 24vmin;
-            background-image: url(/static/images/intake_form_Image.png);
-            background-size: 100vw 24vmin;
-            background-repeat: no-repeat;">
-       <header class="header top-section-header">
-              <div class="container">
-                    <div class="container">
-                    <!-- Static navbar -->
-                    <div class="navbar navbar-default menu-list">
-                        <div class="navbar-header">
-                            <button type="button" id="collbtn" class="navbar-toggle hamburger_color" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
-                             <span class="icon-bar"></span>
-                             <span class="icon-bar"></span>
-
-                </button> <a class="navbar-brand logo-solar-at-home" href="/"></a>
-
-            </div>
-            <div class="navbar-collapse collapse background-collapse-color">
-                <ul class="nav navbar-nav">
-                    {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'dashboard' %}" class="dropdown">MY PORTFOLIO</a>
-                        </li>
-                        <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
-                        </li>
-                    {% else %}
-                         <li><a href="{% url 'signin' %}#signup" class="dropdown">SIGN UP</a>
-                        </li>
-                        <li class="dropdown this-works"> <a href="{% url 'signin' %}#login" class="dropdown">SIGN IN</a>
-                        </li>
-                    {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="dropdown">DONATE</a>
-                    </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container-fluid scroll-section" id="scroll-section">
+        <div class="scroll-icon">
+          <img class="scroll-arrow bouncing" src="../../../static/images/about-abr-img/scroll-icon.png">
         </div>
-    <!-- end .logo -->
-            <div style="float: left;width: 38vmin;padding-left: 5%;">
-                        <div class="logo-size" >
-                          <a href="{% url 'home' %}"><img class="background-image-size" id="intake-form-logo-img" src="/static/images/Logo_Header.png"></a>
-                        </div>
-                  </div>
-            <div class="solar_at_home_rights pull-right">
-              <div class="txt pull-left">
-
-                {% if request.user.is_authenticated %}
-                  <li class="user-controls has-dropdown">
-                    <a href="{% url 'dashboard' %}" class="btn-blue pull-left btn-donate btn-yellow">MY PORTFOLIO</a>
-                    <a href="{% url 'logout' %}" class="btn-blue pull-left btn-donate btn-yellow" >SIGN OUT</a>
-                  </li>
-                  {% else %}
-                    <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="signup" >SIGN UP</a>
-                    <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate btn-yellow" data-component="login" >SIGN IN</a>
-                {% endif %}
-              </div>
-              <!--<a href="#" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow" data-toggle="modal" data-target="#popup">DONATE</a>-->
-              <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="component-link btn-blue btn-donate btn-yellow">DONATE</a>
-            </div>
-
-          </div>
-             <div style="width:100%;float:left;padding-top: 7vmin;">
-                <div style="width:100%;padding: 0 4% 0 1%;float: left;">
-
-                </div>
-
-            </div>
-           </div>
-        </header>
-
-</div>
+    </div>
     <div class="full-width intake-form-container">
         <div class="form-step-1">
             <div class="full-width show-step-number">
@@ -356,7 +202,7 @@ a.How_it_Works:hover {
                 </div>
                  <div class="full-width webite-and-phone">
                     <div class="col-xs-12 col-sm-8 padding-zero website-name">
-                        <input type="text" placeholder="Please enter your website">
+                        <input type="text" placeholder="Please enter your Organization Website">
                     </div>
                     <div class="col-xs-12 col-sm-4 padding-zero">
                         <input type="text" placeholder="Phone Number">

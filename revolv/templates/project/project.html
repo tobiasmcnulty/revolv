@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
 {% load staticfiles %}
 {% load humanize %}
 {% block head %}
@@ -14,11 +14,33 @@
         input:invalid {
             box-shadow: 0 0 5px 1px red;
         }
+
+        .input-group {
+            position: relative !important;
+            display: table !important;
+            border-collapse:separate !important;
+        }
+        .body {
+            font-size: 2rem !important;
+        }
     </style>
+    
     <link href="{% static 'css/project.css' %}?version={{ version_number }}" rel="stylesheet"/>
 {% endblock %}
 {% block title %}Project | {% endblock %}
 {% block body %}
+    <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+        <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+            <div class="col hero-text align-self-end">
+            <h4 class="text-light">  </h4>
+            </div>
+        </div>
+        </div>
+    <div class="container-fluid scroll-section" id="scroll-section">
+        <div class="scroll-icon">
+        <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+        </div>
+    </div>
     <div id="reinvest-spinner"><img src="/static/images/gif/revolv-loader.gif" alt="reinvestment is loading"></div>
     {% include "project/confirm_modal.html" %}
     {% if is_draft_mode == True %}
@@ -85,19 +107,19 @@
     {% if project.status_display|upper == 'ACTIVE' %}
         <div class="social project-status-desktop-left">
             <ul>
-                <li>
+                <li style="background:#100084;">
                     <a href="mailto:?Subject=RE-volv campaign&amp;Body=I%20saw%20this%20and%20thought%20of%20sharing%20this!%20 https://www.re-volv.org/project/{{ project.project_url }}">Email
                         <i class="fa fa-envelope"></i></a></li>
-                <li>
+                <li style="background:#100084;">
                     <a href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}"
                         onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"   
                         target="_blank">Facebook <i class="fa fa-facebook" style="padding-right: 10px"></i></a></li>
-                <li>
+                <li style="background:#100084;">
                     <a href="https://www.twitter.com/share?url=https://www.re-volv.org/{{ project.project_url }}&amp;text=Spread solar and change lives. Learn more about people-funded renewable energy here:&amp;"
                        target="_blank">Twitter <i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/re.volv/" target="_blank">Instagram <i
+                <li style="background:#100084;"><a href="https://www.instagram.com/re.volv/" target="_blank">Instagram <i
                         class="fa fa-instagram"></i></a></li>
-                <li>
+                <li style="background:#100084;">
                     <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.re-volv.org/project/{{ project.project_url }}"
                         onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"    
                         target="_blank">Linkedin <i class="fa fa-linkedin"></i></a>
@@ -177,25 +199,25 @@
                                     <div class="status-indicator desktop-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="210" data-height="210" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".12">
                                     </div>
                                     <div class="status-indicator small-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="175" data-height="175" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".13">
                                     </div>
                                     <div class="status-indicator tablet-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="152" data-height="152" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".16">
                                     </div>
                                     <div class="status-indicator mobile-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="75" data-height="75" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".12">
                                     </div>
                                 </div>
@@ -212,14 +234,14 @@
         <!-- end .details-active-project-module -->
         <div class="container">
         <div class="col-sm-12 outer-basic-silver-gold project-updates-module">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                <div class="col-sm-12">
-                    <p class="content-gold-silver">{{ project.tagline }}</p>
-                </div>
-                <div class="col-sm-12">
-                    <p class="content-gold-silver content_sec">{{ project.description|safe }}</p>
-                </div>
-            </div>
+                <div class="col-xl-8 col-lg-8 col-md-12 col-12 ">
+                        <div class="col-md-12">
+                            <p class="content-gold-silver">{{ project.tagline }}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="content-gold-silver content_sec">{{ project.description|safe }}</p>
+                        </div>
+                    </div>
 
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right price-tables">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -405,25 +427,25 @@
                                     <div class="status-indicator desktop-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="210" data-height="210" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".12">
                                     </div>
                                     <div class="status-indicator small-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="175" data-height="175" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".13">
                                     </div>
                                     <div class="status-indicator tablet-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="152" data-height="152" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".16">
                                     </div>
                                     <div class="status-indicator mobile-circle">
                                         <input type="text" value="{{ project.percent_complete }}" data-min="0"
                                                data-width="75" data-height="75" data-bgcolor="#fff"
-                                               data-fgcolor="#14b1e7" data-max="100" data-readonly="true"
+                                               data-fgcolor="#100084" data-max="100" data-readonly="true"
                                                data-thickness=".12">
                                     </div>
                                 </div>
@@ -440,14 +462,14 @@
         <!-- end .details-active-project-module -->
         <div class="container">
         <div class="col-sm-12 outer-basic-silver-gold project-updates-module">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-            <div class="col-sm-12">
-                <p class="content-gold-silver">{{ project.tagline }}</p>
-            </div>
-            <div class="col-sm-12">
-                <p class="content-gold-silver content_sec">{{ project.description|safe }}</p>
-            </div>
-        </div>
+                <div class="col-xl-8 col-lg-8 col-md-12 col-12 ">
+                        <div class="col-md-12">
+                            <p class="content-gold-silver">{{ project.tagline }}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="content-gold-silver content_sec">{{ project.description|safe }}</p>
+                        </div>
+                    </div>
 
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right price-tables">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -735,7 +757,7 @@
         $(function ($) {
             var handler = StripeCheckout.configure({
                 key: '{{ stripe_publishable_key }}'
-                , image: '{% static "images/revolv-logo.png" %}'
+                , image: '{% static "images/revolvorange.png" %}'
                 , locale: 'auto'
                 , name: 'RE-volv'
                 , email: '{{request.user.email}}'

@@ -1,0 +1,122 @@
+/* NAVIGATION BAR */
+
+
+.nav-bar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100000
+}
+
+.nav-bar-section {
+  padding: 0 5px;
+  position: relative;
+  height: 58px
+}
+
+.nav-bar-section a {
+  color: orange;
+  font-size: 25px;
+  font-weight: 300;
+  letter-spacing: .9px
+}
+
+.nav-bar-section .button-links>a {
+  border: 1px solid;
+  padding: 5px 7px;
+  border-radius: 4px
+}
+
+.nav-bar-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0
+}
+
+/* mobile nav on display none
+.nav-bar-section .nav-items, .nav-bar-section .right-side {
+  display: none;
+  position: relative;
+  line-height: 58px
+}
+*/
+
+.nav-bar-section .logo {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+
+.nav-bar-section .logo a {
+  display: block;
+  text-indent: -999em;
+  /*background-image: url(../images/REVOLV_logo_White.png);*/
+  background-image: url(../images/homepage/revolv_blueorange_tag.png);
+  background-size: cover;
+  width:79px; 
+  height:56px; 
+}
+
+
+
+@media only screen and (min-width:1025px) {
+  .nav-bar-section {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto
+  }
+  .nav-bar-section .nav-items, .nav-bar-section .right-side {
+    display: block
+  }
+}
+
+@media only screen and (min-width:1025px) and (min-width:1025px) {
+  .nav-bar-section .offcanvas-open-link {
+    display: none
+  }
+}
+
+@media only screen and (min-width:1025px) {
+  .nav-bar-section .logo {
+    left: 0
+  }
+  .nav-bar-section .offcanvas-open-link {
+    right: -20px
+  }
+  .nav-bar-section .nav-items {
+    margin-left: 135px;
+    float: left
+  }
+  .nav-bar-section .nav-items:after {
+    clear: both;
+    content: "";
+    display: table
+  }
+  .nav-bar-section .nav-items>li {
+    display: block;
+    float: left;
+    margin-left: 25px;
+    line-height: 58px
+  }
+  .nav-bar-section .right-side, .nav-bar-section .right-side .mycw-nav {
+    float: right
+  }
+  .nav-bar-section .right-side .mycw-nav .user-access {
+    line-height: 58px
+  }
+  .nav-bar-section .nav-buttons {
+    float: left;
+    display: flex
+  }
+  .nav-bar-section .button-links {
+    margin-right: 20px
+  }
+  .nav-bar-section .has-dropdown {
+    position: relative;
+    line-height: 58px
+  }
+}
+

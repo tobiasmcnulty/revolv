@@ -28,17 +28,42 @@
     <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
+    <style>
+    
+    #dropdownz ul.dropdown li > a {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 20px 0px;
+    }
+
+    #dropdownz ul.dropdown {
+        margin-left: 0px;
+    }
+    
+    </style>
+
 {% endblock %}
 {% block body %}
     {% include "project/success_modal.html" with project=project %}
     <div class='main-row dashboard'>
-
+        <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+            <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+                <div class="col hero-text align-self-end">
+                <h4 class="text-light" style="font-size: 30px;"> PORTFOLIO<br />  </h4>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid scroll-section" id="scroll-section">
+            <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+            </div>
+        </div>
         <div class="container-fluid after-header">
             {% if role == 'ambassador' or role == 'admin' %}
-                <div class="dashboard-sidebar col-md-2">
+                <div class="dashboard-sidebar col-md-2" style="float:left; clear:both; ">
                     {% include "base/partials/dashboard_sidebar.html" with user=user %}
                 </div>
-                <div class="col-md-9 col-md-offset-1">
+                <div class="col-md-9 col-md-offset-1" style="float:left; margin-left: 20px;">
                     <div class="row">
                         {% include "base/partials/impact_statistics.html" with statistics=statistics user=user donated_projecs=donated_projects %}
                     </div>

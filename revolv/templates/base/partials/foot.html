@@ -1,178 +1,69 @@
 {% load staticfiles revolv_cms_tags %}
-<script>
-function header_space(){
-var x = window.pageYOffset;
-var y = document.getElementById("demo");
-var z = y.offsetTop;
-if(x > z){
-y.classList.add("after-scroll-header-fixed");
-} else{
-y.classList.remove("after-scroll-header-fixed");
-}
-}
-</script>
-<footer id="footer" class="footer">
+
+<style>
+  @media only screen and (max-width: 992px) {
+   .bottom-social-footer {
+     min-height: 240px !important;
+   }
+  }
+  </style>
+  
+  <footer style="overflow: hidden;  clear: both;  display: block;">
+  <!-- <footer style="overflow: visible;"> -->
     <div class="container">
-        <div class="row">
-            <nav class="col-menu">
-                <dl>
-                    <dt><a href="/">Home</a><a href="#info-block-1"><span data-toggle="collapse" data-target="#info-block-1"
-                                                                          class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></a></dt>
-                     <div id="info-block-1" class="collapse info-block">
-                         <dt><a href="/about-us/" class="footer-colmn-links">About us</a></dt>
-                         <dt><a href="/about-us/our-team/" class="footer-colmn-links">Team</a></dt>
-                         <dt><a href="/about-us/jobs/" class="footer-colmn-links">Jobs</a></dt>
-                         <dt><a href="/about-us/contact/" class="footer-colmn-links">Contact us</a></dt>
-                         <dt><a href="/blog/" class="footer-colmn-links">Blog</a></dt>
-                     </div>
-                </dl>
-            </nav>
-            <!-- end .col-menu -->
-            <nav class="col-menu">
-                <dl>
-                    <dt><a href="/what-we-do/">what we do</a><a href="#info-block-2"><span data-toggle="collapse" data-target="#info-block-2"
-                                                                                           class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></a></dt>
-                     <div id="info-block-2" class="collapse info-block">
-                         <dt><a href="/what-we-do/how-it-works/" class="footer-colmn-links">How It Works</a></dt>
-                         <dt><a href="{% url 'projects_list' %}" class="footer-colmn-links">Projects</a></dt>
-                         <dt><a href="/what-we-do/media/" class="footer-colmn-links">Media</a></dt>
-                     </div>
-                </dl>
-            </nav>
-            <!-- end .col-info -->
-            <nav class="col-menu">
-                <dl>
-                    <dt><a href="/get-involved/">get involved</a><a href="#info-block-3"><span data-toggle="collapse" data-target="#info-block-3"
-                                                   class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></a></dt>
-                     <div id="info-block-3" class="info-block collapse">
-                         <dt><a href="{% url 'revolv_accelerator' %}" class="footer-colmn-links">Donate monthly</a></dt>
-                         <dt><a href="/bring_solar_to_your_community/" class="footer-colmn-links">Start a solar project</a></dt>
-                         <dt><a href="/solar_at_home/" class="footer-colmn-links">Go solar at home</a></dt>
-                         <dt><a href="/get-involved/solar-ambassador-fellowship/" class="footer-colmn-links">Solar Ambassador Program</a></dt>
-                         <dt><a href="/get-involved/solar-champion-program" class="footer-colmn-links">Solar Champion Program</a></dt>
-                         <dt><a href="/get-involved/leadership-circle/" class="footer-colmn-links">Join the Leadership Circle</a></dt>
-                         <dt><a href="https://re-volv.org/#newsletter" class="footer-colmn-links">Newsletter sign-up</a></dt>
-                     </div>
-                </dl>
-            </nav>
-            <!-- end .col-info -->
-            <nav class="col-menu">
-                <dl>
-                    <dt><a href="/solar-education/">solar education</a><a href="#info-block-4"><span data-toggle="collapse" data-target="#info-block-4"
-                                                                                                     class="myth-collapse-icon glyphicon glyphicon-chevron-down info-block"></span></a></dt>
-                     <div id="info-block-4" class="info-block collapse">
-                         <dt><a href="{% url 'faq' %}" class="footer-colmn-links">FAQ</a></dt>
-                         <dt><a href="/solar-education/myths-and-facts/" class="footer-colmn-links">Solar Myths and Facts</a></dt>
-                         <dt><a href="/solar-education/" class="footer-colmn-links">About Renewable Energy</a></dt>
-                         <dt><a href="/solar-education/solar-education-week/" class="footer-colmn-links">Solar Education Week</a></dt>
-                     </div>
-                </dl>
-            </nav>
-            <!-- end .col-info -->
-            <nav class="col-info">
-                <dl>
-                    <dt><a href="/about-us/">What is RE-volv?</a></dt>
-                    <dd class="hide"></dd>
-                </dl>
-                <p>RE-volv is a 501(c)(3) nonprofit organization with a mission to empower people and communities to invest collectively in renewable energy. All donations are tax-deductible.</p>
-
-                <dl>
-                    <dt><a href="http://goo.gl/forms/S1TEKTNgNz">How do you like our website?</a></dt>
-                </dl>
-                <p>Take a short survey and let us know. We would love to hear your feedback!</p>
-            </nav>
-            <!-- end .col-info -->
+      <div class="row justify-content-center align-items-start">
+        <div class="col-sm-12 col-md-4 footer-logo">
+          <img src="../../../static/images/home-img/REVOLV_logo_footer.png" style="margin-top:0px !important;">
+          <ul class="footer-links" style="margin-top: 28px !important;">
+            <li style="font-size:18x;"><a class="fw-700" href="https://docs.google.com/forms/d/e/1FAIpQLSeiBhmv3hG0YA0Cjjrlg_xl7fwVHeAmG7KjD83yXiRz5Zv9CQ/viewform?c=0&w=1">How do you like our website?</a></li>
+            <li  style="font-size:14px; color:white;">Take a short survey and let us know. We would love to hear your feedback!</li>
+          </ul>
         </div>
-        <!-- end .row -->
-        <div class="row">
-            <p class="attribution footer-text">This website was developed with the support of <a href="https://www.calblueprint.org/"><b>Blueprint</b></a> and the <a href="http://energy.gov/eere/sunshot/about-sunshot-initiative"><b>U.S. Department of Energy Sunshot Initiative</b></a>.
-            </p>
+        <div class="col-sm-12 col-md-2">
+          <ul class="footer-links">
+            <li><a href="/about-us/re-volv">About Us</a></li>
+            <li><a href="/about-us/our-team/">Team</a></li>
+            <li><a href="/about-us/jobs/">Jobs</a></li>
+            <li><a href="/re-volv/media/">News</a></li>
+            <li><a href="/about-us/contact/">Contact</a></li>
+            <li><a href="/blog-center/articles/">Blog</a></li>
+          </ul>
         </div>
-        <div class="row">
-            <div class="bottoms">
-                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt">
-                    <a href="javascript:;" class="logo">
-                        <img src="/static/images/logo-white.png" />
-                    </a>
-                </div>
-                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt flex-jty-con-cnt copyright hidden-xs hidden-sm">
-                         {% now 'Y' %} © RE-volv All rights reserved.
-                </div>
-                <!-- end .lefts -->
-                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt flex-jty-con-end social-icons-cntnr">
-                    <ul class="flex flex-jty-con-end">
-                        <li><a href="https://www.facebook.com/solarseedfund/" target="_blank">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a></li>
-                        <li><a href="https://twitter.com/RE_volv" target="_blank">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a></li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-12 col-md-4 flex flex-aln-itm-cnt flex-jty-con-cnt copyright hidden-md hidden-lg">
-                         {% now 'Y' %} © RE-volv All rights reserved.
-                </div>
-                <!-- end .rights -->
-            </div>
+        <div class="col-sm-12 col-md-2">
+          <ul class="footer-links">
+            <li><a href="{% url 'projects_list' %}">Projects </a></li>
+            <li><a href="/get-involved/solar-ambassador/">Volunteering</a></li>
+            <li><a href="/get-involved/apply/">Solar for Nonprofits</a></li>
+            <li><a href="/#newsletter-anchor">Newsletter Signup</a></li>
+            <li style="display: none;"><a href="{% url 'faq' %}">FAQs</a></li>
+            <li><a href="/solar_at_home/">Go Solar at Home</a></li>
+          </ul>
         </div>
-
-        <!-- end .bottoms -->
+        <div class="col-sm-12 col-md-4 footer-last-col">
+          <ul class="footer-links">
+            <li><a href="/get-involved/education/" class="fw-700">Education Center</a></li>
+            <li><a href="/get-involved/education/crowdfunding/">Crowdfunding</a></li>
+            <li><a href="/get-involved/education/solarenergyfinancing/">Solar Energy &amp; Financing</a></li>
+            <li><a href="/get-involved/education/solarcommunity/">Bring Solar to your community</a></li>
+            <li><a href="/get-involved/education/careers/">Solar Careers</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <script>
- if (screen.width >= 768) {
-     $('.info-block').removeClass("collapse myth-collapse-icon glyphicon glyphicon-chevron-down");
- }
- </script>
-</footer>
-<!-- end .footer -->
-
-{% comment %}
-<div class="footer">
-    <div class="row">
-        <div class="section small-8 columns">
-            <div class="row">
-                {% get_cms_root_page as root_page %}
-                {% partial_footer_menu root_page %}
-                {% num_menu_pages root_page as cms_pages_count %}
-                <section class="small-12 medium-4 columns{% if cms_pages_count|divisibleby:'3' %} clear{% endif %}">
-                    <div class="left">
-                        <h3>Account</h3>
-                        <ul>
-                            {% if request.user.is_authenticated %}
-                                <li><a href="/logout/">Sign out</a></li>
-                            {% else %}
-                                <li><a href="/signin/">Log in</a></li>
-                                <li><a href="/signin/">Sign up</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </section>
-                <section class="medium-4 small-12 columns end{% if cms_pages_count|add:'1'|divisibleby:'3' %} clear{% endif %}">
-                    <div class="left">
-                        <h3>{{ settings.revolv_cms.FooterSettings.contact_heading }}</h3>
-                        <p>{{ settings.revolv_cms.FooterSettings.contact_email|commented_email|safe }}</p>
-                        <p>{{ settings.revolv_cms.FooterSettings.contact_phone_number }}</p>
-                        <p>{{ settings.revolv_cms.FooterSettings.contact_address_line_1 }}</p>
-                        <p>{{ settings.revolv_cms.FooterSettings.contact_address_line_2 }}</p>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="small-4 columns">
-            <div class="row">
-                <section class="small-12 columns">
-                    <div class="right right-aligned-text">
-                        <h3></h3>
-                        <p class="show-for-medium-up">All solar projects have been vetted and approved by RE-volv.</p>
-                        <p><a href="{% url "home" %}"><img class="logo" src="{% static 'images/revolv-logo-white.png' %}"></a></p>
-                        <p class="show-for-medium-up">Developed with care by <a class="underline" href="http://calblueprint.org">Blueprint</a>.</p>
-                    </div>
-                </section>
-            </div>
-        </div>
+    <div class="container footer-bottom">
+      <div class="row justify-content-between align-items-center">
+          <div class="col-sm-12 col-md-6">
+            <p class="text-white mb-0">Copyright © 2019 RE-volv  |  All Rights Reserve</p>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <ul class="social-links">
+              <li><a href="mailto:info@re-volv.org"><i class="fas fa-envelope"></i></a></li>
+              <li><a href="https://www.facebook.com/solarseedfund/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="https://twitter.com/RE_volv" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="https://www.youtube.com/user/REvolvSolarSeedFund" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a></li>
+              <li><a href="https://www.instagram.com/re.volv/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+      </div>
     </div>
-</div>
-
-
-{% endcomment %}
+  </footer>

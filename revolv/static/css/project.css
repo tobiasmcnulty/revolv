@@ -173,7 +173,7 @@
   background: rgba(20, 177, 231, 0.4);
 }
 .social ul li:hover a {
-  color: #000;
+  color: #fff
 }
 .social ul li:hover i {
   color: #fff;
@@ -208,7 +208,7 @@
 }
 
 .title-active-project p {
-    color: #14b1e7;
+    color: #100084;
     font-family: "Source Sans Pro", Sans-Serif;
     font-size: 18px;
     font-weight: 700;

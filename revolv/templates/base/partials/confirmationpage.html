@@ -1,0 +1,93 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+<style>
+  #top-section-works {
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    background-size: 100%;
+  }
+  
+  /* fixes overflow of banner images ie. repeating or extra space */
+  @media (max-width: 1600px) {
+  
+    #top-section-works {
+      background-size: auto !important;
+    }
+  }
+  </style>
+{% block body %}
+    
+    <main role="main" class="container-fluid">
+      <div class="container-fluid works-header" id="top-section-works">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light">Thank you for joining RE-volv</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="application-section-second">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-left">
+            <p class="grey-text fw-700" style="text-align:center; line-height: 2;">
+              We know you get a lot of emails, so we’ll only send you the kind of content you’re interested in. 
+            </p>
+            <!-- 
+            <p class="grey-text">
+              Please check all that apply:
+              Solar success stories
+              Clean energy news 
+              RE-volv updates
+              RE-volv events 
+              Opportunites to volunteer
+              
+            </p>
+            -->
+            <p class="grey-text fw-600" style="text-align:center; line-height: 2;">
+              Would you like to bring solar to those communities that need it most?
+              Consider becoming a RE-volv monthly donor for as little as $5 a month.
+              Your hard-earned money will directly fund solar projects for community-serving nonprofit organizations.
+              Nonprofit clean energy = communities thriving. 
+            </p>
+            <div class="row justify-content-center align-items-center margin-top:40px;">
+              <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/monthly_donor/" role="button">
+                Donate Now
+                </a>
+          </div>
+          </div>
+      </div>
+
+
+      <div class="container-fluid" id="application-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12">
+                <div class="nonprofit-app-slick">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main><!-- /.container -->
+
+    <script src="{% static 'js/nonprofit-js/script.js' %}"></script>
+
+{% endblock %}
