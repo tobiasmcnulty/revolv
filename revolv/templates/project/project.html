@@ -509,91 +509,61 @@
                             {% endfor %}
                             <!-- end .module-box -->
                         {% endif %}
+                        <!-- Perks -->    
                         <div class="module-box payment-module">
-                            <h5 class="title-h5">Win an Electric Scooter</h5>
-                            <div class="back-the-project">
-                                BACK THIS PROJECT WITH $100
+                            <h5 class="title-h5">BACK THIS PROJECT</h5>
+                            <div class="back-the-project">Donate now to help {{ project.title }} go solar and
+                                grow the Solar Seed Fund
                             </div>
-                            <div class="back-the-project">
-                                By donating you are eligible for two RE-volv License plate frames, RE-volv T-shirt, and a chance to WIN an <strong>Electric Scooter</strong>.
-                            </div>
-                            <div class="inputs" style="display:none;">
-                                <label for="value">Donation to the project</label>
+                            <div class="inputs">
                                 <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="number" name="value" min="0" value="100" step="any"
-                                            class="form-control donation-field">
+                                    <label for="value">Donation to the project</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="number" class="form-control donation-field" step="any"
+                                               value="50" min="0" name="value">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="tip_edit">Additional support for RE-volv</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="number" class="form-control donation-tip tip_edit3"
+                                               step="any" value="7.50" min="0" name="tip_edit">
+                                        <span id="edit_value3" class="input-group-addon">Edit</span>
+                                    </div>
+                                    <form action="{% url 'project:stripe_payment' pk=project.pk %}"
+                                          method="POST" id="ipad">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="amount_cents"
+                                               value="{{ donation_level.amount }}">
+                                        <input name="metadata" value="1.00" type="hidden">
+                                        <button type="submit" class="stripe-button-el"
+                                                style="visibility: visible;">
+                                            <span style="display: block; min-height: 30px;">DONATE</span>
+                                        </button>
+                                    </form>
+
+                                </div>
+                                <div class="input-group">
+                                    <label for="total">Total</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="number" disabled="" class="form-control" step="1"
+                                               value="10" name="total">
+                                    </div>
                                 </div>
                             </div>
-
-                            {% for level in project_donation_levels %}
-                            {% endfor %}
-                            <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
+                            <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST"
+                                  id="phone">
                                 {% csrf_token %}
-                                <input type="hidden" name="amount_cents" value="1000">
+                                <input type="hidden" name="amount_cents" value="{{ donation_level.amount }}">
                                 <input name="metadata" value="1.00" type="hidden">
                                 <button type="submit" class="stripe-button-el" style="visibility: visible;">
-                                    <span style="display: block; min-height: 30px;">DONATE $100</span>
+                                    <span style="display: block; min-height: 30px;">DONATE</span>
                                 </button>
                             </form>
-                        </div>
-                        <div class="module-box payment-module">
-                            <h5 class="title-h5">Receive a RE-volv T-shirt</h5>
-                            <div class="back-the-project">
-                                BACK THIS PROJECT WITH $50
-                            </div>
-                            <div class="back-the-project">
-                                By donating you are eligible for two RE-volv License plate frames and a RE-volv T-shirt.
-                            </div>
-                            <div class="inputs" style="display:none;">
-                                <label for="value">Donation to the project</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="number" name="value" min="0" value="50" step="any"
-                                            class="form-control donation-field">
-                                </div>
-                            </div>
-
-                            {% for level in project_donation_levels %}
-                            {% endfor %}
-                            <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="amount_cents" value="1000">
-                                <input name="metadata" value="1.00" type="hidden">
-                                <button type="submit" class="stripe-button-el" style="visibility: visible;">
-                                    <span style="display: block; min-height: 30px;">DONATE $50</span>
-                                </button>
-                            </form>
-                        </div>
-                        <div class="module-box payment-module">
-                            <h5 class="title-h5" style="line-height: 22px !important; height: 50px;">Receive RE-volv License plate frames</h5>
-                            <div class="back-the-project">
-                                BACK THIS PROJECT WITH $25
-                            </div>
-                            <div class="back-the-project">
-                                By donating you are eligible for two RE-volv License plate frames.
-                            </div>
-                            <div class="inputs" style="display:none;">
-                                <label for="value">Donation to the project</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="number" name="value" min="0" value="25" step="any"
-                                           class="form-control donation-field">
-                                </div>
-                            </div>
-
-                            {% for level in project_donation_levels %}
-                            {% endfor %}
-                            <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="amount_cents" value="1000">
-                                <input name="metadata" value="1.00" type="hidden">
-                                <button type="submit" class="stripe-button-el" style="visibility: visible;">
-                                    <span style="display: block; min-height: 30px;">DONATE $25</span>
-                                </button>
-                            </form>
-                        </div>
-                        
+                        </div>                    
                         <!-- end .module-box -->
                     </aside>
                     <!-- end .list-area -->
