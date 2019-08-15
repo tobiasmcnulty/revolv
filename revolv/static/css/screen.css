@@ -18153,6 +18153,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 16px;
     margin-left: 0;
     padding-left: 25px;
+    list-style: none;
 }
 
 @media (min-width: 1024px) {
