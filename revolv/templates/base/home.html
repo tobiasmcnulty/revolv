@@ -128,7 +128,7 @@ a {
               <!--Campaign one-->
               {% for active_project in active_projects %}
               <div class="campaign-col">
-                <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); opacity: 0.6"></div>
+                <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); background-repeat: no-repeat; background-size: 100%;"></div>
                 <!-- non placeholder -->
                 <!--
                 <div class="img-container" style="background-image:url('static/images/home-img/camp-1.png' );"></div>
