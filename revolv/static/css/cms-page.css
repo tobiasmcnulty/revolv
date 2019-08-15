@@ -84,6 +84,9 @@ img {
 
 /* Clearing Styles */
 
+.li_row{
+    list-style: none;
+}
 /* Foundation Dropdowns */
 
 /* Standard Forms */
