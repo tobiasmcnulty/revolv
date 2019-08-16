@@ -102,6 +102,7 @@ urlpatterns = patterns(
     url(r'^How_it_works/', 'revolv.base.views.howitworks', name='howitworks'),
 
     url(r'^newsletter_confirm/', 'revolv.base.views.newsletter_confirm', name='newsletter_confirm'),
+    url(r'^donate_confirm/', 'revolv.base.views.donate_confirm', name='donate_confirm'),
 #-----
 
     url(r'^get-involved/revolv-accelerator/', 'revolv.base.views.revolv_accelerator', name='revolv_accelerator'),

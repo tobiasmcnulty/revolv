@@ -1,0 +1,82 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<!-- -->
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+{% endblock %}
+<style>
+  #top-section-works {
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    background-size: 100%;
+  }
+  
+  /* fixes overflow of banner images ie. repeating or extra space */
+  @media (max-width: 1600px) {
+  
+    #top-section-works {
+      background-size: auto !important;
+    }
+  }
+  </style>
+{% block body %}
+    
+    <main role="main" class="container-fluid">
+      <div class="container-fluid works-header" id="top-section-works">
+        <div class="row text-center">
+          <div class="col hero-text align-self-end">
+            <h1 class="text-light">Thank you for your generous donation to RE-volv!</h1>
+          </div>
+        </div>
+        
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+          <div class="scroll-icon">
+            <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+          </div>
+      </div>
+      <div class="container-fluid" id="application-section-second">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 text-left">
+            <p class="grey-text fw-700" style="text-align:center; line-height: 2;">
+              Your commitment to solar energy is appreciated by the communities we serve and the environment we work to protect.
+            </p>
+
+            <p class="grey-text fw-600" style="text-align:center; line-height: 2;">
+                We look forward to keeping in touch with you about the campaign, and we are deeply grateful for your gift!
+                Feel free to reach out to us at info@re-volv.org if you ever have any questions or would like to find out more ways to get involved.
+            </p>
+            <div class="row justify-content-center align-items-center margin-top:40px;">
+              <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/what-we-do/projects/" role="button">
+                Other Projects
+              </a>
+          </div>
+          </div>
+      </div>
+
+
+      <div class="container-fluid" id="application-section-four">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-10">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12">
+                <div class="nonprofit-app-slick">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main><!-- /.container -->
+
+    <script src="{% static 'js/nonprofit-js/script.js' %}"></script>
+
+{% endblock %}

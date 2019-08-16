@@ -600,6 +600,9 @@ def howitworks(request):
 def newsletter_confirm(request):
     return render(request, 'base/partials/confirmationpage.html')
 
+def donate_confirm(request):
+    return render(request, 'base/partials/donate_confirm.html')
+
 #-----------------------------
 
 def myths_and_facts(request):
