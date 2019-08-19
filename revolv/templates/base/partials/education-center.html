@@ -5,162 +5,302 @@
 
 {% block head %}
 
-<!-- -->
 <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+<style>
+  .box {
+    border-bottom: none;
+  }
+
+  .active {
+    border-bottom: 10px solid #00bfcb;
+  }
+</style>
 
 {% endblock %}
 
 {% block body %}
-    <main role="main" class="container-fluid">
-      <div class="container-fluid edu-ce-header" id="top-section" style="height: 582px !important; background-position: top !important;">
-        <div class="row text-center">
-          <div class="col hero-text align-self-start" style="margin-top: 250px;">
-            <h1 class="text-white fw-700 mb-1">Education Center</h1>
-            <h3 class="text-white fw-300 mb-5">Get the skills to pay the bills!</h3>
-          </div>
-        </div>
+<main role="main" class="container-fluid">
+  <div class="container-fluid edu-ce-header" id="top-section"
+    style="height: 582px !important; background-position: top !important;">
+    <div class="row text-center">
+      <div class="col hero-text align-self-start" style="margin-top: 250px;">
+        <h1 class="text-white fw-700 mb-1">Education Center</h1>
+        <h3 class="text-white fw-300 mb-5">Get the skills to pay the bills!</h3>
       </div>
-      <div class="container-fluid scroll-section" id="scroll-section">
-          <div class="scroll-icon">
-            <img class="scroll-arrow bouncing" src="../../../static/images/edu-media-img/scroll-icon.png">
-          </div>
-      </div>
-      <div class="container-fluid" id="edu-re-cats">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-sm-12 co-md-11 col-lg-11">
-            <h2 class="blue-text ml-3 text-uppercase" style="text-align: center; margin-bottom: 40px;"><span class="orange-text fw-600">Article Categories</span></h2>
-            <div class="row justify-content-center align-items-center">
-              <div class="col-sm-6 col-md-3">
-                <a href="/get-involved/education/solarenergyfinancing/">
-                  <div class="edu-re-cat-col cat-one">
-                    <div class="edu-re-cat-text">
-                      <h3>Solar Energy & Financing</h3>
-                    </div>
-                  </div>
-                </a>
+    </div>
+  </div>
+  <div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+      <img class="scroll-arrow bouncing" src="../../../static/images/edu-media-img/scroll-icon.png">
+    </div>
+  </div>
+
+  <div class="container-fluid" id="edu-re-cats">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-12 co-md-11 col-lg-11">
+        <h2 class="blue-text ml-3 text-uppercase" style="text-align: center; margin-bottom: 40px;"><span
+            class="orange-text fw-600">Article Categories</span></h2>
+        <div class="toggles">
+          <div class="row justify-content-center align-items-center category-active">
+
+            <div class="abcz col-sm-6 col-md-3" id="better-liv">
+              <div class="edu-re-cat-col cat-one">
+                <div class="edu-re-cat-text">
+                  <h3>Solar Energy & Financing</h3>
+                </div>
               </div>
-              <div class="col-sm-6 col-md-3">
-                <a href="/get-involved/education/solarcommunity/">
-                  <div class="edu-re-cat-col cat-two">
-                    <div class="edu-re-cat-text">
-                      <h3>Bring Solar to Your Community</h3>
-                    </div>
-                  </div>
-                </a>
+            </div>
+
+            <div class="abcz col-sm-6 col-md-3" id="bring-liv">
+              <div class="edu-re-cat-col cat-two">
+                <div class="edu-re-cat-text">
+                  <h3>Bring Solar to Your Community</h3>
+                </div>
               </div>
-              <div class="col-sm-6 col-md-3">
-                <a href="/get-involved/education/crowdfunding/">
-                  <div class="edu-re-cat-col cat-three">
-                    <div class="edu-re-cat-text">
-                      <h3>Solar Crowdfunding </h3>
-                    </div>
-                  </div>
-                </a>
+            </div>
+
+            <div class="abcz col-sm-6 col-md-3" id="solar-liv">
+              <div class="edu-re-cat-col cat-three">
+                <div class="edu-re-cat-text">
+                  <h3>Solar Crowdfunding </h3>
+                </div>
               </div>
-              <div class="col-sm-6 col-md-3">
-                <a href="/get-involved/education/careers/">
-                  <div class="edu-re-cat-col cat-four">
-                    <div class="edu-re-cat-text">
-                      <h3>Solar Careers</h3>
-                    </div>
-                  </div>
-                </a>
+            </div>
+            <div class="abcz col-sm-6 col-md-3" id="career-liv">
+              <div class="edu-re-cat-col cat-four">
+                <div class="edu-re-cat-text">
+                  <h3>Solar Careers</h3>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="container-fluid" id="blog-body">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-sm-12 co-md-10 col-lg-10">
-            <h2 class="blue-text ml-3 text-uppercase" style="text-align: center; margin-bottom: 40px;"><span class="orange-text fw-600">Educational Articles</span></h2>
-            <div class="row justify-content-start align-items-center mt-5">
-              <!-- Blog post loop start -->
-             
-                <div class="col-sm-12 col-md-4 blog-posts-col">
-                  <div class="blog-post-inner">
-                    <a href="/get-involved/education/solarjobs/">
-                      <div class="blog-thumb-wrapper">
-                        <img src="../../../static/images/eduresource-img/whatcareerinsolarthumb.png">
-                      </div>
-                      <div class="blog-excerpt-wrapper">
-                        <span class="meta-date"> </span>
-                        <h4 class="meta-title">Solar Jobs For All</h4>
-                        <p>Solar is booming, and so are solar job opportunities. According to the most recent National Solar Jobs Census, there are over 242,000..</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              
-              
-              <!-- Blog post loop end -->
-                <div class="col-sm-12 col-md-4 blog-posts-col">
-                  <div class="blog-post-inner">
-                    <a href="/get-involved/education/reasonforsolar/">
-                      <div class="blog-thumb-wrapper">
-                        <img src="../../../static/images/eduresource-img/4reasonthumb.png">
-                      </div>
-                      <div class="blog-excerpt-wrapper">
-                        <span class="meta-date"> </span>
-                        <h4 class="meta-title">4 Reasons to Bring Solar to Your Community</h4>
-                        <p>When we think about solar energy, there’s a natural tendency to think about the big picture. After all, the sun literally lights up.. </p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
+    </div>
+  </div>
 
-                <div class="col-sm-12 col-md-4 blog-posts-col">
-                  <div class="blog-post-inner">
-                    <a href="/get-involved/education/bringsolar/">
-                      <div class="blog-thumb-wrapper">
-                        <img src="../../../static/images/eduresource-img/5stepbringsolarthumb.png">
-                      </div>
-                      <div class="blog-excerpt-wrapper">
-                        <span class="meta-date"> </span>
-                        <h4 class="meta-title">5 Steps to bring solar to your community</h4>
-                        <p>Climate change is a generational challenge for the entire planet, but transitioning our energy system away from fossil fuels can start today..</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              
-              
+  <div class="covers">
+    <div class="container-fluid" id="blog-body">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 co-md-10 col-lg-10">
+          <h2 class="orange-text ml-3 text-uppercase" style="text-align: center;" id="title-category">Educational
+            Articles</h2>
+          <div class="row justify-content-start align-items-center mt-5">
+            <!-- Blog post loop start -->
 
+            <div class="col-sm-12 col-md-4 blog-posts-col better-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/solarenergy/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/solarenergythumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper" id="title-category">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">Solar Energy 101</h4>
+                    <p>We’re living through a massive boom in solar energy - an infinitely available, low-cost,
+                      zero-pollution source of electricity..</p>
+                  </div>
+                </a>
+              </div>
             </div>
-            <!-- 
-            <div class="row justify-content-center align-items-center text-center">
-              <a class="btn btn-grey btn-lg btn-arrow-white my-2" href="#" role="button">Load More</a> 
+
+            <div class="col-sm-12 col-md-4 blog-posts-col better-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/solarfinance/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/solarfinancethumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">Solar Financing 101</h4>
+                    <p>Going solar is a great deal, saving homeowners and businesses 15% or more on their electricity
+                      bills. But because the up-front costs..</p>
+                  </div>
+                </a>
+              </div>
             </div>
-            -->
+
+            <div class="col-sm-12 col-md-4 blog-posts-col bring-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/reasonforsolar/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/4reasonthumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">4 Reasons to Bring Solar to Your Community</h4>
+                    <p>When we think about solar energy, there’s a natural tendency to think about the big picture.
+                      After all, the sun literally lights up.. </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 blog-posts-col bring-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/bringsolar/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/5stepbringsolarthumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">5 Steps to bring solar to your community</h4>
+                    <p>Climate change is a generational challenge for the entire planet, but transitioning our energy
+                      system away from fossil fuels can start today..</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 blog-posts-col solar-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/meetcrowd/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/reachgoalthumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">How to Meet Your Crowdfunding Campaign Goals</h4>
+                    <p>Crowdfunding is the art of raising money from lots of people, typically in small amounts. When
+                      you were a kid, did you ever.. </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 blog-posts-col solar-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/solarizenonprofit/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/solarizenonprofitsthumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">Solarizing a Nonprofit in Your Community</h4>
+                    <p>Everyone wants to go solar these days, from massive corporations to individual homeowners.
+                      Nonprofits are no exception - and in fact, they.. </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 blog-posts-col career-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/solarjobs/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/whatcareerinsolarthumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">Solar Jobs For All</h4>
+                    <p>Solar is booming, and so are solar job opportunities. According to the most recent National Solar
+                      Jobs Census, there are over 242,000..</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 blog-posts-col career-liv cover">
+              <div class="blog-post-inner">
+                <a href="/get-involved/education/beststatesolar/">
+                  <div class="blog-thumb-wrapper">
+                    <img src="../../../static/images/eduresource-img/beststatesthumb.png">
+                  </div>
+                  <div class="blog-excerpt-wrapper">
+                    <span class="meta-date"> </span>
+                    <h4 class="meta-title">What Are The Best States for Solar Jobs - and Why?</h4>
+                    <p>There are over 242,000 solar jobs in America today, and employment in this fast-growing industry
+                      has grown at six times the..</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- Blog post loop end -->
+
           </div>
+          <!-- 
+          <div class="row justify-content-center align-items-center text-center">
+            <a class="btn btn-grey btn-lg btn-arrow-white my-2" href="#" role="button">Load More</a>
+          </div>
+          -->
         </div>
       </div>
-      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
-        <div class="container-fluid" id="section-six">
-          <div class="row justify-content-center align-items-center section-six-row">
-            <div class="col-sm-12 co-md-12 col-lg-10">
-              <div class="row align-items-center">
-                <div class="col-sm-12 col-md-5 text-right text-white">
-                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
-                  <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
-                </div>
-
-
-                <div class="col-sm-12 col-md-7">
-                  <div class="input-group mb-3 subscription-form inputs">
-                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
-                      <div class="input-group-append">
-                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
-                      </div>
-                  </div>
+    </div>
+  </div>
+  <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    <div class="container-fluid" id="section-six">
+      <div class="row justify-content-center align-items-center section-six-row">
+        <div class="col-sm-12 co-md-12 col-lg-10">
+          <div class="row align-items-center">
+            <div class="col-sm-12 col-md-5 text-right text-white">
+              <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+              <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <div class="input-group mb-3 subscription-form inputs">
+                <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value=""
+                  maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                <div class="input-group-append">
+                  <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign
+                    up</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
-    </main><!-- /.container -->
-    <!-- responsive navigation bar -->
+      </div>
+    </div>
+  </form>
+</main><!-- /.container -->
+
+<!-- partial -->
+
+<script>
+  $(function () {
+
+    $('.toggles div div').click(function () {
+      var get_id = this.id;
+      var get_current = $('.covers .' + get_id);
+
+      $('.cover').not(get_current).hide(500);
+
+      get_current.show(500);
+
+      $('div').removeClass("active");
+
+      if (get_id == 'career-liv') {
+        $('#title-category').text('Solar Careers')
+
+
+        $('#career-liv .edu-re-cat-col .edu-re-cat-text').addClass("active");
+
+      }
+      if (get_id == 'solar-liv') {
+        $('#title-category').text('Solar Crowdfunding')
+
+        $('#solar-liv .edu-re-cat-col .edu-re-cat-text').addClass("active");
+      }
+
+      if (get_id == 'bring-liv') {
+        $('#title-category').text('Bring Solar to Your Community')
+
+        $('#bring-liv .edu-re-cat-col .edu-re-cat-text').addClass("active");
+      }
+
+      if (get_id == 'better-liv') {
+        $('#title-category').text('Solar Energy & Financing')
+
+        $('#better-liv .edu-re-cat-col .edu-re-cat-text').addClass("active");
+      }
+    });
+
+    $('#showall').click(function () {
+      $('.cover').show(500);
+    });
+
+  });
+</script>
 
 {% endblock %}
