@@ -50,10 +50,28 @@
             {% endif %}
         {% endif %}
             {% if not error_msg %}
-
+            {% include "project/success_modal.html" with project=project %}
             {% include "base/partials/list_projects.html" with is_reinvestment=is_reinvestment amount=reinvestment_amount %}
         {% endif %}
 
     {% endspaceless %}
 {% endblock %}
 
+{% block body-bottom %}
+<script>
+    $(document).ready(function () {
+        if (('{{ social }}' == 'donation') || $.cookie('last_project')) {
+            $("#social_media").modal("show");
+            $.removeCookie('last_project', {path: '/'});
+        }
+    });
+    $(document).on("click", ".solar-seed-fund-amount", function (e) {
+        swal({
+            title: 'Hi {{ user }}',
+            text: 'Total Solar Seed Fund amount is ${{ statistics.reinvest_pool_amount }}',
+            icon: "info",
+            button: "Ok",
+        });
+    });
+</script>
+{% endblock %}
