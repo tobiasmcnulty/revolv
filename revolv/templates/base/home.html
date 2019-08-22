@@ -138,7 +138,7 @@ a {
                   <h5>{{ active_project.title }}</h5>
                   <ul class="progress-text">
                     <li class="current-progress">{{ active_project.percent_complete }}%</li>
-                    <li class="target-progress">${{ active_project.amount_donated |floatformat:"0"}}</li>
+                    <li class="target-progress">${{ active_project.amount_donated |floatformat:"0"|intcomma}}</li>
                   </ul>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{ active_project.percent_complete }}%;" 
