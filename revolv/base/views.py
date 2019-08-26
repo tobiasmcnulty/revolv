@@ -613,6 +613,9 @@ def newsletter_confirm(request):
 def donate_confirm(request):
     return render(request, 'base/partials/donate_confirm.html')
 
+def email_confirm(request):
+    return render(request, 'base/partials/confirmemail.html')
+
 #-----------------------------
 
 def myths_and_facts(request):
