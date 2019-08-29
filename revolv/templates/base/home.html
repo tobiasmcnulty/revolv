@@ -84,7 +84,7 @@ a {
               <div class="col-sm-12 col-md-3 no-gutter">
                 <div class="impact-col">
                   <img src="static/images/home-img/co-2-img.png">
-                  <h4 class="lblue-text fw-700">{{ global_impacts.co2_avoided  }} lbs</h4>
+                  <h4 class="lblue-text fw-700">{{ global_impacts.co2_avoided |floatformat:"0"|intcomma  }} lbs</h4>
                   <p class="fw-700">CO<sub>2</sub><br/> AVOIDED</p>
                 </div>
               </div>
@@ -98,14 +98,14 @@ a {
               <div class="col-sm-12 col-md-3 no-gutter">
                 <div class="impact-col">
                   <img src="static/images/home-img/care-img.png">
-                  <h4 class="lblue-text fw-700">{{ global_impacts.num_people_donated }}</h4>
+                  <h4 class="lblue-text fw-700">{{ global_impacts.num_people_donated |floatformat:"0"|intcomma }}</h4>
                   <p class="fw-700">PEOPLE<br/> DONATED</p>
                 </div>
               </div>
               <div class="col-sm-12 col-md-3 no-gutter">
                 <div class="impact-col">
                   <img src="static/images/home-img/team-img.png">
-                  <h4 class="lblue-text fw-700">{{ global_impacts.num_people_affected }}</h4>
+                  <h4 class="lblue-text fw-700">{{ global_impacts.num_people_affected |floatformat:"0"|intcomma }}</h4>
                   <p class="fw-700">COMMUNITY<br /> MEMBERS IMPACTED</p>
                 </div>
               </div>
@@ -128,7 +128,9 @@ a {
               <!--Campaign one-->
               {% for active_project in active_projects %}
               <div class="campaign-col">
-                <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); background-repeat: no-repeat; background-size: 100%;"></div>
+                <a href="{% url "project:view" title=active_project.project_url %}">
+                  <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); background-repeat: no-repeat; background-size: 100%;"></div>
+                </a>
                 <!-- non placeholder -->
                 <!--
                 <div class="img-container" style="background-image:url('static/images/home-img/camp-1.png' );"></div>
