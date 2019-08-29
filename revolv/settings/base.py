@@ -219,6 +219,10 @@ LIST_ID = os.environ.get('LIST_ID')
 CM_KEY = os.environ.get('CM_KEY')
 CM_LIST_ID = os.environ.get('CM_LIST_ID')
 
+CM_LIST_ID_RE = os.environ.get('CM_LIST_ID_RE')
+CM_LIST_ID_RU = os.environ.get('CM_LIST_ID_RU')
+CM_LIST_ID_SS = os.environ.get('CM_LIST_ID_SS')
+
 MANDRILL_API_KEY = os.environ.get('MANDRILL_API_KEY')
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 #SERVER_EMAIL = 'info@re-volv.org'
@@ -453,4 +457,4 @@ STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 
 IP_STACK_ACCESS_KEY = os.environ.get('IP_STACK_ACCESS_KEY')
 
-VERSION_NUM = '1551289172739'
+VERSION_NUM = '1551289172740'

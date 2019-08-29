@@ -556,6 +556,63 @@ footer {
     }
   }
 
+/*confirmation email pref page */
+#top-section-confirm {
+	background-position: center !important;
+	position: relative;
+	overflow: hidden;
+	background-size: 100% !important;
+}
+
+#top-section-confirm video {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: 0;
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+
+#top-section-confirm .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: url(../../../static/images/edu-media-img/email-confirm.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	z-index: 1;
+}
+
+#top-section-confirm .row {
+	height: 700px;
+	z-index: 2;
+	position: relative;
+}
+
+#top-section-confirm h1 {
+	margin-bottom: 100px;
+	font-weight: 300;
+	font-size: 3em;
+	letter-spacing: 1px;
+}
+
+@media (max-width: 1600px) {
+
+	#top-section-confirm {
+		background-size: auto !important;
+		background-position: bottom !important;
+	}
+}
+
 /* how it works page */
 #top-section-works {
 	background-position: bottom center !important;
@@ -1189,6 +1246,9 @@ footer {
 	padding: 4% 0;
 }
 
+.confirm-header {
+	background: url(../../../static/images/edu-media-img/email-confirm.jpg);
+}
 
 .works-header {
 	background: url(../../../static/images/about-abr-img/riverbridgefin.png);

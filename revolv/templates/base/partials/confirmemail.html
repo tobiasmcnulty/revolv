@@ -1,93 +1,347 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
 {% load staticfiles %}
+{% load widget_tweaks %}
 {% load humanize %}
-{% load wagtailimages_tags %}
-
 {% block head %}
-
-<!-- -->
+<script type="text/javascript">
+</script>
 <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
-
-{% endblock %}
 <style>
-  #top-section-works {
-    background-position: center;
+.checkbox-text {
+    margin-left: 1em;
+    font-size: 1.3em;
+    color: #777;
+    font-weight: 500;
+}
+.checkbox-margin {
+    margin-bottom: 1.5em;
+}
+input.checkbox-settings[type="checkbox"]:checked + label::after {
+   content: '';
+    position: absolute;
+    width: 2.5ex;
+    height: 1.3ex;
+    background: rgba(0, 0, 0, 0);
+    top: 1.2ex;
+    left: 0.9ex;
+    border: 3px solid #100084;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input.checkbox-settings[type="checkbox"] {
+   line-height: 2.1ex;
+}
+
+input[type="radio"],
+input.checkbox-settings[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+}
+
+input.checkbox-settings[type="checkbox"] + label {
     position: relative;
     overflow: hidden;
-    background-size: 100%;
-  }
-  
-  /* fixes overflow of banner images ie. repeating or extra space */
-  @media (max-width: 1600px) {
-  
-    #top-section-works {
-      background-size: auto !important;
+    cursor: pointer;
+}
+
+input.checkbox-settings[type="checkbox"] + label::before {
+   content: "";
+    display: inline-block;
+    vertical-align: -25%;
+    height: 4.3ex;
+    width: 4.3ex;
+    background-color: white;
+    border: 2px solid #e8e8e8;
+    border-radius: 7px;
+    margin-right: 0.5em;
+}
+
+.email-pref-box {
+    margin: 40px auto;
+    width: 340px;
+}
+
+@media (max-width: 400px) {
+    .email-pref-box {
+        width: 100%;
+    }  
+}
+@media (max-width: 767px) {
+    form{
+        border-left: none;
+        margin-left: 2em;
     }
-  }
-  </style>
+    .setting-donation-save{
+        width: 8em;
+    }
+    input{
+        width: 15em;
+        font-size: 1em;
+        padding-left: 0;
+    }
+    .setting-donation-change{
+        float: right;
+    }
+}
+</style>
+<script src="{% static 'js/toastr.min.js' %}?version={{ version_number }}"></script>
+{% if messages %}
+        <script>
+            toastr.options.positionClass = "toast-bottom-right";
+        </script>
+        {% for message in messages %}
+            <script>
+                toastr.{{ message.tags }}('{{ message }}')
+            </script>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block title %}Project | {% endblock %}
 {% block body %}
-    
-    <main role="main" class="container-fluid">
-      <div class="container-fluid works-header" id="top-section-works">
-        <div class="row text-center">
-          <div class="col hero-text align-self-end">
-            <h1 class="text-light">Thank you for joining RE-volv</h1>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid scroll-section" id="scroll-section">
-          <div class="scroll-icon">
-            <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
-          </div>
-      </div>
-      <div class="container-fluid" id="application-section-second">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-sm-12 col-md-10 col-lg-8 text-left">
-            <p class="grey-text fw-700" style="text-align:center; line-height: 2;">
-              We know you get a lot of emails, so we’ll only send you the kind of content you’re interested in. 
-            </p>
-            <!-- 
-            <p class="grey-text">
-              Please check all that apply:
-              Solar success stories
-              Clean energy news 
-              RE-volv updates
-              RE-volv events 
-              Opportunites to volunteer
-              
-            </p>
-            -->
-            <p class="grey-text fw-600" style="text-align:center; line-height: 2;">
-              Would you like to bring solar to those communities that need it most?
-              Consider becoming a RE-volv monthly donor for as little as $5 a month.
-              Your hard-earned money will directly fund solar projects for community-serving nonprofit organizations.
-              Nonprofit clean energy = communities thriving. 
-            </p>
-            <div class="row justify-content-center align-items-center margin-top:40px;">
-              <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/monthly_donor/" role="button">
-                Donate Now
-                </a>
-          </div>
-          </div>
-      </div>
+<div class="container-fluid confirm-header" id="top-section-confirm">
+  <div class="row text-center">
+    <div class="col hero-text align-self-end">
+      <h1 class="text-light fw-700" style="text-shadow: black 0px 0px 5px;">Thank you for donating</h1>
+    </div>
+  </div>
+</div>
+<div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+      <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+</div>
+
+<div class="container-fluid" id="application-section-second">
+
+    <p class="grey-text fw-700" style="text-align:center; line-height: 2;">
+      Your hard-earned dollars are about to go to work building more solar projects that directly power community serving institutions with clean energy.
+    </p>
+       
+    <p class="grey-text fw-600" style="text-align:center; line-height: 2;">
+      It feels good, doesn't it? 
+      You'll receive more feel-good stories of communities thriving delivered to your inbox. 
+      If you're not into receiving emails, adjust your email preferences below. 
+    </p>
+
+    <div id="account-info" class="col-xs-12 setting-form-top">
+        <form method="POST" action="{% url 'user_update' %}">
+            {% csrf_token %}
+            <div class="email-pref-box" style="">
+                <div id="account-information-block"style="display:none;">
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">FIRST NAME:</span>
+                        <div>
+                            {% if form.first_name.errors %}
+                                {{ form.first_name|add_class:"setting-donation-input field-error" }}
+                            {% else %}
+                                {{ form.first_name|add_class:"setting-donation-input" }}
+                            {% endif %}
+                        </div>
+                        <span id="firstnamelabel" class="setting-donation-change">Edit</span>
+                        {% if form.first_name.errors %}
+                            <div class="error-text">
+                                {{ form.first_name.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">LAST NAME:</span>
+                        <div>
+                            {% if form.last_name.errors %}
+                                {{ form.last_name|add_class:"setting-donation-input field-error" }}
+                            {% else %}
+                                {{ form.last_name|add_class:"setting-donation-input" }}
+                            {% endif %}
+                        </div>
+                        <span id="lastnamelabel" class="setting-donation-change">Edit</span>
+                        {% if form.last_name.errors %}
+                            <div class="error-text">
+                                {{ form.last_name.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">USERNAME:</span>
 
 
-      <div class="container-fluid" id="application-section-four">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-sm-12 co-md-10 col-lg-10">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-sm-12">
-                <div class="nonprofit-app-slick">
+                        <div>
+                            {% if form.username.errors %}
+                                {{ form.username|add_class:"setting-donation-input field-error" }}
+                            {% else %}
+                                {{ form.username|add_class:"setting-donation-input" }}
+                            {% endif %}
+                        </div>
+                        <span id="usernamelabel" class="setting-donation-change">Edit</span>
+                        {% if form.username.errors %}
+                            <div class="error-text">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">EMAIL:</span>
+                        <div>
+                            {{ form.email|add_class:"setting-donation-input" }}
+                        </div>
+                    </div>
+                    <div class="setting-input-block">
+                        <span class="setting-form-lebel">PASSWORD:</span>
+                        <input id="password" type="password" name="password" class="setting-donation-input"
+                               value='*******' disabled/>
+                        <span id="passwordlabel" class="setting-donation-change">Change Password</span>
+                    </div>
                 </div>
-              </div>
+                <div id="email-preference-info" class="setting-input-block">
+                    <p class="setting-form-lebel setting-input-block">EMAIL PREFERENCES</p>
+                    <div class="checkbox-margin">
+                        <input type="checkbox" class="checkbox-settings" name="repayment_notification" id="repayment_notification" checked>
+                        <label for="repayment_notification" style="font-family: 'SExtralight'; font-size:14px;"><span class="checkbox-text">RE-volv updates</span></label>
+                    </div>
+                    <div class="checkbox-margin">
+                        <input type="checkbox" class="checkbox-settings" name="newsletter" id="newsletter" checked>
+                        <label for="newsletter" style="font-family: 'SExtralight'; font-size:14px;"><span class="checkbox-text">Solar Seed Stories</span></label>
+                    </div>
+                    <div class="checkbox-margin">
+                        <input type="checkbox" class="checkbox-settings" name="announcement" id="announcement" checked>
+                        <label for="announcement" style="font-family: 'SExtralight'; font-size:14px;"><span class="checkbox-text">RE-volv events</span></label>
+                    </div>
+                </div>
+                <div class="setting-input-block">
+                    <button  type="submit" class="component-link pull-left btn-blue btn-donate setting-donation-save">SAVE</button>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('#email-preference-info').show();
+        if ('{{subscribed_to_updates}}' == 'False') {
+            $("#announcement").removeAttr("checked");
+        }
+        if ('{{subscribed_to_repayment_notifications}}' == 'False') {
+            $("#repayment_notification").removeAttr("checked");
+        }
+        if ('{{subscribed_to_newsletter}}' == 'False') {
+            $("#newsletter").removeAttr("checked");
+        }
+        $('#id_first_name').prop('readonly', true);
+        $('#id_last_name').prop('readonly', true);
+        $('#id_username').prop('readonly', true);
+        $('#id_email').prop('readonly', true);
+        $('#operation-amt').prop('readonly', true);
+        $('#donation-amt').prop('readonly', true);
+    });
 
+</script>
+<script>
+    $(function ($) {
+  var handler = StripeCheckout.configure({
+    key: '{{ stripe_publishable_key }}'
+    , image: '{% static "images/revolv-logo.png" %}'
+    , locale: 'auto'
+    , name: 'RE-volv'
+    , email: '{{request.user.email}}'
+  });
+  $(window).on('popstate', function () {
+    handler.close();
+  });
+  $(document).on('click','.operation-donation-submit',function (e) {
+    e.preventDefault();
+    var $form = $(this).closest('form');
+    if ('{{existing_user}}' == 'True') {
+        var amount = $('#operation-amt').val();
+        var solar_amount = $('#donation-amt').val();
+        if ({{monthly_donation_amount}} == amount && {{monthly_solar_donation}} == solar_amount ) {
+            return false;
+        }
+        $('#donation-spinner').css('display', 'flex');
+        $.ajax({
+                 type: "POST",
+                 url: '{% url 'donation_update' %}',
+                 data: $form.serializeArray(), // serializes the form's elements.
+                 success: function(data)
+                 {
+                    if(data.status == 'donation_updated') {
+                        $('.modal-title').text('Thank you for donating!');
+                        $('.donation-text').text("Your donation $" +data.amount + "  was successfully updated.");
+                    }
+                    $('#donation-spinner').css('display', 'none');
+                    $('#operationModal').modal('show');
 
-    </main><!-- /.container -->
+                 },
+                 error: function(data)
+                 {
+                    $('.modal-title').text('Error!');
+                    $('.donation-text').text("Payment error. Something went wrong.");
+                     $('#donation-spinner').css('display', 'none');
+                    $('#operationModal').modal('show');
+                 }
+               });
+    }
+    else {
+      var amount = parseInt($('#operation-amt').val())+parseInt($('#donation-amt').val());
+      if (amount > 0) {
+          handler.open({
+            description: 'Monthly subscription of $'+amount
+            , amount: amount*100
+            , token: function (token) {
+              var id = token.id;
+              var email = token.email;
+              var $id = $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'stripeToken')
+                .val(id);
+              var $email = $('<input>')
+                .attr('type', 'hidden')
+                .attr('name', 'stripeEmail')
+                .val(email);
+              $id.appendTo($form);
+              $email.appendTo($form);
+              $form.submit(function(e) {
+              $('#donation-spinner').css('display', 'flex');
+              $.ajax({
+                     type: "POST",
+                     url: '{% url 'donation_update' %}',
+                     data: $form.serializeArray(), // serializes the form's elements.
+                     success: function(data)
+                     {
+                        if(data.status == 'donation_success') {
+                            $('.modal-title').text('Thank you for donating!');
+                            $('.donation-text').text("Thank you for donating $" +data.amount + " to RE-volv's mission to empower communities with solar energy!");
+                        }
+                        if(data.status == 'subscription_success') {
+                            $('.modal-title').text('Thank you for donating!');
+                            $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
+                        }
+                        $('#donation-spinner').css('display', 'none');
+                        $('#operationModal').modal('show');
 
-    <script src="{% static 'js/nonprofit-js/script.js' %}"></script>
+                     },
+                     error: function(data)
+                     {
+                        $('.modal-title').text('Error!');
+                        $('.donation-text').text("Payment error. Something went wrong.");
+                        $('#donation-spinner').css('display', 'none');
+                        $('#operationModal').modal('show');
+                     }
+                   });
+
+              e.preventDefault(); // avoid to execute the actual submit of the form.
+          });
+              $form.trigger('submit');
+            }
+          });
+        }
+     }
+  });
+});
+</script>
 
 {% endblock %}

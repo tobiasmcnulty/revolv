@@ -336,6 +336,54 @@ secrets:
       -----END PGP MESSAGE-----
 
 
+    "CM_LIST_ID_RE": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf9Gu6glt0ZViY6zKAMF0rZOk+gxCeWvKKljTCdgqqQJLQO
+      fAVzoOOom5YtM98OTovjQeodV6IfjHVK9rj5PZuu1C/Kr+KUv8prdu9+u1jBeNWV
+      8mx+kUpYv+6z9iihOeCVcV7kijgusKFfQKj8gu24T3JxXQV1SE6hxIb+7QrVgnnH
+      yp1UsU4nOpi/6NCzg6BklVpbILcax5dvV3nl+8oij58jfKhFu2n0I0IUG0//Fmlp
+      wZT8ZqK5+FEJKJTIXxvGNJOc09tSJbsyefibcq06e27cyGWCVjrl6eSWLv2DI/J6
+      Lrn9dqG4iMa2OFQuSexbF34ghxOHmdAiUr83g/GGhtJbAX2NIKKdmtXSGKBgfe+U
+      cnxQTeS+4VXHQPgSEIBcQV6YWCiJCxofmho0dnC33QqAxkyjEFvTmnPv3t2KrClC
+      L3eRs1GqK3DwJ+wmIsuwog6msm2FBAyvaHX//Q==
+      =agW2
+      -----END PGP MESSAGE-----
+
+
+    "CM_LIST_ID_RU": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf8C7sOeL+82vZ/QsCspfU7xFOZnwOPH/B0ejiM84Ov+ypH
+      GnLchtCJbMqQ119AoT/y/jP2hSsdvBxJYh/AR68IF8smtR2YcvvUL+gTNnY0kNHP
+      d+JjXrOfcNlWd5r03gdXZPAq4zlv4VFw1uioC5p9DrLE4SvUqftqkGg1Fh10qA0y
+      8g70y5U/TR02NONixX4yfTnvWbntU5teZY0m6A/XTNExlqxjT4GKxFPORwcO9bSf
+      fSG8DbfCj8CNs+KYZxnfxkQGiTIliV7uKj5B97NjV+lujXHG/e8MbOEqTyjNJStF
+      UXm3JDNO+su8foo5gi48Xvy28CioOcNO4yrTQ2lmDdJbAcLS/5cB4v79qHlHHm53
+      vQ2yZYZk6Y+JvXmXltZ1BpCVfoucuQUT4ZtP8gZR1IK1WQwMIfZdOitD76Z82V0t
+      jDib80X8+8sbVTC8reA81NV4NDMf+3l5C0/o/Q==
+      =r/Hj
+      -----END PGP MESSAGE-----
+
+
+    "CM_LIST_ID_SS": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQgAtaMfH/EI8/VtIh8tV7FWSWLqIlt2Ju61mlwNdc2NDkuf
+      EL6O5Ja5T2ZJQTNtHGmIFytlCAHgbCUBezBZATpJkF/Hx84HNm7+5+AHSuArBBTi
+      4/7daJnD9kGxaUI8uA8LZxsqS2RH8aYjNdej/PY4VhG+zD07UrPY6Fj9l3Jd9RAH
+      h31cBvsypG4f/fKdDDdVUXAzu9NF8F7YekZqlhq+odnsUFMFXeVmRGqsJ9tHTYqm
+      fY8H0H1FT1jlJ4s64hDHDxaevRLQajRtcEEWnB6jLPkuICxkFOZoGoBLcWFBkzmu
+      eXD17e4uSs5ItUG5noMl5GlsUZiYIe5H9l1NTSBYk9JbAdvS5Pd0ABi8+CsuN6EC
+      Uw8yx2Pbj3Z0AWRViciGOAYvQ0UIqZJ5ZeEUOsj5BJ/rKCtE9dVRRIomAtvTdUC2
+      xNkBPlZtXELxYgQWIFtH84bwi9hhYky42PVwYw==
+      =hALb
+      -----END PGP MESSAGE-----
+
+
     "IP_STACK_ACCESS_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1

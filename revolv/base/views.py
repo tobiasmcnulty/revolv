@@ -613,8 +613,47 @@ def newsletter_confirm(request):
 def donate_confirm(request):
     return render(request, 'base/partials/donate_confirm.html')
 
+@login_required
 def email_confirm(request):
-    return render(request, 'base/partials/confirmemail.html')
+    existing_user = False
+    user = request.user
+    userprofile = RevolvUserProfile.objects.get(user=request.user)
+    project = Project.objects.get(title='Operations')
+    donated_solar_seed = Payment.objects.filter(user=userprofile).exclude(project=project).aggregate(Sum('amount'))[
+                             'amount__sum'] or 0
+    repayment_solar_seed = RepaymentFragment.objects.filter(user=userprofile).aggregate(Sum('amount'))[
+                               'amount__sum'] or 0
+    operation_donation = Payment.objects.filter(user=userprofile, project=project).aggregate(Sum('amount'))[
+                             'amount__sum'] or 0
+    tip = Tip.objects.filter(user=userprofile).aggregate(Sum('amount'))['amount__sum'] or 0
+    userform = UpdateUser(
+        initial={'first_name': user.first_name, 'last_name': user.last_name, 'username': user.username,
+                 'email': user.email})
+    revolv_profile = RevolvUserProfile.objects.get(user=request.user)
+
+    monthly_operation_donation = StripeDetails.objects.filter(user=revolv_profile).filter(amount__gt=0.0)
+    monthly_solar_donation = StripeDetails.objects.filter(user=revolv_profile).filter(donation_amount__gt=0.0)
+    monthly_donation_amount = 0.0
+    solar_donation = 0.0
+    if monthly_operation_donation or monthly_solar_donation:
+        existing_user = True
+        operation_amount = monthly_operation_donation.aggregate(Sum('amount'))['amount__sum'] or 0.0
+        solar_amount = monthly_solar_donation.aggregate(Sum('donation_amount'))['donation_amount__sum'] or 0.0
+        monthly_donation_amount = operation_amount
+        solar_donation = solar_amount
+    context = {
+        'subscribed_to_newsletter': userprofile.subscribed_to_newsletter,
+        'subscribed_to_repayment_notifications': userprofile.subscribed_to_repayment_notifications,
+        'subscribed_to_updates': userprofile.subscribed_to_updates,
+        'donated_solar_seed': donated_solar_seed,
+        'repayment_solar_seed': repayment_solar_seed,
+        'operation_donation': operation_donation + tip,
+        'monthly_donation_amount': monthly_donation_amount,
+        'monthly_solar_donation': solar_donation,
+        'existing_user': existing_user,
+        "form": userform
+    }
+    return render(request, 'base/partials/confirmemail.html', context)
 
 #-----------------------------
 
@@ -1879,56 +1918,72 @@ class editprofile(View):
         if (profileup.is_valid()) and (request.user.email == request.POST.get('email')):
             user = profileup.save(commit=False)
 
-            interests = None
             if subscribed_to_newsletter:
                 user.subscribed_to_newsletter = True
                 interests = NEWSLETTERS
-
-            if announcement:
-                user.subscribed_to_updates = True
-                if interests:
-                    interests = interests + ", " + ANNOUNCEMENTS
-                else:
-                    interests = ANNOUNCEMENTS
-
-            if interests:
-                # Authenticate with your API Key
                 auth = {'api_key': settings.CM_KEY }
-                # auth = {'api_key': 'yJ4aWg3HLZlrL1XHvzlvpmUFt4EoTF1lG2TY0p3uBjO5bcFnfdAYvRIB5GjDajOtSkP6zWRGQrtPLXcXJhqEmPJR906Ez+MQOkPfAaIUC9Yz5HLOFvWYBTutTeOfefm0wI0nOLTpqS994LJmEgWaQA=='}
-                # The unique identifier for this smart email
-                list_id = settings.CM_LIST_ID
+                list_id = settings.CM_LIST_ID_SS
                 emailz = email
                 namez = name
-                # Create a new mailer and define your message
                 tx_add = Subscriber(auth)
-
-                # Add consent to track value
-                consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
-
-                # Send the message and save the response
+                consent_to_track = 'no' 
                 response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
             else:
                 try:
                     user_profile = request.user.email
-
-                    # Authenticate with your API Key
                     auth = {'api_key': settings.CM_KEY }
-                    # auth = {'api_key': 'yJ4aWg3HLZlrL1XHvzlvpmUFt4EoTF1lG2TY0p3uBjO5bcFnfdAYvRIB5GjDajOtSkP6zWRGQrtPLXcXJhqEmPJR906Ez+MQOkPfAaIUC9Yz5HLOFvWYBTutTeOfefm0wI0nOLTpqS994LJmEgWaQA=='}
-                    # The unique identifier for this smart email
-                    list_id = settings.CM_LIST_ID
-
-                    # Create a new mailer and define your message
+                    list_id = settings.CM_LIST_ID_SS
                     tx_add = Subscriber(auth)
-
                     subscriber = Subscriber(auth, list_id, user_profile)
+                    response = subscriber.delete()
+                except:
+                    logger.debug("Error while unsubscribe")
 
-                    # Send the message and save the response
-                    response = subscriber.unsubscribe()
+            if announcement:
+                user.subscribed_to_updates = True
+                auth = {'api_key': settings.CM_KEY }
+                list_id = settings.CM_LIST_ID_RE
+                emailz = email
+                namez = name
+                tx_add = Subscriber(auth)
+                consent_to_track = 'no'
+                response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
+            else:
+                try:
+                    user_profile = request.user.email
+                    auth = {'api_key': settings.CM_KEY }
+                    list_id = settings.CM_LIST_ID_RE
+                    tx_add = Subscriber(auth)
+                    subscriber = Subscriber(auth, list_id, user_profile)
+                    response = subscriber.delete()
                 except:
                     logger.debug("Error while unsubscribe")
 
             if repayment_notification:
                 user.subscribed_to_repayment_notifications = True
+                auth = {'api_key': settings.CM_KEY }
+                list_id = settings.CM_LIST_ID_RU
+                emailz = email
+                namez = name
+                tx_add = Subscriber(auth)
+                consent_to_track = 'no' 
+                response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
+            else:
+                try:
+                    user_profile = request.user.email
+                    # Authenticate with your API Key
+                    auth = {'api_key': settings.CM_KEY }
+                    list_id = settings.CM_LIST_ID_RU
+
+                    # Create a new mailer and define your message
+                    tx_add = Subscriber(auth)
+                    subscriber = Subscriber(auth, list_id, user_profile)
+
+                    # Send the message and save the response
+                    response = subscriber.delete()
+                except:
+                    logger.debug("Error while unsubscribe")
+
 
             user.user = request.user
             user.save()
