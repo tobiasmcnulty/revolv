@@ -305,7 +305,7 @@ intake_form:
         subject: "RE-volv application form"
         body:
             "
-            STEP 1 OF 3:
+            RE-volv Application Form
 
                 Tell Us About Yourself.
 
@@ -315,7 +315,7 @@ intake_form:
 
                     Zip code: {{zipCode}}
 
-                Sign me up for updates from RE-volv:
+                    Are you a college student: None
 
                     What is your interest in this program?
 
@@ -325,99 +325,27 @@ intake_form:
 
                     {{heardSource}}
 
-            STEP 2 OF 3:
-
-                Tell Us About Yourself.
-
-                    Why are you personally interested in spearheading a solar project in your community?
-
-                    {{personalDesc}}
-
-                    What experience do you have leading community-based projects?
-
-                    {{leadDesc}}
-
-            STEP 3A OF 3:
-
-                 Tell Us More About The Organization.
+                Tell Us More About The Organization.
 
                     Organisation Name:
 
                     {{organisationName}}
 
-                    Tax ID:
-
-                    {{organisationTaxId}}
-
                     Organisation Address:
 
                     {{organisationAddress}}
-
-                    Billing Address:
-
-                    {{billingAddress}}
 
                     Website:
 
                     {{websiteName}}
 
-                    Phone Number:
-
-                    {{phoneNumber}}
-
-                    Mission State:
-
-                    {{missionStatement}}
-
-                    Year Organisation Started:
-
-                    {{orgStartYear}}
-
                     What is your affiliation to this organization?
 
                     {{affiliation}}
 
-                    Is your solar project for a:
-
+                    Is your non profit 501(c)(3) ?
 
                     {{solarProjNeed}}
-
-            STEP 3B OF 3:
-
-                Tell Us More About The Organization.
-
-                     What is the annual budget of the organization?
-
-                     {{annualBudget}}
-
-                     Does the organization own its own building?
-
-                     {{checkOwnBuilding}}
-
-                     How long has the organization been in its building?
-
-                     {{orgBuildingYears}}
-
-                     How many people do you serve each year?
-
-                     {{folkCounts}}
-
-                     How old is the roof of the building?
-
-                     {{buildingRoofYear}}
-
-                     If 11-20 or 21+, are there plans to replace the roof soon?
-
-                     {{roofReplace}}
-
-                     Who is the organization's electric utility provider?
-
-                     {{electricityProvider}}
-
-                     Why is the organization interested in going solar?
-
-                     {{orgInterestBlock}}
-
 
             "
         html:
