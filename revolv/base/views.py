@@ -741,7 +741,7 @@ def intake_form_submit(request):
     context['orgInterestBlock'] = orgInterestBlock
     send_revolv_email(
         'intake_form',
-        context, ['mark@re-volv.org']
+        context, ['info@re-volv.org']
     )
 
     return redirect('bring_solar_to_your_community')
