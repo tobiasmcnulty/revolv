@@ -309,43 +309,43 @@ intake_form:
 
                 Tell Us About Yourself.
 
-                    Name: {{name}}
+                Name: {{name}}
 
-                    Email: {{email}}
+                Email: {{email}}
 
-                    Zip code: {{zipCode}}
+                Zip code: {{zipCode}}
 
-                    Are you a college student: None
+                Are you a college student: None
 
-                    What is your interest in this program?
+                What is your interest in this program?
 
-                    {{interest}}
+                {{interest}}
 
-                    I heard about RE-volv from:
+                I heard about RE-volv from:
 
-                    {{heardSource}}
+                {{heardSource}}
 
                 Tell Us More About The Organization.
 
-                    Organisation Name:
+                Organisation Name:
 
-                    {{organisationName}}
+                {{organisationName}}
 
-                    Organisation Address:
+                Organisation Address:
 
-                    {{organisationAddress}}
+                {{organisationAddress}}
 
-                    Website:
+                Website:
 
-                    {{websiteName}}
+                {{websiteName}}
 
-                    What is your affiliation to this organization?
+                What is your affiliation to this organization?
 
-                    {{affiliation}}
+                {{affiliation}}
 
-                    Is your non profit 501(c)(3) ?
+                Is your non profit 501(c)(3) ?
 
-                    {{solarProjNeed}}
+                {{solarProjNeed}}
 
             "
         html:
@@ -354,43 +354,43 @@ intake_form:
 
                 <p><b>Tell Us About Yourself.</b></p>
 
-                    <p><b>Name</b>: {{name}}</p>
+                <p><b>Name</b>: {{name}}</p>
 
-                    <p><b>Email</b>: {{email}}</p>
+                <p><b>Email</b>: {{email}}</p>
 
-                    <p><b>Zip code</b>: {{zipCode}}</p>
+                <p><b>Zip code</b>: {{zipCode}}</p>
 
                 <p><b>Are you a college student: None</b></p>
 
-                    <p><b>What is your interest in this program?</b></p>
+                <p><b>What is your interest in this program?</b></p>
 
-                    <p>{{interest}}</p>
+                <p>{{interest}}</p>
 
-                    <p><b>I heard about RE-volv from:</b></p>
+                <p><b>I heard about RE-volv from:</b></p>
 
-                    <p>{{heardSource}}</p>
+                <p>{{heardSource}}</p>
 
-                 <p><b>Tell Us More About The Organization.</b></p>
+                <p><b>Tell Us More About The Organization.</b></p>
 
-                    <p><b>Organisation Name:</b></p>
+                <p><b>Organisation Name:</b></p>
 
-                    <p>{{organisationName}}</p>
+                <p>{{organisationName}}</p>
 
-                    <p><b>Organisation Address:</b></p>
+                <p><b>Organisation Address:</b></p>
 
-                    <p>{{organisationAddress}}</p>
+                <p>{{organisationAddress}}</p>
 
-                    <p><b>Website:</b></p>
+                <p><b>Website:</b></p>
 
-                    <p>{{websiteName}}</p>
+                <p>{{websiteName}}</p>
 
-                    <p><b>What is your affiliation to this organization?</b></p>
+                <p><b>What is your affiliation to this organization?</b></p>
 
-                    <p>{{affiliation}}</p>
+                <p>{{affiliation}}</p>
 
-                    <p><b>Is your non profit 501(c)(3) ?</b></p>
+                <p><b>Is your non profit 501(c)(3) ?</b></p>
 
-                    <p>{{solarProjNeed}}</p>
+                <p>{{solarProjNeed}}</p>
 
             "
 
