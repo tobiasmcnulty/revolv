@@ -679,8 +679,10 @@ def bring_solar_tou_your_community(request):
 
 def intake_form_submit(request):
     try:
+        name = request.GET.get('name')
         email = request.GET.get('email')
         zipCode = request.GET.get('zipCode')
+        colstudent = request.GET.get('colstudent')
         signUp = request.GET.get('signUp')
         interest = request.GET.get('interest')
         heardSource = request.GET.get('heardSource')
@@ -710,8 +712,10 @@ def intake_form_submit(request):
         return HttpResponseBadRequest('bad POST data')
 
     context = {}
+    context['name'] = name
     context['email'] = email
     context['zipCode'] = zipCode
+    context['colstudent'] = colstudent
     context['signUp'] = signUp
     context['interest'] = interest
     context['heardSource'] = heardSource

@@ -302,7 +302,7 @@ $(document).ready(function() {
         var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
         var phoneNumber = $('.webite-and-phone > div:last-child input[type=text]').val().trim();
 
-        var affiliation = $(".affiliation-org-block .text-area").parent().next().text().trim();
+        var affiliation = $(".affiliation-org-cntnr .affiliation-org-block .text-area").val().trim();
         var solarProjNeed = $(".solar-proj-need-cntnr .mark-checkbox").parent().next().text().trim();
 
         var intakeForm = '<div class="intake-form-msg-cntnr">'
@@ -325,6 +325,7 @@ $(document).ready(function() {
                     name: name,
                     email: email,
                     zipCode: zipCode,
+                    colstudent: colstudent,
                     signUp: signUp,
                     interest: interest,
                     colstudent: colstudent,

@@ -277,6 +277,13 @@ $(document).ready(function() {
          var $this = $(this);
          var status, data= {};
 
+         var name = $('.input-full-name input[type=text]').val().trim();
+         var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
+         var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
+         var signUp = $(".sign-up-revolve-update div:last-child").text().trim();
+         var interest = $(".know-interest-cntnr .mark-checkbox").parent().next().text().trim();
+         var colstudent = $(".colstudent-cntnr .mark-checkbox").parent().next().text().trim();
+         var heardSource = $(".get-to-know-revolv-block .mark-checkbox").parent().next().text().trim();
 
 
         if ($this.parents('.form-step-2').length) {
@@ -295,7 +302,7 @@ $(document).ready(function() {
         var organisationAddress = $('.org-address input[type=text]').val().trim();
 
         var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
-        var affiliation = $(".affiliation-org-block .text-area").parent().next().text().trim();
+        var affiliation = $(".affiliation-org-cntnr .affiliation-org-block .text-area").val().trim();
         var solarProjNeed = $(".solar-proj-need-cntnr .mark-checkbox").parent().next().text().trim();
 
         var intakeForm = '<div class="intake-form-msg-cntnr">'
@@ -318,30 +325,21 @@ $(document).ready(function() {
                     name: name,
                     email: email,
                     zipCode: zipCode,
-                    //signUp: signUp,
-                    //interest: interest,
-                    //colstudent: colstudent,
-                    //heardSource: heardSource,
-                    //personalDesc: personalDesc,
-                    //leadDesc: leadDesc,
+                    colstudent: colstudent,
+                    signUp: signUp,
+                    interest: interest,
+                    colstudent: colstudent,
+                    heardSource: heardSource,
+             
+         
                     organisationName: organisationName,
-                    //organisationTaxId: organisationTaxId,
+                    organisationTaxId: organisationTaxId,
                     organisationAddress: organisationAddress,
-                    //billingAddress: billingAddress,
+  
                     websiteName: websiteName,
-                    //phoneNumber: phoneNumber,
-                    //missionStatement: missionStatement,
-                    //orgStartYear: orgStartYear,
+
                     affiliation: affiliation,
                     solarProjNeed: solarProjNeed,
-                    //annualBudget: annualBudget,
-                    //checkOwnBulding: checkOwnBulding,
-                    //orgBuildingYears: orgBuildingYears,
-                    //folkCounts: folkCounts,
-                    //buildingRoofYear: buildingRoofYear,
-                    //roofReplace: roofReplace,
-                    //electricityProvider: electricityProvider,
-                    //orgInterestBlock: orgInterestBlock
                 }
 
             })

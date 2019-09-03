@@ -315,7 +315,7 @@ intake_form:
 
                 Zip code: {{zipCode}}
 
-                Are you a college student: None
+                Are you a college student: {{colstudent}}
 
                 What is your interest in this program?
 
@@ -360,7 +360,7 @@ intake_form:
 
                 <p><b>Zip code</b>: {{zipCode}}</p>
 
-                <p><b>Are you a college student: None</b></p>
+                <p><b>Are you a college student: {{colstudent}}</b></p>
 
                 <p><b>What is your interest in this program?</b></p>
 
@@ -369,6 +369,8 @@ intake_form:
                 <p><b>I heard about RE-volv from:</b></p>
 
                 <p>{{heardSource}}</p>
+                
+                <br>
 
                 <p><b>Tell Us More About The Organization.</b></p>
 
