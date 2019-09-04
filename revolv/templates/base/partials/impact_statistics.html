@@ -1,36 +1,60 @@
 {% load staticfiles %}
 {% load humanize %}
 {% load revolv_cms_tags %}
+
+<style>
+.btn-port-orange a{
+  background-color: #ff8a00;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+.btn-port-range{
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.btn-port-blue a{
+  background-color: #2c3691;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+</style>
+
 <div class="impact">
   <h2>Thank you for investing in clean energy!</h2>
   <h3>Your impact to date:</h3>
   <div class="row stats">
-      <div class="col-sm-4 col-md-2 col-xs-6">
+      <div class="col-sm-4 col-md-4 col-xl-2">
             <div class="donation_info">
              <div>AMOUNT DONATED</div>
-            <span class="amount_donated">${{ statistics.total_donated }}</span>
+            <span class="amount_donated">${{ statistics.total_donated  }}</span>
         </div>
           <div class="logo_circle">
           <img src="{% static "images/dashboard/Kiva_circle.jpg" %}" />
         </div>
         <div class="info">
-            <span class="val">${{statistics.reinvestment |floatformat:2}} </span>
+            <span class="val">${{statistics.reinvestment |floatformat:"0"|intcomma}} </span>
             <div>AMOUNT REINVESTED</div>
         </div>
       </div>
 
-      <div class="col-sm-4 col-md-2 col-xs-6">
+      <div class="col-sm-4 col-md-4 col-xl-2">
         <div class="stats-img">
           <img src="{% static "images/dashboard/solar-panel-desktop.png" %}" />
         </div>
         <div class="info">
             <div>Built</div>
-            <span class="val">{{ statistics.kwh }} </span>
+            <span class="val">{{ statistics.kwh |intcomma }} </span>
             <span class="units">watts</span>
             <div>of solar energy capacity</div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-2 col-xs-6">
+      <div class="col-sm-4 col-md-4 col-xl-2">
         <div class="stats-img">
           <img src="{% static "images/dashboard/cloud-desktop.png" %}" />
         </div>
@@ -41,7 +65,7 @@
             <div class="tall">of carbon dioxide emissions</div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-2 col-xs-6">
+      <div class="col-sm-4 col-md-4 col-xl-2">
         <div class="stats-img">
           <img src="{% static "images/dashboard/trees-desktop.png" %}" />
         </div>
@@ -53,7 +77,7 @@
             <div>of trees</div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-2 col-xs-6">
+      <div class="col-sm-4 col-md-4 col-xl-2">
         <div class="stats-img">
           <img src="{% static "images/dashboard/house-desktop.png" %}" />
         </div>
@@ -63,7 +87,7 @@
             <div class="tall">community-serving organizations</div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-2 col-xs-6">
+      <div class="col-sm-4 col-md-4 col-xl-2">
         <div class="stats-img">
           <img src="{% static "images/dashboard/person-desktop.png" %}" />
         </div>
@@ -76,14 +100,18 @@
       </div>
 
   </div>
- {% if reinvestment_amount %}
-  <a href="{% url "reinvest_list" %}">
-  <div class="btn-blue btn-purple" style="font-size: 3rem;">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</div>
-  </a>
+  {% if reinvestment_amount %}
+
+  <div class="btn-port-orange">  
+    <a href="{% url "reinvest_list" %}">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</a>
+  </div>
+
   {% else %}
-  <a href="{% url "reinvest_list" %}">
-  <div class="btn-blue">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</div>
-  </a>
+
+  <div class="btn-port-orange">  
+    <a href="{% url "reinvest_list" %}">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</a>
+  </div>
+
  {% endif %}
   <div class="btn-donation-history"><a href="{% url 'donation_history' %}">DONATION HISTORY</a></div>
 {% if donated_projects %}

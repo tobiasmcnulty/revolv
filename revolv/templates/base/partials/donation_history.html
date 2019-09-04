@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
 {% load staticfiles %}
 {% load widget_tweaks %}
 
@@ -21,9 +21,32 @@
 <script src="/static/js/buttons.html5.min.js"></script>
 <script src="/static/js/donation_history.js"></script>
 
+<style>
+#dropdownz ul.dropdown li > a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px 0px;
+}
+#dropdownz ul.dropdown {
+    margin-left: 0px;
+}
+</style>
+
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+        <div class="col hero-text align-self-end">
+        <h4 class="text-light fw-700" style="font-size: 30px;"> DONATION HISTORY</h4>
+        </div>
+    </div>
+</div>
+<div class="container-fluid scroll-section" id="scroll-section">
+    <div class="scroll-icon">
+    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+</div>
 <div id="user_record_loader"></div>
 <div class="container after-header" >
   <table id="donation_report" class="display nowrap" cellspacing="0" width="100%" >
