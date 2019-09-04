@@ -1,4 +1,4 @@
-{% extends "base/base2.html" %}
+{% extends "base/base.html" %}
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% load humanize %}
@@ -104,16 +104,16 @@ input.checkbox-settings[type="checkbox"] + label::before {
 {% endblock %}
 {% block title %}Project | {% endblock %}
 {% block body %}
-<div class="container-fluid confirm-header" id="top-section-confirm">
-  <div class="row text-center">
+<div class="container-fluid confirm-header" id="top-section" style="background-size:cover !important;">
+    <div class="row text-center">
     <div class="col hero-text align-self-end">
-      <h1 class="text-light fw-700" style="text-shadow: black 0px 0px 5px;">Thank you for donating</h1>
+        <h1 class="text-light fw-700" style="text-shadow: black 0px 0px 5px;">Thank you for donating</h1>
     </div>
-  </div>
+</div>
 </div>
 <div class="container-fluid scroll-section" id="scroll-section">
     <div class="scroll-icon">
-      <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    <img class="scroll-arrow bouncing" src="../../../static/images/blog-monthly-img/scroll-icon.png">
     </div>
 </div>
 
@@ -315,14 +315,16 @@ input.checkbox-settings[type="checkbox"] + label::before {
                         if(data.status == 'donation_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " to RE-volv's mission to empower communities with solar energy!");
+                            window.location.href='/email_confirm/';
                         }
                         if(data.status == 'subscription_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
+                            window.location.href='/email_confirm/';
                         }
                         $('#donation-spinner').css('display', 'none');
                         $('#operationModal').modal('show');
-
+                        window.location.href='/email_confirm/';
                      },
                      error: function(data)
                      {
