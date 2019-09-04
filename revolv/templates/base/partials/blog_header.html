@@ -134,7 +134,7 @@
         <div class="full-width modal-header">
             <div class="full-width donate-popup-header">
                 <div class="col-xs-10">
-                    <img class="background-image-size" src="/static/images/revolv-logo.png">
+                    <img class="background-image-size" src="/static/images/revolvorange.png">
                     <h4 class="modal-title">RE-volv</h4>
                 </div>
                 <div class="col-xs-2">
@@ -250,7 +250,7 @@
 $(function ($) {
   var handler = StripeCheckout.configure({
     key: '{{ stripe_publishable_key }}'
-    , image: '{% static "images/revolv-logo.png" %}'
+    , image: '{% static "images/revolvorange.png" %}'
     , locale: 'auto'
     , name: 'RE-volv'
     , email: '{{request.user.email}}'
