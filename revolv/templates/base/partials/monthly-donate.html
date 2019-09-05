@@ -62,7 +62,7 @@
                         </li>
                       </ul><!-- Tab panes -->
                       
-                      <form action="{% url 'project:stripe_operation_donation' %}" autocomplete="off" id="general_form" method="post" novalidate="">
+                      <form action="{% url 'project:stripe_operation_donation' %}" autocomplete="off" id="general_form" method="post" novalidate="" onkeydown="return event.key != 'Enter';">
                       {% csrf_token %}
                       <div class="tab-content">
                         <div class="tab-pane" id="tabs-once" role="tabpanel">
@@ -87,7 +87,7 @@
                           <h5 class="blue-text fw-700">Enter an amount to give per month</h5>
                           <!-- Amount -->
                           <!-- Form override -->
-                          <form action="{% url 'project:stripe_operation_donation' %}" method="POST">
+                          <form action="{% url 'project:stripe_operation_donation' %}" method="POST" onkeydown="return event.key != 'Enter';">
                               {% csrf_token %}                        
                             <!-- Form override -->
                             <div class="input-group input-group-lg">
@@ -187,7 +187,7 @@
                         </li>
                       </ul><!-- Tab panes -->
                       
-                      <form action="{% url 'project:stripe_operation_donation' %}" autocomplete="off" id="general_form" method="post" novalidate="">
+                      <form action="{% url 'project:stripe_operation_donation' %}" autocomplete="off" id="general_form" method="post" novalidate="" onkeydown="return event.key != 'Enter';">
                       {% csrf_token %}
                       <div class="tab-content">
                         <div class="tab-pane" id="tabs-once" role="tabpanel">
@@ -212,7 +212,7 @@
                           <h5 class="blue-text fw-700">Enter an amount to give per month</h5>
                           <!-- Amount -->
                           <!-- Form override -->
-                          <form action="{% url 'project:stripe_operation_donation' %}" method="POST">
+                          <form action="{% url 'project:stripe_operation_donation' %}" method="POST" onkeydown="return event.key != 'Enter';">
                               {% csrf_token %}                        
                             <!-- Form override -->
                             <div class="input-group input-group-lg">
