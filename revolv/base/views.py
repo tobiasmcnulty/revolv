@@ -711,38 +711,46 @@ def intake_form_submit(request):
         logger.exception('Form values are not valid')
         return HttpResponseBadRequest('bad POST data')
 
-    context = {}
-    context['name'] = name
-    context['email'] = email
-    context['zipCode'] = zipCode
-    context['colstudent'] = colstudent
-    context['signUp'] = signUp
-    context['interest'] = interest
-    context['heardSource'] = heardSource
-    context['personalDesc'] = personalDesc
-    context['leadDesc'] = leadDesc
-    context['organisationName'] = organisationName
-    context['organisationTaxId'] = organisationTaxId
-    context['organisationAddress'] = organisationAddress
-    context['billingAddress'] = billingAddress
-    context['websiteName'] = websiteName
-    context['phoneNumber'] = phoneNumber
-    context['missionStatement'] = missionStatement
-    context['orgStartYear'] = orgStartYear
-    context['affiliation'] = affiliation
-    context['solarProjNeed'] = solarProjNeed
-    context['annualBudget'] = annualBudget
-    context['checkOwnBuilding'] = checkOwnBuilding
-    context['orgBuildingYears'] = orgBuildingYears
-    context['folkCounts'] = folkCounts
-    context['buildingRoofYear'] = buildingRoofYear
-    context['roofReplace'] = roofReplace
-    context['electricityProvider'] = electricityProvider
-    context['orgInterestBlock'] = orgInterestBlock
-    send_revolv_email(
-        'intake_form',
-        context, ['info@re-volv.org']
-    )
+    namedt = name
+    emaildt = email
+    zipcodedt = zipCode
+    colstudentdt = colstudent
+
+    interestdt = interest
+    headsourcedt = heardSource
+
+    orgnamedt = organisationName
+    orgaddressdt = organisationAddress
+    websitedt = websiteName
+
+    affiliatedt = affiliation
+    nonprofitdt = solarProjNeed
+    
+    auth = {'api_key': settings.CM_KEY }
+    smart_email_id = '1caf92af-c6e2-4f88-a385-78fe63439ab0'
+    tx_mailer = Transactional(auth)
+    my_data = {
+        'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+        'href^="tel"': 'href^="tel"TestValue',
+        'href^="sms"': 'href^="sms"TestValue',
+        'owa': 'owaTestValue',
+        'role=section': 'role=sectionTestValue',
+        'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
+        'nameform': namedt,
+        'emailform': emaildt,
+        'zipcodeform': zipcodedt,
+        'colstudentform': colstudentdt,
+        'interestform': interestdt,
+        'sourceform': headsourcedt,
+        'orgnameform': orgnamedt,
+        'orgaddressform': orgaddressdt,
+        'websiteform': websitedt,
+        'affiliationform': affiliatedt,
+        'nonprofit501form': nonprofitdt
+    }
+    consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+    response = tx_mailer.smart_email_send(smart_email_id, 'info@re-volv.org', consent_to_track, data = my_data)
+
 
     return redirect('bring_solar_to_your_community')
 
