@@ -373,7 +373,7 @@ def stripe_operation_donation(request):
         auth = {'api_key': settings.CM_KEY }
 
         # The unique identifier for this smart email
-        smart_email_id = '16aa58f8-f16a-44af-bc8b-b2fef5ac4a7f'
+        smart_email_id = 'ec6571f2-8519-4e95-8b97-0c960328be1b'
 
         # Create a new mailer and define your message
         tx_mailer = Transactional(auth)
