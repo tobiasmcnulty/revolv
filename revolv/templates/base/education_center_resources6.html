@@ -15,11 +15,63 @@
 <link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
 <link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
 
+<style>
+@media (max-width: 640px) {
+  .newspadding {
+    width: 400px;
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .newspadding {
+    width: 300px;
+    min-width: 300px;
+    padding: 30px 25px !important;
+  }
+}
+
+@media (max-width: 910px) {
+  .edu-cen-nl-img {
+    background-size: cover !important;
+  }
+
+  .edu-cen-re-header6 {
+    background-size: cover !important;
+  }
+}
+</style>
 {% endblock %}
 
 {% block body %}
 
     <main role="main" class="container-fluid">
+      <div class='popup' id="modalUser">
+        <div class='newspadding' style="padding: 44px 35px;">
+          <div class="container-fluid edu-cen-re-header1 edu-cen-nl-img" id="top-section-min" style="padding: 100px; height:100%; width: 100%; border-radius: 4px;">
+            <h4 style="font-size: 1.2em; color: #f8f9fa!important; text-shadow: black 0px 0px 10px; font-weight: 700 !important;">Welcome to Education Center</h4>
+          </div>
+          <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <div class="container-fluid" >
+              <div class="row justify-content-center align-items-center" style="padding: 20px 0px">
+                  <div class="row align-items-center">
+                    <div class=" ">
+                      <div class="input-group mb-3 subscription-form inputs" style="padding-right:0em;">
+                          <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Email address" required>
+                          <div class="input-group-append">
+                          <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div> 
+              </div>
+            </div>
+          </form>
+          <p style="margin: 0px; font-size: 18px;">Read more content and sign up today for our free newsletter.</p>
+          <a href='' class='close' id="close-welcome" style="font-size:0.9rem;">Close</a>
+        </div>
+      </div>
       <div class="container-fluid edu-cen-re-header6" id="top-section-min">
         <div class="row text-center">
           <div class="col hero-text align-self-end">
@@ -208,4 +260,6 @@
     <!-- responsive navigation bar -->
     <script src="{% static 'js/eduresource-js/plyr.polyfilled.js' %}"></script>
     <script src="{% static 'js/eduresource-js/script.js' %}"></script>
+    <script src="{% static 'js/eduresource-js/nl-script.js' %}"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.min.js'></script>
 {% endblock %}

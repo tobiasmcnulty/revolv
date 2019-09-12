@@ -47,7 +47,7 @@ from createsend import Subscriber
 from createsend import Transactional
 
 logger = logging.getLogger(__name__)
-LIST_ID = settings.LIST_ID
+LIST_ID = settings.CM_LIST_ID
 NEWSLETTERS = "RE-Volv Newsletter"
 ANNOUNCEMENTS = "RE-Volv Important Announcement"
 
@@ -1869,16 +1869,12 @@ def add_email_to_mailing_list(request):
         try:
             # Authenticate with your API Key
             auth = {'api_key': settings.CM_KEY }
-            # auth = {'api_key': 'yJ4aWg3HLZlrL1XHvzlvpmUFt4EoTF1lG2TY0p3uBjO5bcFnfdAYvRIB5GjDajOtSkP6zWRGQrtPLXcXJhqEmPJR906Ez+MQOkPfAaIUC9Yz5HLOFvWYBTutTeOfefm0wI0nOLTpqS994LJmEgWaQA=='}
             # The unique identifier for this smart email
             list_id = settings.CM_LIST_ID
             emailz = request.POST['email']
 
-
             # Create a new mailer and define your message
             tx_add = Subscriber(auth)
-
-            smart_email_id = '491d867d-b1ac-4917-98e6-2b21f226e741'
 
             # Create a new mailer and define your message
             tx_mailer = Transactional(auth)
