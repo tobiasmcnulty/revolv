@@ -48,10 +48,10 @@ function welcomeBannerCookie() {
     if (welcomeCookie == "true") {
         $('.popup').hide(0);
         $('#overlay').hide(0);
-        console.log('Cookies are stored');
+        //console.log('Cookies are stored');
     }
     else {
-        console.log('no cookie found')
+        //console.log('no cookie found')
         $('.popup').addClass('visible-banner');
         $("#close-welcome").click(function() {
             $(".popup").removeClass('visible-banner');
@@ -63,10 +63,10 @@ function welcomeBannerCookie() {
 };
 $(document).ready(function() {
   if ( areCookiesEnabled() ) {
-    console.log('Cookies are enabled.');
+    //console.log('Cookies are enabled.');
     welcomeBannerCookie();
   } else {
-  console.log('Cookies are disabled');
+    //console.log('Cookies are disabled');
   $("#close-welcome").click(function() {
       $(".popup").removeClass('visible-banner');
       
