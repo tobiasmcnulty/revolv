@@ -1551,19 +1551,24 @@ footer {
 	width: 600px;
 	min-height: 150px;
 	margin: 100px auto;
-	background: #f3f3f3;
+	background: url(../../images/eduresource-img/newsletter_bg.png);
+	background-size: 100%;
 	position: relative;
 	z-index: 103;
 	padding: 15px 35px;
 	border-radius: 5px;
-	box-shadow: 0 2px 5px #000;
 }
 
 .newspadding p{
 	clear: both;
-	color: #555555;
+	color: white;
 	font-size: 20px;
 	font-family: sans-serif;
+}
+
+.close {
+	color: #f8f9fa;
+	text-shadow: none;
 }
 
 @media (max-width: 906px) {
@@ -1571,3 +1576,4 @@ footer {
 	background-size: auto !important;
 	}
 }
+
