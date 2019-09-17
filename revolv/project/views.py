@@ -93,7 +93,7 @@ def stripe_payment(request, pk):
     }
 
     # Add consent to track value
-    consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+    consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
 
 
     # anon and logged in users gets stripe email sends to that email
@@ -393,7 +393,7 @@ def stripe_operation_donation(request):
         }
 
         # Add consent to track value
-        consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+        consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
 
 
         # anon and logged in users gets stripe email sends to that email
@@ -433,7 +433,7 @@ def stripe_operation_donation(request):
                 'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
                 'donation': donation_amount
             }
-            consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+            consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
             response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
 
             if request.user.is_authenticated():
@@ -591,7 +591,7 @@ def stripe_operation_donation(request):
             }
 
             # Add consent to track value
-            consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+            consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
 
 
             # anon and logged in users gets stripe email sends to that email

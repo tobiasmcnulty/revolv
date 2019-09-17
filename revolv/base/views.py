@@ -748,7 +748,7 @@ def intake_form_submit(request):
         'affiliationform': affiliatedt,
         'nonprofit501form': nonprofitdt
     }
-    consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+    consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
     response = tx_mailer.smart_email_send(smart_email_id, 'info@re-volv.org', consent_to_track, data = my_data)
 
 
@@ -1899,7 +1899,7 @@ def add_email_to_mailing_list(request):
                 'firstname': 'firstnameTestValue'
             }
             # Add consent to track value
-            consent_to_track = 'no' # Valid: 'yes', 'no', 'unchanged'
+            consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
 
             # Send the message and save the response
             # response = tx_mailer.smart_email_send(smart_email_id, emailz, consent_to_track, data = my_datax)
@@ -1934,7 +1934,7 @@ class editprofile(View):
                 emailz = email
                 namez = name
                 tx_add = Subscriber(auth)
-                consent_to_track = 'no' 
+                consent_to_track = 'yes' 
                 response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
             else:
                 try:
@@ -1954,7 +1954,7 @@ class editprofile(View):
                 emailz = email
                 namez = name
                 tx_add = Subscriber(auth)
-                consent_to_track = 'no'
+                consent_to_track = 'yes'
                 response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
             else:
                 try:
@@ -1974,7 +1974,7 @@ class editprofile(View):
                 emailz = email
                 namez = name
                 tx_add = Subscriber(auth)
-                consent_to_track = 'no' 
+                consent_to_track = 'yes' 
                 response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
             else:
                 try:
