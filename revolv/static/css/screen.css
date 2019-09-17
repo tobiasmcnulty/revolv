@@ -31,7 +31,7 @@
 
 treehugger_logo
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif !important;
     margin: 0;
     padding: 0;
 }
@@ -1488,19 +1488,23 @@ p.attribution.footer-text {
 
 .active-projects-module .img-main .funded-round .status-indicator input {
     margin-top: 27px !important;
-    font-size: 29px !important;
+    font-size: 25px !important;
 }
 
 .active-projects-module .img-main .funded-round .status-indicator input.smaller {
-    font-size: 23px !important;
+    font-size: 21px !important;
     margin-top: 29px !important;
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .active-projects-module.embedded .img-main .funded-round .status-indicator input {
     margin-top: -85px !important;
     margin-left: 26px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
     box-shadow: none;
 }
 
@@ -5829,6 +5833,8 @@ li:before.active > *::before {
     .active-projects-module .img-main .funded-round .status-indicator input.smaller {
         font-size: 20px !important;
         margin-top: 22px !important;
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 600 !important;
         -webkit-transition: font-size 0.25s ease;
         transition: font-size 0.25s ease;
     }
@@ -8613,6 +8619,8 @@ width: 580px;
     .active-projects-module .img-main .funded-round .status-indicator input.smaller {
         font-size: 64px !important;
         margin-top: 41px !important;
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 600 !important;
         -webkit-transition: font-size 0.25s ease;
         transition: font-size 0.25s ease;
     }
@@ -12010,8 +12018,10 @@ width: 580px;
     }
 
     .active-projects-module .img-main .funded-round .status-indicator input.smaller {
-        font-size: 32px !important;
+        font-size: 25px !important;
         margin-top: 3px !important;
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 600 !important;
         -webkit-transition: font-size 0.25s ease;
         transition: font-size 0.25s ease;
     }
