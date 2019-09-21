@@ -63,7 +63,7 @@ def stripe_payment(request, pk):
 
     project_matching_donors = ProjectMatchingDonors.objects.filter(project=project, amount__gt=0)
 
-    donation_cents = amount_cents - tip_cents
+    donation_cents = amount_cents
 
     error_msg = None
 
