@@ -8,12 +8,16 @@
   }
   </style>
   
-  <footer style="overflow: hidden;">
+  <footer style="overflow: hidden;  clear: both;  display: block;">
   <!-- <footer style="overflow: visible;"> -->
     <div class="container">
       <div class="row justify-content-center align-items-start">
         <div class="col-sm-12 col-md-4 footer-logo">
-          <img src="../../../static/images/home-img/REVOLV_logo_footer.png">
+          <img src="../../../static/images/home-img/REVOLV_logo_footer.png" style="margin-top:0px !important;">
+          <ul class="footer-links" style="margin-top: 28px !important;">
+            <li style="font-size:18x;"><a class="fw-700" href="https://docs.google.com/forms/d/e/1FAIpQLScEDMEMnz1xnqnGETNcm_U4gLtVlon8zHrZO4b5CE2Pb8jDsA/viewform">How do you like our website?</a></li>
+            <li  style="font-size:14px; color:white;">Take a short survey and let us know. We would love to hear your feedback!</li>
+          </ul>
         </div>
         <div class="col-sm-12 col-md-2">
           <ul class="footer-links">
@@ -28,9 +32,9 @@
         <div class="col-sm-12 col-md-2">
           <ul class="footer-links">
             <li><a href="{% url 'projects_list' %}">Projects </a></li>
-            <li><a href="/get-involved/solar-ambassador/">Ambassador Program </a></li>
+            <li><a href="/get-involved/solar-ambassador/">Volunteering</a></li>
             <li><a href="/get-involved/apply/">Solar for Nonprofits</a></li>
-            <li><a href="#section-six">Newsletter</a></li>
+            <li><a href="#section-six">Newsletter Signup</a></li>
             <li><a href="#signup">Signup</a></li>
             <li><a href="{% url 'faq' %}">FAQs</a></li>
           </ul>
@@ -54,11 +58,11 @@
           </div>
           <div class="col-sm-12 col-md-4">
             <ul class="social-links">
-              <li><a href="#"><i class="fas fa-envelope"></i></a></li>
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="mailto:info@re-volv.org"><i class="fas fa-envelope"></i></a></li>
+              <li><a href="https://www.facebook.com/solarseedfund/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="https://twitter.com/RE_volv" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="https://www.youtube.com/user/REvolvSolarSeedFund" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a></li>
+              <li><a href="https://www.instagram.com/re.volv/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
             </ul>
           </div>
       </div>

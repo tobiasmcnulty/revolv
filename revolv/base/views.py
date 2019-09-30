@@ -39,7 +39,7 @@ from revolv.payments.models import UserReinvestment, AdminRepayment
 from revolv.project.models import Category, Project, ProjectMatchingDonors, StripeDetails, AnonymousUserDonation
 from revolv.project.utils import aggregate_stats
 from revolv.solar_ed_week.models import HostEvent, BecomePartner
-from revolv.tasks.sfdc import send_signup_info
+from revolv.tasks.sfdc import send_signup_info, send_nonprofit_info, send_volunteer_info
 from social.apps.django_app.default.models import UserSocialAuth
 
 # pip install createsend
@@ -679,6 +679,8 @@ def bring_solar_tou_your_community(request):
 
 def intake_form_submit(request):
     try:
+        fname = request.GET.get('firstName')
+        lname = request.GET.get('lastName')
         name = request.GET.get('name')
         email = request.GET.get('email')
         zipCode = request.GET.get('zipCode')
@@ -706,12 +708,17 @@ def intake_form_submit(request):
         roofReplace = request.GET.get('roofReplace')
         electricityProvider = request.GET.get('electricityProvider')
         orgInterestBlock = request.GET.get('orgInterestBlock')
+        nonprofitBuilding = request.GET.get('nonprofitBuilding')
+        orgState = request.GET.get('orgState')
 
     except:
         logger.exception('Form values are not valid')
         return HttpResponseBadRequest('bad POST data')
 
     namedt = name
+    firstnamedt = fname
+    lastnamedt = lname
+
     emaildt = email
     zipcodedt = zipCode
     colstudentdt = colstudent
@@ -725,6 +732,15 @@ def intake_form_submit(request):
 
     affiliatedt = affiliation
     nonprofitdt = solarProjNeed
+
+    nonprofitbuildt = nonprofitBuilding
+    orgstatedt = orgState
+
+
+    if nonprofitdt == '':
+        send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt , headsourcedt, orgnamedt, orgaddressdt, websitedt, affiliatedt)
+    else:
+        send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressdt, orgstatedt, zipcodedt, websitedt, affiliatedt, nonprofitdt, nonprofitbuildt)
     
     auth = {'api_key': settings.CM_KEY }
     smart_email_id = '1caf92af-c6e2-4f88-a385-78fe63439ab0'
@@ -750,7 +766,6 @@ def intake_form_submit(request):
     }
     consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
     response = tx_mailer.smart_email_send(smart_email_id, 'info@re-volv.org', consent_to_track, data = my_data)
-
 
     return redirect('bring_solar_to_your_community')
 

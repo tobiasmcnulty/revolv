@@ -24,7 +24,7 @@ input.checkbox-settings[type="checkbox"]:checked + label::after {
     background: rgba(0, 0, 0, 0);
     top: 1.2ex;
     left: 0.9ex;
-    border: 3px solid #100084;
+    border: 3px solid #100084;;
     border-top: none;
     border-right: none;
     -webkit-transform: rotate(-45deg);
@@ -66,7 +66,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
     form{
         border-left: none;
         width: 120%;
-{#        margin-left: 2em;#}
+        margin-left: 2em;
     }
     .setting-donation-save{
         width: 8em;
@@ -107,7 +107,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
     <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
     </div>
 </div>
-<div class="contents after-header" style="margin-top:0px !important;">
+<div class="contents after-header">
     <div class="col-xs-12 col-sm-3 account-tabs">
         <div style="margin-bottom: 2em;">
             <span id="account-link" class="account-tab-text account-tab-text-active">Account Information</span>
@@ -123,9 +123,8 @@ input.checkbox-settings[type="checkbox"] + label::before {
         {% csrf_token %}
         <div id="donation-info" class="col-xs-12 col-sm-9 setting-form-top" style="display:none;">
             <div style="width:65%;margin-left: 1.4em;">
-                <!-- 
-                <div class="setting-input-block setting-input-full-width" >
-                    <span class="setting-form-lebel setting-input-full-width" >CURRENT MONTHLY DONATION TO SOLAR SEED FUND:</span>
+                <div class="setting-input-block setting-input-full-width" style="display: none">
+                    <span class="setting-form-lebel setting-input-full-width" >CURRENT MONTHLY DONATION:</span>
                     <div class="full-width">
                         <div>
                             <span class="setting-dollar-label">$</span>
@@ -139,7 +138,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                     </div>
                 </div>
                 <div class="setting-input-block setting-input-full-width">
-                    <span class="setting-form-lebel setting-input-full-width">CURRENT MONTHLY DONATION TO RE-volv's OPERATIONS:</span>
+                    <span class="setting-form-lebel setting-input-full-width">CURRENT MONTHLY DONATION TO RE-volv:</span>
                     <div class="full-width">
                         <div>
                             <span class="setting-dollar-label">$</span>
@@ -153,18 +152,15 @@ input.checkbox-settings[type="checkbox"] + label::before {
                     </div>
 
                 </div>
-                -->
                 <div class="setting-input-block">
                     <p class="setting-form-lebel setting-input-block">DONATION HISTORY</p>
-                    <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to the Solar Seed Fund</span> <span class="setting-donations">${{donated_solar_seed|floatformat:"2"|intcomma}}</span></p>
-                    <p class="setting-details-margin"><span class="setting-donation-details">How much I've been repaid by the Solar Seed Fund</span> <span class="setting-donations">${{repayment_solar_seed|floatformat:"2"|intcomma}}</span></p>
-                    <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to RE-volv Operations</span> <span class="setting-donations">${{operation_donation|floatformat:"2"|intcomma}}</span></p>
+                    <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to the Solar Seed Fund</span> <span class="setting-donations">${{donated_solar_seed|floatformat:"2"}}</span></p>
+                    <p class="setting-details-margin"><span class="setting-donation-details">How much I've been repaid by the Solar Seed Fund</span> <span class="setting-donations">${{repayment_solar_seed|floatformat:"2"}}</span></p>
+                    <p class="setting-details-margin"><span class="setting-donation-details">How much I've donated to RE-volv Operations</span> <span class="setting-donations">${{operation_donation|floatformat:"2"}}</span></p>
                 </div>
-                <!-- 
                 <div class="setting-input-block" style="float: right;">
                     <button type="submit" class="component-link pull-left btn-blue btn-donate setting-donation-save operation-donation-submit">SAVE</button>
                 </div>
-                -->
             </div>
         </div>
     </form>
@@ -282,7 +278,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
     $(function ($) {
   var handler = StripeCheckout.configure({
     key: '{{ stripe_publishable_key }}'
-    , image: '{% static "images/revolvorange.png" %}'
+    , image: '{% static "images/revolv-logo.png" %}'
     , locale: 'auto'
     , name: 'RE-volv'
     , email: '{{request.user.email}}'
@@ -311,7 +307,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                         $('.donation-text').text("Your donation $" +data.amount + "  was successfully updated.");
                     }
                     $('#donation-spinner').css('display', 'none');
-                    $('#operationModal').modal('show');
+                  
 
                  },
                  error: function(data)
@@ -319,7 +315,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                     $('.modal-title').text('Error!');
                     $('.donation-text').text("Payment error. Something went wrong.");
                      $('#donation-spinner').css('display', 'none');
-                    $('#operationModal').modal('show');
+            
                  }
                });
     }
@@ -359,7 +355,7 @@ input.checkbox-settings[type="checkbox"] + label::before {
                             $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
                         }
                         $('#donation-spinner').css('display', 'none');
-                        $('#operationModal').modal('show');
+             
 
                      },
                      error: function(data)

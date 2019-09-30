@@ -141,17 +141,25 @@ $(document).ready(function() {
              }*/
     });
      function step1Validation() {
-            var name = $('.input-full-name input[type=text]').val().trim();
+            var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
+            var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
             var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
             var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
             var regExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
             var status = "success";
             $(".field-error").remove();
-            if(name.length <= 0) {
+            if(firstName.length <= 0) {
                 var errorMsg = '<div class="field-error">Please enter your name.</div>';
                 $(".input-full-name").append(errorMsg);
                 status = "error";
-            } if(email.length <= 0 || regExp.test(email) == false) {
+            }     
+            if(lastName.length <= 0) {
+                var errorMsg = '<div class="field-error">Please enter your name.</div>';
+                $(".input-full-name").append(errorMsg);
+                status = "error";
+            }
+            
+            if(email.length <= 0 || regExp.test(email) == false) {
                 var errorMsg = '<div class="field-error">Please enter valid email.</div>';
                 $(".input-email-code > div:first-child").append(errorMsg);
                 status = "error";
@@ -275,7 +283,8 @@ $(document).ready(function() {
     $(".form-submit-btn").click(function(e){
          var $this = $(this);
          var status, data= {};
-        var name = $('.input-full-name input[type=text]').val().trim();
+        var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
+        var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
         var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
         var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
         var signUp = $(".sign-up-revolve-update div:last-child").text().trim();
@@ -322,7 +331,8 @@ $(document).ready(function() {
                 type: 'GET',
                 url: urlData,
                 data: {
-                    name: name,
+                    firstName: firstName,
+                    lastName: lastName,
                     email: email,
                     zipCode: zipCode,
                     colstudent: colstudent,

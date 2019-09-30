@@ -100,19 +100,7 @@
       </div>
 
   </div>
-  {% if reinvestment_amount %}
 
-  <div class="btn-port-orange">  
-    <a href="{% url "reinvest_list" %}">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</a>
-  </div>
-
-  {% else %}
-
-  <div class="btn-port-orange">  
-    <a href="{% url "reinvest_list" %}">REINVEST ${{reinvestment_amount|floatformat:2}} IN ADDITIONAL SOLAR PROJECTS</a>
-  </div>
-
- {% endif %}
   <div class="btn-donation-history"><a href="{% url 'donation_history' %}">DONATION HISTORY</a></div>
 {% if donated_projects %}
   <div class="row">

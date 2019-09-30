@@ -53,9 +53,11 @@ intake-form-containerform-container input[type='text'] {
 .input-email-code {
     padding: 3vmin 0;
 }
+/*
 .input-email-code div:first-child {
     padding-right: 6%;
 }
+*/
 .mark-checkbox {
     float: left;
     width: 2vmin;
@@ -71,7 +73,7 @@ intake-form-containerform-container input[type='text'] {
     border-radius: 50%;
 }
 .know-interest-cntnr, .get-to-know-revolv-block, .proj-intrest-desc-block, .lead-exp-desc-block, .affiliation-org-block, .colstudent-cntnr,
-    .solar-proj-need-cntnr, .annual-budget-cntnr, .own-building-block, .org-building-years, .org-intrest-solar-block, .electricity-provider, .folk-count,
+    .nonprofitInterest-cntnr, .solar-proj-need-cntnr, .annual-budget-cntnr, .own-building-block, .org-building-years, .org-intrest-solar-block, .electricity-provider, .folk-count,
     .get-building-roof-year, .roof-replace-plan {
     background-color: #fff;
     padding: 3vmin 5% 3vmin 5%;
@@ -86,6 +88,9 @@ intake-form-containerform-container input[type='text'] {
     padding: 2.2vmin 0 5vmin;
 }
 .solar-proj-need-block {
+    padding: 0 0 5vmin;
+}
+.nonprofitInterest-block {
     padding: 0 0 5vmin;
 }
 .colstudent-block {
@@ -111,7 +116,7 @@ intake-form-containerform-container input[type='text'] {
     color: #818181;
 }
 .know-interest-cntnr > div:first-child, .get-to-know-revolv-block > div:first-child, .proj-intrest-desc-block > div:first-child,
-            .lead-exp-desc-block > div:first-child, .affiliation-org-block > div:first-child, .colstudent-cntnr > div:first-child, .solar-proj-need-cntnr > div:first-child,
+            .lead-exp-desc-block > div:first-child, .affiliation-org-block > div:first-child, .colstudent-cntnr > div:first-child, .nonprofitInterest-cntnr > div:first-child, .solar-proj-need-cntnr > div:first-child,
             .annual-budget-cntnr > div:first-child, .own-building-block > div:first-child, .org-building-years > div:first-child,
             .org-intrest-solar-block > div:first-child, .electricity-provider > div:first-child, .folk-count > div:first-child, .get-building-roof-year > div:first-child, .roof-replace-plan > div:first-child {
     font-size: 3.2vmin;
@@ -218,10 +223,12 @@ intake-form-containerform-container input[type='text'] {
     .intake-form-container {
         padding: 4vmin 5% 6vmin 5%;
     }
+    /*
     .input-email-code div:first-child {
         padding-right: 0;
         padding-bottom: 3vmin;
     }
+    */
     .organization-details .website-name, .organization-details .organization-name {
         padding-right: 0;
         padding-bottom: 4.4vmin;
@@ -229,7 +236,7 @@ intake-form-containerform-container input[type='text'] {
     .interest-text, .get-to-know-text {
         font-size: 3.5vmin;
     }
-    .know-interest-cntnr > div:first-child, .get-to-know-revolv-block > div:first-child, .proj-intrest-desc-block > div:first-child, .lead-exp-desc-block > div:first-child, .affiliation-org-block > div:first-child, .colstudent-cntnr > div:first-child, .solar-proj-need-cntnr > div:first-child, .annual-budget-cntnr > div:first-child, .own-building-block > div:first-child, .org-building-years > div:first-child, .org-intrest-solar-block > div:first-child, .electricity-provider > div:first-child, .folk-count > div:first-child, .get-building-roof-year > div:first-child, .roof-replace-plan > div:first-child {
+    .know-interest-cntnr > div:first-child, .get-to-know-revolv-block > div:first-child, .proj-intrest-desc-block > div:first-child, .lead-exp-desc-block > div:first-child, .affiliation-org-block > div:first-child, .colstudent-cntnr > div:first-child, .nonprofitInterest-cntnr > div:first-child, .solar-proj-need-cntnr > div:first-child, .annual-budget-cntnr > div:first-child, .own-building-block > div:first-child, .org-building-years > div:first-child, .org-intrest-solar-block > div:first-child, .electricity-provider > div:first-child, .folk-count > div:first-child, .get-building-roof-year > div:first-child, .roof-replace-plan > div:first-child {
         font-size: 3.7vmin;
     }
     .show-step-number {

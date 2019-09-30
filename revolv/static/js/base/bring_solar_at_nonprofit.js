@@ -84,7 +84,17 @@ $(document).ready(function() {
                 $this.removeClass('unmarked-checkbox').addClass('mark-checkbox');
                 $this.data('checkbox-status', "checked");
             }
-         } else if (findParent.parents('.annual-budget-cntnr').length){
+         } 
+         else if (findParent.parents('.nonprofitInterest-block').length){
+            var $this = $(this).find("div:first-child");
+            var checkboxSatus = $this.data('checkbox-status');
+            if(checkboxSatus == "unchecked") {
+                findParent.closest('.nonprofitInterest-block').find('.form-checkbox div:first-child').addClass('unmarked-checkbox').removeClass('mark-checkbox');
+                findParent.closest('.nonprofitInterest-block').find('.form-checkbox div:first-child').data('checkbox-status', "unchecked");
+                $this.removeClass('unmarked-checkbox').addClass('mark-checkbox');
+                $this.data('checkbox-status', "checked");
+            }
+        } else if (findParent.parents('.annual-budget-cntnr').length){
             var $this = $(this).find("div:first-child");
             var checkboxSatus = $this.data('checkbox-status');
             if(checkboxSatus == "unchecked") {
@@ -141,17 +151,24 @@ $(document).ready(function() {
              }*/
     });
      function step1Validation() {
-            var name = $('.input-full-name input[type=text]').val().trim();
+            var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
+            var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
             var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
             var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
             var regExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
             var status = "success";
             $(".field-error").remove();
-            if(name.length <= 0) {
+            if(firstName.length <= 0) {
                 var errorMsg = '<div class="field-error">Please enter your name.</div>';
                 $(".input-full-name").append(errorMsg);
                 status = "error";
-            } if(email.length <= 0 || regExp.test(email) == false) {
+            } 
+            if(lastName.length <= 0) {
+                var errorMsg = '<div class="field-error">Please enter your name.</div>';
+                $(".input-full-name").append(errorMsg);
+                status = "error";
+            } 
+            if(email.length <= 0 || regExp.test(email) == false) {
                 var errorMsg = '<div class="field-error">Please enter valid email.</div>';
                 $(".input-email-code > div:first-child").append(errorMsg);
                 status = "error";
@@ -277,12 +294,21 @@ $(document).ready(function() {
          var $this = $(this);
          var status, data= {};
 
-         var name = $('.input-full-name input[type=text]').val().trim();
+
+         var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
+         var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
          var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
-         var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
+
+         var orgState = $('.org-statezip > div:first-child input[type=text]').val().trim();
+         var zipCode = $('.org-statezip > div:last-child input[type=text]').val().trim();
+
          var signUp = $(".sign-up-revolve-update div:last-child").text().trim();
          var interest = $(".know-interest-cntnr .mark-checkbox").parent().next().text().trim();
          var colstudent = $(".colstudent-cntnr .mark-checkbox").parent().next().text().trim();
+
+         var nonprofitBuilding =  $(".nonprofitInterest-cntnr .mark-checkbox").parent().next().text().trim();
+
+         
          var heardSource = $(".get-to-know-revolv-block .mark-checkbox").parent().next().text().trim();
 
 
@@ -322,16 +348,19 @@ $(document).ready(function() {
                 type: 'GET',
                 url: urlData,
                 data: {
+                    firstName: firstName,
+                    lastName: lastName,
                     name: name,
                     email: email,
                     zipCode: zipCode,
                     colstudent: colstudent,
                     signUp: signUp,
                     interest: interest,
-                    colstudent: colstudent,
                     heardSource: heardSource,
              
-         
+                    nonprofitBuilding: nonprofitBuilding,
+                    orgState : orgState,
+
                     organisationName: organisationName,
                     organisationTaxId: organisationTaxId,
                     organisationAddress: organisationAddress,
