@@ -73,12 +73,17 @@ def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentd
             password=settings.SFDC_PASSWORD
         )
 
+        if orgnamedt == '':
+            orgnamedt = 'Not Filled out'
+        elif orgnamedt == None:
+            orgnamedt = 'Not Filled out'
+
         if colstudentdt == 'Yes':
             colstudentdt = 'College Fellow'
-        else:
-            colstudent == 'Community Champion'
+        elif colstudentdt == 'No':
+            colstudentdt = 'Community Champion'
 
-        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'PostalCode': zipcodedt, 'Volunteer_Type__c': colstudentdt, 'Referral_Type__c': headsourcedt, 'Company': orgnamedt, 'npsp__CompanyStreet__c': orgaddressdt, 'Website' : websitedt, 'Title': affiliatedt})
+        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'PostalCode': zipcodedt, 'Company': orgnamedt, 'Volunteer_Type__c': colstudentdt, 'Referral_Type__c': headsourcedt, 'npsp__CompanyStreet__c': orgaddressdt, 'Website' : websitedt, 'Title': affiliatedt})
         
         logger.info('send sign-up to SFDC with data: %s', payload)
         #res = sf.apexecute('lead', method='POST', data=payload)
