@@ -742,6 +742,8 @@ def intake_form_submit(request):
     else:
         send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressdt, orgstatedt, zipcodedt, websitedt, affiliatedt, nonprofitdt, nonprofitbuildt)
     
+    fullnamedt = firstnamedt + "  " + lastnamedt
+
     auth = {'api_key': settings.CM_KEY }
     smart_email_id = '1caf92af-c6e2-4f88-a385-78fe63439ab0'
     tx_mailer = Transactional(auth)
@@ -752,7 +754,7 @@ def intake_form_submit(request):
         'owa': 'owaTestValue',
         'role=section': 'role=sectionTestValue',
         'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
-        'nameform': namedt,
+        'nameform': fullnamedt,
         'emailform': emaildt,
         'zipcodeform': zipcodedt,
         'colstudentform': colstudentdt,

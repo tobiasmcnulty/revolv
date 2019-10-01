@@ -113,6 +113,8 @@ a {
           </div>
         </div>
       </div>
+      {% if active_projects|length == 0 %}
+      {% else %}
       <div class="container-fluid" id="section-five">
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-12 co-md-12 col-lg-10 text-center">
@@ -157,6 +159,7 @@ a {
           <h6 id="newsletter-anchor"></h6>
         </div>
       </div>
+      {% endif %}
       <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         <div class="container-fluid" id="section-six">
