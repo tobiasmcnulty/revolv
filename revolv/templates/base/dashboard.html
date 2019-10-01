@@ -95,13 +95,6 @@
     {% block body-bottom %}
     {% endblock %}
     <script>
-
-        $(document).ready(function () {
-            if (('{{ social }}' == 'donation') || $.cookie('last_project')) {
-                $("#social_media").modal("show");
-                $.removeCookie('last_project', {path: '/'});
-            }
-        });
         $(document).on("click", ".solar-seed-fund-amount", function (e) {
             swal({
                 title: 'Hi {{ user }}',
