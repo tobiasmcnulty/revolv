@@ -305,7 +305,7 @@ class SignInView(TemplateView):
         if self.request.GET.get("next"):
             context["login_redirect_url"] = self.request.GET.get("next")
         else:
-            context["login_redirect_url"] = reverse('dashboard')
+            context["login_redirect_url"] = reverse('account_settings')
         context["referring_endpoint"] = ""
         context["reason"] = self.request.GET.get("reason")
         return context
@@ -421,7 +421,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         auth_login(self.request, u)
         SITE_URL = settings.SITE_URL
         login_link = SITE_URL + reverse('login')
-        portfolio_link = SITE_URL + reverse('dashboard')
+        portfolio_link = SITE_URL + reverse('account_settings')
         context = {}
         context['user'] = self.request.user
         context['login_link'] = login_link
