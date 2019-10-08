@@ -37,9 +37,92 @@
   }
 }
 </style>
+<style>
+  .cms-content-row h1 {
+  color: #100084 !important;
+}
+.cms-content-row h2, .cms-content-row h3, .cms-content-row h4, .cms-content-row h5, .cms-content-row h6 {
+  color: #FF8A00 !important;
+}
+
+  #dropdownz{
+      position: relative;
+      line-height: 58px;
+      margin-right: 20px;
+  }
+  #dropdownz a{
+      display: block;
+      color: #333;
+      text-decoration: none;
+  }
+  #dropdownz .dropdown > li a:hover{
+      border-radius: 2px;
+      background: #ff8a00;
+  }
+
+  #dropdownz ul.dropdown{
+      min-width: 200%; /* Set width of the dropdown */
+      background:  #100084;
+      opacity: 0.86;
+      display: none;
+      position: absolute;
+      border-radius: 10px;
+      z-index: 999;
+      left: 0;
+  }
+  
+  #dropdownz:hover ul.dropdown{
+      display: block;	/* Display the dropdown */
+  }
+  #dropdownz ul.dropdown li{
+      display: block;
+  }
+
+  #dropdownz ul.dropdown li > a{
+      color: white !important;
+      margin-left: -20px;
+      margin-right: -20px;
+      font-size:10px;
+      text-align: left;
+      padding-left: 10px;
+      font-weight: bolder;
+  }
+
+  #dropdownz ul.dropdown li:hover{
+      border-radius: 5px;
+      
+  }
+
+  @media (max-width: 991px) {
+    #dropdownz ul.dropdown{
+      min-width: auto;
+    }
+  }
+
+  #main-nav .nav-link:after {
+      top: 46px;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-overlay top-nav" id="navbar-section" style="padding-bottom: 20px;">
+      <a class="navbar-brand" href="/">
+        <img src="../../../static/images/home-img/REVOLV_logo_light.png">
+      </a>
+      <button class="navbar-toggler hamburger hamburger--stand" type="button" data-toggle="offcanvas" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <div class="offcanvas-collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ml-auto">
+          <li id="dropdownz" class="nav-item">
+            <a class="nav-link" href="/about-us/re-volv" >About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
     <main role="main" class="container-fluid">
       <div class='popup' id="modalUser">
