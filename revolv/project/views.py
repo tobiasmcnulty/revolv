@@ -418,24 +418,6 @@ def stripe_operation_donation(request):
 
     else:
         if amount_cents > 0:
-
-            auth = {'api_key': settings.CM_KEY }
-            smart_email_id = '16aa58f8-f16a-44af-bc8b-b2fef5ac4a7f'
-            tx_mailer = Transactional(auth)
-            donation_amount = amount / 100.00
-            donor_email_cm = request.POST['stripeEmail']
-            my_data = {
-                'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
-                'href^="tel"': 'href^="tel"TestValue',
-                'href^="sms"': 'href^="sms"TestValue',
-                'owa': 'owaTestValue',
-                'role=section': 'role=sectionTestValue',
-                'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
-                'donation': donation_amount
-            }
-            consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
-            response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
-
             if request.user.is_authenticated():
                 user = RevolvUserProfile.objects.get(user=request.user)
                 try:
