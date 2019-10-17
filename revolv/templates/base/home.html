@@ -250,17 +250,17 @@ a {
                 <div class="donate-tabs">
                     <ul class="nav justify-content-center" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#tabs-once" role="tab">Give Once</a>
+                        <a class="nav-link" data-toggle="tab" href="#tabs-once" role="tab">Give Once</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-monthly" role="tab">Monthly</a>
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-monthly" role="tab">Monthly</a>
                       </li>
                     </ul><!-- Tab panes -->
                     
                     <form action="{% url 'project:stripe_operation_donation' %}" autocomplete="off" id="general_form" method="post" novalidate="" onkeydown="return event.key != 'Enter';">
                     {% csrf_token %}
                     <div class="tab-content">
-                      <div class="tab-pane active" id="tabs-once" role="tabpanel">
+                      <div class="tab-pane" id="tabs-once" role="tabpanel">
                         <h5 class="blue-text fw-700">Enter an amount to give</h5>
                          <!-- Amount -->
                         <div class="input-group input-group-lg">
@@ -278,7 +278,7 @@ a {
                         <a id="donate-button" class="w-full show-next-donate-screen stripe-button-el btn btn-orange btn-me btn-arrow-white my-2" role="button" style="color:white;">DONATE</a>
                       </div>
                       </form>
-                      <div class="tab-pane" id="tabs-monthly" role="tabpanel">
+                      <div class="tab-pane active" id="tabs-monthly" role="tabpanel">
                         <h5 class="blue-text fw-700">Enter an amount to give per month</h5>
                         <!-- Amount -->
                         <!-- Form override -->
