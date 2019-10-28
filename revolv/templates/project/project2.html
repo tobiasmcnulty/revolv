@@ -1,6 +1,8 @@
-{% extends "base/base2.html" %}
+{% extends "base/base.html" %}
 {% load staticfiles %}
 {% load humanize %}
+
+{% load comments %}
 {% block head %}
     <script type="text/javascript">
         window.PARTIAL_COMPLETENESS = {{ project.partial_completeness_as_js }};
@@ -23,13 +25,302 @@
         .body {
             font-size: 2rem !important;
         }
+        #project-button:hover {
+            background:#FCAA3A !important;
+        }
+
+        
     </style>
     
     <link href="{% static 'css/project.css' %}?version={{ version_number }}" rel="stylesheet"/>
 {% endblock %}
 {% block title %}Project | {% endblock %}
 {% block body %}
-    <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+
+<!-- Start -->
+{% include "project/confirm_modal.html" %}
+{% if is_draft_mode == True %}
+    <div class="draft-mode-div">
+        <span class="draft-mode-title">Pending.</span>
+        <span class="draft-mode-detail-text">This project is currently pending approval. Thank you!</span>
+    </div>
+{% endif %}
+
+{% if project.org_name == 'SSF' %}
+<main role="main" class="container-fluid">
+    <!-- style="background-image:url('{{MEDIA_URL}}{{project.cover_photo.url }}' ); opacity: 0.6" -->
+    <div class="container-fluid campaign-post-header" 
+    style="background-image:url('{{MEDIA_URL}}{{project.cover_photo.url }}' ); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    background-color: #999;">
+      <div class="row text-center" style="height: 500px; z-index: 2; position: relative;">
+        <div class="col hero-text align-self-end mb-5">
+          <h1 class="text-white fw-700 mb-5" style="text-shadow: black 0px 0px 4px;">{{ project.title }}</h1>
+        </div>
+      </div>
+        <div class="col-md-2 col-md-offset-2">
+        {% if request.user.is_authenticated %}
+        {% ifequal project.created_by_user|stringformat:"s" request.user.username %}
+        <a href="/project/{{project.id}}/edit" style=" color: white;">
+        <button id="project-button" style="
+        height: 48px;
+        line-height: 48px;
+        background-color: #ff8a00;
+        transition: background-color .15s linear;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        border-radius: 4px;
+        border: 0;
+        font-size: 15px;
+        padding: 0 20px;
+        font-weight: 500;
+        display: inline-block;
+        color: #fff;
+        margin-bottom:40px;
+        "> Edit Campaign
+        </button>
+    </a>
+
+
+
+
+{% endifequal %}
+{% endif %}
+        </div>
+    </div>
+    <div class="container-fluid" id="campaign-body">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 co-md-10 col-lg-10">
+          <div class="row">
+            <div class="col-sm-12 col-md-4 pr-4">
+
+              <!-- 
+              <div class="donate-icon-col mb-4">
+                <a href="/monthly_donor">
+                  <div class="donate-icon-wrapper"><img src="../../../static/images/blog-monthly-img/donate-icon.png"></div>
+                  <div class="donate-txt-wrapper">
+                    <h2>Donate</h2>
+                    <h>to the Solar Seed Fund</h>
+                  </div>
+                </a>
+              </div>
+              -->
+              
+
+              <div class="campaign-col">
+                <div class="title-container">  
+                  <h1><sup>$</sup> <span class="bold">{{ project.amount_donated|floatformat:"0"|intcomma }}</span> <small>Raised</small></h1>
+                </div>
+                <div class="campaign-text">
+                  <ul class="progress-text">
+                    <li class="current-progress">{{ project.percent_complete }}%</li>
+                    <li class="target-progress">${{ project.amount_donated |floatformat:"0"|intcomma}}</li>
+                  </ul>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{ project.percent_complete }}%;" aria-valuenow="{{ project.percent_complete }}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <div class="w-100"></div>
+                  <h3 class="fw-700 mt-3 mb-0">{{ project.get_statistic_for_project|floatformat:"0"|intcomma }}</h3>
+                  <h5 class="fw-700 my-0">lbs CO2 Avoided</h5>
+                  <div class="module-box payment-module">
+                    <div class="inputs">
+                        <div class="input-group">
+                            <label for="value fw-700" style="font-weight:700;">Donation to the campaign</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control donation-field" step="any"
+                                        value="50" min="0" name="value">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="total" style="font-weight:700;">Total</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                                <input type="number" disabled="" class="form-control" step="1"
+                                        value="10" name="total">
+                            </div>
+                        </div>
+                        <div class="input-group" >
+                            <form action="{% url 'project:stripe_payment' pk=project.pk %}"
+                                    method="POST" id="ipad">
+                                {% csrf_token %}
+                                <input type="hidden" name="amount_cents"
+                                        value="{{ donation_level.amount }}">
+                                <input name="metadata" value="1.00" type="hidden">
+                                <button type="submit" class="stripe-button-el"
+                                        style="visibility: visible;">
+                                    <span style="display: block; min-height: 30px;">DONATE</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST"
+                            id="phone">
+                        {% csrf_token %}
+                        <input type="hidden" name="amount_cents" value="{{ donation_level.amount }}">
+                        <input name="metadata" value="1.00" type="hidden">
+                        <button type="submit" class="stripe-button-el" style="visibility: visible; background:transparent; border: none; outline:none;">
+     
+                            <a class="btn btn-orange btn-me btn-arrow-white mt-4">Back this project</a>
+                        </button>
+                    </form>
+                  </div>                  
+                </div>
+              </div>
+            
+              <div class="tips-col">
+                <h3 class="blue-text my-3 ml-5">Help Tips</h3>
+                <div class="line-section pb-2">
+                  <div class="line-left"></div>
+                </div>
+                <ul class="tips-list">
+                  <li><a href="#">Help Tip #1</a></li>
+                  <li><a href="#">Help Tip #2</a></li>
+                  <li><a href="#">Help Tip #3</a></li>
+                  <li><a href="#">Help Tip #4</a></li>
+                  <li><a href="#">Help Tip #5</a></li>
+                  <li><a href="#">Help Tip #6</a></li>
+                  <li><a href="#">Help Tip #7</a></li>
+                  <li><a href="#">Help Tip #8</a></li>
+                </ul>
+              </div>
+              
+              <div class="updates-col">
+                <h3 class="blue-text my-3 ml-5">Updates</h3>
+                <div class="line-section pb-2">
+                    <div class="line-left"></div>
+                </div>
+
+    
+            <!-- renders the full object of comments 
+            {% render_comment_list for object %}
+             -->
+
+            {% get_comment_list for object  as commenter_list %}
+            {% if commenter_list.count == 0  %}
+            <div class="updates-inner-col mt-4">
+                <p> There are currently no updates.. </p>   
+            </div>
+            {% endif %}
+            {% for commenter in commenter_list reversed %}
+            <div class="updates-inner-col mt-4">
+                <span class="meta-date">{{ commenter.submit_date }}</span>
+                <p> {{ commenter.comment }} </p>   
+            </div>
+      
+
+            {% endfor %}
+
+
+            {% if request.user.is_authenticated %}
+            {% ifequal project.created_by_user|stringformat:"s" request.user.username %}
+
+            {% get_comment_form for project as form %}
+            
+            <form action="{% comment_form_target %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    {% if field.is_hidden %}
+                    {{ field }}
+                    {% endif %}
+                    {% endfor %}
+                    <input type="hidden" name="name" value="{{ user }}" />
+                    <input type="hidden" name="next" value="/project/{{project.id}}/" />
+                    <input type="text" name="honeypot" size="64" style="display: none;" />
+                    <textarea id="id_comment" rows="1" cols="40"
+                              name="comment" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+                          
+                              width: 100%;"></textarea>
+                    <input id="project-button" type="submit" name="submit" class="submit-post" value="Post" 
+                    style="height: 48px;
+                    line-height: 48px;
+                    background-color: #ff8a00;
+                    transition: background-color .15s linear;
+                    text-transform: uppercase;
+                    letter-spacing: .1em;
+                    border-radius: 4px;
+                    border: 0;
+                    font-size: 15px;
+                    padding: 0 20px;
+                    font-weight: 500;
+                    display: inline-block;
+                    color: #fff;
+                    margin-bottom: 40px;" />
+            </form>
+            
+            {% endifequal %}
+            {% endif %}
+
+
+
+
+            </div>
+  
+            </div>
+
+
+
+            <div class="col-sm-12 col-md-8 campaign-body-text pl-4">
+              <h2 class="orange-text fw-300">Light up the {{ project.title }}</h2>
+              <h6 class="fw-500">About the campaign</h6>
+
+              <div class="plyr-video" data-plyr-provider="youtube" data-plyr-embed-id="fCrs2eASgFg"></div>
+
+              <p class="content-gold-silver content_sec">{{ project.description|safe }}</p> 
+              <p class="content-gold-silver content_sec">{{ project.org_about|safe }}</p> 
+
+              <!-- 
+              <p>The clock is ticking, and the time to spread solar and fix the climate crisis is now. </p>
+
+              <p>Solar is a simple solution to help reduce carbon emissions, make the air cleaner, and strengthen communities.</p>
+
+              <p>I started this fundraiser to help bring the benefits of clean energy to communities that need it most. Every dollar donated to this campaign is invested directly into a community-serving nonprofit solar project, like schools, homeless shelters, and food pantries. </p>
+
+              <p class="mt-4">When these nonprofits go solar, they not only save money, but re-allocate money spent on dirty energy toward fulfilling their missions. That means that your donated dollar helps both people and the planet. We call that a win-win.</p>
+
+              <p>When each project is complete, RE-volv will send you the address and photos of the community benefiting from your donation. </p>
+
+              <p>Please donate to my campaign, every little bit helps. </p>
+              -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="share-section">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 co-md-12 col-lg-12 text-center">
+          <h1 class="text-white fw-300 mb-5">Follow us on social media</h1>
+          <ul class="sharing-icons">
+            <li><a href="https://www.facebook.com/solarseedfund/" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://twitter.com/RE_volv" rel="noopener noreferrer" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.youtube.com/user/REvolvSolarSeedFund" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="https://www.instagram.com/re.volv/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+  </main><!-- /.container -->
+
+
+
+
+
+
+
+  {% else %}
+
+
+  <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
         <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
             <div class="col hero-text align-self-end">
             <h4 class="text-light">  </h4>
@@ -189,7 +480,7 @@
                                 class="pull-right">
               <span class="bold">{{ donor_count }} </span> {{ settings.revolv_cms.ProjectPageSettings.donors_wording }}</span>
                         </div>
-                        <div class="banner-section">
+                        <div class="banner-section" style="    font-family: 'Montserrat', sans-serif;">
                             <div class="container">
                                 <div class="funded-round">
                 <span class="status-text">
@@ -256,15 +547,15 @@
                                         <p>{{ donation_level.description }}</p>
                                         <div class="inputs">
                                             <label for="tip_edit">Additional support for RE-volv</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">$</span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
                                                 <input type="number" name="tip_edit" min="0" step="any" value="7.50"
                                                        class="form-control tip_edit1">
-                                                <span id="edit_value1" class="input-group-addon">Edit</span>
+                                                <span id="edit_value1" class="input-group-text">Edit</span>
                                             </div>
                                             <label for="total">Total</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">$</span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
                                                 <input type="number" name="total" value="10" step="1"
                                                        class="form-control" disabled>
                                             </div>
@@ -290,21 +581,21 @@
                                 </div>
                                 <div class="inputs">
                                     <label for="value">Donation to the project</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
                                         <input type="number" name="value" min="0" value="50" step="any"
                                                class="form-control">
                                     </div>
                                     <label for="tip_edit">Additional support for RE-volv</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
                                         <input type="number" name="tip_edit" min="0" step="any" value="7.50"
                                                class="form-control tip_edit2">
-                                        <span id="edit_value2" class="input-group-addon">Edit</span>
+                                        <span id="edit_value2" class="input-group-text">Edit</span>
                                     </div>
                                     <label for="total">Total</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
                                         <input type="number" name="total" value="10" step="1" class="form-control"
                                                disabled>
                                     </div>
@@ -350,19 +641,19 @@
                                     <div class="inputs">
                                         <div class="input-group">
                                             <label for="value">Donation to the project</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">$</span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
                                                 <input type="number" class="form-control donation-field" step="any"
                                                        value="50" min="0" name="value">
                                             </div>
                                         </div>
                                         <div class="input-group">
                                             <label for="tip_edit">Additional support for RE-volv</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">$</span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
                                                 <input type="number" class="form-control donation-tip tip_edit3"
                                                        step="any" value="7.50" min="0" name="tip_edit">
-                                                <span id="edit_value3" class="input-group-addon">Edit</span>
+                                                <span id="edit_value3" class="input-group-text">Edit</span>
                                             </div>
                                             <form action="{% url 'project:stripe_payment' pk=project.pk %}"
                                                   method="POST" id="ipad">
@@ -379,8 +670,8 @@
                                         </div>
                                         <div class="input-group">
                                             <label for="total">Total</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">$</span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
                                                 <input type="number" disabled="" class="form-control" step="1"
                                                        value="10" name="total">
                                             </div>
@@ -462,12 +753,16 @@
         <!-- end .details-active-project-module -->
         <div class="container">
         <div class="col-sm-12 outer-basic-silver-gold project-updates-module">
+            
                 <div class="col-xl-8 col-lg-8 col-md-12 col-12 ">
                         <div class="col-md-12">
                             <p class="content-gold-silver">{{ project.tagline }}</p>
                         </div>
                         <div class="col-md-12">
                             <p class="content-gold-silver content_sec">{{ project.description|safe }}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="content-gold-silver content_sec">{{ project.org_about|safe }}</p>
                         </div>
                     </div>
 
@@ -484,15 +779,15 @@
                                     <p>{{ donation_level.description }}</p>
                                     <div class="inputs">
                                         <label for="tip_edit">Additional support for RE-volv</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">$</span>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
                                             <input type="number" name="tip_edit" min="0" step="any" value="7.50"
                                                    class="form-control tip_edit4">
-                                            <span id="edit_value4" class="input-group-addon">Edit</span>
+                                            <span id="edit_value4" class="input-group-text">Edit</span>
                                         </div>
                                         <label for="total">Total</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">$</span>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
                                             <input type="number" name="total" value="10" step="1" class="form-control"
                                                    disabled>
                                         </div>
@@ -510,60 +805,7 @@
                             <!-- end .module-box -->
                         {% endif %}
                         <!-- Perks -->    
-                        <div class="module-box payment-module">
-                            <h5 class="title-h5">BACK THIS PROJECT</h5>
-                            <div class="back-the-project">Donate now to help {{ project.title }} go solar and
-                                grow the Solar Seed Fund
-                            </div>
-                            <div class="inputs">
-                                <div class="input-group">
-                                    <label for="value">Donation to the project</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
-                                        <input type="number" class="form-control donation-field" step="any"
-                                               value="50" min="0" name="value">
-                                    </div>
-                                </div>
-                                <div class="input-group">
-                                    <label for="tip_edit">Additional support for RE-volv</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
-                                        <input type="number" class="form-control donation-tip tip_edit3"
-                                               step="any" value="7.50" min="0" name="tip_edit">
-                                        <span id="edit_value3" class="input-group-addon">Edit</span>
-                                    </div>
-                                    <form action="{% url 'project:stripe_payment' pk=project.pk %}"
-                                          method="POST" id="ipad">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="amount_cents"
-                                               value="{{ donation_level.amount }}">
-                                        <input name="metadata" value="1.00" type="hidden">
-                                        <button type="submit" class="stripe-button-el"
-                                                style="visibility: visible;">
-                                            <span style="display: block; min-height: 30px;">DONATE</span>
-                                        </button>
-                                    </form>
-
-                                </div>
-                                <div class="input-group">
-                                    <label for="total">Total</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
-                                        <input type="number" disabled="" class="form-control" step="1"
-                                               value="10" name="total">
-                                    </div>
-                                </div>
-                            </div>
-                            <form action="{% url 'project:stripe_payment' pk=project.pk %}" method="POST"
-                                  id="phone">
-                                {% csrf_token %}
-                                <input type="hidden" name="amount_cents" value="{{ donation_level.amount }}">
-                                <input name="metadata" value="1.00" type="hidden">
-                                <button type="submit" class="stripe-button-el" style="visibility: visible;">
-                                    <span style="display: block; min-height: 30px;">DONATE</span>
-                                </button>
-                            </form>
-                        </div>                    
+                   
                         <!-- end .module-box -->
                     </aside>
                     <!-- end .list-area -->
@@ -671,13 +913,21 @@
     <!-- end .tabs -->
 </div>
 </div>
-    <!-- end .contents -->
+{% endif %}
+<!-- End start -->
+
+<!-- end .contents -->
+
 {% endblock %}
 {% block javascripts %}
     <!-- tab start here -->
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{ GOOGLEMAPS_API_KEY }}">
     </script>
     <script>
+
+        var element = document.getElementById("navbar-section");
+        element.classList.add("is-sticky");
+
         function setTwoNumberDecimal(event) {
             console.log("input", $("#amt").val().indexOf('.'))
             if ((pointPos = $("#amt").val().indexOf('.')) >= 0) {

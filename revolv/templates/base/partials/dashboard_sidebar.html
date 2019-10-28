@@ -20,19 +20,6 @@
     conditionally render all of these partials and things based on what type of user the current user is.
 {% endcomment %}
 {% spaceless %}
-<div class="sidebar-close-button sidebar-toggle-close"><i class="fa fa-close"></i></div>
-<div class="role-select">
-    {% if role == "administrator" and user.revolvuserprofile.is_administrator %}
-        <div class="role-select-inner">administrator</div>
-    {% elif role == "ambassador" and user.revolvuserprofile.is_ambassador %}
-        <div class="role-select-inner">ambassador</div>
-    {% else %}
-        <div class="role-select-inner">{{user.username}}</div>
-    {% endif %}
-    {% if user.revolvuserprofile.is_ambassador %}
-        <div class="dashboard-sidebar-chevron" data-state="collapsed"><i class="fa fa-chevron-down"></i></div>
-    {% endif %}
-</div>
 {% if user.revolvuserprofile.is_ambassador %}
 <div class="role-select-options">
     <div class="dashboard-header">View as:</div>
@@ -51,7 +38,7 @@
 {% endif %}
 {% if user.revolvuserprofile.is_administrator %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <div><a href="{% url "user_details" %}" class="create-new-button">User Details</a></div>
+    <!--<div><a href="{% url "user_details" %}" class="create-new-button">User Details</a></div>-->
     <!--<div><a href="{% url "donationreport" %}" class="create-new-button">Financial Report</a></div>-->
     <div><a class="create-new-button solar-seed-fund-amount">Funds Available</a></div>
     <div><a href="{% url "repaymentreport" %}" class="create-new-button">Repayment Report</a></div>
@@ -69,26 +56,7 @@
 {% if user.revolvuserprofile.is_ambassador %}
 <div><a href="{% url "sendmail" %}" class="create-new-button" id="sendemail">Send Email</a></div>
 {% endif %}
-<div class="dashboard-section projects">
-    {% if donor_has_no_donated_projects %}
-        <div class="dashboard-header">No projects found.</div>
-    {% else %}
-        {% for project_group, project_list in project_dict.items %}
-            <div class="dashboard-header">{{ project_group.display }}</div>
-            {% with outer_counter=forloop.counter %}
-                {% for project in project_list %}
-                    <div class="dashboard-sidebar-project-container dashboard-sidebar-project-container-{{project.pk}} dashboard-data-link" data-section="project-{{project.pk}}">
-                        <div class="dashboard-sidebar-bullet-point {{project_group.key}}"></div>
-                        <div class="dashboard-sidebar-project project-{{project.pk}} project-status-{{project.pk}}-{{project.project_status}} {{project_group.key}} dashboard-data-link">{{project.title}}</div>
-                    </div>
-                {% endfor %}
-            {% endwith %}
-        {% endfor %}
-    {% endif %}
-</div>
 <div class="dashboard-section manage">
-    <div class="dashboard-header">Manage</div>
-    <div class="dashboard-manage-link my-impact-and-category-preferences"><a id="my_impact" href="{% url "dashboard" %}">My Impact</a></div>
     <div class="dashboard-manage-link"><a id="change_password_link" href="/password_change/">Change Password</a></div>
     <div class="dashboard-manage-link"><a id="logout_link" href="/logout/">Logout</a></div>
 </div>

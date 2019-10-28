@@ -237,10 +237,13 @@ class Project(models.Model):
         max_digits=15,
         decimal_places=2,
         default=0,
+        blank=True,
+        null=True,
         help_text='How much is the total kWH value for 25 years to this project?'
     )
     project_url = models.CharField(
         max_length=255,
+        unique=True,
         null=True,
         blank=False,
         help_text='How to show project url for this project?'
@@ -251,8 +254,8 @@ class Project(models.Model):
     )
     tagline = models.CharField(
         max_length=100,
+        blank=True,
         null=True,
-        blank=False,
         help_text='Select a short tag line that describes this project. (No more than 100 characters.)'
     )
     video_url = models.URLField(
@@ -264,6 +267,8 @@ class Project(models.Model):
     # power output of array in kilowatts
     impact_power = models.FloatField(
         'Expected Killowatt Output',
+        blank=True,
+        null=True,
         help_text='What is the expected output in killowatts of the proposed solar array?'
     )
     # solar log graphics url
@@ -271,22 +276,29 @@ class Project(models.Model):
         'Solar Log Graphics URL',
         max_length=255,
         blank=True,
+        null=True,
         help_text='This can be found by going to http://home.solarlog-web.net/, going to the \
             solar log profile for your site, and clicking on the Graphics sub-page. Copy and paste \
             the URL in the address bar into here.'
     )
     location = models.CharField(
         'Organization Address',
+        blank=True,
+        null=True,
         max_length=255,
         help_text='What is the address of the organization where the solar panels will be installed?'
     )
     # latitude and longitude of the organization location
     location_latitude = models.DecimalField(
+        blank=True,
+        null=True,
         max_digits=17,
         decimal_places=14,
         default=0.0
     )
     location_longitude = models.DecimalField(
+        blank=True,
+        null=True,
         max_digits=17,
         decimal_places=14,
         default=0.0
@@ -338,21 +350,29 @@ class Project(models.Model):
 
     people_affected = models.PositiveIntegerField(
         default=0,
+        blank=True,
+        null=True,
         help_text='How many people will be impacted by this project?'
     )
 
     mission_statement = models.TextField(
         'Organization Mission',
+        blank=True,
+        null=True,
         help_text='What is the mission statement of the organization being helped by this project?',
     )
 
     org_about = models.TextField(
         'Organization Description',
+        blank=True,
+        null=True,
         help_text='Elaborate more about the organization, what it does, who it serves, etc.'
     )
 
     description = RichTextField(
         'Project description',
+        blank=True,
+        null=True,
         help_text='This is the body of content that shows up on the project page.'
     )
 

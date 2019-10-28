@@ -24,50 +24,56 @@
   border-radius: 3px;
 }
 </style>
+<div class="container">
+  <div class="row align-items-center my-4 mx-4 text-center">
+    <div class="col-sm-12 text-white">
+      <h4 class="fw-500 grey-text">Hi {{user.first_name}}, Thank you for investing in clean energy!</h4>
+    </div>
+  </div>
 
 <div class="impact">
-  <h2>Thank you for investing in clean energy!</h2>
-  <h3>Your impact to date:</h3>
-  <div class="row stats">
-      <div class="col-sm-4 col-md-4 col-xl-2">
-            <div class="donation_info">
-             <div>AMOUNT DONATED</div>
-            <span class="amount_donated">${{ statistics.total_donated  }}</span>
-        </div>
-          <div class="logo_circle">
-          <img src="{% static "images/dashboard/Kiva_circle.jpg" %}" />
-        </div>
-        <div class="info">
-            <span class="val">${{statistics.reinvestment |floatformat:"0"|intcomma}} </span>
-            <div>AMOUNT REINVESTED</div>
+    <div class="row justify-content-center align-items-center my-4 mx-4">
+          <h4 class="fw-700 grey-text">Your impact to date</h4>
+    </div>
+  <div class="row stats justify-content-center" style="max-width: 100% !important;">
+      <div class="card mx-1 my-2" style="width: 18rem; padding-bottom: 0rem;">
+        <div class="card-body">
+            <img src="{% static "images/dashboard/revolvorange.png" %}" style="width:100px;" />
+          <div>AMOUNT DONATED</div>
+          <span class="amount_donated">${{ statistics.total_donated  }}</span>
         </div>
       </div>
 
-      <div class="col-sm-4 col-md-4 col-xl-2">
-        <div class="stats-img">
-          <img src="{% static "images/dashboard/solar-panel-desktop.png" %}" />
-        </div>
-        <div class="info">
+      <div class="card mx-1 my-2" style="width: 18rem; padding-bottom: 0rem;">
+        <div class="card-body">
+          <img src="{% static "images/dashboard/solar-panel-desktop2.png" %}" />
+          <div class="info">
             <div>Built</div>
             <span class="val">{{ statistics.kwh |intcomma }} </span>
             <span class="units">watts</span>
             <div>of solar energy capacity</div>
+          </div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-4 col-xl-2">
-        <div class="stats-img">
-          <img src="{% static "images/dashboard/cloud-desktop.png" %}" />
-        </div>
-        <div class="info">
-            <div>Avoided</div>
-            <span class="val">{{ statistics.carbon_dioxide }} </span>
-            <span class="units">lbs</span>
-            <div class="tall">of carbon dioxide emissions</div>
+
+      <div class="card mx-1 my-2" style="width: 18rem; padding-bottom: 0rem;">
+        <div class="card-body">
+          <div class="stats-img">
+            <img src="{% static "images/dashboard/cloud-desktop2.png" %}" />
+          </div>
+          <div class="info">
+              <div>Avoided</div>
+              <span class="val">{{ statistics.carbon_dioxide }} </span>
+              <span class="units">lbs</span>
+              <div class="tall">of carbon dioxide emissions</div>
+          </div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-4 col-xl-2">
+      
+      <div class="card mx-1 my-2" style="width: 18rem; padding-bottom: 0rem;">
+        <div class="card-body">
         <div class="stats-img">
-          <img src="{% static "images/dashboard/trees-desktop.png" %}" />
+          <img src="{% static "images/dashboard/trees-desktop2.png" %}" />
         </div>
         <div class="info">
             <div>Equivalent to planting</div>
@@ -76,20 +82,27 @@
             <span class="units">acres</span>
             <div>of trees</div>
         </div>
+        </div>
       </div>
-      <div class="col-sm-4 col-md-4 col-xl-2">
+
+      <div class="card mx-1 my-2" style="width: 18rem; padding-bottom: 0rem;">
+        <div class="card-body">
         <div class="stats-img">
-          <img src="{% static "images/dashboard/house-desktop.png" %}" />
+          <img src="{% static "images/dashboard/house-desktop2.png" %}" />
         </div>
         <div class="info">
             <div>Supported</div>
             <span class="val">{{ statistics.project_count|floatformat:"0"|intcomma }} </span>
             <div class="tall">community-serving organizations</div>
         </div>
+        </div>
       </div>
-      <div class="col-sm-4 col-md-4 col-xl-2">
+
+
+      <div class="card mx-1 my-2" style="width: 18rem; padding-bottom: 0rem;">
+        <div class="card-body">
         <div class="stats-img">
-          <img src="{% static "images/dashboard/person-desktop.png" %}" />
+          <img src="{% static "images/dashboard/person-desktop2.png" %}" />
         </div>
         <div class="info">
             <div class="tall">Provided solar energy to organizations serving</div>
@@ -97,17 +110,35 @@
             <span class="units">people</span>
             <div>in their community</div>
         </div>
+        </div>
       </div>
 
   </div>
 
-  <div class="btn-donation-history"><a href="{% url 'donation_history' %}">DONATION HISTORY</a></div>
+  <div class="row align-items-center my-4 mx-4">
+      <div class="col-sm-12 col-md-5 text-left text-white justify-content-center">
+          <a href="/monthly_donor">
+          <button class="btn btn-blue newsletter-signup btn-sign-up mb-4" type="button" style="height: 100%; float:right; clear:both;">Donate monthly</button>
+          </a>
+      </div>
+  
+  
+      <div class="col-sm-12 col-md-7">
+        <div class="input-group mb-3 subscription-form inputs">
+            <p class="fw-400 grey-text">Help fight against climate change and empower communities around you. Thank you for your generosity!</p>
+        </div>
+        
+      </div>
+</div>
+
+</div>
 {% if donated_projects %}
-  <div class="row">
-    <h3 style="margin-left:20px;">PROJECTS YOU'VE SUPPORTED</h3>
+  <div class="row justify-content-center align-items-center my-4 mx-4">
+      <h4 class="fw-700 grey-text">Projects you've supported</h4>
   </div>
   {% include "base/partials/list_projects.html" with active_projects=donated_projects %}
 {% endif %}
-
-
 </div>
+
+
+<div></div>

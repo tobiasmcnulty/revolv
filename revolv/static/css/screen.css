@@ -659,7 +659,7 @@ left .carousel-controls {
 
 .title-white-border,
 .title-blue-border {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 18px;
     letter-spacing: 8px;
@@ -1358,7 +1358,7 @@ p.attribution.footer-text {
     position: relative;
     width: 100%;
     z-index: -8;
-    background: url(../images/donatn-backgrnd.png);
+    /*background: url(../images/donatn-backgrnd.png);*/
 }
 
 .active-projects-module .container {
@@ -1366,6 +1366,7 @@ p.attribution.footer-text {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+
     /*background: url(../images/donatn-backgrnd.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
@@ -2405,7 +2406,7 @@ header.edit-project-header > .container > h1 {
 
 .title-h1 {
     color: #100084;
-    font-family: "Source Sans Pro";
+    font-family: 'Montserrat', sans-serif;
     font-size: 44px;
     font-weight: 900;
     line-height: 56px;
@@ -2998,7 +2999,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .get-involved-contents .funded-round .round-depict {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 14px;
     color: #039;
@@ -3395,7 +3396,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .details-active-project-module .banner-section .funded-round .round-depict {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 27.19px;
     color: #039;
@@ -3482,12 +3483,12 @@ header.edit-project-header > .container > h1 {
 
 .details-active-project-module .info-main .blue-bar span,
 .details-active-project-module .info-main .dark-blue-bar span {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
 }
 
 .details-active-project-module .info-main .blue-bar .bold,
 .details-active-project-module .info-main .dark-blue-bar .bold {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
 }
 
@@ -3627,7 +3628,7 @@ header.edit-project-header > .container > h1 {
 
 .project-updates-module .list-area .left-date .date-txt,
 .project-updates-module .list-area .left-date .month-txt {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #100084;
     display: block;
@@ -3655,7 +3656,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .project-updates-module .list-area .main-info .title-h4 a {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 18px;
     color: #4b4b4b;
@@ -3850,7 +3851,7 @@ header.edit-project-header > .container > h1 {
 }
 
 .project-updates-module .main-area .venue-bottom .title-h4 {
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 18px;
     color: #4b4b4b;
@@ -3938,7 +3939,7 @@ header.edit-project-header > .container > h1 {
 
 .donors-module .info-box .title-h4 {
     padding: 0 0 4px 0;
-    font-family: 'Source Sans Pro';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 18px;
     color: #282828;
@@ -5285,7 +5286,7 @@ footer.footer > div.container > div.row > nav > dl > dd {
     border-bottom: 1px solid #c3c3c3;
     border-top: 1px solid #c3c3c3;
     color: #4b4b4b;
-    font-family: "Source Sans Pro";
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 700;
     height: 33px;
@@ -15089,20 +15090,19 @@ label.checkmark.animate:after {
 .dashboard .impact h2 {
     color: #2c3691;
     font-weight: bold;
-    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 46px;
 }
 
 .dashboard .impact h3, .dashboard .impact .row h3 {
     font-weight: 300;
-    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 41px;
     color: #2B2B2B;
 }
 
 .dashboard .stats {
-    margin-top: 70px;
-    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .dashboard .stats > * {

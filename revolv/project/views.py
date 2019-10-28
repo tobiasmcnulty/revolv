@@ -702,7 +702,7 @@ class UpdateProjectView(DonationLevelFormSetMixin, UpdateView):
     Accessed through /project/{project_id}/edit
     """
     model = Project
-    template_name = 'project/edit_project.html'
+    template_name = 'project/edit_project2.html'
     form_class = forms.ProjectForm
 
     def get_initial(self):
@@ -865,7 +865,7 @@ class ProjectView(UserDataMixin, DetailView):
     Accessed through /project/{project_id}
     """
     # model = Project
-    template_name = 'project/project.html'
+    template_name = 'project/project2.html'
 
     def get_object(self):
         if self.kwargs['title'].isnumeric():

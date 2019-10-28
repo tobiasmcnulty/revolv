@@ -60,7 +60,7 @@
         </div>
         <div class="container-fluid after-header">
             {% if role == 'ambassador' or role == 'admin' %}
-                <div class="dashboard-sidebar col-md-2" style="float:left; clear:both; ">
+                <div class="dashboard-sidebar col-md-2" style="float:left; clear:both; border-radius: 10px; background: whitesmoke;">
                     {% include "base/partials/dashboard_sidebar.html" with user=user %}
                 </div>
                 <div class="col-md-9 col-md-offset-1" style="float:left; margin-left: 20px;">
@@ -97,7 +97,7 @@
     <script>
         $(document).on("click", ".solar-seed-fund-amount", function (e) {
             swal({
-                title: 'Hi {{ user }}',
+                title: 'Hi {{ user.first_name }}',
                 text: 'Total Solar Seed Fund amount is ${{ statistics.reinvest_pool_amount }}',
                 icon: "info",
                 button: "Ok",

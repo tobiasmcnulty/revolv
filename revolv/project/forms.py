@@ -2,6 +2,9 @@ from django import forms
 from models import Category, Project, ProjectUpdate, DonationLevel
 from django.forms.models import inlineformset_factory
 from models import Category, DonationLevel, Project
+from datetime import datetime, timedelta
+from datetime import date
+from ckeditor.fields import RichTextField
 
 
 class ProjectForm(forms.ModelForm):
@@ -10,13 +13,39 @@ class ProjectForm(forms.ModelForm):
     the user can access and their basic appearance to the user.
     """
     # sets the lat and long fields to hidden (clicking on the map updates them)
-    location_latitude = forms.DecimalField(widget=forms.HiddenInput())
-    location_longitude = forms.DecimalField(widget=forms.HiddenInput())
+    location_latitude = forms.DecimalField(initial=37.774929, required = False, widget=forms.HiddenInput())
+    location_longitude = forms.DecimalField(initial=-122.419418, required = False, widget=forms.HiddenInput())
     # extra = forms.IntegerField(widget=forms.HiddenInput(attrs={'id':'id_extra'}))
 
     # generates options of categories and populates Multiple Choice field with options.
     options = [(category, category) for category in Category.valid_categories]
-    categories_select = forms.MultipleChoiceField(choices=options, required=False)
+    categories_select = forms.MultipleChoiceField(choices=options, required=False, widget=forms.HiddenInput(), label='')
+
+    # date time
+    today = datetime.today()
+    enddate = today + timedelta(days=10)
+
+    title = forms.CharField(label='Campaign Name', initial=123, required=True)
+    funding_goal = forms.DecimalField(label='Fundraising Goal',initial=1234, required=True)
+    end_date = forms.DateField(label='Fundraising Deadline',initial=enddate, required=True)
+
+    tagline = forms.CharField(label='',required=False, widget=forms.HiddenInput())
+    
+    video_url = forms.URLField(initial='https://www.youtube.com/watch?v=fCrs2eASgFg', widget=forms.HiddenInput())
+
+    org_name = forms.CharField(label='', initial='SSF', required=True, widget=forms.HiddenInput())
+
+    impact_power = forms.FloatField(label='', initial=12345, required=False, widget=forms.HiddenInput())
+    total_kwh_value = forms.DecimalField(label='', initial=12345, required=False, widget=forms.HiddenInput())
+
+    org_start_date = forms.DateField(label='',initial=today, required=False)
+    
+    org_about = forms.CharField(label='', initial='<p> The clock is ticking, and the time to spread solar and fix the climate crisis is now. </p> <p> Solar is a simple solution to help reduce carbon emissions, make the air cleaner, and strengthen communities.  </p> <p> I started this fundraiser to help bring the benefits of clean energy to communities that need it most. Every dollar donated to this campaign is invested directly into a community-serving nonprofit solar project, like schools, homeless shelters, and food pantries. </p> <p> When these nonprofits go solar, they not only save money, but re-allocate money spent on dirty energy toward fulfilling their missions. That means that your donated dollar helps both people and the planet. We call that a win-win. </p> <p> When each project is complete, RE-volv will send you the address and photos of the community benefiting from your donation.  </p> <p> Please donate to my campaign, every little bit helps.  </p> ' , required= False, widget=forms.Textarea )
+
+    location = forms.CharField(label='', initial='San Francisco',  required=False, widget=forms.HiddenInput())
+
+    project_url = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': '(project url)'}))
+
 
     class Meta:
         model = Project
@@ -64,6 +93,11 @@ class ProjectForm(forms.ModelForm):
             'total_kwh_value',
             'project_url'
         )
+        labels = {
+            'cover_photo':'Cover Photo',
+            'people_affected' : '',
+            'location' : ''
+        }
 
     def clean_categories_select(self):
         """ This method processes the input from the hidden categories list field, which
