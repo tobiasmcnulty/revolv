@@ -30,6 +30,17 @@
       <h4 class="fw-500 grey-text">Hi {{user.first_name}}, Thank you for investing in clean energy!</h4>
     </div>
   </div>
+  {% if donor_has_no_donated_projects %}
+  <div class="no-donations">
+      <div class="" style="margin: 0 auto; text-align: center;">
+          <div class="col-md-12">
+              <h5 class="fw-500 grey-text">Thanks for signing up with RE-volv! Looks like you haven't supported any solar
+                  projects yet.</h5>
+              <a class="btn btn-blue" href="{% url "projects_list" %}">Start contributing now!</a>
+          </div>
+      </div>
+  </div>
+  {% endif %}
 
 <div class="impact">
     <div class="row justify-content-center align-items-center my-4 mx-4">
@@ -125,7 +136,7 @@
   
       <div class="col-sm-12 col-md-7">
         <div class="input-group mb-3 subscription-form inputs">
-            <p class="fw-400 grey-text">Help fight against climate change and empower communities around you. Thank you for your generosity!</p>
+            <p class="fw-400 grey-text">Invest in a world where everyone can thrive from clean energy. Thank you for your generosity!</p>
         </div>
         
       </div>

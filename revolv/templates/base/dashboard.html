@@ -69,24 +69,7 @@
                     </div>
                 </div>
             {% else %}
-
-                {% if donor_has_no_donated_projects %}
-                    <div class="no-donations" style="padding:80px 0px;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h2>Thanks for signing up with RE-volv! Looks like you haven't supported any solar
-                                    projects yet.</h2>
-                                {% if first_project %}
-                                    <p><a class="btn btn-blue" href="{% url "projects_list" %}">Start contributing
-                                        now!</a></p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
                     {% include "base/partials/impact_statistics.html" with statistics=statistics user=user donated_projecs=donated_projects %}
-                {% endif %}
-
             {% endif %}
         </div>
 
