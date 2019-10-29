@@ -1,5 +1,6 @@
 import time
 from django import forms
+from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -7,6 +8,7 @@ from django.db import IntegrityError
 
 from models import RevolvUserProfile
 
+from createsend import Subscriber
 
 class SignupForm(UserCreationForm):
     """
@@ -46,6 +48,14 @@ class SignupForm(UserCreationForm):
             user.revolvuserprofile.subscribed_to_newsletter = self.cleaned_data["subscribed_to_newsletter"]
             user.revolvuserprofile.zipcode = self.cleaned_data["zipcode"]
             user.revolvuserprofile.save()
+            if user.revolvuserprofile.subscribed_to_newsletter == True:
+                auth = {'api_key': settings.CM_KEY }
+                list_id = settings.CM_LIST_ID
+                emailz = user.email
+                namez = user.first_name + " " + user.last_name
+                tx_add = Subscriber(auth)
+                consent_to_track = 'yes' 
+                response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
         return user
 
     def ensure_authenticated_user(self):

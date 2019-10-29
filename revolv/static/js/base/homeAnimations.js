@@ -121,17 +121,12 @@ $(document).ready(function() {
     $(this).parent().find(".left.carousel-control").click();
   });
 
-  $(".active-projects-module").css("opacity", 0);
   $(".our-impacts-module").css("opacity", 0);
   $(".how-it-works-module").css("opacity", 0);
   $(".testimonial-module").css("opacity", 0);
   $(".featured-on-module").css("opacity", 0);
   $(".newsletter-module .container").css("opacity", 0);
 
-  //show reveal animation effect when Scrolling down the Home page
-  $(".active-projects-module").waypoint(function() {
-      $(".active-projects-module").addClass("fadeInUp");
-  }, { offset: "70%"});
 
   if($(".our-impacts-module").length>0)
   {
