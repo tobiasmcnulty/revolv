@@ -482,6 +482,9 @@ def faq(request):
 def aboutus(request):
     return render(request, 'base/partials/about.html')
 
+def team(request):
+    return render(request, 'base/partials/team.html')
+
 def solar_ambassador(request):
     return render(request, 'base/partials/ambassador.html')
 

@@ -52,6 +52,7 @@ urlpatterns = patterns(
 
 
     url(r'^about-us/re-volv', 'revolv.base.views.aboutus', name='aboutus'),
+    url(r'^about-us/team/', 'revolv.base.views.team', name='team'),
     url(r'^get-involved/solar-ambassador', 'revolv.base.views.solar_ambassador', name='solar_ambassador'),
     url(r'^get-involved/apply', 'revolv.base.views.nonprofit_app', name='nonprofit_app'),
 

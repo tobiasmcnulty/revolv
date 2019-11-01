@@ -1,0 +1,774 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+<style>
+  a {
+    text-decoration: none;
+    color: #100084;
+  }
+
+  :hover {
+    transition: all 0.3s ease;
+  }
+
+  .teamRow {
+    padding: 70px 0 100px 0;
+    background: #f1f1f1;
+    text-align: center;
+  }
+
+  .teamRow h2 {
+    float: left;
+    width: 100%;
+    font-size: 50px;
+    color: #193f4b;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .teamRow .team-module {
+    float: left;
+    width: 100%;
+  }
+
+  .teamRow .team-module .member-staff {
+    display: inline-block;
+    width: 33%;
+    margin-top: 90px;
+    vertical-align: top;
+    cursor: pointer;
+  }
+
+  .teamRow .team-module .member-staff .image {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .teamRow .team-module .member-staff h3 {
+    float: left;
+    width: 100%;
+    font-size: 25px;
+    color: #100084;
+    font-weight: 700;
+  }
+
+  .teamRow .team-module .member-staff:hover .member-staff-intro h3 {
+    color: #193f4b;
+  }
+
+  .smooth-text {
+    color: rgb(72, 67, 101) !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+  }
+
+  @media (max-width:432px) {
+
+    .staff:hover .hover-description,
+    .staff.staff--show .hover-description {
+      display: none !important;
+    }
+
+    .hover-description {
+      display: none !important;
+    }
+  }
+
+  @media (max-width:1700px) {
+
+    .mainBannerRow .devices img:nth-child(10) {
+      right: 90px;
+    }
+  }
+
+  @media (max-width:1500px) {
+    .mainBannerRow .devices img:nth-child(11) {
+      right: -200px;
+    }
+
+    .mainBannerRow .devices img:nth-child(2),
+    .mainBannerRow .devices img:nth-child(1) {
+      display: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+  }
+
+  @media (max-width:1480px) {
+    .container {
+      width: 100%;
+      padding: 0 90px;
+    }
+
+    .mainBannerRow .devices img:nth-child(3) {
+      left: -430px;
+    }
+  }
+
+  @media (max-width:1260px) {
+    .mainBannerRow .devices img {
+      zoom: 0.8;
+      margin-top: 9%
+    }
+
+    .mainBannerRow {
+      height: 860px;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 30px;
+    }
+
+  }
+
+  @media (max-width:1000px) {
+
+    .mainBannerRow h3 {
+      margin-top: -50px;
+      font-size: 45px;
+    }
+
+    .mainBannerRow .devices img:nth-child(3) {
+      margin-top: 15%;
+      left: -5%;
+    }
+
+    .mainBannerRow .devices img:nth-child(11) {
+      right: 30px;
+      top: 23%;
+    }
+
+    .mainBannerRow .devices img:nth-child(10) {
+      left: 46%;
+      margin-top: 0;
+      z-index: 14;
+    }
+  }
+
+  @media (max-width:800px) {
+
+    .teamRow .team-module .member-staff {
+      width: 45%
+    }
+
+  }
+
+  @media (max-width:550px) {
+
+    .row.footerRow .right .socials a,
+    .teamRow .team-module .member-staff h3 {
+      font-size: 20px;
+    }
+
+    .teamRow .team-module .member-staff {
+      margin-top: 30px;
+    }
+  }
+
+  @media (max-width:450px) {
+
+    .teamRow .team-module .member-staff .image {
+      width: 100px;
+      height: 100px;
+    }
+
+    .teamRow .team-module .member-staff {
+      padding: 0 10px;
+      width: 49%;
+    }
+  }
+
+  @media (max-width:400px) {
+
+    .teamRow .team-module .member-staff {
+      width: 100%;
+    }
+  }
+</style>
+<style>
+  .team {
+    display: flex;
+  }
+
+  :root {
+    --userthumb: 75px;
+    --arrowSize: 15px;
+  }
+
+  .team {
+    padding: 0px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 480px) {
+    .team {
+      justify-content: center;
+    }
+  }
+
+  .staff {
+    position: relative;
+    display: none;
+    box-sizing: border-box;
+    flex: 0 0 100%;
+
+  }
+
+  @media (min-width: 480px) {
+    .staff {
+      display: inline-block;
+      flex: 0 0 20%;
+      margin: 0px;
+    }
+  }
+
+  .staff:nth-child(9n + 6),
+  .staff:nth-child(9n + 7),
+  .staff:nth-child(9n + 8),
+  .staff:nth-child(9n + 9) {
+    left: auto;
+  }
+
+  .staff:nth-child(9n + 9) {
+    margin: 0px;
+  }
+
+  .staff:hover,
+  .staff.staff--show {
+    filter: grayscale(0);
+    display: inline-block;
+  }
+
+  @media (min-width: 480px) {
+
+    .staff:hover .hover-description,
+    .staff.staff--show .hover-description {
+      transform: translateX(-50%) scale(1, 1);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .staff:hover:not(.staff--show) {
+      display: none !important;
+    }
+  }
+
+  .hover-description {
+    margin: 0 auto;
+    position: relative;
+    transform: translateX(0%) scale(1, 1);
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    transform-origin: center bottom;
+    transition: transform 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+
+  @media (min-width: 480px) {
+    .hover-description {
+      position: absolute;
+      bottom: calc(100% + 15px);
+      left: 50%;
+      transform: translateX(-50%) scale(0, 0);
+    }
+  }
+
+  .hover-description:after {
+    width: var(--arrowSize);
+    height: var(--arrowSize);
+    position: absolute;
+    top: calc(100% - var(--arrowSize)/2);
+    background-color: #fff;
+    content: " ";
+    transform: rotate(45deg);
+    left: calc(50% - var(--arrowSize)/2);
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .description {
+    padding-top: 15px;
+    font-size: 15px;
+    color: #aeaeae;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<main role="main" class="container-fluid">
+  <div class="container-fluid works-header" id="top-section-works" style="z-index:0;">
+    <div class="row text-center" style="height: 410px;">
+      <div class="col hero-text align-self-end">
+        <h1 class="text-light mb-6">Our Team</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid scroll-section" id="scroll-section" style="z-index:0;">
+    <div class="scroll-icon">
+
+      <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+    </div>
+  </div>
+  <div class="row teamRow" style="z-index:99;">
+
+    <div class="container">
+
+      <h1 class="grey-text mb-6 smooth-text">Staff</h1>
+      <div class="team-module">
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/LG780.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Andreas Karelas</h3>
+          <span>Executive Director</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Andreas Karelas</h3>
+            </header>
+            <div class="description">
+              Andreas Karelas is the founder and Executive Director of RE-volv. Andreas is a dedicated renewable energy
+              advocate with over 15 years of environmental and renewable energy nonprofit experience. Prior to founding
+              RE-volv Andreas worked with a number of leading organizations including the American Council on Renewable
+              Energy (ACORE), the National Audubon Society, blueEnergy, and the Center for Resource Solutions. Andreas
+              holds Master’s degrees in International Affairs and in Natural Resources and Sustainable Development, and
+              a Bachelor’s degree in Economics. He is a 2013 Audubon Toyota TogetherGreen Conservation Leadership Fellow
+              and a 2016 OpenIDEO Climate Innovator Fellow.
+
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/LG781.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Zak Federer</h3>
+          <span>Solar Program Manager</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Zak Federer</h3>
+
+            </header>
+            <div class="description">
+              Zak is on a mission to make clean energy a reality for everyone. Prior to joining RE-volv, Zak dedicated
+              more than three years to advancing the adoption of solar. He worked with two major solar developers to
+              facilitate financing for over 30 MW of solar capacity in the residential and commercial sectors, and
+              enhanced their business processes to support further solar development. Zak holds a Bachelor’s degree from
+              the University of Chicago, and is currently pursuing NABCEP certification in PV.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/LG782.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Ryan Dexter</h3>
+          <span>Senior Marketing and Communications Manager</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Ryan Dexter</h3>
+            </header>
+            <div class="description">
+              As a digital communications specialist, Ryan delivers powerful and original multimedia content to drive
+              impact and build movements. His passion lies in accelerating the transition to a more equitable economy
+              through transformational storytelling. Prior to RE-volv, Ryan has worked with Van Jones, Obama’s
+              communication team, Joe Biden’s middle-class task force, Solar Mosaic, and Green For All.
+
+              Ryan loves Redwood forests, mythical animals, and telling the stories of those thriving in the green
+              economy.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/LG783.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Elyse Wood</h3>
+          <span>Solar Ambassador Program Manager</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Elyse Wood</h3>
+            </header>
+            <div class="description">
+              Elyse is passionate about making clean energy and sustainable practices accessible to all. Prior to
+              working at RE-volv, she managed a leadership program for high school and college students at the Golden
+              Gate National Parks Conservancy which focused on empowering young member-staff to develop social and
+              environmental justice projects in their communities. As Solar Ambassador Program Manager, she hopes to
+              continue to empower youth to be a part of the environmental justice movement and bring renewable energy to
+              all communities.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/LG784.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Mark Soriano</h3>
+          <span>Full Stack Web Developer</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Mark Soriano</h3>
+            </header>
+            <div class="description">
+              Mark is passionate about making renewable energy accessible to everyone. Prior to joining RE-volv, He
+              mentored in a computer science program to empower underrepresented students through technology. Mark holds
+              a Bachelor's Degree in Computer Science and has been working as a software developer. When he isn’t
+              working, you’ll find Mark listening to music, searching for new tech, and playing guitar.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row teamRow">
+    <div class="container">
+      <h1 class="grey-text mb-6 smooth-text">Board of Directors</h1>
+      <div class="team-module">
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/megan.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Megan Crocker</h3>
+          <span>Board Chair</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Megan Crocker</h3>
+            </header>
+            <div class="description">
+              Megan is passionate about supporting the critical intersection of clean energy and finance. As Director of
+              Strategic Partnerships at the Energy Foundation, Megan works to establish, strengthen, and steward
+              funders. She earned her MBA in Sustainable Management from Presidio Graduate School in 2014. Prior to
+              business school, Megan worked for ten years for Symphony Asset Management, a $10B institutional hedge fund
+              company, where her focus was on client service, marketing, management and coordination of both internal
+              and external communications. Megan is a Chartered Alternative Investment Analyst (CAIA, 2007) and received
+              a BS in Veterinary Science (1998) from the University of Arizona, Tucson.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/jon.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Jon Gibson</h3>
+          <span>Treasurer</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Jon Gibson</h3>
+            </header>
+            <div class="description">
+              Jon Gibson is a sustainable business builder dedicated to renewable energy resource development. He works
+              as a financial analyst and business development strategist because it feels good to make money for both
+              himself AND others while helping solve the world’s critical energy transition needs. Jon earned an MBA in
+              Sustainable Management from Presidio Graduate School in San Francisco, and a Bachelors of Finance from
+              Bentley University outside of Boston. He’s the co-founder of Muir Data Systems, a for profit Wind Energy
+              Operations Software (SaaS) platform, has 10 years’ experience in hedge fund trading operations at Farallon
+              Capital, and six years portfolio and partnership accounting experience. Jon loves developing financial
+              models to inform business planning and strategy as well as meeting member-staff, forging partnerships,
+              building, and growing sustainable businesses. In his spare time he enjoys skiing and paddle boarding with
+              his wife and two children and listening to The Energy Gang podcast. Connect with Jon on Twitter @Bugnato
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/adrienne.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Adrienne Pierce</h3>
+          <span>Secretary</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Adrienne Pierce</h3>
+            </header>
+            <div class="description">
+              Adrienne Pierce believes that clean energy can unify, include and build sustainable community. Adrienne
+              has more than 15 years of experience in managing programs and building partnerships in environmental
+              technology and semiconductor industries. At SunEdison, Adrienne led the REDI program to redesign the data
+              collection and visualization for performance monitoring of over 1800 renewable energy sites. Previously,
+              Adrienne was with Edwards as a global Business Development Director for vacuum, exhaust gas treatment and
+              water purification systems used in the manufacturing of semiconductors and photovoltaics. Adrienne is
+              active in the CleanTech Open, Women in CleanTech and Sustainability and TechWomen. She holds an M.B.A.
+              from Thunderbird and a B.S. in Chemical Engineering from Lafayette College.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/clint.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Clint Wilder</h3>
+          <span>Senior Editor, Clean Edge</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Clint Wilder</h3>
+            </header>
+            <div class="description">
+              Clint Wilder is senior editor at leading clean-tech research and advisory firm Clean Edge and has been
+              writing and speaking about the clean-tech industry for more than a decade. He is co-author of two books,
+              Clean Tech Nation: How the U.S. Can Lead in the New Global Economy (HarperCollins, 2012) and The Clean
+              Tech Revolution (HarperCollins, 2007). Clint is a frequent speaker at clean-tech and green business events
+              in the U.S. and overseas, a blogger for the Green section of The Huffington Post, and has been a
+              facilitator in the Energy and Climate Change track of the Clinton Global Initiative. At Clean Edge, Clint
+              is a lead author of many of the firm’s research reports including its flagship U.S. Clean Tech Leadership
+              Index, a widely cited annual ranking of U.S. states and metro areas in leadership in clean-tech
+              deployment, policy, and finance. He is also director of clean technology at Green Bear Group, a Silicon
+              Valley-based green marketing services firm. A Californian for nearly 25 years, Clint lives in Sausalito
+              and is a former member of the Sierra Club Marin Group executive committee. He has a B.A. in history from
+              Yale University and did graduate work in business journalism at Boston University.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/paul.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Dr. Paul Wapner</h3>
+          <span>Director of Global Environmental Politics Program, American University</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Paul Wapner</h3>
+            </header>
+            <div class="description">
+              Paul is a thought leader on the environmental issues of today. He is a prolific writer having written such
+              books as Living Through the End of Nature: The Future of American Environmentalism, and, Environmental
+              Activism and World Civic Politics. Through his years of teaching he has developed a deep understanding of
+              human behavior in relation to environmentalism, climate change, and civic engagement.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/jenn.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Jennifer Martin</h3>
+          <span>Executive Director, Center for Resource Solutions</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Jennifer Martin</h3>
+            </header>
+            <div class="description">
+              Jennifer has over twenty years of experience in renewable energy, energy efficiency and distributed
+              generation policy, markets and technology development, as well as electricity sector and climate change
+              policy and regulation. Jennifer is responsible for the overall management of the Green-e Energy and
+              Green-e Climate certification programs, and provides strategic program guidance to all CRS programs and
+              new initiatives. Jennifer is a long-standing leader in the renewable energy community.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/kass.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Kassie Rohrbach</h3>
+          <span>Associate Director, Sierra Club</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Kassie Rohrbach</h3>
+            </header>
+            <div class="description">
+              Kassie Rohrbach is a Senior Energy Campaigner at Greenpeace, leading up the 100% Renewables campaign in
+              the U.S. Previously, Kassie served as the Senior Campaigns Manager for National Wildlife Federation’s
+              Climate and Energy Program. Kassie brings over a decade of experience with campaign organizing and
+              coalition building, working to address the climate crisis. Prior to joining NWF in 2008, Kassie co-founded
+              and served as the Co-Director of Energy Action Coalition (EAC), a youth led coalition of environmental and
+              social justice organizations. Kassie also spent three years at the Center for Resource Solutions, working
+              on the Green-e Renewable Energy Certification Program. In 2003, Kassie graduated from Connecticut College
+              with a BA in Gender and Women’s Studies. She got her start organizing on climate and energy while at
+              Connecticut College, where she led one of the first student campaigns to invest in renewable energy.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/ken.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Ken Alston</h3>
+          <span>Chief of Staff , New Energy Nexus</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Ken Alston</h3>
+            </header>
+            <div class="description">
+              Ken Alston is Chief of Staff at New Energy Nexus, an international organization that supports clean energy
+              entrepreneurs with funds, accelerators, and networks, featuring programs in California, China, India,
+              Southeast Asia, and East Africa. He also serves as Investment Manager for CalCEF Ventures. Prior to these
+              roles, Ken served in the Obama Administration at the White House and U.S. Department of Energy. He holds a
+              BA in Economics from the University of Virginia, an MBA from the Stanford Graduate School of Business, and
+              an MS in Environment and Resources from the Stanford School of Earth, Energy, & Environmental Sciences.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/maura.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Maura McKnight</h3>
+          <span>Director of Corporate Partnerships at GRID Alternatives</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Maura McKnight</h3>
+            </header>
+            <div class="description">
+              Maura McKnight is the Director of Corporate Partnerships for the country's largest nonprofit solar
+              installer. Her team leads corporate philanthropy and employee engagement efforts across all of GRID's
+              regional offices in CA, CO, and DC. Before joining GRID Alternatives in 2010, Maura worked in multiple
+              sectors - all at the intersection of energy, technology, and conservation. She has worked in B2B sales in
+              the IT industry, was a biologist for the National Park Service, was an independent contractor with
+              non-profits to help them build capacity. She has an M.S. in Wildlife Biology from Humboldt State and a
+              B.S. from U.C. Berkeley with a degree in Conservation and Resource Studies.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/michael.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Michael Spiegelman</h3>
+          <span>Director of Product Innovation for Growth & Acquisition, Netflix</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Michael Spiegelman</h3>
+            </header>
+            <div class="description">
+              Michael is currently the Director of Product Innovation for Growth & Acquisition at Netflix, where his
+              team is responsible for driving new member signups across the service. Previously, he served as product
+              leader for the website and tablet experiences.
+
+              Before joining Netflix in 2010, Michael was at Yahoo!, where he was Senior Director of Entertainment &
+              Lifestyle Products, responsible for the music, movies, TV, celebrity, video and lifestyles sites around
+              the world. Prior to that, he was Senior Director and General Manager of Yahoo! Music, running product
+              development, label relations and editorial for a $100M/year business that included personalized radio,
+              music videos and artist information. He started at Yahoo! in 2003 as a product manager in the music
+              division, where he helped launch the Yahoo! Music Unlimited subscription service.
+
+              Previously, Michael was cofounder and principal at Web Paradox, a small web design & development company,
+              where he was responsible for developing and maintaining client relationships with Verizon, AT&T, the US
+              Marine Corps, and others. Before that, he was a Senior Strategy Consultant at iXL, a ‘Fast Five’ Internet
+              consulting firm. He also worked at Arthur Andersen Consulting and began his career at
+              PricewaterhouseCoopers in the public sector consulting practice. He currently lives in San Francisco,
+              California.
+            </div>
+          </div>
+        </div>
+
+        <div class="member-staff staff" data-pop="popup3">
+          <div class="image" style="background-image: url(/static/images/team/robert.png);"></div>
+          <div class="clear"></div>
+
+          <h3>Robert J. Nelson</h3>
+          <span>Partner, Lieff Cabraser Heimann & Bernstein, LLP</span>
+
+          <div class="hover-description">
+            <header class="title-desc">
+              <h3 class="staff-name">Robert J. Nelson</h3>
+            </header>
+            <div class="description">
+              Robert J. Nelson is a partner at Lieff Cabraser Law Firm. He has played a leading role in the firm's False
+              Claims Act (whistleblower law), automotive, aviation, defective products, mass torts, tobacco, and
+              consumer fraud cases, taking on many of the world's largest corporations and holding them accountable. He
+              has served as court-appointed Lead or Co-Lead Counsel in numerous state and federal coordinated
+              proceedings, as well as in more than 30 class actions.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="{% static 'js/script.js' %}"></script>
+<script>
+  let members = $(".staff");
+  let isHover = false;
+
+  setInterval(() => {
+    if (!isHover) {
+      let min = 1;
+      let max = $(members).length;
+      let random = Math.floor(Math.random() * (max - min + 1) + min);
+      $(".staff:nth-child(" + random + ")")
+        .addClass("staff--show")
+        .siblings()
+        .removeClass("staff--show");
+    }
+  }, 3000);
+
+  function mediaSize() {
+
+    $(members).hover(
+
+      () => {
+        if (window.matchMedia('(min-width: 480px)').matches) {
+          $(members).removeClass("staff--show");
+          isHover = true;
+          console.log('hover');
+        }
+      },
+      () => {
+        if (window.matchMedia('(min-width: 480px)').matches) {
+          isHover = false;
+        }
+      }
+    );
+
+  }
+
+  mediaSize();
+  window.addEventListener('resize', mediaSize, false);
+</script>
+
+{% endblock %}
