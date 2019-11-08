@@ -49,7 +49,7 @@ def send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressd
             password=settings.SFDC_PASSWORD
         )
 
-        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'Company': orgnamedt, 'npsp__CompanyStreet__c': orgaddressdt, 'npsp__CompanyState__c': orgstatedt, 'npsp__CompanyCountry__c': 'United States',  'npsp__CompanyPostalCode__c': zipcodedt, 'Website' : websitedt, 'Title': affiliatedt, 'Certified_501c3_nonprofit__c' : nonprofitdt, 'Owns_Building__c': nonprofitbuildt })
+        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'Company': orgnamedt, 'Street': orgaddressdt, 'State': orgstatedt, 'Country': 'United States',  'PostalCode': zipcodedt, 'Website' : websitedt, 'Title': affiliatedt, 'Certified_501c3_nonprofit__c' : nonprofitdt, 'Owns_Building__c': nonprofitbuildt })
         
         logger.info('send sign-up to SFDC with data: %s', payload)
         #res = sf.apexecute('lead', method='POST', data=payload)
@@ -83,7 +83,7 @@ def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentd
         elif colstudentdt == 'No':
             colstudentdt = 'Community Champion'
 
-        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'PostalCode': zipcodedt, 'Company': orgnamedt, 'Volunteer_Type__c': colstudentdt, 'Referral_Type__c': headsourcedt, 'npsp__CompanyStreet__c': orgaddressdt, 'Website' : websitedt, 'Title': affiliatedt})
+        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'PostalCode': zipcodedt, 'Company': orgnamedt, 'Volunteer_Type__c': colstudentdt, 'Referral_Type__c': headsourcedt, 'Street': orgaddressdt, 'Website' : websitedt, 'Title': affiliatedt})
         
         logger.info('send sign-up to SFDC with data: %s', payload)
         #res = sf.apexecute('lead', method='POST', data=payload)
