@@ -19,7 +19,6 @@
 
         .input-group {
             position: relative !important;
-            display: table !important;
             border-collapse:separate !important;
         }
         .body {
@@ -639,41 +638,24 @@
                                         grow the Solar Seed Fund
                                     </div>
                                     <div class="inputs">
-                                        <div class="input-group">
-                                            <label for="value">Donation to the project</label>
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" class="form-control donation-field" step="any"
-                                                       value="50" min="0" name="value">
+                                        <div class="col-lg-11 col-md-8 col-sm-8 col-8" >
+                                            <div class="input-group">
+                                                <label for="value">Donation to the project</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                    <input type="number" class="form-control donation-field" step="any"
+                                                            value="50" min="0" name="value">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="input-group">
-                                            <label for="tip_edit">Additional support for RE-volv</label>
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" class="form-control donation-tip tip_edit3"
-                                                       step="any" value="7.50" min="0" name="tip_edit">
-                                                <span id="edit_value3" class="input-group-text">Edit</span>
-                                            </div>
-                                            <form action="{% url 'project:stripe_payment' pk=project.pk %}"
-                                                  method="POST" id="ipad">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="amount_cents"
-                                                       value="{{ donation_level.amount }}">
-                                                <input name="metadata" value="1.00" type="hidden">
-                                                <button type="submit" class="stripe-button-el"
-                                                        style="visibility: visible;">
-                                                    <span style="display: block; min-height: 30px;">DONATE</span>
-                                                </button>
-                                            </form>
-
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="total">Total</label>
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" disabled="" class="form-control" step="1"
-                                                       value="10" name="total">
+                                        <div class="col-lg-11 col-md-8 col-sm-8 col-8" >
+                                            <div class="input-group">
+                                                <label for="total">Total</label>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                    <input type="number" disabled="" class="form-control" step="1"
+                                                        value="10" name="total">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

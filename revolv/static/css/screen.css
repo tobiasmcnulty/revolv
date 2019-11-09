@@ -11519,7 +11519,7 @@ width: 580px;
     .txt-area1 .module-box.payment-module .inputs .input-group {
         float: left;
         vertical-align: top;
-        width: 33.333%;
+        width: 100%
     }
 
     .module-box.payment-module .inputs .input-group > label {
@@ -16819,7 +16819,7 @@ signup > .row .social-login-buttons {
     font-size: 1.375rem;
     /*height: 3.0125rem;*/
     margin: 0 0 1rem 0;
-    padding: 0.8rem;
+    /*padding: 0.8rem;*/
 }
 
 #project_form small {
