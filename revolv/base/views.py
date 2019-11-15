@@ -2039,24 +2039,32 @@ class editprofile(View):
                 user.subscribed_to_repayment_notifications = True
                 auth = {'api_key': settings.CM_KEY }
                 list_id = settings.CM_LIST_ID_RU
+                list_id_dc = settings.CM_LIST_ID_DC
+                list_id_na = settings.CM_LIST_ID_NA
                 emailz = email
                 namez = name
                 tx_add = Subscriber(auth)
                 consent_to_track = 'yes' 
                 response = tx_add.add(list_id, emailz, namez, [] , True, consent_to_track)
+                response = tx_add.add(list_id_dc, emailz, namez, [] , True, consent_to_track)
+                response = tx_add.add(list_id_na, emailz, namez, [] , True, consent_to_track)
             else:
                 try:
                     user_profile = request.user.email
                     # Authenticate with your API Key
                     auth = {'api_key': settings.CM_KEY }
                     list_id = settings.CM_LIST_ID_RU
-
+                    list_id_dc = settings.CM_LIST_ID_DC
+                    list_id_na = settings.CM_LIST_ID_NA
                     # Create a new mailer and define your message
                     tx_add = Subscriber(auth)
                     subscriber = Subscriber(auth, list_id, user_profile)
-
+                    subscriber_dc = Subscriber(auth, list_id_dc, user_profile)
+                    subscriber_na = Subscriber(auth, list_id_na, user_profile)
                     # Send the message and save the response
                     response = subscriber.delete()
+                    response = subscriber_dc.delete()
+                    response = subscriber_na.delete()
                 except:
                     logger.debug("Error while unsubscribe")
 

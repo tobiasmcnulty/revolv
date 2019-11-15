@@ -384,6 +384,38 @@ secrets:
       -----END PGP MESSAGE-----
 
 
+    "CM_LIST_ID_DC": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf+Ms3EBuz3kXitcBPMg7sMN9xr+4KuQP7E7SK1TmlVAqsg
+      zKK8KQNo/5nkspp9NM9Pssf9U//38nswX+jVTkZaBsTVNgNZCEfs0o3NOtBHCsjv
+      VuLnhuJHgcKMGMsEzhVUf7bhOHIWVNpbSqjhUyZTkUsn5Ia9shjOuhXqIH5osf5+
+      1vZqnGw6zQF2m/I3edrf5NGalc0tMeBAZEX6FGWiuXz0cM0Kk6TzRWECx0tWSTyj
+      iNP21Y7uaekFyPlMedKyS+GN7Z1j8AK/Bsz3SeauY2rD27bp0NglONxP+hQeG1eu
+      C0fBIQfNqRB8tOXgPsySBDGl7RtJ/LN9O6qYmK8dcNJbAWhWeea0cPXCLe1PqshF
+      ClrvGttfmIhKbBh/+6BOc3AyAM70+SWlrYlKWPZqrRxdR3/l4gIaA68XWzzw3kHR
+      nFg/dF9T9G5J8A2kLGELcBPV/s7neU6TDZc52A==
+      =me8j
+      -----END PGP MESSAGE-----
+
+
+    "CM_LIST_ID_NA": |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v1
+
+      hQEMA9aTfmR7xthMAQf+KAn8I1ZBqI4SG4X+2hTpyCDdq4oZ+gC9WxGi+gBnm3U8
+      8pDX5uw1HxAl8OrFXjZay1Ge6I65+2QU/F5sZBKZNWKX+Eqa8A7cwnWhDE3yrUda
+      HBxARqpuZ/Y2Bw3j3XdVQCXKL63QILu75FZgxKd1YyhRJcdAta3yxYxxZaXAHbvS
+      n4BKBVMMFjDcXLVa7SLfZ/88hHTuqaMbxl697hIQxXoUY5RswJWja5IAOy6cB/BB
+      zci8AaE3AdtcxGFUhhLARd0udEzkGv59EIZdwaoGaB6C2vdA7wgZZ0QQ+Wq86Nqi
+      v/TG9WlNnwvMM6a4+L7XuQvunXYptITpHJQ8jRzl79JbAeZ6b54/q1MhaTELrY+u
+      AILmLQNW9xwxDsr2ySBT6DZqtdxbwshe8ahUx1cjcFi6EArowws7WfUgBj45sMKP
+      5P/vWdPeZkWSfkpkydCRZZ2mJ3FKUUGBAFSLvg==
+      =GW3r
+      -----END PGP MESSAGE-----
+
+
     "IP_STACK_ACCESS_KEY": |-
       -----BEGIN PGP MESSAGE-----
       Version: GnuPG v1

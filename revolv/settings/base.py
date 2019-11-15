@@ -223,6 +223,9 @@ CM_LIST_ID_RE = os.environ.get('CM_LIST_ID_RE')
 CM_LIST_ID_RU = os.environ.get('CM_LIST_ID_RU')
 CM_LIST_ID_SS = os.environ.get('CM_LIST_ID_SS')
 
+CM_LIST_ID_DC = os.environ.get('CM_LIST_ID_DC')
+CM_LIST_ID_NA = os.environ.get('CM_LIST_ID_NA')
+
 MANDRILL_API_KEY = os.environ.get('MANDRILL_API_KEY')
 EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 #SERVER_EMAIL = 'info@re-volv.org'
