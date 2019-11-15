@@ -109,6 +109,7 @@ def stripe_payment(request, pk):
 
     # response = tx_mailer.smart_email_send(smart_email_id, 'Ryan Dexter <mark@re-volv.org>', consent_to_track, data = my_datax)
 
+    response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
     # Send the message and save the response
     # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
 
@@ -389,7 +390,7 @@ def stripe_operation_donation(request):
         auth = {'api_key': settings.CM_KEY }
 
         # The unique identifier for this smart email
-  
+        smart_email_id = 'ec6571f2-8519-4e95-8b97-0c960328be1b'
 
         # Create a new mailer and define your message
         tx_mailer = Transactional(auth)
@@ -424,7 +425,7 @@ def stripe_operation_donation(request):
 
         # Send the message and save the response
         # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
-
+        response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
  
 
 
@@ -604,7 +605,7 @@ def stripe_operation_donation(request):
 
             # Send the message and save the response
             # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
-
+            response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
          
 
             return HttpResponse(json.dumps({'status': 'subscription_success', 'amount': amount / float(100)}),
