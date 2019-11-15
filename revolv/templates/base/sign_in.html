@@ -56,6 +56,8 @@
     {% if request.session.payment %}
       <h4 class="donation-welcome-msg">Thank you for your interest in supporting this project! The next step is to log in or create an account here.</h4>
     {% endif %}
+      <h4 class="donation-welcome-msg sub-msg">Thank you for your interest in supporting RE-volv! The next step is to log in or create an account here.</h4>
+    
     <div class="row text-center justify-content-center">
     <div class="col-md-3 col-md-push-3 col-sm-3 col-sm-push-1" style="text-align: left;">
         <!--{% if reason and reason == "donate" %}-->
@@ -193,6 +195,14 @@
 </div>
 </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $('.sub-msg').hide();
+    if ( window.location.toString().includes("email_confirm") ) {
+      $('.sub-msg').show();
+    }
+  });
+</script>
 <!-- Google Code for Account Sign Ups Conversion Page -->
 <script type="text/javascript">
 /* <![CDATA[ */
