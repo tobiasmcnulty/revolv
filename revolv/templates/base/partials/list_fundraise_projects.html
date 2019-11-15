@@ -1,0 +1,206 @@
+{% load static humanize %}
+{% load staticfiles %}
+
+{% block head %}
+
+  <style>
+    .align-items-start .col-sm-12 {
+      text-align: left;
+    }
+    .body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .fancy {
+  border-width: 0 0 5px;
+  border-style: solid;
+  border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 fill round;
+  width:20%;
+}
+
+.flaticon-charity-hand-holding-a-heart:before { content: "\f10c"; }
+
+.title-icon [class^="fa-seedling-"]::after,
+.title-icon [class^="fa-seedling-"]::before {
+  font-size: 36px;
+  margin-left: 10px;
+}
+.title-icon {
+  margin: 0 auto;
+  max-width: 160px;
+  position: relative;
+}
+.title-icon::after {
+  content: "";
+  height: 2px;
+  left: 24px;
+  position: absolute;
+  top: 10px;
+  width: 30px;
+}
+.title-icon::before {
+  content: "";
+  height: 2px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 30px;
+}
+
+.title-icon::after,
+.title-icon::before {
+  background: #222222;
+}
+.title-icon [class^="fa-seedling-"]::after,
+.title-icon [class^="fa-seedling-"]::before {
+  color: #222222;
+}
+.fa-seedling, .fa-hand-holding-heart {
+  color: #100084;
+  font-size: 2em;
+}
+  </style>
+    <link href="{% static 'css/font-awesome.css' %}?version={{ version_number }}"  rel="stylesheet" />
+  
+
+    <script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+{% endblock %}
+<div class="active-projects-module animated embedded" style="padding-bottom: 0px !important;">
+  <div class="container"> 
+     
+    {% if fund_active_projects %}
+    <div class="row"></div>
+    <h2 class="sc-htoDjs hgkfeA"><span class="sc-kGXeez gCFmhB ">Solar Seed Fund Campaigns</span></h2>
+    <p>RE-volv’s Solar Seed Fund provides the capital for community-serving nonprofits to go solar. Strengthen communities and spread solar by supporting a fundraising campaign today.  </p>
+
+    <div class="title-icon">
+      <i class="fas fa-seedling"></i> 
+    </div>
+ 
+    
+      <div class="row" style="margin-top: 40px; padding:0px 0px 0px 0px;">
+        {% for active_project in fund_active_projects %}
+        <div class="col-md-4 facts-row">
+          <div class="module-box">
+            <div class="img-main">
+              {% if is_reinvestment %}
+               <a href="{% url "project:view" title=active_project.project_url %}?reinvestment={{is_reinvestment}}" class="img-link">
+              {% else %}
+                <a href="{% url "project:view" title=active_project.project_url %}" class="img-link">
+              <!--{% endif %}-->
+                <span class="txt-table">
+                  <span class="txt">
+                      {{ active_project.title }}
+                  </span>
+                </span>
+               <div class="img" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); opacity: 0.6"></div>
+              </a>
+              <div class="funded-round">
+                <div class="status-circular">
+                  <span class="status-text">
+                    <span class="round-depict"><span>OF</span> ${{ active_project.funding_goal|floatformat:0|intcomma }}</span>
+                  </span>
+                  <!-- end .status-text -->
+                  <div class="status-indicator desktop-circle">
+                    <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="105" data-height="105" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".24">
+                  </div>
+                  <div class="status-indicator small-circle">
+                    <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="92" data-height="92" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".2">
+                  </div>
+                  <div class="status-indicator tablet-circle">
+                    <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="200" data-height="200" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".12">
+                  </div>
+                  <div class="status-indicator mobile-circle">
+                    <input type="text" value="{{ active_project.percent_complete }}" data-min="0" data-width="98" data-height="98" data-bgcolor="#fff" data-fgcolor="#100084" data-max="100" data-readonly="true" data-thickness=".12">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end .img-main -->
+            <div class="info-main">
+              <div class="blue-bar">
+                <span class="pull-left">${{ active_project.amount_donated|floatformat:"0"|intcomma }}</span>
+                <span class="pull-right">{{ active_project.days_left }} Days Left</span>
+              </div>
+              <!-- end .blue-bar -->
+              <div class="dark-blue-bar">
+                <span class="pull-left actual-energy">{{ active_project.get_statistic_for_project|floatformat:"0"|intcomma }} lbs CO<sub>2</sub></span>
+                <span class="pull-right">{{ active_project.total_donors }} Donors</span>
+              </div>
+              <!-- end .blue-bar -->
+            </div>
+            <!-- end .info-main -->
+          </div>
+          <!-- end .module-box -->
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if subfund_active_projects %}
+      <div class="row mt-4"></div>
+      <div class="container mb-4">
+        <h2>Personal Fundraisers</h2>
+        <p>Donate to a personal Solar Seed Fund fundraiser or start one of your own!</p>
+        <a class="btn btn-blue btn-me mx-2 mb-2" href="/project/create-sub" role="button" style="font-size: 0.7rem;">Create your own fundraiser</a>
+
+        <div class="title-icon mt-2">
+            <i class="fas fa-hand-holding-heart"></i>
+        </div>
+     
+        
+      </div>
+      
+      {% for active_project in subfund_active_projects %}
+      <div class="col-md-4 facts-row">
+        <div class="module-box-mini">
+            <a href="{% url "project:view" title=active_project.project_url %}" class="img-link">
+            <div class="campaign-col mb-4">
+                <div class="title-container pd-5" style+>  
+                  <h2><small style="color: white;">{{ active_project.title }}</small></h2>
+                </div>
+          
+                <div class="info-main mt-n5">
+                    <div class="blue-bar">
+                      <span class="pull-left">${{ active_project.amount_donated|floatformat:"0"|intcomma }}</span>
+                      <span class="pull-right">{{ active_project.days_left }} Days Left</span>
+                    </div>
+                    <!-- end .blue-bar -->
+                    <div class="dark-blue-bar">
+                      <span class="pull-left actual-energy">{{ active_project.get_statistic_for_project|floatformat:"0"|intcomma }} lbs CO<sub>2</sub></span>
+                      <span class="pull-right">{{ active_project.total_donors }} Donors</span>
+                    </div>
+                    <!-- end .blue-bar -->
+                  </div>
+            </div>
+
+            </a>
+          <!-- end .img-main -->
+
+          <!-- end .info-main -->
+        </div>
+        <!-- end .module-box -->
+      </div>
+      {% endfor %}
+    {% elif subfund_active_projects|length == 0 and fund_active_projects|length == 0  %}
+      <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px; width: 99.6vw; position: relative; left: calc(-1 * (100vw - 100%) / 2);">
+        <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+          <div class="col hero-text align-self-end">
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid scroll-section" id="scroll-section">
+        <div class="scroll-icon">
+          <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+        </div>
+      </div>
+      <div class="no-active-projects"><span class="no-active-projects-span">We don't have any active Solar Seed Fund campaigns at the moment, but a donation to RE-volv will help us continue to empower communities with solar energy. Thank you for all your support!</span>
+        <div style="padding-top: 5vmin;">
+            <a id="donate-button" class="w-full btn btn-blue btn-me my-2" href="/monthly_donor/" role="button" style="color:white;">DONATE</a>
+        </div>
+      </div>
+    {% endif %}
+
+    </div>
+  </div>
+</div>
+

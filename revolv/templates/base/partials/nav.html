@@ -142,6 +142,9 @@ commented out overrides padding etc...
             </ul>
           </li>
           <li id="dropdownz" class="nav-item">
+            <a class="nav-link" href="{% url 'fundraise_list' %}">Campaigns</a>
+          </li>
+          <li id="dropdownz" class="nav-item">
             <a class="nav-link" href="{% url 'projects_list' %}">Projects</a>
           </li>
           <li id="dropdownz" class="nav-item">
@@ -157,7 +160,7 @@ commented out overrides padding etc...
         <form class="form-inline">
           <a href="/monthly_donor/" class="btn btn-orange" >Donate</a>
           {% if request.user.is_authenticated %}
-          <!-- <a href="{% url "project:new" %}" class="btn btn-outline" style="display:none;">Fundraise</a> -->
+          <a href="{% url "project:newsub" %}" class="btn btn-outline" style="">Fundraise</a>
           <li id="dropdownz" class="has-dropdown " data-link-name="donate" 
           style="text-decoration: none; list-style: none; font-size: 20px; color: orange;">
             <a href="#" style="    text-decoration: none; list-style: none;padding-right: .5rem;padding-left: .5rem;font-size: 20px;color: #fff;font-weight: 600;text-transform: uppercase;font-size: 13px; letter-spacing: 1px; position: relative;">Account &#9662;</a>
@@ -168,7 +171,7 @@ commented out overrides padding etc...
             </ul>
           </li>
           {% else %}
-          <!-- <a href="{% url "project:new" %}" class="btn btn-outline" style="display:none;">Fundraise</a> -->
+          <a href="{% url "project:newsub" %}" class="btn btn-outline" style="">Fundraise</a>
               <a href="{% url 'signin' %}" class="btn btn-outline btn-white" >Sign in</a>
           {% endif %}
         </form>

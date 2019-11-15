@@ -53,6 +53,7 @@ urlpatterns = patterns(
 
     url(r'^about-us/re-volv', 'revolv.base.views.aboutus', name='aboutus'),
     url(r'^about-us/team/', 'revolv.base.views.team', name='team'),
+    url(r'^about-us/jobs', 'revolv.base.views.jobs', name='jobs'),
     url(r'^get-involved/solar-ambassador', 'revolv.base.views.solar_ambassador', name='solar_ambassador'),
     url(r'^get-involved/apply', 'revolv.base.views.nonprofit_app', name='nonprofit_app'),
 
@@ -117,6 +118,7 @@ urlpatterns = patterns(
     url(r'^my-portfolio/user-details/', base_views.UserListView.as_view(), name='user_details'),
 
     url(r'^what-we-do/projects/', base_views.ProjectListView.as_view(), name='projects_list'),
+    url(r'^what-we-do/fundraise/', base_views.FundraiseListView.as_view(), name='fundraise_list'),
     url(r'^signin/$', base_views.SignInView.as_view(), name='signin'),
     url(r'^login/$', base_views.LoginView.as_view(), name='login'),
     url(r'^projects/completed_projects', 'revolv.base.views.completedproject', name='completed_projects'),

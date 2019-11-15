@@ -115,15 +115,15 @@ a {
               </div>
             </div>
           </div>
-          {% if active_projects|length == 0 %}<span id="newsletter-anchor"></span>{% endif %}
+          {% if fund_active_projects|length == 0 %}<span id="newsletter-anchor"></span>{% endif %}
         </div>
       </div>
-      {% if active_projects|length == 0 %}
+      {% if fund_active_projects|length == 0 %}
       {% else %}
       <div class="container-fluid" id="section-five">
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-12 co-md-12 col-lg-10 text-center">
-            <h1 class="blue-text fw-300 mb-5">Active Crowdfunding Campaigns</h1>
+            <h1 class="blue-text fw-300 mb-5">Active Solar Seed Fund Campaigns</h1>
             <div class="line-section mb-5">
               <div class="line-center"></div>
             </div>
@@ -133,28 +133,24 @@ a {
           <div class="col-sm-12 co-md-12 col-lg-10 px-3">
             <div class="campaign-list">
               <!--Campaign one-->
-              {% for active_project in active_projects %}
+              {% for fund_active_project in fund_active_projects %}
               <div class="campaign-col">
-                <a href="{% url "project:view" title=active_project.project_url %}">
-                  <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); background-repeat: no-repeat; background-size: 100%;"></div>
+                <a href="{% url "project:view" title=fund_active_project.project_url %}">
+                  <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{fund_active_project.cover_photo.url }}' ); background-repeat: no-repeat; background-size: 100%;"></div>
                 </a>
-                <!-- non placeholder -->
-                <!--
-                <div class="img-container" style="background-image:url('static/images/home-img/camp-1.png' );"></div>
-                <div class="img" style="background-image:url('{{MEDIA_URL}}{{active_project.cover_photo.url }}' ); opacity: 0.6"></div>
-                -->
+
                 <div class="campaign-text">
-                  <h5>{{ active_project.title }}</h5>
+                  <h5>{{ fund_active_project.title }}</h5>
                   <ul class="progress-text">
-                    <li class="current-progress">{{ active_project.percent_complete }}%</li>
-                    <li class="target-progress">${{ active_project.amount_donated |floatformat:"0"|intcomma}}</li>
+                    <li class="current-progress">{{ fund_active_project.percent_complete }}%</li>
+                    <li class="target-progress">${{ fund_active_project.amount_donated |floatformat:"0"|intcomma}}</li>
                   </ul>
                   <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ active_project.percent_complete }}%;" 
-                    aria-valuenow="{{ active_project.percent_complete }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: {{ fund_active_project.percent_complete }}%;" 
+                    aria-valuenow="{{ fund_active_project.percent_complete }}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="w-100"></div>
-                  <a class="btn btn-blue btn-me btn-arrow-orange mt-4" href="{% url "project:view" title=active_project.project_url %}" role="button">Learn More</a>
+                  <a class="btn btn-blue btn-me btn-arrow-orange mt-4" href="{% url "project:view" title=fund_active_project.project_url %}" role="button">Learn More</a>
                 </div>
               </div>
               <!--Campaign one end-->

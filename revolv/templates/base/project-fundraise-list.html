@@ -1,0 +1,88 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block title %}What We Do | {% endblock %}
+
+{% block head %}
+
+    <link rel="stylesheet" type="text/css" href="/static/css/project-list.css?version={{ version_number }}" />  
+    
+    <script type="text/javascript" src="{% static 'js/vendor/d3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/base/util/util.js' %}?version={{ version_number }}"></script>
+    <script type="text/javascript" src="{% static 'js/base/partialcircle.js' %}?version={{ version_number }}"></script>
+    <script type="text/javascript" src="{% static 'js/base/projects-list.js' %}?version={{ version_number }}"></script>
+    <style>
+        .modal-backdrop.in {
+            display: none;
+        }
+    </style>
+    
+{% endblock %}
+
+
+{% block body %}
+    {% spaceless %}
+        {% if is_reinvestment %}
+            {% if active_projects%}
+                {% if error_msg %}
+                    <div class="divider-title "><h5>{{ error_msg }}</h5></div>
+                {% else %}
+                    <div class="divider-title ">You have ${{ reinvestment_amount|floatformat:2 }} to reinvest. Pick a project below to back!</div>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if fund_active_projects|length == 1%}
+                <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+                    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+                        <div class="col hero-text align-self-end">
+                        
+                        </div>
+                    </div>
+                    </div>
+                <div class="container-fluid scroll-section" id="scroll-section">
+                    <div class="scroll-icon">
+                    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+                    </div>
+                </div>
+            {% elif fund_active_projects|length > 1 %}
+                <div class="container-fluid application-header" id="top-section" style="background-position: center !important; height: 250px;">
+                    <div class="row text-center" style="height: 200px !important; margin: 0 auto;">
+                        <div class="col hero-text align-self-end">
+                    
+                        </div>
+                    </div>
+                    </div>
+                <div class="container-fluid scroll-section" id="scroll-section">
+                    <div class="scroll-icon">
+                    <img class="scroll-arrow bouncing" src="../../../static/images/nonprofit-img/scroll-icon.png">
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+            {% if not error_msg %}
+            {% include "project/success_modal.html" with project=project %}
+            {% include "base/partials/list_fundraise_projects.html" with is_reinvestment=is_reinvestment amount=reinvestment_amount %}
+        {% endif %}
+
+    {% endspaceless %}
+{% endblock %}
+
+{% block body-bottom %}
+<script>
+    $(document).ready(function () {
+        if (('{{ social }}' == 'donation') || $.cookie('last_project')) {
+            $("#social_media").modal("show");
+            $.removeCookie('last_project', {path: '/'});
+        }
+    });
+    $(document).on("click", ".solar-seed-fund-amount", function (e) {
+        swal({
+            title: 'Hi {{ user }}',
+            text: 'Total Solar Seed Fund amount is ${{ statistics.reinvest_pool_amount }}',
+            icon: "info",
+            button: "Ok",
+        });
+    });
+</script>
+{% endblock %}

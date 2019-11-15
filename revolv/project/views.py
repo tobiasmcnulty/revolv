@@ -27,6 +27,7 @@ from revolv.payments.services import PaymentService
 from revolv.project import forms
 from revolv.project.models import Category, Project, ProjectUpdate, ProjectMatchingDonors, AnonymousUserDetail, \
     StripeDetails, AnonymousUserDonation
+from revolv.base.utils import ProjectGroup
 from revolv.tasks.sfdc import send_donation_info
 from sesame import utils
 
@@ -60,6 +61,8 @@ def stripe_payment(request, pk):
         return HttpResponseBadRequest('bad POST data')
 
     project = get_object_or_404(Project, pk=pk)
+
+    projectz = get_object_or_404(Project, pk=project.subfund_payment)
 
     project_matching_donors = ProjectMatchingDonors.objects.filter(project=project, amount__gt=0)
 
@@ -109,7 +112,7 @@ def stripe_payment(request, pk):
     # Send the message and save the response
     # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
 
-    response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
+
 
     try:
         stripe.Charge.create(source=token, description="Donation for " + project.title, currency="usd",
@@ -173,6 +176,19 @@ def stripe_payment(request, pk):
         tip=tip,
         payment_type=PaymentType.objects.get_stripe(),
     )
+
+    # if request.user.  (is SUBSSF )  , get project object id of original project,
+
+    payment = Payment.objects.create(
+    user=user,
+    entrant=user,
+    amount=donation_cents / 100.0,
+    project=projectz,
+    tip=tip,
+    payment_type=PaymentType.objects.get_stripe(),
+    )
+
+
     if request.session.has_key("utm_params"):
         utm_params = request.session.get("utm_params")
         utm_source = utm_params.get("utm_source")
@@ -373,7 +389,7 @@ def stripe_operation_donation(request):
         auth = {'api_key': settings.CM_KEY }
 
         # The unique identifier for this smart email
-        smart_email_id = 'ec6571f2-8519-4e95-8b97-0c960328be1b'
+  
 
         # Create a new mailer and define your message
         tx_mailer = Transactional(auth)
@@ -409,7 +425,7 @@ def stripe_operation_donation(request):
         # Send the message and save the response
         # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
 
-        response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
+ 
 
 
         return HttpResponse(json.dumps({'status': 'donation_success', 'amount': amount / float(100)}),
@@ -589,7 +605,7 @@ def stripe_operation_donation(request):
             # Send the message and save the response
             # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
 
-            response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
+         
 
             return HttpResponse(json.dumps({'status': 'subscription_success', 'amount': amount / float(100)}),
                                 content_type="application/json")
@@ -690,6 +706,45 @@ class CreateProjectView(DonationLevelFormSetMixin, CreateView):
         context['valid_categories'] = Category.valid_categories
         context['GOOGLEMAPS_API_KEY'] = settings.GOOGLEMAPS_API_KEY
         context['donation_level_formset'] = self.get_donation_level_formset()
+        context["active_projects"] = Project.objects.get_active()
+        return context
+
+
+class CreateProjectSubView(DonationLevelFormSetMixin, CreateView):
+    """
+    The view to create a new project. Redirects to the homepage upon success.
+
+    Accessed through /project/create
+    """
+    model = Project
+    template_name = 'project/edit_project3.html'
+    form_class = forms.ProjectSubForm
+
+    def get_success_url(self):
+        return reverse('project:view', kwargs={'title': self.object.project_url})
+
+    # validates project, formset of donation levels, and adds categories as well
+    def form_valid(self, form):
+
+        formset = self.get_donation_level_formset()
+        if formset.is_valid():
+            new_project = Project.objects.create_from_form(form, self.request.user.revolvuserprofile)
+            new_project.update_categories(form.cleaned_data['categories_select'])
+            formset.instance = new_project
+            formset.save()
+            messages.success(self.request, new_project.title + ' has been created!')
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+        return super(CreateProjectSubView, self).form_valid(form)
+
+    # sets context to be the create view, doesn't pass in the id
+    def get_context_data(self, **kwargs):
+        context = super(CreateProjectSubView, self).get_context_data(**kwargs)
+        context['valid_categories'] = Category.valid_categories
+        context['GOOGLEMAPS_API_KEY'] = settings.GOOGLEMAPS_API_KEY
+        context['donation_level_formset'] = self.get_donation_level_formset()
+        context["active_projects"] = Project.objects.get_active()
         return context
 
 
@@ -737,6 +792,49 @@ class UpdateProjectView(DonationLevelFormSetMixin, UpdateView):
         context['donation_level_formset'] = self.get_donation_level_formset()
         return context
 
+class UpdateProjectSubView(DonationLevelFormSetMixin, UpdateView):
+    """
+    The view to update a project. It is the same view as creating a new
+    project, though it prepopulates the existing field and passes in the
+    project id. Redirects to the project page upon success.
+
+    Accessed through /project/{project_id}/edit
+    """
+    model = Project
+    template_name = 'project/edit_project4.html'
+    form_class = forms.ProjectSubForm
+
+    def get_initial(self):
+        """
+        Initializes the already selected categories for a given project.
+        """
+        return {'categories_select': self.get_object().categories}
+
+    def get_success_url(self):
+        messages.success(self.request, 'Project details updated')
+        return reverse('project:view', kwargs={'title': self.get_object().project_url})
+
+    def form_valid(self, form):
+        """
+        Validates project, formset of donation levels, and adds categories as well
+        """
+        formset = self.get_donation_level_formset()
+
+        if formset.is_valid():
+            project = self.get_object()
+            project.update_categories(form.cleaned_data['categories_select'])
+            formset.instance = project
+            formset.save()
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+        return super(UpdateProjectSubView, self).form_valid(form)
+
+    # sets context to be the edit view by providing in the model id
+    def get_context_data(self, **kwargs):
+        context = super(UpdateProjectSubView, self).get_context_data(**kwargs)
+        context['valid_categories'] = Category.valid_categories
+        context['donation_level_formset'] = self.get_donation_level_formset()
+        return context
 
 class ReviewProjectView(UserDataMixin, UpdateView):
     """
@@ -876,8 +974,20 @@ class ProjectView(UserDataMixin, DetailView):
 
     # pass in Project Categories and Maps API key
     def get_context_data(self, **kwargs):
+
+
+        subfund = self.get_object().subfund_payment
+        profile_main = get_object_or_404(Project, pk=int(subfund))
+        
         context = super(ProjectView, self).get_context_data(**kwargs)
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE
+
+        context['sub_main'] = subfund 
+     
+
+        context['profile_main'] = profile_main.title
+        context['cover_main'] = profile_main.cover_photo
+
         context['GOOGLEMAPS_API_KEY'] = settings.GOOGLEMAPS_API_KEY
         context['updates'] = self.get_object().updates.order_by('date').reverse()
         context['donor_count'] = self.get_object().total_donors()

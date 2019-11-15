@@ -7,19 +7,11 @@
 {% block head %}
 <link rel="stylesheet" href="{% static "typeahead/typeahead.css" %}" />
 <link rel="stylesheet" href="{% static "chosen/chosen.css" %}" />
-
-<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css"/>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'>
-
 <!-- <link rel="stylesheet" href="{% static 'dist/css/pages/project-edit/index.css' %}" /> -->
 <link href='//fonts.googleapis.com/css?family=Lato:300,500,800' rel='stylesheet' type='text/css'>
 <style type="text/css">
     #map-canvas { width: 100%; height: 300px; margin-bottom: 20px; padding: 0;}
     #map-canvas img {max-width: none;}
-
-    .clean-enrgy-colzx:hover {
-      color: #ff8a00;
-    }
 </style>
 
 <!-- -->
@@ -41,17 +33,18 @@
         <div class="container-fluid fundraise-project-header" id="top-section-min">
           <div class="row text-center">
             <div class="col hero-text align-self-end mb-5">
-              <h1 class="text-white fw-300 mb-5">Fundraise for the Solar Seed Fund</h1>
+              <h1 class="text-white fw-300 mb-5">Edit your campaign</h1>
             </div>
           </div>
         </div>
-        <div class="container-fluid scroll-section " id="scroll-section">
+        <div class="container-fluid scroll-section" id="scroll-section">
             <div class="scroll-icon">
               <img class="scroll-arrow bouncing" src="../../../static/images/edu-media-img/scroll-icon.png">
             </div>
         </div>
   
         {% if request.user.is_authenticated %}
+        {% ifequal project.created_by_user|stringformat:"s" request.user.username %}
         <div class="container-fluid" id="fundraise-project-body" style="padding-bottom: 40vh;">
             <div class="row justify-content-center align-items-center" style="max-width: 100% !important;">
               <div class="col-sm-12 col-md-8">
@@ -76,31 +69,13 @@
                             window.EXTRA = 1;
                         </script>
                     </div>
-                    <div class="row justify-content-center align-items-center">
-                          <div class="col-sm-12 co-md-10">
-                            <div class="row justify-content-center align-items-center mb-5">
-                              <div class="col-sm-6 col-md-4">
-                                <a href="/project/create">
-                                  <div class="project-choose-col project-choose-col-active">
-                                    <div class="active">
-                                      <img src="../../../static/images/edu-media-img/solar-seed-img.png">
-                                      <h1 class="my-4">Create a campaign</h1>
-                                      <div class="line-section">
-                                        <div class="line-center"></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
+
                       <p class="grey-text fw-600 mb-4" style="text-align: center;">Starting a solar fundraising campaign is simple and only takes a minute.</p>
-                      <p class="grey-text fw-400" style="text-align: center;">Pick a title, campaign picture, and amount you’d like to raise to bring solar to nonprofits across the country. Every dollar raised multiplies in value as solar systems come online and pay-it-forward through RE-volv’s unique revolving solar loan fund. </p>
+                      <p class="grey-text fw-400" style="text-align: center;">Pick a title, profile picture, and amount you’d like to raise to bring solar to nonprofits across the country. Every dollar raised multiplies in value as solar systems come online and pay-it-forward through RE-volv’s unique revolving solar loan fund. </p>
                     
                       <!--  --------------------------
                     <div class="form-group row">
-                      <label for="fundraise-for" class="col-sm-3 col-form-label " data-tooltip-content="#tooltip-3">Fundraise for</label>
+                      <label for="fundraise-for" class="col-sm-3 col-form-label clean-enrgy-colz" data-tooltip-content="#tooltip-3">Fundraise for</label>
                       <div class="col-sm-9">
                         <div class="input-group">
                           <select class="custom-select" id="inputGroupSelect04">
@@ -115,52 +90,65 @@
 
                     form group -->
 
+
                     <div class="form-group row fundraise-project-form">
-                      <label for="campaign-title" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-1">Campaign title</label>
-                      <span class="tooltip-1"></span>
+                      <label for="campaign-title" class="col-sm-3 col-form-label clean-enrgy-colz" data-tooltip-content="#tooltip-2">Campaign title</label>
                       <div class="col-sm-9">
                           {% include "base/partials/tooltip_formfield.html" with field=form.title %}
                          <!-- <input type="text" class="form-control-plaintext" id="campaign-title" value=""> -->
                       </div>
                     </div>
+
                     <div class="form-group row fundraise-project-form">
-                      <label for="fundraise-goal" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-3">Fundraising goal <span class="dollar-sign ml-2 mr-2">$</span></label>
+                      <label for="fundraise-goal" class="col-sm-3 col-form-label clean-enrgy-colz" data-tooltip-content="#tooltip-4">Fundraising goal <span class="dollar-sign ml-2 mr-2">$</span></label>
                       <div class="col-sm-9">
                           {% include "base/partials/tooltip_formfield.html" with field=form.funding_goal %}
                         <!-- <input type="number" min="1" class="form-control-plaintext" oninput="validity.valid||(value='');" id="fundraise-goal" value=""> -->
                       </div>
                     </div>
                     <div class="form-group row fundraise-project-form">
-                      <label for="fundraise-deadline" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-4">Fundraising deadline</label>
+                      <label for="fundraise-deadline" class="col-sm-3 col-form-label clean-enrgy-colz" data-tooltip-content="#tooltip-5">Fundraising deadline</label>
                       <div class="col-sm-9">
                           {% include "base/partials/tooltip_formfield.html" with field=form.end_date %}
                         <!-- <input id="fundraise-deadline"> -->
                       </div>
                     </div>
                     <div class="form-group row fundraise-project-form">
-                      <label for="fundraise-photo" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-5">Campaign Photo</label>
+                      <label for="fundraise-photo" class="col-sm-3 col-form-label clean-enrgy-colz" data-tooltip-content="#tooltip-1">Profile Picture</label>
                       <div class="col-sm-9">
-                          {% include "base/partials/tooltip_formfield.html" with field=form.cover_photo %}
+                          {% include "base/partials/tooltip_formfield.html" with field=form.profile_picture %}
                         <!-- <input type="file" class="form-control-file" id="fundraise-photo" placeholder="Upload your file">  -->
                       
 
                       </div>
                     </div>
+
+
                     <div class="form-group row fundraise-project-form">
-                      <label for="fundraise-deadline" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-6">Project Url <i class="fas fa-info-circle"></i></label>
+                        <label for="fundraise-deadline" class="col-sm-3 col-form-label clean-enrgy-colz" data-tooltip-content="#tooltip-5">Project Url <i class="fas fa-info-circle"></i></label>
+                        <div class="col-sm-9">
+                            {% include "base/partials/tooltip_formfield.html" with field=form.project_url %}
+                          <!-- <input id="fundraise-deadline"> -->
+                        </div>
+                    </div>
+
+                    <div class="form-group row fundraise-project-form">
+                      <label for="campaign-title" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-2">Custom Campaign Description</label>
                       <div class="col-sm-9">
-                          {% include "base/partials/tooltip_formfield.html" with field=form.project_url %}
-                        <!-- <input id="fundraise-deadline"> -->
+                        <div class="form-group">
+                            {% include "base/partials/tooltip_formfield.html" with field=form.description %}
+                          <!-- <textarea class="form-control" id="campaign-desc" rows="3"></textarea> -->
+                        </div>
                       </div>
                     </div>
 
-
-
                     <div class="hide" style="display: none;">
+                        {% include "base/partials/tooltip_formfield.html" with field=form.subfund_payment %}
+                        {% include "base/partials/tooltip_formfield.html" with field=form.org_about %}
                         {% include "base/partials/tooltip_formfield.html" with field=form.tagline %}
                         {% include "base/partials/tooltip_formfield.html" with field=form.total_kwh_value %}
-                        {% include "base/partials/tooltip_formfield.html" with field=form.subfund_payment %}
-                        
+
+                        {% include "base/partials/tooltip_formfield.html" with field=form.cover_photo %}
                         {% include "base/partials/tooltip_formfield.html" with field=form.impact_power %}
        
                         <!-- lower options -->
@@ -174,7 +162,6 @@
                         {% include "base/partials/tooltip_formfield.html" with field=form.people_affected %}            
                         {% include "base/partials/tooltip_formfield.html" with field=form.location %}
                     
-                        {% include "base/partials/tooltip_formfield.html" with field=form.description %}
                         {% include "base/partials/tooltip_formfield.html" with field=form.org_about %}
            
                       {% include "base/partials/tooltip_formfield.html" with field=form.location_latitude %}
@@ -183,7 +170,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button class="large right save-button btn btn-orange btn-me btn-arrow-white my-4" id="save_project" type="submit" style="font-size: 1.15rem !important">Start Fundraiser</button>
+                      <button class="large right save-button btn btn-orange btn-me btn-arrow-white my-4" id="save_project" type="submit" style="font-size: 1.15rem !important">Update Campaign</button>
                     </div>
 
                   </form>
@@ -191,14 +178,35 @@
               </div>
             </div>
           </div> 
-
-  
+          {% endifequal %}
+          {% ifnotequal project.created_by_user|stringformat:"s" request.user.username %}
+          <div class="container-fluid" id="ambassador-section-second">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+                <h3 class="blue-text fw-300 mb-3">Login in or create an account to start fundraising for RE-volv's Solar Seed Fund</h3>
+                <p class="grey-text">The time to accelerate the clean energy movement is now. </p>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid" id="ambassador-section-three" style="padding-bottom: 180px;">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12 co-md-10 col-lg-10">
+                <div class="row justify-content-center align-items-center text-center">
+                </div>
+                <div class="row justify-content-center align-items-center mt-5">
+                  <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/signin/#signup" role="button">Create an account or Login</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endifnotequal %}
+      
         {% else %}
         <div class="container-fluid" id="ambassador-section-second">
           <div class="row justify-content-center align-items-center">
             <div class="col-sm-12 col-md-10 col-lg-8 text-center">
-                <h3 class="blue-text fw-300 mb-3">Login in or create an account to start fundraising for RE-volv's Solar Seed Fund</h3>
-                <p class="grey-text">The time to accelerate the clean energy movement is now. </p>
+              <h3 class="blue-text fw-300 mb-3">Login in or create an account to start fundraising for RE-volv's Solar Seed Fund</h3>
+              <p class="grey-text">The time to accelerate the clean energy movement is now. </p>
             </div>
           </div>
         </div>
@@ -214,7 +222,8 @@
           </div>
         </div>
         {% endif %}  
-    
+</main>
+
         <!--Tooltips-->
         <div class="tooltip_templates">
           <div id="tooltip-1">
@@ -254,30 +263,14 @@
         <div class="tooltip_templates">
           <div id="tooltip-6">
             <div class="tooltip-body">
-              <p> The link url name where the campaign is created. ie. /project/(your project url name)</p>
+              <p> The link url name where campaign is created. ie. /project/(your project url name)</p>
             </div>
           </div>
         </div>
-
-     </main>
+     
 {% endblock %}
 
-
-
-
-
 {% block javascripts %}
-<script >
-  $('.clean-enrgy-colzx').tooltipster({
-      animation: '',
-      side: 'bottom',
-      arrow: false,
-      trigger: 'hover',
-      interactive: true,
-      contentAsHTML: true,
-      theme: 'tooltipster-shadow'
-   });
-</script>
 <!-- Initializes the Google Map / Location Selection Typeahead -->
 <script type="text/javascript"
     src="//maps.googleapis.com/maps/api/js?key={{GOOGLEMAPS_API_KEY}}&libraries=places">
@@ -289,7 +282,7 @@
     today = new Date();
     var days = 10;
     mindate = new Date().toJSON().split('T')[0];
-    document.getElementById("date-picks").valueAsDate = new Date(today.getTime() + days*24*60*60*1000);
+
     console.log(new Date(today.getTime() + days*24*60*60*1000))
     console.log(mindate)
     document.getElementById("date-picks").setAttribute("min", mindate);
@@ -368,7 +361,18 @@
 
     <script src="{% static 'js/blog-monthly-js/plyr.polyfilled.js' %}"></script>
     <script src="{% static 'js/blog-monthly-js/script.js' %}"></script>
-
+    
+    <script>
+      $('.clean-enrgy-colz').tooltipster({
+      animation: 'fade',
+      side: 'bottom',
+      arrow: true,
+      trigger: 'hover',
+      interactive: true,
+      contentAsHTML: true,
+      theme: 'tooltipster-shadow'
+      });
+    </script>
 <script>
 $('#fundraise-deadline').datepicker({
     uiLibrary: 'bootstrap4'

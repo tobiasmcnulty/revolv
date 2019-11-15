@@ -85,8 +85,16 @@ class HomePageView(UserDataMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         featured_projects = Project.objects.get_featured(HomePageView.FEATURED_PROJECT_TO_SHOW)
+
         active_projects = Project.objects.get_active()
+        active_fund = Project.objects.get_active_fundraiser()
+        active_subfund = Project.objects.get_active_subfundraiser()
+        
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active_projects)
+        context["fund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_fund)
+        context["subfund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_subfund)
+
+
         completed_projects = Project.objects.get_completed().reverse()
         context["first_project"] = active_projects[0] if len(active_projects) > 0 else None
         # Get top 6 featured projects, Changed to active Projects in final fix
@@ -243,7 +251,11 @@ class ProjectListView(UserDataMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProjectListView, self).get_context_data(**kwargs)
         active = Project.objects.get_active()
+        active_fund = Project.objects.get_active_fundraiser()
+        active_subfund = Project.objects.get_active_subfundraiser()
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
+        context["fund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_fund)
+        context["subfund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_subfund)
         context["is_reinvestment"] = False
 
         #Social share modal
@@ -262,6 +274,39 @@ class ProjectListView(UserDataMixin, TemplateView):
             request.session["utm_params"] = request.GET
 
         return super(ProjectListView, self).dispatch(request, *args, **kwargs)
+
+class FundraiseListView(UserDataMixin, TemplateView):
+    """ Base View of all active projects
+    """
+    model = Project
+    template_name = 'base/project-fundraise-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FundraiseListView, self).get_context_data(**kwargs)
+        active = Project.objects.get_active()
+        active_fund = Project.objects.get_active_fundraiser()
+        active_subfund = Project.objects.get_active_subfundraiser()
+        context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
+        context["fund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_fund)
+        context["subfund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_subfund)
+        context["is_reinvestment"] = False
+
+        #Social share modal
+        context["donated_amount"] = self.request.session.get('amount')
+        context["donated_project"] = self.request.session.get('project')
+        context["cover_photo"] = self.request.session.get('cover_photo')
+        context["url"] = self.request.session.get('url')
+        context["social"] = self.request.session.get('social')
+        if self.request.session.get('social'):
+            del self.request.session['social']
+
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.GET:
+            request.session["utm_params"] = request.GET
+
+        return super(FundraiseListView, self).dispatch(request, *args, **kwargs)
 
 class SignInView(TemplateView):
     """Signup and login page. Has three submittable forms: login, signup,
@@ -484,6 +529,9 @@ def aboutus(request):
 
 def team(request):
     return render(request, 'base/partials/team.html')
+
+def jobs(request):
+    return render(request, 'base/partials/jobs.html')
 
 def solar_ambassador(request):
     return render(request, 'base/partials/ambassador.html')

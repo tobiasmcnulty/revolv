@@ -1,0 +1,299 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/css/tooltipster.bundle.min.css" />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'>
+
+<style>
+
+  @media (max-width:432px) {
+    #application-section-five {
+      padding-top: 102px !important;
+    }
+  }
+
+  @media (max-width:1700px) {
+    #application-section-five {
+      background: url(../../../static/images/edu-media-img/requirments-bg.png);
+      padding: 6% 2% !important;
+      padding-top: 102px !important;
+    }
+  }
+
+  @media (max-width:1280px) {
+    #application-section-five {
+      background: url(../../../static/images/edu-media-img/requirments-bg.png);
+      padding: 6% 2%;
+      font-size: .8rem;
+      padding-top: 102px !important;
+    }
+  }
+
+  @media (max-width:1500px) {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (max-width:1480px) {
+    .container {
+      width: 100%;
+      padding: 0 90px;
+    }
+  }
+
+  @media (max-width:1260px) {
+    .container {
+      width: 100%;
+      padding: 0 30px;
+    }
+  }
+
+  .top-header-job {
+    text-align: center;
+    width: 100%;
+    white-space: pre-line;     display: block;     font-size: 1.6rem;
+    font-family: proxima-nova, sans-serif;
+    color: rgb(72, 67, 101);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    font-weight: 400;
+  }
+
+  .second-header-job {
+    color: #100084;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+  }
+
+  .third-header-job {
+    font-size: 1.2rem;
+    line-height: 1.6em;
+    font-weight: 400;
+  }
+
+  .tiles .button {
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  .tiles .button.blue {
+    background: #1f497d;
+    border: 2px solid #10253f;
+  }
+
+  #job-openings::before {
+    content: '';
+    display: block;
+    height: 75px;
+    margin-top: -75px;
+    visibility: hidden;
+  }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<main role="main" class="container-fluid">
+
+  <div class="row" style="z-index:99;">
+    <div class="container-fluid" id="application-section-five" style="background-size:100%;">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 co-md-10 col-lg-10">
+          <div class="row align-items-center justify-content-start">
+            <div class="col-sm-12 col-md-5">
+              <div id="positions  how-it-works-bg">
+                <h1 class="orange-text"> About RE-volv</h1>
+                <p style="color:white;">We believe that everyone should have the ability to support and spread clean energy. 
+                  So we created a new way for people to take action. It's a pretty simple idea. 
+                  We crowdsource funding to put solar panels on community-serving nonprofit organizations. 
+                  As these organizations pay us back, we reinvest the money into more solar projects in communities across the country. 
+                </p> 
+                <p style="color:white;"> Help us spread solar and bring the benefits of clean energy to communities that need it most. </p>
+
+                <p style="color:white;"> Want to help? Explore our job openings below and join the team.</p>
+
+                <a class="btn btn-blue btn-me btn-arrow-orange mx-2 anchorz" href="#job-openings" role="button">Job
+                  Openings</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container how-it-works-bg">
+
+    </div>
+  </div>
+
+
+  <div style="    background-image: url(../../../static/images/edu-media-img/bg-overlay.png); ">
+    <div class="container">
+      <div class=" my-5">
+        <div id="job-openings" class="top-header-job" >
+          <h4 class="second-header-job">Job Openings</h4>
+        </div>
+
+        <div class="accordion mb-5" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  Report Writer Intern
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <h5 style="text-align: center;">Report Writer Internship</h5>
+                <p><strong>Primary Location:</strong> Downtown San Francisco CA</p>
+                <p><strong>Reports To:</strong> Senior Marketing and Communications Manager</p>
+                <p><strong>Application Deadline:</strong> Open until filled.</p>
+                <h5>Description of Position</h5>
+                <p>RE-volv is looking for a passionate and mission-driven individual with excellent writing and analysis
+                  skills to join our small, but mighty team. This is a 2-3 month volunteer position, working 15-20 hours
+                  a
+                  week. Work hours are flexible and you have the option of working remotely a portion of the time.</p>
+                <p>The Report Writer Intern will work with the Senior Marketing and Communications Manager to write a
+                  comprehensive report about the impact of our work with nonprofits.</p>
+                <h5>Responsibilities Include:</h5>
+                <ul class="ml-4">
+                  <li>Analyzing spreadsheet data </li>
+                  <li>Conducting in-person or phone interviews with nonprofits </li>
+                  <li>Collecting and analyzing quantitative and qualitative data from nonprofits</li>
+                  <li>Report writing</li>
+                </ul>
+                <h5>Skills and Qualifications:</h5>
+                <ul class="ml-4">
+                  <li>Excellent written and communication skills</li>
+                  <li>Report writing experience </li>
+                  <li>Basic understanding of renewable energy and climate solutions </li>
+                  <li>Passion for the environment, renewable energy, and community empowerment</li>
+                </ul>
+                <h5>What you'll get:</h5>
+                <ul class="ml-4">
+                  <li>Professional mentorship and development </li>
+                  <li>Opportunities to learn about solar finance, crowdfunding, nonprofit work, communications,
+                    filmmaking
+                    etc.</li>
+                  <li>Opportunities to network with professionals in the nonprofit and clean energy industries</li>
+                  <li>Letter of recommendation at end of the internship</li>
+                  <li>To work with an incredibly supportive, passionate and friendly group of people trying to change
+                    the
+                    world </li>
+                </ul>
+                <h5>Interest in Applying?</h5>
+                <p>Please submit your resume and a brief cover letter detailing your relevant experience and interest in
+                  the
+                  position via email to <a href="mailto:ryan@re-volv.org">ryan@re-volv.org</a>. Please write
+                  “<strong>Report
+                    Writing Internship</strong>” in the subject line. No calls, please.</p>
+                <h5>More About RE-volv</h5>
+                <p>To date, we have crowdfunded nearly half a million dollars in donations from people in 38 states and
+                  22
+                  countries for 16 solar projects in 6 states. RE-volv’s main goal is to empower as many people as
+                  possible
+                  to bring clean energy to their communities. </p>
+                <p>RE-volv has received numerous awards, including a Business Innovation Award from the U.S. Department
+                  of
+                  Energy’s Sunshot Initiative, is an inaugural member of the White House National Community Solar
+                  Partnership, and winner of the OpenIDEO Climate Innovation Fellowship. RE-volv receives generous
+                  support
+                  from the Leonardo DiCaprio Foundation, U.S. Department of Energy’s Sunshot Initiative, the 11th Hour
+                  Project of the Schmidt Family Foundation, and many others.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-header-job">
+        <h4 class="second-header-job">Careers</h4>
+        <h1 style="font-size: 2.2rem;"><span>Work that makes a
+            difference</span></h1>
+        <h3 class="third-header-job">RE-volv empowers people to bring clean energy to their communities. We envision a world where
+          people are thriving in communities powered by clean energy</h3>
+      </div>
+      <img class="  " src="../../../static/images/edu-media-img/jobs-image2.png">
+
+      <div class="top-header-job">
+        <h4 class="second-header-job">Benefits</h4>
+        <h1 style="font-size: 2.2rem;"><span>What it's like to work at
+            RE-volv</span></h1>
+      </div>
+
+      <div class="container">
+        <div class="row" style="justify-content: center; height:100%;">
+          <div class="col-md-4 my-4" style="justify-content: center; text-align: center;">
+            <i class="fas fa-briefcase-medical my-4" style="color:#100084; font-size:4rem;"></i>
+            <p>Comprehensive Health Plan</p>
+          </div>
+          <div class="col-md-4 my-4" style="justify-content: center; text-align: center;">
+            <i class="fas fa-baby-carriage my-4" style="color:#100084; font-size:4rem;"></i>
+            <p>Generous parental and family leave</p>
+          </div>
+          <div class="col-md-4 my-4" style="justify-content: center; text-align: center;">
+            <i class="fas fa-battery-full my-4" style="color:#100084; font-size:4rem;"></i>
+            <p>RE-charge Friday</p>
+          </div>
+          <div class="col-md-4 my-4" style="justify-content: center; text-align: center;">
+            <i class="fas fa-piggy-bank my-4" style="color:#100084; font-size:4rem;"></i>
+            <p>Save for retirement</p>
+          </div>
+          <div class="col-md-4 my-4" style="justify-content: center; text-align: center;">
+            <i class="fas fa-book-open my-4" style="color:#100084; font-size:4rem;"></i>
+            <p>Learning and development</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="container-fluid" id="ambassador-section-five">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-12 col-lg-8 text-center">
+            <h2 class="text-white mb-4">Become a Volunteer</h2>
+            <p class="grey-text">As a RE-volv Solar Ambassador Community Champion, you will spearhead a local solar project from start to finish. Don’t know much about solar? Not to worry. RE-volv will train you on everything you need to know to run a successful solar crowdfunding campaign and make a mark on your community.</p>
+            <a class="btn btn-orange btn-me btn-arrow-white my-4" href="#" role="button" style="display: none;">Learn more about being a Community Champion</a>
+            <div class="row justify-content-center align-items-center margin-top:40px;">
+                <a class="btn btn-blue btn-me btn-arrow-orange mx-2" href="/bring_solar_to_your_community/intake_form/signup/" role="button">Reach out to learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</main>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+  $('.collapse').collapse()
+
+  $('.clean-enrgy-colzx').tooltipster({
+    animation: 'fade',
+    side: 'top',
+    arrow: false,
+    trigger: 'click',
+    interactive: true,
+    contentAsHTML: true,
+    theme: '',
+  });
+</script>
+
+{% endblock %}

@@ -84,6 +84,32 @@ class ProjectManager(models.Manager):
             queryset = super(ProjectManager, self).get_queryset()
         active_projects = queryset.filter(
             project_status=Project.ACTIVE
+        ).order_by('end_date').exclude(org_name='SSF').exclude(org_name='SUBSF')
+        return active_projects
+
+    def get_active_fundraiser(self, queryset=None):
+        """ Gets all the projects that have been active to go into funding.
+
+        :queryset: The queryset in which to search for projects
+        :return: A list of active project objects
+        """
+        if queryset is None:
+            queryset = super(ProjectManager, self).get_queryset()
+        active_projects = queryset.filter(
+            project_status=Project.ACTIVE, org_name='SSF'
+        ).order_by('end_date')
+        return active_projects
+
+    def get_active_subfundraiser(self, queryset=None):
+        """ Gets all the projects that have been active to go into funding.
+
+        :queryset: The queryset in which to search for projects
+        :return: A list of active project objects
+        """
+        if queryset is None:
+            queryset = super(ProjectManager, self).get_queryset()
+        active_projects = queryset.filter(
+            project_status=Project.ACTIVE, org_name='SUBSF'
         ).order_by('end_date')
         return active_projects
 
@@ -233,6 +259,13 @@ class Project(models.Model):
         decimal_places=2,
         help_text='How much do you aim to raise for this project?'
     )
+
+    subfund_payment = models.CharField(
+        default=12,
+        max_length=255,
+        help_text='The id of the main project you are sub-fundraising for.'
+    )
+
     total_kwh_value = models.DecimalField(
         max_digits=15,
         decimal_places=2,
@@ -327,8 +360,20 @@ class Project(models.Model):
         options={'quality': 80},
         default=None,
         help_text='Choose a beautiful high resolution image to represent this project.',
-        blank=False,
+        blank=True,
     )
+
+    profile_picture = ProcessedImageField(
+        upload_to='covers/',
+        processors=[ResizeToFill(200, 200)],
+        format='JPEG',
+        options={'quality': 80},
+        default='/media/covers/genericprofile.jpg',
+        null=True,
+        help_text='Choose a beautiful high resolution profile image to represent this project.',
+        blank=True,
+    )
+
     preview_photo = ImageSpecField(
         source='cover_photo',
         processors=[ResizeToFill(400, 300)],
