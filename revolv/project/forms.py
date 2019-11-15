@@ -21,7 +21,7 @@ class ProjectForm(forms.ModelForm):
     options = [(category, category) for category in Category.valid_categories]
     categories_select = forms.MultipleChoiceField(choices=options, required=False, widget=forms.HiddenInput(), label='')
 
-    subfund_payment = forms.ChoiceField(choices=Project.objects.get_active_fundraiser().values_list('id','title'), required= False)
+    subfund_payment = forms.ChoiceField(initial=12, choices=Project.objects.get_active_fundraiser().values_list('id','title'), required= False)
     # date time
     today = datetime.today()
     enddate = today + timedelta(days=10)
