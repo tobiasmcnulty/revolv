@@ -108,14 +108,14 @@
                 <div class="campaign-text">
                   <ul class="progress-text">
                     <li class="current-progress">{{ project.percent_complete }}%</li>
-                    <li class="target-progress">${{ project.amount_donated |floatformat:"0"|intcomma}}</li>
+                    <li class="target-progress">${{ project.funding_goal|floatformat:0|intcomma }}</li>
                   </ul>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{ project.percent_complete }}%;" aria-valuenow="{{ project.percent_complete }}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <div class="w-100"></div>
                   <h3 class="fw-700 mt-3 mb-0">{{ project.get_statistic_for_project|floatformat:"0"|intcomma }}</h3>
-                  <h5 class="fw-700 my-0">lbs CO2 Avoided</h5>
+                  <h5 class="fw-700 my-0">lbs CO<sub>2</sub> Avoided</h5>
                   <div class="module-box payment-module">
                     <div class="inputs">
                         <div class="input-group">
@@ -361,14 +361,14 @@
                   <div class="campaign-text">
                     <ul class="progress-text">
                       <li class="current-progress">{{ project.percent_complete }}%</li>
-                      <li class="target-progress">${{ project.amount_donated |floatformat:"0"|intcomma}}</li>
+                      <li class="target-progress">${{ project.funding_goal|floatformat:0|intcomma }}</li>
                     </ul>
                     <div class="progress">
                       <div class="progress-bar" role="progressbar" style="width: {{ project.percent_complete }}%;" aria-valuenow="{{ project.percent_complete }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="w-100"></div>
                     <h3 class="fw-700 mt-3 mb-0">{{ project.get_statistic_for_project|floatformat:"0"|intcomma }}</h3>
-                    <h5 class="fw-700 my-0">lbs CO2 Avoided</h5>
+                    <h5 class="fw-700 my-0">lbs CO<sub>2</sub> Avoided</h5>
                     <div class="module-box payment-module">
                       <div class="inputs">
                           <div class="input-group">
