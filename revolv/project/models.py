@@ -84,7 +84,7 @@ class ProjectManager(models.Manager):
             queryset = super(ProjectManager, self).get_queryset()
         active_projects = queryset.filter(
             project_status=Project.ACTIVE
-        ).order_by('end_date').exclude(org_name='SSF').exclude(org_name='SUBSF')
+        ).order_by('end_date').exclude(org_name='SSF').exclude(org_name='SUBSF').exclude(org_name='MAINSSF')
         return active_projects
 
     def get_active_fundraiser(self, queryset=None):
@@ -96,7 +96,7 @@ class ProjectManager(models.Manager):
         if queryset is None:
             queryset = super(ProjectManager, self).get_queryset()
         active_projects = queryset.filter(
-            project_status=Project.ACTIVE, org_name='SSF'
+            project_status=Project.ACTIVE, org_name__in=['SSF', 'MAINSSF']
         ).order_by('end_date')
         return active_projects
 

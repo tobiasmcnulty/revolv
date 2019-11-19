@@ -144,7 +144,15 @@
                       </div>
                     </div>
 
-
+                    <div class="form-group row fundraise-project-form">
+                      <label for="campaign-title" class="col-sm-3 col-form-label clean-enrgy-colzx" data-tooltip-content="#tooltip-2">Custom Campaign Description</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                            {% include "base/partials/tooltip_formfield.html" with field=form.description %}
+                          <!-- <textarea class="form-control" id="campaign-desc" rows="3"></textarea> -->
+                        </div>
+                      </div>
+                    </div>
 
                     <div class="hide" style="display: none;">
                         {% include "base/partials/tooltip_formfield.html" with field=form.tagline %}
@@ -164,7 +172,6 @@
                         {% include "base/partials/tooltip_formfield.html" with field=form.people_affected %}            
                         {% include "base/partials/tooltip_formfield.html" with field=form.location %}
                     
-                        {% include "base/partials/tooltip_formfield.html" with field=form.description %}
                         {% include "base/partials/tooltip_formfield.html" with field=form.org_about %}
            
                       {% include "base/partials/tooltip_formfield.html" with field=form.location_latitude %}
