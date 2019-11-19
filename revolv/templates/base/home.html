@@ -115,10 +115,10 @@ a {
               </div>
             </div>
           </div>
-          {% if fund_active_projects|length == 0 %}<span id="newsletter-anchor"></span>{% endif %}
+          {% if fund_main_active_projects|length == 0 %}<span id="newsletter-anchor"></span>{% endif %}
         </div>
       </div>
-      {% if fund_active_projects|length == 0 %}
+      {% if fund_main_active_projects|length == 0 %}
       {% else %}
       <div class="container-fluid" id="section-five">
         <div class="row justify-content-center align-items-center">
@@ -133,7 +133,7 @@ a {
           <div class="col-sm-12 co-md-12 col-lg-10 px-3">
             <div class="campaign-list">
               <!--Campaign one-->
-              {% for fund_active_project in fund_active_projects %}
+              {% for fund_active_project in fund_main_active_projects %}
               <div class="campaign-col">
                 <a href="{% url "project:view" title=fund_active_project.project_url %}">
                   <div class="img-container" style="background-image:url('{{MEDIA_URL}}{{fund_active_project.cover_photo.url }}' ); background-repeat: no-repeat; background-size: 100%;"></div>

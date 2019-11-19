@@ -96,9 +96,37 @@ class ProjectManager(models.Manager):
         if queryset is None:
             queryset = super(ProjectManager, self).get_queryset()
         active_projects = queryset.filter(
+            project_status=Project.ACTIVE, org_name='SSF'
+        ).order_by('end_date')
+        return active_projects
+
+
+    def get_active_and_main_fundraiser(self, queryset=None):
+        """ Gets all the projects that have been active to go into funding.
+
+        :queryset: The queryset in which to search for projects
+        :return: A list of active project objects
+        """
+        if queryset is None:
+            queryset = super(ProjectManager, self).get_queryset()
+        active_projects = queryset.filter(
             project_status=Project.ACTIVE, org_name__in=['SSF', 'MAINSSF']
         ).order_by('end_date')
         return active_projects
+
+    def get_main_active_fundraiser(self, queryset=None):
+        """ Gets all the projects that have been active to go into funding.
+
+        :queryset: The queryset in which to search for projects
+        :return: A list of active project objects
+        """
+        if queryset is None:
+            queryset = super(ProjectManager, self).get_queryset()
+        active_projects = queryset.filter(
+            project_status=Project.ACTIVE, org_name='MAINSSF'
+        ).order_by('end_date')
+        return active_projects
+
 
     def get_active_subfundraiser(self, queryset=None):
         """ Gets all the projects that have been active to go into funding.
