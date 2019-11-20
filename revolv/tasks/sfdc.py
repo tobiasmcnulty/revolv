@@ -74,9 +74,9 @@ def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentd
         )
 
         if orgnamedt == '':
-            orgnamedt = 'Not Filled out'
+            orgnamedt = 'Solar Ambassador/Champion'
         elif orgnamedt == None:
-            orgnamedt = 'Not Filled out'
+            orgnamedt = 'Solar Ambassador/Champion'
 
         if colstudentdt == 'Yes':
             colstudentdt = 'College Fellow'

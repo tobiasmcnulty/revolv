@@ -792,7 +792,7 @@ def intake_form_submit(request):
     orgstatedt = orgState
 
 
-    if nonprofitdt == '':
+    if colstudentdt == 'Yes' or colstudentdt == 'No':
         send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt , headsourcedt, orgnamedt, orgaddressdt, websitedt, affiliatedt)
     else:
         send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressdt, orgstatedt, zipcodedt, websitedt, affiliatedt, nonprofitdt, nonprofitbuildt)
