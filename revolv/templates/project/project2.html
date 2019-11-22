@@ -586,7 +586,7 @@
                 display: inline-block;
                 color: #fff;
                 margin-bottom:40px;
-                "> Edit Sub Campaign
+                "> Edit Campaign page"
                 </button>
             </a>
         
@@ -730,9 +730,19 @@
               {% endifequal %}
               {% endif %}
   
+
   
   
-  
+              </div>
+
+              <div class="donate-icon-col mb-4">
+                <a href="/project/create-sub">
+                <div class="donate-icon-wrapper"><img src="../../../static/images/blog-monthly-img/donate-icon.png"></div>
+                <div class="donate-txt-wrapper">
+                    <h2>Create</h2>
+                    <p>your own fundraiser</p>
+                </div>
+                </a>
               </div>
     
               </div>
@@ -741,7 +751,7 @@
   
               <div class="col-sm-12 col-md-8 campaign-body-text pl-4">
                 <h2 class="orange-text fw-300">{{ project.title }}</h2>
-                <h6 class="fw-500">About the sub campaign</h6>
+                <h6 class="fw-500">About the Campaign</h6>
     
                 <p class="content-gold-silver content_sec">{{ project.description|safe }}</p> 
                 <p class="content-gold-silver content_sec">{{ project.org_about|safe }}</p> 

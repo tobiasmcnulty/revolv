@@ -99,7 +99,7 @@ def send_donation_info(name, amount,email, project, address=''):
         return
     try:
         res = None
-        payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'donorAddress': ''}
+        payload = {'donorName': name, 'donorEmail':email, 'projectName': 'Solar Seed Fund', 'donationAmount': amount, 'donorAddress': ''}
         sf = Salesforce(
             username=settings.SFDC_ACCOUNT,
             security_token=settings.SFDC_TOKEN,
