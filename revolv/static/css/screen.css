@@ -1442,6 +1442,7 @@ p.attribution.footer-text {
     height: 297px;
     display: table;
     z-index: 99;
+    margin-top: 60px;
 }
 
 .active-projects-module .img-main .txt {

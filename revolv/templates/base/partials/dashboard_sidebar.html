@@ -24,10 +24,10 @@
 <div class="role-select-options">
     <div class="dashboard-header">View as:</div>
     {% if user.revolvuserprofile.is_administrator %}
-        <div class="role-select-option"><a href="/dashboard/admin/">Administrator</a></div>
+        <div class="role-select-option"><a href="/my-portfolio/admin/">Administrator</a></div>
     {% endif %}
-    <div class="role-select-option"><a href="/dashboard/ambassador/">Ambassador</a></div>
-    <div class="role-select-option"><a href="/dashboard/donor/">Donor</a></div>
+    <div class="role-select-option"><a href="/my-portfolio/ambassador/">Ambassador</a></div>
+    <div class="role-select-option"><a href="/my-portfolio/donor/">Donor</a></div>
 </div>
 {% endif %}
 
@@ -54,7 +54,7 @@
     <div><a href="{% url "donationreport" %}" class="create-new-button">Financial Report</a></div>
 {% endif %}
 {% if user.revolvuserprofile.is_ambassador %}
-<div><a href="{% url "sendmail" %}" class="create-new-button" id="sendemail">Send Email</a></div>
+<!-- <div><a href="{% url "sendmail" %}" class="create-new-button" id="sendemail">Send Email</a></div> -->
 {% endif %}
 <div class="dashboard-section manage">
     <div class="dashboard-manage-link"><a id="change_password_link" href="/password_change/">Change Password</a></div>

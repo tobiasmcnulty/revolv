@@ -36,6 +36,7 @@ MAX_PAYMENT_CENTS = 99999999
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 from createsend import Transactional
+from createsend import Subscriber
 
 
 # @login_required
@@ -100,19 +101,24 @@ def stripe_payment(request, pk):
 
 
     # anon and logged in users gets stripe email sends to that email
-
-    # Send the message and save the response   
-    # on request post data parameters -> transfer  
-    # email -> placeholder  get email data - post -> email
-    # donations to projects, wb etc for monthly donations function 
-    # amount cents  data -> amount cents
-
     # response = tx_mailer.smart_email_send(smart_email_id, 'Ryan Dexter <mark@re-volv.org>', consent_to_track, data = my_datax)
 
     response = tx_mailer.smart_email_send(smart_email_id, donor_email_cm, consent_to_track, data = my_data)
     # Send the message and save the response
     # response = tx_add.add(list_id, emailz, "Test name", [] , True, consent_to_track)
+    # Send the message and save the response
 
+    # -- Add to mailing list --
+    list_id = settings.CM_LIST_ID
+    emailz = email
+
+    # Create a new mailer and define your message
+    tx_add = Subscriber(auth)
+
+    # Add to mailing list
+    consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
+
+    response = tx_add.add(list_id, emailz, "", [] , True, consent_to_track)
 
 
     try:
