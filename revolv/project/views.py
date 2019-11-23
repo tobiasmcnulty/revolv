@@ -176,24 +176,25 @@ def stripe_payment(request, pk):
         )
 
     payment = Payment.objects.create(
-        user=user,
-        entrant=user,
-        amount=donation_cents / 100.0,
-        project=project,
-        tip=tip,
-        payment_type=PaymentType.objects.get_stripe(),
-    )
-
-    # if request.user.  (is SUBSSF )  , get project object id of original project,
-
-    payment = Payment.objects.create(
     user=user,
     entrant=user,
     amount=donation_cents / 100.0,
-    project=projectz,
+    project=project,
     tip=tip,
     payment_type=PaymentType.objects.get_stripe(),
     )
+
+    # if request.user.  (is SUBSSF )  , get project object id of original project,
+    if project.org_name == 'SUBSF':
+
+        paymentz = Payment.objects.create(
+        user=user,
+        entrant=user,
+        amount=donation_cents / 100.0,
+        project=projectz,
+        tip=tip,
+        payment_type=PaymentType.objects.get_stripe(),
+        )
 
 
     if request.session.has_key("utm_params"):

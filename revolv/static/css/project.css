@@ -151,7 +151,7 @@
 .social ul li {
   display: block;
   margin: 5px;
-  background: #14b1e74D;
+  background: #100084;
   width: 150px;
   text-align: right;
   padding: 10px;
@@ -170,7 +170,7 @@
   -ms-transform: translate(70px, 0);
   -o-transform: translate(70px, 0);
   transform: translate(70px, 0);
-  background: rgba(20, 177, 231, 0.4);
+  background: #100084;
 }
 .social ul li:hover a {
   color: #fff

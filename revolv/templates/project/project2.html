@@ -69,11 +69,12 @@
           <h1 class="text-light fw-300">{{ project.title }}</h1>
         </div>
       </div>
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-12">
         {% if request.user.is_authenticated %}
         {% ifequal project.created_by_user|stringformat:"s" request.user.username %}
+
         <a href="/project/{{project.id}}/edit" style=" color: white;">
-        <button id="project-button" style="
+        <button id="project-button" class="mr-2"style="
         height: 48px;
         line-height: 48px;
         background-color: #ff8a00;
@@ -90,15 +91,48 @@
         margin-bottom:40px;
         "> Edit Campaign
         </button>
-    </a>
+        </a>
 
-
-
-
+        <a href="{% url "donationreport" %}" style=" color: white;">
+            <button id="project-button" style="
+            height: 48px;
+            line-height: 48px;
+            background-color: #ff8a00;
+            transition: background-color .15s linear;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            border-radius: 4px;
+            border: 0;
+            font-size: 15px;
+            padding: 0 20px;
+            font-weight: 500;
+            display: inline-block;
+            color: #fff;
+            margin-bottom:40px;
+            "> Donation Report
+            </button>
+        </a>
+    
 {% endifequal %}
 {% endif %}
         </div>
+
     </div>
+
+
+    {% if project.status_display|upper == 'ACTIVE' %}
+    <div class="social project-status-desktop-left">
+        <ul>
+            <li>
+                <a href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"   
+                target="_blank" style="font-size: 0.7em; font-weight: 700;">Facebook <i class="fab fa-facebook"></i></a></li>
+            <li>
+                <a href="https://www.twitter.com/share?url=https://www.re-volv.org/project/{{ project.project_url }}&amp;text=Spread solar and change lives. Learn more about people-funded renewable energy here:&amp;"
+                target="_blank" style="font-size: 0.7em; font-weight: 700;">Twitter <i class="fab fa-twitter"></i></a></li>
+        </ul>
+    </div>
+    {% endif %}
     <div class="container-fluid" id="campaign-body">
       <div class="row justify-content-center align-items-center">
         <div class="col-sm-12 co-md-10 col-lg-10">
@@ -345,6 +379,20 @@
 {% endif %}
         </div>
     </div>
+
+    {% if project.status_display|upper == 'ACTIVE' %}
+    <div class="social project-status-desktop-left">
+        <ul>
+            <li>
+                <a href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"   
+                target="_blank" style="font-size: 0.7em; font-weight: 700;">Facebook <i class="fab fa-facebook"></i></a></li>
+            <li>
+                <a href="https://www.twitter.com/share?url=https://www.re-volv.org/project/{{ project.project_url }}&amp;text=Spread solar and change lives. Learn more about people-funded renewable energy here:&amp;"
+                target="_blank" style="font-size: 0.7em; font-weight: 700;">Twitter <i class="fab fa-twitter"></i></a></li>
+        </ul>
+    </div>
+    {% endif %}
     <div class="container-fluid" id="campaign-body">
       <div class="row justify-content-center align-items-center">
         <div class="col-sm-12 co-md-10 col-lg-10">
@@ -596,7 +644,19 @@
         </div>
 
           
-
+        {% if project.status_display|upper == 'ACTIVE' %}
+        <div class="social project-status-desktop-left">
+            <ul>
+                <li>
+                    <a href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}"
+                    onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"   
+                    target="_blank" style="font-size: 0.7em; font-weight: 700;">Facebook <i class="fab fa-facebook"></i></a></li>
+                <li>
+                    <a href="https://www.twitter.com/share?url=https://www.re-volv.org/project/{{ project.project_url }}&amp;text=Spread solar and change lives. Learn more about people-funded renewable energy here:&amp;"
+                    target="_blank" style="font-size: 0.7em; font-weight: 700;">Twitter <i class="fab fa-twitter"></i></a></li>
+            </ul>
+        </div>
+        {% endif %}
       <div class="container-fluid" id="campaign-body">
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-12 co-md-10 col-lg-10">
