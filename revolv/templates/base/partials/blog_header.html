@@ -220,7 +220,7 @@
                         <li class="dropdown this-works"> <a href="{% url 'logout' %}" class="dropdown">SIGN OUT</a>
                         </li>
                     {% endif %}
-                    <li class="dropdown this-doesnt"> <a href="{% url 'projects_list' %}" class="dropdown">DONATE</a>
+                    <li class="dropdown this-doesnt"> <a href="{% url 'completed_projects' %}" class="dropdown">DONATE</a>
                     </li>
                 </ul>
             </div>
@@ -239,7 +239,7 @@
           {% else %}
             <a href="{% url 'signin' %}#signup" class="component-link btn-blue pull-left btn-donate" data-component="signup">SIGN UP</a>
             <a href="{% url 'signin' %}#login" class="component-link btn-blue pull-left btn-donate" data-component="login">SIGN IN</a>
-            <a href="{% url 'projects_list' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>
+            <a href="{% url 'completed_projects' %}" onclick="return clearInput();" class="component-link pull-left btn-blue btn-donate">DONATE</a>
         {% endif %}
       </div>
       <!--<a #data-target="popup" data-toggle="modal" class=" btn-blue btn-donate pull-left after-scroll">DONATE NOW</a>-->
