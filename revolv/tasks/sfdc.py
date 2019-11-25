@@ -106,6 +106,14 @@ def send_donation_info(name, amount,email, project, address=''):
             password=settings.SFDC_PASSWORD
         )
 
+        campaigns = ['Purdue University','UC Santa Barbara','UW Milwaukee''American University','UC Santa Cruz','Coastal Carolina University','The Claremont Colleges','USC','Yale University','University of Dayton','University of Oregon']
+
+        # if campaign title is one of the static campaign in the array pass through, else use static Solar Seed Fund for sub campaigns
+        if any(project in s for s in campaigns):
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'donorAddress': ''}
+        else:
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': 'Solar Seed Fund', 'donationAmount': amount, 'donorAddress': ''}
+
         send_signup_info(name, email, address='')
 
         logger.info('send donation to SFDC with data: %s', payload)
