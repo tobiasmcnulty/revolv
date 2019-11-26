@@ -94,7 +94,7 @@ def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentd
         logger.error('SFDC sign-up: ERROR for name: %s and data: %s, res: %s', emaildt, payload, res, exc_info=True)
 
 #@task
-def send_donation_info(name, amount,email, project, address=''):
+def send_donation_info(name, amount,email, project, projectmain, postalcode, address=''):
     if not settings.SFDC_ACCOUNT:
         return
     try:
@@ -108,11 +108,13 @@ def send_donation_info(name, amount,email, project, address=''):
 
         campaigns = ['Purdue University','UC Santa Barbara','UW Milwaukee''American University','UC Santa Cruz','Coastal Carolina University','The Claremont Colleges','USC','Yale University','University of Dayton','University of Oregon']
 
+
+        description = 'Donation for ' + project
         # if campaign title is one of the static campaign in the array pass through, else use static Solar Seed Fund for sub campaigns
         if any(project in s for s in campaigns):
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'donorAddress': ''}
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'donorAddress': ''}
         else:
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': 'Solar Seed Fund', 'donationAmount': amount, 'donorAddress': ''}
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'donorAddress': ''}
 
         send_signup_info(name, email, address='')
 

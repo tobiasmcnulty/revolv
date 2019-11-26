@@ -46,6 +46,7 @@ def stripe_payment(request, pk):
         tip_cents = request.POST['metadata']
         amount_cents = request.POST['amount_cents']
         email = request.POST['stripeEmail']
+        zipcode = request.POST['stripeBillingAddressZip']
     except KeyError:
         logger.exception('stripe_payment called without required POST data')
         return HttpResponseBadRequest('bad POST data')
@@ -71,6 +72,11 @@ def stripe_payment(request, pk):
 
     error_msg = None
 
+    # pass through for sub fundraise on sfdc as main
+    projectmain = projectz.title
+
+    # postal code for Opportunity
+    postalcode = zipcode
 
     # emailz = request.POST['email']
     # Authenticate with your API Key
@@ -117,7 +123,7 @@ def stripe_payment(request, pk):
 
     # Add to mailing list
     consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
-
+    
     response = tx_add.add(list_id, emailz, "", [] , True, consent_to_track)
 
 
@@ -160,7 +166,7 @@ def stripe_payment(request, pk):
                 payment_type=PaymentType.objects.get_stripe(),
             )
             send_donation_info(donor.matching_donor.get_full_name(), matching_donation, donor.matching_donor.user.email,
-                               project.title, address='')
+                               project.title, projectmain, postalcode, address='')
 
     if request.user.is_authenticated():
         user = request.user.revolvuserprofile
@@ -252,7 +258,7 @@ def stripe_payment(request, pk):
         request.session['url'] = previous_url
         context['first_name'] = "RE-volv"
         context['last_name'] = "supporter"
-        send_donation_info(email, donation_cents / 100.0, email, project.title, address='')
+        send_donation_info(email, donation_cents / 100.0, email, project.title, projectmain, postalcode, address='')
         send_revolv_email(
             'post_donation',
             context, [email]
@@ -285,7 +291,7 @@ def stripe_payment(request, pk):
         request.session['url'] = previous_url
         request.session['cover_photo'] = (SITE_URL + '/media/') + ''.join(cover_photo)
         request.session['social'] = "donation"
-        send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, address='')
+        send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, projectmain, postalcode, address='')
         send_revolv_email(
             'post_donation',
             context, [request.user.email]
