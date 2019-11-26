@@ -106,7 +106,7 @@ def send_donation_info(name, amount,email, project, projectmain, postalcode, add
             password=settings.SFDC_PASSWORD
         )
 
-        campaigns = ['Purdue University','UC Santa Barbara','UW Milwaukee''American University','UC Santa Cruz','Coastal Carolina University','The Claremont Colleges','USC','Yale University','University of Dayton','University of Oregon']
+        campaigns = ['Purdue University','UC Santa Barbara','UW Milwaukee''American University','UC Santa Cruz','Coastal Carolina University','The Claremont Colleges','USC','Yale University','University of Dayton','University of Oregon','Solar Seed Fund']
 
 
         description = 'Donation for ' + project
