@@ -40,7 +40,7 @@ html {
     min-height: 100%;
 }
 
-/* common style */
+/* common style , comment out screen.body , IE. comptability
 
 body {
     background: #fff;
@@ -49,6 +49,7 @@ body {
     position: relative;
     z-index: -10;
 }
+*/
 
 input,
 button {

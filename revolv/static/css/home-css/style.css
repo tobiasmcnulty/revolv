@@ -400,7 +400,7 @@ footer {
 	}
 }
 #second-section .row {
-	min-height: 60vh;
+	margin-top: 100px;
 }
 #section-three p {
 	font-size: 1.3em;
