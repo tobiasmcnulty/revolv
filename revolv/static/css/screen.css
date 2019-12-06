@@ -40,16 +40,16 @@ html {
     min-height: 100%;
 }
 
-/* common style , comment out screen.body , IE. comptability
-
+/* common style , comment out screen.body , IE. comptability , z-index doesn't work on IE below z-index: 0
+*/
 body {
     background: #fff;
     float: left;
     width: 100%;
     position: relative;
-    z-index: -10;
+    z-index: 1;
 }
-*/
+
 
 input,
 button {
