@@ -379,7 +379,7 @@ def stripe_operation_donation(request):
                     payment_type=PaymentType.objects.get_stripe(),
                 )
 
-            send_donation_info(user.get_full_name(), amount / 100, user.user.email, project.title, address='')
+            #send_donation_info(user.get_full_name(), amount / 100, user.user.email, project.title, address='')
 
         context = {}
         if not request.user.is_authenticated():
