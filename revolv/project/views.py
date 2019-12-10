@@ -309,12 +309,15 @@ def stripe_operation_donation(request):
         if not amount_cents:
             amount_cents = request.POST.get('donation_amount_in_cents')
         email = request.POST['stripeEmail']
+        zipcode = request.POST['stripeBillingAddressZip']
         check = request.POST.get('check')
     except KeyError:
         logger.exception('stripe_operation_donation called without required POST data')
         return HttpResponseBadRequest('bad POST data')
 
     project = get_object_or_404(Project, title='Operations')
+
+    postalcode = zipcode
 
     amount = round(float(amount_cents) * 100)
 
@@ -379,7 +382,7 @@ def stripe_operation_donation(request):
                     payment_type=PaymentType.objects.get_stripe(),
                 )
 
-            #send_donation_info(user.get_full_name(), amount / 100, user.user.email, project.title, address='')
+            send_donation_info(email,  amount / 100, email, 'Operations', 'Operations', postalcode, address='')
 
         context = {}
         if not request.user.is_authenticated():
@@ -572,6 +575,9 @@ def stripe_operation_donation(request):
                     context['user'] = request.user.first_name.title() + ' ' + request.user.last_name.title()
 
             context['amount'] = amount / 100.0
+
+            send_donation_info(email ,  amount / 100, email, 'Monthly Donations', 'Monthly Donations', postalcode, address='')
+
             send_revolv_email(
                 'Post_operations_donation',
                 context, [email]

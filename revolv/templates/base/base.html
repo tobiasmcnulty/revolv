@@ -308,11 +308,13 @@ $(function ($) {
         description: 'Donate $' + parseFloat((amount/100).toFixed(2)).toLocaleString()
         , amount: parseFloat((amount).toFixed(2))
         , panelLabel: donationtype
+        , zipCode: true
         , closed : function(){$('#popup').modal('hide');}
         , metadata: metadata
         , token: function (token) {
           var id = token.id;
           var email = token.email;
+          var zipcode = token.card.address_zip;
           var $id = $('<input>')
             .attr('type', 'hidden')
             .attr('name', 'stripeToken')
@@ -321,8 +323,13 @@ $(function ($) {
             .attr('type', 'hidden')
             .attr('name', 'stripeEmail')
             .val(email);
+          var $zipcode = $('<input>')
+            .attr('type', 'hidden')
+            .attr('name', 'stripeBillingAddressZip')
+            .val(zipcode);
           $id.appendTo($form);
           $email.appendTo($form);
+          $zipcode.appendTo($form);
           $form.submit(function(e) {
           $('#donation-spinner').css('display', 'flex');
           $.ajax({

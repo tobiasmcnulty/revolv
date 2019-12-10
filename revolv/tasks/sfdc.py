@@ -112,9 +112,11 @@ def send_donation_info(name, amount,email, project, projectmain, postalcode, add
         description = 'Donation for ' + project
         # if campaign title is one of the static campaign in the array pass through, else use static Solar Seed Fund for sub campaigns
         if any(project in s for s in campaigns):
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'donorAddress': ''}
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+        elif project == 'Monthly Donations':
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''}
         else:
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'donorAddress': ''}
+            payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
 
         send_signup_info(name, email, address='')
 
