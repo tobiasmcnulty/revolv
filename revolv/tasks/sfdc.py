@@ -3,6 +3,7 @@ from simple_salesforce import Salesforce
 
 from django.conf import settings
 from django.utils import log
+import json
 
 logger = log.getLogger(__name__)
 
@@ -94,6 +95,31 @@ def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentd
         logger.error('SFDC sign-up: ERROR for name: %s and data: %s, res: %s', emaildt, payload, res, exc_info=True)
 
 #@task
+def fetch_user_by_email(email):
+
+    sf = Salesforce(
+        username=settings.SFDC_ACCOUNT,
+        security_token=settings.SFDC_TOKEN,
+        password=settings.SFDC_PASSWORD
+    )
+
+    query = "select id, name from Contact where Email = '"+ email +"'"
+
+    loaded = sf.query(query)
+    
+    output_dict = json.loads(json.dumps(loaded))
+
+    emailName = ''
+
+    for k in output_dict:
+        for x in output_dict['records']:
+            for key, value in x.items():
+                if key == 'Name':
+                    emailName = value
+
+
+    return emailName
+
 def send_donation_info(name, amount,email, project, projectmain, postalcode, address=''):
     if not settings.SFDC_ACCOUNT:
         return
@@ -106,19 +132,36 @@ def send_donation_info(name, amount,email, project, projectmain, postalcode, add
             password=settings.SFDC_PASSWORD
         )
 
+        existing_name = fetch_user_by_email(email)
+
         campaigns = ['Purdue University','UC Santa Barbara','UW Milwaukee''American University','UC Santa Cruz','Coastal Carolina University','The Claremont Colleges','USC','Yale University','University of Dayton','University of Oregon','Solar Seed Fund']
 
-
         description = 'Donation for ' + project
-        # if campaign title is one of the static campaign in the array pass through, else use static Solar Seed Fund for sub campaigns
-        if any(project in s for s in campaigns):
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
-        elif project == 'Monthly Donations':
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''}
-        else:
-            payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
 
-        send_signup_info(name, email, address='')
+        if existing_name == '':
+
+            # if campaign title is one of the static campaign in the array pass through, else use static Solar Seed Fund for sub campaigns
+            if any(project in s for s in campaigns):
+                payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+            elif project == 'Monthly Donations':
+                payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''}
+            else:
+                payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+
+        else:
+            
+            if any(project in s for s in campaigns):
+                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+            elif project == 'Monthly Donations':
+                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''}
+            else:
+                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+
+
+        if existing_name == '':
+            send_signup_info(name, email, address='')
+        else: 
+            send_signup_info(existing_name, email, address='')
 
         logger.info('send donation to SFDC with data: %s', payload)
         res = sf.apexecute(settings.SFDC_REVOLV_DONATION, method='POST', data=payload)
