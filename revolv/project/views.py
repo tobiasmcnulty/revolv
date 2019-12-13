@@ -741,6 +741,23 @@ class CreateProjectSubView(DonationLevelFormSetMixin, CreateView):
     form_class = forms.ProjectSubForm
 
     def get_success_url(self):
+
+        auth = {'api_key': settings.CM_KEY }
+
+        smart_email_id = '994775e0-b4d4-4bbc-8afc-9bbd6a97cdd8'
+
+        tx_mailer = Transactional(auth)
+
+        my_data = {
+            'x-apple-data-detectors': 'x-apple-data-detectorsTestValue',
+            'href': 'hrefTestValue',
+            'style*="font-size:1px"': 'style*="font-size:1px"TestValue'
+        }
+
+        consent_to_track = 'yes' # Valid: 'yes', 'no', 'unchanged'
+
+        response = tx_mailer.smart_email_send(smart_email_id, 'info@re-volv.org', consent_to_track, data = my_data)
+        
         return reverse('project:view', kwargs={'title': self.object.project_url})
 
     # validates project, formset of donation levels, and adds categories as well
