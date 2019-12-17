@@ -81,7 +81,9 @@ class AdminManualPaymentView(UserDataMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AdminManualPaymentView, self).get_context_data(**kwargs)
+        
         context["active_projects"] = Project.objects.get_active()
+        context["fund_active_projects"] = Project.objects.get_active_fundraiser()
         return context
 
     @transaction.atomic

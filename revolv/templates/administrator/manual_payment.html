@@ -47,7 +47,7 @@
                             <div class="input-group">
                                 <label for="project_name">Select project</label>
                                 <select class="form-control donation-field" id="project_name" name="project_id" required>
-                                    {% for project in active_projects %}
+                                    {% for project in fund_active_projects %}
                                     <option value="{{ project.id }}">{{ project.title }}</option>
                                     {% endfor %}
                                 </select>

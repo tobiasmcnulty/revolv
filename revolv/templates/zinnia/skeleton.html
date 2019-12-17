@@ -36,15 +36,19 @@
         <link rel="stylesheet" type="text/css" media="screen, projection" href="{% static "zinnia/theme/css/ie.css" %}" />
     <![endif]-->
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link href="{% static 'css/edu-media-css/style2.css' %}?version={{ version_number }}" rel="stylesheet" />
+
     {% block link %}{% endblock link %}
     {% block script %}{% endblock script %}
   </head>
   <body class="zinnia zinnia.blue {% block theme-class %}default{% endblock theme-class %} {% block color-class %}blue{% endblock color-class %} {% block sidebar-class %}right-sidebar{% endblock sidebar-class %} {% block body-class %}{% endblock body-class %}">
-
+    {% include "base/partials/blog_header.html" %}
     <div class="container">
         {% block nav %}
         <div class="blog-font">
-            {% include "base/partials/blog_header.html" %}
+            
         </div>
         {% endblock %}
       <header id="header" role="banner">
@@ -101,6 +105,6 @@
         {% endblock sidebar %}
       </div>
     </div>
-  {% include "base/partials/foot.html" %}
+  {% include "base/partials/blog_footer.html" %}
   </body>
 </html>
