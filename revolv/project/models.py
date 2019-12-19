@@ -109,7 +109,7 @@ class ProjectManager(models.Manager):
         if queryset is None:
             queryset = super(ProjectManager, self).get_queryset()
         active_projects = queryset.filter(
-            project_status=Project.ACTIVE, org_name='SSF'
+            project_status__in=[Project.ACTIVE, Project.COMPLETED], org_name='SSF'
         ).order_by('end_date')
         return active_projects
 

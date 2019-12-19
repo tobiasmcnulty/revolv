@@ -290,7 +290,7 @@ class FundraiseListView(UserDataMixin, TemplateView):
         active_main_fund = Project.objects.get_main_active_fundraiser()
         active_subfund = Project.objects.get_active_subfundraiser()
         context["active_projects"] = filter(lambda p: p.amount_left > 0.0, active)
-        context["fund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_fund)
+        context["fund_active_projects"] = active_fund
         context["fund_main_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_main_fund)
         context["subfund_active_projects"] = filter(lambda p: p.amount_left > 0.0, active_subfund)
         context["is_reinvestment"] = False
