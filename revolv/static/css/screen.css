@@ -1514,7 +1514,7 @@ p.attribution.footer-text {
 .active-projects-module.embedded .img-main .funded-round .status-indicator input.smaller {
     margin-top: -81px !important;
     margin-left: 27px !important;
-    font-size: 23px !important;
+    font-size: 22px !important;
     box-shadow: none;
     -webkit-transition: font-size 0.25s ease;
     transition: font-size 0.25s ease;
