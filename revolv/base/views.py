@@ -726,6 +726,10 @@ def completedproject(request):
     # return render_to_response('base/partials/completed_projects.html',context_instance=RequestContext(request))
     return render(request, 'base/partials/completed_projects.html', {'completed_projects': completed_projects})
 
+def completedcampaigns(request):
+    completed_campaigns = Project.objects.get_completed_ssf()
+    # return render_to_response('base/partials/completed_projects.html',context_instance=RequestContext(request))
+    return render(request, 'base/partials/completed_campaigns.html', {'completed_campaigns': completed_campaigns})
 
 def bring_solar_tou_your_community(request):
     return render_to_response('base/bring_solar_at_community.html',

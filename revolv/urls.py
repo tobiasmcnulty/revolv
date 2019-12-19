@@ -122,6 +122,7 @@ urlpatterns = patterns(
     url(r'^signin/$', base_views.SignInView.as_view(), name='signin'),
     url(r'^login/$', base_views.LoginView.as_view(), name='login'),
     url(r'^projects/completed_projects', 'revolv.base.views.completedproject', name='completed_projects'),
+    url(r'^projects/completed_campaigns', 'revolv.base.views.completedcampaigns', name='completed_campaigns'),
     url(r'^signup/$', base_views.SignupView.as_view(), name='signup'),
     url(r'^logout/$', base_views.LogoutView.as_view(), name='logout'),
     url(r'^subscribe/$', 'revolv.base.views.add_email_to_mailing_list', name='subscribe'),

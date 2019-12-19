@@ -74,6 +74,19 @@ class ProjectManager(models.Manager):
         ).order_by('end_date')
         return completed_projects
 
+    def get_completed_ssf(self, queryset=None):
+        """ Gets all the projects that have been completed funding for solar seed fund.
+
+        :queryset: The queryset in which to search for projects
+        :return: A list of completed project objects
+        """
+        if queryset is None:
+            queryset = super(ProjectManager, self).get_queryset()
+        completed_projects = queryset.filter(
+            project_status=Project.COMPLETED,  org_name='SSF').order_by('end_date')
+
+        return completed_projects
+
     def get_active(self, queryset=None):
         """ Gets all the projects that have been active to go into funding.
 

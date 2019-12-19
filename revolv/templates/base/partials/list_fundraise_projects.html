@@ -55,7 +55,7 @@
 .title-icon [class^="fa-seedling-"]::before {
   color: #222222;
 }
-.fa-seedling, .fa-hand-holding-heart {
+.fa-seedling, .fa-hand-holding-heart, .fa-check {
   color: #100084;
   font-size: 2em;
 }
@@ -201,6 +201,11 @@
           <!-- end .module-box -->
         </div>
         {% endfor %}
+          <div class="title-icon mt-4">
+            <i class="fas fa-check"></i>
+          </div>
+          <a href="{% url "completed_campaigns"%}" style="font-size: 18px">Check out our completed Solar Seed Fund Campaigns</a>
+       
       </div>
     {% endif %}
 
