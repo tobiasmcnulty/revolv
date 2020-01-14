@@ -151,7 +151,7 @@ class MainPageSettings(BaseSetting):
         default=(
             "We believe that everyone should have the ability to support clean energy. So we "
             "created a new way for people to take action. It's a pretty simple idea. We raise "
-            "money through crowdfunding to put solar panels on community-serving "
+            "money through crowdsource funding to put solar panels on community-serving "
             "nonprofit organizations and worker-owned cooperatives. As these organizations "
             "pay us back, we reinvest the money into more solar projects in communities "
             "across the country. This creates a revolving fund for solar energy that continually "
