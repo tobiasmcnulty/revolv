@@ -16,6 +16,12 @@
 <link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
 
 <style>
+@media (max-width: 768px) {
+  #section-six .section-six-row .orange-container {
+    text-align: center !important;
+  }
+}
+
 @media (max-width: 640px) {
   .newspadding {
     width: 400px;
@@ -214,29 +220,29 @@
       </div>
 
 
-      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
-        <div class="container-fluid" id="section-six">
+
+      
+      <div class="container-fluid" id="section-six">
           <div class="row justify-content-center align-items-center section-six-row">
-            <div class="col-sm-12 co-md-12 col-lg-10">
+            <div class="orange-container col-sm-12 co-md-12 col-lg-10">
               <div class="row align-items-center">
-                <div class="col-sm-12 col-md-5 text-right text-white">
-                  <h2 class="fw-700 mb-3">Get more great content.</h2>
-                  <p class="fw-300">Sign up today for our free newsletter.</p>
+                <div class="col-sm-12 col-md-6 text-right text-white">
+                  <h2 class="fw-700 mb-3">Interested in solarizing a nonprofit?</h2>
+                  <p class="fw-400">Get a free quote or learn more</p>
                 </div>
-                <div class="col-sm-12 col-md-7">
-                  <div class="input-group mb-3 subscription-form inputs">
-                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
-                      <div class="input-group-append">
-                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
-                      </div>
-                  </div>
+                <div class="col-sm-12 col-md-6">
+                      <a class="btn btn-blue btn-lg btn-arrow-orange mx-2" href="/get-involved/apply" role="button">Learn more</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
+  
+  
+
+
+
+
       <div class="container-fluid" id="related-section">
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-12 co-md-10 col-lg-10">

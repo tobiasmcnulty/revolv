@@ -634,7 +634,7 @@
       </div>
     </div>
   </div>
-  <div class="tooltip_templates">
+  <div class="tooltip_templates" style="height: 300px;">
     <div id="tooltip-14">
       <div class="tooltip-body">
         <h3 class="blue-text"> Maura McKnight</h3>
@@ -695,10 +695,12 @@
 {% block javascripts %}
 <script>
   $('.clean-enrgy-colzx').tooltipster({
-    animation: 'fade',
+    animation: 'grow',
+    maxWidth: 768,
+    speed: 300,
     side: 'top',
     arrow: false,
-    trigger: 'hover',
+    trigger: 'click',
     interactive: true,
     contentAsHTML: true,
     theme: '',
