@@ -71,7 +71,7 @@ class ProjectManager(models.Manager):
             queryset = super(ProjectManager, self).get_queryset()
         completed_projects = queryset.filter(
             project_status=Project.COMPLETED
-        ).order_by('end_date')
+        ).order_by('end_date').reverse().exclude(org_name='SSF').exclude(org_name='SUBSF')
         return completed_projects
 
     def get_completed_ssf(self, queryset=None):
