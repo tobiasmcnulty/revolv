@@ -330,11 +330,11 @@ $(function ($) {
                  {
                     if(data.status == 'donation_success') {
                         $("#social_media_operation").modal("show");
-                        window.location.href='/email_confirm/';
+                        window.location.href='/thanks/postdonation/';
                     }
                     if(data.status == 'subscription_success') {
                         $("#social_media_operation").modal("show");
-                        window.location.href='/email_confirm/';
+                        window.location.href='/thanks/postdonation/';
                     }
                     if(data.status == 'already_exist') {
                         $('.modal-title').text('Donation already exist');

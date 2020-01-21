@@ -90,6 +90,7 @@ urlpatterns = patterns(
     url(r'^blog-center/articles/newyearrevolution/', 'revolv.base.views.newyearrevolution', name='newyearrevolution'),
 
     url(r'^monthly_donor', 'revolv.base.views.monthly_donor', name='monthly_donor'),
+    url(r'^thanks/postdonation/', 'revolv.base.views.postdonation', name='postdonation'),
 
     url(r'^ambassador_info/', 'revolv.base.views.ambassador_info', name='ambassador_info'),
 

@@ -33,7 +33,7 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-12 co-md-10 col-lg-10">
             <div class="row justify-content-center align-items-center text-center">
-              <div class="col-sm-12 col-md-6 text-right">
+              <div class="col-sm-12 col-md-6 text-right mt-4">
                 <h1 class="orange-text fw-700 mb-0">Spread clean energy.</h1>
                 <h4 class="orange-text fw-300 mb-4">Make a real change in people's lives</h4>
                 <h5 class="grey-text fw-300 mb-5">100% of your monthly donation supports schools, homeless shelter, food pantries, hospitals and other nonprofits, save money and the environment.</h5>
@@ -363,21 +363,21 @@
                         if(data.status == 'donation_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " to RE-volv's mission to empower communities with solar energy!");
-                            window.location.href='/email_confirm/';
+                            window.location.href='/thanks/postdonation/';
                         }
                         if(data.status == 'subscription_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
-                            window.location.href='/email_confirm/';
+                            window.location.href='/thanks/postdonation/';
                         }
                         if(data.status == 'already_exist') {
                             $('.modal-title').text('Donation already exist');
                             $('.donation-text').text("Thank you for showing interest, you are already subscribe for monthly donation!");
-                            window.location.href='/email_confirm/';
+                        
                         }
                         $('#donation-spinner').css('display', 'none');
                         $('#operationModal').modal('show');
-                        window.location.href='/email_confirm/';
+                        window.location.href='/thanks/postdonation/';
     
                      },
                      error: function(data)

@@ -1,0 +1,208 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% load wagtailimages_tags %}
+
+{% block head %}
+
+<script src="{% static 'js/blog-monthly-js/plyr.polyfilled.js' %}"></script>
+<script src="{% static 'js/blog-monthly-js/script.js' %}"></script>
+
+<link href="{% static 'css/edu-media-css/post.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<link href="{% static 'css/eduresource-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/eduresource-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<script src="{% static 'js/base/homeAnimations.js' %}?version={{ version_number }}"></script>
+
+<link rel='stylesheet' href="https://daneden.github.io/animate.css/animate.min.css"/>
+
+{% endblock %}
+
+{% block body %}
+
+  <main role="main" class="container-fluid">
+                 
+    <div class="row justify-content-center align-items-center text-center">
+
+      <!-- dog animted class - animated fadeInRight delay-2s -->
+      <div id="dog-animated" class="dog" style="display: none; z-index:100; position: fixed; top: 360px; bottom: -50px;">
+        <div class="heart heartsAnim1"></div>
+        <div class="heart heartsAnim2"></div>
+        <div class="heart heartsAnim3"></div>
+        <div class="heart heartsAnim4"></div>
+        <div class="head">
+            <div class="year earLeft"></div>
+            <div class="year earRight"></div>
+            <div class="nose"></div>	
+          <div class="face">
+            <div class="eye eyeLeft"></div>
+            <div class="eye eyeRight"></div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="cheast"></div>
+          <div class="back"></div>
+          <div class="legs">
+            <div class="frontLegs frontLegsLeft"></div>
+            <div class="frontLegs frontLegsRight"></div>
+            <div class="backLegs backLegsLeft"></div>
+            <div class="backLegs backLegsRight"></div>
+          </div>
+          <div class="tail"></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="thanks" class="section width-medium padding-medium bg-blue-fade" id="monthly-donate-section-four"
+    style="background: url(../../../../static/images/eduresource-img/4reasonbringsolar.JPG); box-shadow: inset 0 0 0 1000px rgba(16, 0, 132, 0.3);">
+    <div class="section-inner" >
+     
+      <div id="thanks-message" class="bg-dkgray-trans text-large3 c10 ct10 cm10 box box-huge margin-bottom-large" style="border-radius: 14px;">
+      
+      <h4 style="text-align: center;">You're amazing, friend!</h4>
+      <p style="text-align: center;">Thanks to your support, we’re continuing to build power worldwide to isolate the fossil fuel industry and protect our communities. Can you commit to this fight a step further by making a monthly donation? Monthly membership means making history. Stay connected, and join us on <br />the frontlines of change.</p>
+      <div style="margin: 1em 0; text-align: center;"><a style="display: inline-block; border-radius: 100px; background-color: #100084; color: #fff; font-size: 20px; font-weight: bold; text-decoration: none; text-align: center; padding: 0.7em 1.4em;" href="https://re-volv.org/monthly_donor">Donate Monthly</a></div>
+      <p style="text-align: center;">There's still a lot to get done. <strong>A monthly donation helps us plan and deploy solar around the country</strong></p>
+      <p style="text-align: center;">Thank you for your support,<br />Andreas Karelas<br />Executive Director</p>
+      
+      </div>
+
+      <form method="POST" action="https://re-volv.org" accept-charset="utf-8">
+          <div class="margin-bottom-medium c6 ct10 cm10">
+            <div class="share-facebook">
+              <div class="box bg-facebook-color margin-bottom-none"  style="border-radius: 14px 14px 0px 0px;">
+                <h4 class="icon-after icon-faded">Share on Facebook</h4>
+              </div>
+              <div class="box box-big bg-white border" style="border-radius: 0px 0px 14px 14px;">
+                <div class="fb-preview fb-preview-horizontal bg-white border p">
+                  <div class="fb-preview-share-image image-link-parent c3_3 ct3_3 cm3_3 no-margin" style="padding-bottom:33.3%;background:url(https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png);background-size:cover;">
+                  </div>
+                  <div class="fb-preview-share-text box box-small no-margin-bottom c6_6 ct6_6 cm6_6 margin-bottom-medium">
+                    <p class="fb-preview-share-title strong margin-bottom-small">Donate to Help Build And Support Clean Energy</p>
+                    <p class="fb-preview-share-description text-small">We believe that everyone should have the ability to support and spread clean energy. Help us get there!</p>
+                    <p class="text-small2 text-font-secondary text-caps">re-volv.org</p>
+                  </div>
+                  <br class="clear">
+                </div>
+  
+                <a class="fb-share button-share-facebook button-share-medium bg-facebook-icon bg-facebook-color margin-bottom-none" href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/','popup','width=600,height=600'); return false;" target="_blank">Share on Facebook</a>
+              </div>
+            </div>
+
+            <div class="twitter-share">
+              <div class="bg-twitter-color box margin-bottom-none" style="border-radius: 14px 14px 0px 0px; ">
+              <h4 class="icon-after icon-faded" >Tweet</h4>
+              </div>
+              <div class="box box-big bg-white border" style="border-radius: 0px 0px 14px 14px;">
+                <textarea class="bg-ltgray border strong p" readonly>Join me and support the spread of clean energy by making a donation to @RE_volv today! --> https://re-volv.org/monthly_donor</textarea>
+                <a class="button-share-medium button-share-twitter bg-twitter-icon bg-twitter-color no-margin-bottom"href="https://www.twitter.com/share?url=https://re-volv.org/monthly_donor&amp;text=Join me and support the spread of clean energy by making a donation to @RE_volv today!&amp;">Tweet</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="share-general margin-bottom-medium c4 ct10 cm10">
+              <div class="box bg-midgray no-margin-bottom" style="border-radius: 14px 14px 0px 0px; background: #ff8a00;">
+                <h4 class="icon-after icon-faded" style="color:white;">Share</h4>
+              </div>
+              <div class="bg-ltgray box box-medium" style="border-radius: 0px 0px 14px 14px;">
+                  <p class="text-small"><em>Copy and paste this info into your app you use for messaging:</em></p>
+                
+                <div class="general-share-url">
+                  <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Link:</span></h4>
+                  <input id="page-link-url-general" type="text" class="border margin-bottom-medium bg-white page-link-url js-click-to-select-text"  value="https://re-volv.org/monthly_donor" readonly>
+                 
+                </div>
+                
+                <div class="general-share-description">
+                  <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Share Description:</span></h4>
+                  <textarea id="page-description-general" class="border text-small margin-bottom-medium bg-white js-click-to-select-text" readonly>We believe that everyone should have the ability to support and spread clean energy. Help us get there!</textarea>
+                 
+                </div>
+                <div class="general-share-image">
+                  <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Share Image:</span></h4>
+                  <input id="page-image-url-general" type="text" class="border margin-bottom-small text-small bg-white page-link-url js-click-to-select-text"  value="https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png" readonly>
+                  <p class="c5 ct5 cm5 no-margin margin-none"><a href="../../../dbqvwi2zcv14h.cloudfront.net/images/48770000686_542d486606_o.jpg"><img class="" src="https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png"></a></p>
+                  <br class="clear">
+                </div>
+              </div>
+          </div>
+      </form>
+    </div>
+  </section>
+  
+
+      <div class="container-fluid" id="monthly-donate-section-three">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-sm-12 co-md-10 col-lg-8">
+            <div class="row justify-content-center align-items-center text-center" id="ambassador-player-section"> 
+                <h1><img src="../../../static/images/blog-monthly-img/quote-mark.png"></h1>
+                <h3 class="text-white fw-300 mb-3">Every penny, nickel, and dime that I’m saving from solar is going to my three year old granddaughter's education</h3>
+                <h5 class="orange-text fw-700 mb-5">Unity Gardens affordable housing resident</h5>
+                <div class="player-skin mt-3">
+                  <video controls crossorigin playsinline poster="../../../static/images/blog-monthly-img/monthly-donate-video-cover.png" id="ambassador-player" class="plyr-video">
+      
+                    <source src="../../../static/images/blog-monthly-img/donor_video.mp4" type="video/mp4" size="720">
+                    <!-- Fallback for browsers that don't support the <video> element -->
+                    <a href="../../../static/images/blog-monthly-img/donor_video.mp4" download>Download</a>
+                  </video>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="container-fluid" id="section-six">
+          <div class="row justify-content-center align-items-center section-six-row">
+            <div class="col-sm-12 co-md-12 col-lg-10">
+              <div class="row align-items-center">
+                <div class="col-sm-12 col-md-5 text-right text-white">
+                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+                  <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="input-group mb-3 subscription-form inputs">
+                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+  </main><!-- /.container -->
+
+    <script src="{% static 'js/blog-monthly-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/blog-monthly-js/script.js' %}"></script>
+
+    <script>
+
+      $(document).ready(function(){
+        $('#dog-animated').addClass('show');
+        $('#dog-animated').css('display', 'block');
+        
+        //animated fadeInRight delay-1s
+        $('#dog-animated').addClass('animated')
+        $('#dog-animated').addClass('fadeInRight')
+        $('#dog-animated').addClass('delay-1s')
+
+        setTimeout(function(){
+          $('.dog').addClass('animated fadeOutLeft');
+          const element =  document.querySelector('#dog-animated')
+          element.addEventListener('animationend', function() { 
+            element.remove() 
+          })
+
+        }, 3000);
+      });
+  
+    </script>
+
+  {% endblock %}

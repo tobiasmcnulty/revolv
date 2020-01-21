@@ -315,12 +315,12 @@ input.checkbox-settings[type="checkbox"] + label::before {
                         if(data.status == 'donation_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " to RE-volv's mission to empower communities with solar energy!");
-                            window.location.href='/email_confirm/';
+                            window.location.href='/thanks/postdonation/';
                         }
                         if(data.status == 'subscription_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
-                            window.location.href='/email_confirm/';
+                            window.location.href='/thanks/postdonation/';
                         }
                         $('#donation-spinner').css('display', 'none');
                         $('#operationModal').modal('show');

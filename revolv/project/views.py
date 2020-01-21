@@ -263,7 +263,7 @@ def stripe_payment(request, pk):
             'post_donation',
             context, [email]
         )
-        response = redirect('/signin/#signup')
+        response = redirect('postdonation')
         response.set_cookie('last_project', payment.project.title)
         return response
     else:
@@ -296,7 +296,7 @@ def stripe_payment(request, pk):
             'post_donation',
             context, [request.user.email]
         )
-        return redirect('email_confirm')
+        return redirect('postdonation')
 
 
 

@@ -631,6 +631,8 @@ def monthly_donor(request):
     return render(request, 'base/partials/monthly-donate.html')
 
 #--------------------------------
+def postdonation(request):
+    return render(request, 'base/partials/thanks-donation.html')
 
 def ambassador_info(request):
     return render(request, 'base/partials/solar-ambassador.html')
