@@ -91,6 +91,8 @@ urlpatterns = patterns(
 
     url(r'^monthly_donor', 'revolv.base.views.monthly_donor', name='monthly_donor'),
     url(r'^thanks/postdonation/', 'revolv.base.views.postdonation', name='postdonation'),
+    url(r'^thanks/postmonthlydonation/', 'revolv.base.views.postmonthlydonation', name='postmonthlydonation'),
+    url(r'^thanks/postnonprofit/', 'revolv.base.views.postnonprofitlead', name='postnonprofitlead'),
 
     url(r'^ambassador_info/', 'revolv.base.views.ambassador_info', name='ambassador_info'),
 

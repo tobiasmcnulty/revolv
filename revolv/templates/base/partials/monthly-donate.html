@@ -363,12 +363,12 @@
                         if(data.status == 'donation_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " to RE-volv's mission to empower communities with solar energy!");
-                            window.location.href='/thanks/postdonation/';
+                            window.location.href='/thanks/postmonthlydonation/';
                         }
                         if(data.status == 'subscription_success') {
                             $('.modal-title').text('Thank you for donating!');
                             $('.donation-text').text("Thank you for donating $" +data.amount + " monthly to RE-volv's mission to empower communities with solar energy!");
-                            window.location.href='/thanks/postdonation/';
+                            window.location.href='/thanks/postmonthlydonation/';
                         }
                         if(data.status == 'already_exist') {
                             $('.modal-title').text('Donation already exist');
@@ -377,7 +377,7 @@
                         }
                         $('#donation-spinner').css('display', 'none');
                         $('#operationModal').modal('show');
-                        window.location.href='/thanks/postdonation/';
+                        window.location.href='/thanks/postmonthlydonation/';
     
                      },
                      error: function(data)
