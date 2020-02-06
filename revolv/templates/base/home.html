@@ -123,16 +123,7 @@ a {
       {% if fund_main_active_projects|length == 0 %}
       {% else %}
 
-      <div class="map-wrapper" style="position:relative;">
-        <div id="map" style="height: 700px; width:100%;"></div>
-        <div id="map-overlay" style="position:absolute; top:4px; margin:0 43%; font-size: 20px;">
-          <div class="row text-center">
-            <div class="col-sm-12 mb-3">
-            <h1 style="color:#100084;  text-shadow: 2px 4px 3px rgba(0,0,0,0.3); font-size:18px;">Our Solar Projects</h1>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="map" style="height: 700px; width:100%;"></div>
 
       <div class="container-fluid" id="section-five">
         <div class="row justify-content-center align-items-center">
@@ -518,6 +509,8 @@ a {
       var oms = new OverlappingMarkerSpiderfier(map, {
         markersWontMove: true,
         markersWontHide: true,
+        keepSpiderfied: true,
+        ignoreMapClick: true,
         circleFootSeparation: 100, 
         spiralFootSeparation: 89,
         basicFormatEvents: true
