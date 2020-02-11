@@ -63,4 +63,3 @@ users:
     four:
         public_key:
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzdPfGpEGV2Vhannfbt4TYFd8o4oUMNIqnjVz1eST4mnWKom/C3KjF9ZJhmwLCDcfW595JL/oXUFYcE0l4vn8PjathIFn2/rkUy8CvWUdM8ZNRm0wiIQkzobiF905s/9GPFjEY25H5apwwQ3rYhkgwYEVsodLYNVNrZ3/UVkaTKWo/W7Gn+v3kqPcicsaa1uwC5vhMqPnb1fg2sZDinmq4D31BPT4n1G4ER8CoK3d+4nJkzFQRoU5Qz1e0vCkQ/ZpxrL4n1iBqeMxs3nlkUEVKqkadXJ99WeMzf8xhN4xIN5F+L8a02LP0EuN9jQg3pN/tQxiEJFJ6ZFcc3UQ+/AZh remark@RE-Mark
-    
