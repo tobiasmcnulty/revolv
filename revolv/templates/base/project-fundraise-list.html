@@ -72,7 +72,7 @@
 <script>
     $(document).ready(function () {
         if (('{{ social }}' == 'donation') || $.cookie('last_project')) {
-            $("#social_media").modal("show");
+            //$("#social_media").modal("show");
             $.removeCookie('last_project', {path: '/'});
         }
     });
