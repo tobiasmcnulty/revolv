@@ -4,7 +4,7 @@ from revolv.project.views import (CreateProjectView, CreateProjectSubView, EditP
                                   PostProjectUpdateView, ProjectView,ProjectReinvestView,
                                   ReviewProjectView, SubmitDonationView,
                                   UpdateProjectView, UpdateProjectSubView, ProjectListReinvestmentView,
-                                  stripe_payment, stripe_operation_donation, stripe_address_sfdc, stripe_webhook)
+                                  stripe_payment, stripe_operation_donation, stripe_webhook)
 
 urlpatterns = patterns(
     '',
@@ -13,7 +13,6 @@ urlpatterns = patterns(
     url(r'^(?P<pk>\d+)/stripe/$', stripe_payment, name='stripe_payment'),
     url(r'^stripe/webhook', stripe_webhook, name='stripe_webhook'),
     url(r'^stripe_operation_donation/$', stripe_operation_donation, name='stripe_operation_donation'),
-    url(r'^stripe_address_sfdc/$', stripe_address_sfdc, name='stripe_address_sfdc'),
     url(r'^(?P<pk>\d+)/edit$', UpdateProjectView.as_view(), name='edit'),
     url(r'^(?P<pk>\d+)/edit-sub$', UpdateProjectSubView.as_view(), name='edit-sub'),
     url(r'^(?P<pk>\d+)/reinvest_page/$', ProjectReinvestView.as_view(), name='project_reinvest'),
