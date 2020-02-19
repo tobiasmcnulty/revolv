@@ -633,11 +633,27 @@ def monthly_donor(request):
 
 #--------------------------------
 def postdonation(request):
-    return render(request, 'base/partials/thanks-donation.html')
+
+    paymentz = request.session.get('payment')
+    social = request.session.get('social')
+
+    module = request.session.get('result_module')
+
+    context = {'paymentz':paymentz, 'social': request.session.pop('social', None), 'result': request.session.pop('payment', None), 'resultGiveOnce': request.session.pop('result_module', None)}
+
+    return render(request, 'base/partials/thanks-donation.html', context)
 
 #--------------------------------
 def postmonthlydonation(request):
-    return render(request, 'base/partials/thanks-donation2.html')
+
+    paymentz = request.session.get('payment')
+    social = request.session.get('social')
+
+    module = request.session.get('result_module')
+
+    context = {'paymentz':paymentz, 'social': request.session.pop('social', None), 'result': request.session.pop('result_module', None), 'resultGiveOnce': request.session.pop('result_module', None)}
+
+    return render(request, 'base/partials/thanks-donation2.html', context)
 
 def postnonprofitlead(request):
     return render(request, 'base/partials/thanks-nonprofit.html')

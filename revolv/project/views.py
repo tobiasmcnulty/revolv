@@ -39,6 +39,54 @@ from createsend import Transactional
 from createsend import Subscriber
 
 
+
+def stripe_address_sfdc(request):
+    try:
+        streetz = request.POST['stripestreet'] 
+        suitez = request.POST['stripesuite']
+        cityz = request.POST['formcity'] 
+        statez = request.POST['formstate']
+
+        firstnamez = request.POST['stripefirstname'] 
+        lastnamez = request.POST['stripelastname'] 
+
+        # amount input session for campaign module donation is not rounded by decimal point
+        amountz = request.session.get('amount_input')
+
+        mainAmount = None
+
+        if amountz:
+            #print '---amountz---'
+            mainAmount = float(amountz)
+        
+
+        if request.session._session:
+            
+            #print request.session._session
+
+            emailz = request.session.get('email_input')
+            zipz = request.session.get('zip_input')
+            amountz = request.session.get('amount_input')
+            project_sub = request.session.get('projectmain_input')
+            project = request.session.get('project')
+
+           
+        #check if project monthly Donations
+        if project == 'Monthly Donations':
+            send_donation_info(emailz, mainAmount, emailz, project, project_sub , zipz, statez, streetz, suitez, cityz, emailz, firstnamez, lastnamez, address='')
+        else: 
+            send_donation_info(emailz, mainAmount, emailz, project, project_sub , zipz, statez, streetz, suitez, cityz, emailz, firstnamez, lastnamez, address='')
+            
+        #send_donation_info(email, donation_cents / 100.0, email, 'Monthly Donations', 'Monthly Donations', postalcode, address='')
+
+    except KeyError:
+        logger.exception('stripe_payment called without required POST data')
+        return HttpResponseBadRequest('bad POST data')
+
+    print '============================================================================================================================='
+
+    return redirect('email_confirm')
+
 # @login_required
 def stripe_payment(request, pk):
     try:
@@ -47,6 +95,12 @@ def stripe_payment(request, pk):
         amount_cents = request.POST['amount_cents']
         email = request.POST['stripeEmail']
         zipcode = request.POST['stripeBillingAddressZip']
+
+        request.session['email_input'] = request.POST['stripeEmail']
+        request.session['zip_input'] = request.POST['stripeBillingAddressZip']
+        
+        #request.session['amount_input'] = request.POST['amount_cents']
+
     except KeyError:
         logger.exception('stripe_payment called without required POST data')
         return HttpResponseBadRequest('bad POST data')
@@ -75,6 +129,8 @@ def stripe_payment(request, pk):
     # pass through for sub fundraise on sfdc as main
     projectmain = projectz.title
 
+    request.session['projectmain_input'] = projectmain
+
     # postal code for Opportunity
     postalcode = zipcode
 
@@ -89,6 +145,9 @@ def stripe_payment(request, pk):
     tx_mailer = Transactional(auth)
 
     donation_value = donation_cents / 100.00
+
+       
+    request.session['amount_input'] = donation_value
 
     donor_email_cm = request.POST['stripeEmail']
 
@@ -165,8 +224,7 @@ def stripe_payment(request, pk):
                 tip=tip,
                 payment_type=PaymentType.objects.get_stripe(),
             )
-            send_donation_info(donor.matching_donor.get_full_name(), matching_donation, donor.matching_donor.user.email,
-                               project.title, projectmain, postalcode, address='')
+            #send_donation_info(donor.matching_donor.get_full_name(), matching_donation, donor.matching_donor.user.email, project.title, projectmain, postalcode, address='')
 
     if request.user.is_authenticated():
         user = request.user.revolvuserprofile
@@ -258,7 +316,7 @@ def stripe_payment(request, pk):
         request.session['url'] = previous_url
         context['first_name'] = "RE-volv"
         context['last_name'] = "supporter"
-        send_donation_info(email, donation_cents / 100.0, email, project.title, projectmain, postalcode, address='')
+        #send_donation_info(email, donation_cents / 100.0, email, project.title, projectmain, postalcode, address='')
         send_revolv_email(
             'post_donation',
             context, [email]
@@ -291,7 +349,7 @@ def stripe_payment(request, pk):
         request.session['url'] = previous_url
         request.session['cover_photo'] = (SITE_URL + '/media/') + ''.join(cover_photo)
         request.session['social'] = "donation"
-        send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, projectmain, postalcode, address='')
+        #send_donation_info(user.get_full_name(), donation_cents / 100.0, user.user.email, project.title, projectmain, postalcode, address='')
         send_revolv_email(
             'post_donation',
             context, [request.user.email]
@@ -311,11 +369,21 @@ def stripe_operation_donation(request):
         email = request.POST['stripeEmail']
         zipcode = request.POST['stripeBillingAddressZip']
         check = request.POST.get('check')
+
+        request.session['email_input'] = request.POST['stripeEmail']
+        request.session['zip_input'] = request.POST['stripeBillingAddressZip']
+
+        # amount cents in monthly page module rounds it to a decimal point no need to divide to get the decimal point
+        request.session['amount_input'] = amount_cents
+
     except KeyError:
         logger.exception('stripe_operation_donation called without required POST data')
         return HttpResponseBadRequest('bad POST data')
 
     project = get_object_or_404(Project, title='Operations')
+
+    request.session['project'] = 'Operations'
+    request.session['projectmain_input'] = 'Operations'
 
     postalcode = zipcode
 
@@ -382,7 +450,7 @@ def stripe_operation_donation(request):
                     payment_type=PaymentType.objects.get_stripe(),
                 )
 
-            send_donation_info(email,  amount / 100, email, 'Operations', 'Operations', postalcode, address='')
+            #send_donation_info(email,  amount / 100, email, 'Operations', 'Operations', postalcode, address='')
 
         context = {}
         if not request.user.is_authenticated():
@@ -395,6 +463,7 @@ def stripe_operation_donation(request):
 
         context['amount'] = amount / 100.0
 
+        request.session['result_module'] = 'singleModule'
         #----- old re-volv send emailer post donation  ---- 
         send_revolv_email(
             'Post_operations_donation',
@@ -477,6 +546,8 @@ def stripe_operation_donation(request):
                             plan=plan,
                         )
 
+                        request.session['result_module'] = 'monthlyModule'
+                        request.session['project'] = 'Monthly Donations'
 
                     except stripe.error.CardError as e:
                         body = e.json_body
@@ -518,6 +589,11 @@ def stripe_operation_donation(request):
                         customer=customer,
                         plan=plan,
                     )
+
+
+                    # project name for data pass through SFDC
+                    request.session['project'] = 'Monthly Donations'
+
 
 
                 except stripe.error.CardError as e:
@@ -576,7 +652,9 @@ def stripe_operation_donation(request):
 
             context['amount'] = amount / 100.0
 
-            send_donation_info(email ,  amount / 100, email, 'Monthly Donations', 'Monthly Donations', postalcode, address='')
+
+            request.session['result_module'] = 'monthlyModule'
+            #send_donation_info(email ,  amount / 100, email, 'Monthly Donations', 'Monthly Donations', postalcode, address='')
 
             send_revolv_email(
                 'Post_operations_donation',
@@ -662,8 +740,7 @@ def stripe_webhook(request):
                         payment_type=PaymentType.objects.get_stripe(),
                     )
                     project = get_object_or_404(Project, title='Operations')
-                    send_donation_info(user.get_full_name(), round(amount / float(100), 2), user.user.email,
-                                       project.title, address='')
+                    #send_donation_info(user.get_full_name(), round(amount / float(100), 2), user.user.email, project.title, address='')
             else:
                 user = stripeDetails.user
                 user.solar_seed_fund_pool = user.solar_seed_fund_pool + amount / 100

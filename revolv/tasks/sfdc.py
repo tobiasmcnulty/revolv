@@ -120,7 +120,7 @@ def fetch_user_by_email(email):
 
     return emailName
 
-def send_donation_info(name, amount,email, project, projectmain, postalcode, address=''):
+def send_donation_info(name, amount,email, project, projectmain, postalcode, state, streetaddress, addressunit, city, emailaddress, firstname, lastname, address=''):
     if not settings.SFDC_ACCOUNT:
         return
     try:
@@ -142,20 +142,20 @@ def send_donation_info(name, amount,email, project, projectmain, postalcode, add
 
             # if campaign title is one of the static campaign in the array pass through, else use static Solar Seed Fund for sub campaigns
             if any(project in s for s in campaigns):
-                payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+                payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': '' ,  'billingState': state, 'billingAddress': streetaddress, 'billingAddressUnit': addressunit, 'billingCity': city, 'billingEmail': emailaddress, 'billingFirstName': firstname, 'billingLastName': lastname }
             elif project == 'Monthly Donations':
-                payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''}
+                payload = {'donorName': name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''  ,   'billingState': state, 'billingAddress': streetaddress, 'billingAddressUnit': addressunit, 'billingCity': city, 'billingEmail': emailaddress, 'billingFirstName': firstname, 'billingLastName': lastname}
             else:
-                payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+                payload = {'donorName': name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''  ,  'billingState': state, 'billingAddress': streetaddress, 'billingAddressUnit': addressunit, 'billingCity': city, 'billingEmail': emailaddress, 'billingFirstName': firstname, 'billingLastName': lastname }
 
         else:
             
             if any(project in s for s in campaigns):
-                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''  ,   'billingState': state, 'billingAddress': streetaddress, 'billingAddressUnit': addressunit, 'billingCity': city, 'billingEmail': emailaddress, 'billingFirstName': firstname, 'billingLastName': lastname}
             elif project == 'Monthly Donations':
-                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''}
+                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': project, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'Yes', 'donorAddress': ''   ,   'billingState': state, 'billingAddress': streetaddress, 'billingAddressUnit': addressunit, 'billingCity': city, 'billingEmail': emailaddress, 'billingFirstName': firstname, 'billingLastName': lastname}
             else:
-                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''}
+                payload = {'donorName': existing_name, 'donorEmail':email, 'projectName': projectmain, 'donationAmount': amount, 'projectTitle': description, 'postalCode': postalcode, 'monthlyDonor': 'No','donorAddress': ''  ,  'billingState': state, 'billingAddress': streetaddress, 'billingAddressUnit': addressunit, 'billingCity': city, 'billingEmail': emailaddress, 'billingFirstName': firstname, 'billingLastName': lastname}
 
 
         if existing_name == '':
