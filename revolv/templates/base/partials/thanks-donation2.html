@@ -17,190 +17,583 @@
 
 <link rel='stylesheet' href="https://daneden.github.io/animate.css/animate.min.css"/>
 
+<link href="{% static 'css/edu-media-css/ts-v1.css' %}" rel="stylesheet" />
+
+<link href="{% static 'css/edu-media-css/stripe.css' %}" rel="stylesheet" />
+
 {% endblock %}
 
 {% block body %}
+<main role="main" class="container-fluid">
 
-  <main role="main" class="container-fluid">
-                 
-    <div class="row justify-content-center align-items-center text-center">
-
-      <!-- dog animted class - animated fadeInRight delay-2s -->
-      <div id="dog-animated" class="dog" style="display: none; z-index:100; position: fixed; top: 360px; bottom: -50px;">
-        <div class="heart heartsAnim1"></div>
-        <div class="heart heartsAnim2"></div>
-        <div class="heart heartsAnim3"></div>
-        <div class="heart heartsAnim4"></div>
-        <div class="head">
-            <div class="year earLeft"></div>
-            <div class="year earRight"></div>
-            <div class="nose"></div>	
-          <div class="face">
-            <div class="eye eyeLeft"></div>
-            <div class="eye eyeRight"></div>
-            <div class="mouth"></div>
-          </div>
-        </div>
-        <div class="body">
-          <div class="cheast"></div>
-          <div class="back"></div>
-          <div class="legs">
-            <div class="frontLegs frontLegsLeft"></div>
-            <div class="frontLegs frontLegsRight"></div>
-            <div class="backLegs backLegsLeft"></div>
-            <div class="backLegs backLegsRight"></div>
-          </div>
-          <div class="tail"></div>
-        </div>
-      </div>
-    </div>
-
-    <section id="thanks" class="section width-medium padding-medium bg-blue-fade" id="monthly-donate-section-four"
+  <section id="thanks" class="section width-medium padding-medium bg-blue-fade" id="monthly-donate-section-four"
     style="background: url(../../../../static/images/eduresource-img/4reasonbringsolar.JPG); box-shadow: inset 0 0 0 1000px rgba(16, 0, 132, 0.3);">
-    <div class="section-inner" >
-     
-      <div id="thanks-message" class="bg-dkgray-trans text-large3 c10 ct10 cm10 box box-huge margin-bottom-large" style="border-radius: 14px;">
-      
-      <h4 style="text-align: center;">THANK YOU</h4>
-      <p style="text-align: center;">Your hard-earned dollars are about to go to work building more solar projects that directly power community-serving institutions with clean energy.</p>
-      <p style="text-align: center;">PLEASE SPREAD THE WORD AND BUILD THE MOVEMENT</p>
-      
+    <div class="section-inner">
+
+      <div id="thanks-message" class="bg-dkgray-trans text-large3 c10 ct10 cm10 box box-huge margin-bottom-large"
+        style="border-radius: 14px;">
+
+        <h4 style="text-align: center;">THANK YOU</h4>
+        <p style="text-align: center;">Your hard-earned dollars are about to go to work building more solar projects
+          that directly power community-serving institutions with clean energy.</p>
+        <p style="text-align: center;">PLEASE SPREAD THE WORD AND BUILD THE MOVEMENT</p>
+
       </div>
 
       <form method="POST" action="https://re-volv.org" accept-charset="utf-8">
-          <div class="margin-bottom-medium c6 ct10 cm10">
-            <div class="share-facebook">
-              <div class="box bg-facebook-color margin-bottom-none"  style="border-radius: 14px 14px 0px 0px;">
-                <h4 class="icon-after icon-faded">Share on Facebook</h4>
-              </div>
-              <div class="box box-big bg-white border" style="border-radius: 0px 0px 14px 14px;">
-                <div class="fb-preview fb-preview-horizontal bg-white border p">
-                  <div class="fb-preview-share-image image-link-parent c3_3 ct3_3 cm3_3 no-margin" style="padding-bottom:33.3%;background:url(https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png);background-size:cover;">
-                  </div>
-                  <div class="fb-preview-share-text box box-small no-margin-bottom c6_6 ct6_6 cm6_6 margin-bottom-medium">
-                    <p class="fb-preview-share-title strong margin-bottom-small">Donate to Help Build And Support Clean Energy</p>
-                    <p class="fb-preview-share-description text-small">We believe that everyone should have the ability to support and spread clean energy. Help us get there!</p>
-                    <p class="text-small2 text-font-secondary text-caps">re-volv.org</p>
-                  </div>
-                  <br class="clear">
-                </div>
-  
-                <a class="fb-share button-share-facebook button-share-medium bg-facebook-icon bg-facebook-color margin-bottom-none" href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/"
-                onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/','popup','width=600,height=600'); return false;" target="_blank">Share on Facebook</a>
-              </div>
+        <div class="margin-bottom-medium c6 ct10 cm10">
+          <div class="share-facebook">
+            <div class="box bg-facebook-color margin-bottom-none" style="border-radius: 14px 14px 0px 0px;">
+              <h4 class="icon-after icon-faded">Share on Facebook</h4>
             </div>
+            <div class="box box-big bg-white border" style="border-radius: 0px 0px 14px 14px;">
+              <div class="fb-preview fb-preview-horizontal bg-white border p">
+                <div class="fb-preview-share-image image-link-parent c3_3 ct3_3 cm3_3 no-margin"
+                  style="padding-bottom:33.3%;background:url(https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png);background-size:cover;">
+                </div>
+                <div class="fb-preview-share-text box box-small no-margin-bottom c6_6 ct6_6 cm6_6 margin-bottom-medium">
+                  <p class="fb-preview-share-title strong margin-bottom-small">Donate to Help Build And Support Clean
+                    Energy</p>
+                  <p class="fb-preview-share-description text-small">We believe that everyone should have the ability to
+                    support and spread clean energy. Help us get there!</p>
+                  <p class="text-small2 text-font-secondary text-caps">re-volv.org</p>
+                </div>
+                <br class="clear">
+              </div>
 
-            <div class="twitter-share">
-              <div class="bg-twitter-color box margin-bottom-none" style="border-radius: 14px 14px 0px 0px; ">
-              <h4 class="icon-after icon-faded" >Tweet</h4>
-              </div>
-              <div class="box box-big bg-white border" style="border-radius: 0px 0px 14px 14px;">
-                <textarea class="bg-ltgray border strong p" readonly>Join me and support the spread of clean energy by making a donation to @RE_volv today! --> https://re-volv.org/monthly_donor</textarea>
-                <a class="button-share-medium button-share-twitter bg-twitter-icon bg-twitter-color no-margin-bottom"href="https://www.twitter.com/share?url=https://re-volv.org/monthly_donor&amp;text=Join me and support the spread of clean energy by making a donation to @RE_volv today!&amp;">Tweet</a>
-              </div>
+              <a class="fb-share button-share-facebook button-share-medium bg-facebook-icon bg-facebook-color margin-bottom-none"
+                href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/','popup','width=600,height=600'); return false;"
+                target="_blank">Share on Facebook</a>
             </div>
           </div>
 
-          <div class="share-general margin-bottom-medium c4 ct10 cm10">
-              <div class="box bg-midgray no-margin-bottom" style="border-radius: 14px 14px 0px 0px; background: #ff8a00;">
-                <h4 class="icon-after icon-faded" style="color:white;">Share</h4>
-              </div>
-              <div class="bg-ltgray box box-medium" style="border-radius: 0px 0px 14px 14px;">
-                  <p class="text-small"><em>Copy and paste this info into your app you use for messaging:</em></p>
-                
-                <div class="general-share-url">
-                  <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Link:</span></h4>
-                  <input id="page-link-url-general" type="text" class="border margin-bottom-medium bg-white page-link-url js-click-to-select-text"  value="https://re-volv.org/monthly_donor" readonly>
-                 
-                </div>
-                
-                <div class="general-share-description">
-                  <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Share Description:</span></h4>
-                  <textarea id="page-description-general" class="border text-small margin-bottom-medium bg-white js-click-to-select-text" readonly>We believe that everyone should have the ability to support and spread clean energy. Help us get there!</textarea>
-                 
-                </div>
-                <div class="general-share-image">
-                  <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Share Image:</span></h4>
-                  <input id="page-image-url-general" type="text" class="border margin-bottom-small text-small bg-white page-link-url js-click-to-select-text"  value="https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png" readonly>
-                  <p class="c5 ct5 cm5 no-margin margin-none"><a href="../../../dbqvwi2zcv14h.cloudfront.net/images/48770000686_542d486606_o.jpg"><img class="" src="https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png"></a></p>
-                  <br class="clear">
-                </div>
-              </div>
+          <div class="twitter-share">
+            <div class="bg-twitter-color box margin-bottom-none" style="border-radius: 14px 14px 0px 0px; ">
+              <h4 class="icon-after icon-faded">Tweet</h4>
+            </div>
+            <div class="box box-big bg-white border" style="border-radius: 0px 0px 14px 14px;">
+              <textarea class="bg-ltgray border strong p"
+                readonly>Join me and support the spread of clean energy by making a donation to @RE_volv today! --> https://re-volv.org/monthly_donor</textarea>
+              <a class="button-share-medium button-share-twitter bg-twitter-icon bg-twitter-color no-margin-bottom"
+                href="https://www.twitter.com/share?url=https://re-volv.org/monthly_donor&amp;text=Join me and support the spread of clean energy by making a donation to @RE_volv today!&amp;">Tweet</a>
+            </div>
           </div>
+        </div>
+
+        <div class="share-general margin-bottom-medium c4 ct10 cm10">
+          <div class="box bg-midgray no-margin-bottom" style="border-radius: 14px 14px 0px 0px; background: #ff8a00;">
+            <h4 class="icon-after icon-faded" style="color:white;">Share</h4>
+          </div>
+          <div class="bg-ltgray box box-medium" style="border-radius: 0px 0px 14px 14px;">
+            <p class="text-small"><em>Copy and paste this info into your app you use for messaging:</em></p>
+
+            <div class="general-share-url">
+              <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Link:</span></h4>
+              <input id="page-link-url-general" type="text"
+                class="border margin-bottom-medium bg-white page-link-url js-click-to-select-text"
+                value="https://re-volv.org/monthly_donor" readonly>
+
+            </div>
+
+            <div class="general-share-description">
+              <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Share Description:</span>
+              </h4>
+              <textarea id="page-description-general"
+                class="border text-small margin-bottom-medium bg-white js-click-to-select-text"
+                readonly>We believe that everyone should have the ability to support and spread clean energy. Help us get there!</textarea>
+
+            </div>
+            <div class="general-share-image">
+              <h4 class="text-small margin-bottom-none"><span class="highlight bg-midgray">Share Image:</span></h4>
+              <input id="page-image-url-general" type="text"
+                class="border margin-bottom-small text-small bg-white page-link-url js-click-to-select-text"
+                value="https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png" readonly>
+              <p class="c5 ct5 cm5 no-margin margin-none"><a
+                  href="../../../dbqvwi2zcv14h.cloudfront.net/images/48770000686_542d486606_o.jpg"><img class=""
+                    src="https://re-volv.org/static/images/edu-media-img/monthly-donate-header.png"></a></p>
+              <br class="clear">
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </section>
-  
 
-      <div class="container-fluid" id="monthly-donate-section-three">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-sm-12 co-md-10 col-lg-8">
-            <div class="row justify-content-center align-items-center text-center" id="ambassador-player-section"> 
-                <h1><img src="../../../static/images/blog-monthly-img/quote-mark.png"></h1>
-                <h3 class="text-white fw-300 mb-3">Every penny, nickel, and dime that I’m saving from solar is going to my three year old granddaughter's education</h3>
-                <h5 class="orange-text fw-700 mb-5">Unity Gardens affordable housing resident</h5>
-                <div class="player-skin mt-3">
-                  <video controls crossorigin playsinline poster="../../../static/images/blog-monthly-img/monthly-donate-video-cover.png" id="ambassador-player" class="plyr-video">
-      
-                    <source src="../../../static/images/blog-monthly-img/donor_video.mp4" type="video/mp4" size="720">
-                    <!-- Fallback for browsers that don't support the <video> element -->
-                    <a href="../../../static/images/blog-monthly-img/donor_video.mp4" download>Download</a>
-                  </video>
+  <div class="container-fluid" id="monthly-donate-section-three">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-12 co-md-10 col-lg-8">
+        <div class="row justify-content-center align-items-center text-center" id="ambassador-player-section">
+          <h1><img src="../../../static/images/blog-monthly-img/quote-mark.png"></h1>
+          <h3 class="text-white fw-300 mb-3">Every penny, nickel, and dime that I’m saving from solar is going to my
+            three year old granddaughter's education</h3>
+          <h5 class="orange-text fw-700 mb-5">Unity Gardens affordable housing resident</h5>
+          <div class="player-skin mt-3">
+            <video controls crossorigin playsinline
+              poster="../../../static/images/blog-monthly-img/monthly-donate-video-cover.png" id="ambassador-player"
+              class="plyr-video">
+
+              <source src="../../../static/images/blog-monthly-img/donor_video.mp4" type="video/mp4" size="720">
+              <!-- Fallback for browsers that don't support the <video> element -->
+              <a href="../../../static/images/blog-monthly-img/donor_video.mp4" download>Download</a>
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    <div class="container-fluid" id="section-six">
+      <div class="row justify-content-center align-items-center section-six-row">
+        <div class="col-sm-12 co-md-12 col-lg-10">
+          <div class="row align-items-center">
+            <div class="col-sm-12 col-md-5 text-right text-white">
+              <h2 class="fw-700 mb-3">Newsletter Signup</h2>
+              <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from
+                us.</p>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <div class="input-group mb-3 subscription-form inputs">
+                <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value=""
+                  maxlength="255" tabindex="1" placeholder="Enter your email address" required>
+                <div class="input-group-append">
+                  <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign
+                    up</button>
                 </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </form>
 
-      <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
-        <div class="container-fluid" id="section-six">
-          <div class="row justify-content-center align-items-center section-six-row">
-            <div class="col-sm-12 co-md-12 col-lg-10">
-              <div class="row align-items-center">
-                <div class="col-sm-12 col-md-5 text-right text-white">
-                  <h2 class="fw-700 mb-3">Newsletter Signup</h2>
-                  <p class="fw-300">By subscribing to our mailing list you will always be updated with the latest news from us.</p>
-                </div>
-                <div class="col-sm-12 col-md-7">
-                  <div class="input-group mb-3 subscription-form inputs">
-                      <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Enter your email address" required>
-                      <div class="input-group-append">
-                      <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+  <div class="row justify-content-center align-items-center text-center">
+
+    {% if result or resultGiveOnce or social %}
+
+    <!-- dog animted class - animated fadeInRight delay-2s -->
+    <div id="dog-animated" class="dog" style="display: none; z-index:100; position: fixed; top: 360px; bottom: -50px;">
+      <div class="heart heartsAnim1"></div>
+      <div class="heart heartsAnim2"></div>
+      <div class="heart heartsAnim3"></div>
+      <div class="heart heartsAnim4"></div>
+      <div class="head">
+        <div class="year earLeft"></div>
+        <div class="year earRight"></div>
+        <div class="nose"></div>
+        <div class="face">
+          <div class="eye eyeLeft"></div>
+          <div class="eye eyeRight"></div>
+          <div class="mouth"></div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="cheast"></div>
+        <div class="back"></div>
+        <div class="legs">
+          <div class="frontLegs frontLegsLeft"></div>
+          <div class="frontLegs frontLegsRight"></div>
+          <div class="backLegs backLegsLeft"></div>
+          <div class="backLegs backLegsRight"></div>
+        </div>
+        <div class="tail"></div>
+      </div>
+    </div>
+
+    <div id="container" style="height: 100%; z-index: 100; position: fixed; top: 172px; bottom: -50px;">
+      <section data-reactroot="" class="Checkout is-desktop" role="dialog" aria-live="polite"
+        aria-label="Secure Credit Card Form">
+        <div class="Preload">
+          <div class="Popover-arrow"></div>
+        </div><span>
+          <div class="Overlay">
+            <div class="Overlay-Background"></div>
+          </div>
+        </span><span>
+          <div class="ModalContainer" style="margin-top: 146px;">
+            <div class="Modal-animationWrapper"><span></span>
+              <main class="Modal" role="main">
+                <div>
+                  <header class="Header" role="banner">
+                    <div><span></span><span class="Header-navClose" aria-label="Close"></span></div>
+                    <div class="Header-logo">
+                      <div class="Header-logoWrap">
+                        <div class="Header-logoBevel"></div>
+                        <div class="Header-logoBorder"></div><img class="Header-logoImageCatchError"
+                          src="http://127.0.0.1:8000/static/images/revolvorange.png">
+                        <div class="Header-logoImage" alt="Logo"
+                          style="background-image: url(&quot;http://127.0.0.1:8000/static/images/revolvorange.png&quot;);">
+                        </div>
                       </div>
+                    </div>
+                    <h1 class="Header-companyName u-textTruncate">RE-volv</h1>
+                    <h2 class="Header-purchaseDescription u-textTruncate" style="display:none;">Thank you for donating
+                    </h2>
+                    <div class="Header-account" style="position: relative;"></div>
+                  </header>
+                  <div class="PaymentMethodSelector-wrapper">
+                    <div class="PaymentMethodSelector-edge"></div>
                   </div>
                 </div>
-              </div>
+
+                <form id="stripeAddressID" name="stripeaddressform" action="{% url 'project:stripe_address_sfdc' %}"
+                  autocomplete="off" id="general_form" method="post" onkeydown="return event.key != 'Enter';"
+                  class="Modal-form" novalidate role="form">
+                  {% csrf_token %}
+
+                  <div style="position: relative; height: 270px;">
+                    <div>
+                      <div class="Section Section--modalBody">
+                        <div class="Section-content"><span>
+
+                            <p> Enter your billing address</p>
+
+                            <div class="StaggerGroup is-slideInFromBottomShort is-enter-head-first is-wait-header">
+                              <span>
+                                <div class="StaggerGroup is-slideInFromBottomShort is-enter-head-first is-wait-header">
+                                  <div class="u-paddingTopMd">
+                                    <div class="Addresses">
+                                      <div class="Addresses-object is-billing"><span>
+                                          <div
+                                            class="StaggerGroup is-slideInFromBottomShort is-enter-head-first is-wait-header">
+                                            <fieldset class="Fieldset">
+
+                                              <div class="StaggerGroup-child is-head-2 is-tail-3">
+                                                <div
+                                                  class="Fieldset-childLeftRight Fieldset-child--shortBottomBorder Textbox Textbox--iconLeft can-setfocus">
+                                                  <div class="Textbox-inputRow"><label class="Textbox-label"
+                                                      for="804beb40-2e4d-11ea-bc0f-eff4c501bd26">First Name</label>
+
+                                                    <input type="text"
+                                                      class="form-control Fieldset-input Textbox-control"
+                                                      id="StripeFirstName" value="" name="StripeFormFirstName"
+                                                      for="stripefirstname" placeholder="First Name"
+                                                      autocomplete="stripe-firstname" autocorrect="no"
+                                                      autocapitalize="no" spellcheck="no" required>
+
+                                                    <div class="Textbox-iconLeft"><span class="Icon-wrapper"><svg
+                                                          role="img" class="Icon" fill="#2b2b2b" focusable="false"
+                                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                                          <title>User</title>
+                                                          <path fill-rule="evenodd" transform="translate(7, 8)"
+                                                            d="M11.996684,14 C13.0947221,14 14,13.1101744 13.9999999,12.009095 L14,11.1491834 C14.0000003,9.91850391 13.3623813,9.53591084 10.9228899,8.52151991 C9.65809648,7.99559263 9.07889982,7.67070275 9.05789428,7.60696539 C9.0285739,7.51799818 8.87779879,7.81924073 9.56596152,6.74789493 C10.1158583,5.89180439 10.4051134,4.98207687 10.4051136,3.71797921 C10.4051139,1.68118868 9.60051814,0.485608698 8.21363982,0.121696257 C7.80812531,0.0152905441 7.55676223,9.41263804e-05 6.96135352,9.42910654e-05 C5.00856522,9.483119e-05 3.52263311,1.0188016 3.5226329,3.56578315 C3.52263286,4.68755112 3.79796986,5.52392778 4.34876041,6.49138191 C4.94128002,7.53213241 4.94703121,7.54559374 4.90298986,7.76729822 C4.89714459,7.79672334 4.33356436,8.13608721 3.04999838,8.70234264 C0.704440887,9.73710414 0.00773538487,10.1871597 0.0115913123,11.4408697 C0.0122174355,11.6444427 0.0113716658,11.7911179 0.00963390836,11.8891851 C0.00814961188,11.953822 0.00814961188,11.953822 0.00838740291,11.946099 C-0.0102850819,13.0932349 0.880033796,13.9999998 1.99322919,13.9999998 L11.996684,14 Z M1.00716107,11.9956084 C1.00716107,11.9956084 1.01294346,11.8789576 1.01158658,11.4377941 C1.00719768,10.0107946 5.61918235,9.29435064 5.88382455,7.96213996 C6.14846675,6.62992931 4.52263281,5.90956861 4.5226329,3.56578323 C4.52263309,1.22199787 6.15002134,1.00009452 6.96135379,1.00009429 C7.77268624,1.00009407 9.40511407,0.941891089 9.40511362,3.71797904 C9.40511313,6.49406696 7.69616924,6.66991367 8.10814245,7.9199693 C8.52011565,9.17002493 13.0000003,9.84816832 13,11.1491833 L12.9999999,12.0090951 C13,12.5563568 12.5438559,13 11.9966841,13 L1.99322921,12.9999998 C1.43911312,12.9999998 0.998392539,12.5512468 1.00716107,11.9956084 Z M1.00716107,11.9956084">
+                                                          </path>
+                                                        </svg></span></div>
+
+
+                                                  </div><span></span>
+                                                  <div style="position: relative;"></div>
+                                                </div>
+                                              </div>
+
+                                              <div class="StaggerGroup-child is-head-2 is-tail-3">
+                                                <div
+                                                  class="Fieldset-childLeftRight Fieldset-child--shortBottomBorder Textbox Textbox--iconLeft can-setfocus">
+                                                  <div class="Textbox-inputRow"><label class="Textbox-label"
+                                                      for="804beb40-2e4d-11ea-bc0f-eff4c501bd26">Last Name</label>
+
+                                                    <input type="text"
+                                                      class="form-control Fieldset-input Textbox-control"
+                                                      id="StripeLastName" value="" name="StripeFormLastName"
+                                                      for="stripelastname" placeholder="Last Name"
+                                                      autocomplete="stripe-lastname" autocorrect="no"
+                                                      autocapitalize="no" spellcheck="no" required>
+
+
+                                                  </div><span></span>
+                                                  <div style="position: relative;"></div>
+                                                </div>
+                                              </div>
+
+                                              <div class="StaggerGroup-child is-head-2 is-tail-3">
+                                                <div
+                                                  class="Fieldset-childLeftRight Fieldset-child--shortBottomBorder Textbox Textbox--iconLeft can-setfocus">
+                                                  <div class="Textbox-inputRow"><label class="Textbox-label"
+                                                      for="804beb40-2e4d-11ea-bc0f-eff4c501bd26">Street</label>
+
+                                                    <input type="text"
+                                                      class="form-control Fieldset-input Textbox-control"
+                                                      id="StripeStreet" value="" name="StripeFormStreet"
+                                                      for="stripestreet" placeholder="Street"
+                                                      autocomplete="street-address" autocorrect="no" autocapitalize="no"
+                                                      spellcheck="no" required>
+
+                                                    <div class="Textbox-iconLeft"><span class="Icon-wrapper"><svg
+                                                          role="img" class="Icon" fill="#2b2b2b" focusable="false"
+                                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                                          <title>Push-pin</title>
+                                                          <path fill-rule="evenodd" transform="translate(8, 7)"
+                                                            d="M6.96835335,14.4141594 C7.14378184,14.2130951 7.33880908,13.9850182 7.54859821,13.7339676 C8.14789969,13.0167952 8.74728299,12.2571079 9.30845088,11.4862878 C10.9985122,9.16482011 12,7.25762947 12,5.80510753 C12,2.58994421 9.3050091,0 6,0 C2.6949909,0 0,2.58994421 0,5.80510753 C0,7.25762947 1.00148783,9.16482011 2.69154912,11.4862878 C3.25271701,12.2571079 3.85210031,13.0167952 4.45140179,13.7339676 C4.66119092,13.9850182 4.85621816,14.2130951 5.03164665,14.4141594 C5.13795558,14.5360035 5.2148819,14.6226158 5.25757295,14.6699269 L6,15.4927001 L6.74242705,14.6699269 C6.7851181,14.6226158 6.86204442,14.5360035 6.96835335,14.4141594 Z M5.25757295,13.3300731 C5.27604949,13.309597 5.30380421,13.278504 5.34014057,13.2373842 C3.98193439,11.6258984 1,7.854524 1,5.80510753 C1,3.15131979 3.23857611,1 6,1 C8.76142389,1 11,3.15131979 11,5.80510753 C11,7.854524 8.01806561,11.6258984 6.65985943,13.2373842 C6.69619579,13.278504 6.72395051,13.309597 6.74242705,13.3300731 L6.58151981,13.3300731 C6.22583758,13.7497221 6,14 6,14 C6,14 5.77416242,13.7497221 5.41848019,13.3300731 L5.25757295,13.3300731 Z M6,8 C7.10456955,8 8,7.10456955 8,6 C8,4.89543045 7.10456955,4 6,4 C4.89543045,4 4,4.89543045 4,6 C4,7.10456955 4.89543045,8 6,8 Z M6,7 C6.55228478,7 7,6.55228478 7,6 C7,5.44771522 6.55228478,5 6,5 C5.44771522,5 5,5.44771522 5,6 C5,6.55228478 5.44771522,7 6,7 Z M6,7">
+                                                          </path>
+                                                        </svg></span></div>
+                                                  </div><span></span>
+                                                  <div style="position: relative;"></div>
+                                                </div>
+                                              </div>
+
+                                              <div class="StaggerGroup-child is-head-1 is-tail-4">
+                                                <div
+                                                  class="Fieldset-childLeftRight Fieldset-childTop Textbox Textbox--iconLeft can-setfocus">
+                                                  <div class="Textbox-inputRow"><label class="Textbox-label"
+                                                      for="501bd26">Name</label>
+
+                                                    <input type="text"
+                                                      class="form-control Fieldset-input Textbox-control"
+                                                      id="StripeSuite" value="" name="StripeFormSuite" for="stripesuite"
+                                                      placeholder="Suite, unit (optional)" autocomplete="stripe-suit"
+                                                      autocorrect="no" autocapitalize="no" spellcheck="no" required>
+
+                                                    <div class="Textbox-iconLeft"><span class="Icon-wrapper"><svg
+                                                          role="img" class="Icon" fill="#2b2b2b" focusable="false"
+                                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"></svg>
+                                                        <title>User</title>
+                                                        <path fill-rule="evenodd" transform="translate(7, 8)"
+                                                          d="M11.996684,14 C13.0947221,14 14,13.1101744 13.9999999,12.009095 L14,11.1491834 C14.0000003,9.91850391 13.3623813,9.53591084 10.9228899,8.52151991 C9.65809648,7.99559263 9.07889982,7.67070275 9.05789428,7.60696539 C9.0285739,7.51799818 8.87779879,7.81924073 9.56596152,6.74789493 C10.1158583,5.89180439 10.4051134,4.98207687 10.4051136,3.71797921 C10.4051139,1.68118868 9.60051814,0.485608698 8.21363982,0.121696257 C7.80812531,0.0152905441 7.55676223,9.41263804e-05 6.96135352,9.42910654e-05 C5.00856522,9.483119e-05 3.52263311,1.0188016 3.5226329,3.56578315 C3.52263286,4.68755112 3.79796986,5.52392778 4.34876041,6.49138191 C4.94128002,7.53213241 4.94703121,7.54559374 4.90298986,7.76729822 C4.89714459,7.79672334 4.33356436,8.13608721 3.04999838,8.70234264 C0.704440887,9.73710414 0.00773538487,10.1871597 0.0115913123,11.4408697 C0.0122174355,11.6444427 0.0113716658,11.7911179 0.00963390836,11.8891851 C0.00814961188,11.953822 0.00814961188,11.953822 0.00838740291,11.946099 C-0.0102850819,13.0932349 0.880033796,13.9999998 1.99322919,13.9999998 L11.996684,14 Z M1.00716107,11.9956084 C1.00716107,11.9956084 1.01294346,11.8789576 1.01158658,11.4377941 C1.00719768,10.0107946 5.61918235,9.29435064 5.88382455,7.96213996 C6.14846675,6.62992931 4.52263281,5.90956861 4.5226329,3.56578323 C4.52263309,1.22199787 6.15002134,1.00009452 6.96135379,1.00009429 C7.77268624,1.00009407 9.40511407,0.941891089 9.40511362,3.71797904 C9.40511313,6.49406696 7.69616924,6.66991367 8.10814245,7.9199693 C8.52011565,9.17002493 13.0000003,9.84816832 13,11.1491833 L12.9999999,12.0090951 C13,12.5563568 12.5438559,13 11.9966841,13 L1.99322921,12.9999998 C1.43911312,12.9999998 0.998392539,12.5512468 1.00716107,11.9956084 Z M1.00716107,11.9956084">
+                                                        </path>
+                                                      </span></div>
+                                                  </div><span></span>
+                                                  <div style="position: relative;"></div>
+                                                </div>
+                                              </div>
+
+                                              <div class="StaggerGroup-child is-head-1 is-tail-4">
+                                                <div
+                                                  class="Fieldset-childLeftRight Fieldset-childTop Textbox Textbox--iconLeft can-setfocus">
+                                                  <div class="Textbox-inputRow"><label class="Textbox-label"
+                                                      for="501bd26">Name</label>
+
+                                                    <input type="text"
+                                                      class="form-control Fieldset-input Textbox-control"
+                                                      id="StripeCity" value="" name="StripeFormCity" for="stripecity"
+                                                      placeholder="City" autocomplete="stripe-city" autocorrect="no"
+                                                      autocapitalize="no" spellcheck="no" required>
+
+
+
+                                                    <div class="Textbox-iconLeft"><span class="Icon-wrapper"><svg
+                                                          role="img" class="Icon" fill="#2b2b2b" focusable="false"
+                                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"></svg>
+                                                        <title>User</title>
+                                                        <path fill-rule="evenodd" transform="translate(7, 8)"
+                                                          d="M11.996684,14 C13.0947221,14 14,13.1101744 13.9999999,12.009095 L14,11.1491834 C14.0000003,9.91850391 13.3623813,9.53591084 10.9228899,8.52151991 C9.65809648,7.99559263 9.07889982,7.67070275 9.05789428,7.60696539 C9.0285739,7.51799818 8.87779879,7.81924073 9.56596152,6.74789493 C10.1158583,5.89180439 10.4051134,4.98207687 10.4051136,3.71797921 C10.4051139,1.68118868 9.60051814,0.485608698 8.21363982,0.121696257 C7.80812531,0.0152905441 7.55676223,9.41263804e-05 6.96135352,9.42910654e-05 C5.00856522,9.483119e-05 3.52263311,1.0188016 3.5226329,3.56578315 C3.52263286,4.68755112 3.79796986,5.52392778 4.34876041,6.49138191 C4.94128002,7.53213241 4.94703121,7.54559374 4.90298986,7.76729822 C4.89714459,7.79672334 4.33356436,8.13608721 3.04999838,8.70234264 C0.704440887,9.73710414 0.00773538487,10.1871597 0.0115913123,11.4408697 C0.0122174355,11.6444427 0.0113716658,11.7911179 0.00963390836,11.8891851 C0.00814961188,11.953822 0.00814961188,11.953822 0.00838740291,11.946099 C-0.0102850819,13.0932349 0.880033796,13.9999998 1.99322919,13.9999998 L11.996684,14 Z M1.00716107,11.9956084 C1.00716107,11.9956084 1.01294346,11.8789576 1.01158658,11.4377941 C1.00719768,10.0107946 5.61918235,9.29435064 5.88382455,7.96213996 C6.14846675,6.62992931 4.52263281,5.90956861 4.5226329,3.56578323 C4.52263309,1.22199787 6.15002134,1.00009452 6.96135379,1.00009429 C7.77268624,1.00009407 9.40511407,0.941891089 9.40511362,3.71797904 C9.40511313,6.49406696 7.69616924,6.66991367 8.10814245,7.9199693 C8.52011565,9.17002493 13.0000003,9.84816832 13,11.1491833 L12.9999999,12.0090951 C13,12.5563568 12.5438559,13 11.9966841,13 L1.99322921,12.9999998 C1.43911312,12.9999998 0.998392539,12.5512468 1.00716107,11.9956084 Z M1.00716107,11.9956084">
+                                                        </path>
+                                                      </span></div>
+                                                  </div><span></span>
+                                                  <div style="position: relative;"></div>
+                                                </div>
+                                              </div>
+
+                                              <div class="StaggerGroup-child is-head-1 is-tail-4">
+                                                <div
+                                                  class="Fieldset-childLeftRight Fieldset-childTop Textbox Textbox--iconLeft can-setfocus">
+                                                  <div class="Textbox-inputRow"><label class="Textbox-label"
+                                                      for="501bd26">Name</label>
+
+                                                    <input type="text"
+                                                      class="form-control Fieldset-input Textbox-control"
+                                                      id="StripeState" value="" name="StripeFormState" for="stripestate"
+                                                      placeholder="State" autocomplete="stripe-state" autocorrect="no"
+                                                      autocapitalize="no" spellcheck="no" required>
+
+                                                    <div class="Textbox-iconLeft"><span class="Icon-wrapper"><svg
+                                                          role="img" class="Icon" fill="#2b2b2b" focusable="false"
+                                                          xmlns="http://www.w3.org/2000/svg"
+                                                          viewBox="0 0 30 30"></svg>
+                                                        <title>User</title>
+                                                        <path fill-rule="evenodd" transform="translate(7, 8)"
+                                                          d="M11.996684,14 C13.0947221,14 14,13.1101744 13.9999999,12.009095 L14,11.1491834 C14.0000003,9.91850391 13.3623813,9.53591084 10.9228899,8.52151991 C9.65809648,7.99559263 9.07889982,7.67070275 9.05789428,7.60696539 C9.0285739,7.51799818 8.87779879,7.81924073 9.56596152,6.74789493 C10.1158583,5.89180439 10.4051134,4.98207687 10.4051136,3.71797921 C10.4051139,1.68118868 9.60051814,0.485608698 8.21363982,0.121696257 C7.80812531,0.0152905441 7.55676223,9.41263804e-05 6.96135352,9.42910654e-05 C5.00856522,9.483119e-05 3.52263311,1.0188016 3.5226329,3.56578315 C3.52263286,4.68755112 3.79796986,5.52392778 4.34876041,6.49138191 C4.94128002,7.53213241 4.94703121,7.54559374 4.90298986,7.76729822 C4.89714459,7.79672334 4.33356436,8.13608721 3.04999838,8.70234264 C0.704440887,9.73710414 0.00773538487,10.1871597 0.0115913123,11.4408697 C0.0122174355,11.6444427 0.0113716658,11.7911179 0.00963390836,11.8891851 C0.00814961188,11.953822 0.00814961188,11.953822 0.00838740291,11.946099 C-0.0102850819,13.0932349 0.880033796,13.9999998 1.99322919,13.9999998 L11.996684,14 Z M1.00716107,11.9956084 C1.00716107,11.9956084 1.01294346,11.8789576 1.01158658,11.4377941 C1.00719768,10.0107946 5.61918235,9.29435064 5.88382455,7.96213996 C6.14846675,6.62992931 4.52263281,5.90956861 4.5226329,3.56578323 C4.52263309,1.22199787 6.15002134,1.00009452 6.96135379,1.00009429 C7.77268624,1.00009407 9.40511407,0.941891089 9.40511362,3.71797904 C9.40511313,6.49406696 7.69616924,6.66991367 8.10814245,7.9199693 C8.52011565,9.17002493 13.0000003,9.84816832 13,11.1491833 L12.9999999,12.0090951 C13,12.5563568 12.5438559,13 11.9966841,13 L1.99322921,12.9999998 C1.43911312,12.9999998 0.998392539,12.5512468 1.00716107,11.9956084 Z M1.00716107,11.9956084">
+                                                        </path>
+                                                      </span></div>
+                                                  </div><span></span>
+                                                  <div style="position: relative;"></div>
+                                                </div>
+                                              </div>
+
+                                            </fieldset>
+                                          </div>
+                                        </span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </span></div>
+                          </span></div>
+                      </div>
+                    </div>
+                  </div><span></span>
+
+                  <nav class="Section Section-content" role="navigation">
+                    <div style="position: relative;">
+                      <div>
+                        <div class="Section-button"><button id="test2" type="submit" value="button2"
+                            style="width: 100%; padding: 0px; border: 0px;"
+                            class="Button-animationWrapper-child--primary Button"><span>
+                              <div class="Button-content"><span>Complete</span></div>
+                            </span></button></div>
+                      </div>
+                    </div>
+                  </nav>
+                </form>
+              </main>
             </div>
           </div>
-        </div>
-      </form>
-  </main><!-- /.container -->
+        </span>
+      </section>
+    </div>
 
-    <script src="{% static 'js/blog-monthly-js/plyr.polyfilled.js' %}"></script>
-    <script src="{% static 'js/blog-monthly-js/script.js' %}"></script>
+    {% else %}
 
-    <script>
+    {% endif %}
 
-      $(document).ready(function(){
-        $('#dog-animated').addClass('show');
-        $('#dog-animated').css('display', 'block');
-        
-        //animated fadeInRight delay-1s
-        $('#dog-animated').addClass('animated')
-        $('#dog-animated').addClass('fadeInRight')
-        $('#dog-animated').addClass('delay-1s')
+  </div>
 
-        setTimeout(function(){
-          $('.dog').addClass('animated fadeOutLeft');
-          const element =  document.querySelector('#dog-animated')
-          element.addEventListener('animationend', function() { 
-            element.remove() 
-          })
+</main><!-- /.container -->
 
-        }, 3000);
+ 
+  <script src="{% static 'js/blog-monthly-js/plyr.polyfilled.js' %}"></script>
+  <script src="{% static 'js/blog-monthly-js/script.js' %}"></script>
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+
+        $(document).on("click", "#test2", function (e) {
+              if ($('#test2').is(':visible')) {
+
+        e.preventDefault();
+        var $form = $(this).closest('form');
+
+        var tca = $(this).closest("form").find("input[name='StripeFormStreet']").val();
+        var tcz = $(this).closest("form").find("input[name='StripeFormCity']").val();
+        var tcstate = $(this).closest("form").find("input[name='StripeFormState']").val();
+
+        var tcsuite = $(this).closest("form").find("input[name='StripeFormSuite']").val();
+
+        var tcfirst = $(this).closest("form").find("input[name='StripeFormFirstName']").val();
+        var tclast = $(this).closest("form").find("input[name='StripeFormLastName']").val();
+
+        var serialized = $form.serializeArray();
+        var endpoint = $form.attr('action');
+
+        var $StripeStreet =  $(this).closest("form").find("input[name='StripeFormStreet']").val();
+        var $StreetCity = $(this).closest("form").find("input[name='StripeFormCity']").val();
+
+        var $StreetSuite = $(this).closest("form").find("input[name='StripeFormSuite']").val();
+
+        var $StripeFirstName =  $(this).closest("form").find("input[name='StripeFormFirstName']").val();
+        var $StripeLastName = $(this).closest("form").find("input[name='StripeFormLastName']").val();
+
+
+
+            var $stripefirstname = $('<input>')
+              .attr('type', 'hidden')
+              .attr('name', 'stripefirstname')
+              .val(tcfirst);
+ 
+            $stripefirstname.appendTo($form);
+
+            var $stripelastname = $('<input>')
+              .attr('type', 'hidden')
+              .attr('name', 'stripelastname')
+              .val(tclast);
+ 
+            $stripelastname.appendTo($form);
+
+            var $stripesuite = $('<input>')
+              .attr('type', 'hidden')
+              .attr('name', 'stripesuite')
+              .val(tcsuite);
+ 
+            $stripesuite.appendTo($form);
+
+            var $stripestreet = $('<input>')
+              .attr('type', 'hidden')
+              .attr('name', 'stripestreet')
+              .val(tca);
+ 
+            $stripestreet.appendTo($form);
+
+            var $formcity =  $('<input>')
+              .attr('type', 'hidden')
+              .attr('name', 'formcity')
+              .val(tcz);
+
+            $formcity.appendTo($form);
+
+            var $formstate =  $('<input>')
+              .attr('type', 'hidden')
+              .attr('name', 'formstate')
+              .val(tcstate);
+
+            $formstate.appendTo($form);
+
+        $form.submit(function(e) {
+          $.ajax({
+               type: "POST",
+               url: '{% url 'project:stripe_address_sfdc' %}',
+               data: $form.serializeArray(), // serializes the form's elements.
+               success: function(data)
+               {
+
+               },
+               error: function(data)
+               {
+            
+               }
+             });
+
+              if ($("#StripeStreet, #StripeCity").val() === "") {
+                              
+              }
+              
+              else {
+                $('#test2').hide();
+                  $('#container').hide();
+                  $('#dog-animated').addClass('show');
+                  $('#dog-animated').css('display', 'block');
+                  
+                  //animated fadeInRight delay-1s
+                  $('#dog-animated').addClass('animated')
+                  $('#dog-animated').addClass('fadeInRight')
+                  $('#dog-animated').addClass('delay-1s')
+
+                  setTimeout(function(){
+                    $('.dog').addClass('animated fadeOutLeft');
+                    const element =  document.querySelector('#dog-animated')
+                    element.addEventListener('animationend', function() { 
+                      element.remove() 
+                    })
+
+                  }, 3000);
+
+              }
+
+              e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+
+        $form.trigger('submit');
+
+                  e.preventDefault();
+              } else {
+                  $('#test2').show();
+
+                  e.preventDefault();
+              };
+          });
       });
-  
-    </script>
+    
+</script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    $('select option[value="US"]').attr("selected",true);
+    //new WOW().init();
+  });
+
+</script>
 
   {% endblock %}
