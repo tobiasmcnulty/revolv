@@ -346,6 +346,239 @@
 
   </main><!-- /.container -->
 
+  {% elif project.org_name == 'PPA' %}
+  <main role="main" class="container-fluid">
+      <div class="container-fluid campaign-post-header" style="background-image: linear-gradient(to bottom, rgba(170, 246, 252, 0.52), rgba(39, 39, 92, 0.73)), url('{{MEDIA_URL}}{{project.cover_photo.url }}' ); 
+      background-position: top center;
+      background-repeat: no-repeat;
+      height: 100%;
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+      background-color: #999;">
+          <div class="row text-center" style="height: 500px; z-index: 2; position: relative;">
+              <div class="col hero-text align-self-end mb-5">
+                  <h1 class="text-light fw-300">{{ project.title }}</h1>
+              </div>
+          </div>
+          <div class="col-md-12">
+              {% if request.user.is_authenticated %}
+              {% ifequal project.created_by_user|stringformat:"s" request.user.username %}
+
+              <a href="/project/{{project.id}}/edit" style=" color: white;">
+                  <button id="project-button" class="mr-2" style="
+          height: 48px;
+          line-height: 48px;
+          background-color: #ff8a00;
+          transition: background-color .15s linear;
+          text-transform: uppercase;
+          letter-spacing: .1em;
+          border-radius: 4px;
+          border: 0;
+          font-size: 15px;
+          padding: 0 20px;
+          font-weight: 500;
+          display: inline-block;
+          color: #fff;
+          margin-bottom:40px;
+          "> Edit Campaign
+                  </button>
+              </a>
+              {% endifequal %}
+              {% if user.username %}
+              {% for tag in project.ambassadors.all %}
+              {% if user|cut:" " == tag|cut:" " %}
+              <a href="{% url "donationreport" %}" style=" color: white;">
+                  <button id="project-button" style="
+                      height: 48px;
+                      line-height: 48px;
+                      background-color: #ff8a00;
+                      transition: background-color .15s linear;
+                      text-transform: uppercase;
+                      letter-spacing: .1em;
+                      border-radius: 4px;
+                      border: 0;
+                      font-size: 15px;
+                      padding: 0 20px;
+                      font-weight: 500;
+                      display: inline-block;
+                      color: #fff;
+                      margin-bottom:40px;
+                      "> Donation Report
+                  </button>
+              </a>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+              {% endif %}
+          </div>
+      </div>
+
+      {% if project.status_display|upper == 'ACTIVE' %}
+      <div class="social project-status-desktop-left">
+          <ul>
+              <li>
+                  <a href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}"
+                      onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"
+                      target="_blank" style="font-size: 0.7em; font-weight: 700;">Facebook <i
+                          class="fab fa-facebook"></i></a></li>
+              <li>
+                  <a href="https://www.twitter.com/share?url=https://www.re-volv.org/project/{{ project.project_url }}&amp;text=Spread solar and change lives. Learn more about people-funded renewable energy here:&amp;"
+                      target="_blank" style="font-size: 0.7em; font-weight: 700;">Twitter <i
+                          class="fab fa-twitter"></i></a></li>
+          </ul>
+      </div>
+      {% endif %}
+      <div class="container-fluid" id="campaign-body">
+          <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12 co-md-10 col-lg-10">
+                  <div class="row">
+                      <div class="col-sm-12 col-md-4 pr-4">
+                          {% if project_matching_donor %}
+                          <div class="col-md-12 mb-3">
+                              <div class="title-blue-border" style="height: 100% !important;">ALL DONATIONS ARE NOW
+                                  BEING MATCHED!
+                              </div>
+                          </div>
+                          {% endif %}
+                          <div class="campaign-col">
+                              <div class="title-container">
+                                  <h1><small>Project Details</small></h1>
+                              </div>
+
+                              <div class="campaign-text">
+
+                                  <div class="w-100"></div>
+
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <h3 class="fw-700 mt-3 mb-0">
+                                              {{ project.get_statistic_for_project|floatformat:"0"|intcomma }} lbs </h3>
+                                          <h5 class="fw-500 my-0">CO<sub>2</sub> Avoided</h5>
+
+                                          <h3 class="fw-700 mt-3 mb-0">
+                                              ${{ project.get_statistic_for_project|floatformat:"0"|intcomma }}</h3>
+                                          <h5 class="fw-500 my-0">Dollars saved</h5>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <h3 class="fw-700 mt-3 mb-0">
+                                              {{ project.get_statistic_for_project|floatformat:"0"|intcomma }} kW </h3>
+                                          <h5 class="fw-500 my-0">Solar System</h5>
+
+                                          <h3 class="fw-700 mt-3 mb-0">{{ project.people_affected }}</h3>
+                                          <h5 class="fw-500 my-0">People served</h5>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="donate-icon-col mb-4  updates-col">
+                              <a href="/monthly_donor">
+                                  <div class="donate-icon-wrapper"><img
+                                          src="../../../static/images/blog-monthly-img/donate-icon.png"></div>
+                                  <div class="donate-txt-wrapper">
+                                      <h2>Become</h2>
+                                      <p>a monthly supporter</p>
+                                      <p class="fw-600 mt-5">Consider giving a small monthly donation so we can bring more communities the power of solar.</p>
+                                  </div>
+                              </a>
+                          </div>
+
+                          <div class="updates-col" style="text-align: center;">
+                              <a href="/How_it_works/">
+                                  <h3 class="blue-text my-3 ml-5"> </h3>
+                                  <div class="line-section pb-2" >
+                                    {% if funding_goal < 10.00 %}
+                                    <p class="fw-400" style="color: black;"> This project is made possible by our partnership with </p>
+                                    <img src="/static/images/edu-media-img/COMPLETED01.png" alt="Project is completed"
+                                        style="width: 248px;">
+                                    {% elif funding_goal > 10.00 %}
+                                        <p class="fw-400" style="color: black;"> This project is funded by </p>
+                                        <img src="/static/images/edu-media-img/COMPLETED01.png" alt="Project is completed"
+                                        style="width: 248px;">
+                                    {% endif %}
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+
+                      <div class="col-sm-12 col-md-8 campaign-body-text pl-4">
+                          <h2 class="orange-text fw-300 mb-4" style="text-transform: uppercase;">About 
+                              {{ project.title }}</h2>
+                          <h6 class="fw-500">About {{ project.title }}</h6>
+
+                          <div class="plyr-video" style="width:50% !important;" data-plyr-provider="youtube"
+                              data-plyr-embed-id="fCrs2eASgFg"></div>
+
+                          <p class="content-gold-silver content_sec">{{ project.description|safe  }}</p>
+                          <p class="content-gold-silver content_sec">{{ project.org_about|safe }}</p>
+
+                          <div class="row">
+                              <div class="col-sm-12 outer-basic-silver-gold project-updates-module"
+                                  style="padding-left: 0px;">
+                                  <div class="main-area col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                      <div class="venue-area  pull-left">
+                                          <h2 class="title-blue-border title-venue pull-left">VENUE</h2>
+                                          <div class="clearfix">
+                                          </div>
+                                          <div class="venue-map" id="map-canvas"></div>
+                                          <div class="venue-bottom">
+                                              <h4 class="title-h4">{{ project.title }}</h4>
+                                              <p>
+                                                  <span>{{ project.location_street }}</span>
+                                                  <span>{{ project.location_city_state_zip }}</span>
+                                              </p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <h6 class="mt-3"> Make sure to share the campaign on social media. <span
+                                      style='font-size:2rem;'>&#128516;</span></h6>
+                              <div>
+                                  <div>
+                                      <div id="share-buttons">
+                                          <a href="http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}"
+                                              onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.re-volv.org/project/{{ project.project_url }}','popup','width=600,height=600'); return false;"
+                                              target="_blank" class="social-circle facebook">
+                                              <i class="fab fa-facebook-square mx-2 display-4"
+                                                  style="color:#140869;"></i>
+                                          </a>
+                                          <a href="https://www.twitter.com/share?url=https://www.re-volv.org/project/{{ project.project_url }}&amp;text=Spread solar and change lives. Learn more about people-funded renewable energy here:&amp;"
+                                              target="_blank" class="social-circle twitter">
+                                              <i class="fab fa-twitter-square mx-2 display-4"
+                                                  style="color:#140869;"></i>
+                                          </a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid" id="share-section">
+          <div class="row justify-content-center align-items-center">
+              <div class="col-sm-12 co-md-12 col-lg-12 text-center">
+                  <h1 class="text-white fw-300 mb-5">Follow us on social media</h1>
+                  <ul class="sharing-icons">
+                      <li><a href="https://www.facebook.com/solarseedfund/" rel="noopener noreferrer" target="_blank"><i
+                                  class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="https://twitter.com/RE_volv" rel="noopener noreferrer" target="_blank"><i
+                                  class="fab fa-twitter"></i></a></li>
+                      <li><a href="https://www.youtube.com/user/REvolvSolarSeedFund" rel="noopener noreferrer"
+                              target="_blank"><i class="fab fa-youtube"></i></a></li>
+                      <li><a href="https://www.instagram.com/re.volv/" rel="noopener noreferrer" target="_blank"><i
+                                  class="fab fa-instagram"></i></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </main>
+
   {% elif project.org_name == 'MAINSSF' %}
   <main role="main" class="container-fluid">
     <div class="container-fluid campaign-post-header" 
