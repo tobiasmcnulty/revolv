@@ -335,7 +335,8 @@ class Project(models.Model):
     video_url = models.URLField(
         'Video URL',
         max_length=255,
-        blank=False,
+        blank=True,
+        null=True,
         help_text='Link to a Youtube video about the project or community.',
     )
     # power output of array in kilowatts
@@ -401,7 +402,6 @@ class Project(models.Model):
         options={'quality': 80},
         default=None,
         help_text='Choose a beautiful high resolution image to represent this project.',
-        blank=True,
     )
 
     profile_picture = ProcessedImageField(
@@ -432,6 +432,46 @@ class Project(models.Model):
         'Organization Name',
         max_length=255,
         help_text='What is the name of the organization being helped?'
+    )
+
+    carbon_avoided =  models.CharField(
+        'CO2 Avoided',
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='CO2 avoided for this project - new field'
+    )
+
+    dollars_saved = models.CharField(
+        'Dollars Saved',
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='Lifetime electricity savings for this project - new field'
+    )
+
+    installation_status =  models.CharField(
+        'Installation Status',
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='Status of installation for this project - new field'
+    )
+
+    installation_date_status =  models.CharField(
+        'Installation Date Status',
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='Date of installation for this project - new fields'
+    )
+
+    financial_product =  models.CharField(
+        'Financial product',
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='The type of financial product ( PPA or LEASE ) - new fields'
     )
 
     people_affected = models.PositiveIntegerField(

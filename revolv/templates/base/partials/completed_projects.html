@@ -95,17 +95,98 @@
           <h1 class="blue-text mt-5 mb-5 fw-500" style="line-height: 1.4em;">RE-volv is proud to help deserving nonprofits go solar and educate their community about the importance of clean energy. </h1>
              <h2 class="blue-text mt-5 mb-5"> Learn more about the completed nonprofit solar projects by clicking on any of the projects below </h2>
             {% for completed_project in completed_projects %}
+
+                {% if completed_project.tagline == 'progress' %}
+                
                 <div class="col-md-4 facts-row">
                     <div>
-                        <div class="module-box">
+                        <div class="module-box" style="border-radius: 14px 14px 14px 14px;">
                           <div class="img-main">
-                            <a href="{% url "project:view" title=completed_project.project_url %}" class="img-link">
+                            <a href="{% url "project:view" title=completed_project.project_url %}" class="img-link" style="border-radius: 14px 14px 0px 0px;">
                               <span class="txt-table">
                                 <span class="txt">
                                     {{ completed_project.title }}
                                 </span>
                               </span>
-                              <div><div class="img" style="background-image:url('{{MEDIA_URL}}{{completed_project.cover_photo.url }}' ); opacity: 0.6"></div><span class="completed_project"><img src="/static/images/COMPLETED.png" alt="Project is completed" ></span></div>
+                              <div><div class="img" style="background-image:url('{{MEDIA_URL}}{{completed_project.cover_photo.url }}' ); opacity: 0.6"></div><span class="completed_project"><img src="/static/images/inprogressteal.png" alt="Project is completed" ></span></div>
+                            </a>
+
+                          </div>
+                          <!-- end .img-main -->
+                          <div class="info-main">
+                            <div class="blue-bar">
+                              <span class="pull-left"></span>
+                              {% if completed_project.days_left > 0 %}
+                                  <span>{{ completed_project.total_kwh_value|floatformat:"0"|intcomma }} kW Solar System</span>
+                              {% else %}
+                                  <span >{{ completed_project.total_kwh_value|floatformat:"0"|intcomma }} kW Solar System</span>
+                              {% endif %}
+                            </div>
+                            <!-- end .blue-bar -->
+                            <div class="dark-blue-bar">
+                              <span class="pull-left actual-energy"></span>
+                              <span >{{ completed_project.carbon_avoided }} lbs CO<sub>2</sub> Avoided</span>
+                            </div>
+                            <!-- end .blue-bar -->
+                          </div>
+                          <!-- end .info-main -->
+                        </div>
+                        <!-- end .module-box -->
+                    </div>
+                </div>
+
+                {% elif completed_project.tagline == 'installed' %}
+
+                <div class="col-md-4 facts-row">
+                    <div>
+                        <div class="module-box" style="border-radius: 14px 14px 14px 14px;">
+                          <div class="img-main">
+                            <a href="{% url "project:view" title=completed_project.project_url %}" class="img-link" style="border-radius: 14px 14px 0px 0px;">
+                              <span class="txt-table">
+                                <span class="txt">
+                                    {{ completed_project.title }}
+                                </span>
+                              </span>
+                              <div><div class="img" style="background-image:url('{{MEDIA_URL}}{{completed_project.cover_photo.url }}' ); opacity: 0.6"></div><span class="completed_project"><img src="/static/images/installedorange.png" alt="Project is completed" ></span></div>
+                            </a>
+
+                          </div>
+                          <!-- end .img-main -->
+                          <div class="info-main">
+                            <div class="blue-bar">
+                              <span class="pull-left"></span>
+                              {% if completed_project.days_left > 0 %}
+                                  <span>{{ completed_project.total_kwh_value|floatformat:"0"|intcomma }} kW Solar System</span>
+                              {% else %}
+                                  <span >{{ completed_project.total_kwh_value|floatformat:"0"|intcomma }} kW Solar System</span>
+                              {% endif %}
+                            </div>
+                            <!-- end .blue-bar -->
+                            <div class="dark-blue-bar">
+                              <span class="pull-left actual-energy"></span>
+                              <span >{{ completed_project.carbon_avoided }} lbs CO<sub>2</sub> Avoided</span>
+                            </div>
+                            <!-- end .blue-bar -->
+                          </div>
+                          <!-- end .info-main -->
+                        </div>
+                        <!-- end .module-box -->
+                    </div>
+                </div>
+          
+                {% else %}
+
+                <div class="col-md-4 facts-row">
+                    <div>
+                        <div class="module-box" style="border-radius: 14px 14px 14px 14px;">
+                          <div class="img-main">
+                            <a href="{% url "project:view" title=completed_project.project_url %}" class="img-link" style="border-radius: 14px 14px 0px 0px;">
+                              <span class="txt-table">
+                                <span class="txt">
+                                    {{ completed_project.title }}
+                                </span>
+                              </span>
+                              <div><div class="img" style="background-image:url('{{MEDIA_URL}}{{completed_project.cover_photo.url }}' ); opacity: 0.6"></div><span class="completed_project"><img src="/static/images/installedorange.png" alt="Project is completed" ></span></div>
                             </a>
                             <div class="funded-round">
                               <div class="status-circular">
@@ -150,6 +231,7 @@
                         <!-- end .module-box -->
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
 
         </div>
