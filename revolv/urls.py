@@ -110,7 +110,8 @@ urlpatterns = patterns(
     url(r'^donate_confirm/', 'revolv.base.views.donate_confirm', name='donate_confirm'),
     url(r'^email_confirm/', 'revolv.base.views.email_confirm', name='email_confirm'),
 #-----
-
+    
+    url(r'^terms/privacy_policy', 'revolv.base.views.privacy_policy', name='privacy_policy'),
     url(r'^get-involved/revolv-accelerator/', 'revolv.base.views.revolv_accelerator', name='revolv_accelerator'),
     url(r'^get-involved/leadership-circle/', 'revolv.base.views.leadership_circle', name='leadership_circle'),
     url(r'^solar-education/myths-and-facts/', 'revolv.base.views.myths_and_facts', name='myths_and_facts'),

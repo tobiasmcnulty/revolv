@@ -742,6 +742,9 @@ def myths_and_facts(request):
     return render(request, 'base/partials/myth_and_facts.html')
 
 
+def privacy_policy(request):
+    return render(request, 'base/privacy-policy-html-english.html')
+
 def solarathome(request):
     return render_to_response('base/solar_at_home.html',
                               context_instance=RequestContext(request))
