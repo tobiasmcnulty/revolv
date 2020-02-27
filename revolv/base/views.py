@@ -852,6 +852,8 @@ def intake_form_submit(request):
         'emailform': emaildt,
         'zipcodeform': zipcodedt,
         'colstudentform': colstudentdt,
+        'schoolLocform': schoolLocdt,
+        'phoneNumform': phonenumberdt,
         'interestform': interestdt,
         'sourceform': headsourcedt,
         'orgnameform': orgnamedt,
