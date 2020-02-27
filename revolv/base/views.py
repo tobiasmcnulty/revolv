@@ -772,6 +772,7 @@ def intake_form_submit(request):
         name = request.GET.get('name')
         email = request.GET.get('email')
         zipCode = request.GET.get('zipCode')
+        phonenumber = request.GET.get('phonenumber')
         colstudent = request.GET.get('colstudent')
         signUp = request.GET.get('signUp')
         interest = request.GET.get('interest')
@@ -786,6 +787,7 @@ def intake_form_submit(request):
         phoneNumber = request.GET.get('phoneNumber')
         missionStatement = request.GET.get('missionStatement')
         orgStartYear = request.GET.get('orgStartYear')
+        schoolLoc = request.GET.get('schoolLoc')
         affiliation = request.GET.get('affiliation')
         solarProjNeed = request.GET.get('solarProjNeed')
         annualBudget = request.GET.get('annualBudget')
@@ -809,7 +811,11 @@ def intake_form_submit(request):
 
     emaildt = email
     zipcodedt = zipCode
+
+    phonenumberdt = phonenumber
     colstudentdt = colstudent
+
+    schoolLocdt = schoolLoc
 
     interestdt = interest
     headsourcedt = heardSource
@@ -826,9 +832,9 @@ def intake_form_submit(request):
 
 
     if colstudentdt == 'Yes' or colstudentdt == 'No':
-        send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt , headsourcedt, orgnamedt, orgaddressdt, websitedt, affiliatedt)
+        send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt , headsourcedt, orgnamedt, orgaddressdt, websitedt, affiliatedt, phonenumberdt)
     else:
-        send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressdt, orgstatedt, zipcodedt, websitedt, affiliatedt, nonprofitdt, nonprofitbuildt)
+        send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressdt, orgstatedt, zipcodedt, websitedt, affiliatedt, phonenumberdt, headsourcedt)
     
     fullnamedt = firstnamedt + "  " + lastnamedt
 

@@ -12,6 +12,12 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="/static/js/base/bring_solar_at_home.js?version={{ version_number }}"></script>
         <script src="/static/js/base/jquery.cookie.js"></script>
+
+        <style>
+        .hidden {
+            display: none!important
+        }    
+        </style>
     
 {%endblock%}
 
@@ -30,7 +36,7 @@
         </div>
     </div>
     <div class="full-width intake-form-container">
-        <div class="form-step-1">
+        <div class="form-step-1" style="margin-top: 40px;">
             <div class="full-width show-step-number">
                 STEP 1 OF 2
             </div>
@@ -61,7 +67,7 @@
                        Are you a college student?
                     </div>
                     <div class="full-width interest-block flex flex-aln-itm-cnt">
-                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt"  id="yCollege">
                             <div class="mark-checkbox" data-checkbox-status="checked"></div>
                         </div>
                         <div class="interest-text">
@@ -69,7 +75,7 @@
                         </div>
                     </div>
                     <div class="full-width interest-block flex flex-aln-itm-cnt">
-                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt"  id="nCollege">
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="interest-text">
@@ -78,17 +84,27 @@
                     </div>
                 </div>
             </div>
+            <div class="full-width schoolLoc-org-cntnr" id="schoolInput">
+                <div class="full-width schoolLoc-org-block">
+                    <div >
+                        What college/university?
+                    </div>
+                    <div>
+                        <textarea rows="3" class="text-area" style="width:100%"></textarea>
+                    </div>
+                </div>
+            </div>
             <div class="full-width get-to-know-revolv-cntnr">
                 <div class="full-width get-to-know-revolv-block flex flex-wrap">
                     <div>
-                        I heard about RE-volv from
+                         How did you hear about RE-volv:
                     </div>
                     <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
                             <div class="mark-checkbox" data-checkbox-status="checked"></div>
                         </div>
                         <div class="get-to-know-text">
-                            RE-volv staff or board member
+                            Online search
                         </div>
                     </div>
                     <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
@@ -96,19 +112,11 @@
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="get-to-know-text">
-                            News story
+                            News
                         </div>
                     </div>
                     <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
-                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
-                        </div>
-                        <div class="get-to-know-text">
-                            Friend or supporter of RE-volv
-                        </div>
-                    </div>
-                    <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
-                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="get-to-know-text">
@@ -120,7 +128,7 @@
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="get-to-know-text">
-                             Online Search
+                            Referral from a solar installer
                         </div>
                     </div>
                     <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
@@ -128,9 +136,25 @@
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="get-to-know-text">
-                            Other
+                            From previous RE-volv projects
                         </div>
                     </div>
+                    <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
+                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
+                        </div>
+                        <div class="get-to-know-text">
+                            RE-volv Solar Ambassador volunteer
+                        </div>
+                    </div>
+                    <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
+                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                           <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
+                       </div>
+                       <div class="get-to-know-text">
+                            Other
+                       </div>
+                   </div>
                 </div>
             </div>
             <div class="full-width know-interest-cntnr mb-4">
@@ -161,7 +185,7 @@
                 SUBMIT
             </div>
         </div>
-        <div class="form-step-2">
+        <div class="form-step-2" style="margin-top: 40px;">
             <div class="full-width step-1-heading">
                 Tell Us More About The Organization <br> you want to help go solar.
             </div>
@@ -180,7 +204,7 @@
               
                  <div class="full-width webite-and-phone" >
                     <div class="col-xs-12 padding-zero website-name" style="padding-right:0%;">
-                        <input type="text" placeholder="Please enter your Organization Website">
+                        <input type="text" placeholder="Organization Website">
                     </div>
                     <div class="col-xs-12 col-sm-4 padding-zero" style="display:none;">
                         <input type="text" placeholder="Phone Number">
@@ -221,5 +245,13 @@
             $('#nextstep1').show();
           });
         });
-        </script>
+
+        $("#nCollege").click(function() {
+            $("#schoolInput").addClass("hidden");
+          
+        });
+        $("#yCollege").click(function() {
+            $("#schoolInput").removeClass("hidden");
+        });
+    </script>
 {%endblock%}

@@ -154,29 +154,35 @@ $(document).ready(function() {
             var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
             var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
             var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
+            var phonenumber = $('.input-email-code > div:last-child input[type=text]').val().trim();
             var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
             var regExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
             var status = "success";
             $(".field-error").remove();
             if(firstName.length <= 0) {
-                var errorMsg = '<div class="field-error">Please enter your name.</div>';
-                $(".input-full-name").append(errorMsg);
+                var errorMsg = '<div class="field-error">Please enter your first name.</div>';
+                $(".input-full-name > div:first-child").append(errorMsg);
                 status = "error";
             } 
             if(lastName.length <= 0) {
-                var errorMsg = '<div class="field-error">Please enter your name.</div>';
-                $(".input-full-name").append(errorMsg);
+                var errorMsg = '<div class="field-error">Please enter your last name.</div>';
+                $(".input-full-name > div:last-child").append(errorMsg);
                 status = "error";
             } 
             if(email.length <= 0 || regExp.test(email) == false) {
                 var errorMsg = '<div class="field-error">Please enter valid email.</div>';
                 $(".input-email-code > div:first-child").append(errorMsg);
                 status = "error";
-            } if(zipCode.length <= 0) {
+            } 
+            
+            /*
+            if(zipCode.length <= 0) {
                 var errorMsg = '<div class="field-error">Please enter zip code.</div>';
                 $(".input-email-code > div:last-child").append(errorMsg);
-                status = "error";
+                #status = "error";
             }
+            */
+           
             return status;
      }
      function step2Validation() {
@@ -202,8 +208,7 @@ $(document).ready(function() {
 
 
             var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
-            var phoneNumber = $('.webite-and-phone > div:last-child input[type=text]').val().trim();
-
+           
 
             var urlRegEx = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
             var status = "success";
@@ -225,11 +230,7 @@ $(document).ready(function() {
                 var errorMsg = '<div class="field-error">Please enter your website name.</div>';
                 $(".webite-and-phone > div:first-child").append(errorMsg);
                 status = "error";
-            } if(phoneNumber.length <= 0) {
-                var errorMsg = '<div class="field-error">Please enter your phone number.</div>';
-                $(".webite-and-phone > div:last-child").append(errorMsg);
-                status = "error";
-            }
+            } 
             if(missionStatement.length <= 0) {
                 var errorMsg = '<div class="field-error">Please enter mission statement.</div>';
                 $(".mission-stmnt").append(errorMsg);
@@ -298,6 +299,7 @@ $(document).ready(function() {
          var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
          var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
          var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
+         var phonenumber = $('.input-email-code > div:last-child input[type=text]').val().trim();
 
          var orgState = $('.org-statezip > div:first-child input[type=text]').val().trim();
          var zipCode = $('.org-statezip > div:last-child input[type=text]').val().trim();
@@ -312,13 +314,13 @@ $(document).ready(function() {
          var heardSource = $(".get-to-know-revolv-block .mark-checkbox").parent().next().text().trim();
 
 
-        if ($this.parents('.form-step-2').length) {
-            status = step3Validation();
+        if ($this.parents('.form-step-1').length) {
+            status = step1Validation();
             if(status == "error")
              return;
         }
-         if ($this.parents('.form-step-4').length) {
-            status = step4Validation();
+         if ($this.parents('.form-step-1').length) {
+            status = step1Validation();
             if(status == "error")
              return;
         }
@@ -352,6 +354,7 @@ $(document).ready(function() {
                     lastName: lastName,
                     name: name,
                     email: email,
+                    phonenumber: phonenumber,
                     zipCode: zipCode,
                     colstudent: colstudent,
                     signUp: signUp,

@@ -75,6 +75,15 @@ $(document).ready(function() {
                 $this.removeClass('unmarked-checkbox').addClass('mark-checkbox');
                 $this.data('checkbox-status', "checked");
             }
+         } else if (findParent.parents('.schoolLoc-org-block').length){
+            var $this = $(this).find("div:first-child");
+            var checkboxSatus = $this.data('checkbox-status');
+            if(checkboxSatus == "unchecked") {
+                findParent.closest('.schoolLoc-org-block').find('.form-checkbox div:first-child').addClass('unmarked-checkbox').removeClass('mark-checkbox');
+                findParent.closest('.schoolLoc-org-block').find('.form-checkbox div:first-child').data('checkbox-status', "unchecked");
+                $this.removeClass('unmarked-checkbox').addClass('mark-checkbox');
+                $this.data('checkbox-status', "checked");
+            }
          } else if (findParent.parents('.solar-proj-need-block').length){
             var $this = $(this).find("div:first-child");
             var checkboxSatus = $this.data('checkbox-status');
@@ -149,13 +158,13 @@ $(document).ready(function() {
             var status = "success";
             $(".field-error").remove();
             if(firstName.length <= 0) {
-                var errorMsg = '<div class="field-error">Please enter your name.</div>';
-                $(".input-full-name").append(errorMsg);
+                var errorMsg = '<div class="field-error">Please enter your first name.</div>';
+                $(".input-full-name > div:first-child").append(errorMsg);
                 status = "error";
             }     
             if(lastName.length <= 0) {
-                var errorMsg = '<div class="field-error">Please enter your name.</div>';
-                $(".input-full-name").append(errorMsg);
+                var errorMsg = '<div class="field-error">Please enter your last name.</div>';
+                $(".input-full-name > div:last-child").append(errorMsg);
                 status = "error";
             }
             
@@ -192,7 +201,7 @@ $(document).ready(function() {
             var organisationAddress = $('.org-address input[type=text]').val().trim();
 
             var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
-            var phoneNumber = $('.webite-and-phone > div:last-child input[type=text]').val().trim();
+
 
 
             var urlRegEx = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
@@ -215,11 +224,7 @@ $(document).ready(function() {
                 var errorMsg = '<div class="field-error">Please enter your website name.</div>';
                 $(".webite-and-phone > div:first-child").append(errorMsg);
                 status = "error";
-            } if(phoneNumber.length <= 0) {
-                var errorMsg = '<div class="field-error">Please enter your phone number.</div>';
-                $(".webite-and-phone > div:last-child").append(errorMsg);
-                status = "error";
-            }
+            } 
             if(missionStatement.length <= 0) {
                 var errorMsg = '<div class="field-error">Please enter mission statement.</div>';
                 $(".mission-stmnt").append(errorMsg);
@@ -293,8 +298,8 @@ $(document).ready(function() {
         var heardSource = $(".get-to-know-revolv-block .mark-checkbox").parent().next().text().trim();
 
 
-        if ($this.parents('.form-step-2').length) {
-            
+        if ($this.parents('.form-step-1').length) {
+            status = step1Validation();
             if(status == "error")
              return;
         }
@@ -309,7 +314,9 @@ $(document).ready(function() {
         var organisationAddress = $('.org-address input[type=text]').val().trim();
 
         var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
-        var phoneNumber = $('.webite-and-phone > div:last-child input[type=text]').val().trim();
+
+
+        var schoolLoc = $(".schoolLoc-org-cntnr .schoolLoc-org-block .text-area").val().trim();
 
         var affiliation = $(".affiliation-org-cntnr .affiliation-org-block .text-area").val().trim();
         var solarProjNeed = $(".solar-proj-need-cntnr .mark-checkbox").parent().next().text().trim();
@@ -347,8 +354,9 @@ $(document).ready(function() {
                     organisationAddress: organisationAddress,
   
                     websiteName: websiteName,
-                    phoneNumber: phoneNumber,
+             
 
+                    schoolLoc: schoolLoc,
                     affiliation: affiliation,
                     solarProjNeed: solarProjNeed,
 
