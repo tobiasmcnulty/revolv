@@ -56,8 +56,13 @@
                     <div class="col-xs-12 col-sm-6 padding-zero" style="">
                         <input type="text" placeholder="Your Email" >
                     </div>
-                    <div class="col-xs-12 col-sm-6 padding-zero" style="">
-                        <input type="text" placeholder="ZIP Code">
+                    <div class="col-xs-12 col-sm-6 padding-zero phonenumber">
+                        <input type="text" placeholder="Phone Number" class="full-width">
+                    </div>
+                </div>
+                <div class="full-width input-full-zip mb-5">
+                    <div class="col-xs-12 col-sm-6 padding-zero firstzip" style="">
+                        <input type="text" placeholder="Zip code" class="full-width">
                     </div>
                 </div>
             </div>
@@ -68,7 +73,7 @@
                     </div>
                     <div class="full-width interest-block flex flex-aln-itm-cnt">
                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt"  id="yCollege">
-                            <div class="mark-checkbox" data-checkbox-status="checked"></div>
+                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="interest-text">
                             Yes
@@ -76,7 +81,7 @@
                     </div>
                     <div class="full-width interest-block flex flex-aln-itm-cnt">
                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt"  id="nCollege">
-                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
+                            <div class="mark-checkbox" data-checkbox-status="checked"></div>
                         </div>
                         <div class="interest-text">
                             No
@@ -84,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="full-width schoolLoc-org-cntnr" id="schoolInput">
+            <div class="full-width schoolLoc-org-cntnr hidden" id="schoolInput">
                 <div class="full-width schoolLoc-org-block">
                     <div >
                         What college/university?
@@ -120,15 +125,7 @@
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="get-to-know-text">
-                            Social Media
-                        </div>
-                    </div>
-                    <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
-                         <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
-                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
-                        </div>
-                        <div class="get-to-know-text">
-                            Referral from a solar installer
+                            Email from RE-volv
                         </div>
                     </div>
                     <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
@@ -144,7 +141,15 @@
                             <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                         </div>
                         <div class="get-to-know-text">
-                            RE-volv Solar Ambassador volunteer
+                            RE-volv volunteer
+                        </div>
+                    </div>
+                    <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
+                        <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                            <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
+                        </div>
+                        <div class="get-to-know-text">
+                            Social Media
                         </div>
                     </div>
                     <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
@@ -185,9 +190,9 @@
                 SUBMIT
             </div>
         </div>
-        <div class="form-step-2" style="margin-top: 40px;">
-            <div class="full-width step-1-heading">
-                Tell Us More About The Organization <br> you want to help go solar.
+        <div class="form-step-2">
+            <div class="full-width step-1-heading" style="margin-top: 40px; font-size: 3rem;">
+                Tell us more about the nonprofit you want to help go solar.
             </div>
             <div class="full-width organization-details">
                 <div class="full-width org-name-taxid">
@@ -199,7 +204,16 @@
                     </div>
                 </div>
                 <div class="full-width org-address">
-                    <input type="text" placeholder="Organization Address">
+                    <input type="text" placeholder="Organization Street Address">
+                </div>
+
+                <div class="full-width org-statezip">
+                    <div class="col-xs-12 col-sm-6 padding-zero" style="padding-left: 0px;">
+                        <input type="text" placeholder="Organization State" class="full-width">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 padding-zero" style="padding-left: 0px;">
+                        <input type="text" placeholder="Organization Zip" class="full-width">
+                    </div>
                 </div>
               
                  <div class="full-width webite-and-phone" >
