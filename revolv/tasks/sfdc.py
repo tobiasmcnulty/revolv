@@ -61,7 +61,7 @@ def send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressd
         logger.error('SFDC sign-up: ERROR for name: %s and data: %s, res: %s', emaildt, payload, res, exc_info=True)
 
 #@task
-def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt, headsourcedt, orgnamedt, orgaddressdt, websitedt, affiliatedt, phonenumberdt):
+def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt, headsourcedt, orgnamedt, orgaddressdt, orgstatedt, websitedt, affiliatedt, phonenumberdt):
 
     if not settings.SFDC_ACCOUNT:
         return
@@ -84,7 +84,7 @@ def send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentd
         elif colstudentdt == 'No':
             colstudentdt = 'Community Champion'
 
-        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'PostalCode': zipcodedt, 'Company': orgnamedt, 'Volunteer_Type__c': colstudentdt, 'Referral_Type__c': headsourcedt, 'Street': orgaddressdt, 'Website' : websitedt, 'Title': affiliatedt,  'Phone': phonenumberdt, 'How_did_you_hear_about_us__c': headsourcedt })
+        sf.Lead.create({'FirstName':firstnamedt, 'LastName':lastnamedt, 'Email': emaildt, 'PostalCode': zipcodedt, 'Company': orgnamedt, 'Volunteer_Type__c': colstudentdt, 'Referral_Type__c': headsourcedt, 'Street': orgaddressdt, 'State': orgstatedt, 'Website' : websitedt, 'Title': affiliatedt,  'Phone': phonenumberdt, 'How_did_you_hear_about_us__c': headsourcedt })
         
         logger.info('send sign-up to SFDC with data: %s', payload)
         #res = sf.apexecute('lead', method='POST', data=payload)

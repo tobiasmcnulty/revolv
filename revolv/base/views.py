@@ -772,6 +772,7 @@ def intake_form_submit(request):
         name = request.GET.get('name')
         email = request.GET.get('email')
         zipCode = request.GET.get('zipCode')
+        firstZip = request.GET.get('firstZip')
         phonenumber = request.GET.get('phonenumber')
         colstudent = request.GET.get('colstudent')
         signUp = request.GET.get('signUp')
@@ -811,6 +812,7 @@ def intake_form_submit(request):
 
     emaildt = email
     zipcodedt = zipCode
+    firstZipdt = firstZip
 
     phonenumberdt = phonenumber
     colstudentdt = colstudent
@@ -832,7 +834,7 @@ def intake_form_submit(request):
 
 
     if colstudentdt == 'Yes' or colstudentdt == 'No':
-        send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt , headsourcedt, orgnamedt, orgaddressdt, websitedt, affiliatedt, phonenumberdt)
+        send_volunteer_info(firstnamedt, lastnamedt, emaildt, zipcodedt, colstudentdt , headsourcedt, orgnamedt, orgaddressdt, orgstatedt, websitedt, affiliatedt, phonenumberdt)
     else:
         send_nonprofit_info(firstnamedt, lastnamedt, emaildt, orgnamedt, orgaddressdt, orgstatedt, zipcodedt, websitedt, affiliatedt, phonenumberdt, headsourcedt)
     
@@ -850,6 +852,7 @@ def intake_form_submit(request):
         'style*="font-size:1px"': 'style*="font-size:1px"TestValue',
         'nameform': fullnamedt,
         'emailform': emaildt,
+        'firstzipform': firstZipdt,
         'zipcodeform': zipcodedt,
         'colstudentform': colstudentdt,
         'schoolLocform': schoolLocdt,

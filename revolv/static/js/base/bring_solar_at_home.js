@@ -153,6 +153,8 @@ $(document).ready(function() {
           var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
           var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
           var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
+
+          var firstZip = $('.input-full-zip  > div:first-child input[type=text]').val().trim();
           var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
           var regExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
           var status = "success";
@@ -167,16 +169,12 @@ $(document).ready(function() {
               $(".input-full-name > div:last-child").append(errorMsg);
               status = "error";
           }
-          
+ 
           if(email.length <= 0 || regExp.test(email) == false) {
               var errorMsg = '<div class="field-error">Please enter valid email.</div>';
               $(".input-email-code > div:first-child").append(errorMsg);
               status = "error";
-          } if(zipCode.length <= 0) {
-              var errorMsg = '<div class="field-error">Please enter zip code.</div>';
-              $(".input-email-code > div:last-child").append(errorMsg);
-              status = "error";
-          }
+          } 
           return status;
    }
    function step2Validation() {
@@ -291,7 +289,13 @@ $(document).ready(function() {
       var firstName = $('.input-full-name .firstname input[type=text]').val().trim();
       var lastName = $('.input-full-name .lastname input[type=text]').val().trim();
       var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
-      var zipCode = $('.input-email-code > div:last-child input[type=text]').val().trim();
+
+      var firstZip = $('.input-full-zip  > div:first-child input[type=text]').val().trim();
+
+      var phonenumber = $('.input-email-code > div:last-child input[type=text]').val().trim();
+      var orgState = $('.org-statezip > div:first-child input[type=text]').val().trim();
+      var zipCode = $('.org-statezip > div:last-child input[type=text]').val().trim();
+      
       var signUp = $(".sign-up-revolve-update div:last-child").text().trim();
       var interest = $(".know-interest-cntnr .mark-checkbox").parent().next().text().trim();
       var colstudent = $(".colstudent-cntnr .mark-checkbox").parent().next().text().trim();
@@ -347,8 +351,11 @@ $(document).ready(function() {
                   interest: interest,
                   colstudent: colstudent,
                   heardSource: heardSource,
-           
-       
+                  orgState : orgState,
+                  phonenumber: phonenumber,
+                  
+                  firstZip: firstZip,
+
                   organisationName: organisationName,
                   organisationTaxId: organisationTaxId,
                   organisationAddress: organisationAddress,
