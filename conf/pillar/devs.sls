@@ -52,13 +52,6 @@ users:
         public_key:
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMvXq+7UaRnYbI7fjJDm1kZE07fi5BaAdxRMw9X0ITRXkdSjwj5c1889UREjv5jZ7T42mK8QpsEJgWw0hC5mfEr/WMuDX909AMOcOsIU+W1kqxXK5Bq9vr7rUyESgY+XZm6eCy61eBjgZtWi9kZ6o3+djgTuZ7UJUdDcJ4w/6JVskREEz8F6hHXyB/y+hIUffcLw4knlsL8vcVgfIbYffhMG5C3gCjnouSNqC/hJkd1cdeXFjV/qMG3kbB+234Ud+WCYRggpEP1KbXz8+NmlQnjFkxG+ktHsiaF2J2Pr//PgDZqXtwVnjZuiYZ/JnSm9pYbpK6t4DlR7m2pkz+O9aN remark@RE-Mark
 
-    amit:
+    guest:
         public_key:
-            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4djLcLUwf8vG+g/kXv0Oy3x38dslwCubqY3Tqz9jB+T45v/xHIRTcRvACbf0/GLQZlIJnrWv1AddJf1Vd9Xsqlfe+M0oB/EaYgt/wMhvuaXG2hGjxLXwm1J6z2y8l+xwCa00O1pwLyunZRX8Rkf1xlIRYPJhcSCBpz8XnYGJfXb1xZJ+c+7Clvvse0B1aKrSmjR+zGn2cu7nGA0cTRcFXgj5FBxdhbnf7ehKAgxlipi1dBtnavUrQiGWfVTi8G/C1bZ4FTwiQPQNXlg0Mbf0VOMF5P4C5ELDxzKWhkE+z0vdTZvJT+5m0pK2PmR/p4iIQPDW7odXQpJgy7MgDZ7Id lt-118@lt118-Vostro-3558ti
-    seven:
-        public_key:
-            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmYoJMrl+cHN3wWV6MVKhWZ7gkNTQ7beIyFKp2IYaKxFhhWHHOxTyDZ9vYdww396wXeLhMXcYuNy4btC1XuVMMUBJyjY7y70Y8THxvAYheTjfRyOjTPGMH1VMg2sfudrFBUzQVp8hiqJ3kv6T61TqTGBzP6aFv6SuBi8ZhLxd6HNNxOnQm0iMr5DxC7DGtR3qpX+yMt+cKDIWzW7lPT/mZPXH1o+qfdqZJVxXD3V1N07l11/Oe9NNNf7/Z/NakeYfhWXz3U7REAwszrekkAUZJoXpwCP+FjEBGG2agZXGNFb5rzXV37S9tiB5JXH7+rlVm+idZpkdN2iYawM1h3TmJ remark@RE-Mark
-    
-    four:
-        public_key:
-            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDxX3GGlEjbwu1GhQBCYLHMrRPhnZKuYeNpnVwjFRmOM8svZVGmUwWPAeVymbnqhATHD051R9hdKpYPpfdnru1R7dszb95ncTcp+mXY6fI3GwUAPwcw9wVoIF6zt7QNAxsqGW7TzXTTSLdh93UI9KRx9oNG8FiwZlnfbAiOqxqNqDlvL7/jJSrz7LYNROV5OFik5bXHOB9t7rDsDqyshNxCPTSunjA3lojOChwFmmCO+A1GB6V771Y1/7ToCUlvhn1pGAP/EMtB2YmOfVoOBek0HitGIhSmwchwmfDAvH0xrspkadrvyd+jYDAG7w7qEYQ1boGPeLpNCbctHHno9Lkl remark@RE-Mark
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDru7DH7OyJw7nGWQkt7XDZduf42PvtwnjzaJ+ePYhbq4/vO+X4DqoYblogJgxzCfwK0iVaSFbLhlKmztkGbTODOmdxP/txXnVgAs8tAl5UXB3QfKBKlGL5t2u1kJUbEh7dZ50qlVGWPRfbwxYDEy3vxJXGdLGm5NZQ98nNU4oPEz1YhIv61J6i4tBLKrLvsa+uo3PVObA/lFlchGx0gor9luF0MVyAzJqS9/rue1MGd2vwm2Coe8CTmVq0joDIrcaGmhlE1smuQ2JD5i7CMUUzinmt/hdJUMHanNp+FIXgBX3TysiGK6fMGaDpL2UcMHk/JnFmjLv7eXVn9q32HPxN remark@RE-Mark
