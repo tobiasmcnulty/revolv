@@ -1,0 +1,134 @@
+{% comment %}
+    We have to load staticfiles here, even though it's already loaded
+    in the base template, because of how django does staticfile processing:
+    http://stackoverflow.com/questions/22650371/django-is-it-impossible-to-static-tag-into-block-tag
+{% endcomment %}
+{% load staticfiles revolv_cms_tags %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css?version={{ version_number }}">
+<!--  
+<link rel="stylesheet" type="text/css" href="/static/css/donateform.css?version={{ version_number }}" />
+-->
+<!--   
+commented out overrides padding etc... 
+<link rel="stylesheet" type="text/css" href="/static/css/accelerator.css?version={{ version_number }}" />  
+-->
+<link rel="stylesheet" type="text/css" href="/static/css/donation.css?version={{ version_number }}" />
+
+<!-- Bootstrap stackpath needed for nav bar alignment -->
+<!-- Bootstrap stackpath alters project page size -->
+<!-- CMS container alignment is not centered -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link href="{% static 'css/home-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/about-abr-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/about-abr-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/nonprofit-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/nonprofit-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<!-- monthly donor, blog, blog articles -->
+<link href="{% static 'css/blog-monthly-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/blog-monthly-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+<!-- edu , fundraise, fundraise project, media -->
+<link href="{% static 'css/edu-media-css/plyr.css' %}?version={{ version_number }}" rel="stylesheet" />
+<link href="{% static 'css/edu-media-css/style.css' %}?version={{ version_number }}" rel="stylesheet" />
+
+
+
+<!-- Placeholder signin-->
+<style>
+  .cms-content-row h1 {
+  color: #100084 !important;
+}
+.cms-content-row h2, .cms-content-row h3, .cms-content-row h4, .cms-content-row h5, .cms-content-row h6 {
+  color: #FF8A00 !important;
+}
+
+  #dropdownz{
+      
+  }
+  #dropdownz{
+      position: relative;
+      line-height: 58px;
+      margin-right: 20px;
+  }
+  #dropdownz a{
+      display: block;
+      color: #333;
+      text-decoration: none;
+  }
+  #dropdownz .dropdown > li a:hover{
+      border-radius: 2px;
+      background: #ff8a00;
+
+  }
+  #dropdownz ul.dropdown{
+      min-width: 200%; /* Set width of the dropdown */
+      background:  #100084;
+      opacity: 0.86;
+      display: none;
+      position: absolute;
+      border-radius: 10px;
+      z-index: 999;
+      left: 0;
+  }
+  #dropdownz:hover ul.dropdown{
+      display: block;	/* Display the dropdown */
+  }
+  #dropdownz ul.dropdown li{
+      display: block;
+      
+  }
+
+  #dropdownz ul.dropdown li > a{
+      color: white !important;
+      margin-left: -20px;
+      margin-right: -20px;
+      font-size:10px;
+      text-align: left;
+      padding-left: 10px;
+      font-weight: bolder;
+  }
+
+  #dropdownz ul.dropdown li:hover{
+      border-radius: 5px;
+      
+  }
+
+  @media (max-width: 991px) {
+    #dropdownz ul.dropdown{
+      min-width: auto;
+    }
+  }
+</style>
+{% endblock %}
+
+
+{% block body %}
+
+  
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><\/script>')</script>
+    -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+    <script src="{% static 'js/home-js/script.js' %}"></script>
+    <script src="{% static 'js/about-abr-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/about-abr-js/script.js' %}"></script>
+    <script src="{% static 'js/nonprofit-js/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/nonprofit-js/script.js' %}"></script>
+    <!-- monthly donor, blog, blog articles-->
+    <script src='https://cdn.jsdelivr.net/npm/tooltipster@4.2.6/dist/js/tooltipster.bundle.min.js'></script>
+
+    <script src="{% static 'js/edu-media-css/plyr.polyfilled.js' %}"></script>
+    <script src="{% static 'js/edu-media-css/script.js' %}"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}
