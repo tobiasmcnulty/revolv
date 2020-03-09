@@ -862,6 +862,7 @@ def intake_form_submit(request):
         'orgnameform': orgnamedt,
         'orgaddressform': orgaddressdt,
         'websiteform': websitedt,
+        'stateform': orgstatedt,
         'affiliationform': affiliatedt,
         'nonprofit501form': nonprofitdt
     }
