@@ -329,6 +329,8 @@ $(document).ready(function() {
         var organisationTaxId = $('.org-name-taxid > div:last-child input[type=text]').val().trim();
         var organisationAddress = $('.org-address input[type=text]').val().trim();
 
+        var otherForm = $(".get-to-know-revolv-cntnr .get-to-know-revolv-block #otherCheckbox .get-to-know-text .text-area").val().trim();
+
         var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
         var affiliation = $(".affiliation-org-cntnr .affiliation-org-block .text-area").val().trim();
         var solarProjNeed = $(".solar-proj-need-cntnr .mark-checkbox").parent().next().text().trim();
@@ -360,7 +362,7 @@ $(document).ready(function() {
                     signUp: signUp,
                     interest: interest,
                     heardSource: heardSource,
-             
+                    otherForm: otherForm, 
                     nonprofitBuilding: nonprofitBuilding,
                     orgState : orgState,
 

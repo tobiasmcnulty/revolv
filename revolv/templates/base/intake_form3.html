@@ -155,12 +155,13 @@
                                     Social Media
                             </div>
                         </div>
-                        <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt">
-                             <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt">
+                        <div class="get-to-know-block col-xs-12 col-sm-6 padding-zero flex flex-aln-itm-cnt" id="otherCheckbox">
+                             <div class="form-checkbox flex flex-aln-itm-cnt flex-jty-con-cnt" id="yOther">
                                 <div class="unmarked-checkbox" data-checkbox-status="unchecked"></div>
                             </div>
                             <div class="get-to-know-text">
-                                Other
+                                    Other
+                                <textarea rows="3" class="text-area hidden col-sm-12" id="otherTextarea"></textarea>
                             </div>
                         </div>
                     </div>
@@ -187,5 +188,10 @@
 
     <script src="/static/js/base/jquery.maskedinput.min.js"></script>
 
+    <script>
+        $("#yOther").click(function() {
+            $("#otherTextarea").removeClass("hidden");
+        });
+    </script>
 
 {%endblock%}

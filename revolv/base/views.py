@@ -778,6 +778,7 @@ def intake_form_submit(request):
         signUp = request.GET.get('signUp')
         interest = request.GET.get('interest')
         heardSource = request.GET.get('heardSource')
+        otherForm = request.GET.get('otherForm')
         personalDesc = request.GET.get('personalDesc')
         leadDesc = request.GET.get('leadDesc')
         organisationName = request.GET.get('organisationName')
@@ -821,6 +822,7 @@ def intake_form_submit(request):
 
     interestdt = interest
     headsourcedt = heardSource
+    otherformdt = otherForm
 
     orgnamedt = organisationName
     orgaddressdt = organisationAddress
@@ -859,6 +861,7 @@ def intake_form_submit(request):
         'phoneNumform': phonenumberdt,
         'interestform': interestdt,
         'sourceform': headsourcedt,
+        'otherForm': otherformdt,
         'orgnameform': orgnamedt,
         'orgaddressform': orgaddressdt,
         'websiteform': websitedt,

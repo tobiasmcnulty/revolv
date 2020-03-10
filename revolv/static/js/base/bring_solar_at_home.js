@@ -319,7 +319,8 @@ $(document).ready(function() {
 
       var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
 
-
+      var otherForm = $(".get-to-know-revolv-cntnr .get-to-know-revolv-block #otherCheckbox .get-to-know-text .text-area").val().trim();
+      
       var schoolLoc = $(".schoolLoc-org-cntnr .schoolLoc-org-block .text-area").val().trim();
 
       var affiliation = $(".affiliation-org-cntnr .affiliation-org-block .text-area").val().trim();
@@ -351,6 +352,7 @@ $(document).ready(function() {
                   interest: interest,
                   colstudent: colstudent,
                   heardSource: heardSource,
+                  otherForm: otherForm,  
                   orgState : orgState,
                   phonenumber: phonenumber,
                   
