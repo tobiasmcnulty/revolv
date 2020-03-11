@@ -124,6 +124,30 @@
       </div>
     </nav>
     <main role="main" class="container-fluid">
+      <div class='popup' id="modalUser">
+        <div class='newspadding' style="padding: 44px 35px;">
+          <h4 style="color:#f8f9fa !important; font-weight: 700 !important; text-align: center;">Get more great content </h4>
+          <form id="form1" name="form1" class="wufoo  page" autocomplete="off" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <div class="container-fluid" >
+              <div class="row justify-content-center align-items-center" style="padding: 20px 0px">
+                  <div class="row align-items-center">
+                    <div class=" ">
+                      <div class="input-group mb-3 subscription-form inputs" style="padding-right:0em;">
+                          <input class="form-control" id="Field0" name="email" type="email" spellcheck="false" value="" maxlength="255" tabindex="1" placeholder="Email address" required>
+                          <div class="input-group-append">
+                          <button class="btn btn-blue newsletter-signup btn-sign-up" type="button" style="height: 100%;">Sign up</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div> 
+              </div>
+            </div>
+          </form>
+          <p style="margin: 0px; font-size: 18px; text-align: center; font-family: 'Montserrat', sans-serif;">Sign up today for our free newsletter.</p>
+          <a href='' class='close' id="close-welcome" style="font-size:0.9rem;">Close</a>
+        </div>
+      </div>
       <div class="container-fluid edu-cen-re-header4" id="top-section-min">
         <div class="row text-center">
           <div class="col hero-text align-self-end">
