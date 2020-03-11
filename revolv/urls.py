@@ -82,6 +82,7 @@ urlpatterns = patterns(
     url(r'^get-involved/education/historysolar', 'revolv.base.views.historysolar', name='historysolar'),
     url(r'^get-involved/education/leadingcity', 'revolv.base.views.leadingcity', name='leadingcity'),
     url(r'^get-involved/education/beststatesolar', 'revolv.base.views.beststatesolar', name='beststatesolar'),
+    url(r'^get-involved/education/solarfacts', 'revolv.base.views.solarfacts', name='solarfacts'),
 
 
     url(r'^blog-center/articles/$', 'revolv.base.views.blogcenter', name='blogcenter'),

@@ -610,6 +610,9 @@ def leadingcity(request):
 def beststatesolar(request):
     return render(request, 'base/education_center_resources16.html')
 
+def solarfacts(request):
+    return render(request, 'base/education_center_resources18.html')
+
 #---------- Blog
 
 
