@@ -204,10 +204,10 @@ $(document).ready(function() {
      function step3Validation() {
             var organisationName = $('.org-name-taxid > div:first-child input[type=text]').val().trim();
             var organisationTaxId = $('.org-name-taxid > div:last-child input[type=text]').val().trim();
-            var organisationAddress = $('.org-address input[type=text]').val().trim();
+            var organisationAddress = $('.org-statezip > div:first-child input[type=text]').val().trim();
 
 
-            var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
+            var websiteName = $('.org-name-taxid > div:last-child input[type=text]').val().trim();
            
 
             var urlRegEx = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
@@ -301,8 +301,8 @@ $(document).ready(function() {
          var email = $('.input-email-code > div:first-child input[type=text]').val().trim();
          var phonenumber = $('.input-email-code > div:last-child input[type=text]').val().trim();
 
-         var orgState = $('.org-statezip > div:first-child input[type=text]').val().trim();
-         var zipCode = $('.org-statezip > div:last-child input[type=text]').val().trim();
+         var orgState = $('.org-statezip > div:last-child input[type=text]').val().trim();
+         var zipCode = '';
 
          var signUp = $(".sign-up-revolve-update div:last-child").text().trim();
          var interest = $(".know-interest-cntnr .mark-checkbox").parent().next().text().trim();
@@ -327,11 +327,11 @@ $(document).ready(function() {
 
         var organisationName = $('.org-name-taxid > div:first-child input[type=text]').val().trim();
         var organisationTaxId = $('.org-name-taxid > div:last-child input[type=text]').val().trim();
-        var organisationAddress = $('.org-address input[type=text]').val().trim();
-
+        var organisationAddress = $('.org-statezip > div:first-child input[type=text]').val().trim();
+        
         var otherForm = $(".get-to-know-revolv-cntnr .get-to-know-revolv-block #otherCheckbox .get-to-know-text .text-area").val().trim();
 
-        var websiteName = $('.webite-and-phone > div:first-child input[type=text]').val().trim();
+        var websiteName = $('.org-name-taxid > div:last-child input[type=text]').val().trim();
         var affiliation = $(".affiliation-org-cntnr .affiliation-org-block .text-area").val().trim();
         var solarProjNeed = $(".solar-proj-need-cntnr .mark-checkbox").parent().next().text().trim();
 
@@ -386,7 +386,7 @@ $(document).ready(function() {
      });
      $(".webite-and-phone > div:last-child input[type=text]").mask("(999) 999-9999",{placeholder:"x"});
      $.mask.definitions['h'] = "[0-9]";
-     $('.org-name-taxid > div:last-child input[type=text]').mask("hh-hhhhhhh",{placeholder:"x"});
+     /* $('.org-name-taxid > div:last-child input[type=text]').mask("hh-hhhhhhh",{placeholder:"x"}); */
      $('.org-strt-year input[type=text]').mask("hhhh",{placeholder:""});
      /*$('.input-email-code > div:last-child input[type=text]').mask("hhhhh-hhhh?-hh",{placeholder:"x"});*/
     function formMessage() {
