@@ -81,6 +81,27 @@
         </ul>
     </nav>
 {% block body %}
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Dear solar enthusiasts,</h3>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:1.8rem;">Unfortunately, given the current public health crisis, Solar Education Week will have to be postponed. The new dates for Solar Education Week have yet to be determined. Please sign up below for updates and we'll be sure to let you know when it's rescheduled. In the meantime, please take good care of yourselves.</p>
+            </div>
+            <div class="modal-body">
+                <h4>Sincerely,</h4>
+                <h4>The Solar Ed Week partners</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
     <div class="solar-ed-page section-1">
         <img class="background-image-size-home" src="/static/images/header@2X.png" alt="RE-volv">
     </div>
@@ -463,6 +484,12 @@
         © {% now 'Y' %} Solar Education Week. All Rights Reserved
     </footer>
 </div>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+
 {% endblock %}
 </body>
 </html>
