@@ -279,6 +279,7 @@ STATICFILES_FINDERS = (
 
 # If using Celery, tell it to obey our logging configuration.
 CELERYD_HIJACK_ROOT_LOGGER = False
+CELERYD_TASK_TIME_LIMIT = 600
 
 # https://docs.djangoproject.com/en/1.9/topics/auth/passwords/#password-validation
 AUTH_PASSWORD_VALIDATORS = [
