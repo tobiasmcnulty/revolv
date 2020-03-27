@@ -324,9 +324,10 @@ BROKER_PASSWORD = "revolv"
 BROKER_USER = "revolv"
 BROKER_URL = "amqp://revolv:revolv@localhost:5672/revolv"
 
-CELERY_IMPORTS = ('revolv.tasks.reinvestment_allocation', 'revolv.tasks.reinvestment_rollover',)
+#CELERY_IMPORTS = ('revolv.tasks.reinvestment_allocation', 'revolv.tasks.reinvestment_rollover',)
 # The default Django db scheduler
 CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+'''
 CELERYBEAT_SCHEDULE = {
     "scrape": {
         "task": "revolv.project.tasks.scrape",
@@ -346,6 +347,7 @@ CELERYBEAT_SCHEDULE = {
                             day_of_month=ADMIN_REINVESTMENT_DATE['day']),
     }
 }
+'''
 
 GOOGLEMAPS_API_KEY = "AIzaSyAaU4JyPmDkoZZxknsbikaMMJOUBOVhfkI"
 
