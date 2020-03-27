@@ -9,7 +9,7 @@ from models import Project
 from utils import get_solar_csv_url
 
 
-@task
+#@task
 def scrape():
     """Celery task to scrape for solar log csv data"""
 

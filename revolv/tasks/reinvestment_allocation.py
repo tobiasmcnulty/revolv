@@ -16,7 +16,7 @@ import time
 logger = logging.getLogger(__name__)
 
 
-@task
+#@task
 def calculate_montly_reinvesment_allocation():
     """
     This task to handle month reinvestment calculation

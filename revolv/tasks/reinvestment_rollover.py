@@ -17,7 +17,7 @@ import logging
 logger = logging.getLogger("revolv")
 
 
-@task
+#@task
 def distribute_reinvestment_fund():
     """
     This task is for Automatic reinvestment
