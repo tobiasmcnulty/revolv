@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import os
 
-from celery import Celery
+#from celery import Celery
 
 from . import load_env
 load_env.load_env()
@@ -12,7 +12,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'revolv.settings')
 
 from django.conf import settings  # noqa
 
-app = Celery('revolv')
+#app = Celery('revolv')
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
