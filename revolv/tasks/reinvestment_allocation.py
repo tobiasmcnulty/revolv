@@ -4,7 +4,7 @@ from revolv.base.models import RevolvUserProfile
 from revolv.tasks.monthly_reminders import user_reinvestment_reminder
 from django.conf import settings
 from django.db.models import Sum
-from celery.task import task
+#from celery.task import task
 from datetime import date
 
 import logging

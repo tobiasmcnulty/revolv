@@ -1,4 +1,4 @@
-from celery.task import task
+#from celery.task import task
 from simple_salesforce import Salesforce
 
 from django.conf import settings
