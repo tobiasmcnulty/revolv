@@ -73,8 +73,7 @@ INSTALLED_APPS = [
     'zinnia',
     'mptt',
     'tagging',
-    'mathfilters',
-    'mailchimp'
+    'mathfilters'
 
 ]
 
@@ -213,7 +212,7 @@ LOGGING = {
 
 SITE_ID = 1
 
-MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+
 LIST_ID = os.environ.get('LIST_ID')
 
 CM_KEY = os.environ.get('CM_KEY')

@@ -46,4 +46,3 @@ python-social-auth==0.2
   djrill==2.1.0
   django-mathfilters==0.4.0
   # six (required by others)
-  -e git+https://github.com/ephemerallabs/django-mailchimp.git#egg=django-mailchimp

@@ -6,7 +6,7 @@ from datetime import date
 from django.db.models import Count
 from django.db.models import Q
 
-import mailchimp
+
 import stripe
 from django.conf import settings
 from django.contrib import messages
@@ -483,17 +483,7 @@ class SignupView(RedirectToSigninOrHomeMixin, FormView):
         )
 
         user = RevolvUserProfile.objects.get(user=self.request.user)
-        if user.subscribed_to_newsletter:
-            try:
-                list = mailchimp.utils.get_connection().get_list_by_id(LIST_ID)
-                list.con.list_subscribe(list.id, self.request.user.email,
-                                        {'EMAIL': self.request.user.email,
-                                         'FNAME': self.request.user.first_name,
-                                         'LNAME': self.request.user.last_name,
-                                         'INTERESTS': NEWSLETTERS},
-                                        double_optin=False, update_existing=True)
-            except Exception, e:
-                logger.exception(e)
+
 
         if self.request.session.get('payment'):
             Payment.objects.filter(id=self.request.session['payment']).update(

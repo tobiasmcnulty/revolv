@@ -505,63 +505,6 @@ var serialize = function (form) {
 
 };
 
-// Display the form status
-window.displayMailChimpStatus = function (data) {
-
-	// Make sure the data is in the right format and that there's a status container
-	// if (!data.result || !data.msg || !mcStatus ) return;
-
-	// Update our status message
-  // mcStatus.innerHTML = data.result;
-
-	// If error, add error class
-	if (data.result === 'error') {
-	  //mcStatus.classList.remove('success-message');
-		//mcStatus.classList.add('error-message');
-		//return;
-
-		$('#donation-spinner').css('display', 'none');
-		$('#newslettermodal').modal('show');
-		$('.modal-title').text('Error!');
-		$('.donation-text').text("Newsletter subsciption fail due to some reason, please try again.");
-	}
-
-	// Otherwise, add success class
-	//mcStatus.classList.remove('error-message');
-	//mcStatus.classList.add('success-message');
-	if (data.result === 'success') {
-	 $('#donation-spinner').css('display', 'none');
-		$('#newslettermodal').modal('show');
-		$('.modal-title').text('Success!');
-		$('.donation-text').text("Thank you for signing up for our newsletter, we look forward to keeping in touch!");
-	}
-};
-
-// Submit the form
-var submitMailChimpForm = function (form) {
-
-	// Get the Submit URL
-	var url = form.getAttribute('action');
-	url = url.replace('/post?u=', '/post-json?u=');
-	url += serialize(form) + '&c=displayMailChimpStatus';
-
-	// Create script with url and callback (if specified)
-	var ref = window.document.getElementsByTagName( 'script' )[ 0 ];
-	var script = window.document.createElement( 'script' );
-	script.src = url;
-
-	// Create a global variable for the status container
-	window.mcStatus = form.querySelector('.mc-status');
-
-	// Insert script tag into the DOM (append to <head>)
-	ref.parentNode.insertBefore( script, ref );
-
-	// After the script is loaded (and executed), remove it
-	script.onload = function () {
-		this.remove();
-	};
-
-};
 
 // Listen to all blur events
 document.addEventListener('blur', function (event) {
@@ -616,6 +559,6 @@ document.addEventListener('submit', function (event) {
 
 	// Otherwise, let the form submit normally
 	// You could also bolt in an Ajax form submit process here
-	submitMailChimpForm(event.target);
+
 
 }, false);
