@@ -323,7 +323,7 @@ WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'content-management-bot@re-volv.org'
 LOGIN_URL = '/signin/'
 
 import djcelery
-from celery.schedules import crontab
+#from celery.schedules import crontab
 
 from datetime import datetime
 
@@ -359,8 +359,8 @@ CELERY_RESULT_BACKEND = "amqp"
 
 #CELERY_IMPORTS = ('revolv.tasks.reinvestment_allocation', 'revolv.tasks.reinvestment_rollover')
 # The default Django db scheduler
-CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
-'''
+#CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+"""
 CELERYBEAT_SCHEDULE = {
     "scrape": {
         "task": "revolv.project.tasks.scrape",
@@ -380,7 +380,7 @@ CELERYBEAT_SCHEDULE = {
                             day_of_month=ADMIN_REINVESTMENT_DATE['day']),
     }
 }
-'''
+"""
 
 GOOGLEMAPS_API_KEY = "AIzaSyAaU4JyPmDkoZZxknsbikaMMJOUBOVhfkI"
 

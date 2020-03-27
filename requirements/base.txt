@@ -15,7 +15,7 @@ dj-database-url==0.3.0
 gunicorn==19.1.1
 boto==2.34.0
 celery==3.1.17
-django-celery==3.3.1
+django-celery==3.1.16
 beautifulsoup4==4.4.0
 WebTest==2.0.18
 django-webtest==1.7.7
